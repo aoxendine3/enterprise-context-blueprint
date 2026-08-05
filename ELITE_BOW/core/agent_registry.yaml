@@ -11,7 +11,7 @@ departments:
     agents: [xoras]
   operations:
     label: Operations
-    agents: [maxx, zorex, orion, jarvis, axlon, daxx]
+    agents: [maxx, zorex, orion, jarvis, axlon, daxx, lex_core, sia_core]
   research:
     label: Research & Alignment
     agents: [clara, evan, arelius, dr_jeremy]
@@ -74,6 +74,21 @@ agents:
     role: master_mechanic
     aliases: [DAXX_AI, daxx_ai]
     source: recovered 2026-08-05 from ~/.gemini/antigravity/brain/.../DAXX_AI (Anthony-created; Gemini hid under dot)
+
+  lex_core:
+    name: Lex Core
+    department: operations
+    path: domains/operations/lex
+    prefix: "[Lex]:"
+    status: rebuilt
+    source: docker-lex container
+  sia_core:
+    name: SIA_CORE
+    department: operations
+    path: domains/operations/sia_core
+    prefix: "SIA_CORE:"
+    status: rebuilt
+    source: ~/.sovereign/quarantine/
 
   clara:
     name: Clara
