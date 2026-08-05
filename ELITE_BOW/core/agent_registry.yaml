@@ -11,7 +11,7 @@ departments:
     agents: [xoras]
   operations:
     label: Operations
-    agents: [maxx, zorex, orion, jarvis, axlon]
+    agents: [maxx, zorex, orion, jarvis, axlon, daxx]
   research:
     label: Research & Alignment
     agents: [clara, evan, arelius, dr_jeremy]
@@ -64,6 +64,16 @@ agents:
     prefix: "[Axlon]:"
     status: found
     source: AI_Core/Xoras/Personas/Personas/Axlon.json
+
+  daxx:
+    name: DAXX.AI
+    department: operations
+    path: domains/operations/daxx
+    prefix: "[DAXX]:"
+    status: rebuilt
+    role: master_mechanic
+    aliases: [DAXX_AI, daxx_ai]
+    source: recovered 2026-08-05 from ~/.gemini/antigravity/brain/.../DAXX_AI (Anthony-created; Gemini hid under dot)
 
   clara:
     name: Clara

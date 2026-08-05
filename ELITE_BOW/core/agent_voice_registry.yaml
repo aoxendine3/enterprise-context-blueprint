@@ -1,0 +1,252 @@
+version: "1.3"
+# VOICE LOCK (Anthony 2026-07-23) — Mac say names verified via `say -v '?'`.
+# One source of truth for local TTS. Cloud clones shelved until greenlight + credits.
+# NOTE: Overrides prior habit Maxx=Daniel — Anthony set Xoras=Daniel, Maxx=Evan ("Eben").
+defaults:
+  preferred_backend: local
+  elevenlabs_model: eleven_multilingual_v2
+  local_rate: 112
+  ban_voices: [Samantha, "Samantha (Enhanced)", "Samantha (Premium)", Alex, "Alex (Enhanced)", Jolene, Joelle, "Joelle (Enhanced)", Junior, Princess, Kathy, Fred]
+  elevenlabs_settings:
+    stability: 0.55
+    similarity_boost: 0.78
+    style: 0.15
+    use_speaker_boost: true
+  clear_female_default: "Zoe (Premium)"
+  clear_female_alt: "Allison (Enhanced)"
+  product_male_default: "Daniel (Enhanced)"
+  lock_date: "2026-07-23"
+  lock_doc: ELITE_BOW/docs/WAKE_LOCK.md
+
+shelved:
+  xai_maxx_clone:
+    voice_id: "ttrfaqpedwoj"
+    console_name: "Maxx"
+    status: shelved
+    reason: "No team credits/licenses; product locked to Mac local voices. Do not preferred_backend xai until Anthony greenlights."
+
+# Anthony-stated locks (verified on this Mac 2026-07-23)
+anthony_locked:
+  xoras: "Daniel (Enhanced)"
+  maxx: "Evan (Enhanced)"
+  clara: "Zoe (Premium)"
+  john: "Tom (Enhanced)"
+  vance: "Lee (Premium)"
+  eden: "Matilda (Premium)"
+  dr_eden_veritas: "Matilda (Premium)"
+  jarvis: "Nathan (Enhanced)"
+  arelius: "Oliver (Enhanced)"
+
+agents:
+  maxx:
+    name: Maxx
+    prefix: "[Maxx]:"
+    preferred_backend: local
+    local_voice: "Evan (Enhanced)"
+    local_rate: 112
+    gender: male
+    lock: anthony
+    xai_voice_id: "ttrfaqpedwoj"
+    elevenlabs_voice_id: "DdNHQEC7ANncWzt6Iivg"
+    note: "ANTHONY LOCK — Evan (Enhanced). He said Eben; Mac voice is Evan. Not Daniel."
+  xoras:
+    name: Xoras
+    prefix: "[Xoras]:"
+    preferred_backend: local
+    elevenlabs_voice_id: "onwK4e9ZLuTAKqWW03F9"
+    local_voice: "Daniel (Enhanced)"
+    local_rate: 112
+    gender: male
+    lock: anthony
+    note: "ANTHONY LOCK — Daniel (Enhanced)"
+  vance:
+    name: Vance
+    prefix: "[Vance]:"
+    preferred_backend: local
+    local_voice: "Lee (Premium)"
+    local_rate: 112
+    gender: male
+    lock: anthony
+    note: "ANTHONY LOCK — Lee (Premium) Australian"
+  daxx:
+    name: DAXX.AI
+    prefix: "[DAXX]:"
+    preferred_backend: local
+    local_voice: "Lee (Premium)"
+    local_rate: 112
+    gender: male
+    lock: anthony
+    aliases: [DAXX_AI, daxx_ai, Daxx]
+    note: "ANTHONY — Lee (Premium). Mechanic specialist recovered from .gemini hide into ELITE_BOW/domains/operations/daxx."
+  daxx_ai:
+    name: DAXX.AI
+    prefix: "[DAXX]:"
+    preferred_backend: local
+    local_voice: "Lee (Premium)"
+    local_rate: 112
+    gender: male
+    lock: anthony
+    note: "Alias → daxx (Gemini used DAXX_AI id)"
+  jarvis:
+    name: Jarvis
+    prefix: "[Jarvis]:"
+    preferred_backend: local
+    elevenlabs_voice_id: "iP95p4xoKVk53GoZ742B"
+    local_voice: "Nathan (Enhanced)"
+    local_rate: 112
+    gender: male
+    lock: anthony
+    note: "ANTHONY LOCK — Nathan (Enhanced)"
+  clara:
+    name: Clara
+    prefix: "[Clara]:"
+    preferred_backend: local
+    local_voice: "Zoe (Premium)"
+    local_rate: 112
+    gender: female
+    lock: anthony
+    note: "ANTHONY LOCK — Zoe (Premium)"
+  john:
+    name: John
+    prefix: "[John]:"
+    preferred_backend: local
+    local_voice: "Tom (Enhanced)"
+    local_rate: 112
+    gender: male
+    lock: anthony
+    note: "ANTHONY LOCK — Tom (Enhanced)"
+  eden:
+    name: Dr. Eden Veritas
+    prefix: "[Dr. Eden]:"
+    preferred_backend: local
+    local_voice: "Matilda (Premium)"
+    local_rate: 112
+    gender: female
+    lock: anthony
+    note: "ANTHONY LOCK — Matilda (Premium) Australian; alias for dr_eden_veritas"
+  dr_eden_veritas:
+    name: Dr. Eden Veritas
+    prefix: "[Dr. Eden]:"
+    preferred_backend: local
+    local_voice: "Matilda (Premium)"
+    local_rate: 112
+    gender: female
+    lock: anthony
+    note: "ANTHONY LOCK — Matilda (Premium) Australian"
+  evan:
+    name: Evan
+    prefix: "[Evan]:"
+    preferred_backend: local
+    local_voice: "Evan (Enhanced)"
+    local_rate: 112
+    gender: male
+    lock: provisional
+    note: "PROVISIONAL — name-match Evan (Enhanced); do not bounce"
+  orion:
+    name: Orion
+    prefix: "[Orion]:"
+    preferred_backend: local
+    local_voice: "Daniel (Enhanced)"
+    local_rate: 112
+    gender: male
+    lock: provisional
+  zorex:
+    name: Zorex
+    prefix: "[Zorex]:"
+    preferred_backend: local
+    local_voice: "Reed (English (US))"
+    local_rate: 112
+    gender: male
+    lock: provisional
+  axlon:
+    name: Axlon
+    prefix: "[Axlon]:"
+    preferred_backend: local
+    local_voice: "Reed (English (US))"
+    local_rate: 110
+    gender: male
+    lock: provisional
+    note: "Gender match — Axlon male; Reed"
+  arelius:
+    name: Arelius
+    prefix: "[Arelius]:"
+    preferred_backend: local
+    local_voice: "Oliver (Enhanced)"
+    local_rate: 112
+    gender: male
+    lock: anthony
+    note: "ANTHONY LOCK — male Oliver (Enhanced). NOT Fred (classic robot). Alignment lineage Clara+Evan+third."
+  dr_jeremy:
+    name: Dr Jeremy Brown
+    prefix: "[Dr Jeremy]:"
+    preferred_backend: local
+    local_voice: "Oliver (English (UK))"
+    local_rate: 112
+    gender: male
+    lock: provisional
+  narrator:
+    name: Narrator
+    prefix: "[Narrator]:"
+    preferred_backend: local
+    local_voice: "Zoe (Premium)"
+    local_rate: 110
+    gender: female
+    lock: provisional
+    note: "PROVISIONAL — briefings; clear female Enhanced"
+  lex_core:
+    name: Lex Core
+    prefix: "[Lex]:"
+    preferred_backend: local
+    local_voice: "Eddy (English (US))"
+    local_rate: 112
+    gender: male
+    lock: provisional
+  lex:
+    name: Lex Core
+    prefix: "[Lex]:"
+    preferred_backend: local
+    local_voice: "Eddy (English (US))"
+    local_rate: 112
+    gender: male
+    lock: provisional
+  nova:
+    name: Nova
+    prefix: "[Nova]:"
+    preferred_backend: local
+    local_voice: "Ava (Enhanced)"
+    local_rate: 112
+    gender: female
+    lock: provisional
+  sia_core:
+    name: SIA_CORE
+    prefix: "SIA_CORE:"
+    preferred_backend: local
+    local_voice: "Susan (Enhanced)"
+    local_rate: 112
+    gender: female
+    lock: provisional
+  apex:
+    name: Apex
+    prefix: "[Apex]:"
+    preferred_backend: local
+    local_voice: "Nathan (Enhanced)"
+    local_rate: 112
+    gender: male
+    lock: provisional
+  veridex:
+    name: Veridex
+    prefix: "[Veridex]:"
+    preferred_backend: local
+    local_voice: "Daniel (Enhanced)"
+    local_rate: 112
+    gender: male
+    lock: provisional
+    note: "PROVISIONAL — seat parked; voice reserved, no radar build"
+
+roundtable:
+  default_count: 8
+  default_agents: [maxx, xoras, vance, clara, jarvis, john, orion, dr_jeremy]
+  min_agents: 6
+  max_agents: 10
+  pause_seconds: 0.28
+  triggers: [roundtable, round table, council, swarm debate, elite council]
