@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XORAS Sovereign Stage</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body, html {
+            width: 100vw; height: 100vh;
+            overflow: hidden;
+            background: #020408;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            user-select: none;
+        }
+
+        /* 3D Background Canvas: Sits BEHIND everything (Zero visual obstruction) */
+        #webglCanvas {
+            position: absolute; top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: 1;
+        }
+
+        /* Top Sovereign Header */
+        .top-bar {
+            position: absolute; top: 22px; left: 32px;
+            z-index: 20;
+            font-size: 13px; font-weight: 800; letter-spacing: 3px; color: #94A3B8;
+            display: flex; align-items: center;
+        }
+        .live-dot {
+            display: inline-block; width: 10px; height: 10px; border-radius: 50%;
+            background: #00F2FE; margin-right: 12px;
+            box-shadow: 0 0 14px #00F2FE;
+            animation: pulse 1.8s infinite ease-in-out;
+        }
+        @keyframes pulse { 0% { opacity:0.3; transform:scale(0.85); } 50% { opacity:1; transform:scale(1.15); } 100% { opacity:0.3; transform:scale(0.85); } }
+
+        /* Main Stage Frame: Centered cleanly in front of the 3D diagram */
+        #stageContainer {
+            position: absolute; top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        /* Agent Portrait Container (Zero floating dots on face, clean crystal glass frame) */
+        #portraitWrap {
+            position: absolute;
+            top: 46%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw; height: 72vh;
+            max-width: 1100px; max-height: 680px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.98), 0 0 50px rgba(0, 242, 254, 0.15);
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            background: #000;
+        }
+
+        #agentPortrait {
+            width: 100%; height: 100%;
+            object-fit: cover; object-position: center 20%;
+            transition: opacity 0.3s ease, transform 0.5s ease;
+            opacity: 1;
+            display: block;
+        }
+
+        /* Compact, High-Contrast Caption Box: Displays ONLY actual spoken words */
+        .caption-card {
+            position: absolute; bottom: 24px; left: 50%;
+            transform: translateX(-50%);
+            width: 90%; max-width: 880px;
+            z-index: 30;
+            background: rgba(4, 8, 16, 0.94);
+            backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+            border: 1px solid rgba(0, 242, 254, 0.5);
+            border-radius: 16px;
+            padding: 16px 28px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.98), inset 0 1px 0 rgba(255,255,255,0.15);
+            display: flex; flex-direction: column; align-items: center; text-align: center;
+            pointer-events: auto;
+        }
+
+        .caption-header {
+            display: flex; align-items: center; justify-content: space-between; width: 100%;
+            margin-bottom: 8px; padding-bottom: 6px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .agent-badge {
+            font-size: 12px; font-weight: 800; letter-spacing: 2.5px;
+            color: #00F2FE; text-transform: uppercase;
+        }
+        .stream-status {
+            font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+            color: #64748B;
+        }
+        .stream-status.speaking {
+            color: #38BDF8;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.8);
+        }
+
+        /* Spoken Words Stream: High contrast, accessible typography */
+        .words-box {
+            width: 100%; min-height: 52px; max-height: 115px;
+            overflow-y: auto;
+            display: flex; align-items: center; justify-content: center;
+            flex-wrap: wrap; gap: 8px; padding: 4px 0;
+        }
+
+        .speech-word {
+            font-size: 21px; font-weight: 600; color: #94A3B8;
+            transition: color 0.08s ease, transform 0.1s ease, text-shadow 0.1s ease;
+            display: inline-block; line-height: 1.35;
+        }
+        .speech-word.active {
+            color: #00F2FE !important;
+            font-weight: 800 !important;
+            transform: scale(1.2);
+            text-shadow: 0 0 18px rgba(0, 242, 254, 1), 0 0 32px rgba(0, 242, 254, 0.8);
+        }
+        .speech-word.spoken {
+            color: #FFFFFF !important;
+            font-weight: 700;
+        }
+
+        /* Diagram Legend Label */
+        .diagram-legend {
+            position: absolute; bottom: 22px; right: 32px;
+            z-index: 20;
+            font-size: 10px; font-weight: 700; letter-spacing: 2px;
+            color: rgba(0, 242, 254, 0.5);
+            text-transform: uppercase;
+        }
+    </style>
+    <!-- Local Offline Three.js Engine -->
+    <script src="/three.min.js"></script>
+</head>
+<body>
+    <!-- 1. Background 3D Architectural Diagram Canvas -->
+    <canvas id="webglCanvas"></canvas>
+
+    <div class="top-bar">
+        <span class="live-dot"></span>XORAS SOVEREIGN STAGE
+    </div>
+
+    <div class="diagram-legend" id="diagramLabel">3D COGNITIVE DIAGRAM: ACTIVE</div>
+
+    <!-- 2. Main Visual Portrait Frame -->
+    <div id="stageContainer">
+        <div id="portraitWrap">
+            <img id="agentPortrait" src="/images/maxx.jpg" alt="Sovereign Agent" />
+        </div>
+    </div>
+
+    <!-- 3. Accessible Captions: ONLY Displays What Is Being Spoken -->
+    <div class="caption-card">
+        <div class="caption-header">
+            <span class="agent-badge" id="activeAgentRole">MAXX · OPS LEAD & LOCAL SSOT</span>
+            <span class="stream-status" id="streamStatus">LIVE</span>
+        </div>
+        <div class="words-box" id="tickerContent">
+            <!-- Dynamically populated with actual speech words. Zero boilerplate. -->
+        </div>
+    </div>
+
+    <!-- Script 1: Real-Time Subtitle & Image Switching Engine -->
+    <script>
+        const AGENT_ROSTER = {
+            'maxx': { role: 'MAXX · OPS LEAD & LOCAL SSOT', img: '/images/maxx.jpg', color: 0x00F2FE },
+            'vance': { role: 'WILLIAM VANCE · DISCERNMENT & BLACKBOX LEAD', img: '/images/vance.jpg', color: 0xF59E0B },
+            'clara': { role: 'CLARA · DEEP RESEARCH & REASONING', img: '/images/clara.jpg', color: 0x10B981 },
+            'john': { role: 'JOHN · SILICON SYSTEMS ARCHITECT', img: '/images/john.jpg', color: 0x3B82F6 },
+            'selene': { role: 'SELENE · ACOUSTICS & CINEMATICS', img: '/images/selene.jpg', color: 0xEC4899 },
+            'jarvis': { role: 'JARVIS · TASK & LOCAL MODEL ORCHESTRATOR', img: '/images/jarvis.jpg', color: 0x8B5CF6 },
+            'dr_jeremy': { role: 'DR. JEREMY BROWN · COGNITIVE HEALTH', img: '/images/council_boardroom.jpg', color: 0x06B6D4 },
+            'dr_eden': { role: 'DR. EDEN · COGNITIVE DYNAMICS', img: '/images/clara.jpg', color: 0x14B8A6 },
+            'orion': { role: 'ORION · HORIZONTAL SCALING & HYGIENE', img: '/images/orion.jpg', color: 0x6366F1 },
+            'aurelius': { role: 'AURELIUS · STRATEGIC FORESIGHT', img: '/images/arelius.jpg', color: 0xD97706 },
+            'evan': { role: 'EVAN · DISPATCH & TELEMETRY', img: '/images/atlas.jpg', color: 0x0284C7 },
+            'zorex': { role: 'ZOREX · INFRASTRUCTURE CORE', img: '/images/xoras.jpg', color: 0x475569 }
+        };
+
+        let currentAgentKey = 'maxx';
+        let lastTimingText = '';
+        let activeTiming = null;
+
+        function updateAgentVisual(agentKey) {
+            const cleanKey = (agentKey || 'maxx').toLowerCase().trim();
+            if (cleanKey === currentAgentKey) return;
+            currentAgentKey = cleanKey;
+
+            const info = AGENT_ROSTER[cleanKey] || AGENT_ROSTER['maxx'];
+            const portraitEl = document.getElementById('agentPortrait');
+            const roleEl = document.getElementById('activeAgentRole');
+
+            roleEl.innerText = info.role;
+
+            portraitEl.style.opacity = '0';
+            setTimeout(() => {
+                portraitEl.src = info.img;
+                portraitEl.onload = () => { portraitEl.style.opacity = '1'; };
+            }, 150);
+
+            // Reconfigure 3D Architectural Diagram color for this agent
+            if (window.updateDiagramTheme) {
+                window.updateDiagramTheme(info.color, cleanKey.toUpperCase());
+            }
+        }
+
+        function renderWords(words) {
+            const container = document.getElementById('tickerContent');
+            container.innerHTML = '';
+            words.forEach((item, idx) => {
+                const span = document.createElement('span');
+                span.className = 'speech-word';
+                span.id = 'word-' + idx;
+                span.innerText = item.word;
+                container.appendChild(span);
+            });
+        }
+
+        // 35ms Polling Loop for Synchronous Caption Highlighting (Zero query params for 100% server compatibility)
+        setInterval(() => {
+            fetch('/current_timing.json', { cache: 'no-store' })
+                .then(r => {
+                    if (!r.ok) throw new Error('Status ' + r.status);
+                    return r.json();
+                })
+                .then(data => {
+                    if (!data) return;
+
+                    if (data.agent) {
+                        updateAgentVisual(data.agent);
+                    }
+
+                    // Render actual speech text ONLY. Zero boilerplate.
+                    if (data.text && (data.text !== lastTimingText || (!data.synthesizing && activeTiming && activeTiming.synthesizing))) {
+                        lastTimingText = data.text;
+                        activeTiming = data;
+                        if (data.words && data.words.length > 0) {
+                            renderWords(data.words);
+                        } else {
+                            const container = document.getElementById('tickerContent');
+                            container.innerHTML = '<span class="speech-word spoken">' + data.text + '</span>';
+                        }
+                    } else if (activeTiming && data.start_time && !data.synthesizing && activeTiming.synthesizing) {
+                        activeTiming.start_time = data.start_time;
+                        activeTiming.total_duration = data.total_duration;
+                        activeTiming.synthesizing = false;
+                        if (data.words && data.words.length > 0) {
+                            activeTiming.words = data.words;
+                        }
+                    }
+
+                    // Active word glowing calculation in strict lockstep with audio DAC
+                    if (activeTiming && activeTiming.words && activeTiming.words.length > 0) {
+                        const statusEl = document.getElementById('streamStatus');
+
+                        if (data.synthesizing) {
+                            statusEl.innerText = 'PREPARING SPEECH STREAM';
+                            statusEl.className = 'stream-status';
+                            activeTiming.words.forEach((w, idx) => {
+                                const el = document.getElementById('word-' + idx);
+                                if (el) el.className = 'speech-word';
+                            });
+                        } else {
+                            const elapsed = (Date.now() / 1000) - activeTiming.start_time;
+
+                            if (data.complete || elapsed > (activeTiming.total_duration + 0.3)) {
+                                activeTiming.words.forEach((w, idx) => {
+                                    const el = document.getElementById('word-' + idx);
+                                    if (el) el.className = 'speech-word spoken';
+                                });
+                                statusEl.innerText = 'ROUNDTABLE DELIBERATING';
+                                statusEl.className = 'stream-status';
+                            } else if (elapsed < 0) {
+                                // Buffer lag: audio launching in < 70ms
+                                activeTiming.words.forEach((w, idx) => {
+                                    const el = document.getElementById('word-' + idx);
+                                    if (el) el.className = 'speech-word';
+                                });
+                                statusEl.innerText = 'AUDIO BUFFER SYNCHRONIZING';
+                                statusEl.className = 'stream-status speaking';
+                            } else {
+                                activeTiming.words.forEach((w, idx) => {
+                                    const el = document.getElementById('word-' + idx);
+                                    if (el) {
+                                        if (elapsed >= w.start && elapsed <= w.end) {
+                                            el.className = 'speech-word active';
+                                            el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                        } else if (elapsed > w.end) {
+                                            el.className = 'speech-word spoken';
+                                        } else {
+                                            el.className = 'speech-word';
+                                        }
+                                    }
+                                });
+                                statusEl.innerText = 'LIVE SPEECH STREAM';
+                                statusEl.className = 'stream-status speaking';
+                            }
+                        }
+                    }
+                })
+                .catch(() => {
+                    fetch('/current_image.txt', { cache: 'no-store' })
+                        .then(r => r.text())
+                        .then(txt => { if (txt) updateAgentVisual(txt); })
+                        .catch(()=>{});
+                });
+        }, 35);
+    </script>
+
+    <!-- Script 2: True 3D Architectural Diagram of Each Agent (Rendered in Background) -->
+    <script>
+        if (typeof THREE !== 'undefined') {
+            const canvas = document.getElementById('webglCanvas');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 12;
+
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            // Group holding the complete 3D agent architectural diagram
+            const diagramGroup = new THREE.Group();
+            scene.add(diagramGroup);
+
+            // 1. Central Nucleus (Agent Cognitive Core)
+            const coreGeo = new THREE.IcosahedronGeometry(2.2, 1);
+            const coreMat = new THREE.MeshBasicMaterial({
+                color: 0x00F2FE,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.28
+            });
+            const coreMesh = new THREE.Mesh(coreGeo, coreMat);
+            diagramGroup.add(coreMesh);
+
+            // 2. Orbital Architectural Nodes (Tri-Brain, Memory, Discernment, Mutex, Neural TTS)
+            const NODE_COUNT = 8;
+            const nodeMeshes = [];
+            const nodeRadius = 6.2;
+            const nodeGeo = new THREE.OctahedronGeometry(0.5, 0);
+
+            for (let i = 0; i < NODE_COUNT; i++) {
+                const angle = (i / NODE_COUNT) * Math.PI * 2;
+                const mat = new THREE.MeshBasicMaterial({
+                    color: 0x00F2FE,
+                    wireframe: true,
+                    transparent: true,
+                    opacity: 0.6
+                });
+                const mesh = new THREE.Mesh(nodeGeo, mat);
+                mesh.position.set(
+                    Math.cos(angle) * nodeRadius,
+                    Math.sin(angle) * (nodeRadius * 0.55),
+                    Math.sin(angle * 2) * 1.5
+                );
+                diagramGroup.add(mesh);
+                nodeMeshes.push(mesh);
+            }
+
+            // 3. Interconnecting Vector Buses (3D Line Network)
+            const linePositions = [];
+            for (let i = 0; i < NODE_COUNT; i++) {
+                const posA = nodeMeshes[i].position;
+                // Connect to center core
+                linePositions.push(0, 0, 0);
+                linePositions.push(posA.x, posA.y, posA.z);
+
+                // Connect to adjacent node
+                const nextIdx = (i + 1) % NODE_COUNT;
+                const posB = nodeMeshes[nextIdx].position;
+                linePositions.push(posA.x, posA.y, posA.z);
+                linePositions.push(posB.x, posB.y, posB.z);
+
+                // Cross-bus connection (Tri-Brain bridge)
+                const crossIdx = (i + 4) % NODE_COUNT;
+                const posC = nodeMeshes[crossIdx].position;
+                linePositions.push(posA.x, posA.y, posA.z);
+                linePositions.push(posC.x, posC.y, posC.z);
+            }
+
+            const lineGeo = new THREE.BufferGeometry();
+            lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
+            const lineMat = new THREE.LineBasicMaterial({
+                color: 0x00F2FE,
+                transparent: true,
+                opacity: 0.18
+            });
+            const lineNetwork = new THREE.LineSegments(lineGeo, lineMat);
+            diagramGroup.add(lineNetwork);
+
+            // Dynamic Agent Theme Transition
+            window.updateDiagramTheme = function(colorHex, agentName) {
+                coreMat.color.setHex(colorHex);
+                lineMat.color.setHex(colorHex);
+                nodeMeshes.forEach(m => m.material.color.setHex(colorHex));
+                const label = document.getElementById('diagramLabel');
+                if (label) {
+                    label.innerText = '3D ' + agentName + ' COGNITIVE ARCHITECTURE';
+                    label.style.color = '#' + colorHex.toString(16).padStart(6, '0');
+                }
+            };
+
+            // 3D Motion Loop: Living Architectural Rotation & Pulsing
+            let clock = new THREE.Clock();
+            function animateDiagram() {
+                requestAnimationFrame(animateDiagram);
+                const elapsed = clock.getElapsedTime();
+
+                // Smooth slow multi-axis rotation of the 3D diagram in the background
+                diagramGroup.rotation.y = elapsed * 0.12;
+                diagramGroup.rotation.x = Math.sin(elapsed * 0.08) * 0.2;
+                diagramGroup.rotation.z = Math.cos(elapsed * 0.06) * 0.1;
+
+                // Pulsing nodes along cognitive bus
+                coreMesh.rotation.y = -elapsed * 0.2;
+                nodeMeshes.forEach((m, idx) => {
+                    m.rotation.x = elapsed * 0.4 + idx;
+                    m.rotation.y = elapsed * 0.3;
+                    const scale = 1 + Math.sin(elapsed * 2 + idx) * 0.15;
+                    m.scale.set(scale, scale, scale);
+                });
+
+                renderer.render(scene, camera);
+            }
+            animateDiagram();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -47,21 +47,45 @@ def speak_with_word_sync(agent_id, text):
     lower_agent = agent_id.lower()
     voice_name, speed = VOICE_MAP.get(lower_agent, ("bm_george", 1.02))
     
-    # 1. Update Image FIRST so image is 100% active before a single sound plays
+    # 1. Update Image and immediate transcript FIRST so text is 100% visible before synthesis
     with open(STATE_FILE, "w") as f:
         f.write(lower_agent)
         
     with open(TRANSCRIPT_FILE, "w") as f:
         f.write(text)
 
-    # 2. Synthesize audio
+    words = text.split()
+    total_chars = sum(len(w) for w in words) if words else 1
+    
+    # Provisional timings so text displays in the box IMMEDIATELY
+    provisional_words = []
+    curr_off = 0.0
+    for w in words:
+        dur = max(0.2, (len(w) / total_chars) * (len(words) * 0.35))
+        provisional_words.append({
+            "word": w,
+            "start": round(curr_off, 2),
+            "end": round(curr_off + dur, 2)
+        })
+        curr_off += dur
+
+    # Immediate pre-broadcast to UI: Zero latency caption appearance
+    immediate_payload = {
+        "agent": lower_agent,
+        "text": text,
+        "start_time": time.time(),
+        "total_duration": round(curr_off, 2),
+        "words": provisional_words,
+        "synthesizing": True
+    }
+    with open(TIMING_JSON, "w") as f:
+        json.dump(immediate_payload, f)
+
+    # 2. Synthesize audio on Apple Silicon CPU/Neural Core
     samples, sr = k.create(text, voice=voice_name, speed=speed, lang="en-us")
     total_duration = len(samples) / sr
     
-    words = text.split()
-    total_chars = sum(len(w) for w in words)
-    
-    # Compute proportional word timings based on character weight
+    # Accurate timings calibrated to actual generated audio length
     word_timings = []
     current_offset = 0.0
     for w in words:
@@ -73,27 +97,30 @@ def speak_with_word_sync(agent_id, text):
         })
         current_offset += dur
 
-    # Write timing JSON for the frontend to poll and highlight
+    tmp_wav = f"/tmp/sync_speech_{os.getpid()}.wav"
+    sf.write(tmp_wav, samples, sr)
+
+    # Calibrated payload: stamp start_time right at audio playback launch (+70ms CoreAudio latency)
+    playback_start = time.time() + 0.07
     payload = {
         "agent": lower_agent,
         "text": text,
-        "start_time": time.time(),
+        "start_time": playback_start,
         "total_duration": round(total_duration, 2),
-        "words": word_timings
+        "words": word_timings,
+        "synthesizing": False,
+        "complete": False
     }
     with open(TIMING_JSON, "w") as f:
         json.dump(payload, f)
 
-    tmp_wav = f"/tmp/sync_speech_{os.getpid()}.wav"
-    sf.write(tmp_wav, samples, sr)
-
-    # 3. Synchronous Playback
+    # 3. Synchronous Playback on local DAC
     subprocess.run(["afplay", tmp_wav])
     
     if os.path.exists(tmp_wav):
         os.remove(tmp_wav)
         
-    # Mark speech complete (keep text and words so teleprompter never vanishes or reverts)
+    # Mark speech complete
     payload["complete"] = True
     with open(TIMING_JSON, "w") as f:
         json.dump(payload, f)

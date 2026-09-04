@@ -36,11 +36,12 @@ Wake routes to **built agents** in ELITE_BOW — not mood improvisation.
 - Wake prompt: [ELITE_BOW/docs/WAKE_PROMPT.md](ELITE_BOW/docs/WAKE_PROMPT.md)
 - Agent roster: [ELITE_BOW/docs/AGENT_ROSTER.md](ELITE_BOW/docs/AGENT_ROSTER.md)
 - Registry: `ELITE_BOW/core/agent_registry.yaml`
-- **Log Entry #065 (Media Director Gateway):** `agent_speak.sh` routes exclusively through `ops/scripts/media_director_agent.py`.
+- **Log Entry #065 (Media Director Gateway):** `agent_speak.sh` routes exclusively through Orion / `ops/scripts/media_director_agent.py`.
 - **Log Entry #066 (Discernment Bench & Golden List):** All code and architectural proposals must pass `ops/discernment/blackbox_review_engine.py` to be admitted to the Golden List.
+- **Log Entry #069 (Universal Input-Deliberation & Output-Wisdom Gauntlet):** Any guidance/input from Anthony MUST be deliberated by the full council. ALL output must pass rigorous wisdom and discernment gauntlets before certification.
 
 ## Governing Docs
-- [CATCH_LOG.md](memory/catch_log/CATCH_LOG.md) — Constitutional Log Entries 001–066
+- [CATCH_LOG.md](memory/catch_log/CATCH_LOG.md) — Constitutional Log Entries 001–069
 - [WAKE_FACE.md](WAKE_FACE.md) — Current Working-Set Map (Phase 2)
 - [GOLDEN_LIST.md](data_center/golden_list/GOLDEN_LIST.md) — Flawless Certified Assets
 
