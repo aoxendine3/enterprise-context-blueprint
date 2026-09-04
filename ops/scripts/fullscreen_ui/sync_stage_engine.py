@@ -113,12 +113,24 @@ def play_speech_payload(payload):
     with open(TIMING_JSON, "w") as f:
         json.dump(broadcast_data, f)
 
-    # 3. Synchronous playback on hardware DAC
+    # 3. Synchronous playback on hardware DAC with strict system-wide Audio Lock
+    audio_lock_fd = open("/tmp/coreaudio_single_speaker.lock", "w")
     try:
+        import fcntl
+        fcntl.flock(audio_lock_fd, fcntl.LOCK_EX)
+        # Ensure no residual afplay processes are running
+        subprocess.run(["killall", "-9", "afplay"], stderr=subprocess.DEVNULL)
+        time.sleep(0.02)
         subprocess.run(["afplay", tmp_wav])
     finally:
         if os.path.exists(tmp_wav):
             os.remove(tmp_wav)
+        try:
+            import fcntl
+            fcntl.flock(audio_lock_fd, fcntl.LOCK_UN)
+            audio_lock_fd.close()
+        except Exception:
+            pass
 
     # 4. Mark turn complete
     broadcast_data["complete"] = True
