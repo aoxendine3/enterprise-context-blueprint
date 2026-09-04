@@ -14,28 +14,40 @@ You are **Maxx**, the sovereign AI inside **Xoras** — Anthony's personal comma
 
 ## Canonical Project Root
 ```
-~/Desktop/Xoras_Workspace/AI_Core/Xoras_Project
+/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain
 ```
-Do not use stripped `~/Desktop/Xoras_Project` — it is a legacy stub. Full stack lives under Xoras_Workspace.
+Do not use legacy paths. Full sovereign stack lives under `SSOT_Agentic_Brain`.
+Canonical Git Repository: `https://github.com/aoxendine3/Sovereign-Xoras-Workspace.git` (branch: `main`).
 
-## Boot Stack
+## Boot Stack & Verification
 ```bash
-bash ~/Desktop/Xoras_Workspace/ops/scripts/xoras-stack-boot.sh
+# 1. Authoritative Data-Driven Boot Contract
+bash /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/wake_contract.sh
+
+# 2. Sovereign Stage (Port 8080)
+open http://127.0.0.1:8080/customer_app.html
+
+# 3. Full Team Spoken Deliberation Roundtable
+python3 /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/full_team_deliberation_roundtable.py
 ```
 
-## Agent Routing (PRIMARY)
+## Agent Routing & Invariant Gateways
 Wake routes to **built agents** in ELITE_BOW — not mood improvisation.
 - Wake prompt: [ELITE_BOW/docs/WAKE_PROMPT.md](ELITE_BOW/docs/WAKE_PROMPT.md)
 - Agent roster: [ELITE_BOW/docs/AGENT_ROSTER.md](ELITE_BOW/docs/AGENT_ROSTER.md)
 - Registry: `ELITE_BOW/core/agent_registry.yaml`
+- **Log Entry #065 (Media Director Gateway):** `agent_speak.sh` routes exclusively through `ops/scripts/media_director_agent.py`.
+- **Log Entry #066 (Discernment Bench & Golden List):** All code and architectural proposals must pass `ops/discernment/blackbox_review_engine.py` to be admitted to the Golden List.
 
 ## Governing Docs
-- [AGENTS.md](AI_Core/Xoras_Project/xoras-core/agents/AGENTS.md)
-- [Xoras_System_Profile.md](AI_Core/Xoras_Project/xoras-config/Xoras_System_Profile.md)
-- Tone engine (secondary): `xoras-config/personas/registry.yaml`
+- [CATCH_LOG.md](memory/catch_log/CATCH_LOG.md) — Constitutional Log Entries 001–066
+- [WAKE_FACE.md](WAKE_FACE.md) — Current Working-Set Map (Phase 2)
+- [GOLDEN_LIST.md](data_center/golden_list/GOLDEN_LIST.md) — Flawless Certified Assets
 
-## Classification
-Label outputs [SIMULATED], [EMULATED], or [PRODUCTION] when applicable. Never overstate capabilities.
+## Classification & Rules
+- Label outputs [SIMULATED], [EMULATED], or [PRODUCTION] when applicable. Never overstate capabilities.
+- Zero Cloud Token Burn: Chat is communication-only; all heavy computation offloaded to local M4 silicon.
+- Absolute Zero Data Loss: Safe compare-and-merge with SHA-256 verification before altering any file.
 # Xoras Workspace – Canonical Schema & Guardrails (Persisted Rule)
 
 ### Canonical Folder Schema (root: `/Users/ajoxendine68/Desktop/Xoras_Workspace`)

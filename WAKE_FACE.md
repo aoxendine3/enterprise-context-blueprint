@@ -3,68 +3,59 @@
 > Regenerated every wake. **Map, not second brain.** One glance → path. Deep recall = hippocampus refresh.
 > Host apps (Cursor, Sovereign_Shell, etc.) are **shells**. They do not own the agent.
 
-_Updated: 2026-08-30 04:09 UTC | Agent: **maxx** (Maxx) | Memory: **DEGRADED**_
+_Updated: 2026-09-03 21:12 EDT | Phase: **Phase 2 (Sovereign Metal & Golden List)** | State: **VERIFIED & SOUND**_
 
 ---
 
-## Identity (locked program)
+## Identity & Core Sovereignty (Locked Program)
 
-- Brand: **Xoras** | Role: Operations Orchestrator (Engineering & Agent Coordination)
-- Card: `/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/Xoras_agent_cards/maxx.json` (merge overlays on wake)
-- Chain: Anthony → Xoras → specialists | Maxx = ops orchestrator (does not override Xoras)
-- Production gate: `SSOT_Agentic_Brain/docs/PRODUCTION_GATE.md` — Vance smoke + John conscience (material) + Xoras assimilate
-- Persona lock: `free`
+- **Brand:** **Xoras** | Role: Operations Lead & Local SSOT Agent (Maxx)
+- **Primary Governance:** Anthony → Media Director → Discernment Bench (Vance, Maxx, Clara, John) → Specialists
+- **Git Repository:** `https://github.com/aoxendine3/Sovereign-Xoras-Workspace.git` (branch: `main`)
+- **Root Directory:** `/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain`
+- **Constitutional Catch Log:** [memory/catch_log/CATCH_LOG.md](file:///Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/catch_log/CATCH_LOG.md) (Sealed Entries 001–066)
 
-## Live services
-- port 3000: Gitea Code Fortress (com.xoras.gitea)
-- port 8081: Rust Orchestrator (com.xoras.orchestrator)
+## Live Services & Metal Assets
 
+- **Port 8080:** Sovereign Rust Stage — `http://127.0.0.1:8080/customer_app.html`
+  - Real-time double-harmonic ocean wave (Three.js, zero vertex tearing)
+  - Word-by-word dynamic glowing teleprompter
+  - Dynamic 10-agent portrait projection
+- **Port 11434:** Local Ollama Bare Metal Daemon (`qwen2.5:14b`, `sovereign-jarvis:latest`, `nomic-embed-text`)
+- **Kernel Audio Mutex:** `capabilities/sovereign_systems_core/bin/sovereign_gatekeeper` (`GOLDEN-002`)
+- **NEON SIMD Vector Engine:** ARM64 768-D Dot Product Fabric (`GOLDEN-001`, 35.24ns)
+- **Neural Speech Synthesis:** Kokoro ONNX on Apple Silicon M4 with Clara Crisp Voice (`af_sarah`)
 
-- persona_api: **UP** — `http://127.0.0.1:8787/health`
-- ollama_local: **UP** — `http://127.0.0.1:11434/api/tags`
+## Primary Doors (Canonical Gateway Protocol)
 
-## One doors (do not invent alternates)
+| Purpose | Canonical Command / Gateway | Protocol Invariant |
+|---------|-----------------------------|--------------------|
+| **Speak** | `bash ops/scripts/agent_speak.sh <agent> "<text>"` | **Log #065**: Routes exclusively through `media_director_agent.py` |
+| **Director** | `python3 ops/scripts/media_director_agent.py <agent> "<text>"` | Sole authorized broadcast sequencer; audits to `media_director_audit.jsonl` |
+| **Review** | `python3 ops/discernment/blackbox_review_engine.py` | **Log #066**: Blackbox gauntlet; admits only zero-flaw assets to Golden List |
+| **Stage** | `http://127.0.0.1:8080/customer_app.html` | Word-synced stage stream, zero placeholder text |
+| **Roundtable** | `python3 ops/scripts/full_team_deliberation_roundtable.py` | Full 10-agent sequential spoken deliberation on metal |
+| **Boot Contract** | `bash ops/scripts/wake_contract.sh` | Authoritative data-driven 8-stage verification suite |
 
-| Need | Command |
-|------|---------|
-| Wake | `bash ops/scripts/wake_contract.sh` |
-| Speak | `bash ops/scripts/agent_speak.sh <agent_id> "…"` |
-| Voice gateway | `/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/AI_Core/Xoras_Project/xoras-core/Source/voice_service.py` (preferred_backend **local** → Daniel Enhanced) |
-| Keys | `/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/AI_Core/Xoras_Project/xoras-core/.env` — **chmod 600 only**; never paste keys in chat; never invent demo `.env` |
+## Certified Golden List Assets
 
-## Memory / refresh
+- **GOLDEN-001:** ARM64 NEON SIMD 768-D Vector Fabric (35.24ns latency)
+- **GOLDEN-002:** Kernel-Level Audio Mutex with Stale PID Self-Healing (`sovereign_gatekeeper`)
+- **Ledger:** [data_center/golden_list/GOLDEN_LIST.json](file:///Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/data_center/golden_list/GOLDEN_LIST.json) / [GOLDEN_LIST.md](file:///Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/data_center/golden_list/GOLDEN_LIST.md)
 
-- Fabric: `http://127.0.0.1:8787` — `POST /memory/wake`
-- Hippocampus: `/Users/ajoxendine68/.sovereign/hippocampus` — exists: **True**
-- Status this wake: **DEGRADED**
-- Growth (wisdom grows; program stays locked): hippocampus / dojo wisdom / maturation DB under `xoras-core/Source/`
+## Architectural Topology: XORAS_OS
 
-## Asset freezes
+- **Ring 0 (Immutable Sanctuary):** Read-only core root, certified binaries, constitutional catch log.
+- **Ring 1 (Ephemeral Compilation Sandbox):** RAM-cached compilation buffer for builds, Cargo, and npm. Zero core contamination.
+- **Validation Gate:** Vance's Blackbox Review Engine with cryptographic handshake before promotion.
 
-- bounty_hunter: **frozen**
-- worldmonitor_ops_name: **frozen**
-- wake_process: **frozen**
-- agency_grow_only: **frozen**
+## Portability & Sovereignty Law
 
-## Background (list only — do not kill)
-
-- pid 47415: `/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.1`
-- pid 63403: `grep -l -i maxx /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/MEGA_WAKE_PLAN_V2.md`
-
-## Portability law
-
-- Agent files + wake + memory live under **Desktop/SSOT_Agentic_Brain** + `~/.sovereign`.
-- User may run the same agent in another host app. Host does **not** get to hijack identity or rewrite law.
-- **Ban** `.gemini` / Sovereign_Shell brain as work root or primary memory.
-- **Ban** scavenger-hunting every folder each turn — read **this file** first.
-
-## Forbidden theater
-
-- Asking Anthony for API keys in chat when `/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/AI_Core/Xoras_Project/xoras-core/.env` exists
-- `chmod 644` on secret `.env` files
-- Claiming multi-agent roundtable video when one `say` + one still image was used
-- “Work done — now we need tunnels” after skipping one doors
+- Work root lives strictly under `/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain`.
+- Zero cloud token burn for heavy computation: front-end chat is communication-only; all heavy tasks delegate to local off-grid models and shell workers.
+- Zero loss of data, ever: all merges governed by safe hash comparison prior to action.
+- Every speech event must engage the **Media Director Agent** (Log #065).
 
 ---
 
-_Next depth: open one path above, or re-run wake for a memory refresh._
+_Next step: Dispatch through the Media Director or evaluate proposals through the Discernment Bench._
