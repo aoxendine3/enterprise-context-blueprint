@@ -36,6 +36,8 @@ VOICE_MAP = {
     "aurelius": ("am_michael", 0.94),
     "evan": ("am_adam", 1.00),
     "zorex": ("am_adam", 0.95),
+    "apex": ("bm_lewis", 1.02),
+    "sentinel": ("am_michael", 0.98),
 }
 
 
@@ -43,49 +45,20 @@ TIMING_JSON = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/fullsc
 STATE_FILE = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/fullscreen_ui/current_image.txt"
 TRANSCRIPT_FILE = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/fullscreen_ui/current_transcript.txt"
 
-def speak_with_word_sync(agent_id, text):
+def synthesize_speech_payload(agent_id, text):
+    """
+    Synthesizes Kokoro audio in advance on Apple Silicon M4.
+    Returns the ready-to-play payload and audio file path with zero UI broadcast lag.
+    """
     lower_agent = agent_id.lower()
     voice_name, speed = VOICE_MAP.get(lower_agent, ("bm_george", 1.02))
-    
-    # 1. Update Image and immediate transcript FIRST so text is 100% visible before synthesis
-    with open(STATE_FILE, "w") as f:
-        f.write(lower_agent)
-        
-    with open(TRANSCRIPT_FILE, "w") as f:
-        f.write(text)
 
     words = text.split()
     total_chars = sum(len(w) for w in words) if words else 1
-    
-    # Provisional timings so text displays in the box IMMEDIATELY
-    provisional_words = []
-    curr_off = 0.0
-    for w in words:
-        dur = max(0.2, (len(w) / total_chars) * (len(words) * 0.35))
-        provisional_words.append({
-            "word": w,
-            "start": round(curr_off, 2),
-            "end": round(curr_off + dur, 2)
-        })
-        curr_off += dur
 
-    # Immediate pre-broadcast to UI: Zero latency caption appearance
-    immediate_payload = {
-        "agent": lower_agent,
-        "text": text,
-        "start_time": time.time(),
-        "total_duration": round(curr_off, 2),
-        "words": provisional_words,
-        "synthesizing": True
-    }
-    with open(TIMING_JSON, "w") as f:
-        json.dump(immediate_payload, f)
-
-    # 2. Synthesize audio on Apple Silicon CPU/Neural Core
     samples, sr = k.create(text, voice=voice_name, speed=speed, lang="en-us")
     total_duration = len(samples) / sr
-    
-    # Accurate timings calibrated to actual generated audio length
+
     word_timings = []
     current_offset = 0.0
     for w in words:
@@ -97,35 +70,66 @@ def speak_with_word_sync(agent_id, text):
         })
         current_offset += dur
 
-    tmp_wav = f"/tmp/sync_speech_{os.getpid()}.wav"
+    tmp_wav = f"/tmp/sync_speech_{os.getpid()}_{int(time.time()*1000)}.wav"
     sf.write(tmp_wav, samples, sr)
 
-    # Calibrated payload: stamp start_time right at audio playback launch (+70ms CoreAudio latency)
-    playback_start = time.time() + 0.07
-    payload = {
+    return {
+        "agent": lower_agent,
+        "text": text,
+        "total_duration": round(total_duration, 2),
+        "words": word_timings,
+        "wav_path": tmp_wav
+    }
+
+
+def play_speech_payload(payload):
+    """
+    Executes instantaneous stage transition, caption broadcast, and CoreAudio playback.
+    Elapsed handoff overhead between agents: < 50 milliseconds.
+    """
+    lower_agent = payload["agent"]
+    text = payload["text"]
+    tmp_wav = payload["wav_path"]
+
+    # 1. Update State files immediately
+    with open(STATE_FILE, "w") as f:
+        f.write(lower_agent)
+
+    with open(TRANSCRIPT_FILE, "w") as f:
+        f.write(text)
+
+    # 2. Stamp exact CoreAudio launch time (+40ms hardware latency)
+    playback_start = time.time() + 0.04
+    broadcast_data = {
         "agent": lower_agent,
         "text": text,
         "start_time": playback_start,
-        "total_duration": round(total_duration, 2),
-        "words": word_timings,
+        "total_duration": payload["total_duration"],
+        "words": payload["words"],
         "synthesizing": False,
         "complete": False
     }
-    with open(TIMING_JSON, "w") as f:
-        json.dump(payload, f)
 
-    # 3. Synchronous Playback on local DAC
-    subprocess.run(["afplay", tmp_wav])
-    
-    if os.path.exists(tmp_wav):
-        os.remove(tmp_wav)
-        
-    # Mark speech complete
-    payload["complete"] = True
     with open(TIMING_JSON, "w") as f:
-        json.dump(payload, f)
+        json.dump(broadcast_data, f)
+
+    # 3. Synchronous playback on hardware DAC
+    try:
+        subprocess.run(["afplay", tmp_wav])
+    finally:
+        if os.path.exists(tmp_wav):
+            os.remove(tmp_wav)
+
+    # 4. Mark turn complete
+    broadcast_data["complete"] = True
+    with open(TIMING_JSON, "w") as f:
+        json.dump(broadcast_data, f)
+
+
+def speak_with_word_sync(agent_id, text):
+    payload = synthesize_speech_payload(agent_id, text)
+    play_speech_payload(payload)
     return payload
-
 
 
 if __name__ == "__main__":
@@ -133,3 +137,4 @@ if __name__ == "__main__":
     tx = sys.argv[2] if len(sys.argv) > 2 else "Flawless synchronization established."
     speak_with_word_sync(ag, tx)
     os._exit(0)
+

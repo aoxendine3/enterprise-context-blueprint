@@ -22,3 +22,5 @@ capabilities/neural_models/*.bin
 ops/scripts/fullscreen_ui/*.png
 capabilities/native_cpp_broker/upgp_broker_gauntlet
 capabilities/native_cpp_broker/test_atomic_double_buffer
+ops/scripts/fullscreen_ui/current_*.txt
+ops/scripts/fullscreen_ui/current_timing.json

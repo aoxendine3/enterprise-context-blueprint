@@ -46,16 +46,17 @@
         }
 
         /* Agent Portrait Container (Zero floating dots on face, clean crystal glass frame) */
+        /* Agent Portrait Container: Positioned higher and sized cleanly to prevent any obstruction */
         #portraitWrap {
             position: absolute;
-            top: 46%; left: 50%;
+            top: 42%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 80vw; height: 72vh;
-            max-width: 1100px; max-height: 680px;
-            border-radius: 20px;
+            width: 78vw; height: 70vh;
+            max-width: 1000px; max-height: 640px;
+            border-radius: 18px;
             overflow: hidden;
-            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.98), 0 0 50px rgba(0, 242, 254, 0.15);
-            border: 1px solid rgba(0, 242, 254, 0.3);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.98), 0 0 40px rgba(0, 242, 254, 0.12);
+            border: 1px solid rgba(0, 242, 254, 0.25);
             background: #000;
         }
 
@@ -67,62 +68,62 @@
             display: block;
         }
 
-        /* Compact, High-Contrast Caption Box: Displays ONLY actual spoken words */
+        /* Condensed, Refined Caption Bar: Compact tab docked cleanly at bottom */
         .caption-card {
-            position: absolute; bottom: 24px; left: 50%;
+            position: absolute; bottom: 16px; left: 50%;
             transform: translateX(-50%);
-            width: 90%; max-width: 880px;
+            width: 84%; max-width: 720px;
             z-index: 30;
-            background: rgba(4, 8, 16, 0.94);
-            backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
-            border: 1px solid rgba(0, 242, 254, 0.5);
-            border-radius: 16px;
-            padding: 16px 28px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.98), inset 0 1px 0 rgba(255,255,255,0.15);
+            background: rgba(3, 7, 14, 0.92);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(0, 242, 254, 0.35);
+            border-radius: 12px;
+            padding: 10px 20px;
+            box-shadow: 0 16px 45px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255,255,255,0.1);
             display: flex; flex-direction: column; align-items: center; text-align: center;
             pointer-events: auto;
         }
 
         .caption-header {
             display: flex; align-items: center; justify-content: space-between; width: 100%;
-            margin-bottom: 8px; padding-bottom: 6px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 5px; padding-bottom: 4px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
         }
         .agent-badge {
-            font-size: 12px; font-weight: 800; letter-spacing: 2.5px;
+            font-size: 10px; font-weight: 800; letter-spacing: 2px;
             color: #00F2FE; text-transform: uppercase;
         }
         .stream-status {
-            font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+            font-size: 9px; font-weight: 700; letter-spacing: 1.2px;
             color: #64748B;
         }
         .stream-status.speaking {
             color: #38BDF8;
-            text-shadow: 0 0 10px rgba(56, 189, 248, 0.8);
+            text-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
         }
 
-        /* Spoken Words Stream: High contrast, accessible typography */
+        /* Spoken Words Stream: Refined typography, compact display */
         .words-box {
-            width: 100%; min-height: 52px; max-height: 115px;
+            width: 100%; min-height: 38px; max-height: 75px;
             overflow-y: auto;
             display: flex; align-items: center; justify-content: center;
-            flex-wrap: wrap; gap: 8px; padding: 4px 0;
+            flex-wrap: wrap; gap: 6px; padding: 2px 0;
         }
 
         .speech-word {
-            font-size: 21px; font-weight: 600; color: #94A3B8;
+            font-size: 15px; font-weight: 600; color: #64748B;
             transition: color 0.08s ease, transform 0.1s ease, text-shadow 0.1s ease;
-            display: inline-block; line-height: 1.35;
+            display: inline-block; line-height: 1.3;
         }
         .speech-word.active {
             color: #00F2FE !important;
             font-weight: 800 !important;
-            transform: scale(1.2);
-            text-shadow: 0 0 18px rgba(0, 242, 254, 1), 0 0 32px rgba(0, 242, 254, 0.8);
+            transform: scale(1.15);
+            text-shadow: 0 0 14px rgba(0, 242, 254, 1), 0 0 24px rgba(0, 242, 254, 0.7);
         }
         .speech-word.spoken {
-            color: #FFFFFF !important;
-            font-weight: 700;
+            color: #E2E8F0 !important;
+            font-weight: 600;
         }
 
         /* Diagram Legend Label */
@@ -179,7 +180,9 @@
             'orion': { role: 'ORION · HORIZONTAL SCALING & HYGIENE', img: '/images/orion.jpg', color: 0x6366F1 },
             'aurelius': { role: 'AURELIUS · STRATEGIC FORESIGHT', img: '/images/arelius.jpg', color: 0xD97706 },
             'evan': { role: 'EVAN · DISPATCH & TELEMETRY', img: '/images/atlas.jpg', color: 0x0284C7 },
-            'zorex': { role: 'ZOREX · INFRASTRUCTURE CORE', img: '/images/xoras.jpg', color: 0x475569 }
+            'zorex': { role: 'ZOREX · INFRASTRUCTURE CORE', img: '/images/xoras.jpg', color: 0x475569 },
+            'apex': { role: 'APEX · SILICON & HARDWARE ARCHITECT', img: '/images/atlas.jpg', color: 0xF43F5E },
+            'sentinel': { role: 'SENTINEL · DEEP SECURITY & ENCLAVE', img: '/images/nova.jpg', color: 0x10B981 }
         };
 
         let currentAgentKey = 'maxx';
@@ -236,21 +239,28 @@
                     }
 
                     // Render actual speech text ONLY. Zero boilerplate.
-                    if (data.text && (data.text !== lastTimingText || (!data.synthesizing && activeTiming && activeTiming.synthesizing))) {
-                        lastTimingText = data.text;
-                        activeTiming = data;
-                        if (data.words && data.words.length > 0) {
-                            renderWords(data.words);
-                        } else {
-                            const container = document.getElementById('tickerContent');
-                            container.innerHTML = '<span class="speech-word spoken">' + data.text + '</span>';
-                        }
-                    } else if (activeTiming && data.start_time && !data.synthesizing && activeTiming.synthesizing) {
-                        activeTiming.start_time = data.start_time;
-                        activeTiming.total_duration = data.total_duration;
-                        activeTiming.synthesizing = false;
-                        if (data.words && data.words.length > 0) {
-                            activeTiming.words = data.words;
+                    if (data.text) {
+                        const isNewText = (data.text !== lastTimingText);
+                        const justFinishedSynth = (!data.synthesizing && activeTiming && activeTiming.synthesizing);
+
+                        if (isNewText || justFinishedSynth) {
+                            lastTimingText = data.text;
+                            activeTiming = data;
+                            if (data.words && data.words.length > 0) {
+                                renderWords(data.words);
+                            } else {
+                                const container = document.getElementById('tickerContent');
+                                container.innerHTML = '<span class="speech-word spoken">' + data.text + '</span>';
+                            }
+                        } else if (activeTiming && !data.synthesizing) {
+                            // Update playback timestamp and timings calibrated to actual generated audio
+                            activeTiming.start_time = data.start_time;
+                            activeTiming.total_duration = data.total_duration;
+                            activeTiming.synthesizing = false;
+                            activeTiming.complete = data.complete;
+                            if (data.words && data.words.length > 0) {
+                                activeTiming.words = data.words;
+                            }
                         }
                     }
 

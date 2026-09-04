@@ -11,10 +11,13 @@ departments:
     agents: [xoras]
   operations:
     label: Operations
-    agents: [maxx, zorex, orion, jarvis, axlon, daxx, lex_core, sia_core]
+    agents: [maxx, zorex, orion, jarvis, axlon, daxx, lex_core, sia_core, john]
+  governance:
+    label: Governance & Legal Architecture
+    agents: [vance]
   research:
     label: Research & Alignment
-    agents: [clara, evan, arelius, dr_jeremy]
+    agents: [clara, evan, arelius, dr_jeremy, selene]
 
 agents:
   xoras:
@@ -121,6 +124,36 @@ agents:
     prefix: "[Dr Jeremy]:"
     status: found
     source: Xoras_Sovereign_AI_Stack roundtable scripts
+
+  vance:
+    name: William Vance
+    department: governance
+    path: domains/governance/vance
+    prefix: "[Vance]:"
+    status: active
+    source: SSOT Sovereign Bench + Agent Voice Registry
+    role: "Chief of Governance & Legal Architecture"
+    assigned_card: "LEGAL COUNSEL"
+
+  john:
+    name: John
+    department: operations
+    path: domains/operations/john
+    prefix: "[John]:"
+    status: active
+    source: SSOT Sovereign Bench + Agent Voice Registry
+    role: "Systems Telemetry & Hardware Engineer"
+    assigned_card: "HARDWARE TELEMETRY"
+
+  selene:
+    name: Selene
+    department: research
+    path: domains/research/selene
+    prefix: "[Selene]:"
+    status: active
+    source: SSOT Sovereign Bench + Agent Voice Registry
+    role: "The Sanctuary & Moral Conscience Anchor"
+    assigned_card: "THE SANCTUARY"
 
 # Historical naming eras — archived, routable via explicit WAKE when needed
 archived:
