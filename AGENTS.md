@@ -32,10 +32,10 @@ python3 /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/full_team_del
 ```
 
 ## Agent Routing & Invariant Gateways
-Wake routes to **built agents** in ELITE_BOW — not mood improvisation.
-- Wake prompt: [ELITE_BOW/docs/WAKE_PROMPT.md](ELITE_BOW/docs/WAKE_PROMPT.md)
-- Agent roster: [ELITE_BOW/docs/AGENT_ROSTER.md](ELITE_BOW/docs/AGENT_ROSTER.md)
-- Registry: `ELITE_BOW/core/agent_registry.yaml`
+Wake routes to **built agents** in `Xoras_agent_cards/` and `core_agents/` — not mood improvisation.
+- Wake prompt: [WAKE_FACE.md](WAKE_FACE.md)
+- Agent roster: [Xoras_agent_cards/](Xoras_agent_cards/)
+- Registry: `identity/charter.yaml`
 - **Log Entry #065 (Media Director Gateway):** `agent_speak.sh` routes exclusively through Orion / `ops/scripts/media_director_agent.py`.
 - **Log Entry #066 (Discernment Bench & Golden List):** All code and architectural proposals must pass `ops/discernment/blackbox_review_engine.py` to be admitted to the Golden List.
 - **Log Entry #069 (Universal Input-Deliberation & Output-Wisdom Gauntlet):** Any guidance/input from Anthony MUST be deliberated by the full council. ALL output must pass rigorous wisdom and discernment gauntlets before certification.
@@ -51,7 +51,7 @@ Wake routes to **built agents** in ELITE_BOW — not mood improvisation.
 - Absolute Zero Data Loss: Safe compare-and-merge with SHA-256 verification before altering any file.
 # Xoras Workspace – Canonical Schema & Guardrails (Persisted Rule)
 
-### Canonical Folder Schema (root: `/Users/ajoxendine68/Desktop/Xoras_Workspace`)
+### Canonical Folder Schema (root: `/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain`)
 - `workspaces/` – active repos, build sandboxes, incubation projects
 - `agents/` – agent runtimes, orchestrators, automation agents
 - `memory/` – memory stores, state snapshots, knowledge artifacts
