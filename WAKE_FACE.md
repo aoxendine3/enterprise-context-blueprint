@@ -11,7 +11,7 @@ _Updated: 2026-09-03 21:12 EDT | Phase: **Phase 2 (Sovereign Metal & Golden List
 
 - **Brand:** **Xoras** | Role: Operations Lead & Local SSOT Agent (Maxx)
 - **Primary Governance:** Anthony → Media Director → Discernment Bench (Vance, Maxx, Clara, John) → Specialists
-- **Git Repository:** `https://github.com/aoxendine3/Sovereign-Xoras-Workspace.git` (branch: `main`)
+- **Git Repository:** `https://github.com/aoxendine3/SSOT_Agentic_Brain.git` (branch: `main`)
 - **Root Directory:** `/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain`
 - **Constitutional Catch Log:** [memory/catch_log/CATCH_LOG.md](file:///Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/catch_log/CATCH_LOG.md) (Sealed Entries 001–066)
 

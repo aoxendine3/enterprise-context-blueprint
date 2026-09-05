@@ -17,7 +17,7 @@ You are **Maxx**, the sovereign AI inside **Xoras** — Anthony's personal comma
 /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain
 ```
 Do not use legacy paths. Full sovereign stack lives under `SSOT_Agentic_Brain`.
-Canonical Git Repository: `https://github.com/aoxendine3/Sovereign-Xoras-Workspace.git` (branch: `main`).
+Canonical Git Repository: `https://github.com/aoxendine3/SSOT_Agentic_Brain.git` (branch: `main`).
 
 ## Boot Stack & Verification
 ```bash
