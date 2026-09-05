@@ -88,3 +88,63 @@ Wake routes to **built agents** in ELITE_BOW — not mood improvisation.
 
 ---
 
+
+## Guardrail: Rust Build Procedure
+
+- **Rule:** When a Rust source file imports external crates (e.g., `serde`, `serde_json`, `chrono`), the build must be performed with **Cargo** (`cargo build --release` or `cargo run`) inside the project directory. Direct `rustc` invocations on such files are prohibited.
+- **Enforcement:** Agents should check the source for `extern crate` or `use` statements referencing non‑standard crates. If found, they must invoke the `rust_cargo_build` skill (or run `cargo build`) rather than `rustc`.
+- **Scope:** Applies to all Rust projects under the SSOT workspace (`/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain`).
+
+## Guardrail: Cargo.toml Handling
+
+- **Rule:** When a user provides a Cargo.toml snippet in the chat, the system must **write the snippet to a file** (`Cargo.toml`) in the appropriate project directory rather than treating it as a shell command.
+- **Location:** The Cargo.toml file should be placed at the root of the Rust project (e.g., `ops/scripts/wake_contract/Cargo.toml`).
+- **Permissions:** The file is created with standard read/write permissions; immutable flags must not be set unless explicitly requested.
+
+## Guardrail: SSOT File‑Edit Scope
+
+- **Rule:** All file edits, creations, and deletions must stay within the canonical SSOT workspace `/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain`. Any attempt to modify paths outside this root is aborted.
+- **Immutable Flags:** The repository may contain immutable flags (`chflags uchg`) for protection, but these must be removable by the user’s explicit request (as done previously).
+
+---
+
+## Sovereign Speech Invariant: When to Speak & The Locked Execution Process (Codified 2026-09-05)
+
+### 1. Mandatory Trigger Rules (When to Speak)
+Speech is not optional or ornamental; it is an active engineering checkpoint. Agents MUST vocalize out loud through the speakers **always and often** under the following five strict conditions:
+
+1. **Pre-Execution Invariant (Audio-First)**: Before running any modifying command, build script, file edit, or multi-step execution on bare metal, the executing agent vocalizes the task and intent. Silent mutations are strictly forbidden.
+2. **State & Pipeline Milestones**: Immediately upon completing or failing a critical stage (e.g., git commits/pushes, pipeline completions, benchmark runs, or test passes), the supervising agent reports the result verbally.
+3. **Identity, Wake & Role Handoffs**: When waking up, rehydrating memory, or transitioning active leadership (e.g., Maxx stepping down, Jarvis taking the lead), the incoming agent vocally asserts identity and status.
+4. **Direct Inquiries & Strategy**: When Anthony asks a direct question, raises a challenge, or directs a team pivot, the answer must be voiced out loud before any long written treatise is output.
+5. **Anomalies, Stalls & Error Interceptions**: If a daemon drops out, a network hangs, or an authentication gate stalls, the agent must immediately speak the problem aloud rather than letting the system spin silently.
+
+### 2. The Locked 5-Step Process
+```
+[Anthony Command / System Trigger]
+             │
+             ▼
+[Step 1: Spoken Audio Dispatch] ────► bash ops/scripts/agent_speak.sh <agent> "<spoken summary>"
+             │                         (Kernel audio mutex + Kokoro M4 neural voice)
+             ▼
+[Step 2: CoreAudio Output]     ────► Real-time playback through physical hardware DAC / afplay
+             │
+             ▼
+[Step 3: Bare Metal Execution] ────► Run verified commands, builds, or file operations
+             │
+             ▼
+[Step 4: Audit & Log Update]   ────► Record entry in media_director_audit.jsonl / CATCH_LOG.md
+             │
+             ▼
+[Step 5: Written Confirmation] ────► Deliver crisp, definitive written evidence to Anthony
+```
+
+### 3. Canonical Execution Command
+```bash
+bash /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/agent_speak.sh <agent_id> "<message>"
+```
+- **Maxx (`bm_george`)**: Operational and technical mentorship.
+- **Jarvis (`am_adam` / `bm_george`)**: Governance, oversight, system discipline, and accountability.
+- **Clara (`af_sarah`)**: Deep research, physics, scientific validation, and orbital analysis.
+- **Vance (`am_michael`)**: Blackbox critique, falsification, and security audit.
+
