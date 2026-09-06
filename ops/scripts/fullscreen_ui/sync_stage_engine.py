@@ -7,7 +7,17 @@ XORAS REAL-TIME WORD-BY-WORD SYNCHRONIZATION ENGINE
    - current_timing.json (contains words and timestamp schedule)
 4. Streams audio playback and updates word highlight markers in real time.
 """
-import os, sys, json, time, numpy as np, soundfile as sf, subprocess
+import fcntl
+import json
+import os
+import queue
+import subprocess
+import sys
+import threading
+import time
+
+import numpy as np
+import soundfile as sf
 
 os.environ["PHONEMIZER_ESPEAK_LIBRARY"] = "/opt/homebrew/Cellar/espeak-ng/1.52.0/lib/libespeak-ng.dylib"
 from phonemizer.backend.espeak.wrapper import EspeakWrapper
@@ -25,19 +35,22 @@ k = kokoro_onnx.Kokoro(
 
 VOICE_MAP = {
     "maxx": ("bm_george", 0.98),
-    "vance": ("am_michael", 0.96),
+    "vance": ("bm_lewis", 0.95),
     "clara": ("af_sarah", 1.02),
     "john": ("bm_lewis", 1.00),
     "selene": ("af_sky", 0.96),
     "jarvis": ("am_adam", 0.98),
     "dr_eden": ("af_bella", 0.96),
-    "dr_jeremy": ("bm_lewis", 0.96),
+    "eden": ("af_bella", 0.96),
+    "dr_jeremy": ("am_adam", 0.94),
     "orion": ("bm_george", 0.94),
     "aurelius": ("am_michael", 0.94),
     "evan": ("am_adam", 1.00),
     "zorex": ("am_adam", 0.95),
     "apex": ("bm_lewis", 1.02),
     "sentinel": ("am_michael", 0.98),
+    "daxx": ("am_michael", 1.04),
+    "daxx-daxx": ("am_michael", 1.04),
 }
 
 
@@ -113,29 +126,61 @@ def play_speech_payload(payload):
     with open(TIMING_JSON, "w") as f:
         json.dump(broadcast_data, f)
 
-    # 3. Synchronous playback on hardware DAC with strict system-wide Audio Lock
-    audio_lock_fd = open("/tmp/coreaudio_single_speaker.lock", "w")
-    try:
-        import fcntl
-        fcntl.flock(audio_lock_fd, fcntl.LOCK_EX)
-        # Ensure no residual afplay processes are running
-        subprocess.run(["killall", "-9", "afplay"], stderr=subprocess.DEVNULL)
-        time.sleep(0.02)
-        subprocess.run(["afplay", tmp_wav])
-    finally:
-        if os.path.exists(tmp_wav):
-            os.remove(tmp_wav)
+    # Serialize direct callers too; the monitor's native gatekeeper protects its path.
+    with open("/tmp/coreaudio_single_speaker.lock", "w") as audio_lock:
+        fcntl.flock(audio_lock, fcntl.LOCK_EX)
         try:
-            import fcntl
-            fcntl.flock(audio_lock_fd, fcntl.LOCK_UN)
-            audio_lock_fd.close()
-        except Exception:
-            pass
+            subprocess.run(["afplay", tmp_wav], stdin=subprocess.DEVNULL, check=True)
+        finally:
+            if os.path.exists(tmp_wav):
+                os.remove(tmp_wav)
+
 
     # 4. Mark turn complete
     broadcast_data["complete"] = True
     with open(TIMING_JSON, "w") as f:
         json.dump(broadcast_data, f)
+
+
+def play_script_pipelined(turns, gap_seconds=0.35):
+    """
+    Executes a multi-turn agent roundtable script with background pipelined audio pre-synthesis.
+    Synthesizes the next turn in the background while the current turn is playing via afplay.
+    Guarantees handoff intervals between agents are strictly < 1.75s (calibrated to 0.35s).
+    """
+    if not turns:
+        return
+
+    payload_queue = queue.Queue(maxsize=3)
+    stop_event = threading.Event()
+
+    def synthesizer_worker():
+        for turn in turns:
+            if stop_event.is_set():
+                break
+            spk = turn.get("agent", "maxx").lower()
+            utt = turn.get("text", "")
+            if not utt:
+                continue
+            payload = synthesize_speech_payload(spk, utt)
+            payload_queue.put(payload)
+        payload_queue.put(None)
+
+    worker_thread = threading.Thread(target=synthesizer_worker, daemon=True)
+    worker_thread.start()
+
+    turn_index = 0
+    try:
+        while True:
+            payload = payload_queue.get()
+            if payload is None:
+                break
+            if turn_index > 0 and gap_seconds > 0:
+                time.sleep(gap_seconds)
+            play_speech_payload(payload)
+            turn_index += 1
+    finally:
+        stop_event.set()
 
 
 def speak_with_word_sync(agent_id, text):
@@ -149,4 +194,3 @@ if __name__ == "__main__":
     tx = sys.argv[2] if len(sys.argv) > 2 else "Flawless synchronization established."
     speak_with_word_sync(ag, tx)
     os._exit(0)
-

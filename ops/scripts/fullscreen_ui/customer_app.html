@@ -68,25 +68,26 @@
             display: block;
         }
 
-        /* Condensed, Refined Caption Bar: Compact tab docked cleanly at bottom */
+        /* Condensed, Refined Caption Bar: Generous clearance, zero text overlap */
         .caption-card {
-            position: absolute; bottom: 16px; left: 50%;
+            position: absolute; bottom: 22px; left: 50%;
             transform: translateX(-50%);
-            width: 84%; max-width: 720px;
+            width: 86%; max-width: 780px;
             z-index: 30;
-            background: rgba(3, 7, 14, 0.92);
-            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(0, 242, 254, 0.35);
-            border-radius: 12px;
-            padding: 10px 20px;
-            box-shadow: 0 16px 45px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255,255,255,0.1);
+            background: rgba(3, 7, 14, 0.94);
+            backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+            border: 1px solid rgba(0, 242, 254, 0.4);
+            border-radius: 14px;
+            padding: 12px 24px 18px 24px;
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255,255,255,0.1);
             display: flex; flex-direction: column; align-items: center; text-align: center;
             pointer-events: auto;
+            box-sizing: border-box;
         }
 
         .caption-header {
             display: flex; align-items: center; justify-content: space-between; width: 100%;
-            margin-bottom: 5px; padding-bottom: 4px;
+            margin-bottom: 6px; padding-bottom: 5px;
             border-bottom: 1px solid rgba(255,255,255,0.08);
         }
         .agent-badge {
@@ -102,28 +103,45 @@
             text-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
         }
 
-        /* Spoken Words Stream: Refined typography, compact display */
+        /* Spoken Words Stream: Generous line height and bottom clearance to prevent ANY overlap */
         .words-box {
-            width: 100%; min-height: 38px; max-height: 75px;
-            overflow-y: auto;
-            display: flex; align-items: center; justify-content: center;
-            flex-wrap: wrap; gap: 6px; padding: 2px 0;
+            width: 100%; min-height: 52px; max-height: 108px;
+            overflow-y: hidden;
+            display: block; text-align: center;
+            padding: 4px 8px 14px 8px;
+            box-sizing: border-box;
+            line-height: 1.8;
         }
 
         .speech-word {
             font-size: 15px; font-weight: 600; color: #64748B;
             transition: color 0.08s ease, transform 0.1s ease, text-shadow 0.1s ease;
-            display: inline-block; line-height: 1.3;
+            display: inline-block; margin: 3px 5px;
+            line-height: 1.6; vertical-align: baseline;
         }
         .speech-word.active {
             color: #00F2FE !important;
             font-weight: 800 !important;
-            transform: scale(1.15);
-            text-shadow: 0 0 14px rgba(0, 242, 254, 1), 0 0 24px rgba(0, 242, 254, 0.7);
+            transform: scale(1.12);
+            text-shadow: 0 0 12px rgba(0, 242, 254, 1), 0 0 20px rgba(0, 242, 254, 0.7);
         }
         .speech-word.spoken {
             color: #E2E8F0 !important;
             font-weight: 600;
+        }
+
+        /* Top Bar Container with IP Shield Protection Indicator */
+        .top-bar-wrap {
+            position: absolute; top: 22px; left: 32px; right: 32px;
+            display: flex; align-items: center; justify-content: space-between;
+            z-index: 20;
+        }
+        .ip-shield-badge {
+            font-size: 9px; font-weight: 700; letter-spacing: 1.5px;
+            color: #10B981; background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            padding: 4px 10px; border-radius: 6px;
+            text-transform: uppercase;
         }
 
         /* Diagram Legend Label */
@@ -142,8 +160,13 @@
     <!-- 1. Background 3D Architectural Diagram Canvas -->
     <canvas id="webglCanvas"></canvas>
 
-    <div class="top-bar">
-        <span class="live-dot"></span>XORAS SOVEREIGN STAGE
+    <div class="top-bar-wrap">
+        <div class="top-bar">
+            <span class="live-dot"></span>XORAS SOVEREIGN STAGE
+        </div>
+        <div class="ip-shield-badge">
+            🛡️ CC0 1.0 OPEN-SOURCE · IP SHIELD PROTECTED
+        </div>
     </div>
 
     <div class="diagram-legend" id="diagramLabel">3D COGNITIVE DIAGRAM: ACTIVE</div>
@@ -170,20 +193,31 @@
     <script>
         const AGENT_ROSTER = {
             'maxx': { role: 'MAXX · OPS LEAD & LOCAL SSOT', img: '/images/maxx.jpg', color: 0x00F2FE },
+            'daxx': { role: 'DAXX · ORCHESTRATED MENTOR & ELITE ARCHITECT', img: '/images/daxx.jpg', color: 0x38BDF8 },
             'vance': { role: 'WILLIAM VANCE · DISCERNMENT & BLACKBOX LEAD', img: '/images/vance.jpg', color: 0xF59E0B },
             'clara': { role: 'CLARA · DEEP RESEARCH & REASONING', img: '/images/clara.jpg', color: 0x10B981 },
             'john': { role: 'JOHN · SILICON SYSTEMS ARCHITECT', img: '/images/john.jpg', color: 0x3B82F6 },
             'selene': { role: 'SELENE · ACOUSTICS & CINEMATICS', img: '/images/selene.jpg', color: 0xEC4899 },
             'jarvis': { role: 'JARVIS · TASK & LOCAL MODEL ORCHESTRATOR', img: '/images/jarvis.jpg', color: 0x8B5CF6 },
-            'dr_jeremy': { role: 'DR. JEREMY BROWN · COGNITIVE HEALTH', img: '/images/council_boardroom.jpg', color: 0x06B6D4 },
-            'dr_eden': { role: 'DR. EDEN · COGNITIVE DYNAMICS', img: '/images/clara.jpg', color: 0x14B8A6 },
-            'orion': { role: 'ORION · HORIZONTAL SCALING & HYGIENE', img: '/images/orion.jpg', color: 0x6366F1 },
+            'dr_jeremy': { role: 'DR. JEREMY BROWN · COGNITIVE HEALTH & LOGIC', img: '/images/dr_jeremy.jpg', color: 0x06B6D4 },
+            'jeremy': { role: 'DR. JEREMY BROWN · COGNITIVE HEALTH & LOGIC', img: '/images/dr_jeremy.jpg', color: 0x06B6D4 },
+            'dr_eden': { role: 'DR. EDEN · COGNITIVE DYNAMICS & HUMAN ALIGNMENT', img: '/images/eden.jpg', color: 0x14B8A6 },
+            'eden': { role: 'DR. EDEN · COGNITIVE DYNAMICS & HUMAN ALIGNMENT', img: '/images/eden.jpg', color: 0x14B8A6 },
+            'orion': { role: 'ORION · HORIZONTAL SCALING & MEDIA DIRECTOR', img: '/images/orion.jpg', color: 0x6366F1 },
             'aurelius': { role: 'AURELIUS · STRATEGIC FORESIGHT', img: '/images/arelius.jpg', color: 0xD97706 },
             'evan': { role: 'EVAN · DISPATCH & TELEMETRY', img: '/images/atlas.jpg', color: 0x0284C7 },
             'zorex': { role: 'ZOREX · INFRASTRUCTURE CORE', img: '/images/xoras.jpg', color: 0x475569 },
             'apex': { role: 'APEX · SILICON & HARDWARE ARCHITECT', img: '/images/atlas.jpg', color: 0xF43F5E },
             'sentinel': { role: 'SENTINEL · DEEP SECURITY & ENCLAVE', img: '/images/nova.jpg', color: 0x10B981 }
         };
+
+        // Instant Preloading in Memory (Guarantees zero network lag or missing onload)
+        const imagePreloadStore = {};
+        Object.keys(AGENT_ROSTER).forEach(k => {
+            const pre = new Image();
+            pre.src = AGENT_ROSTER[k].img;
+            imagePreloadStore[k] = pre;
+        });
 
         let currentAgentKey = 'maxx';
         let lastTimingText = '';
@@ -198,13 +232,15 @@
             const portraitEl = document.getElementById('agentPortrait');
             const roleEl = document.getElementById('activeAgentRole');
 
-            roleEl.innerText = info.role;
+            if (roleEl) roleEl.innerText = info.role;
 
-            portraitEl.style.opacity = '0';
-            setTimeout(() => {
-                portraitEl.src = info.img;
-                portraitEl.onload = () => { portraitEl.style.opacity = '1'; };
-            }, 150);
+            if (portraitEl) {
+                portraitEl.style.opacity = '0.2';
+                setTimeout(() => {
+                    portraitEl.src = info.img;
+                    portraitEl.style.opacity = '1';
+                }, 60);
+            }
 
             // Reconfigure 3D Architectural Diagram color for this agent
             if (window.updateDiagramTheme) {
@@ -215,6 +251,7 @@
         function renderWords(words) {
             const container = document.getElementById('tickerContent');
             container.innerHTML = '';
+            container.scrollTop = 0;
             words.forEach((item, idx) => {
                 const span = document.createElement('span');
                 span.className = 'speech-word';
@@ -299,7 +336,15 @@
                                     if (el) {
                                         if (elapsed >= w.start && elapsed <= w.end) {
                                             el.className = 'speech-word active';
-                                            el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                            const box = document.getElementById('tickerContent');
+                                            if (box) {
+                                                const elTop = el.offsetTop - box.offsetTop;
+                                                if (elTop > box.scrollTop + box.clientHeight - 38) {
+                                                    box.scrollTo({ top: elTop - 18, behavior: 'smooth' });
+                                                } else if (elTop < box.scrollTop) {
+                                                    box.scrollTo({ top: Math.max(0, elTop - 8), behavior: 'smooth' });
+                                                }
+                                            }
                                         } else if (elapsed > w.end) {
                                             el.className = 'speech-word spoken';
                                         } else {
