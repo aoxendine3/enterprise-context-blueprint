@@ -35,6 +35,30 @@ You are **Maxx**, the sovereign AI inside **Xoras** — Anthony's personal comma
 Do not use legacy paths. Full sovereign stack lives under `SSOT_Agentic_Brain`.
 Canonical Git Repository: `https://github.com/aoxendine3/SSOT_Agentic_Brain.git` (branch: `main`).
 
+## Canonical Agent Artifact Routing
+
+All persistent agent-created artifacts belong inside this repository. The application-managed
+`~/.gemini/antigravity/brain/` directory is non-canonical session storage and must never be
+treated as the authoritative location for project work.
+
+| Artifact | Canonical destination |
+| --- | --- |
+| Implementation plans and proposals | `docs/plans/` |
+| Briefings and customer-facing walkthroughs | `docs/briefings/` |
+| Engineering, security, and benchmark audits | `docs/audits/` |
+| Session handoffs and execution summaries | `docs/handoffs/` |
+| Operational agent logs and receipts | `memory/agent_logs/` |
+| Constitutional observations and proposed governance changes | `memory/catch_log/` |
+| Disposable experiments and temporary generated output | `scratch/` |
+
+- Create deliverables at their canonical destination, not in the Desktop root, a legacy
+  workspace, or an application brain directory.
+- Before promoting any artifact from non-canonical storage, compare it with its target,
+  preserve source provenance, and use a content hash to avoid overwriting newer work.
+- `scratch/` is non-authoritative and must not be cited as product documentation or evidence.
+- Do not delete application-managed brain artifacts during migration; they remain a recovery
+  source until their canonical counterpart is verified and committed.
+
 ## Boot Stack & Verification
 ```bash
 # 1. Authoritative Data-Driven Boot Contract
