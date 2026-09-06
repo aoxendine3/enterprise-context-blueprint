@@ -19,7 +19,7 @@ import subprocess
 import threading
 import signal
 
-PORT = 8080
+PORT = int(os.environ.get("XORAS_DASHBOARD_PORT", "8080"))
 SERVE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fullscreen_ui")
 SPEAK_SCRIPT = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/agent_speak.sh"
 
@@ -226,7 +226,7 @@ class SovereignHandler(http.server.SimpleHTTPRequestHandler):
             full_prompt = f"{CORE_SIX_SYSTEM_PROMPT}\n\n[SPEAKER]: {speaker_lower.upper()}\n[ANTHONY]: {user_prompt}\n\n[{speaker_lower.upper()} RESPONSE]:"
 
             ollama_payload = {
-                "model": incoming.get("model", "qwen2.5-coder:7b"),
+                "model": incoming.get("model", "sovereign-jarvis:latest"),
                 "prompt": full_prompt,
                 "stream": False
             }

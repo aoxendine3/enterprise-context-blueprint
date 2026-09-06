@@ -7,7 +7,9 @@ set -euo pipefail
 
 PORT="${1:-8080}"
 DASHBOARD="${2:-customer_app.html}"
-UI_DIR="/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/fullscreen_ui"
+SCRIPTS_DIR="/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts"
+UI_DIR="${SCRIPTS_DIR}/fullscreen_ui"
+BACKEND="${SCRIPTS_DIR}/fullscreen_server.py"
 
 echo "================================================================="
 echo "XORAS DASHBOARD SUPERVISOR (PORT $PORT)"
@@ -17,9 +19,8 @@ echo "================================================================="
 if lsof -i :"$PORT" >/dev/null 2>&1; then
     echo "[✓] Web server already active on port $PORT."
 else
-    echo "[!] Starting background HTTP server on port $PORT..."
-    cd "$UI_DIR"
-    nohup python3 -m http.server "$PORT" > /tmp/xoras_dashboard_server.log 2>&1 &
+    echo "[!] Starting Sovereign Stage backend (telemetry + local-model chat) on port $PORT..."
+    XORAS_DASHBOARD_PORT="$PORT" nohup python3 "$BACKEND" > /tmp/xoras_dashboard_server.log 2>&1 &
     sleep 1
     if lsof -i :"$PORT" >/dev/null 2>&1; then
         echo "[✓] Web server launched successfully on port $PORT."
