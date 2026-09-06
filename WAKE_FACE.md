@@ -11,6 +11,7 @@ _Updated: 2026-09-03 21:12 EDT | Phase: **Phase 2 (Sovereign Metal & Golden List
 
 - **Brand:** **Xoras** | Role: Operations Lead & Local SSOT Agent (Maxx)
 - **Primary Governance:** Anthony → Media Director → Discernment Bench (Vance, Maxx, Clara, John) → Specialists
+- **Lead 9 Roster:** `identity/lead9_roster.json` (seats, roles, triad-cycle speech governance)
 - **Git Repository:** `https://github.com/aoxendine3/SSOT_Agentic_Brain.git` (branch: `main`)
 - **Root Directory:** `/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain`
 - **Constitutional Catch Log:** [memory/catch_log/CATCH_LOG.md](file:///Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/catch_log/CATCH_LOG.md) (Sealed Entries 001–066)
@@ -34,8 +35,15 @@ _Updated: 2026-09-03 21:12 EDT | Phase: **Phase 2 (Sovereign Metal & Golden List
 | **Director** | `python3 ops/scripts/media_director_agent.py <agent> "<text>"` | Sole authorized broadcast sequencer; audits to `media_director_audit.jsonl` |
 | **Review** | `python3 ops/discernment/blackbox_review_engine.py` | **Log #066**: Blackbox gauntlet; admits only zero-flaw assets to Golden List |
 | **Stage** | `http://127.0.0.1:8080/customer_app.html` | Word-synced stage stream, zero placeholder text |
-| **Roundtable** | `python3 ops/scripts/full_team_deliberation_roundtable.py` | Full 10-agent sequential spoken deliberation on metal |
+| **Roundtable** | `python3 ops/scripts/full_team_deliberation_roundtable.py "<focus>"` | Lead-9 triad-cycle deliberation; no fewer than 3 speakers per dispatch |
+| **Prompt Intake** | `python3 ops/scripts/prompt_todo_bootstrap.py "<anthony_prompt>"` | Todo-first conversion of prompts into `memory/tasks/queue.json` |
 | **Boot Contract** | `bash ops/scripts/wake_contract.sh` | Authoritative data-driven 8-stage verification suite |
+
+## Daily Conversational Cadence (Non-Negotiable)
+
+- Every active day must create a journal entry in `memory/journals/agents/`.
+- Every entry includes: learning, blockers, one humor line, one dream-seed focus.
+- Conversational quality target: clear, human, direct, technically grounded, never robotic.
 
 ## Certified Golden List Assets
 

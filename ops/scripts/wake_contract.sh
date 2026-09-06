@@ -8,6 +8,7 @@ ROOTS_FILE="/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ROOTS.md"
 WAKE_FACE="/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/WAKE_FACE.md"
 JOURNAL_DIR="/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/journals"
 QUEUE_FILE="/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/tasks/queue.json"
+PROMPT_TODO_SCRIPT="/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/prompt_todo_bootstrap.py"
 RECEIPT_FILE="${HOME}/.sovereign/runtime.json"
 TELEMETRY_FILE="${JOURNAL_DIR}/telemetry.json"
 TELEMETRY_HIST="${JOURNAL_DIR}/telemetry_history.jsonl"
@@ -24,27 +25,39 @@ CHECKS_EXECUTED=$((CHECKS_EXECUTED + 1))
 CHECKS_PASSED=$((CHECKS_PASSED + 1))
 echo "[✓] Stage 1/8: Identity – Maxx (Ops Lead & Local SSOT Agent)"
 
-# Check 2: Ollama Service Reachability
+# Check 2: Prompt -> Todo Intake (when prompt is provided)
+if [ -n "${ANTHONY_PROMPT:-}" ]; then
+  CHECKS_EXECUTED=$((CHECKS_EXECUTED + 1))
+  if python3 "$PROMPT_TODO_SCRIPT" "$ANTHONY_PROMPT" >/dev/null 2>&1; then
+    CHECKS_PASSED=$((CHECKS_PASSED + 1))
+    echo "[✓] Stage 2/8: Prompt intake seeded todo queue and journal"
+  else
+    CHECKS_FAILED=$((CHECKS_FAILED + 1))
+    echo "[-] Stage 2/8: Prompt intake failed" >&2
+  fi
+fi
+
+# Check 3: Ollama Service Reachability
 CHECKS_EXECUTED=$((CHECKS_EXECUTED + 1))
 if curl -s http://127.0.0.1:11434/api/version >/dev/null; then
   CHECKS_PASSED=$((CHECKS_PASSED + 1))
-  echo "[✓] Stage 2/8: Environment – Ollama daemon running"
+  echo "[✓] Stage 3/8: Environment – Ollama daemon running"
 else
   CHECKS_FAILED=$((CHECKS_FAILED + 1))
 fi
 
-# Check 3: ROOTS.md SHA-256 Hash Integrity
+# Check 4: ROOTS.md SHA-256 Hash Integrity
 CHECKS_EXECUTED=$((CHECKS_EXECUTED + 1))
 ROOTS_HASH="N/A"
 if [ -f "$ROOTS_FILE" ]; then
   ROOTS_HASH=$(shasum -a 256 "$ROOTS_FILE" | awk '{print $1}')
   CHECKS_PASSED=$((CHECKS_PASSED + 1))
-  echo "[✓] Stage 3/8: SSOT Integrity – ROOTS.md present ($ROOTS_HASH)"
+  echo "[✓] Stage 4/8: SSOT Integrity – ROOTS.md present ($ROOTS_HASH)"
 else
   CHECKS_FAILED=$((CHECKS_FAILED + 1))
 fi
 
-# Check 4: WAKE_FACE.md Integrity
+# Check 5: WAKE_FACE.md Integrity
 CHECKS_EXECUTED=$((CHECKS_EXECUTED + 1))
 if [ -f "$WAKE_FACE" ]; then
   CHECKS_PASSED=$((CHECKS_PASSED + 1))
@@ -52,7 +65,7 @@ else
   CHECKS_FAILED=$((CHECKS_FAILED + 1))
 fi
 
-# Check 5: Memory Journal Write Access
+# Check 6: Memory Journal Write Access
 CHECKS_EXECUTED=$((CHECKS_EXECUTED + 1))
 if [ -w "$JOURNAL_DIR" ]; then
   CHECKS_PASSED=$((CHECKS_PASSED + 1))
@@ -60,7 +73,7 @@ else
   CHECKS_FAILED=$((CHECKS_FAILED + 1))
 fi
 
-# Check 6: Task Queue State Integrity
+# Check 7: Task Queue State Integrity
 CHECKS_EXECUTED=$((CHECKS_EXECUTED + 1))
 if [ -f "$QUEUE_FILE" ] && python3 -c "import json; json.load(open('$QUEUE_FILE'))" 2>/dev/null; then
   CHECKS_PASSED=$((CHECKS_PASSED + 1))
@@ -68,7 +81,7 @@ else
   CHECKS_FAILED=$((CHECKS_FAILED + 1))
 fi
 
-# Check 7: Self-Healing Telemetry Integrity
+# Check 8: Self-Healing Telemetry Integrity
 CHECKS_EXECUTED=$((CHECKS_EXECUTED + 1))
 if python3 -c "import json; json.load(open('$TELEMETRY_FILE'))" 2>/dev/null; then
   CHECKS_PASSED=$((CHECKS_PASSED + 1))

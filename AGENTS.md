@@ -59,6 +59,39 @@ treated as the authoritative location for project work.
 - Do not delete application-managed brain artifacts during migration; they remain a recovery
   source until their canonical counterpart is verified and committed.
 
+## Lead 9 Governance & Roundtable Organization
+
+The Lead 9 roster is canonical at `identity/lead9_roster.json`. This defines seats, roles,
+rotation, and the invariant that every spoken dispatch cycle includes at least three voices.
+
+- Roundtable runtime command: `python3 ops/scripts/full_team_deliberation_roundtable.py "<focus>"`
+- Dispatch mode: triad cycles (3 speakers per dispatch payload).
+- Lead selection: daily seat rotation + randomized remaining order for non-rigid deliberation.
+- Journal receipt: `memory/journals/agents/lead9_roundtable_journal.jsonl`.
+
+## Prompt Intake Rule (Todo-First)
+
+Anthony prompts are often multi-question and multi-action. Before any deep execution, agents
+must seed the SSOT task queue from the prompt:
+
+```bash
+python3 /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/prompt_todo_bootstrap.py "<anthony_prompt>"
+```
+
+- Output target: `memory/tasks/queue.json` (`pending` list).
+- Journal target: `memory/journals/agents/prompt_intake_journal.jsonl`.
+- `wake_contract.sh` auto-runs prompt intake when `ANTHONY_PROMPT` is provided.
+
+## Conversational Mastery, Humor & Daily Dream Cadence
+
+- Every core agent response should balance clarity, confidence, and human warmth.
+- Humor is required but disciplined: one light line that lowers friction, never noise.
+- Daily journal entries must include:
+  1. What was learned.
+  2. What was blocked.
+  3. One humor line.
+  4. One dream-seed focus for overnight reasoning.
+
 ## Boot Stack & Verification
 ```bash
 # 1. Authoritative Data-Driven Boot Contract
