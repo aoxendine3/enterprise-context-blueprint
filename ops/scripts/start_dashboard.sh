@@ -6,7 +6,7 @@
 set -euo pipefail
 
 PORT="${1:-8080}"
-DASHBOARD="${2:-hexagraphic_forge.html}"
+DASHBOARD="${2:-customer_app.html}"
 UI_DIR="/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/fullscreen_ui"
 
 echo "================================================================="
