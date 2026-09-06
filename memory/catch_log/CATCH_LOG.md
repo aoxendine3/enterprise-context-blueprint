@@ -1826,3 +1826,56 @@ No overt sectarian or theological jargon in commercial deliverables; rather, the
   - Peak linear efficiency at **256 concurrent nodes (1,004.8 ops/sec)**.
   - Saturation breaking point threshold begins at **65,536 nodes** where thread-pool queue lock contention (`_PyParkingLot_Park`) becomes the primary bottleneck.
   - **Byzantine Consensus Accuracy**: **100.0%** adversarial detections across all 120,128 evaluations.
+
+---
+
+## Log Entry #074: Canonical Communications Stack Lock (STT/TTS/STS End-to-End)
+- **Date:** 2026-09-06T08:12:00-04:00
+- **Classification:** `[COMMS_PROTOCOL_LOCK & NO_ROLEPLAY_ENFORCEMENT]`
+- **Status:** `APPLIED ON CANONICAL ROOT`
+
+### Observation
+Communication runtime drift created repeated speech, occasional queue replay effects, and filler/theatrical output that was not tied to real routed input.
+
+### Remediation Applied
+1. Added canonical mic/STT pipeline at `ops/scripts/agent_comms_pipeline.py` with three operational nodes:
+   - Node 1 intake (speech recognition),
+   - Node 2 deterministic routing + dedupe,
+   - Node 3 monitor/idle auto-standby.
+2. Replaced `ops/scripts/voice_daemon.py` with queue-follow consumer logic that:
+   - processes only new queue lines,
+   - suppresses duplicate utterances in a time window,
+   - blocks placeholder output patterns,
+   - dispatches serially through `agent_speak.sh`.
+3. Reworked `ops/watchdog/media_stream_monitor_daemon.py` to remove synthetic fallback speech and reject placeholder-only payloads.
+4. Updated `ops/scripts/wake_contract.sh` to treat communications stack startup (`voice_daemon.py`, `agent_comms_pipeline.py`) as a standard boot check.
+5. Updated `ops/watchdog/monitor_health.sh` to verify/restart comms daemons without injecting synthetic health-check speech.
+6. Added compatibility wrapper at legacy path:
+   - `data_center/Dev_Workspaces/GitHub_Repos/Active/sovra-core-lighthouse/open_mic.py`
+   - delegates to canonical `ops/scripts/agent_comms_pipeline.py`.
+
+### Integrity Rules Locked
+- No overlapping speech (single queue + media director + gatekeeper lock path).
+- No repeated speech (dedupe at STT routing and queue consumer layers).
+- No placeholder statements or theatrical roleplay in automatic speech generation.
+- Route events and lifecycle receipts persist to memory logs for audit traceability.
+
+---
+
+## Log Entry #075: Hexagraphic Forge App + Game Template Deployment
+- **Date:** 2026-09-06T08:24:00-04:00
+- **Classification:** `[ENTERPRISE_UI_TEMPLATE & GAMEPLAY_PROTOTYPE]`
+- **Status:** `DEPLOYED ON PORT 8080`
+
+### Deliverable
+- Added `ops/scripts/fullscreen_ui/hexagraphic_forge.html`:
+  - enterprise command stage panel with live portrait/transcript polling,
+  - operations telemetry panel with `/api/telemetry` fallback behavior,
+  - integrated Hex Arena minigame (secure-vs-threat hex grid loop).
+- Updated `ops/scripts/start_dashboard.sh` default dashboard target to `hexagraphic_forge.html`.
+- Added launcher `ops/scripts/launch_hexagraphic_forge.sh`.
+
+### Quality Choices Applied
+1. **Accepted**: pure local HTML/CSS/JS with zero new package dependencies (disk-safe and deterministic).
+2. **Accepted**: no placeholder chatter; explicit status chips and concrete runtime logs.
+3. **Rejected**: dependency-heavy 3D framework expansion and cloud SDK additions due unnecessary bloat and current disk pressure.

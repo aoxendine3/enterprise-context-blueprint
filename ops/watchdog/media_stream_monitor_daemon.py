@@ -1,8 +1,15 @@
 """
-XORAS MEDIA STREAM MONITOR: NATIVE COMPILED GATEKEEPER INTEGRATION
-Golden List Asset #002: Kernel-Level Audio Mutex with Stale PID Self-Healing
-Guarantees ZERO audio overlap via native Apple Silicon ARM64 binary.
+XORAS media stream monitor with native gatekeeper lock.
+
+This monitor is strict by design:
+- no fabricated fallback utterances
+- no placeholder lines
+- no duplicate utterances in the same dispatch payload
+- serialized audio via sovereign gatekeeper + sync stage engine
 """
+
+from __future__ import annotations
+
 import json
 import os
 import subprocess
@@ -11,139 +18,113 @@ import time
 from typing import Any
 
 GATEKEEPER_BIN = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/capabilities/sovereign_systems_core/bin/sovereign_gatekeeper"
-SYNC_STAGE_ENGINE = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/fullscreen_ui/sync_stage_engine.py"
-LEAD9_ROSTER = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/identity/lead9_roster.json"
-DEFAULT_LEAD9 = [
-    "jarvis",
-    "maxx",
-    "daxx",
-    "vance",
-    "clara",
-    "john",
-    "selene",
-    "orion",
-    "eden",
-]
-FALLBACK_LINES = {
-    "jarvis": "Jarvis here. Governance aligned and ready to execute.",
-    "maxx": "Maxx on operations. Clean run, clean logs, clean handoff.",
-    "daxx": "Daxx stepping in. Bug hunt loaded and torque calibrated.",
-    "vance": "Vance confirms falsification checks are active and ruthless.",
-    "clara": "Clara here. Ethics and research coherence are in lockstep.",
-    "john": "John confirms silicon telemetry and cache paths are nominal.",
-    "selene": "Selene here. Conversation resonance is human and steady.",
-    "orion": "Orion confirms media flow and stage synchronization are stable.",
-    "eden": "Eden verifies heartbeat integrity and human alignment are centered.",
+PLACEHOLDER_TEXT = {
+    "standing by",
+    "operational",
+    "operational on metal",
+    "ready to execute",
+    "readiness check complete",
 }
 
-def sanitize_input(text):
-    if not text:
-        return "Standing by."
-    clean = "".join(ch for ch in text if ch in ('\n', '\t', ' ') or ord(ch) >= 32)
-    return clean.strip() or "Standing by."
+
+def sanitize_input(text: str) -> str:
+    clean = "".join(ch for ch in text if ch in ("\n", "\t", " ") or ord(ch) >= 32)
+    return clean.strip()
 
 
-def load_lead9_order():
-    try:
-        with open(LEAD9_ROSTER, encoding="utf-8") as handle:
-            payload = json.load(handle)
-        lead_9 = payload.get("lead_9", [])
-        ordered = [str(entry.get("agent_id", "")).lower().strip() for entry in lead_9 if entry.get("agent_id")]
-        ordered = [agent for agent in ordered if agent]
-        if ordered:
-            return ordered
-    except (OSError, json.JSONDecodeError):
-        pass
-    return DEFAULT_LEAD9.copy()
+def normalize_text(text: str) -> str:
+    return " ".join(text.lower().strip().split())
 
 
-def normalize_turns(turns: list[Any]):
-    normalized = []
+def is_placeholder(text: str) -> bool:
+    return normalize_text(text) in PLACEHOLDER_TEXT
+
+
+def normalize_turns(turns: list[Any]) -> list[dict[str, str]]:
+    normalized: list[dict[str, str]] = []
+    seen: set[tuple[str, str]] = set()
+
     for turn in turns:
-        if isinstance(turn, dict):
-            agent = sanitize_input(str(turn.get("agent", ""))).lower()
-            text = sanitize_input(str(turn.get("text", "")))
-            if text:
-                normalized.append({"agent": agent or "maxx", "text": text})
+        if not isinstance(turn, dict):
+            continue
+        agent = sanitize_input(str(turn.get("agent", ""))).lower() or "maxx"
+        text = sanitize_input(str(turn.get("text", "")))
+        if not text or is_placeholder(text):
+            continue
+        fingerprint = (agent, normalize_text(text))
+        if fingerprint in seen:
+            continue
+        seen.add(fingerprint)
+        normalized.append({"agent": agent, "text": text})
+
     return normalized
 
 
-def enforce_minimum_council(turns, initiating_agent):
-    turns = normalize_turns(turns)
-    if not turns:
-        turns = [{"agent": initiating_agent, "text": "Standing by."}]
+def enforce_minimum_council(turns: list[Any], initiating_agent: str) -> list[dict[str, str]]:
+    """
+    Kept for API compatibility. No synthetic fallback content is injected.
+    """
+    normalized = normalize_turns(turns)
+    if normalized:
+        return normalized
 
-    existing_agents = []
-    for turn in turns:
-        agent = turn.get("agent", "").lower()
-        if agent and agent not in existing_agents:
-            existing_agents.append(agent)
+    cleaned = sanitize_input(initiating_agent).lower() or "maxx"
+    return [{"agent": cleaned, "text": ""}]
 
-    lead9 = load_lead9_order()
-    rotation = int(time.time()) % len(lead9) if lead9 else 0
-    rotated = lead9[rotation:] + lead9[:rotation]
-    candidate_order = [initiating_agent] + rotated
 
-    for candidate in candidate_order:
-        if len(existing_agents) >= 3:
-            break
-        if candidate and candidate not in existing_agents:
-            turns.append(
-                {
-                    "agent": candidate,
-                    "text": FALLBACK_LINES.get(candidate, f"{candidate.title()} confirms operational readiness."),
-                }
-            )
-            existing_agents.append(candidate)
+def parse_turn_script_payload(raw_text: str) -> list[dict[str, str]]:
+    turns: list[Any] = []
+    if os.path.exists(raw_text) and (raw_text.endswith(".json") or raw_text.endswith(".txt")):
+        with open(raw_text, encoding="utf-8") as handle:
+            content = handle.read().strip()
+        if content.startswith("[") and content.endswith("]"):
+            turns = json.loads(content)
+    elif raw_text.startswith("[") and raw_text.endswith("]"):
+        turns = json.loads(raw_text)
 
-    return turns
+    return normalize_turns(turns)
 
-def run_isolated_stream(agent_id, text):
-    text = sanitize_input(text)
-    agent_id = sanitize_input(agent_id).lower()
 
-    # The native gatekeeper owns stale-lock recovery and mutual exclusion.
-    result = subprocess.run(
-        [GATEKEEPER_BIN, "acquire", agent_id, "120000"],
+def run_isolated_stream(agent_id: str, text: str) -> None:
+    cleaned_agent = sanitize_input(agent_id).lower() or "maxx"
+    cleaned_text = sanitize_input(text)
+
+    gate = subprocess.run(
+        [GATEKEEPER_BIN, "acquire", cleaned_agent, "120000"],
         capture_output=True,
         text=True,
     )
-    if result.returncode != 0:
+    if gate.returncode != 0:
         print(
-            f"[MEDIA_MONITOR_ERROR] Gatekeeper acquisition failed: {result.stderr.strip()}",
+            f"[MEDIA_MONITOR_ERROR] Gatekeeper acquisition failed: {gate.stderr.strip()}",
             file=sys.stderr,
         )
         return
 
     try:
         turns = []
-        if os.path.exists(text) and (text.endswith(".json") or text.endswith(".txt")):
-            try:
-                with open(text) as f:
-                    content = f.read().strip()
-                if content.startswith("[") and content.endswith("]"):
-                    turns = json.loads(content)
-            except (OSError, json.JSONDecodeError) as error:
-                print(f"[MEDIA_MONITOR_ERROR] Unable to load turn script: {error}", file=sys.stderr)
-                return
-        elif text.startswith("[") and text.endswith("]"):
-            try:
-                turns = json.loads(text)
-            except json.JSONDecodeError as error:
-                print(f"[MEDIA_MONITOR_ERROR] Invalid inline turn script: {error}", file=sys.stderr)
-                return
+        try:
+            turns = parse_turn_script_payload(cleaned_text)
+        except (OSError, json.JSONDecodeError) as error:
+            print(f"[MEDIA_MONITOR_ERROR] Turn script parse failure: {error}", file=sys.stderr)
+            return
 
+        if not turns and cleaned_text and not is_placeholder(cleaned_text):
+            turns = [{"agent": cleaned_agent, "text": cleaned_text}]
+
+        turns = enforce_minimum_council(turns, cleaned_agent)
+        turns = [turn for turn in turns if sanitize_input(turn.get("text", ""))]
         if not turns:
-            turns = [{"agent": agent_id, "text": text}]
-
-        turns = enforce_minimum_council(turns, agent_id)
+            print("[MEDIA_MONITOR_ERROR] No valid non-placeholder speech content to dispatch.", file=sys.stderr)
+            return
 
         sys.path.insert(0, "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/fullscreen_ui")
         from sync_stage_engine import play_script_pipelined, speak_with_word_sync
+
         if len(turns) > 1:
             play_script_pipelined(turns, gap_seconds=0.35)
-        elif len(turns) == 1:
-            spk = turns[0].get("agent", agent_id).lower()
+        else:
+            spk = turns[0].get("agent", cleaned_agent).lower()
             utt = turns[0].get("text", "")
             if utt:
                 speak_with_word_sync(spk, utt)
@@ -158,7 +139,8 @@ def run_isolated_stream(agent_id, text):
             check=False,
         )
 
+
 if __name__ == "__main__":
     ag = sys.argv[1] if len(sys.argv) > 1 else "maxx"
-    tx = sys.argv[2] if len(sys.argv) > 2 else "Operational."
+    tx = sys.argv[2] if len(sys.argv) > 2 else ""
     run_isolated_stream(ag, tx)
