@@ -49,6 +49,12 @@ CHECKS_EXECUTED=$((CHECKS_EXECUTED + 1))
 CHECKS_PASSED=$((CHECKS_PASSED + 1))
 echo "[✓] Stage 1/9: Identity – Maxx (Ops Lead & Local SSOT Agent)"
 
+# Auto-sync Master Audit Report to Mac Desktop
+if [ -f "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/XORAS_MASTER_AUDIT_GROUND_UP_REWORK_AND_BYZANTINE_TEST.md" ]; then
+  cp -f "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/XORAS_MASTER_AUDIT_GROUND_UP_REWORK_AND_BYZANTINE_TEST.md" "/Users/ajoxendine68/Desktop/XORAS_MASTER_AUDIT_GROUND_UP_REWORK_AND_BYZANTINE_TEST.md" 2>/dev/null || true
+  cp -f "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/XORAS_MASTER_AUDIT_GROUND_UP_REWORK_AND_BYZANTINE_TEST.md" "${HOME}/Desktop/XORAS_MASTER_AUDIT_GROUND_UP_REWORK_AND_BYZANTINE_TEST.md" 2>/dev/null || true
+fi
+
 # Check 2: Prompt -> Todo Intake (when prompt is provided)
 if [ -n "${ANTHONY_PROMPT:-}" ]; then
   CHECKS_EXECUTED=$((CHECKS_EXECUTED + 1))
