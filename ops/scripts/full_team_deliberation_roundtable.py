@@ -17,12 +17,11 @@ import subprocess
 import sys
 import time
 from datetime import datetime, timezone
-from pathlib import Path
-
-ROOT = Path("/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain")
-SPEAK_SCRIPT = ROOT / "ops/scripts/agent_speak.sh"
-LEAD9_FILE = ROOT / "identity/lead9_roster.json"
-ROUND_JOURNAL = ROOT / "memory/journals/agents/lead9_roundtable_journal.jsonl"
+SCRIPT_DIR = Path(__file__).resolve().parent
+ROOT = SCRIPT_DIR.parent.parent
+SPEAK_SCRIPT = ROOT / "ops" / "scripts" / "media_director_agent.py"
+LEAD9_FILE = ROOT / "identity" / "lead9_roster.json"
+ROUND_JOURNAL = ROOT / "memory" / "journals" / "agents" / "lead9_roundtable_journal.jsonl"
 STAGE_URL = "http://127.0.0.1:8080/customer_app.html"
 
 DEFAULT_LEAD9 = ["jarvis", "maxx", "daxx", "vance", "clara", "john", "selene", "orion", "eden"]
@@ -105,7 +104,7 @@ def triad_chunks(turns: list[dict[str, str]]) -> list[list[dict[str, str]]]:
 def dispatch_chunk(chunk: list[dict[str, str]]) -> None:
     payload = json.dumps(chunk, ensure_ascii=True)
     lead_agent = chunk[0]["agent"]
-    subprocess.run(["bash", str(SPEAK_SCRIPT), lead_agent, payload], check=True, stdin=subprocess.DEVNULL)
+    subprocess.run([sys.executable, str(SPEAK_SCRIPT), lead_agent, payload], check=True, stdin=subprocess.DEVNULL)
 
 
 def write_journal(mode: str, objective: str, turns: list[dict[str, str]], triad_count: int) -> None:
@@ -128,7 +127,8 @@ def write_journal(mode: str, objective: str, turns: list[dict[str, str]], triad_
 
 
 def run_roundtable(objective: str, turns_file: str | None) -> None:
-    subprocess.run(["open", "-a", "Google Chrome", STAGE_URL], check=False)
+    if sys.platform != "win32":
+        subprocess.run(["open", "-a", "Google Chrome", STAGE_URL], check=False)
 
     if turns_file:
         turns = load_turns_file(Path(turns_file))

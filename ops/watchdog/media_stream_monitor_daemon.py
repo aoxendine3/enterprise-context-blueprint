@@ -10,14 +10,16 @@ This monitor is strict by design:
 
 from __future__ import annotations
 
-import json
 import os
 import subprocess
 import sys
 import time
+from pathlib import Path
 from typing import Any
 
-GATEKEEPER_BIN = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/capabilities/sovereign_systems_core/bin/sovereign_gatekeeper"
+SCRIPT_DIR = Path(__file__).resolve().parent
+SSOT_ROOT = SCRIPT_DIR.parent.parent
+GATEKEEPER_BIN = str(SSOT_ROOT / "capabilities" / "sovereign_systems_core" / "bin" / "sovereign_gatekeeper")
 PLACEHOLDER_TEXT = {
     "standing by",
     "operational",
@@ -89,17 +91,19 @@ def run_isolated_stream(agent_id: str, text: str) -> None:
     cleaned_agent = sanitize_input(agent_id).lower() or "maxx"
     cleaned_text = sanitize_input(text)
 
-    gate = subprocess.run(
-        [GATEKEEPER_BIN, "acquire", cleaned_agent, "120000"],
-        capture_output=True,
-        text=True,
-    )
-    if gate.returncode != 0:
-        print(
-            f"[MEDIA_MONITOR_ERROR] Gatekeeper acquisition failed: {gate.stderr.strip()}",
-            file=sys.stderr,
+    has_gatekeeper = os.path.isfile(GATEKEEPER_BIN) and os.access(GATEKEEPER_BIN, os.X_OK)
+    if has_gatekeeper:
+        gate = subprocess.run(
+            [GATEKEEPER_BIN, "acquire", cleaned_agent, "120000"],
+            capture_output=True,
+            text=True,
         )
-        return
+        if gate.returncode != 0:
+            print(
+                f"[MEDIA_MONITOR_ERROR] Gatekeeper acquisition failed: {gate.stderr.strip()}",
+                file=sys.stderr,
+            )
+            return
 
     try:
         turns = []
@@ -118,26 +122,48 @@ def run_isolated_stream(agent_id: str, text: str) -> None:
             print("[MEDIA_MONITOR_ERROR] No valid non-placeholder speech content to dispatch.", file=sys.stderr)
             return
 
-        sys.path.insert(0, "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/fullscreen_ui")
-        from sync_stage_engine import play_script_pipelined, speak_with_word_sync
+        ui_path = str(SSOT_ROOT / "ops" / "scripts" / "fullscreen_ui")
+        if ui_path not in sys.path:
+            sys.path.insert(0, ui_path)
 
-        if len(turns) > 1:
-            play_script_pipelined(turns, gap_seconds=0.35)
-        else:
-            spk = turns[0].get("agent", cleaned_agent).lower()
-            utt = turns[0].get("text", "")
-            if utt:
-                speak_with_word_sync(spk, utt)
+        dispatched_stage = False
+        try:
+            from sync_stage_engine import play_script_pipelined, speak_with_word_sync
+            if len(turns) > 1:
+                play_script_pipelined(turns, gap_seconds=0.35)
+            else:
+                spk = turns[0].get("agent", cleaned_agent).lower()
+                utt = turns[0].get("text", "")
+                if utt:
+                    speak_with_word_sync(spk, utt)
+            dispatched_stage = True
+        except Exception as stage_err:
+            # Fallback for Windows SAPI when Kokoro/afplay is macOS-specific
+            if sys.platform == "win32":
+                try:
+                    import win32com.client
+                    speaker = win32com.client.Dispatch("SAPI.SpVoice")
+                    speaker.Rate = -1
+                    speaker.Volume = 100
+                    for t in turns:
+                        spk = t.get("agent", cleaned_agent)
+                        utt = t.get("text", "")
+                        if utt:
+                            speaker.Speak(f"{spk}: {utt}")
+                    dispatched_stage = True
+                except Exception as sapi_err:
+                    print(f"[MEDIA_MONITOR_WARN] Windows SAPI fallback failed: {sapi_err}", file=sys.stderr)
 
         time.sleep(0.05)
     finally:
-        subprocess.run(
-            [GATEKEEPER_BIN, "release"],
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-            stdin=subprocess.DEVNULL,
-            check=False,
-        )
+        if has_gatekeeper:
+            subprocess.run(
+                [GATEKEEPER_BIN, "release"],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                stdin=subprocess.DEVNULL,
+                check=False,
+            )
 
 
 if __name__ == "__main__":

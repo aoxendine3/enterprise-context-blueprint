@@ -14,8 +14,10 @@ import sys
 import time
 from pathlib import Path
 
-MONITOR_SCRIPT = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/watchdog/media_stream_monitor_daemon.py"
-DIRECTOR_LOG = Path("/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/watchdog/media_director_audit.jsonl")
+SCRIPT_DIR = Path(__file__).resolve().parent
+SSOT_ROOT = SCRIPT_DIR.parent.parent
+MONITOR_SCRIPT = str(SSOT_ROOT / "ops" / "watchdog" / "media_stream_monitor_daemon.py")
+DIRECTOR_LOG = SSOT_ROOT / "ops" / "watchdog" / "media_director_audit.jsonl"
 PLACEHOLDER_TEXT = {
     "standing by",
     "operational",
@@ -61,7 +63,7 @@ def direct_broadcast(agent_id: str, text: str) -> int:
     if rejected:
         return 2
 
-    cmd = ["python3", MONITOR_SCRIPT, agent_id, text]
+    cmd = [sys.executable, MONITOR_SCRIPT, agent_id, text]
     completed = subprocess.run(cmd, check=False, stdin=subprocess.DEVNULL)
     return completed.returncode
 

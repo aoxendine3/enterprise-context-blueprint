@@ -12,7 +12,8 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-ROOT = Path("/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain")
+SCRIPT_DIR = Path(__file__).resolve().parent
+ROOT = SCRIPT_DIR.parent.parent
 QUEUE_FILE = ROOT / "memory/tasks/queue.json"
 JOURNAL_FILE = ROOT / "memory/journals/agents/prompt_intake_journal.jsonl"
 
