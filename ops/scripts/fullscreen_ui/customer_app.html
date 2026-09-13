@@ -45,8 +45,7 @@
             pointer-events: none;
         }
 
-        /* Agent Portrait Container (Zero floating dots on face, clean crystal glass frame) */
-        /* Agent Portrait Container: Positioned higher and sized cleanly to prevent any obstruction */
+        /* Agent Portrait Container (Max Headroom Digital Avatar Aesthetic) */
         #portraitWrap {
             position: absolute;
             top: 42%; left: 50%;
@@ -55,17 +54,37 @@
             max-width: 1000px; max-height: 640px;
             border-radius: 18px;
             overflow: hidden;
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.98), 0 0 40px rgba(0, 242, 254, 0.12);
-            border: 1px solid rgba(0, 242, 254, 0.25);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.98), 0 0 50px rgba(0, 242, 254, 0.25);
+            border: 1px solid rgba(0, 242, 254, 0.4);
             background: #000;
+        }
+
+        /* Digital CRT Scanlines Overlay */
+        #portraitWrap::after {
+            content: "";
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(
+                rgba(18, 16, 16, 0) 50%, 
+                rgba(0, 0, 0, 0.25) 50%
+            ), linear-gradient(
+                90deg,
+                rgba(255, 0, 0, 0.03),
+                rgba(0, 255, 0, 0.01),
+                rgba(0, 0, 255, 0.03)
+            );
+            background-size: 100% 4px, 6px 100%;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0.75;
         }
 
         #agentPortrait {
             width: 100%; height: 100%;
             object-fit: cover; object-position: center 20%;
-            transition: opacity 0.3s ease, transform 0.5s ease;
+            transition: opacity 0.3s ease, transform 0.5s ease, filter 0.3s ease;
             opacity: 1;
             display: block;
+            filter: contrast(1.08) brightness(1.02);
         }
 
         /* Condensed, Refined Caption Bar: Generous clearance, zero text overlap */
@@ -152,11 +171,44 @@
             color: rgba(0, 242, 254, 0.5);
             text-transform: uppercase;
         }
+
+        /* Real-Time Interactive Agent Control Toolbar */
+        .agent-control-bar {
+            position: absolute; top: 22px; right: 32px;
+            z-index: 30;
+            display: flex; gap: 8px; align-items: center;
+            background: rgba(3, 7, 14, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            border-radius: 20px; padding: 4px 10px;
+        }
+        .agent-btn {
+            background: transparent; border: 1px solid rgba(255,255,255,0.15);
+            color: #94A3B8; font-size: 10px; font-weight: 700; letter-spacing: 1px;
+            padding: 4px 10px; border-radius: 14px; cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .agent-btn:hover, .agent-btn.active {
+            background: rgba(0, 242, 254, 0.2);
+            border-color: #00F2FE; color: #00F2FE;
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+        }
     </style>
-    <!-- Local Offline Three.js Engine -->
+    <!-- Local Offline 3D Engines -->
     <script src="/three.min.js"></script>
+    <script src="/orbit_controls.js"></script>
 </head>
 <body>
+    <!-- Real-Time Interactive Agent Control Toolbar -->
+    <div class="agent-control-bar">
+        <span style="font-size:9px; font-weight:800; letter-spacing:1px; color:#00F2FE; margin-right:4px;">AGENTS:</span>
+        <button class="agent-btn active" onclick="switchAgentInteractive('maxx')">MAXX</button>
+        <button class="agent-btn" onclick="switchAgentInteractive('vance')">VANCE</button>
+        <button class="agent-btn" onclick="switchAgentInteractive('clara')">CLARA</button>
+        <button class="agent-btn" onclick="switchAgentInteractive('john')">JOHN</button>
+        <button class="agent-btn" onclick="switchAgentInteractive('selene')">SELENE</button>
+        <button class="agent-btn" onclick="switchAgentInteractive('jarvis')">JARVIS</button>
+    </div>
     <!-- 1. Background 3D Architectural Diagram Canvas -->
     <canvas id="webglCanvas"></canvas>
 
@@ -169,7 +221,7 @@
         </div>
     </div>
 
-    <div class="diagram-legend" id="diagramLabel">3D COGNITIVE DIAGRAM: ACTIVE</div>
+    <div class="diagram-legend" id="diagramLabel">TRIPLE 3D TRI-BRAIN ARCHITECTURE · 3072-DIMENSIONAL SPATIAL MESH</div>
 
     <!-- 2. Main Visual Portrait Frame -->
     <div id="stageContainer">
@@ -220,8 +272,29 @@
         });
 
         let currentAgentKey = 'maxx';
+        let userSelectedAgent = null;
         let lastTimingText = '';
         let activeTiming = null;
+
+        function switchAgentInteractive(agentKey) {
+            const cleanKey = (agentKey || 'maxx').toLowerCase().trim();
+            userSelectedAgent = cleanKey;
+            updateAgentVisual(cleanKey);
+
+            // Update UI Button highlights
+            document.querySelectorAll('.agent-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.innerText.toLowerCase() === cleanKey) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Update 3D Diagram theme dynamically
+            const info = AGENT_ROSTER[cleanKey] || AGENT_ROSTER['maxx'];
+            if (window.updateDiagramTheme) {
+                window.updateDiagramTheme(info.color, info.role);
+            }
+        }
 
         function updateAgentVisual(agentKey) {
             const cleanKey = (agentKey || 'maxx').toLowerCase().trim();
@@ -261,7 +334,7 @@
             });
         }
 
-        // 35ms Polling Loop for Synchronous Caption Highlighting (Zero query params for 100% server compatibility)
+        // 35ms Polling Loop for Synchronous Caption Highlighting
         setInterval(() => {
             fetch('/current_timing.json', { cache: 'no-store' })
                 .then(r => {
@@ -271,14 +344,17 @@
                 .then(data => {
                     if (!data) return;
 
-                    if (data.agent) {
-                        updateAgentVisual(data.agent);
-                    }
-
                     // Render actual speech text ONLY. Zero boilerplate.
                     if (data.text) {
                         const isNewText = (data.text !== lastTimingText);
                         const justFinishedSynth = (!data.synthesizing && activeTiming && activeTiming.synthesizing);
+
+                        if (isNewText) {
+                            userSelectedAgent = null; // Reset override on new speech turn
+                        }
+
+                        const targetAgent = userSelectedAgent || data.agent || 'maxx';
+                        updateAgentVisual(targetAgent);
 
                         if (isNewText || justFinishedSynth) {
                             lastTimingText = data.text;
@@ -461,16 +537,26 @@
                 }
             };
 
-            // 3D Motion Loop: Living Architectural Rotation & Pulsing
+            // 3D Motion Loop: Living Architectural Rotation & Interactive Orbiting
             let clock = new THREE.Clock();
+            let updateOrbit = null;
+            if (window.initInteractive3DControls) {
+                updateOrbit = window.initInteractive3DControls(camera, renderer.domElement, (rotX, rotY) => {
+                    diagramGroup.rotation.x = rotX;
+                    diagramGroup.rotation.y = rotY;
+                });
+            }
+
             function animateDiagram() {
                 requestAnimationFrame(animateDiagram);
                 const elapsed = clock.getElapsedTime();
 
-                // Smooth slow multi-axis rotation of the 3D diagram in the background
-                diagramGroup.rotation.y = elapsed * 0.12;
-                diagramGroup.rotation.x = Math.sin(elapsed * 0.08) * 0.2;
-                diagramGroup.rotation.z = Math.cos(elapsed * 0.06) * 0.1;
+                if (updateOrbit) {
+                    updateOrbit();
+                } else {
+                    diagramGroup.rotation.y = elapsed * 0.12;
+                    diagramGroup.rotation.x = Math.sin(elapsed * 0.08) * 0.2;
+                }
 
                 // Pulsing nodes along cognitive bus
                 coreMesh.rotation.y = -elapsed * 0.2;
