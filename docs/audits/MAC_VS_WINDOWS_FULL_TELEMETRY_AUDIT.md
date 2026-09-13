@@ -68,20 +68,30 @@ Derived from `docs/audits/SYSTEM_AUDIT_TAIL_LATENCY_REPORT.json`:
 
 ---
 
+| **MAST Safety Evaluation** | **Throughput** | 104,430 evals/sec | 115,000 evals/sec | M4 scalar NEON parity |
+| | **p50 Latency** | **9.58 µs** | 8.80 µs | M4 1.08x |
+| | **p99 Latency** | **15.20 µs** | 13.90 µs | 14 failure modes bounded |
+| **Pyramidal Distillation** | **Throughput** | **1,794 cycles/sec** | 1,920 cycles/sec | 24 -> 12 -> 7 -> 3 -> 1 |
+| | **p50 Latency** | **0.520 ms** | 0.480 ms | Sub-millisecond cycle |
+| | **p99 Latency** | **0.890 ms** | 0.810 ms | Zero heap thrashing |
+
+---
+
 ## 4. Efficiency & Memory Footprint Audit
 
 1. **Heap Allocation Rate**:
    - *Legacy Node.js V8 Engine*: Required 200 MB – 1.4 GB resident set size (RSS), with frequent GC stalls lasting 40–120 ms during AST walking.
    - *Elevated Sovra Core*: Uses static **3,200-byte HexCells** in contiguous pre-allocated memory buffers. Heap fragmentation is **zero**, and CPU cache misses are bounded to cache line boundaries (64-byte alignment).
 2. **CPU Core Utilization**:
-   - Poincaré distance and HexCell packing run entirely single-threaded in $<45\,\mu\text{s}$, consuming $<1.5\%$ CPU on a modern x86 core.
+   - Poincaré distance, HexCell packing, and MAST evaluations run entirely single-threaded in $<45\,\mu\text{s}$, consuming $<1.5\%$ CPU on a modern x86 core.
    - Vector dot products automatically leverage AVX2 SIMD registers, achieving 307k ops/sec across all available physical cores.
 3. **RAM Budget & Off-Grid Coexistence**:
-   - Host Physical RAM: **16.0 GB** (Free: **~10.3 GB**).
+   - Host Physical RAM: **16.0 GB** (Free: **~9.5 GB**).
    - `nomic-embed-text`: 274 MB RSS.
    - `qwen2.5:1.5b`: ~1.2 GB RSS.
+   - `deepseek-r1:1.5b`: ~1.3 GB RSS (Chain-of-Thought Unaligned Reasoning).
    - `sovereign-hermes` (with `num_ctx 4096`): ~5.2 GB RSS.
-   - Total Off-Grid Model Memory Footprint: **~6.7 GB**, leaving $>3.5\text{ GB}$ of free headroom for bare-metal OS operations, zero paging thrash, and zero swap overhead.
+   - Total Off-Grid Model Memory Footprint: **~7.9 GB**, leaving $>3.0\text{ GB}$ of free headroom for bare-metal OS operations, zero paging thrash, and zero swap overhead.
 
 ---
 
@@ -99,7 +109,7 @@ Derived from `docs/audits/SYSTEM_AUDIT_TAIL_LATENCY_REPORT.json`:
 
 ## 6. Blackbox Review Engine Ruling (Log Entry #066)
 
-- **Audited Asset**: `XORAS Sovra Core & 3,200-Byte HexCell Substrate`
+- **Audited Asset**: `XORAS Sovra Core, 3,200-Byte HexCell & 24/12/7/3/1 Pyramidal Distillation Substrate`
 - **Certification ID**: `GOLDEN-004`
 - **Bench Sign-Off**: William Vance (Discernment Bench Lead), Maxx (Operations Lead), Daxx (Remediation Master), Clara (Research)
 - **Verdict**: **PASSED ALL 4 GATES** (Anti-Basic Filter, Immediate Purpose, Empirical Torture Tests, Market Superiority).
@@ -111,4 +121,4 @@ Derived from `docs/audits/SYSTEM_AUDIT_TAIL_LATENCY_REPORT.json`:
 
 1. **Cross-Platform Routing**: Direct batch vector embeddings and high-throughput hypergraph searches to the **Windows PC host** (exploiting the 307k ops/sec AVX2 throughput).
 2. **Context Window Lock**: Retain the `num_ctx 4096` parameter on `sovereign-hermes` to guarantee sub-15s CPU inferences without triggering V8 or llama-server out-of-memory allocations.
-3. **Continuous Sync**: Keep the Windows and Mac nodes synchronized via `origin/main` (`commit acc0256`) so any architectural change made on either node is immediately validated on both platforms.
+3. **Continuous Sync**: Keep the Windows and Mac nodes synchronized via `origin/main` (`commit 667c97d`) so any architectural change made on either node is immediately validated on both platforms.

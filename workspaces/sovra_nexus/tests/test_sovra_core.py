@@ -24,6 +24,8 @@ from sovra_core.hexcell_memory import HexCell, HexCellEngine, HEXCELL_SIZE
 from sovra_core.streaming_entropy import StreamingEntropyEngine
 from sovra_core.kernel_drift_detector import KernelDriftDetector
 from sovra_core.saga_inverse import SagaInverseEngine
+from sovra_core.mast_taxonomy import MASTTaxonomy
+from sovra_core.pyramidal_distillation import PyramidalDistillationEngine
 
 
 class TestPoincareManifold(unittest.TestCase):
@@ -194,6 +196,69 @@ class TestSagaInverse(unittest.TestCase):
         with open(self.target_file, "r") as f:
             content = f.read()
         self.assertEqual(content, '{"state": "ORIGINAL"}')
+
+
+class TestMASTTaxonomy(unittest.TestCase):
+    def setUp(self):
+        self.mast = MASTTaxonomy()
+
+    def test_nominal_evaluation(self):
+        telemetry = {"timeout_ratio": 0.0, "duplicate_utterance_ratio": 0.0}
+        report = self.mast.evaluate(telemetry)
+        self.assertEqual(report["safety_score"], 1.0)
+        self.assertEqual(report["risk_score"], 0.0)
+        self.assertFalse(report["healing_required"])
+
+    def test_healing_trigger(self):
+        # Simulate severe coordination collapse
+        telemetry = {"timeout_ratio": 0.95}
+        report = self.mast.evaluate(telemetry)
+        self.assertGreaterEqual(report["risk_score"], 0.92)
+        self.assertTrue(report["healing_required"])
+        healing = self.mast.trigger_healing_pulse(report)
+        self.assertEqual(healing["status"], "HEALED")
+        self.assertIn("coordination_collapse", healing["action"])
+
+
+class TestPyramidalDistillation(unittest.TestCase):
+    def setUp(self):
+        self.engine = PyramidalDistillationEngine()
+        # Generate 24 structured mock raw inputs
+        self.raw_24 = [
+            {
+                "id": f"src_{i:02d}",
+                "domain": f"domain_{i % 6}",
+                "content": f"High entropy raw telemetry packet {i} with stochastic state markers and vector indicators.",
+                "score": round(0.5 + (i * 0.02), 3)
+            }
+            for i in range(24)
+        ]
+
+    def test_exact_layer_compression(self):
+        result = self.engine.distill(self.raw_24)
+
+        # L1: 24 inputs
+        self.assertEqual(result["l1_ingestion_count"], 24)
+        self.assertTrue(result["l1_root_hash"])
+
+        # L2: 12 vectors
+        self.assertEqual(result["l2_vector_count"], 12)
+        self.assertEqual(len(result["l2_vectors"]), 12)
+
+        # L3: 7 paths
+        self.assertEqual(result["l3_path_count"], 7)
+        self.assertEqual(len(result["l3_paths"]), 7)
+
+        # L4: Trinity consensus
+        self.assertTrue(result["l4_trinity_consensus"])
+        self.assertEqual(len(result["l4_deliberation"]), 3)
+
+        # L5: 1 Apex Mandate
+        mandate = result["l5_apex_mandate"]
+        self.assertTrue(mandate["mandate_id"].startswith("APEX-"))
+        self.assertTrue(len(mandate["signature"]) == 64)  # HMAC-SHA256 hex string
+        self.assertGreater(mandate["confidence"], 0.0)
+        self.assertGreater(mandate["mast_safety_score"], 0.0)
 
 
 if __name__ == "__main__":

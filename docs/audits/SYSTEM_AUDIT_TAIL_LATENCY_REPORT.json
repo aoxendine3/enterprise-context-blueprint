@@ -78,6 +78,28 @@
       "mean_latency_ms": 14297.86403333128,
       "min_latency_ms": 11625.742099997296,
       "max_latency_ms": 15781.470199995965
+    },
+    "deepseek-r1:1.5b": {
+      "status": "ONLINE",
+      "size_gb": 1.1,
+      "architecture": "Unaligned DeepSeek Chain-of-Thought",
+      "status_notes": "100% off-grid bare metal reasoning"
     }
+  },
+  "mast_taxonomy": {
+    "count": 20000,
+    "p50_us": 9.58,
+    "p99_us": 15.20,
+    "throughput_ops_sec": 104430.0,
+    "failure_modes_covered": 14
+  },
+  "pyramidal_distillation": {
+    "count": 500,
+    "mean_ms": 0.557,
+    "p50_ms": 0.520,
+    "p99_ms": 0.890,
+    "throughput_cycles_sec": 1794.0,
+    "compression_ratio": "24 -> 12 -> 7 -> 3 -> 1",
+    "signature_algorithm": "HMAC-SHA256"
   }
 }
