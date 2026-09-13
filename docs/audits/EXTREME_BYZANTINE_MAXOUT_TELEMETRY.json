@@ -1,0 +1,119 @@
+{
+  "timestamp": "2026-09-13T17:35:02.899667+00:00",
+  "host": "Windows Bare Metal (x86_64)",
+  "cpu_logical_cores": 4,
+  "has_numpy_avx2": true,
+  "pillars": {
+    "vector_engine": {
+      "pure_python": {
+        "ops_sec": 3696.0,
+        "ns_per_op": 270561.6
+      },
+      "single_thread_avx2": {
+        "ops_sec": 720507.3,
+        "ns_per_op": 1387.9
+      },
+      "multi_thread_avx2": {
+        "threads": 4,
+        "ops_sec": 224439.3,
+        "ns_per_op": 4455.5,
+        "simd_vs_pure_python_speedup": 194.9
+      }
+    },
+    "poincare_manifold": {
+      "total_ops": 1000000,
+      "total_time_sec": 10.275,
+      "ops_sec": 97320.6,
+      "p50_us": 9.8,
+      "p90_us": 10.2,
+      "p99_us": 16.5
+    },
+    "hexcell_memory": {
+      "total_strides": 1000000,
+      "total_bytes_gb": 5.96,
+      "total_time_sec": 36.242,
+      "roundtrips_sec": 27592.4,
+      "bandwidth_mb_sec": 168.4,
+      "p50_us": 33.5,
+      "p90_us": 34.3,
+      "p99_us": 80.0
+    },
+    "streaming_entropy": {
+      "total_tokens": 2000000,
+      "raw_uncached_ops_sec": 124865.2,
+      "lut_engine_ops_sec": 90066.9,
+      "ns_per_token": 11102.9,
+      "algorithmic_formulation_speedup": 0.72
+    },
+    "mast_taxonomy": {
+      "total_evals": 500000,
+      "total_time_sec": 5.464,
+      "evals_sec": 91504.7,
+      "ns_per_eval": 10928.4,
+      "healing_pulses_triggered": 125000
+    },
+    "atomic_mutex": {
+      "workers": 50,
+      "total_acquisitions": 1000000,
+      "total_time_sec": 0.385,
+      "acquisitions_sec": 2598309.6,
+      "ns_per_lock": 384.9,
+      "race_conditions": 0
+    },
+    "http_stage_saturation": {
+      "ramp_levels": [
+        {
+          "concurrency": 10,
+          "requests": 200,
+          "pass_rate_pct": 100.0,
+          "throughput_req_sec": 195.4,
+          "avg_latency_ms": 37.54,
+          "p99_latency_ms": 530.18
+        },
+        {
+          "concurrency": 25,
+          "requests": 200,
+          "pass_rate_pct": 100.0,
+          "throughput_req_sec": 170.7,
+          "avg_latency_ms": 77.55,
+          "p99_latency_ms": 1014.28
+        },
+        {
+          "concurrency": 50,
+          "requests": 200,
+          "pass_rate_pct": 100.0,
+          "throughput_req_sec": 153.2,
+          "avg_latency_ms": 129.51,
+          "p99_latency_ms": 1005.88
+        },
+        {
+          "concurrency": 100,
+          "requests": 200,
+          "pass_rate_pct": 100.0,
+          "throughput_req_sec": 139.4,
+          "avg_latency_ms": 159.3,
+          "p99_latency_ms": 1002.27
+        },
+        {
+          "concurrency": 200,
+          "requests": 200,
+          "pass_rate_pct": 100.0,
+          "throughput_req_sec": 251.5,
+          "avg_latency_ms": 104.18,
+          "p99_latency_ms": 514.12
+        }
+      ],
+      "breaking_concurrency_threshold": "> 200"
+    },
+    "pyramidal_distillation": {
+      "total_cycles": 10000,
+      "raw_sources_distilled": 240000,
+      "total_time_sec": 6.232,
+      "cycles_sec": 1604.6,
+      "p50_ms": 0.589,
+      "p90_ms": 0.704,
+      "p99_ms": 1.442
+    }
+  },
+  "total_gauntlet_time_sec": 100.55
+}
