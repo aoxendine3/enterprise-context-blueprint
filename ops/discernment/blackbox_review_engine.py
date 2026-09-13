@@ -15,8 +15,12 @@ No basic work. Near-impossible admission threshold. Zero flaws required.
 import os, sys, json, time, subprocess
 from datetime import datetime
 
-GOLDEN_LIST_JSON = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/data_center/golden_list/GOLDEN_LIST.json"
-GOLDEN_LIST_MD = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/data_center/golden_list/GOLDEN_LIST.md"
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+SSOT_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, "..", ".."))
+GOLDEN_DIR = os.path.join(SSOT_ROOT, "data_center", "golden_list")
+os.makedirs(GOLDEN_DIR, exist_ok=True)
+GOLDEN_LIST_JSON = os.path.join(GOLDEN_DIR, "GOLDEN_LIST.json")
+GOLDEN_LIST_MD = os.path.join(GOLDEN_DIR, "GOLDEN_LIST.md")
 
 class BlackboxReviewEngine:
     def __init__(self):
@@ -24,7 +28,7 @@ class BlackboxReviewEngine:
 
     def load_ledger(self):
         if os.path.exists(GOLDEN_LIST_JSON):
-            with open(GOLDEN_LIST_JSON, "r") as f:
+            with open(GOLDEN_LIST_JSON, "r", encoding="utf-8") as f:
                 self.ledger = json.load(f)
         else:
             self.ledger = {
@@ -43,11 +47,11 @@ class BlackboxReviewEngine:
             }
 
     def save_ledger(self):
-        with open(GOLDEN_LIST_JSON, "w") as f:
+        with open(GOLDEN_LIST_JSON, "w", encoding="utf-8") as f:
             json.dump(self.ledger, f, indent=2)
 
         # Update Markdown view
-        with open(GOLDEN_LIST_MD, "w") as f:
+        with open(GOLDEN_LIST_MD, "w", encoding="utf-8") as f:
             f.write("# 🏆 THE SOVEREIGN FLAWLESS GOLDEN LIST\n\n")
             f.write(f"**Governing Rule:** Log Entry #066 (Blackbox Review System)\n")
             f.write(f"**Last Certified:** {datetime.utcnow().isoformat()}Z\n")
