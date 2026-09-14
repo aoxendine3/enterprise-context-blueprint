@@ -1,0 +1,22 @@
+{
+  "status": "COOKING_ACTIVE_24_7",
+  "start_time": "2026-09-14T03:35:29.212248+00:00",
+  "current_time": "2026-09-14T03:36:06.427705+00:00",
+  "target_cook_duration_hours": 48.0,
+  "hours_elapsed": 0.0103,
+  "hours_remaining": 47.9897,
+  "progress_pct": 0.02,
+  "total_cycles_completed": 1,
+  "total_signals_distilled": 24,
+  "healing_pulses_total": 0,
+  "last_cycle_duration_sec": 37.212,
+  "active_models": [
+    "sovereign-hermes",
+    "sovereign-r1"
+  ],
+  "last_speaker": "maxx",
+  "last_apex_mandate": "APEX-1789356929-PATH_1",
+  "mast_safety_score": 1.0,
+  "ram_used_gb": 6.32,
+  "ram_free_gb": 9.6
+}
