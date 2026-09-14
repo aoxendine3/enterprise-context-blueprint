@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XMARS.os — Sovereign Neural Command Operating System</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top System Bar -->
+  <header class="xmars-header">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div class="brand-badge">XMARS.os</div>
+      <div class="brand-title">Sovereign <span>Command</span></div>
+    </div>
+
+    <div class="header-center">
+      <select id="modelSelect" class="model-dropdown">
+        <option value="sovereign-hermes:latest">SNM-8B (Sovereign Neural Matrix)</option>
+        <option value="sovereign-r1:latest">SNM-R1 (Deep Reasoning)</option>
+        <option value="xmars-transformer-core-v1.0">XTC-v1 (Embedded Neural Core)</option>
+      </select>
+
+      <div class="status-pill" id="healthPill">
+        <span class="pulse-dot"></span>
+        <span id="latencyLabel">Connecting to XMARS Kernel...</span>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <button class="btn-pill active" id="voiceToggleBtn" title="Toggle Physical Voice Synthesis">🔊 Voice: ON</button>
+      <button class="btn-pill" id="stsToggleBtn" title="Hands-Free Continuous Speech-To-Speech">🎙️ STS Mode</button>
+      <button class="btn-pill" onclick="toggleInspector()">📊 Inspector</button>
+      <a href="/landing.html" target="_blank" class="btn-pill" style="text-decoration: none;">🚀 Overview</a>
+    </div>
+  </header>
+
+  <!-- Main System Layout -->
+  <div class="xmars-layout">
+
+    <!-- Left Council Sidebar -->
+    <aside class="xmars-sidebar">
+      <div class="sidebar-heading">Sovereign Council</div>
+      <div class="council-list" id="councilList">
+        <!-- Rendered by app.js -->
+      </div>
+
+      <div class="sidebar-heading" style="margin-top: 12px;">Command Accelerators</div>
+      <div class="accelerator-grid">
+        <div class="accel-button" onclick="triggerPill('/distill')">
+          <span>🔻</span> /distill
+        </div>
+        <div class="accel-button" onclick="triggerPill('/audit')">
+          <span>🔍</span> /audit
+        </div>
+        <div class="accel-button" onclick="triggerPill('/drift')">
+          <span>🌲</span> /drift
+        </div>
+        <div class="accel-button" onclick="triggerPill('/speak')">
+          <span>🔊</span> /speak
+        </div>
+        <div class="accel-button" onclick="triggerPill('/benchmark')">
+          <span>⚡</span> /benchmark
+        </div>
+        <div class="accel-button" onclick="triggerPill('/heal')">
+          <span>🛡️</span> /heal
+        </div>
+      </div>
+
+      <div class="sidebar-heading" style="margin-top: 16px;">System Telemetry</div>
+      <div style="padding: 0 16px; font-size: 11px; font-family: var(--font-code); color: var(--xmars-dim); line-height: 1.7;">
+        <div>Context Window: <span style="color: #38bdf8;">4096 (Pinned)</span></div>
+        <div>KV Cache Bound: <span style="color: #34d399;">&lt; 512 MB</span></div>
+        <div>Cloud Exfiltration: <span style="color: #ef4444;">0% (Offline)</span></div>
+        <div>Duplex Voice Loop: <span style="color: #a855f7;">TTS + STT + STS</span></div>
+        <div>Native Kernel: <span style="color: #f59e0b;">XMARS x64 Native</span></div>
+      </div>
+    </aside>
+
+    <!-- Center Chat & Stream View -->
+    <main class="xmars-main">
+      <div class="stream-scroll" id="chatStream">
+        <div class="msg-row assistant">
+          <div class="msg-bubble">
+            <div class="msg-header">
+              <div class="msg-sender" style="color: #06b6d4;">
+                <span style="display:inline-block; width:8px; height:8px; background:#06b6d4; border-radius:50%;"></span>
+                Maxx (Lead Architect)
+              </div>
+              <div class="msg-telemetry">XMARS.os KERNEL ONLINE</div>
+            </div>
+            <div class="msg-text">
+              Welcome to <strong>XMARS.os</strong>, Anthony. Full sovereign neural command environment initialized.
+              <br/><br/>
+              • <strong>Proprietary Neural Matrix</strong>: Zero third-party branding or cloud dependency.<br/>
+              • <strong>Full Duplex Voice Loop</strong>: Integrated STT microphone intake, TTS voice synthesis, and hands-free STS continuous conversational cycle.<br/>
+              • <strong>Internal Rails Integration</strong>: Sovereign council grows organically via internal context rails with zero costly retrains.<br/>
+              • <strong>Native Hardware Kernel</strong>: Sub-100 microsecond Merkle tree hashing and Pyramidal Distillation via compiled native metal.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Input Dock -->
+      <div class="input-dock">
+        <div class="input-container">
+          <div class="dock-controls">
+            <div class="quick-bar">
+              <span style="font-size: 11px; color: var(--xmars-dim); font-family: var(--font-code);">Rails:</span>
+              <span class="quick-tag" onclick="triggerPill('/distill')">/distill</span>
+              <span class="quick-tag" onclick="triggerPill('/audit')">/audit</span>
+              <span class="quick-tag" onclick="triggerPill('/drift')">/drift</span>
+              <span class="quick-tag" onclick="triggerPill('/benchmark')">/benchmark</span>
+              <span class="quick-tag" onclick="triggerPill('/speak')">/speak</span>
+            </div>
+            <div class="voice-controls">
+              <button class="btn-mic" id="micBtn" title="Voice Input (STT)">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                  <line x1="12" y1="19" x2="12" y2="23"></line>
+                  <line x1="8" y1="23" x2="16" y2="23"></line>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="input-row">
+            <textarea
+              id="chatInput"
+              class="xmars-textarea"
+              placeholder="Prompt the sovereign council, speak into mic, or type '/' for accelerators..."
+              rows="1"
+            ></textarea>
+            <button id="sendBtn" class="btn-dispatch" title="Execute (Enter)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Right Slide-out Inspector Drawer -->
+    <aside class="xmars-inspector hidden" id="xmarsInspector">
+      <div class="inspector-bar">
+        <span id="inspectorTitle">Kernel Telemetry</span>
+        <button class="btn-pill" style="padding: 2px 8px;" onclick="toggleInspector()">✕</button>
+      </div>
+      <div class="inspector-body" id="inspectorContent">
+        // Live accelerator receipts, Merkle hash trees, and system telemetry appear here.
+      </div>
+    </aside>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
