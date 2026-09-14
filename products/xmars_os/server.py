@@ -117,9 +117,6 @@ XMARS_COUNCIL = {
 SESSION_STREAM_LOG = []
 
 class XmarsRequestHandler(SimpleHTTPRequestHandler):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, directory=STATIC_DIR, **kwargs)
-
     def _send_json(self, status_code: int, data: Any):
         payload = json.dumps(data).encode("utf-8")
         self.send_response(status_code)
@@ -189,6 +186,24 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
             params = payload.get("params", {})
             result = dispatch_accelerator(tool_name, params)
             self._send_json(200, result)
+        elif path == "/api/stt/event":
+            transcript = payload.get("transcript", "").strip()
+            agent = payload.get("agent", "maxx")
+            event_entry = {
+                "timestamp": time.time(),
+                "agent": agent,
+                "transcript": transcript,
+                "source": "xmars_stt_transceiver"
+            }
+            log_dir = os.path.join(BASE_DIR, "..", "..", "memory", "agent_logs")
+            os.makedirs(log_dir, exist_ok=True)
+            log_file = os.path.join(log_dir, "stt_route_events.jsonl")
+            try:
+                with open(log_file, "a", encoding="utf-8") as f:
+                    f.write(json.dumps(event_entry) + "\n")
+            except Exception:
+                pass
+            self._send_json(200, {"status": "success", "receipt": "logged_to_stt_route_events"})
         elif path == "/api/remediate":
             success = guardian.execute_remediation("User requested manual health remediation")
             self._send_json(200, {"status": "success" if success else "failed", "health": guardian.get_status()})
@@ -327,6 +342,7 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
                 elif chunk.get("done"):
                     self.wfile.write(f"data: {json.dumps(chunk)}\n\n".encode("utf-8"))
                     self.wfile.flush()
+            self.close_connection = True
             return
 
         model = guardian.select_active_model(requested_model)
@@ -404,6 +420,7 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
                             "timestamp": time.time()
                         })
                         break
+            self.close_connection = True
 
         except Exception as err:
             logger.error(f"Streaming error, engaging XTC-v1: {err}")
@@ -411,11 +428,14 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
             for chunk in transformer_core.generate_stream(agent_id, user_message):
                 self.wfile.write(f"data: {json.dumps(chunk)}\n\n".encode("utf-8"))
                 self.wfile.flush()
+            self.close_connection = True
 
 def run_server(port=PORT, host=HOST):
+    import functools
     guardian.start()
     server_address = (host, port)
-    httpd = ThreadingHTTPServer(server_address, XmarsRequestHandler)
+    handler_class = functools.partial(XmarsRequestHandler, directory=STATIC_DIR)
+    httpd = ThreadingHTTPServer(server_address, handler_class)
     logger.info(f"============================================================")
     logger.info(f"  XMARS.os SOVEREIGN NEURAL COMMAND SERVER ACTIVE")
     logger.info(f"  Web Interface : http://{host}:{port}/")

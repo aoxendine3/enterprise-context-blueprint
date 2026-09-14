@@ -201,12 +201,23 @@ function initSTT() {
       clearTimeout(STATE.silenceTimer);
       STATE.silenceTimer = setTimeout(() => {
         if (chatInputEl.value.trim().length > 0) {
+          logSTTReceipt(chatInputEl.value.trim());
           stopListening();
           dispatchMessage();
         }
       }, 1300);
     }
   };
+
+  function logSTTReceipt(text) {
+    try {
+      fetch("/api/stt/event", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ transcript: text, agent: STATE.currentAgent })
+      });
+    } catch (e) {}
+  }
 
   STATE.recognition.onerror = (err) => {
     console.warn("STT Error:", err);
@@ -361,6 +372,7 @@ async function dispatchMessage() {
           if (payload.done) {
             bubble.telemetryEl.textContent = `${payload.ttft_sec}s TTFT • ${payload.tokens_per_sec} tok/s • ${payload.token_count} tokens`;
             speakText(accumulated);
+            break;
           }
         } catch (e) {}
       }
