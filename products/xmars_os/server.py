@@ -21,6 +21,8 @@ from remediation import guardian
 from accelerators import dispatch_accelerator
 from hardware_governor import governor
 from embedded_transformer import transformer_core
+from autonomy import autonomy_engine
+from cloudflare_bridge import cf_bridge, CF_MODELS
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("xmars_server")
@@ -149,7 +151,10 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
             self._send_json(200, {"status": "success", "agents": XMARS_COUNCIL})
         elif path == "/api/models":
             status = guardian.get_status()
-            avail = status.get("available_models", [])
+            avail = list(status.get("available_models", []))
+            for cf_m in CF_MODELS.keys():
+                if cf_m not in avail:
+                    avail.append(cf_m)
             if "xmars-transformer-core-v1.0" not in avail:
                 avail.append("xmars-transformer-core-v1.0")
             self._send_json(200, {
@@ -160,9 +165,14 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
         elif path == "/api/health":
             health = guardian.get_status()
             health["hardware_governor"] = governor.inspect_topology()
+            health["cloudflare_tunnel"] = cf_bridge.tunnel_url
             self._send_json(200, health)
         elif path == "/api/history":
             self._send_json(200, {"status": "success", "history": SESSION_STREAM_LOG[-50:]})
+        elif path == "/api/autonomy/latest":
+            self._send_json(200, {"status": "success", "report": autonomy_engine.latest_report})
+        elif path == "/api/tunnel":
+            self._send_json(200, {"status": "success", "tunnel_url": cf_bridge.tunnel_url})
         else:
             return super().do_GET()
 
@@ -186,6 +196,9 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
             params = payload.get("params", {})
             result = dispatch_accelerator(tool_name, params)
             self._send_json(200, result)
+        elif path == "/api/autonomy/push":
+            report = autonomy_engine.run_cycle(trigger="api_push")
+            self._send_json(200, {"status": "success", "report": report})
         elif path == "/api/stt/event":
             transcript = payload.get("transcript", "").strip()
             agent = payload.get("agent", "maxx")
@@ -218,6 +231,36 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
         
         if not user_message:
             self._send_json(400, {"status": "error", "message": "Message content cannot be empty."})
+            return
+
+        if requested_model in CF_MODELS:
+            t0 = time.perf_counter()
+            messages = [
+                {"role": "system", "content": agent["system_prompt"]},
+                {"role": "user", "content": user_message}
+            ]
+            stream_gen = cf_bridge.generate_stream(requested_model, messages)
+            tokens = []
+            final_meta = {}
+            for chunk in stream_gen:
+                if chunk.get("done"):
+                    final_meta = chunk
+                elif chunk.get("token"):
+                    tokens.append(chunk["token"])
+            record = {
+                "id": f"xmars-{int(time.time()*1000)}",
+                "agent": agent["id"],
+                "agent_name": agent["name"],
+                "model": requested_model,
+                "user": user_message,
+                "reply": "".join(tokens).strip(),
+                "latency_sec": final_meta.get("total_sec", round(time.perf_counter() - t0, 3)),
+                "eval_tokens": final_meta.get("token_count", len(tokens)),
+                "tokens_per_sec": final_meta.get("tokens_per_sec", 0.0),
+                "timestamp": time.time()
+            }
+            SESSION_STREAM_LOG.append(record)
+            self._send_json(200, {"status": "success", "data": record})
             return
 
         health = guardian.get_status()
@@ -331,6 +374,37 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
         self.send_header("Access-Control-Allow-Origin", "*")
         self.end_headers()
 
+        if requested_model in CF_MODELS:
+            messages = [
+                {"role": "system", "content": agent["system_prompt"]},
+                {"role": "user", "content": user_message}
+            ]
+            full_reply = []
+            for chunk in cf_bridge.generate_stream(requested_model, messages):
+                if chunk.get("token"):
+                    full_reply.append(chunk["token"])
+                    event_payload = json.dumps({"token": chunk["token"], "model": requested_model, "agent": agent["id"]})
+                    self.wfile.write(f"data: {event_payload}\n\n".encode("utf-8"))
+                    self.wfile.flush()
+                elif chunk.get("done"):
+                    chunk["agent"] = agent["id"]
+                    self.wfile.write(f"data: {json.dumps(chunk)}\n\n".encode("utf-8"))
+                    self.wfile.flush()
+                    SESSION_STREAM_LOG.append({
+                        "id": f"xmars-{int(time.time()*1000)}",
+                        "agent": agent["id"],
+                        "agent_name": agent["name"],
+                        "model": requested_model,
+                        "user": user_message,
+                        "reply": "".join(full_reply),
+                        "latency_sec": chunk.get("total_sec", 0.0),
+                        "eval_tokens": chunk.get("token_count", len(full_reply)),
+                        "tokens_per_sec": chunk.get("tokens_per_sec", 0.0),
+                        "timestamp": time.time()
+                    })
+            self.close_connection = True
+            return
+
         health = guardian.get_status()
         if requested_model == "xmars-transformer-core-v1.0" or not health.get("inference_engine_online"):
             full_reply = []
@@ -433,6 +507,8 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
 def run_server(port=PORT, host=HOST):
     import functools
     guardian.start()
+    autonomy_engine.start()
+    threading.Thread(target=cf_bridge.start_tunnel, args=(port,), daemon=True).start()
     server_address = (host, port)
     handler_class = functools.partial(XmarsRequestHandler, directory=STATIC_DIR)
     httpd = ThreadingHTTPServer(server_address, handler_class)
@@ -442,14 +518,18 @@ def run_server(port=PORT, host=HOST):
     logger.info(f"  Executive UI  : http://{host}:{port}/landing.html")
     logger.info(f"  Council Roster: Maxx, Jarvis, Clara, Vance, Daxx, Orion")
     logger.info(f"  Primary Neural: sovereign-hermes:latest (SNM-8B)")
+    logger.info(f"  Edge Neural   : cf-llama-3.3-70b-instruct / cf-llama-3.1-8b-instruct")
     logger.info(f"  Embedded Core : xmars-transformer-core-v1.0 (XTC-v1)")
     logger.info(f"  Hardware Gov  : Bound: {governor.max_context_bound}, Cores: {governor.logical_cores}")
+    logger.info(f"  Autonomy Gov  : Active (Pulse: {autonomy_engine.interval_sec}s / min 3m self-improving)")
     logger.info(f"============================================================")
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
         logger.info("Stopping XMARS.os server...")
     finally:
+        cf_bridge.stop_tunnel()
+        autonomy_engine.stop()
         guardian.stop()
         httpd.server_close()
 

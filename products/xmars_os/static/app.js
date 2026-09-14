@@ -163,8 +163,32 @@ async function refreshHealth() {
       healthPillEl.style.color = "#fca5a5";
       latencyLabelEl.textContent = `Autonomous Core Active (XTC-v1)`;
     }
+
+    if (data.cloudflare_tunnel) {
+      STATE.tunnelUrl = data.cloudflare_tunnel;
+      const saasBtn = document.getElementById("saasLinkBtn");
+      if (saasBtn) {
+        saasBtn.style.display = "inline-flex";
+        saasBtn.style.borderColor = "#f59e0b";
+        saasBtn.style.color = "#fbbf24";
+        saasBtn.textContent = "🌐 SaaS: Live";
+        saasBtn.title = `Global SaaS Endpoint: ${data.cloudflare_tunnel}\n(Click to copy link)`;
+      }
+    }
   } catch (err) {
     latencyLabelEl.textContent = `Host Disconnected`;
+  }
+}
+
+function copySaasLink() {
+  if (STATE.tunnelUrl) {
+    navigator.clipboard.writeText(STATE.tunnelUrl).then(() => {
+      appendNotice(`Copied Cloudflare SaaS Endpoint: <code>${STATE.tunnelUrl}</code>`);
+    }).catch(() => {
+      prompt("Copy Cloudflare SaaS URL:", STATE.tunnelUrl);
+    });
+  } else {
+    appendNotice("Cloudflare SaaS tunnel initializing...");
   }
 }
 

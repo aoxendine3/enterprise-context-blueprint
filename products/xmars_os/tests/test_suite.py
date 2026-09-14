@@ -89,6 +89,30 @@ class TestXmarsOsCore(unittest.TestCase):
         })
         self.assertEqual(res.get("status"), "success")
 
+    def test_08_autonomous_governance_engine(self):
+        """Verify Autonomous Governance Engine runs cycle, detects state, and logs report."""
+        from autonomy import autonomy_engine
+        self.assertTrue(autonomy_engine.interval_sec >= 180) # Minimum 3 minutes invariant
+        report = autonomy_engine.run_cycle(trigger="test_verification")
+        self.assertEqual(report.get("trigger"), "test_verification")
+        self.assertTrue(report.get("cycle", 0) >= 1)
+        self.assertIn(report.get("health_status"), ["OPTIMAL", "DEGRADED"])
+        self.assertIn("governor_topology", report)
+        self.assertTrue(os.path.exists(os.path.join(PARENT_DIR, "..", "..", "memory", "agent_logs", "autonomy_report.jsonl")))
+
+    def test_09_cloudflare_bridge_and_edge_inference(self):
+        """Verify Cloudflare bridge credentials and Workers AI edge token streaming."""
+        from cloudflare_bridge import cf_bridge
+        self.assertTrue(cf_bridge.verify_credentials())
+        stream = cf_bridge.generate_stream("cf-llama-3.1-8b-instruct", [{"role": "user", "content": "Ping"}])
+        meta = None
+        for chunk in stream:
+            if chunk.get("done"):
+                meta = chunk
+        self.assertIsNotNone(meta)
+        self.assertTrue(meta.get("done"))
+        self.assertEqual(meta.get("model"), "cf-llama-3.1-8b-instruct")
+
 if __name__ == "__main__":
     print("==================================================================")
     print("  RUNNING XMARS.os AUTOMATED PRODUCTION VERIFICATION SUITE")
