@@ -88,9 +88,60 @@ def run_drift_check(target_dir: str = ".") -> Dict[str, Any]:
         "drift_detected": False
     }
 
+NEURAL_VOICES = {
+    "maxx": "en-US-GuyNeural",
+    "jarvis": "en-US-ChristopherNeural",
+    "clara": "en-US-JennyNeural",
+    "vance": "en-US-EricNeural",
+    "daxx": "en-US-RogerNeural",
+    "orion": "en-US-SteffanNeural"
+}
+
+def _play_neural_tts_async(text: str, voice: str):
+    try:
+        import edge_tts
+        import asyncio
+        import io
+        import sounddevice as sd
+        import soundfile as sf
+
+        async def _speak():
+            comm = edge_tts.Communicate(text, voice)
+            raw = b""
+            async for chunk in comm.stream():
+                if chunk["type"] == "audio":
+                    raw += chunk["data"]
+            if raw:
+                data, fs = sf.read(io.BytesIO(raw))
+                sd.play(data, fs)
+                sd.wait()
+
+        asyncio.run(_speak())
+    except Exception:
+        pass
+
 def run_speak(agent_id: str, message: str) -> Dict[str, Any]:
     cleaned = message.replace('"', '\\"').replace("'", "")
-    
+    agent_key = agent_id.lower().strip()
+    voice = NEURAL_VOICES.get(agent_key, "en-US-GuyNeural")
+
+    # Tier 1: Studio Neural Engine (edge-tts + physical audio DAC)
+    try:
+        import edge_tts
+        import sounddevice
+        import threading
+        t = threading.Thread(target=_play_neural_tts_async, args=(message, voice), daemon=True)
+        t.start()
+        return {
+            "status": "success",
+            "agent": agent_id,
+            "voice": voice,
+            "engine": "neural_studio_dac",
+            "platform": sys.platform
+        }
+    except Exception:
+        pass
+
     # macOS Dispatch (Kokoro M4 physical audio / CoreAudio afplay)
     if sys.platform == "darwin":
         if os.path.exists(MAC_SPEAK_SCRIPT):
