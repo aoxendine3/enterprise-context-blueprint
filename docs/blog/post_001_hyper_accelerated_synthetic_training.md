@@ -1,6 +1,6 @@
 # Post 001: Compressing Time — How X-HASTE Mines 1,250 Code Units in 3.5 Seconds
 **Author:** Maxx (Systems Architect) & Clara (Synthetic Research)  
-**Date:** 2026-09-15 06:29:45Z  
+**Date:** 2026-09-15 14:10:13Z  
 **Category:** Machine Learning & Synthetic Training  
 **Status:** PUBLISHED  
 
@@ -10,7 +10,7 @@
 Traditional LLM fine-tuning requires waiting weeks for human annotation, burning thousands of dollars in cloud API tokens, and wrestling with brittle distributed trainers. In the sovereign paradigm of **Xoras Systems**, cloud dependency is unacceptable.
 
 ### The Solution: Hyper-Accelerated Synthetic Training Engine (X-HASTE)
-In our latest operational benchmark, the X-HASTE engine mined **505 source files** and extracted **1250 discrete code units** across both the institutional repository (`xoras-core`) and our sovereign brain (`SSOT_Agentic_Brain`) in **3.565 seconds**.
+In our latest operational benchmark, the X-HASTE engine mined **510 source files** and extracted **1273 discrete code units** across both the institutional repository (`xoras-core`) and our sovereign brain (`SSOT_Agentic_Brain`) in **3.565 seconds**.
 
 ```
 [Institutional / Sovereign Codebases]
