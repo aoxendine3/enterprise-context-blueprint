@@ -1,4 +1,4 @@
-﻿"""
+"""
 XMARS.os Cloudflare Sovereign Bridge
 Manages Cloudflare Workers AI (LLM inference + Whisper STT)
 and Zero Trust Cloudflare Tunnels for end-to-end SaaS global distribution.
@@ -41,17 +41,20 @@ class CloudflareBridge:
         }
 
     def verify_credentials(self) -> bool:
-        try:
-            req = urllib.request.Request(
-                "https://api.cloudflare.com/client/v4/user/tokens/verify",
-                headers=self._headers()
-            )
-            with urllib.request.urlopen(req, timeout=8) as resp:
-                data = json.loads(resp.read().decode())
-                return data.get("success", False)
-        except Exception as e:
-            logger.error(f"[CF-Bridge] Credential verification failed: {e}")
-            return False
+        for attempt in range(2):
+            try:
+                req = urllib.request.Request(
+                    "https://api.cloudflare.com/client/v4/user/tokens/verify",
+                    headers=self._headers()
+                )
+                with urllib.request.urlopen(req, timeout=20) as resp:
+                    data = json.loads(resp.read().decode())
+                    return data.get("success", False)
+            except Exception as e:
+                if attempt == 1:
+                    logger.error(f"[CF-Bridge] Credential verification failed: {e}")
+                time.sleep(1)
+        return False
 
     def generate_stream(self, model_id: str, messages: list) -> Generator[Dict[str, Any], None, None]:
         cf_model = CF_MODELS.get(model_id, "@cf/meta/llama-3.1-8b-instruct")

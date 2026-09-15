@@ -24,6 +24,14 @@ from embedded_transformer import transformer_core
 from autonomy import autonomy_engine
 from cloudflare_bridge import cf_bridge, CF_MODELS
 
+try:
+    training_script_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "ops", "training"))
+    if training_script_dir not in sys.path:
+        sys.path.insert(0, training_script_dir)
+    from continuous_training_daemon import training_daemon
+except Exception:
+    training_daemon = None
+
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("xmars_server")
 
@@ -173,6 +181,12 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
             self._send_json(200, {"status": "success", "report": autonomy_engine.latest_report})
         elif path == "/api/tunnel":
             self._send_json(200, {"status": "success", "tunnel_url": cf_bridge.tunnel_url})
+        elif path == "/api/training/latest":
+            self._send_json(200, {
+                "status": "success",
+                "cycle": training_daemon.cycle_count if training_daemon else 0,
+                "running": training_daemon.running if training_daemon else False
+            })
         else:
             return super().do_GET()
 
@@ -508,6 +522,8 @@ def run_server(port=PORT, host=HOST):
     import functools
     guardian.start()
     autonomy_engine.start()
+    if training_daemon:
+        training_daemon.start()
     threading.Thread(target=cf_bridge.start_tunnel, args=(port,), daemon=True).start()
     server_address = (host, port)
     handler_class = functools.partial(XmarsRequestHandler, directory=STATIC_DIR)
@@ -522,12 +538,15 @@ def run_server(port=PORT, host=HOST):
     logger.info(f"  Embedded Core : xmars-transformer-core-v1.0 (XTC-v1)")
     logger.info(f"  Hardware Gov  : Bound: {governor.max_context_bound}, Cores: {governor.logical_cores}")
     logger.info(f"  Autonomy Gov  : Active (Pulse: {autonomy_engine.interval_sec}s / min 3m self-improving)")
+    logger.info(f"  Training Core : Active (Continuous Repo Distillation & Blackbox Invariant Engine)")
     logger.info(f"============================================================")
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
         logger.info("Stopping XMARS.os server...")
     finally:
+        if training_daemon:
+            training_daemon.stop()
         cf_bridge.stop_tunnel()
         autonomy_engine.stop()
         guardian.stop()

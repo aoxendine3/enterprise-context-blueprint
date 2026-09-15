@@ -113,6 +113,20 @@ class TestXmarsOsCore(unittest.TestCase):
         self.assertTrue(meta.get("done"))
         self.assertEqual(meta.get("model"), "cf-llama-3.1-8b-instruct")
 
+    def test_10_hyper_accelerated_training_pipeline(self):
+        """Verify X-HASTE continuous distillation, DPO synthesis, and Blackbox Golden List evaluation."""
+        training_dir = os.path.join(PARENT_DIR, "..", "..", "ops", "training")
+        if training_dir not in sys.path:
+            sys.path.insert(0, training_dir)
+        from continuous_training_daemon import training_daemon
+        receipt = training_daemon.execute_training_cycle(trigger="unit_test")
+        self.assertTrue(receipt["files_mined"] >= 100)
+        self.assertTrue(receipt["dpo_pairs"] >= 100)
+        self.assertTrue(receipt["instruct_items"] >= 100)
+        self.assertTrue(receipt["blackbox_admitted"])
+        dpo_path = os.path.join(PARENT_DIR, "..", "..", "data_center", "synthetic_training", "xmars_dpo_corpus.jsonl")
+        self.assertTrue(os.path.exists(dpo_path))
+
 if __name__ == "__main__":
     print("==================================================================")
     print("  RUNNING XMARS.os AUTOMATED PRODUCTION VERIFICATION SUITE")
