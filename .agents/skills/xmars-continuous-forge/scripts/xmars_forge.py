@@ -22,6 +22,9 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[4]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
+XMARS_OS_DIR = REPO_ROOT / "products" / "xmars_os"
+if str(XMARS_OS_DIR) not in sys.path:
+    sys.path.insert(0, str(XMARS_OS_DIR))
 
 
 def get_server_status(port: int = 8085) -> dict:
@@ -225,7 +228,7 @@ def cmd_dispatch(args):
     if args.speak:
         try:
             from products.xmars_os.accelerators import dispatch_accelerator
-            speech_res = dispatch_accelerator("speak", agent=agent, text=message)
+            speech_res = dispatch_accelerator("speak", {"agent": agent, "message": message})
         except Exception as e:
             speech_res = {"error": str(e)}
 
