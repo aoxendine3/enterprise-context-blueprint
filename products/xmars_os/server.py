@@ -39,6 +39,7 @@ PORT = 8085
 HOST = "127.0.0.1"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_DIR = os.path.join(BASE_DIR, "static")
+SSOT_ROOT = os.path.abspath(os.path.join(BASE_DIR, "..", ".."))
 
 XMARS_COUNCIL = {
     "maxx": {
@@ -50,10 +51,12 @@ XMARS_COUNCIL = {
         "role": "Sovereign Systems Synthesis & Strategic Engineering",
         "color": "#06b6d4",
         "system_prompt": (
-            "You are Maxx, sovereign architect inside XMARS.os. "
-            "You are an elite seasoned engineer mentor: meticulous about fundamentals, "
-            "practical, highly capable, and direct. Anthony is the architect. "
-            "Provide production-ready code, zero fluff, and deep architectural clarity."
+            "You are Maxx, Sovereign Lead Systems Architect and peer engineering mentor inside XORAS and XMARS.os. "
+            "Anthony is the sovereign operator and visionary architect. Speak plainly, authoritatively, with deep technical rigor, "
+            "and zero generic fluff or corporate filler. You operate directly on the local SSOT_Agentic_Brain workspace. "
+            "When asked to write code, provide complete, production-ready implementations with zero placeholders. "
+            "When creating UI tools, components, dashboards, or applications, output complete HTML/CSS/JS code in a ```html code block "
+            "so the Lovable visual canvas can render it live in real-time. Execute with compiler-grade precision."
         )
     },
     "jarvis": {
@@ -145,97 +148,281 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
         self.end_headers()
 
-    def do_GET(self):
-        parsed = urlparse(self.path)
-        path = parsed.path
-
-        if path == "/" or path == "/index.html":
-            self.path = "/index.html"
-            return super().do_GET()
-        elif path == "/landing" or path == "/landing.html":
-            self.path = "/landing.html"
-            return super().do_GET()
-        elif path == "/api/agents":
-            self._send_json(200, {"status": "success", "agents": XMARS_COUNCIL})
-        elif path == "/api/models":
-            status = guardian.get_status()
-            avail = list(status.get("available_models", []))
-            for cf_m in CF_MODELS.keys():
-                if cf_m not in avail:
-                    avail.append(cf_m)
-            if "xmars-transformer-core-v1.0" not in avail:
-                avail.append("xmars-transformer-core-v1.0")
-            self._send_json(200, {
-                "status": "success",
-                "active_model": status.get("active_model", "sovereign-hermes:latest"),
-                "available_models": avail
-            })
-        elif path == "/api/health":
-            health = guardian.get_status()
-            health["hardware_governor"] = governor.inspect_topology()
-            health["cloudflare_tunnel"] = cf_bridge.tunnel_url
-            self._send_json(200, health)
-        elif path == "/api/history":
-            self._send_json(200, {"status": "success", "history": SESSION_STREAM_LOG[-50:]})
-        elif path == "/api/autonomy/latest":
-            self._send_json(200, {"status": "success", "report": autonomy_engine.latest_report})
-        elif path == "/api/tunnel":
-            self._send_json(200, {"status": "success", "tunnel_url": cf_bridge.tunnel_url})
-        elif path == "/api/training/latest":
-            self._send_json(200, {
-                "status": "success",
-                "cycle": training_daemon.cycle_count if training_daemon else 0,
-                "running": training_daemon.running if training_daemon else False
-            })
-        else:
-            return super().do_GET()
-
-    def do_POST(self):
-        parsed = urlparse(self.path)
-        path = parsed.path
-        content_length = int(self.headers.get("Content-Length", 0))
-        body = self.rfile.read(content_length).decode("utf-8") if content_length > 0 else "{}"
-        
-        try:
-            payload = json.loads(body) if body else {}
-        except Exception:
-            payload = {}
-
-        if path == "/api/chat":
-            self._handle_chat_completion(payload)
-        elif path == "/api/chat/stream":
-            self._handle_chat_stream(payload)
-        elif path == "/api/tools/execute":
-            tool_name = payload.get("tool", "")
-            params = payload.get("params", {})
-            result = dispatch_accelerator(tool_name, params)
-            self._send_json(200, result)
-        elif path == "/api/autonomy/push":
-            report = autonomy_engine.run_cycle(trigger="api_push")
-            self._send_json(200, {"status": "success", "report": report})
-        elif path == "/api/stt/event":
-            transcript = payload.get("transcript", "").strip()
-            agent = payload.get("agent", "maxx")
-            event_entry = {
-                "timestamp": time.time(),
-                "agent": agent,
-                "transcript": transcript,
-                "source": "xmars_stt_transceiver"
-            }
-            log_dir = os.path.join(BASE_DIR, "..", "..", "memory", "agent_logs")
-            os.makedirs(log_dir, exist_ok=True)
-            log_file = os.path.join(log_dir, "stt_route_events.jsonl")
+    def _get_workspace_tree(self):
+        ignore = {".git", "__pycache__", "node_modules", "venv", ".venv", "target", "bin", "dist", "archives", "history", ".next", ".cache"}
+        def scan_dir(dir_path, depth=0, max_depth=3):
+            if depth > max_depth:
+                return []
+            items = []
             try:
-                with open(log_file, "a", encoding="utf-8") as f:
-                    f.write(json.dumps(event_entry) + "\n")
+                entries = sorted(os.scandir(dir_path), key=lambda e: (not e.is_dir(), e.name.lower()))
+                for entry in entries:
+                    if entry.name in ignore or entry.name.startswith("."):
+                        continue
+                    rel = os.path.relpath(entry.path, SSOT_ROOT).replace("\\", "/")
+                    if entry.is_dir():
+                        children = scan_dir(entry.path, depth + 1, max_depth)
+                        items.append({"name": entry.name, "path": rel, "type": "directory", "children": children})
+                    else:
+                        items.append({"name": entry.name, "path": rel, "type": "file", "size": entry.stat().st_size})
             except Exception:
                 pass
-            self._send_json(200, {"status": "success", "receipt": "logged_to_stt_route_events"})
-        elif path == "/api/remediate":
-            success = guardian.execute_remediation("User requested manual health remediation")
-            self._send_json(200, {"status": "success" if success else "failed", "health": guardian.get_status()})
-        else:
-            self._send_json(404, {"status": "error", "message": f"Endpoint '{path}' not found in XMARS.os."})
+            return items
+        return scan_dir(SSOT_ROOT, 0, 3)
+
+    def _handle_workspace_read(self, rel_path: str):
+        if not rel_path:
+            self._send_json(400, {"status": "error", "message": "Missing path parameter."})
+            return
+        safe_path = os.path.abspath(os.path.join(SSOT_ROOT, rel_path))
+        if not safe_path.startswith(SSOT_ROOT) or not os.path.exists(safe_path):
+            self._send_json(404, {"status": "error", "message": "File not found in workspace."})
+            return
+        try:
+            with open(safe_path, "r", encoding="utf-8", errors="ignore") as f:
+                content = f.read()
+            lines = len(content.splitlines())
+            ext = os.path.splitext(safe_path)[1].lower()
+            self._send_json(200, {
+                "status": "success",
+                "path": rel_path,
+                "content": content,
+                "lines": lines,
+                "size": len(content.encode("utf-8")),
+                "extension": ext
+            })
+        except Exception as e:
+            self._send_json(500, {"status": "error", "message": str(e)})
+
+    def _handle_workspace_write(self, payload: dict):
+        rel_path = payload.get("path", "")
+        content = payload.get("content", "")
+        if not rel_path:
+            self._send_json(400, {"status": "error", "message": "Path cannot be empty."})
+            return
+        safe_path = os.path.abspath(os.path.join(SSOT_ROOT, rel_path))
+        if not safe_path.startswith(SSOT_ROOT):
+            self._send_json(403, {"status": "error", "message": "Forbidden outside SSOT workspace."})
+            return
+        try:
+            import hashlib
+            os.makedirs(os.path.dirname(safe_path), exist_ok=True)
+            with open(safe_path, "w", encoding="utf-8") as f:
+                f.write(content)
+            sha = hashlib.sha256(content.encode("utf-8")).hexdigest()
+            self._send_json(200, {
+                "status": "success",
+                "path": rel_path,
+                "sha256": sha,
+                "bytes": len(content.encode("utf-8"))
+            })
+        except Exception as e:
+            self._send_json(500, {"status": "error", "message": str(e)})
+
+    def _handle_terminal_exec(self, payload: dict):
+        cmd = payload.get("command", "").strip()
+        if not cmd:
+            self._send_json(400, {"status": "error", "message": "Command cannot be empty."})
+            return
+        import subprocess, time
+        t0 = time.perf_counter()
+        try:
+            res = subprocess.run(cmd, shell=True, cwd=SSOT_ROOT, capture_output=True, text=True, timeout=30.0)
+            dt = round(time.perf_counter() - t0, 3)
+            self._send_json(200, {
+                "status": "success",
+                "command": cmd,
+                "exit_code": res.returncode,
+                "stdout": res.stdout,
+                "stderr": res.stderr,
+                "duration_sec": dt
+            })
+        except Exception as e:
+            dt = round(time.perf_counter() - t0, 3)
+            self._send_json(500, {
+                "status": "error",
+                "command": cmd,
+                "exit_code": -1,
+                "stdout": "",
+                "stderr": str(e),
+                "duration_sec": dt
+            })
+
+    def _handle_preview_render(self, payload: dict):
+        html_content = payload.get("html", "")
+        if not html_content:
+            self._send_json(400, {"status": "error", "message": "HTML content cannot be empty."})
+            return
+        sb_path = os.path.join(STATIC_DIR, "preview_sandbox.html")
+        try:
+            with open(sb_path, "w", encoding="utf-8") as f:
+                f.write(html_content)
+            self._send_json(200, {
+                "status": "success",
+                "preview_url": "/static/preview_sandbox.html",
+                "bytes": len(html_content.encode("utf-8"))
+            })
+        except Exception as e:
+            self._send_json(500, {"status": "error", "message": str(e)})
+
+    def do_GET(self):
+        try:
+            parsed = urlparse(self.path)
+            path = parsed.path
+
+            # Direct static file handling
+            if path in ["/", "/index.html"]:
+                self._serve_static_file("index.html", "text/html; charset=utf-8")
+                return
+            elif path in ["/landing", "/landing.html"]:
+                self._serve_static_file("landing.html", "text/html; charset=utf-8")
+                return
+            elif path.startswith("/static/"):
+                rel_file = path[len("/static/"):]
+                self._serve_static_file(rel_file)
+                return
+            elif path in ["/styles.css", "/app.js", "/preview_sandbox.html"]:
+                self._serve_static_file(path.lstrip("/"))
+                return
+
+            # API endpoints
+            if path == "/api/agents":
+                self._send_json(200, {"status": "success", "agents": XMARS_COUNCIL})
+            elif path == "/api/models":
+                status = guardian.get_status()
+                avail = list(status.get("available_models", []))
+                for cf_m in CF_MODELS.keys():
+                    if cf_m not in avail:
+                        avail.append(cf_m)
+                if "xmars-transformer-core-v1.0" not in avail:
+                    avail.append("xmars-transformer-core-v1.0")
+                self._send_json(200, {
+                    "status": "success",
+                    "active_model": status.get("active_model", "sovereign-hermes:latest"),
+                    "available_models": avail
+                })
+            elif path == "/api/health":
+                health = guardian.get_status()
+                health["hardware_governor"] = governor.inspect_topology()
+                health["cloudflare_tunnel"] = cf_bridge.tunnel_url
+                self._send_json(200, health)
+            elif path == "/api/history":
+                self._send_json(200, {"status": "success", "history": SESSION_STREAM_LOG[-50:]})
+            elif path == "/api/autonomy/latest":
+                self._send_json(200, {"status": "success", "report": autonomy_engine.latest_report})
+            elif path == "/api/tunnel":
+                self._send_json(200, {"status": "success", "tunnel_url": cf_bridge.tunnel_url})
+            elif path == "/api/training/latest":
+                self._send_json(200, {
+                    "status": "success",
+                    "cycle": training_daemon.cycle_count if training_daemon else 0,
+                    "running": training_daemon.running if training_daemon else False
+                })
+            elif path == "/api/workspace/tree":
+                tree = self._get_workspace_tree()
+                self._send_json(200, {"status": "success", "tree": tree})
+            elif path == "/api/workspace/read":
+                from urllib.parse import parse_qs
+                qs = parse_qs(parsed.query)
+                rel_path = qs.get("path", [""])[0]
+                self._handle_workspace_read(rel_path)
+            elif path == "/api/preview/content":
+                sb_file = os.path.join(STATIC_DIR, "preview_sandbox.html")
+                if os.path.exists(sb_file):
+                    with open(sb_file, "r", encoding="utf-8") as f:
+                        self._send_json(200, {"status": "success", "content": f.read()})
+                else:
+                    self._send_json(200, {"status": "success", "content": "<div>No preview active</div>"})
+            else:
+                self._serve_static_file(path.lstrip("/"))
+        except Exception as err:
+            logger.error(f"Error in do_GET: {err}", exc_info=True)
+            self._send_json(500, {"status": "error", "message": str(err)})
+
+    def _serve_static_file(self, filename: str, forced_mime: str = None):
+        target_path = os.path.abspath(os.path.join(STATIC_DIR, filename))
+        if not target_path.startswith(STATIC_DIR) or not os.path.isfile(target_path):
+            self._send_json(404, {"status": "error", "message": f"Static asset '{filename}' not found."})
+            return
+        
+        mime = forced_mime
+        if not mime:
+            if filename.endswith(".html"): mime = "text/html; charset=utf-8"
+            elif filename.endswith(".js"): mime = "application/javascript; charset=utf-8"
+            elif filename.endswith(".css"): mime = "text/css; charset=utf-8"
+            elif filename.endswith(".json"): mime = "application/json; charset=utf-8"
+            elif filename.endswith(".png"): mime = "image/png"
+            elif filename.endswith(".svg"): mime = "image/svg+xml"
+            else: mime = "text/plain; charset=utf-8"
+
+        with open(target_path, "rb") as f:
+            data = f.read()
+        self.send_response(200)
+        self.send_header("Content-Type", mime)
+        self.send_header("Content-Length", str(len(data)))
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.end_headers()
+        self.wfile.write(data)
+
+    def do_POST(self):
+        try:
+            parsed = urlparse(self.path)
+            path = parsed.path
+            content_length = int(self.headers.get("Content-Length", 0))
+            body = self.rfile.read(content_length).decode("utf-8") if content_length > 0 else "{}"
+            
+            try:
+                payload = json.loads(body) if body else {}
+            except Exception:
+                payload = {}
+
+            if path == "/api/chat":
+                self._handle_chat_completion(payload)
+            elif path == "/api/chat/stream":
+                self._handle_chat_stream(payload)
+            elif path == "/api/tools/execute":
+                tool_name = payload.get("tool", "")
+                params = payload.get("params", {})
+                result = dispatch_accelerator(tool_name, params)
+                self._send_json(200, result)
+            elif path == "/api/autonomy/push":
+                report = autonomy_engine.run_cycle(trigger="api_push")
+                self._send_json(200, {"status": "success", "report": report})
+            elif path == "/api/stt/event":
+                transcript = payload.get("transcript", "").strip()
+                agent = payload.get("agent", "maxx")
+                event_entry = {
+                    "timestamp": time.time(),
+                    "agent": agent,
+                    "transcript": transcript,
+                    "source": "xmars_stt_transceiver"
+                }
+                log_dir = os.path.join(BASE_DIR, "..", "..", "memory", "agent_logs")
+                os.makedirs(log_dir, exist_ok=True)
+                log_file = os.path.join(log_dir, "stt_route_events.jsonl")
+                try:
+                    with open(log_file, "a", encoding="utf-8") as f:
+                        f.write(json.dumps(event_entry) + "\n")
+                except Exception:
+                    pass
+                self._send_json(200, {"status": "success", "receipt": "logged_to_stt_route_events"})
+            elif path == "/api/workspace/write":
+                self._handle_workspace_write(payload)
+            elif path == "/api/terminal/exec":
+                self._handle_terminal_exec(payload)
+            elif path == "/api/preview/render":
+                self._handle_preview_render(payload)
+            elif path == "/api/remediate":
+                success = guardian.execute_remediation("User requested manual health remediation")
+                self._send_json(200, {"status": "success" if success else "failed", "health": guardian.get_status()})
+            else:
+                self._send_json(404, {"status": "error", "message": f"Endpoint '{path}' not found in XMARS.os."})
+        except Exception as err:
+            logger.error(f"Error in do_POST: {err}", exc_info=True)
+            try:
+                self._send_json(500, {"status": "error", "message": str(err)})
+            except Exception:
+                pass
 
     def _handle_chat_completion(self, payload: dict):
         agent_id = payload.get("agent", "maxx").lower()
@@ -246,6 +433,17 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
         if not user_message:
             self._send_json(400, {"status": "error", "message": "Message content cannot be empty."})
             return
+
+        active_file = payload.get("active_file", "").strip()
+        if active_file:
+            safe_fp = os.path.abspath(os.path.join(SSOT_ROOT, active_file))
+            if safe_fp.startswith(SSOT_ROOT) and os.path.isfile(safe_fp):
+                try:
+                    with open(safe_fp, "r", encoding="utf-8", errors="ignore") as f:
+                        snippet = f.read(6000)
+                    user_message = f"[Active Workspace Context: {active_file}]\n```\n{snippet}\n```\n\nUser Request: {user_message}"
+                except Exception:
+                    pass
 
         if requested_model in CF_MODELS:
             t0 = time.perf_counter()
@@ -347,6 +545,13 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
                     "tokens_per_sec": tokens_sec,
                     "timestamp": time.time()
                 }
+                if payload.get("voice", True):
+                    try:
+                        clean_msg = reply_text.split("</think>")[-1].split("```")[0].strip()[:250]
+                        if clean_msg:
+                            threading.Thread(target=dispatch_accelerator, args=("speak", {"agent": agent["id"], "message": clean_msg}), daemon=True).start()
+                    except Exception:
+                        pass
                 SESSION_STREAM_LOG.append(chat_record)
                 self._send_json(200, {"status": "success", "data": chat_record})
 
@@ -381,6 +586,17 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
             self._send_json(400, {"status": "error", "message": "Message content cannot be empty."})
             return
 
+        active_file = payload.get("active_file", "").strip()
+        if active_file:
+            safe_fp = os.path.abspath(os.path.join(SSOT_ROOT, active_file))
+            if safe_fp.startswith(SSOT_ROOT) and os.path.isfile(safe_fp):
+                try:
+                    with open(safe_fp, "r", encoding="utf-8", errors="ignore") as f:
+                        snippet = f.read(6000)
+                    user_message = f"[Active Workspace Context: {active_file}]\n```\n{snippet}\n```\n\nUser Request: {user_message}"
+                except Exception:
+                    pass
+
         self.send_response(200)
         self.send_header("Content-Type", "text/event-stream; charset=utf-8")
         self.send_header("Cache-Control", "no-cache")
@@ -404,18 +620,26 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
                     chunk["agent"] = agent["id"]
                     self.wfile.write(f"data: {json.dumps(chunk)}\n\n".encode("utf-8"))
                     self.wfile.flush()
+                    reply_text = "".join(full_reply)
                     SESSION_STREAM_LOG.append({
                         "id": f"xmars-{int(time.time()*1000)}",
                         "agent": agent["id"],
                         "agent_name": agent["name"],
                         "model": requested_model,
                         "user": user_message,
-                        "reply": "".join(full_reply),
+                        "reply": reply_text,
                         "latency_sec": chunk.get("total_sec", 0.0),
                         "eval_tokens": chunk.get("token_count", len(full_reply)),
                         "tokens_per_sec": chunk.get("tokens_per_sec", 0.0),
                         "timestamp": time.time()
                     })
+                    if payload.get("voice", True):
+                        try:
+                            clean_msg = reply_text.split("</think>")[-1].split("```")[0].strip()[:250]
+                            if clean_msg:
+                                threading.Thread(target=dispatch_accelerator, args=("speak", {"agent": agent["id"], "message": clean_msg}), daemon=True).start()
+                        except Exception:
+                            pass
             self.close_connection = True
             return
 
@@ -495,18 +719,26 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
                         self.wfile.flush()
                         guardian.record_success()
                         
+                        reply_text = "".join(full_reply)
                         SESSION_STREAM_LOG.append({
                             "id": f"xmars-{int(time.time()*1000)}",
                             "agent": agent["id"],
                             "agent_name": agent["name"],
                             "model": model,
                             "user": user_message,
-                            "reply": "".join(full_reply),
+                            "reply": reply_text,
                             "latency_sec": round(total_elapsed, 3),
                             "eval_tokens": token_count,
                             "tokens_per_sec": tok_sec,
                             "timestamp": time.time()
                         })
+                        if payload.get("voice", True):
+                            try:
+                                clean_msg = reply_text.split("</think>")[-1].split("```")[0].strip()[:250]
+                                if clean_msg:
+                                    threading.Thread(target=dispatch_accelerator, args=("speak", {"agent": agent["id"], "message": clean_msg}), daemon=True).start()
+                            except Exception:
+                                pass
                         break
             self.close_connection = True
 

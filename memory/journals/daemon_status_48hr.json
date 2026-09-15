@@ -1,22 +1,22 @@
 {
   "status": "COOKING_ACTIVE_24_7",
-  "start_time": "2026-09-14T03:35:29.212248+00:00",
-  "current_time": "2026-09-14T03:36:06.427705+00:00",
+  "start_time": "2026-09-14T03:36:40.394701+00:00",
+  "current_time": "2026-09-15T18:24:30.980825+00:00",
   "target_cook_duration_hours": 48.0,
-  "hours_elapsed": 0.0103,
-  "hours_remaining": 47.9897,
-  "progress_pct": 0.02,
-  "total_cycles_completed": 1,
-  "total_signals_distilled": 24,
+  "hours_elapsed": 38.7974,
+  "hours_remaining": 9.2026,
+  "progress_pct": 80.83,
+  "total_cycles_completed": 4443,
+  "total_signals_distilled": 106632,
   "healing_pulses_total": 0,
-  "last_cycle_duration_sec": 37.212,
+  "last_cycle_duration_sec": 5.115,
   "active_models": [
     "sovereign-hermes",
     "sovereign-r1"
   ],
-  "last_speaker": "maxx",
-  "last_apex_mandate": "APEX-1789356929-PATH_1",
-  "mast_safety_score": 1.0,
-  "ram_used_gb": 6.32,
-  "ram_free_gb": 9.6
+  "last_speaker": "clara",
+  "last_apex_mandate": "APEX-1789496665-PATH_1",
+  "mast_safety_score": 0.7669,
+  "ram_used_gb": 12.36,
+  "ram_free_gb": 3.56
 }

@@ -21,8 +21,9 @@ CLOUDFLARE_ACCOUNT_ID = os.getenv("CLOUDFLARE_ACCOUNT_ID", "eb363bcfe2d366cd79f9
 CLOUDFLARE_API_TOKEN = os.getenv("CLOUDFLARE_API_TOKEN", "cfut_lc6Oky8uBl9ULX4x80X90fI4iLvfnvb9KoBPhhxk61758b8e")
 
 CF_MODELS = {
-    "cf-llama-3.3-70b-instruct": "@cf/meta/llama-3.3-70b-instruct",
-    "cf-llama-3.1-8b-instruct": "@cf/meta/llama-3.1-8b-instruct"
+    "cf-deepseek-r1-32b": "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
+    "cf-llama-3.1-8b-instruct": "@cf/meta/llama-3.1-8b-instruct-fp8",
+    "cf-llama-3.2-3b-instruct": "@cf/meta/llama-3.2-3b-instruct"
 }
 
 class CloudflareBridge:

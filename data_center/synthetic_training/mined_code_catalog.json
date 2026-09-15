@@ -1,11 +1,11 @@
 {
   "version": "1.0.0-HASTE",
-  "timestamp": 1789481463.4393456,
-  "mining_duration_sec": 5.802,
-  "total_files": 511,
-  "total_code_units": 1286,
+  "timestamp": 1789496643.2851734,
+  "mining_duration_sec": 0.489,
+  "total_files": 515,
+  "total_code_units": 1292,
   "repos": {
-    "SSOT_Agentic_Brain": 399,
+    "SSOT_Agentic_Brain": 403,
     "xoras_core_institutional": 112
   },
   "files": [
@@ -4450,8 +4450,8 @@
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "data_center\\golden_list\\GOLDEN_LIST.json",
       "extension": ".json",
-      "size_bytes": 8650,
-      "sha256": "6d91a450ed0fd12c",
+      "size_bytes": 38877,
+      "sha256": "a6c8835b4705825a",
       "units_count": 0,
       "units": [],
       "summary": "{   \"manifest_version\": \"1.0.0-SOVEREIGN\",   \"constitutional_rule\": \"LOG_ENTRY_066\",   \"admission_criteria\": {     \"market_superiority\": \"Must demonstrate orders-of-magnitude superiority over existing industry standards\",     \"anti_basic_filter\": \"Basic, generic, or boilerplate work is permanently disqualified\",     \"immediate_purpose\": \"Must fulfill an active, mission-critical operational need ri"
@@ -4460,9 +4460,9 @@
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "data_center\\golden_list\\GOLDEN_LIST.md",
       "extension": ".md",
-      "size_bytes": 7232,
-      "sha256": "1b7d7315fb29f86d",
-      "units_count": 13,
+      "size_bytes": 30651,
+      "sha256": "8386d8eb23283793",
+      "units_count": 20,
       "units": [
         {
           "type": "heading",
@@ -4514,30 +4514,58 @@
         },
         {
           "type": "heading",
-          "name": "\ud83d\uded1 Rejected Audit Log (Basic / Flawed / Sub-Standard)"
+          "name": "`GOLDEN-010`: xmars-sovereign-distill-c1"
+        },
+        {
+          "type": "heading",
+          "name": "`GOLDEN-011`: xmars-sovereign-distill-c1"
+        },
+        {
+          "type": "heading",
+          "name": "`GOLDEN-012`: xmars-sovereign-distill-c1"
+        },
+        {
+          "type": "heading",
+          "name": "`GOLDEN-013`: xmars-sovereign-distill-c2"
+        },
+        {
+          "type": "heading",
+          "name": "`GOLDEN-014`: xmars-sovereign-distill-c3"
+        },
+        {
+          "type": "heading",
+          "name": "`GOLDEN-015`: xmars-sovereign-distill-c1"
+        },
+        {
+          "type": "heading",
+          "name": "`GOLDEN-016`: xmars-sovereign-distill-c2"
+        },
+        {
+          "type": "heading",
+          "name": "`GOLDEN-017`: xmars-sovereign-distill-c3"
         }
       ],
-      "summary": "# \ud83c\udfc6 THE SOVEREIGN FLAWLESS GOLDEN LIST  **Governing Rule:** Log Entry #066 (Blackbox Review System) **Last Certified:** 2026-09-15T14:07:16.197376Z **Total Admitted Assets:** 9 **Total Rejected Candidates:** 2  ---  ## \ud83d\udd12 Admission Standard > **Near-Impossible Threshold:** A build or component is admitted ONLY if it vastly excels market standards, exhibits ZERO flaws in every build metric, serves a"
+      "summary": "# \ud83c\udfc6 THE SOVEREIGN FLAWLESS GOLDEN LIST  **Governing Rule:** Log Entry #066 (Blackbox Review System) **Last Certified:** 2026-09-15T18:19:44.902072Z **Total Admitted Assets:** 55 **Total Rejected Candidates:** 2  ---  ## \ud83d\udd12 Admission Standard > **Near-Impossible Threshold:** A build or component is admitted ONLY if it vastly excels market standards, exhibits ZERO flaws in every build metric, serves"
     },
     {
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "data_center\\synthetic_training\\mined_code_catalog.json",
       "extension": ".json",
-      "size_bytes": 488239,
-      "sha256": "895a65df9df04235",
+      "size_bytes": 493684,
+      "sha256": "c5ae3edef129e4ce",
       "units_count": 0,
       "units": [],
-      "summary": "{   \"version\": \"1.0.0-HASTE\",   \"timestamp\": 1789453799.8564274,   \"mining_duration_sec\": 0.422,   \"total_files\": 510,   \"total_code_units\": 1273,   \"repos\": {     \"SSOT_Agentic_Brain\": 398,     \"xoras_core_institutional\": 112   },   \"files\": [     {       \"repo\": \"SSOT_Agentic_Brain\",       \"relative_path\": \"AGENTS.md\",       \"extension\": \".md\",       \"size_bytes\": 16011,       \"sha256\": \"29bde12"
+      "summary": "{   \"version\": \"1.0.0-HASTE\",   \"timestamp\": 1789496384.7416883,   \"mining_duration_sec\": 0.377,   \"total_files\": 515,   \"total_code_units\": 1292,   \"repos\": {     \"SSOT_Agentic_Brain\": 403,     \"xoras_core_institutional\": 112   },   \"files\": [     {       \"repo\": \"SSOT_Agentic_Brain\",       \"relative_path\": \"AGENTS.md\",       \"extension\": \".md\",       \"size_bytes\": 16011,       \"sha256\": \"29bde12"
     },
     {
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "data_center\\synthetic_training\\xmars_axioms_matrix.json",
       "extension": ".json",
-      "size_bytes": 596,
-      "sha256": "a2cf530b4fb89976",
+      "size_bytes": 597,
+      "sha256": "90d2532c88c49f07",
       "units_count": 0,
       "units": [],
-      "summary": "{   \"manifest\": \"XMARS_AXIOMS_MATRIX_V1\",   \"generated_at\": 1789453799.966355,   \"total_dpo_pairs\": 510,   \"total_instruct_pairs\": 510,   \"core_axioms\": [     \"AXIOM_1: All sovereign computation must respect hardware-governed memory ceilings.\",     \"AXIOM_2: Zero silent mutations. Audio-first intent declaration is permanent law.\",     \"AXIOM_3: Adversarial falsification must precede Golden List ad"
+      "summary": "{   \"manifest\": \"XMARS_AXIOMS_MATRIX_V1\",   \"generated_at\": 1789496384.8542366,   \"total_dpo_pairs\": 515,   \"total_instruct_pairs\": 515,   \"core_axioms\": [     \"AXIOM_1: All sovereign computation must respect hardware-governed memory ceilings.\",     \"AXIOM_2: Zero silent mutations. Audio-first intent declaration is permanent law.\",     \"AXIOM_3: Adversarial falsification must precede Golden List a"
     },
     {
       "repo": "SSOT_Agentic_Brain",
@@ -5706,11 +5734,11 @@
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "memory\\agent_logs\\xmars_saas_tunnel.json",
       "extension": ".json",
-      "size_bytes": 121,
-      "sha256": "b22b3c55b4e3fe75",
+      "size_bytes": 132,
+      "sha256": "dd28d77a16d97a14",
       "units_count": 0,
       "units": [],
-      "summary": "{   \"tunnel_url\": \"https://wood-dish-mate-lovely.trycloudflare.com\",   \"created_at\": 1789418022.6629553,   \"port\": 8085 }"
+      "summary": "{   \"tunnel_url\": \"https://ralph-approximate-seemed-medieval.trycloudflare.com\",   \"created_at\": 1789496035.885009,   \"port\": 8085 }"
     },
     {
       "repo": "SSOT_Agentic_Brain",
@@ -5817,11 +5845,11 @@
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "memory\\journals\\daemon_status_48hr.json",
       "extension": ".json",
-      "size_bytes": 622,
-      "sha256": "3ac9dfc1b1bb75e3",
+      "size_bytes": 621,
+      "sha256": "eca067ce2b0abe34",
       "units_count": 0,
       "units": [],
-      "summary": "{   \"status\": \"COOKING_ACTIVE_24_7\",   \"start_time\": \"2026-09-14T03:36:40.394701+00:00\",   \"current_time\": \"2026-09-15T14:10:27.656487+00:00\",   \"target_cook_duration_hours\": 48.0,   \"hours_elapsed\": 34.5631,   \"hours_remaining\": 13.4369,   \"progress_pct\": 72.01,   \"total_cycles_completed\": 3978,   \"total_signals_distilled\": 95472,   \"healing_pulses_total\": 0,   \"last_cycle_duration_sec\": 5.038,"
+      "summary": "{   \"status\": \"COOKING_ACTIVE_24_7\",   \"start_time\": \"2026-09-14T03:36:40.394701+00:00\",   \"current_time\": \"2026-09-15T18:24:00.863636+00:00\",   \"target_cook_duration_hours\": 48.0,   \"hours_elapsed\": 38.789,   \"hours_remaining\": 9.211,   \"progress_pct\": 80.81,   \"total_cycles_completed\": 4442,   \"total_signals_distilled\": 106608,   \"healing_pulses_total\": 0,   \"last_cycle_duration_sec\": 8.153,   \""
     },
     {
       "repo": "SSOT_Agentic_Brain",
@@ -7208,6 +7236,16 @@
     },
     {
       "repo": "SSOT_Agentic_Brain",
+      "relative_path": "ops\\scripts\\build_xmars_os_upgrade.py",
+      "extension": ".py",
+      "size_bytes": 5007,
+      "sha256": "f02fb4b214dc51bf",
+      "units_count": 0,
+      "units": [],
+      "summary": "#!/usr/bin/env python3 \"\"\" ops/scripts/build_xmars_os_upgrade.py Compiles the adult, elite-grade XMARS.os Sovereign Command Center: Unifying Hermes (Deep Cognitive Reasoning & Neural Voice), Cursor (Workspace File Explorer, Code Editor & Terminal Executor), and Lovable (Real-Time Interactive Visual Canvas & Sandbox Preview). \"\"\"  import os import sys from pathlib import Path  REPO_ROOT = Path(r\"C:"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
       "relative_path": "ops\\scripts\\clean_desktop_house.py",
       "extension": ".py",
       "size_bytes": 1501,
@@ -7526,6 +7564,16 @@
     },
     {
       "repo": "SSOT_Agentic_Brain",
+      "relative_path": "ops\\scripts\\refine_server_handler.py",
+      "extension": ".py",
+      "size_bytes": 5978,
+      "sha256": "59d94447b5acf3d7",
+      "units_count": 0,
+      "units": [],
+      "summary": "#!/usr/bin/env python3 \"\"\" ops/scripts/refine_server_handler.py Hardens products/xmars_os/server.py HTTP request handling: 1. Rock-solid static file serving (HTML, JS, CSS, JSON, PNG, SVG) with explicit MIME types. 2. Full try-except block wrapping with traceback logging so no connection drops silently. 3. Clean HTTP/1.1 keep-alive and connection headers. \"\"\"  import re from pathlib import Path  s"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
       "relative_path": "ops\\scripts\\sovereign_24_7_daemon.py",
       "extension": ".py",
       "size_bytes": 12704,
@@ -7594,6 +7642,16 @@
     },
     {
       "repo": "SSOT_Agentic_Brain",
+      "relative_path": "ops\\scripts\\test_endpoints.py",
+      "extension": ".py",
+      "size_bytes": 1633,
+      "sha256": "d17621b3fca524a5",
+      "units_count": 0,
+      "units": [],
+      "summary": "import urllib.request import json  base = \"http://127.0.0.1:8085\"  # 1. Index page with urllib.request.urlopen(f\"{base}/\", timeout=3) as r:     html = r.read().decode(\"utf-8\")     print(f\"[1] Index page OK, size: {len(html)} bytes, contains XORAS: {'XORAS // XMARS.os' in html}\")  # 2. Workspace Tree with urllib.request.urlopen(f\"{base}/api/workspace/tree\", timeout=3) as r:     data = json.loads(r."
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
       "relative_path": "ops\\scripts\\unified_resync_replay_tribunal.py",
       "extension": ".py",
       "size_bytes": 9816,
@@ -7607,6 +7665,16 @@
         }
       ],
       "summary": "#!/usr/bin/env python3 \"\"\" ============================================================================= XORAS UNIFIED RESYNC & REPLAY TRIBUNAL Directed by: ORION (Media Director) Mandate:   1. Complete Audio Resync: Zero Multi-Audio Collisions (Hardware fcntl Mutex)   2. Replay The Full Sovereign Council Deliberation:      - Taking Anthony's Rebuke to Heart: No More AI Theater      - Dimension 1:"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "ops\\scripts\\update_server_endpoints.py",
+      "extension": ".py",
+      "size_bytes": 9472,
+      "sha256": "e33043ba57c139c3",
+      "units_count": 0,
+      "units": [],
+      "summary": "#!/usr/bin/env python3 \"\"\" ops/scripts/update_server_endpoints.py Injects Cursor workspace file explorer, terminal execution, Lovable preview, and enhanced Hermes cognitive prompts into products/xmars_os/server.py. \"\"\"  import re from pathlib import Path  server_file = Path(r\"C:\\Users\\admin\\Desktop\\SSOT_Agentic_Brain\\products\\xmars_os\\server.py\") content = server_file.read_text(encoding=\"utf-8\")"
     },
     {
       "repo": "SSOT_Agentic_Brain",
@@ -7680,11 +7748,11 @@
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "ops\\scripts\\fullscreen_ui\\current_timing.json",
       "extension": ".json",
-      "size_bytes": 147,
-      "sha256": "770ae06f89832735",
+      "size_bytes": 2060,
+      "sha256": "146ca40514e4bda1",
       "units_count": 0,
       "units": [],
-      "summary": "{   \"agent\": \"clara\",   \"text\": \"\",   \"synthesizing\": false,   \"words\": [],   \"duration\": 0.0,   \"timestamp\": 1789481427.6549687,   \"cycle\": 3978 }"
+      "summary": "{   \"agent\": \"jarvis\",   \"text\": \"Anthony, the distillation cycle's cryptographic seals are intact and the off-grid lockstep stability is unbroken, as verified by the Xoras Sovereign Systems council.\",   \"synthesizing\": false,   \"words\": [     {       \"word\": \"Anthony,\",       \"start\": 0.0,       \"end\": 0.26     },     {       \"word\": \"the\",       \"start\": 0.26,       \"end\": 0.52     },     {"
     },
     {
       "repo": "SSOT_Agentic_Brain",
@@ -8283,8 +8351,8 @@
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "products\\xmars_os\\cloudflare_bridge.py",
       "extension": ".py",
-      "size_bytes": 7504,
-      "sha256": "83a29cd6bf712c4a",
+      "size_bytes": 7580,
+      "sha256": "3f01a3948c5d25fb",
       "units_count": 1,
       "units": [
         {
@@ -8315,8 +8383,8 @@
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "products\\xmars_os\\hardware_governor.py",
       "extension": ".py",
-      "size_bytes": 3125,
-      "sha256": "37daa6cf0caac175",
+      "size_bytes": 3169,
+      "sha256": "e044277215d335e8",
       "units_count": 1,
       "units": [
         {
@@ -8410,8 +8478,8 @@
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "products\\xmars_os\\server.py",
       "extension": ".py",
-      "size_bytes": 24104,
-      "sha256": "f50644195fc144ad",
+      "size_bytes": 36039,
+      "sha256": "0e33d37d28bc09cc",
       "units_count": 2,
       "units": [
         {
@@ -8466,9 +8534,9 @@
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "products\\xmars_os\\static\\app.js",
       "extension": ".js",
-      "size_bytes": 18009,
-      "sha256": "de9bad9c6a5bb73c",
-      "units_count": 3,
+      "size_bytes": 26185,
+      "sha256": "3542438d68237c2d",
+      "units_count": 2,
       "units": [
         {
           "type": "declaration",
@@ -8476,14 +8544,10 @@
         },
         {
           "type": "declaration",
-          "name": "AGENT_VOICE_PROFILES"
-        },
-        {
-          "type": "declaration",
           "name": "payload"
         }
       ],
-      "summary": "/**  * XMARS.os Sovereign Neural Client Application  * Full Duplex STS (Speech-to-Speech), STT Microphone Intake,  * Agent TTS Synthesizer, 60fps Oscilloscope HUD, and Internal Rails.  */  const STATE = {   currentAgent: \"maxx\",   currentModel: \"sovereign-hermes:latest\",   agents: {},   models: [],   isStreaming: false,   health: {},   voiceEnabled: true,   stsContinuous: false,   isListening: fal"
+      "summary": "/**  * XORAS // XMARS.os Unified Client Engine  * Unifies Hermes (Cognitive & Voice), Cursor (Workspace Editor & Terminal),  * and Lovable (Interactive Live Visual Canvas Sandbox).  */  const STATE = {   currentAgent: \"maxx\",   currentModel: \"cf-deepseek-r1-32b\",   agents: {},   models: [],   activeFile: null,   activeFileContent: \"\",   activeFileType: \"text\",   voiceEnabled: true,   isRecording:"
     },
     {
       "repo": "SSOT_Agentic_Brain",

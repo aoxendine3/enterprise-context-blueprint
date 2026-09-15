@@ -1,0 +1,10 @@
+{
+  "last_boot": "2026-09-06T19:40:41.254885Z",
+  "boot_count": 2,
+  "verification_suite": {
+    "checks_executed": 6,
+    "checks_passed": 6,
+    "checks_failed": 0
+  },
+  "system_state": "READY_ACCORDING_TO_CONFIGURED_CHECKS"
+}

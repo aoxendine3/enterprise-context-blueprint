@@ -1,93 +1,580 @@
 /**
- * XMARS.os Sovereign Neural Client Application
- * Full Duplex STS (Speech-to-Speech), STT Microphone Intake,
- * Agent TTS Synthesizer, 60fps Oscilloscope HUD, and Internal Rails.
+ * XORAS // XMARS.os Unified Client Engine
+ * Unifies Hermes (Cognitive & Voice), Cursor (Workspace Editor & Terminal),
+ * and Lovable (Interactive Live Visual Canvas Sandbox).
  */
 
 const STATE = {
   currentAgent: "maxx",
-  currentModel: "sovereign-hermes:latest",
+  currentModel: "cf-deepseek-r1-32b",
   agents: {},
   models: [],
-  isStreaming: false,
-  health: {},
+  activeFile: null,
+  activeFileContent: "",
+  activeFileType: "text",
   voiceEnabled: true,
-  stsContinuous: false,
-  isListening: false,
+  isRecording: false,
   recognition: null,
-  silenceTimer: null
+  isStreaming: false,
+  viewportMode: "desktop",
+  layoutMode: "split", // cursor, lovable, split
+  workbenchMode: "composer" // composer, editor
 };
 
-// DOM Cache
+// DOM References
+const fileTreeContainer = document.getElementById("fileTreeContainer");
 const councilListEl = document.getElementById("councilList");
 const modelSelectEl = document.getElementById("modelSelect");
-const chatStreamEl = document.getElementById("chatStream");
-const chatInputEl = document.getElementById("chatInput");
-const sendBtnEl = document.getElementById("sendBtn");
-const micBtnEl = document.getElementById("micBtn");
-const voiceToggleBtnEl = document.getElementById("voiceToggleBtn");
-const stsToggleBtnEl = document.getElementById("stsToggleBtn");
 const healthPillEl = document.getElementById("healthPill");
 const latencyLabelEl = document.getElementById("latencyLabel");
-const inspectorEl = document.getElementById("xmarsInspector");
-const inspectorTitleEl = document.getElementById("inspectorTitle");
-const inspectorContentEl = document.getElementById("inspectorContent");
 
-// Voice Mapping for Sovereign Council Personas
-const AGENT_VOICE_PROFILES = {
-  maxx: { pitch: 0.95, rate: 1.05, voiceLang: "en-US" },
-  jarvis: { pitch: 1.0, rate: 1.0, voiceLang: "en-US" },
-  clara: { pitch: 1.15, rate: 1.05, voiceLang: "en-US" },
-  vance: { pitch: 0.85, rate: 1.1, voiceLang: "en-US" },
-  daxx: { pitch: 0.9, rate: 1.15, voiceLang: "en-US" },
-  orion: { pitch: 1.05, rate: 1.0, voiceLang: "en-US" }
-};
+const chatStreamEl = document.getElementById("chatStream");
+const composerInputEl = document.getElementById("composerInput");
+const composerMicBtnEl = document.getElementById("composerMicBtn");
+const voiceToggleBtnEl = document.getElementById("voiceToggleBtn");
+const ctxAgentNameEl = document.getElementById("ctxAgentName");
+const ctxFileTagEl = document.getElementById("ctxFileTag");
+const ctxVoiceStatusEl = document.getElementById("ctxVoiceStatus");
 
-// Initialize XMARS.os Client
-async function initXmars() {
+const activeFileNameEl = document.getElementById("activeFileName");
+const codeEditorAreaEl = document.getElementById("codeEditorArea");
+const editorFilePathEl = document.getElementById("editorFilePath");
+const editorFileStatsEl = document.getElementById("editorFileStats");
+const btnSaveFileEl = document.getElementById("btnSaveFile");
+const btnRunFileEl = document.getElementById("btnRunFile");
+const btnPreviewCodeEl = document.getElementById("btnPreviewCode");
+
+const previewFrameEl = document.getElementById("previewFrame");
+const canvasViewportEl = document.getElementById("canvasViewport");
+const terminalDrawerEl = document.getElementById("terminalDrawer");
+const terminalOutputEl = document.getElementById("terminalOutput");
+const terminalInputEl = document.getElementById("terminalInput");
+
+// Initialize Application
+document.addEventListener("DOMContentLoaded", () => {
+  initApp();
+});
+
+async function initApp() {
   await loadCouncil();
   await loadModels();
+  await loadWorkspaceTree();
   await refreshHealth();
   setInterval(refreshHealth, 8000);
 
   initSTT();
+  initComposerInput();
+  initWaveform();
 
-  chatInputEl.addEventListener("input", autoResizeInput);
-  chatInputEl.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" && !e.shiftKey) {
+  // Handle Ctrl+S for saving active file
+  window.addEventListener("keydown", (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === "s") {
       e.preventDefault();
-      dispatchMessage();
+      saveActiveFile();
     }
   });
-
-  sendBtnEl.addEventListener("click", () => dispatchMessage());
-  micBtnEl.addEventListener("click", toggleMic);
-  voiceToggleBtnEl.addEventListener("click", toggleVoiceOutput);
-  stsToggleBtnEl.addEventListener("click", toggleSTSMode);
-
-  initOscilloscope();
 }
 
-function autoResizeInput() {
-  chatInputEl.style.height = "auto";
-  chatInputEl.style.height = Math.min(chatInputEl.scrollHeight, 180) + "px";
+// --------------------------------------------------------------------------
+// 1. WORKSPACE FILE EXPLORER (CURSOR MODE)
+// --------------------------------------------------------------------------
+async function loadWorkspaceTree() {
+  fileTreeContainer.innerHTML = `<div class="tree-loading">Scanning SSOT Workspace...</div>`;
+  try {
+    const res = await fetch("/api/workspace/tree");
+    const data = await res.json();
+    if (data.status === "success" && data.tree) {
+      renderFileTree(data.tree, fileTreeContainer);
+    } else {
+      fileTreeContainer.innerHTML = `<div style="color:#ef4444; padding:8px;">Failed to scan workspace.</div>`;
+    }
+  } catch (err) {
+    fileTreeContainer.innerHTML = `<div style="color:#ef4444; padding:8px;">Error: ${err.message}</div>`;
+  }
 }
 
-// Load Sovereign Council
+function renderFileTree(nodes, container) {
+  container.innerHTML = "";
+  nodes.forEach(node => {
+    const item = document.createElement("div");
+    item.className = "tree-item";
+
+    if (node.type === "directory") {
+      const folderHeader = document.createElement("div");
+      folderHeader.className = "tree-node";
+      folderHeader.innerHTML = `<span>📁</span> <strong>${node.name}</strong>`;
+
+      const childrenBox = document.createElement("div");
+      childrenBox.className = "tree-folder-children";
+      childrenBox.style.display = "none";
+
+      folderHeader.onclick = () => {
+        const isHidden = childrenBox.style.display === "none";
+        childrenBox.style.display = isHidden ? "block" : "none";
+        folderHeader.querySelector("span").textContent = isHidden ? "📂" : "📁";
+      };
+
+      if (node.children && node.children.length > 0) {
+        renderFileTree(node.children, childrenBox);
+      }
+
+      item.appendChild(folderHeader);
+      item.appendChild(childrenBox);
+    } else {
+      const fileNode = document.createElement("div");
+      fileNode.className = `tree-node ${STATE.activeFile === node.path ? "active-file" : ""}`;
+      const extIco = getFileIcon(node.name);
+      fileNode.innerHTML = `<span>${extIco}</span> <span>${node.name}</span>`;
+
+      fileNode.onclick = () => openFileInEditor(node.path);
+      item.appendChild(fileNode);
+    }
+
+    container.appendChild(item);
+  });
+}
+
+function getFileIcon(filename) {
+  if (filename.endsWith(".py")) return "🐍";
+  if (filename.endsWith(".rs")) return "🦀";
+  if (filename.endsWith(".js") || filename.endsWith(".ts")) return "📜";
+  if (filename.endsWith(".html")) return "🌐";
+  if (filename.endsWith(".css")) return "🎨";
+  if (filename.endsWith(".json")) return "⚙️";
+  if (filename.endsWith(".md")) return "📄";
+  if (filename.endsWith(".sh") || filename.endsWith(".bat") || filename.endsWith(".ps1")) return "⚡";
+  return "📄";
+}
+
+function filterFiles() {
+  const query = document.getElementById("fileSearchInput").value.toLowerCase().trim();
+  const allNodes = fileTreeContainer.querySelectorAll(".tree-node");
+  allNodes.forEach(node => {
+    const text = node.textContent.toLowerCase();
+    if (!query || text.includes(query)) {
+      node.style.display = "flex";
+    } else {
+      node.style.display = "none";
+    }
+  });
+}
+
+// Open File in Editor
+async function openFileInEditor(relPath) {
+  try {
+    const res = await fetch(`/api/workspace/read?path=${encodeURIComponent(relPath)}`);
+    const data = await res.json();
+    if (data.status === "success") {
+      STATE.activeFile = relPath;
+      STATE.activeFileContent = data.content;
+      STATE.activeFileType = data.extension;
+
+      activeFileNameEl.textContent = relPath.split("/").pop();
+      editorFilePathEl.textContent = `/${relPath}`;
+      editorFileStatsEl.textContent = `${data.lines} lines • ${Math.round(data.size / 1024)} KB`;
+
+      codeEditorAreaEl.value = data.content;
+      btnSaveFileEl.style.display = "inline-flex";
+      btnRunFileEl.style.display = "inline-flex";
+
+      if (data.extension === ".html" || data.extension === ".md") {
+        btnPreviewCodeEl.style.display = "inline-flex";
+      } else {
+        btnPreviewCodeEl.style.display = "none";
+      }
+
+      ctxFileTagEl.innerHTML = `File: <strong>${relPath.split("/").pop()}</strong>`;
+      switchWorkbenchMode("editor");
+
+      // Update tree active node
+      document.querySelectorAll(".tree-node").forEach(n => n.classList.remove("active-file"));
+    }
+  } catch (err) {
+    alert(`Could not open ${relPath}: ${err.message}`);
+  }
+}
+
+// Save Active File
+async function saveActiveFile() {
+  if (!STATE.activeFile) return;
+  const content = codeEditorAreaEl.value;
+  try {
+    const res = await fetch("/api/workspace/write", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ path: STATE.activeFile, content })
+    });
+    const data = await res.json();
+    if (data.status === "success") {
+      btnSaveFileEl.textContent = "Saved! ✔";
+      setTimeout(() => { btnSaveFileEl.textContent = "💾 Save"; }, 1500);
+      printTerminal(`[SAVE] File updated: ${STATE.activeFile} (${content.length} bytes, SHA256: ${data.sha256.slice(0, 10)})`, "prompt");
+    } else {
+      alert(`Save error: ${data.message}`);
+    }
+  } catch (err) {
+    alert(`Save failed: ${err.message}`);
+  }
+}
+
+function runActiveFileInTerminal() {
+  if (!STATE.activeFile) return;
+  toggleTerminal(true);
+  if (STATE.activeFile.endsWith(".py")) {
+    executeCommand(`python ${STATE.activeFile}`);
+  } else if (STATE.activeFile.endsWith(".rs")) {
+    executeCommand(`cargo test`);
+  } else {
+    executeCommand(`type ${STATE.activeFile.replace(/\//g, '\\')}`);
+  }
+}
+
+function previewCurrentEditorCode() {
+  const content = codeEditorAreaEl.value;
+  renderToLovableCanvas(content);
+}
+
+// --------------------------------------------------------------------------
+// 2. HERMES AI COMPOSER (STREAMING REASONING & VOICE)
+// --------------------------------------------------------------------------
+function initComposerInput() {
+  composerInputEl.addEventListener("input", () => {
+    composerInputEl.style.height = "auto";
+    composerInputEl.style.height = Math.min(composerInputEl.scrollHeight, 160) + "px";
+  });
+
+  composerInputEl.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      dispatchComposer();
+    }
+  });
+}
+
+async function dispatchComposer() {
+  const text = composerInputEl.value.trim();
+  if (!text || STATE.isStreaming) return;
+
+  composerInputEl.value = "";
+  composerInputEl.style.height = "auto";
+
+  // Append user bubble
+  appendChatBubble("user", text, "Anthony");
+
+  // Create empty assistant response container
+  const assistantCard = appendChatBubble("assistant", "", STATE.agents[STATE.currentAgent]?.name || "Maxx");
+  const contentDiv = assistantCard.querySelector(".msg-content");
+  contentDiv.innerHTML = `<span class="pulse-indicator" style="display:inline-block;"></span> <em class="reasoning-text">Reasoning with ${STATE.currentModel}...</em>`;
+
+  STATE.isStreaming = true;
+
+  const payload = {
+    agent: STATE.currentAgent,
+    model: STATE.currentModel,
+    message: text,
+    active_file: STATE.activeFile || "",
+    voice: STATE.voiceEnabled
+  };
+
+  try {
+    const res = await fetch("/api/chat/stream", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    if (!res.ok || !res.body) {
+      throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+    }
+
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder("utf-8");
+    let accumulated = "";
+    let buffer = "";
+    let firstTokenReceived = false;
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split("\n\n");
+      buffer = lines.pop();
+
+      for (const line of lines) {
+        const trimmed = line.trim();
+        if (!trimmed.startsWith("data:")) continue;
+        const dataStr = trimmed.slice(5).trim();
+        try {
+          const parsed = JSON.parse(dataStr);
+          if (parsed.token) {
+            if (!firstTokenReceived) {
+              firstTokenReceived = true;
+              contentDiv.innerHTML = "";
+            }
+            accumulated += parsed.token;
+            contentDiv.innerHTML = formatMarkdown(accumulated);
+            chatStreamEl.scrollTop = chatStreamEl.scrollHeight;
+          } else if (parsed.done) {
+            STATE.isStreaming = false;
+            contentDiv.innerHTML = formatMarkdown(accumulated);
+            checkAndRenderVisuals(accumulated);
+            chatStreamEl.scrollTop = chatStreamEl.scrollHeight;
+            if (parsed.tokens_per_sec) {
+              const metaTag = document.createElement("div");
+              metaTag.style.cssText = "font-size:10px; color:#64748b; margin-top:6px; font-family:monospace;";
+              metaTag.textContent = `⚡ ${parsed.tokens_per_sec} tok/s • ${parsed.total_sec || parsed.latency_sec || 0}s • ${parsed.model || STATE.currentModel}`;
+              contentDiv.appendChild(metaTag);
+            }
+          }
+        } catch (e) {
+          // ignore json parse err on partial line
+        }
+      }
+    }
+
+    STATE.isStreaming = false;
+    if (!accumulated && !firstTokenReceived) {
+      contentDiv.innerHTML = `<span style="color:#ef4444;">No response received from kernel.</span>`;
+    } else {
+      checkAndRenderVisuals(accumulated);
+    }
+  } catch (err) {
+    STATE.isStreaming = false;
+    contentDiv.innerHTML = `<span style="color:#ef4444;">Stream Error: ${err.message}</span>`;
+  }
+}
+
+function appendChatBubble(role, rawContent, senderName) {
+  const card = document.createElement("div");
+  card.className = `msg-bubble ${role}`;
+
+  const agent = STATE.agents[STATE.currentAgent] || { color: "#06b6d4", avatar: "M", title: "Sovereign AI" };
+  const avatarBg = role === "user" ? "#3b82f6" : agent.color;
+  const avatarLetter = role === "user" ? "A" : agent.avatar;
+  const title = role === "user" ? "Sovereign Operator" : agent.title;
+
+  card.innerHTML = `
+    <div class="msg-meta">
+      <span class="agent-avatar" style="background:${avatarBg};">${avatarLetter}</span>
+      <span class="agent-name" style="color:${avatarBg};">${senderName}</span>
+      <span class="role-badge">${title}</span>
+      <span class="timestamp">${new Date().toLocaleTimeString()}</span>
+    </div>
+    <div class="msg-content">${rawContent ? formatMarkdown(rawContent) : ""}</div>
+  `;
+
+  chatStreamEl.appendChild(card);
+  chatStreamEl.scrollTop = chatStreamEl.scrollHeight;
+  return card;
+}
+
+function formatMarkdown(text) {
+  if (!text) return "";
+  let html = text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+
+  // Code blocks: ```lang ... ```
+  html = html.replace(/```([a-zA-Z0-9_\-\.]*)\n([\s\S]*?)```/g, (match, lang, code) => {
+    const unescapedCode = code.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+    const isVisual = lang === "html" || lang === "jsx" || lang === "svg" || unescapedCode.includes("<div") || unescapedCode.includes("<!DOCTYPE");
+    
+    return `
+      <pre><div class="code-action-bar">
+        <span style="margin-right:auto; font-size:10px; color:#64748b; text-transform:uppercase;">${lang || 'code'}</span>
+        <button class="code-act-btn" onclick="copyCodeSnippet(this)">Copy</button>
+        ${isVisual ? `<button class="code-act-btn" style="color:#00f0ff; border-color:#00f0ff;" onclick="renderSnippetToCanvas(this)">🎨 Render in Canvas</button>` : ''}
+        <button class="code-act-btn" onclick="applyCodeToEditor(this)">Open in Editor</button>
+      </div><code>${code}</code></pre>
+    `;
+  });
+
+  // Inline code `code`
+  html = html.replace(/`([^`]+)`/g, "<code>$1</code>");
+
+  // Bold & Italic
+  html = html.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  html = html.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+
+  // Collapsible Think container (DeepSeek / Reasoning models)
+  html = html.replace(/&lt;think&gt;([\s\S]*?)&lt;\/think&gt;/gi, (match, thought) => {
+    return `
+      <details class="thought-process-container" open>
+        <summary class="thought-summary">🧠 Cognitive Reasoning Trace</summary>
+        <div class="thought-body">${thought.trim()}</div>
+      </details>
+    `;
+  });
+  // Handle unclosed <think> during active streaming
+  html = html.replace(/&lt;think&gt;([\s\S]*)$/gi, (match, thought) => {
+    return `
+      <details class="thought-process-container" open>
+        <summary class="thought-summary"><span class="pulse-indicator"></span> Reasoning...</summary>
+        <div class="thought-body">${thought.trim()}</div>
+      </details>
+    `;
+  });
+
+  return html;
+}
+
+function copyCodeSnippet(btn) {
+  const codeEl = btn.closest("pre").querySelector("code");
+  const text = codeEl.innerText;
+  navigator.clipboard.writeText(text);
+  btn.textContent = "Copied! ✔";
+  setTimeout(() => { btn.textContent = "Copy"; }, 1500);
+}
+
+function applyCodeToEditor(btn) {
+  const codeEl = btn.closest("pre").querySelector("code");
+  const text = codeEl.innerText;
+  codeEditorAreaEl.value = text;
+  switchWorkbenchMode("editor");
+  editorFilePathEl.textContent = "Generated Snippet (Unsaved)";
+  editorFileStatsEl.textContent = `${text.split("\n").length} lines`;
+  btnSaveFileEl.style.display = "inline-flex";
+}
+
+function renderSnippetToCanvas(btn) {
+  const codeEl = btn.closest("pre").querySelector("code");
+  const text = codeEl.innerText;
+  renderToLovableCanvas(text);
+  if (STATE.layoutMode === "cursor") {
+    setLayoutMode("split");
+  }
+}
+
+function checkAndRenderVisuals(reply) {
+  // If the reply contains a complete HTML document or interactive component, load it in the canvas!
+  const match = reply.match(/```(?:html|jsx|xml)\n([\s\S]*?)```/);
+  if (match && match[1]) {
+    const raw = match[1];
+    if (raw.includes("<html") || raw.includes("<div") || raw.includes("<svg") || raw.includes("<canvas")) {
+      renderToLovableCanvas(raw);
+    }
+  }
+}
+
+// --------------------------------------------------------------------------
+// 3. LOVABLE LIVE VISUAL CANVAS SANDBOX
+// --------------------------------------------------------------------------
+async function renderToLovableCanvas(htmlContent) {
+  try {
+    const res = await fetch("/api/preview/render", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ html: htmlContent })
+    });
+    const data = await res.json();
+    if (data.status === "success") {
+      previewFrameEl.src = data.preview_url + "?t=" + Date.now();
+    }
+  } catch (err) {
+    console.error("Failed to render canvas preview:", err);
+  }
+}
+
+function setViewport(mode) {
+  STATE.viewportMode = mode;
+  document.querySelectorAll(".vp-btn").forEach(btn => btn.classList.remove("active"));
+  event.target.classList.add("active");
+
+  canvasViewportEl.className = `canvas-viewport vp-${mode}`;
+}
+
+function reloadPreview() {
+  previewFrameEl.src = previewFrameEl.src.split("?")[0] + "?t=" + Date.now();
+}
+
+function openPreviewNewTab() {
+  window.open(previewFrameEl.src, "_blank");
+}
+
+// --------------------------------------------------------------------------
+// 4. INTEGRATED TERMINAL CONSOLE
+// --------------------------------------------------------------------------
+function toggleTerminal(forceOpen = false) {
+  if (forceOpen) {
+    terminalDrawerEl.classList.add("active");
+  } else {
+    terminalDrawerEl.classList.toggle("active");
+  }
+  if (terminalDrawerEl.classList.contains("active")) {
+    terminalInputEl.focus();
+  }
+}
+
+function handleTerminalKey(e) {
+  if (e.key === "Enter") {
+    execTerminalInput();
+  }
+}
+
+function execTerminalInput() {
+  const cmd = terminalInputEl.value.trim();
+  if (!cmd) return;
+  terminalInputEl.value = "";
+  executeCommand(cmd);
+}
+
+function runQuickCmd(cmd) {
+  toggleTerminal(true);
+  executeCommand(cmd);
+}
+
+async function executeCommand(cmd) {
+  printTerminal(`❯ ${cmd}`, "prompt");
+  try {
+    const res = await fetch("/api/terminal/exec", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ command: cmd })
+    });
+    const data = await res.json();
+    if (data.stdout) printTerminal(data.stdout, "stdout");
+    if (data.stderr) printTerminal(data.stderr, "stderr");
+    if (data.exit_code !== 0) {
+      printTerminal(`[Exited with code ${data.exit_code} in ${data.duration_sec}s]`, "stderr");
+    } else {
+      printTerminal(`[Command completed successfully in ${data.duration_sec}s]`, "prompt");
+    }
+  } catch (err) {
+    printTerminal(`Terminal error: ${err.message}`, "stderr");
+  }
+}
+
+function printTerminal(text, type = "stdout") {
+  const line = document.createElement("div");
+  line.className = `term-line ${type}`;
+  line.textContent = text;
+  terminalOutputEl.appendChild(line);
+  terminalOutputEl.scrollTop = terminalOutputEl.scrollHeight;
+}
+
+function clearTerminal() {
+  terminalOutputEl.innerHTML = "";
+}
+
+// --------------------------------------------------------------------------
+// 5. COUNCIL & MODEL MANAGEMENT
+// --------------------------------------------------------------------------
 async function loadCouncil() {
   try {
     const res = await fetch("/api/agents");
     const data = await res.json();
     if (data.status === "success") {
       STATE.agents = data.agents;
-      renderCouncil();
+      renderCouncilList();
     }
   } catch (err) {
-    console.error("Failed to load council:", err);
+    console.error("Council load failed:", err);
   }
 }
 
-function renderCouncil() {
+function renderCouncilList() {
   councilListEl.innerHTML = "";
   Object.values(STATE.agents).forEach(agent => {
     const card = document.createElement("div");
@@ -95,486 +582,181 @@ function renderCouncil() {
     card.onclick = () => selectAgent(agent.id);
 
     card.innerHTML = `
-      <div class="card-avatar" style="background: ${agent.color};">
-        ${agent.avatar}
-      </div>
-      <div class="card-info">
-        <div class="card-name">${agent.name}</div>
-        <div class="card-role">${agent.title}</div>
+      <div class="council-avatar" style="background:${agent.color};">${agent.avatar}</div>
+      <div class="council-info">
+        <div class="council-name">${agent.name}</div>
+        <div class="council-title">${agent.title}</div>
       </div>
     `;
     councilListEl.appendChild(card);
   });
 }
 
-function selectAgent(id) {
-  STATE.currentAgent = id;
-  renderCouncil();
-  const agent = STATE.agents[id];
-  if (agent) {
-    appendNotice(`Engaged Sovereign Agent: <strong style="color:${agent.color};">${agent.name}</strong> (${agent.role})`);
-    if (STATE.voiceEnabled) {
-      speakText(`Sovereign agent ${agent.name} online.`);
-    }
-  }
+function selectAgent(agentId) {
+  STATE.currentAgent = agentId;
+  renderCouncilList();
+  ctxAgentNameEl.textContent = STATE.agents[agentId]?.name || agentId;
 }
 
-// Load Models
 async function loadModels() {
   try {
     const res = await fetch("/api/models");
     const data = await res.json();
     if (data.status === "success") {
       STATE.models = data.available_models;
-      STATE.currentModel = data.active_model;
-      modelSelectEl.innerHTML = "";
-      STATE.models.forEach(m => {
-        const opt = document.createElement("option");
-        opt.value = m;
-        opt.textContent = m;
-        if (m === STATE.currentModel) opt.selected = true;
-        modelSelectEl.appendChild(opt);
-      });
     }
   } catch (err) {
-    console.error("Failed to load models:", err);
+    console.error("Model load failed:", err);
   }
+
+  modelSelectEl.addEventListener("change", (e) => {
+    STATE.currentModel = e.target.value;
+  });
 }
 
-modelSelectEl.addEventListener("change", (e) => {
-  STATE.currentModel = e.target.value;
-  appendNotice(`Active Neural Engine set to <code>${STATE.currentModel}</code>`);
-});
-
-// Telemetry & Health
 async function refreshHealth() {
   try {
     const res = await fetch("/api/health");
     const data = await res.json();
-    STATE.health = data;
-    if (data.inference_engine_online) {
-      healthPillEl.style.borderColor = "#059669";
-      healthPillEl.style.background = "#064e3b";
-      healthPillEl.style.color = "#6ee7b7";
-      latencyLabelEl.textContent = `Online • ${data.engine_latency_ms}ms • ${data.active_model}`;
-    } else {
-      healthPillEl.style.borderColor = "#dc2626";
-      healthPillEl.style.background = "#7f1d1d";
-      healthPillEl.style.color = "#fca5a5";
-      latencyLabelEl.textContent = `Autonomous Core Active (XTC-v1)`;
-    }
-
-    if (data.cloudflare_tunnel) {
-      STATE.tunnelUrl = data.cloudflare_tunnel;
-      const saasBtn = document.getElementById("saasLinkBtn");
-      if (saasBtn) {
-        saasBtn.style.display = "inline-flex";
-        saasBtn.style.borderColor = "#f59e0b";
-        saasBtn.style.color = "#fbbf24";
-        saasBtn.textContent = "🌐 SaaS: Live";
-        saasBtn.title = `Global SaaS Endpoint: ${data.cloudflare_tunnel}\n(Click to copy link)`;
-      }
+    if (data) {
+      latencyLabelEl.textContent = `Kernel Online (8085) • ${data.active_model || 'SNM-8B'}`;
+      document.getElementById("hudContext").textContent = `${data.hardware_governor?.max_context_bound || 4096} Bound`;
+      document.getElementById("hudPressure").textContent = data.hardware_governor?.memory_pressure || "NORMAL";
     }
   } catch (err) {
-    latencyLabelEl.textContent = `Host Disconnected`;
+    latencyLabelEl.textContent = "Kernel Offline";
   }
+}
+
+// --------------------------------------------------------------------------
+// 6. LAYOUT & NAVIGATION CONTROLS
+// --------------------------------------------------------------------------
+function setLayoutMode(mode) {
+  STATE.layoutMode = mode;
+  document.body.className = `theme-obsidian mode-${mode}`;
+  document.querySelectorAll(".view-btn").forEach(btn => btn.classList.remove("active"));
+  if (mode === "cursor") document.getElementById("btnModeCursor").classList.add("active");
+  if (mode === "split") document.getElementById("btnModeSplit").classList.add("active");
+  if (mode === "lovable") document.getElementById("btnModeLovable").classList.add("active");
+}
+
+function switchSidebarTab(tabName) {
+  document.querySelectorAll(".sidebar-tabs .tab-btn").forEach((b, i) => {
+    b.classList.toggle("active", (tabName === 'files' && i === 0) || (tabName === 'council' && i === 1) || (tabName === 'telemetry' && i === 2));
+  });
+  document.getElementById("tabFiles").classList.toggle("active", tabName === "files");
+  document.getElementById("tabCouncil").classList.toggle("active", tabName === "council");
+  document.getElementById("tabTelemetry").classList.toggle("active", tabName === "telemetry");
+}
+
+function switchWorkbenchMode(mode) {
+  STATE.workbenchMode = mode;
+  document.getElementById("tabComposer").classList.toggle("active", mode === "composer");
+  document.getElementById("tabEditor").classList.toggle("active", mode === "editor");
+  document.getElementById("viewComposer").classList.toggle("active", mode === "composer");
+  document.getElementById("viewEditor").classList.toggle("active", mode === "editor");
+}
+
+function triggerCommand(cmd) {
+  composerInputEl.value = cmd;
+  dispatchComposer();
 }
 
 function copySaasLink() {
-  if (STATE.tunnelUrl) {
-    navigator.clipboard.writeText(STATE.tunnelUrl).then(() => {
-      appendNotice(`Copied Cloudflare SaaS Endpoint: <code>${STATE.tunnelUrl}</code>`);
-    }).catch(() => {
-      prompt("Copy Cloudflare SaaS URL:", STATE.tunnelUrl);
-    });
-  } else {
-    appendNotice("Cloudflare SaaS tunnel initializing...");
-  }
+  fetch("/api/tunnel").then(r => r.json()).then(d => {
+    if (d.tunnel_url) {
+      navigator.clipboard.writeText(d.tunnel_url);
+      alert(`Public Cloudflare SaaS Tunnel URL copied:\n${d.tunnel_url}`);
+    }
+  });
 }
 
-// Speech-To-Text (STT) Engine
+// --------------------------------------------------------------------------
+// 7. DUPLEX SPEECH TRANSCEIVER (STT & TTS WAVEFORM)
+// --------------------------------------------------------------------------
 function initSTT() {
-  const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (!SpeechRec) {
-    micBtnEl.title = "STT not supported in this browser";
-    micBtnEl.style.opacity = "0.5";
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) {
+    composerMicBtnEl.style.display = "none";
     return;
   }
 
-  STATE.recognition = new SpeechRec();
-  STATE.recognition.continuous = true;
-  STATE.recognition.interimResults = true;
+  STATE.recognition = new SpeechRecognition();
+  STATE.recognition.continuous = false;
+  STATE.recognition.interimResults = false;
   STATE.recognition.lang = "en-US";
 
-  STATE.recognition.onstart = () => {
-    STATE.isListening = true;
-    micBtnEl.classList.add("listening");
-    micBtnEl.title = "Listening... Click to stop";
+  STATE.recognition.onresult = (e) => {
+    const text = e.results[0][0].transcript;
+    composerInputEl.value = text;
+    dispatchComposer();
   };
 
-  STATE.recognition.onresult = (event) => {
-    let transcript = "";
-    for (let i = event.resultIndex; i < event.results.length; ++i) {
-      transcript += event.results[i][0].transcript;
-    }
-    chatInputEl.value = transcript;
-    autoResizeInput();
-
-    // Auto-dispatch in continuous STS mode if user pauses for 1.3 seconds
-    if (STATE.stsContinuous) {
-      clearTimeout(STATE.silenceTimer);
-      STATE.silenceTimer = setTimeout(() => {
-        if (chatInputEl.value.trim().length > 0) {
-          logSTTReceipt(chatInputEl.value.trim());
-          stopListening();
-          dispatchMessage();
-        }
-      }, 1300);
-    }
-  };
-
-  function logSTTReceipt(text) {
-    try {
-      fetch("/api/stt/event", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ transcript: text, agent: STATE.currentAgent })
-      });
-    } catch (e) {}
-  }
-
-  STATE.recognition.onerror = (err) => {
-    console.warn("STT Error:", err);
-    stopListening();
+  STATE.recognition.onerror = () => {
+    stopMic();
   };
 
   STATE.recognition.onend = () => {
-    STATE.isListening = false;
-    micBtnEl.classList.remove("listening");
-    micBtnEl.title = "Voice Input (Click to speak)";
+    stopMic();
   };
 }
 
 function toggleMic() {
-  if (STATE.isListening) {
-    stopListening();
+  if (STATE.isRecording) {
+    stopMic();
   } else {
-    startListening();
+    startMic();
   }
 }
 
-function startListening() {
-  if (STATE.recognition && !STATE.isListening) {
-    try {
-      STATE.recognition.start();
-    } catch (e) {}
+function startMic() {
+  if (!STATE.recognition) return;
+  try {
+    STATE.recognition.start();
+    STATE.isRecording = true;
+    composerMicBtnEl.classList.add("recording");
+    document.getElementById("micBtn").classList.add("active");
+  } catch (err) {}
+}
+
+function stopMic() {
+  if (STATE.recognition && STATE.isRecording) {
+    try { STATE.recognition.stop(); } catch (e) {}
   }
+  STATE.isRecording = false;
+  composerMicBtnEl.classList.remove("recording");
+  document.getElementById("micBtn").classList.remove("active");
 }
 
-function stopListening() {
-  if (STATE.recognition && STATE.isListening) {
-    try {
-      STATE.recognition.stop();
-    } catch (e) {}
-  }
-}
-
-// Text-To-Speech (TTS) Engine
-function speakText(text) {
-  if (!STATE.voiceEnabled || !window.speechSynthesis) return;
-
-  window.speechSynthesis.cancel(); // Flush queue to prevent overlapping output
-  const profile = AGENT_VOICE_PROFILES[STATE.currentAgent] || { pitch: 1.0, rate: 1.0 };
-  
-  // Clean markdown tokens before speaking
-  const cleanSpeech = text
-    .replace(/```[\s\S]*?```/g, "Code block omitted.")
-    .replace(/`([^`]+)`/g, "$1")
-    .replace(/[#*_~>]/g, "")
-    .replace(/\n+/g, " ")
-    .trim();
-
-  if (!cleanSpeech) return;
-
-  const utterance = new SpeechSynthesisUtterance(cleanSpeech);
-  utterance.pitch = profile.pitch;
-  utterance.rate = profile.rate;
-  utterance.lang = profile.voiceLang;
-
-  // Re-arm listening if in continuous STS mode
-  utterance.onend = () => {
-    if (STATE.stsContinuous && !STATE.isStreaming) {
-      setTimeout(() => startListening(), 400);
-    }
-  };
-
-  window.speechSynthesis.speak(utterance);
-}
-
-function toggleVoiceOutput() {
+voiceToggleBtnEl.addEventListener("click", () => {
   STATE.voiceEnabled = !STATE.voiceEnabled;
   voiceToggleBtnEl.classList.toggle("active", STATE.voiceEnabled);
-  voiceToggleBtnEl.textContent = STATE.voiceEnabled ? "🔊 Voice: ON" : "🔇 Voice: OFF";
-  if (!STATE.voiceEnabled && window.speechSynthesis) {
-    window.speechSynthesis.cancel();
-  }
-}
+  ctxVoiceStatusEl.textContent = STATE.voiceEnabled ? "DAC Active" : "Muted";
+});
 
-function toggleSTSMode() {
-  STATE.stsContinuous = !STATE.stsContinuous;
-  stsToggleBtnEl.classList.toggle("active", STATE.stsContinuous);
-  stsToggleBtnEl.textContent = STATE.stsContinuous ? "🎙️ Hands-Free STS: ACTIVE" : "🎙️ STS Mode";
-  if (STATE.stsContinuous) {
-    STATE.voiceEnabled = true;
-    voiceToggleBtnEl.classList.add("active");
-    voiceToggleBtnEl.textContent = "🔊 Voice: ON";
-    appendNotice("<strong>Hands-Free Speech-to-Speech (STS) Engaged.</strong> Speak freely; agents respond and re-arm microphone automatically.");
-    startListening();
-  } else {
-    stopListening();
-  }
-}
-
-// Message Dispatch & SSE Streaming
-async function dispatchMessage() {
-  const text = chatInputEl.value.trim();
-  if (!text || STATE.isStreaming) return;
-
-  if (text.startsWith("/")) {
-    chatInputEl.value = "";
-    autoResizeInput();
-    runAcceleratorCommand(text);
-    return;
-  }
-
-  appendMessage("user", "Anthony", text, null);
-  chatInputEl.value = "";
-  autoResizeInput();
-
-  STATE.isStreaming = true;
-  sendBtnEl.disabled = true;
-
-  const agent = STATE.agents[STATE.currentAgent] || { name: "Maxx", color: "#06b6d4" };
-  const bubble = createStreamBubble(agent);
-  chatStreamEl.appendChild(bubble.row);
-  chatStreamEl.scrollTop = chatStreamEl.scrollHeight;
-
-  let accumulated = "";
-
-  try {
-    const res = await fetch("/api/chat/stream", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        agent: STATE.currentAgent,
-        model: STATE.currentModel,
-        message: text
-      })
-    });
-
-    const reader = res.body.getReader();
-    const decoder = new TextDecoder();
-
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-
-      const chunk = decoder.decode(value, { stream: true });
-      const lines = chunk.split("\n\n");
-      for (const line of lines) {
-        if (!line.startsWith("data: ")) continue;
-        const rawJson = line.replace("data: ", "").trim();
-        if (!rawJson) continue;
-
-        try {
-          const payload = JSON.parse(rawJson);
-          if (payload.token) {
-            accumulated += payload.token;
-            bubble.contentEl.innerHTML = formatMarkdown(accumulated);
-            chatStreamEl.scrollTop = chatStreamEl.scrollHeight;
-          }
-          if (payload.done) {
-            bubble.telemetryEl.textContent = `${payload.ttft_sec}s TTFT • ${payload.tokens_per_sec} tok/s • ${payload.token_count} tokens`;
-            speakText(accumulated);
-            break;
-          }
-        } catch (e) {}
-      }
-    }
-  } catch (err) {
-    bubble.contentEl.innerHTML += `<div style="color: #ef4444;">[XMARS Engine Error: ${err.message}]</div>`;
-  } finally {
-    STATE.isStreaming = false;
-    sendBtnEl.disabled = false;
-  }
-}
-
-// Accelerator Execution
-async function runAcceleratorCommand(cmd) {
-  const parts = cmd.split(" ");
-  const toolName = parts[0].replace("/", "").toLowerCase();
-  const rest = parts.slice(1).join(" ");
-
-  appendNotice(`⚡ Executing Accelerator: <code>/${toolName}</code>`);
-
-  try {
-    let payload = { tool: toolName, params: {} };
-    if (toolName === "distill") {
-      payload.params = { text: rest || "XMARS.os sovereign intelligence eliminates external data leakage." };
-    } else if (toolName === "drift") {
-      payload.params = { target_dir: "." };
-    } else if (toolName === "audit") {
-      payload.params = {};
-    } else if (toolName === "speak") {
-      payload.params = { agent: STATE.currentAgent, message: rest || "XMARS dot os physical transceiver clear." };
-    } else if (toolName === "heal") {
-      const res = await fetch("/api/remediate", { method: "POST" });
-      const data = await res.json();
-      showInspector("Autonomous Remediation Output", data);
-      return;
-    }
-
-    const res = await fetch("/api/tools/execute", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-    const result = await res.json();
-    showInspector(`Accelerator: /${toolName}`, result);
-  } catch (err) {
-    appendNotice(`❌ Accelerator failed: ${err.message}`);
-  }
-}
-
-function showInspector(title, data) {
-  inspectorTitleEl.textContent = title;
-  inspectorContentEl.textContent = JSON.stringify(data, null, 2);
-  inspectorEl.classList.remove("hidden");
-}
-
-function toggleInspector() {
-  inspectorEl.classList.toggle("hidden");
-}
-
-function triggerPill(cmd) {
-  chatInputEl.value = cmd + " ";
-  chatInputEl.focus();
-  autoResizeInput();
-}
-
-// UI Formatting
-function appendMessage(role, senderName, text, telemetry) {
-  const row = document.createElement("div");
-  row.className = `msg-row ${role}`;
-  row.innerHTML = `
-    <div class="msg-bubble">
-      <div class="msg-header">
-        <div class="msg-sender">${senderName}</div>
-        ${telemetry ? `<div class="msg-telemetry">${telemetry}</div>` : ""}
-      </div>
-      <div class="msg-text">${formatMarkdown(text)}</div>
-    </div>
-  `;
-  chatStreamEl.appendChild(row);
-  chatStreamEl.scrollTop = chatStreamEl.scrollHeight;
-}
-
-function createStreamBubble(agent) {
-  const row = document.createElement("div");
-  row.className = "msg-row assistant";
-  row.innerHTML = `
-    <div class="msg-bubble">
-      <div class="msg-header">
-        <div class="msg-sender" style="color: ${agent.color};">
-          <span style="display:inline-block; width:8px; height:8px; background:${agent.color}; border-radius:50%;"></span>
-          ${agent.name}
-        </div>
-        <div class="msg-telemetry" id="streamTelemetry">Streaming tokens...</div>
-      </div>
-      <div class="msg-text" id="streamBody"></div>
-    </div>
-  `;
-  return {
-    row: row,
-    contentEl: row.querySelector("#streamBody"),
-    telemetryEl: row.querySelector("#streamTelemetry")
-  };
-}
-
-function appendNotice(html) {
-  const row = document.createElement("div");
-  row.style.textAlign = "center";
-  row.style.fontSize = "12px";
-  row.style.color = "#9ca3af";
-  row.style.margin = "8px 0";
-  row.innerHTML = `<span>${html}</span>`;
-  chatStreamEl.appendChild(row);
-  chatStreamEl.scrollTop = chatStreamEl.scrollHeight;
-}
-
-function formatMarkdown(src) {
-  if (!src) return "";
-  let out = src.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  out = out.replace(/```(\w+)?\n([\s\S]*?)```/g, (m, l, code) => {
-    return `<pre><code>${code.trim()}</code><button class="code-copy-btn" onclick="copySnippet(this)">Copy</button></pre>`;
-  });
-  out = out.replace(/`([^`]+)`/g, '<code style="background:#1f2937; padding:2px 6px; border-radius:4px; font-family:var(--font-code); color:#38bdf8;">$1</code>');
-  out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-  out = out.replace(/\n/g, '<br/>');
-  return out;
-}
-
-function copySnippet(btn) {
-  const code = btn.parentElement.querySelector("code");
-  if (code) {
-    navigator.clipboard.writeText(code.innerText);
-    btn.textContent = "Copied!";
-    setTimeout(() => { btn.textContent = "Copy"; }, 2000);
-  }
-}
-
-// 60fps Oscilloscope Canvas
-function initOscilloscope() {
-  const canvas = document.createElement("canvas");
-  canvas.style.position = "absolute";
-  canvas.style.bottom = "84px";
-  canvas.style.right = "24px";
-  canvas.style.width = "220px";
-  canvas.style.height = "55px";
-  canvas.style.pointerEvents = "none";
-  canvas.style.opacity = "0.8";
-  canvas.style.zIndex = "15";
-  document.querySelector(".xmars-main").appendChild(canvas);
-
+function initWaveform() {
+  const canvas = document.getElementById("voiceWaveform");
+  if (!canvas) return;
   const ctx = canvas.getContext("2d");
-  let step = 0;
 
-  function loop() {
-    canvas.width = 220;
-    canvas.height = 55;
+  let t = 0;
+  function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    const active = STATE.isStreaming || STATE.isListening;
-    const amp = STATE.isListening ? 18 : (STATE.isStreaming ? 14 : 3);
-    const speed = active ? 0.16 : 0.04;
-    step += speed;
-
-    ctx.beginPath();
     ctx.lineWidth = 2;
-    ctx.strokeStyle = STATE.isListening ? "#ef4444" : (STATE.isStreaming ? "#06b6d4" : "#374151");
-    ctx.shadowBlur = active ? 10 : 0;
-    ctx.shadowColor = STATE.isListening ? "#ef4444" : "#06b6d4";
+    ctx.strokeStyle = STATE.voiceEnabled ? "#00f0ff" : "#64748b";
+    ctx.beginPath();
+
+    const mid = canvas.height / 2;
+    const amp = STATE.voiceEnabled ? (STATE.isStreaming ? 14 : 4) : 1;
 
     for (let x = 0; x < canvas.width; x++) {
-      const y = canvas.height / 2 + Math.sin(x * 0.04 + step) * amp * Math.cos(x * 0.015 + step * 0.5);
+      const y = mid + Math.sin(x * 0.05 + t) * Math.cos(x * 0.02 + t * 0.5) * amp;
       if (x === 0) ctx.moveTo(x, y);
       else ctx.lineTo(x, y);
     }
     ctx.stroke();
-
-    requestAnimationFrame(loop);
+    t += 0.05;
+    requestAnimationFrame(draw);
   }
-  loop();
+  draw();
 }
-
-window.addEventListener("DOMContentLoaded", initXmars);

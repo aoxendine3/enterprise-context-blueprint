@@ -15,8 +15,8 @@ class XmarsHardwareGovernor:
         self.logical_cores = os.cpu_count() or 4
         self.arch = platform.machine()
         self.system = platform.system()
-        self.optimal_threads = max(1, self.logical_cores - 1)
-        self.max_context_bound = 4096 # Strict context window ceiling
+        self.optimal_threads = self.logical_cores if self.logical_cores <= 4 else max(1, self.logical_cores - 1)
+        self.max_context_bound = 4096 # Strict context ceiling
         self.max_kv_ram_mb = 512 # Pinned KV memory allocation ceiling
 
     def inspect_topology(self) -> Dict[str, Any]:

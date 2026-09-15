@@ -1,0 +1,14 @@
+{
+  "active_tasks": [],
+  "completed_tasks": [],
+  "pending": [
+    {
+      "task_id": "PRM-20260913-065857-01",
+      "name": "Action: Ingest and elevate sovereign intelligence framework with zero theater.",
+      "created_at": "2026-09-13T06:58:57.594046+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "2feb2c0b3db9"
+    }
+  ]
+}
