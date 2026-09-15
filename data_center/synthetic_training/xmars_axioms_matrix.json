@@ -1,8 +1,8 @@
 {
   "manifest": "XMARS_AXIOMS_MATRIX_V1",
-  "generated_at": 1789435811.5032082,
-  "total_dpo_pairs": 504,
-  "total_instruct_pairs": 504,
+  "generated_at": 1789453799.966355,
+  "total_dpo_pairs": 510,
+  "total_instruct_pairs": 510,
   "core_axioms": [
     "AXIOM_1: All sovereign computation must respect hardware-governed memory ceilings.",
     "AXIOM_2: Zero silent mutations. Audio-first intent declaration is permanent law.",

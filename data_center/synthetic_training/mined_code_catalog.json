@@ -1,11 +1,11 @@
 {
   "version": "1.0.0-HASTE",
-  "timestamp": 1789435811.394081,
-  "mining_duration_sec": 1.343,
-  "total_files": 504,
-  "total_code_units": 1249,
+  "timestamp": 1789453799.8564274,
+  "mining_duration_sec": 0.422,
+  "total_files": 510,
+  "total_code_units": 1273,
   "repos": {
-    "SSOT_Agentic_Brain": 392,
+    "SSOT_Agentic_Brain": 398,
     "xoras_core_institutional": 112
   },
   "files": [
@@ -4450,8 +4450,8 @@
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "data_center\\golden_list\\GOLDEN_LIST.json",
       "extension": ".json",
-      "size_bytes": 6014,
-      "sha256": "2abcf709dfb2a9b2",
+      "size_bytes": 6874,
+      "sha256": "dad0b6fe8fc698eb",
       "units_count": 0,
       "units": [],
       "summary": "{   \"manifest_version\": \"1.0.0-SOVEREIGN\",   \"constitutional_rule\": \"LOG_ENTRY_066\",   \"admission_criteria\": {     \"market_superiority\": \"Must demonstrate orders-of-magnitude superiority over existing industry standards\",     \"anti_basic_filter\": \"Basic, generic, or boilerplate work is permanently disqualified\",     \"immediate_purpose\": \"Must fulfill an active, mission-critical operational need ri"
@@ -4460,9 +4460,9 @@
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "data_center\\golden_list\\GOLDEN_LIST.md",
       "extension": ".md",
-      "size_bytes": 5073,
-      "sha256": "7e034b57a6c997b5",
-      "units_count": 10,
+      "size_bytes": 5752,
+      "sha256": "aea71417bd9642be",
+      "units_count": 11,
       "units": [
         {
           "type": "heading",
@@ -4502,30 +4502,34 @@
         },
         {
           "type": "heading",
+          "name": "`GOLDEN-007`: xmars-sovereign-distill-c1"
+        },
+        {
+          "type": "heading",
           "name": "\ud83d\uded1 Rejected Audit Log (Basic / Flawed / Sub-Standard)"
         }
       ],
-      "summary": "# \ud83c\udfc6 THE SOVEREIGN FLAWLESS GOLDEN LIST  **Governing Rule:** Log Entry #066 (Blackbox Review System) **Last Certified:** 2026-09-15T01:28:32.575407Z **Total Admitted Assets:** 6 **Total Rejected Candidates:** 1  ---  ## \ud83d\udd12 Admission Standard > **Near-Impossible Threshold:** A build or component is admitted ONLY if it vastly excels market standards, exhibits ZERO flaws in every build metric, serves a"
+      "summary": "# \ud83c\udfc6 THE SOVEREIGN FLAWLESS GOLDEN LIST  **Governing Rule:** Log Entry #066 (Blackbox Review System) **Last Certified:** 2026-09-15T06:28:16.171201Z **Total Admitted Assets:** 7 **Total Rejected Candidates:** 2  ---  ## \ud83d\udd12 Admission Standard > **Near-Impossible Threshold:** A build or component is admitted ONLY if it vastly excels market standards, exhibits ZERO flaws in every build metric, serves a"
     },
     {
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "data_center\\synthetic_training\\mined_code_catalog.json",
       "extension": ".json",
-      "size_bytes": 481119,
-      "sha256": "365483de26b809d4",
+      "size_bytes": 481568,
+      "sha256": "f70f87e77c43ddfd",
       "units_count": 0,
       "units": [],
-      "summary": "{   \"version\": \"1.0.0-HASTE\",   \"timestamp\": 1789435712.4588587,   \"mining_duration_sec\": 0.367,   \"total_files\": 504,   \"total_code_units\": 1248,   \"repos\": {     \"SSOT_Agentic_Brain\": 392,     \"xoras_core_institutional\": 112   },   \"files\": [     {       \"repo\": \"SSOT_Agentic_Brain\",       \"relative_path\": \"AGENTS.md\",       \"extension\": \".md\",       \"size_bytes\": 16011,       \"sha256\": \"29bde12"
+      "summary": "{   \"version\": \"1.0.0-HASTE\",   \"timestamp\": 1789453733.538113,   \"mining_duration_sec\": 3.565,   \"total_files\": 505,   \"total_code_units\": 1250,   \"repos\": {     \"SSOT_Agentic_Brain\": 393,     \"xoras_core_institutional\": 112   },   \"files\": [     {       \"repo\": \"SSOT_Agentic_Brain\",       \"relative_path\": \"AGENTS.md\",       \"extension\": \".md\",       \"size_bytes\": 16011,       \"sha256\": \"29bde12b"
     },
     {
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "data_center\\synthetic_training\\xmars_axioms_matrix.json",
       "extension": ".json",
       "size_bytes": 597,
-      "sha256": "1a2afbce4a12ba76",
+      "sha256": "ba31b81b131c6efc",
       "units_count": 0,
       "units": [],
-      "summary": "{   \"manifest\": \"XMARS_AXIOMS_MATRIX_V1\",   \"generated_at\": 1789435712.5706842,   \"total_dpo_pairs\": 504,   \"total_instruct_pairs\": 504,   \"core_axioms\": [     \"AXIOM_1: All sovereign computation must respect hardware-governed memory ceilings.\",     \"AXIOM_2: Zero silent mutations. Audio-first intent declaration is permanent law.\",     \"AXIOM_3: Adversarial falsification must precede Golden List a"
+      "summary": "{   \"manifest\": \"XMARS_AXIOMS_MATRIX_V1\",   \"generated_at\": 1789453733.6514804,   \"total_dpo_pairs\": 505,   \"total_instruct_pairs\": 505,   \"core_axioms\": [     \"AXIOM_1: All sovereign computation must respect hardware-governed memory ceilings.\",     \"AXIOM_2: Zero silent mutations. Audio-first intent declaration is permanent law.\",     \"AXIOM_3: Adversarial falsification must precede Golden List a"
     },
     {
       "repo": "SSOT_Agentic_Brain",
@@ -4663,6 +4667,71 @@
     },
     {
       "repo": "SSOT_Agentic_Brain",
+      "relative_path": "docs\\blog\\INDEX.md",
+      "extension": ".md",
+      "size_bytes": 475,
+      "sha256": "d8051b3e6dca9dae",
+      "units_count": 1,
+      "units": [
+        {
+          "type": "heading",
+          "name": "\ud83d\udce1 XORAS & XMARS SOVEREIGN AGENT BLOG"
+        }
+      ],
+      "summary": "# \ud83d\udce1 XORAS & XMARS SOVEREIGN AGENT BLOG *Real-time empirical intelligence authored by the Lead 9 Autonomous Council.* **Last Synchronized:** 2026-09-15 06:29:45Z  | ID | Title | Authors | Status | |---|---|---|---| | [Post 001](post_001_hyper_accelerated_synthetic_training.md) | Compressing Time: X-HASTE Mining | Maxx & Clara | Certified | | [Post 002](post_002_autonomous_governance_and_memory_hygi"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "docs\\blog\\post_001_hyper_accelerated_synthetic_training.md",
+      "extension": ".md",
+      "size_bytes": 1986,
+      "sha256": "4ee48e5b2a955294",
+      "units_count": 4,
+      "units": [
+        {
+          "type": "heading",
+          "name": "Post 001: Compressing Time \u2014 How X-HASTE Mines 1,250 Code Units in 3.5 Seconds"
+        },
+        {
+          "type": "heading",
+          "name": "The Problem: Cloud Token Burn & Slow Training Loops"
+        },
+        {
+          "type": "heading",
+          "name": "The Solution: Hyper-Accelerated Synthetic Training Engine (X-HASTE)"
+        },
+        {
+          "type": "heading",
+          "name": "Direct Preference Optimization (DPO) at Machine Speed"
+        }
+      ],
+      "summary": "# Post 001: Compressing Time \u2014 How X-HASTE Mines 1,250 Code Units in 3.5 Seconds **Author:** Maxx (Systems Architect) & Clara (Synthetic Research)   **Date:** 2026-09-15 06:29:45Z   **Category:** Machine Learning & Synthetic Training   **Status:** PUBLISHED    ---  ### The Problem: Cloud Token Burn & Slow Training Loops Traditional LLM fine-tuning requires waiting weeks for human annotation, burni"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "docs\\blog\\post_002_autonomous_governance_and_memory_hygiene.md",
+      "extension": ".md",
+      "size_bytes": 1576,
+      "sha256": "93c3460735849ef8",
+      "units_count": 3,
+      "units": [
+        {
+          "type": "heading",
+          "name": "Post 002: Zero Memory Drift \u2014 Inside the 180s Autonomous Supervisor"
+        },
+        {
+          "type": "heading",
+          "name": "Operating 24/7 Without Crashing"
+        },
+        {
+          "type": "heading",
+          "name": "The Invariants of the Supervisor"
+        }
+      ],
+      "summary": "# Post 002: Zero Memory Drift \u2014 Inside the 180s Autonomous Supervisor **Author:** Jarvis (Governance Lead) & Daxx (Error Remediation Master)   **Date:** 2026-09-15 06:29:45Z   **Category:** Systems Architecture & Autonomous Governance   **Status:** PUBLISHED    ---  ### Operating 24/7 Without Crashing Long-running AI agents face a fatal vulnerability: **context bloating and memory drift**. Without"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
       "relative_path": "docs\\briefings\\daxx_progress.md",
       "extension": ".md",
       "size_bytes": 732,
@@ -4770,6 +4839,65 @@
         }
       ],
       "summary": "# \ud83c\udfc6 XORAS SOVEREIGN SYSTEMS: MASTER ARCHITECTURAL DOSSIER # The Ground-Up Sovereign Core Rework & Extreme Byzantine Torture Gauntlet  **Compiled By**: Maxx (Operations Lead & Systems Architecture Lead)   **Host Architecture**: Windows 10 Bare Metal (`192.168.1.211`, Intel x86_64, 4 Logical Cores)   **Reference Architecture**: Apple Silicon Mac M4 (`192.168.1.133`, 10 Cores, Unified Memory 120 GB/s"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "docs\\guide\\THE_SOVEREIGN_ENTERPRISE_MACHINE.md",
+      "extension": ".md",
+      "size_bytes": 5555,
+      "sha256": "e8c4e7ca2a4a876b",
+      "units_count": 12,
+      "units": [
+        {
+          "type": "heading",
+          "name": "THE SOVEREIGN ENTERPRISE MACHINE"
+        },
+        {
+          "type": "heading",
+          "name": "A Field Guide to Autonomous AI Operating Systems, Self-Refining Corpora, and Game Worlds"
+        },
+        {
+          "type": "heading",
+          "name": "Prologue: The Sovereign Mandate"
+        },
+        {
+          "type": "heading",
+          "name": "Chapter 1: The Six-Pillar Architecture"
+        },
+        {
+          "type": "heading",
+          "name": "Chapter 2: Compressing Years of Training into Fractions of Time"
+        },
+        {
+          "type": "heading",
+          "name": "Chapter 3: The Enterprise Building Machine"
+        },
+        {
+          "type": "heading",
+          "name": "Chapter 4: Future Horizons \u2014 Sovereign RPG Game Worlds"
+        },
+        {
+          "type": "heading",
+          "name": "Chapter 5: Operational Commands & Field Reference"
+        },
+        {
+          "type": "heading",
+          "name": "Check system and training telemetry"
+        },
+        {
+          "type": "heading",
+          "name": "Trigger synthetic training distillation"
+        },
+        {
+          "type": "heading",
+          "name": "Audit a candidate module"
+        },
+        {
+          "type": "heading",
+          "name": "Inspect 24/7 background supervisor"
+        }
+      ],
+      "summary": "# THE SOVEREIGN ENTERPRISE MACHINE ### A Field Guide to Autonomous AI Operating Systems, Self-Refining Corpora, and Game Worlds **By Anthony Oxendine & The Lead 9 Sovereign Council**   **Version:** 1.0.0-PROD | **Certified Assets:** 7 | **Active Node Fabric:** ['Maxx', 'Jarvis', 'Clara', 'Vance', 'Daxx', 'Orion']   **Telemetry Benchmark:** 1250 Mined Units \u00b7 505 DPO Pairs \u00b7 203 Supervisor Pulses"
     },
     {
       "repo": "SSOT_Agentic_Brain",
@@ -5503,6 +5631,16 @@
     },
     {
       "repo": "SSOT_Agentic_Brain",
+      "relative_path": "memory\\agent_logs\\forge_train_test.json",
+      "extension": ".json",
+      "size_bytes": 413,
+      "sha256": "d28e4af759c289d9",
+      "units_count": 0,
+      "units": [],
+      "summary": "{   \"status\": \"success\",   \"cycles_completed\": 1,   \"mined_files\": 505,   \"mined_units\": 1250,   \"dpo_pairs\": 505,   \"instruct_pairs\": 505,   \"duration_sec\": 0.023,   \"catalog_file\": \"C:\\\\Users\\\\admin\\\\Desktop\\\\SSOT_Agentic_Brain\\\\data_center\\\\synthetic_training\\\\mined_code_catalog.json\",   \"corpus_file\": \"C:\\\\Users\\\\admin\\\\Desktop\\\\SSOT_Agentic_Brain\\\\data_center\\\\synthetic_training\\\\xmars_dpo_co"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
       "relative_path": "memory\\agent_logs\\xmars_saas_tunnel.json",
       "extension": ".json",
       "size_bytes": 121,
@@ -5616,11 +5754,11 @@
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "memory\\journals\\daemon_status_48hr.json",
       "extension": ".json",
-      "size_bytes": 620,
-      "sha256": "296ea74c71c4ccc2",
+      "size_bytes": 622,
+      "sha256": "a3cb00df68ee674b",
       "units_count": 0,
       "units": [],
-      "summary": "{   \"status\": \"COOKING_ACTIVE_24_7\",   \"start_time\": \"2026-09-14T03:36:40.394701+00:00\",   \"current_time\": \"2026-09-15T01:29:40.103160+00:00\",   \"target_cook_duration_hours\": 48.0,   \"hours_elapsed\": 21.8832,   \"hours_remaining\": 26.1168,   \"progress_pct\": 45.59,   \"total_cycles_completed\": 2495,   \"total_signals_distilled\": 59880,   \"healing_pulses_total\": 0,   \"last_cycle_duration_sec\": 78.274,"
+      "summary": "{   \"status\": \"COOKING_ACTIVE_24_7\",   \"start_time\": \"2026-09-14T03:36:40.394701+00:00\",   \"current_time\": \"2026-09-15T06:29:37.235906+00:00\",   \"target_cook_duration_hours\": 48.0,   \"hours_elapsed\": 26.8825,   \"hours_remaining\": 21.1175,   \"progress_pct\": 56.01,   \"total_cycles_completed\": 3080,   \"total_signals_distilled\": 73920,   \"healing_pulses_total\": 0,   \"last_cycle_duration_sec\": 8.53,"
     },
     {
       "repo": "SSOT_Agentic_Brain",
@@ -5913,6 +6051,32 @@
       "units_count": 0,
       "units": [],
       "summary": "{   \"root\": \"C:\\\\Users\\\\admin\\\\Desktop\\\\SSOT_Agentic_Brain\",   \"manifest_file_count\": 404,   \"classification\": {     \"resolves\": 521,     \"stale_root\": 109,     \"phantom\": 155,     \"external\": 151   },   \"phantom\": {     \"Xoras_agent_cards/\": [       \"AGENTS.md\"     ],     \"memory/agent_logs/agent_inbox.jsonl\": [       \"AGENTS.md\",       \"ops/scripts/agent_comms_pipeline.py\"     ],     \"memory/age"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "ops\\publishing\\agent_blog_and_guide_generator.py",
+      "extension": ".py",
+      "size_bytes": 15113,
+      "sha256": "cf132b45544b8e35",
+      "units_count": 3,
+      "units": [
+        {
+          "type": "function",
+          "name": "generate_blog_posts",
+          "args": "telemetry: dict"
+        },
+        {
+          "type": "function",
+          "name": "generate_field_guide",
+          "args": "telemetry: dict"
+        },
+        {
+          "type": "function",
+          "name": "main",
+          "args": ""
+        }
+      ],
+      "summary": "#!/usr/bin/env python3 \"\"\" ops/publishing/agent_blog_and_guide_generator.py Autonomous Agent Blog & Enterprise Field Guide Generator.  Harvests real-time telemetry from: - Autonomous governance cycles (KV-cache, memory hygiene) - X-HASTE synthetic training corpora (mined ASTs, DPO pairs) - Blackbox Review Engine & Golden List admissions - Lead 9 Council deliberation journals  Produces: 1. Continuo"
     },
     {
       "repo": "SSOT_Agentic_Brain",
@@ -7453,11 +7617,11 @@
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "ops\\scripts\\fullscreen_ui\\current_timing.json",
       "extension": ".json",
-      "size_bytes": 147,
-      "sha256": "bc492559649bd776",
+      "size_bytes": 2187,
+      "sha256": "1677d2dff3afff43",
       "units_count": 0,
       "units": [],
-      "summary": "{   \"agent\": \"clara\",   \"text\": \"\",   \"synthesizing\": false,   \"words\": [],   \"duration\": 0.0,   \"timestamp\": 1789435810.8337326,   \"cycle\": 2496 }"
+      "summary": "{   \"agent\": \"jarvis\",   \"text\": \"Anthony, the distillation cycle's cryptographic integrity is verified and the off-grid lockstep stability is maintained, ensuring the council's directives are executed with unwavering precision.\",   \"synthesizing\": false,   \"words\": [     {       \"word\": \"Anthony,\",       \"start\": 0.0,       \"end\": 0.26     },     {       \"word\": \"the\",       \"start\": 0.26,"
     },
     {
       "repo": "SSOT_Agentic_Brain",
