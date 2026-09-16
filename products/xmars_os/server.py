@@ -22,6 +22,7 @@ from accelerators import dispatch_accelerator
 from hardware_governor import governor
 from embedded_transformer import transformer_core
 from autonomy import autonomy_engine
+from self_upgrade import self_upgrade_engine
 from cloudflare_bridge import cf_bridge, CF_MODELS
 
 try:
@@ -291,7 +292,10 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
                 self._serve_static_file(path.lstrip("/"))
                 return
 
-            # API endpoints
+            if path == "/api/upgrades":
+                self._send_json(200, {"status": "success", "data": self_upgrade_engine.get_status()})
+                return
+
             if path == "/api/agents":
                 self._send_json(200, {"status": "success", "agents": XMARS_COUNCIL})
             elif path == "/api/models":
