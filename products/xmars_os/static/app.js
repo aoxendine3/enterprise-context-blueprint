@@ -623,6 +623,13 @@ async function refreshHealth() {
       document.getElementById("hudContext").textContent = `${data.hardware_governor?.max_context_bound || 4096} Bound`;
       document.getElementById("hudPressure").textContent = data.hardware_governor?.memory_pressure || "NORMAL";
     }
+
+    const upRes = await fetch("/api/upgrades");
+    const upData = await upRes.json();
+    if (upData && upData.status === "success") {
+      const el = document.getElementById("hudUpgrades");
+      if (el) el.textContent = `${upData.data.feature_count} Live`;
+    }
   } catch (err) {
     latencyLabelEl.textContent = "Kernel Offline";
   }
