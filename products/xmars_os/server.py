@@ -277,11 +277,17 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
             elif path in ["/landing", "/landing.html"]:
                 self._serve_static_file("landing.html", "text/html; charset=utf-8")
                 return
+            elif path in ["/store", "/store.html"]:
+                self._serve_static_file("store.html", "text/html; charset=utf-8")
+                return
+            elif path.startswith("/assets/"):
+                self._serve_static_file(path.lstrip("/"))
+                return
             elif path.startswith("/static/"):
                 rel_file = path[len("/static/"):]
                 self._serve_static_file(rel_file)
                 return
-            elif path in ["/styles.css", "/app.js", "/preview_sandbox.html"]:
+            elif path in ["/styles.css", "/app.js", "/preview_sandbox.html", "/store.html"]:
                 self._serve_static_file(path.lstrip("/"))
                 return
 
@@ -341,9 +347,11 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
 
     def _serve_static_file(self, filename: str, forced_mime: str = None):
         target_path = os.path.abspath(os.path.join(STATIC_DIR, filename))
-        if not target_path.startswith(STATIC_DIR) or not os.path.isfile(target_path):
-            self._send_json(404, {"status": "error", "message": f"Static asset '{filename}' not found."})
-            return
+        if not (target_path.startswith(STATIC_DIR) and os.path.isfile(target_path)):
+            target_path = os.path.abspath(os.path.join(SSOT_ROOT, filename))
+            if not (target_path.startswith(SSOT_ROOT) and os.path.isfile(target_path)):
+                self._send_json(404, {"status": "error", "message": f"Static asset '{filename}' not found."})
+                return
         
         mime = forced_mime
         if not mime:
@@ -352,6 +360,7 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
             elif filename.endswith(".css"): mime = "text/css; charset=utf-8"
             elif filename.endswith(".json"): mime = "application/json; charset=utf-8"
             elif filename.endswith(".png"): mime = "image/png"
+            elif filename.endswith(".jpg") or filename.endswith(".jpeg"): mime = "image/jpeg"
             elif filename.endswith(".svg"): mime = "image/svg+xml"
             else: mime = "text/plain; charset=utf-8"
 

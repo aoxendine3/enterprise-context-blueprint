@@ -1,11 +1,11 @@
 {
   "version": "1.0.0-HASTE",
-  "timestamp": 1789496643.2851734,
-  "mining_duration_sec": 0.489,
-  "total_files": 515,
-  "total_code_units": 1292,
+  "timestamp": 1789525455.6443453,
+  "mining_duration_sec": 28.716,
+  "total_files": 517,
+  "total_code_units": 1319,
   "repos": {
-    "SSOT_Agentic_Brain": 403,
+    "SSOT_Agentic_Brain": 405,
     "xoras_core_institutional": 112
   },
   "files": [
@@ -4450,8 +4450,8 @@
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "data_center\\golden_list\\GOLDEN_LIST.json",
       "extension": ".json",
-      "size_bytes": 38877,
-      "sha256": "a6c8835b4705825a",
+      "size_bytes": 98077,
+      "sha256": "36eda1dac2f7de2f",
       "units_count": 0,
       "units": [],
       "summary": "{   \"manifest_version\": \"1.0.0-SOVEREIGN\",   \"constitutional_rule\": \"LOG_ENTRY_066\",   \"admission_criteria\": {     \"market_superiority\": \"Must demonstrate orders-of-magnitude superiority over existing industry standards\",     \"anti_basic_filter\": \"Basic, generic, or boilerplate work is permanently disqualified\",     \"immediate_purpose\": \"Must fulfill an active, mission-critical operational need ri"
@@ -4460,8 +4460,8 @@
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "data_center\\golden_list\\GOLDEN_LIST.md",
       "extension": ".md",
-      "size_bytes": 30651,
-      "sha256": "8386d8eb23283793",
+      "size_bytes": 76531,
+      "sha256": "e612e2afc75e3aa5",
       "units_count": 20,
       "units": [
         {
@@ -4545,27 +4545,27 @@
           "name": "`GOLDEN-017`: xmars-sovereign-distill-c3"
         }
       ],
-      "summary": "# \ud83c\udfc6 THE SOVEREIGN FLAWLESS GOLDEN LIST  **Governing Rule:** Log Entry #066 (Blackbox Review System) **Last Certified:** 2026-09-15T18:19:44.902072Z **Total Admitted Assets:** 55 **Total Rejected Candidates:** 2  ---  ## \ud83d\udd12 Admission Standard > **Near-Impossible Threshold:** A build or component is admitted ONLY if it vastly excels market standards, exhibits ZERO flaws in every build metric, serves"
+      "summary": "# \ud83c\udfc6 THE SOVEREIGN FLAWLESS GOLDEN LIST  **Governing Rule:** Log Entry #066 (Blackbox Review System) **Last Certified:** 2026-09-16T02:18:45.958857Z **Total Admitted Assets:** 145 **Total Rejected Candidates:** 2  ---  ## \ud83d\udd12 Admission Standard > **Near-Impossible Threshold:** A build or component is admitted ONLY if it vastly excels market standards, exhibits ZERO flaws in every build metric, serves"
     },
     {
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "data_center\\synthetic_training\\mined_code_catalog.json",
       "extension": ".json",
-      "size_bytes": 493684,
-      "sha256": "c5ae3edef129e4ce",
+      "size_bytes": 498272,
+      "sha256": "36bfd83f3baaec53",
       "units_count": 0,
       "units": [],
-      "summary": "{   \"version\": \"1.0.0-HASTE\",   \"timestamp\": 1789496384.7416883,   \"mining_duration_sec\": 0.377,   \"total_files\": 515,   \"total_code_units\": 1292,   \"repos\": {     \"SSOT_Agentic_Brain\": 403,     \"xoras_core_institutional\": 112   },   \"files\": [     {       \"repo\": \"SSOT_Agentic_Brain\",       \"relative_path\": \"AGENTS.md\",       \"extension\": \".md\",       \"size_bytes\": 16011,       \"sha256\": \"29bde12"
+      "summary": "{   \"version\": \"1.0.0-HASTE\",   \"timestamp\": 1789525125.4644384,   \"mining_duration_sec\": 1.87,   \"total_files\": 517,   \"total_code_units\": 1319,   \"repos\": {     \"SSOT_Agentic_Brain\": 405,     \"xoras_core_institutional\": 112   },   \"files\": [     {       \"repo\": \"SSOT_Agentic_Brain\",       \"relative_path\": \"AGENTS.md\",       \"extension\": \".md\",       \"size_bytes\": 16011,       \"sha256\": \"29bde12b"
     },
     {
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "data_center\\synthetic_training\\xmars_axioms_matrix.json",
       "extension": ".json",
       "size_bytes": 597,
-      "sha256": "90d2532c88c49f07",
+      "sha256": "0863f42121ffb9fa",
       "units_count": 0,
       "units": [],
-      "summary": "{   \"manifest\": \"XMARS_AXIOMS_MATRIX_V1\",   \"generated_at\": 1789496384.8542366,   \"total_dpo_pairs\": 515,   \"total_instruct_pairs\": 515,   \"core_axioms\": [     \"AXIOM_1: All sovereign computation must respect hardware-governed memory ceilings.\",     \"AXIOM_2: Zero silent mutations. Audio-first intent declaration is permanent law.\",     \"AXIOM_3: Adversarial falsification must precede Golden List a"
+      "summary": "{   \"manifest\": \"XMARS_AXIOMS_MATRIX_V1\",   \"generated_at\": 1789525125.9272106,   \"total_dpo_pairs\": 517,   \"total_instruct_pairs\": 517,   \"core_axioms\": [     \"AXIOM_1: All sovereign computation must respect hardware-governed memory ceilings.\",     \"AXIOM_2: Zero silent mutations. Audio-first intent declaration is permanent law.\",     \"AXIOM_3: Adversarial falsification must precede Golden List a"
     },
     {
       "repo": "SSOT_Agentic_Brain",
@@ -4788,6 +4788,69 @@
         }
       ],
       "summary": "# Post 003: The Sovereign Enterprise Machine \u2014 Field Guide Certified (GOLDEN-009) **Author:** Jarvis (Governance Lead) & William Vance (Discernment Lead)   **Date:** 2026-09-15 14:10:13Z   **Category:** Canonical Doctrine & Enterprise Architecture   **Status:** PUBLISHED & CERTIFIED    ---  ### The Sovereign Masterwork Greenlight Following rigorous QA and full adversarial evaluation by William Van"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "docs\\briefings\\COMMERCIAL_LISTINGS_AND_PRICING_CATALOG.md",
+      "extension": ".md",
+      "size_bytes": 11099,
+      "sha256": "a03fde9e498a86a9",
+      "units_count": 13,
+      "units": [
+        {
+          "type": "heading",
+          "name": "XORAS & XMARS.os // COMMERCIAL LISTINGS & PRICING CATALOG"
+        },
+        {
+          "type": "heading",
+          "name": "Multi-Channel Distribution Matrix: Pinterest, Gumroad, Amazon KDP, Leanpub & Sovereign Storefront"
+        },
+        {
+          "type": "heading",
+          "name": "1. Executive Revenue Architecture"
+        },
+        {
+          "type": "heading",
+          "name": "2. Product 1: The Sovereign Enterprise Machine (Official Field Guide)"
+        },
+        {
+          "type": "heading",
+          "name": "Pricing Matrix"
+        },
+        {
+          "type": "heading",
+          "name": "Pinterest Product Pin Specification (Product 1: The Book)"
+        },
+        {
+          "type": "heading",
+          "name": "Amazon KDP Metadata Specification (Product 1)"
+        },
+        {
+          "type": "heading",
+          "name": "3. Product 2: XMARS.os Sovereign AI Operating System (Software Stack)"
+        },
+        {
+          "type": "heading",
+          "name": "Pricing Matrix"
+        },
+        {
+          "type": "heading",
+          "name": "Pinterest Product Pin Specification (Product 2: Software Stack)"
+        },
+        {
+          "type": "heading",
+          "name": "4. Product 3: The Complete Sovereign Enterprise Machine Bundle (Book + Code + Forge)"
+        },
+        {
+          "type": "heading",
+          "name": "5. Multi-Channel Deployment Checklist"
+        },
+        {
+          "type": "heading",
+          "name": "6. Verification & Governance Signature"
+        }
+      ],
+      "summary": "# XORAS & XMARS.os // COMMERCIAL LISTINGS & PRICING CATALOG ## Multi-Channel Distribution Matrix: Pinterest, Gumroad, Amazon KDP, Leanpub & Sovereign Storefront **Certified Production Release | Status: GOLDEN-056**   **Author & Sovereign Architect:** Anthony Oxendine   **Council Oversight:** Maxx (Lead Architect), Jarvis (Governance), William Vance (Commercial Risk Audit)    ---  ## 1. Executive R"
     },
     {
       "repo": "SSOT_Agentic_Brain",
@@ -5734,11 +5797,11 @@
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "memory\\agent_logs\\xmars_saas_tunnel.json",
       "extension": ".json",
-      "size_bytes": 132,
-      "sha256": "dd28d77a16d97a14",
+      "size_bytes": 134,
+      "sha256": "6bb45601988a86ae",
       "units_count": 0,
       "units": [],
-      "summary": "{   \"tunnel_url\": \"https://ralph-approximate-seemed-medieval.trycloudflare.com\",   \"created_at\": 1789496035.885009,   \"port\": 8085 }"
+      "summary": "{   \"tunnel_url\": \"https://membrane-carries-cocktail-retained.trycloudflare.com\",   \"created_at\": 1789504373.6198597,   \"port\": 8085 }"
     },
     {
       "repo": "SSOT_Agentic_Brain",
@@ -5845,11 +5908,11 @@
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "memory\\journals\\daemon_status_48hr.json",
       "extension": ".json",
-      "size_bytes": 621,
-      "sha256": "eca067ce2b0abe34",
+      "size_bytes": 622,
+      "sha256": "67dd01fc376d3917",
       "units_count": 0,
       "units": [],
-      "summary": "{   \"status\": \"COOKING_ACTIVE_24_7\",   \"start_time\": \"2026-09-14T03:36:40.394701+00:00\",   \"current_time\": \"2026-09-15T18:24:00.863636+00:00\",   \"target_cook_duration_hours\": 48.0,   \"hours_elapsed\": 38.789,   \"hours_remaining\": 9.211,   \"progress_pct\": 80.81,   \"total_cycles_completed\": 4442,   \"total_signals_distilled\": 106608,   \"healing_pulses_total\": 0,   \"last_cycle_duration_sec\": 8.153,   \""
+      "summary": "{   \"status\": \"COOKING_ACTIVE_24_7\",   \"start_time\": \"2026-09-14T03:36:40.394701+00:00\",   \"current_time\": \"2026-09-15T19:36:38.186736+00:00\",   \"target_cook_duration_hours\": 48.0,   \"hours_elapsed\": 39.9994,   \"hours_remaining\": 8.0006,   \"progress_pct\": 83.33,   \"total_cycles_completed\": 4581,   \"total_signals_distilled\": 109944,   \"healing_pulses_total\": 0,   \"last_cycle_duration_sec\": 5.081,"
     },
     {
       "repo": "SSOT_Agentic_Brain",
@@ -5865,11 +5928,11 @@
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "memory\\tasks\\queue.json",
       "extension": ".json",
-      "size_bytes": 374,
-      "sha256": "cfd5db85c7966828",
+      "size_bytes": 983,
+      "sha256": "023b09c647c2d9bd",
       "units_count": 0,
       "units": [],
-      "summary": "{   \"active_tasks\": [],   \"completed_tasks\": [],   \"pending\": [     {       \"task_id\": \"PRM-20260913-065857-01\",       \"name\": \"Action: Ingest and elevate sovereign intelligence framework with zero theater.\",       \"created_at\": \"2026-09-13T06:58:57.594046+00:00\",       \"status\": \"PENDING\",       \"source\": \"anthony_prompt\",       \"prompt_hash\": \"2feb2c0b3db9\"     }   ] }"
+      "summary": "{   \"active_tasks\": [],   \"completed_tasks\": [],   \"pending\": [     {       \"task_id\": \"PRM-20260913-065857-01\",       \"name\": \"Action: Ingest and elevate sovereign intelligence framework with zero theater.\",       \"created_at\": \"2026-09-13T06:58:57.594046+00:00\",       \"status\": \"PENDING\",       \"source\": \"anthony_prompt\",       \"prompt_hash\": \"2feb2c0b3db9\"     },     {       \"task_id\": \"PRM-202"
     },
     {
       "repo": "SSOT_Agentic_Brain",
@@ -7439,6 +7502,87 @@
     },
     {
       "repo": "SSOT_Agentic_Brain",
+      "relative_path": "ops\\scripts\\local_handoff_executor.py",
+      "extension": ".py",
+      "size_bytes": 16680,
+      "sha256": "12d9d842379293db",
+      "units_count": 14,
+      "units": [
+        {
+          "type": "function",
+          "name": "log_result",
+          "args": "task_id: str, status: str, model: str, detail: str"
+        },
+        {
+          "type": "function",
+          "name": "task",
+          "args": "task_id, model, description"
+        },
+        {
+          "type": "function",
+          "name": "check_store_page",
+          "args": ""
+        },
+        {
+          "type": "function",
+          "name": "check_book_jpg",
+          "args": ""
+        },
+        {
+          "type": "function",
+          "name": "check_xmars_jpg",
+          "args": ""
+        },
+        {
+          "type": "function",
+          "name": "check_404",
+          "args": ""
+        },
+        {
+          "type": "function",
+          "name": "check_index",
+          "args": ""
+        },
+        {
+          "type": "function",
+          "name": "gen_voice_capture",
+          "args": ""
+        },
+        {
+          "type": "function",
+          "name": "gen_voice_router",
+          "args": ""
+        },
+        {
+          "type": "function",
+          "name": "gen_orchestrator",
+          "args": ""
+        },
+        {
+          "type": "function",
+          "name": "create_launch_scripts",
+          "args": ""
+        },
+        {
+          "type": "function",
+          "name": "gen_voice_docs",
+          "args": ""
+        },
+        {
+          "type": "function",
+          "name": "git_commit",
+          "args": ""
+        },
+        {
+          "type": "function",
+          "name": "main",
+          "args": ""
+        }
+      ],
+      "summary": "\"\"\" Local Handoff Executor \u2014 Dispatches all outstanding tasks to on-machine Ollama models. No cloud tokens burned. All reasoning stays on bare metal.  Models:   - sovereign-hermes  (4.7 GB) \u2192 heavy reasoning, code generation, orchestration   - deepseek-r1:1.5b  (1.1 GB) \u2192 fast verification, linting, status checks   - hermes3:8b        (4.7 GB) \u2192 fallback for sovereign-hermes   - qwen2.5:1.5b"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
       "relative_path": "ops\\scripts\\mark_twain_15min_podcast.py",
       "extension": ".py",
       "size_bytes": 13901,
@@ -7748,11 +7892,11 @@
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "ops\\scripts\\fullscreen_ui\\current_timing.json",
       "extension": ".json",
-      "size_bytes": 2060,
-      "sha256": "146ca40514e4bda1",
+      "size_bytes": 147,
+      "sha256": "3813385f18fefed6",
       "units_count": 0,
       "units": [],
-      "summary": "{   \"agent\": \"jarvis\",   \"text\": \"Anthony, the distillation cycle's cryptographic seals are intact and the off-grid lockstep stability is unbroken, as verified by the Xoras Sovereign Systems council.\",   \"synthesizing\": false,   \"words\": [     {       \"word\": \"Anthony,\",       \"start\": 0.0,       \"end\": 0.26     },     {       \"word\": \"the\",       \"start\": 0.26,       \"end\": 0.52     },     {"
+      "summary": "{   \"agent\": \"clara\",   \"text\": \"\",   \"synthesizing\": false,   \"words\": [],   \"duration\": 0.0,   \"timestamp\": 1789500998.1845365,   \"cycle\": 4581 }"
     },
     {
       "repo": "SSOT_Agentic_Brain",
@@ -8478,8 +8622,8 @@
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "products\\xmars_os\\server.py",
       "extension": ".py",
-      "size_bytes": 36039,
-      "sha256": "0e33d37d28bc09cc",
+      "size_bytes": 36604,
+      "sha256": "704d5f6c16301da5",
       "units_count": 2,
       "units": [
         {
