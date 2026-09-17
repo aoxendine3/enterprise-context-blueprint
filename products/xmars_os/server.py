@@ -23,6 +23,7 @@ from hardware_governor import governor
 from embedded_transformer import transformer_core
 from autonomy import autonomy_engine
 from self_upgrade import self_upgrade_engine
+from autonomous_sentinel import autonomous_monitor
 from cloudflare_bridge import cf_bridge, CF_MODELS
 
 try:
@@ -314,6 +315,10 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
 
             if path == "/api/upgrades":
                 self._send_json(200, {"status": "success", "data": self_upgrade_engine.get_status()})
+                return
+
+            if path == "/api/sentinel":
+                self._send_json(200, {"status": "success", "data": autonomous_monitor.get_status()})
                 return
 
             if path == "/api/agents":
