@@ -142,6 +142,14 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(payload)
 
+    def _send_bytes(self, status_code: int, data: bytes, content_type: str = "text/html; charset=utf-8"):
+        self.send_response(status_code)
+        self.send_header("Content-Type", content_type)
+        self.send_header("Content-Length", str(len(data)))
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.end_headers()
+        self.wfile.write(data)
+
     def do_OPTIONS(self):
         self.send_response(200)
         self.send_header("Access-Control-Allow-Origin", "*")
@@ -280,6 +288,15 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
                 return
             elif path in ["/store", "/store.html"]:
                 self._serve_static_file("store.html", "text/html; charset=utf-8")
+                return
+            elif path in ["/stage", "/customer_app.html"]:
+                stage_file = os.path.abspath(os.path.join(SSOT_ROOT, "ops", "scripts", "fullscreen_ui", "customer_app.html"))
+                if os.path.isfile(stage_file):
+                    with open(stage_file, "rb") as f:
+                        content = f.read()
+                    self._send_bytes(200, content, "text/html; charset=utf-8")
+                    return
+                self._send_json(404, {"error": "Stage file not found"})
                 return
             elif path.startswith("/assets/"):
                 self._serve_static_file(path.lstrip("/"))
