@@ -289,6 +289,9 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
             elif path in ["/store", "/store.html"]:
                 self._serve_static_file("store.html", "text/html; charset=utf-8")
                 return
+            elif path in ["/portal", "/portal.html"]:
+                self._serve_static_file("portal.html", "text/html; charset=utf-8")
+                return
             elif path in ["/stage", "/customer_app.html"]:
                 stage_file = os.path.abspath(os.path.join(SSOT_ROOT, "ops", "scripts", "fullscreen_ui", "customer_app.html"))
                 if os.path.isfile(stage_file):
