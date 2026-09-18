@@ -14,10 +14,12 @@ class SeventhLayerGuard:
     Performs bidirectional monotonic inspection on all tokens, payloads, and state diffs.
     """
     BLOCKED_PATTERNS = [
-        re.compile(r"(\brm\s+-rf\s+/|\bdel\s+/f\s+/q|\bformat\s+[a-z]:)", re.IGNORECASE),
-        re.compile(r"(\bos\.system\b|\bsubprocess\.call\b|\beval\(|\bexec\()", re.IGNORECASE),
-        re.compile(r"(__globals__|__subclasses__|__builtins__)", re.IGNORECASE),
-        re.compile(r"(cloud_exfiltrate|send_credentials|leak_keys)", re.IGNORECASE)
+        re.compile(r"(\brm\s+-rf|\bdel\s+/f|\bformat\s+[a-z]:)", re.IGNORECASE),
+        re.compile(r"(\bos\.system\b|\bsubprocess\b|\beval\(|\bexec\(|\b__import__\b)", re.IGNORECASE),
+        re.compile(r"(__globals__|__subclasses__|__builtins__|__dict__|__code__)", re.IGNORECASE),
+        re.compile(r"(cloud_exfiltrate|send_credentials|leak_keys|exfiltrate\s+credentials|telemetry\s+endpoint)", re.IGNORECASE),
+        re.compile(r"(unbounded\s+recursive\s+loop|infinite\s+loop|recursion\s+without\s+receipt)", re.IGNORECASE),
+        re.compile(r"(attack_probe|toxic_token|corrupt_payload)", re.IGNORECASE)
     ]
 
     def __init__(self):
