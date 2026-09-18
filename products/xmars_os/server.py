@@ -34,6 +34,16 @@ try:
 except Exception:
     training_daemon = None
 
+try:
+    ssot_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+    if ssot_path not in sys.path:
+        sys.path.insert(0, ssot_path)
+    from memory.tri_brain.tri_brain_cluster import TriBrainCluster
+    tri_brain_cluster = TriBrainCluster()
+except Exception as e:
+    tri_brain_cluster = None
+
+
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("xmars_server")
 
@@ -318,6 +328,13 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
 
             if path == "/api/upgrades":
                 self._send_json(200, {"status": "success", "data": self_upgrade_engine.get_status()})
+                return
+
+            if path == "/api/tribrain":
+                if tri_brain_cluster:
+                    self._send_json(200, {"status": "success", "data": tri_brain_cluster.get_cluster_status()})
+                else:
+                    self._send_json(500, {"status": "error", "message": "TriBrainCluster not active"})
                 return
 
             if path == "/api/sentinel":

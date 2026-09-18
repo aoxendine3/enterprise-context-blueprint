@@ -1,0 +1,1 @@
+{"container_id": 2, "source_agent": "Clara", "domain": "formal_methods_physics_narrative", "claim": "Orbital trajectory Lyapunov stability proven delta V <= 0", "receipt": {"theorem": "MTPO-2", "verified": true}, "timestamp": 1789735584.4429421, "sha256": "499bb0e27d0ff778"}

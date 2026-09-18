@@ -1,0 +1,1 @@
+{"container_id": 3, "source_agent": "William Vance", "domain": "security_audit_adversarial_test", "claim": "AST and SAST mechanical gates falsified 500 edge cases with zero breach", "receipt": {"falsified": true, "passed": 500}, "timestamp": 1789735584.44548, "sha256": "aed197a646ec306d"}

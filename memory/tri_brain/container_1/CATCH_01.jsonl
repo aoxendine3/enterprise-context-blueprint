@@ -1,0 +1,1 @@
+{"container_id": 1, "source_agent": "Maxx", "domain": "systems_kernel_remediation", "claim": "Kernel memory refactored and aligned to 3,200 bytes", "receipt": {"exit_code": 0, "verified": true}, "timestamp": 1789735584.4419413, "sha256": "33e37339eab3bf45"}
