@@ -38,7 +38,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(me
 logger = logging.getLogger("xmars_server")
 
 PORT = 8085
-HOST = "127.0.0.1"
+HOST = "0.0.0.0"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 SSOT_ROOT = os.path.abspath(os.path.join(BASE_DIR, "..", ".."))
@@ -293,6 +293,9 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
             elif path in ["/portal", "/portal.html"]:
                 self._serve_static_file("portal.html", "text/html; charset=utf-8")
                 return
+            elif path in ["/connect", "/connect.html"]:
+                self._serve_static_file("connect.html", "text/html; charset=utf-8")
+                return
             elif path in ["/stage", "/customer_app.html"]:
                 stage_file = os.path.abspath(os.path.join(SSOT_ROOT, "ops", "scripts", "fullscreen_ui", "customer_app.html"))
                 if os.path.isfile(stage_file):
@@ -346,7 +349,11 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
             elif path == "/api/autonomy/latest":
                 self._send_json(200, {"status": "success", "report": autonomy_engine.latest_report})
             elif path == "/api/tunnel":
-                self._send_json(200, {"status": "success", "tunnel_url": cf_bridge.tunnel_url})
+                self._send_json(200, {
+                    "status": "success",
+                    "tunnel_url": cf_bridge.tunnel_url,
+                    "lan_url": f"http://192.168.1.211:{PORT}"
+                })
             elif path == "/api/training/latest":
                 self._send_json(200, {
                     "status": "success",

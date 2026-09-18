@@ -145,11 +145,15 @@ class CloudflareBridge:
                 url_pattern = re.compile(r"https://[a-zA-Z0-9-]+\.trycloudflare\.com")
                 for line in self.tunnel_process.stdout:
                     match = url_pattern.search(line)
-                    if match and not self.tunnel_url:
-                        self.tunnel_url = match.group(0)
-                        logger.info(f"============================================================")
-                        logger.info(f"  XMARS.os SAAS GLOBAL PUBLIC URL: {self.tunnel_url}")
-                        logger.info(f"============================================================")
+                    if match:
+                        matched_url = match.group(0)
+                        if "api.trycloudflare.com" in matched_url:
+                            continue
+                        if not self.tunnel_url:
+                            self.tunnel_url = matched_url
+                            logger.info(f"============================================================")
+                            logger.info(f"  XMARS.os SAAS GLOBAL PUBLIC URL: {self.tunnel_url}")
+                            logger.info(f"============================================================")
                         tunnel_file = os.path.join(base_dir, "TUNNEL_URL.txt")
                         with open(tunnel_file, "w", encoding="utf-8") as f:
                             f.write(self.tunnel_url + "\n")

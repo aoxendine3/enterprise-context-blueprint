@@ -1,1 +1,1 @@
-https://membrane-carries-cocktail-retained.trycloudflare.com
+https://api.trycloudflare.com
