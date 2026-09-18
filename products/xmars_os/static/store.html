@@ -46,10 +46,18 @@
 
   <link rel="stylesheet" href="/styles.css" />
   <style>
+    body {
+      overflow-y: auto !important;
+      height: auto !important;
+      min-height: 100vh !important;
+      display: block !important;
+      background: radial-gradient(circle at 50% 0%, #0b0f19 0%, #030712 100%) !important;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    }
     .store-container {
-      max-width: 1280px;
+      max-width: 1320px;
       margin: 0 auto;
-      padding: 40px 24px 80px;
+      padding: 40px 24px 100px;
     }
     .store-hero {
       text-align: center;
@@ -127,24 +135,26 @@
     }
     .pin-preview-wrap {
       width: 100%;
-      height: 380px;
-      border-radius: 10px;
+      height: 440px;
+      border-radius: 12px;
       overflow: hidden;
       margin-bottom: 20px;
       background: #05070a;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
     }
     .pin-preview-img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
+      object-fit: contain;
+      background: #080c14;
+      transition: transform 0.3s ease;
     }
     .product-card:hover .pin-preview-img {
-      transform: scale(1.03);
+      transform: scale(1.02);
     }
     .product-category {
       font-size: 11px;
@@ -170,21 +180,41 @@
     }
     .pricing-select-wrap {
       margin-bottom: 20px;
+      position: relative;
     }
     .pricing-select {
       width: 100%;
-      background: #070a10;
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #0e1422;
+      border: 1px solid rgba(0, 240, 255, 0.3);
       border-radius: 8px;
-      padding: 10px 12px;
-      color: #fff;
+      padding: 12px 38px 12px 14px;
+      color: #ffffff;
       font-size: 13px;
       font-weight: 600;
       outline: none;
       cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2300f0ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 16px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .pricing-select:hover {
+      border-color: #00f0ff;
+      box-shadow: 0 0 12px rgba(0, 240, 255, 0.2);
     }
     .pricing-select:focus {
       border-color: #00f0ff;
+      box-shadow: 0 0 16px rgba(0, 240, 255, 0.3);
+    }
+    .pricing-select option {
+      background-color: #0c101c;
+      color: #ffffff;
+      padding: 12px;
+      font-size: 13px;
     }
     .price-display {
       display: flex;
@@ -298,8 +328,10 @@
       </div>
     </div>
     <div class="topbar-right">
-      <a href="/" class="action-pill" style="text-decoration:none;">💻 Open Operating System (8085)</a>
-      <a href="/landing.html" class="action-pill" style="text-decoration:none;">📄 Executive Briefing</a>
+      <a href="/portal" target="_blank" class="action-pill" style="text-decoration:none; color:var(--cyan); border-color:rgba(0,240,255,0.4);" title="Viral AI Portal">⚡ AI Portal</a>
+      <a href="/connect" target="_blank" class="action-pill" style="text-decoration:none; color:#10b981; border-color:rgba(16,185,129,0.4);" title="Mobile QR & Remote Gateway">📱 Remote QR</a>
+      <a href="/" class="action-pill" style="text-decoration:none;">💻 Operating System</a>
+      <a href="/landing.html" class="action-pill" style="text-decoration:none;">📄 Briefing</a>
       <button class="action-pill" onclick="shareToPinterestAll()">📌 Save All to Pinterest</button>
     </div>
   </header>
@@ -398,15 +430,20 @@
           Everything Anthony and the Lead 9 Council built: The complete certified field guide, full XMARS.os source repository, X-HASTE continuous distillation scripts, and 1-click bare-metal deployment scripts for Mac & Windows.
         </p>
         <div class="pricing-select-wrap">
-          <div style="font-size:12px; color:#94a3b8; padding:10px 0;">All-inclusive bundle with perpetual commercial rights and lifetime updates.</div>
+          <label style="font-size:11px; color:#64748b; margin-bottom:4px; display:block;">Select Suite Configuration:</label>
+          <select class="pricing-select" id="bundleTierSelect" onchange="updateBundlePrice(this.value)">
+            <option value="99">Standard Complete Stack (Book + OS + Training Forge) — $99.00</option>
+            <option value="299">Commercial Pro Studio (10 Nodes + Full Roster Sync) — $299.00</option>
+            <option value="999">Institutional Sovereign Machine (White-Label + Bespoke Core) — $999.00</option>
+          </select>
         </div>
         <div class="price-display">
-          <span class="current-price">$99.00</span>
-          <span class="original-price">$487.00</span>
-          <span style="font-size:11px; color:#10b981; font-weight:700;">Save $388.00</span>
+          <span class="current-price" id="bundlePrice">$99.00</span>
+          <span class="original-price" id="bundleOrigPrice">$487.00</span>
+          <span style="font-size:11px; color:#10b981; font-weight:700;" id="bundleSavings">Save $388.00</span>
         </div>
         <div class="action-row">
-          <button class="btn-buy" style="background:linear-gradient(135deg, #f59e0b, #d97706);" onclick="openCheckout('The Sovereign Enterprise Machine Ultimate Stack', '$99.00')">
+          <button class="btn-buy" style="background:linear-gradient(135deg, #f59e0b, #d97706);" onclick="openCheckout('The Sovereign Enterprise Machine Ultimate Stack', document.getElementById('bundlePrice').textContent)">
             👑 Unlock Full Machine
           </button>
           <button class="btn-pinterest" onclick="pinProduct('bundle')">
@@ -477,6 +514,15 @@
       if (val === "79") { p.textContent = "$79.00"; op.textContent = "$149.00"; }
       else if (val === "299") { p.textContent = "$299.00"; op.textContent = "$599.00"; }
       else if (val === "1499") { p.textContent = "$1,499.00"; op.textContent = "$2,499.00"; }
+    }
+
+    function updateBundlePrice(val) {
+      const p = document.getElementById("bundlePrice");
+      const op = document.getElementById("bundleOrigPrice");
+      const s = document.getElementById("bundleSavings");
+      if (val === "99") { p.textContent = "$99.00"; op.textContent = "$487.00"; s.textContent = "Save $388.00"; }
+      else if (val === "299") { p.textContent = "$299.00"; op.textContent = "$899.00"; s.textContent = "Save $600.00"; }
+      else if (val === "999") { p.textContent = "$999.00"; op.textContent = "$2,499.00"; s.textContent = "Save $1,500.00"; }
     }
 
     function openCheckout(name, price) {
