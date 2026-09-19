@@ -3788,3 +3788,929 @@
 2026-09-18 20:34:45,608 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
 2026-09-18 20:34:45,625 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
 2026-09-18 20:34:45,626 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #636 pushed successfully (0.0185s, improvements=2)
+2026-09-18 20:35:45,627 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #637 ---
+2026-09-18 20:38:45,637 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 20:38:45,638 [INFO] [OFFGRID-WORKER] Cycle #637 response generated (34 chars)
+2026-09-18 20:38:45,653 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 20:38:45,862 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 20:38:45,863 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #637 pushed successfully (0.2107s, improvements=2)
+2026-09-18 20:39:45,875 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #638 ---
+2026-09-18 20:42:45,885 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 20:42:45,885 [INFO] [OFFGRID-WORKER] Cycle #638 response generated (34 chars)
+2026-09-18 20:42:45,969 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 20:42:46,042 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 20:42:46,044 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #638 pushed successfully (0.1076s, improvements=2)
+2026-09-18 20:43:46,051 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #639 ---
+2026-09-18 20:46:46,061 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 20:46:46,061 [INFO] [OFFGRID-WORKER] Cycle #639 response generated (34 chars)
+2026-09-18 20:46:46,124 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 20:46:46,154 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 20:46:46,155 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #639 pushed successfully (0.0339s, improvements=2)
+2026-09-18 20:47:46,161 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #640 ---
+2026-09-18 20:50:46,161 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 20:50:46,161 [INFO] [OFFGRID-WORKER] Cycle #640 response generated (34 chars)
+2026-09-18 20:50:46,180 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 20:50:46,208 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 20:50:46,210 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #640 pushed successfully (0.0268s, improvements=2)
+2026-09-18 20:51:46,221 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #641 ---
+2026-09-18 20:54:46,222 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 20:54:46,222 [INFO] [OFFGRID-WORKER] Cycle #641 response generated (34 chars)
+2026-09-18 20:54:46,224 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 20:54:46,262 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 20:54:46,263 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #641 pushed successfully (0.039s, improvements=2)
+2026-09-18 20:55:46,264 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #642 ---
+2026-09-18 20:58:46,274 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 20:58:46,274 [INFO] [OFFGRID-WORKER] Cycle #642 response generated (34 chars)
+2026-09-18 20:58:46,284 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 20:58:46,329 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 20:58:46,330 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #642 pushed successfully (0.0451s, improvements=2)
+2026-09-18 20:59:46,341 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #643 ---
+2026-09-18 21:02:46,340 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 21:02:46,340 [INFO] [OFFGRID-WORKER] Cycle #643 response generated (34 chars)
+2026-09-18 21:02:46,343 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 21:02:46,377 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 21:02:46,378 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #643 pushed successfully (0.0358s, improvements=2)
+2026-09-18 21:03:46,380 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #644 ---
+2026-09-18 21:06:46,390 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 21:06:46,390 [INFO] [OFFGRID-WORKER] Cycle #644 response generated (34 chars)
+2026-09-18 21:06:46,393 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 21:06:46,425 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 21:06:46,427 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #644 pushed successfully (0.0328s, improvements=2)
+2026-09-18 21:07:46,427 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #645 ---
+2026-09-18 21:10:46,427 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 21:10:46,427 [INFO] [OFFGRID-WORKER] Cycle #645 response generated (34 chars)
+2026-09-18 21:10:46,439 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 21:10:46,457 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 21:10:46,458 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #645 pushed successfully (0.019s, improvements=2)
+2026-09-18 21:11:46,471 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #646 ---
+2026-09-18 21:14:46,472 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 21:14:46,472 [INFO] [OFFGRID-WORKER] Cycle #646 response generated (34 chars)
+2026-09-18 21:14:46,474 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 21:14:46,510 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 21:14:46,512 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #646 pushed successfully (0.0376s, improvements=2)
+2026-09-18 21:15:46,513 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #647 ---
+2026-09-18 21:18:46,512 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 21:18:46,512 [INFO] [OFFGRID-WORKER] Cycle #647 response generated (34 chars)
+2026-09-18 21:18:46,514 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 21:18:46,560 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 21:18:46,561 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #647 pushed successfully (0.0462s, improvements=2)
+2026-09-18 21:19:46,562 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #648 ---
+2026-09-18 21:22:46,563 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 21:22:46,563 [INFO] [OFFGRID-WORKER] Cycle #648 response generated (34 chars)
+2026-09-18 21:22:46,565 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 21:22:46,612 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 21:22:46,613 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #648 pushed successfully (0.048s, improvements=2)
+2026-09-18 21:23:46,615 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #649 ---
+2026-09-18 21:26:46,620 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 21:26:46,620 [INFO] [OFFGRID-WORKER] Cycle #649 response generated (34 chars)
+2026-09-18 21:26:46,620 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 21:26:46,670 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 21:26:46,672 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #649 pushed successfully (0.0494s, improvements=2)
+2026-09-18 21:27:46,674 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #650 ---
+2026-09-18 21:30:46,686 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 21:30:46,686 [INFO] [OFFGRID-WORKER] Cycle #650 response generated (34 chars)
+2026-09-18 21:30:46,688 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 21:30:46,714 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 21:30:46,716 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #650 pushed successfully (0.0276s, improvements=2)
+2026-09-18 21:31:46,717 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #651 ---
+2026-09-18 21:34:46,719 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 21:34:46,719 [INFO] [OFFGRID-WORKER] Cycle #651 response generated (34 chars)
+2026-09-18 21:34:46,721 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 21:34:46,740 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 21:34:46,741 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #651 pushed successfully (0.0194s, improvements=2)
+2026-09-18 21:35:46,742 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #652 ---
+2026-09-18 21:38:46,750 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 21:38:46,750 [INFO] [OFFGRID-WORKER] Cycle #652 response generated (34 chars)
+2026-09-18 21:38:46,753 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 21:38:46,790 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 21:38:46,792 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #652 pushed successfully (0.0392s, improvements=2)
+2026-09-18 21:39:46,794 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #653 ---
+2026-09-18 21:42:46,797 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 21:42:46,797 [INFO] [OFFGRID-WORKER] Cycle #653 response generated (34 chars)
+2026-09-18 21:42:46,799 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 21:42:46,831 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 21:42:46,833 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #653 pushed successfully (0.0338s, improvements=2)
+2026-09-18 21:43:46,834 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #654 ---
+2026-09-18 21:46:46,862 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 21:46:46,862 [INFO] [OFFGRID-WORKER] Cycle #654 response generated (34 chars)
+2026-09-18 21:46:46,862 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 21:46:46,862 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 21:46:46,862 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #654 pushed successfully (0.0089s, improvements=2)
+2026-09-18 21:47:46,874 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #655 ---
+2026-09-18 21:50:46,881 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 21:50:46,881 [INFO] [OFFGRID-WORKER] Cycle #655 response generated (34 chars)
+2026-09-18 21:50:46,882 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 21:50:46,899 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 21:50:46,900 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #655 pushed successfully (0.0176s, improvements=2)
+2026-09-18 21:51:46,902 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #656 ---
+2026-09-18 21:54:46,914 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 21:54:46,914 [INFO] [OFFGRID-WORKER] Cycle #656 response generated (34 chars)
+2026-09-18 21:54:46,916 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 21:54:46,977 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 21:54:46,978 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #656 pushed successfully (0.0614s, improvements=2)
+2026-09-18 21:55:46,980 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #657 ---
+2026-09-18 21:58:46,982 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 21:58:46,982 [INFO] [OFFGRID-WORKER] Cycle #657 response generated (34 chars)
+2026-09-18 21:58:46,982 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 21:58:47,011 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 21:58:47,013 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #657 pushed successfully (0.0288s, improvements=2)
+2026-09-18 21:59:47,015 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #658 ---
+2026-09-18 22:02:47,017 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 22:02:47,017 [INFO] [OFFGRID-WORKER] Cycle #658 response generated (34 chars)
+2026-09-18 22:02:47,019 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 22:02:47,028 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 22:02:47,029 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #658 pushed successfully (0.0105s, improvements=2)
+2026-09-18 22:03:47,031 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #659 ---
+2026-09-18 22:06:47,044 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 22:06:47,044 [INFO] [OFFGRID-WORKER] Cycle #659 response generated (34 chars)
+2026-09-18 22:06:47,048 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 22:06:47,068 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 22:06:47,068 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #659 pushed successfully (0.0212s, improvements=2)
+2026-09-18 22:07:47,071 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #660 ---
+2026-09-18 22:10:47,074 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 22:10:47,074 [INFO] [OFFGRID-WORKER] Cycle #660 response generated (34 chars)
+2026-09-18 22:10:47,076 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 22:10:47,096 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 22:10:47,097 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #660 pushed successfully (0.0218s, improvements=2)
+2026-09-18 22:11:47,099 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #661 ---
+2026-09-18 22:14:47,112 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 22:14:47,112 [INFO] [OFFGRID-WORKER] Cycle #661 response generated (34 chars)
+2026-09-18 22:14:47,113 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 22:14:47,139 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 22:14:47,140 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #661 pushed successfully (0.0253s, improvements=2)
+2026-09-18 22:15:47,142 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #662 ---
+2026-09-18 22:18:47,156 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 22:18:47,156 [INFO] [OFFGRID-WORKER] Cycle #662 response generated (34 chars)
+2026-09-18 22:18:47,156 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 22:18:47,180 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 22:18:47,181 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #662 pushed successfully (0.0219s, improvements=2)
+2026-09-18 22:19:47,183 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #663 ---
+2026-09-18 22:22:47,187 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 22:22:47,187 [INFO] [OFFGRID-WORKER] Cycle #663 response generated (34 chars)
+2026-09-18 22:22:47,187 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 22:22:47,212 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 22:22:47,213 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #663 pushed successfully (0.0241s, improvements=2)
+2026-09-18 22:23:47,215 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #664 ---
+2026-09-18 22:26:47,218 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 22:26:47,218 [INFO] [OFFGRID-WORKER] Cycle #664 response generated (34 chars)
+2026-09-18 22:26:47,220 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 22:26:47,250 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 22:26:47,252 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #664 pushed successfully (0.0317s, improvements=2)
+2026-09-18 22:27:47,254 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #665 ---
+2026-09-18 22:29:59,622 [INFO] [OFFGRID-WORKER] Cycle #665 response generated (2153 chars)
+2026-09-18 22:29:59,624 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 22:29:59,700 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 22:29:59,701 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #665 pushed successfully (0.077s, improvements=2)
+2026-09-18 22:30:59,703 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #666 ---
+2026-09-18 22:33:59,705 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 22:33:59,705 [INFO] [OFFGRID-WORKER] Cycle #666 response generated (34 chars)
+2026-09-18 22:33:59,706 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 22:33:59,737 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 22:33:59,739 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #666 pushed successfully (0.032s, improvements=2)
+2026-09-18 22:34:59,741 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #667 ---
+2026-09-18 22:37:59,743 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 22:37:59,744 [INFO] [OFFGRID-WORKER] Cycle #667 response generated (34 chars)
+2026-09-18 22:37:59,745 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 22:37:59,781 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 22:37:59,782 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #667 pushed successfully (0.0358s, improvements=2)
+2026-09-18 22:38:59,783 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #668 ---
+2026-09-18 22:41:59,785 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 22:41:59,785 [INFO] [OFFGRID-WORKER] Cycle #668 response generated (34 chars)
+2026-09-18 22:41:59,785 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 22:41:59,813 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 22:41:59,814 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #668 pushed successfully (0.0265s, improvements=2)
+2026-09-18 22:42:59,817 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #669 ---
+2026-09-18 22:45:59,823 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 22:45:59,823 [INFO] [OFFGRID-WORKER] Cycle #669 response generated (34 chars)
+2026-09-18 22:45:59,825 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 22:45:59,854 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 22:45:59,855 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #669 pushed successfully (0.029s, improvements=2)
+2026-09-18 22:46:59,856 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #670 ---
+2026-09-18 22:49:59,869 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 22:49:59,869 [INFO] [OFFGRID-WORKER] Cycle #670 response generated (34 chars)
+2026-09-18 22:49:59,871 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 22:49:59,903 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 22:49:59,904 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #670 pushed successfully (0.033s, improvements=2)
+2026-09-18 22:50:59,906 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #671 ---
+2026-09-18 22:53:59,908 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 22:53:59,908 [INFO] [OFFGRID-WORKER] Cycle #671 response generated (34 chars)
+2026-09-18 22:53:59,909 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 22:53:59,944 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 22:53:59,945 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #671 pushed successfully (0.035s, improvements=2)
+2026-09-18 22:54:59,946 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #672 ---
+2026-09-18 22:57:59,951 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 22:57:59,951 [INFO] [OFFGRID-WORKER] Cycle #672 response generated (34 chars)
+2026-09-18 22:57:59,954 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 22:57:59,974 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 22:57:59,976 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #672 pushed successfully (0.0218s, improvements=2)
+2026-09-18 22:58:59,978 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #673 ---
+2026-09-18 23:01:59,991 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 23:01:59,991 [INFO] [OFFGRID-WORKER] Cycle #673 response generated (34 chars)
+2026-09-18 23:01:59,993 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 23:02:00,037 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 23:02:00,039 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #673 pushed successfully (0.0449s, improvements=2)
+2026-09-18 23:03:00,047 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #674 ---
+2026-09-18 23:06:00,061 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 23:06:00,061 [INFO] [OFFGRID-WORKER] Cycle #674 response generated (34 chars)
+2026-09-18 23:06:00,063 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 23:06:00,086 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 23:06:00,089 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #674 pushed successfully (0.0254s, improvements=2)
+2026-09-18 23:07:00,091 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #675 ---
+2026-09-18 23:10:00,104 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 23:10:00,105 [INFO] [OFFGRID-WORKER] Cycle #675 response generated (34 chars)
+2026-09-18 23:10:00,107 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 23:10:00,124 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 23:10:00,126 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #675 pushed successfully (0.0187s, improvements=2)
+2026-09-18 23:11:00,127 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #676 ---
+2026-09-18 23:14:00,139 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 23:14:00,139 [INFO] [OFFGRID-WORKER] Cycle #676 response generated (34 chars)
+2026-09-18 23:14:00,141 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 23:14:00,148 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 23:14:00,149 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #676 pushed successfully (0.0085s, improvements=2)
+2026-09-18 23:15:00,151 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #677 ---
+2026-09-18 23:18:00,164 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 23:18:00,164 [INFO] [OFFGRID-WORKER] Cycle #677 response generated (34 chars)
+2026-09-18 23:18:00,166 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 23:18:00,217 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 23:18:00,217 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #677 pushed successfully (0.051s, improvements=2)
+2026-09-18 23:19:00,219 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #678 ---
+2026-09-18 23:22:00,226 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 23:22:00,226 [INFO] [OFFGRID-WORKER] Cycle #678 response generated (34 chars)
+2026-09-18 23:22:00,228 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 23:22:00,238 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 23:22:00,239 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #678 pushed successfully (0.0101s, improvements=2)
+2026-09-18 23:23:00,241 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #679 ---
+2026-09-18 23:26:00,255 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 23:26:00,255 [INFO] [OFFGRID-WORKER] Cycle #679 response generated (34 chars)
+2026-09-18 23:26:00,258 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 23:26:00,288 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 23:26:00,289 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #679 pushed successfully (0.031s, improvements=2)
+2026-09-18 23:27:00,292 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #680 ---
+2026-09-18 23:30:00,295 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 23:30:00,295 [INFO] [OFFGRID-WORKER] Cycle #680 response generated (34 chars)
+2026-09-18 23:30:00,297 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 23:30:00,580 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 23:30:00,581 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #680 pushed successfully (0.284s, improvements=2)
+2026-09-18 23:31:00,583 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #681 ---
+2026-09-18 23:34:00,597 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 23:34:00,597 [INFO] [OFFGRID-WORKER] Cycle #681 response generated (34 chars)
+2026-09-18 23:34:00,599 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 23:34:00,616 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 23:34:00,618 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #681 pushed successfully (0.0187s, improvements=2)
+2026-09-18 23:35:00,619 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #682 ---
+2026-09-18 23:38:00,621 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 23:38:00,621 [INFO] [OFFGRID-WORKER] Cycle #682 response generated (34 chars)
+2026-09-18 23:38:00,623 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 23:38:00,658 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 23:38:00,660 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #682 pushed successfully (0.0361s, improvements=2)
+2026-09-18 23:39:00,662 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #683 ---
+2026-09-18 23:42:00,664 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 23:42:00,665 [INFO] [OFFGRID-WORKER] Cycle #683 response generated (34 chars)
+2026-09-18 23:42:00,666 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 23:42:00,677 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 23:42:00,678 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #683 pushed successfully (0.0117s, improvements=2)
+2026-09-18 23:43:00,681 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #684 ---
+2026-09-18 23:46:00,685 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 23:46:00,685 [INFO] [OFFGRID-WORKER] Cycle #684 response generated (34 chars)
+2026-09-18 23:46:00,686 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 23:46:00,744 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 23:46:00,745 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #684 pushed successfully (0.0583s, improvements=2)
+2026-09-18 23:47:00,747 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #685 ---
+2026-09-18 23:50:00,749 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 23:50:00,749 [INFO] [OFFGRID-WORKER] Cycle #685 response generated (34 chars)
+2026-09-18 23:50:00,751 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 23:50:00,789 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 23:50:00,791 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #685 pushed successfully (0.0384s, improvements=2)
+2026-09-18 23:51:00,792 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #686 ---
+2026-09-18 23:54:00,795 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 23:54:00,796 [INFO] [OFFGRID-WORKER] Cycle #686 response generated (34 chars)
+2026-09-18 23:54:00,798 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 23:54:00,830 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 23:54:00,831 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #686 pushed successfully (0.0333s, improvements=2)
+2026-09-18 23:55:00,835 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #687 ---
+2026-09-18 23:58:00,836 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-18 23:58:00,836 [INFO] [OFFGRID-WORKER] Cycle #687 response generated (34 chars)
+2026-09-18 23:58:00,838 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-18 23:58:00,898 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-18 23:58:00,899 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #687 pushed successfully (0.0605s, improvements=2)
+2026-09-18 23:59:00,902 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #688 ---
+2026-09-19 00:01:50,472 [INFO] [OFFGRID-WORKER] Cycle #688 response generated (3044 chars)
+2026-09-19 00:01:50,475 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 00:01:50,511 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 00:01:50,512 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #688 pushed successfully (0.0374s, improvements=2)
+2026-09-19 00:02:50,513 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #689 ---
+2026-09-19 00:05:50,516 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 00:05:50,516 [INFO] [OFFGRID-WORKER] Cycle #689 response generated (34 chars)
+2026-09-19 00:05:50,524 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 00:05:50,920 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 00:05:50,922 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #689 pushed successfully (0.3974s, improvements=2)
+2026-09-19 00:06:50,929 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #690 ---
+2026-09-19 00:09:50,931 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 00:09:50,931 [INFO] [OFFGRID-WORKER] Cycle #690 response generated (34 chars)
+2026-09-19 00:09:50,964 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 00:09:51,188 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 00:09:51,189 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #690 pushed successfully (0.2251s, improvements=2)
+2026-09-19 00:10:51,201 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #691 ---
+2026-09-19 00:13:51,214 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 00:13:51,216 [INFO] [OFFGRID-WORKER] Cycle #691 response generated (34 chars)
+2026-09-19 00:13:51,226 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 00:13:51,267 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 00:13:51,272 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #691 pushed successfully (0.0451s, improvements=2)
+2026-09-19 00:14:51,282 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #692 ---
+2026-09-19 00:17:51,286 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 00:17:51,286 [INFO] [OFFGRID-WORKER] Cycle #692 response generated (34 chars)
+2026-09-19 00:17:51,439 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 00:17:51,448 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 00:17:51,449 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #692 pushed successfully (0.042s, improvements=2)
+2026-09-19 00:18:51,537 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #693 ---
+2026-09-19 00:21:51,551 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 00:21:51,551 [INFO] [OFFGRID-WORKER] Cycle #693 response generated (34 chars)
+2026-09-19 00:21:51,558 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 00:21:51,634 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 00:21:51,635 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #693 pushed successfully (0.0762s, improvements=2)
+2026-09-19 00:22:51,660 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #694 ---
+2026-09-19 00:25:51,665 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 00:25:51,665 [INFO] [OFFGRID-WORKER] Cycle #694 response generated (34 chars)
+2026-09-19 00:25:51,673 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 00:25:51,743 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 00:25:51,745 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #694 pushed successfully (0.0715s, improvements=2)
+2026-09-19 00:26:51,824 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #695 ---
+2026-09-19 00:29:51,826 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 00:29:51,826 [INFO] [OFFGRID-WORKER] Cycle #695 response generated (34 chars)
+2026-09-19 00:29:51,844 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 00:29:52,300 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 00:29:52,301 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #695 pushed successfully (0.457s, improvements=2)
+2026-09-19 00:30:52,312 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #696 ---
+2026-09-19 00:33:52,325 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 00:33:52,325 [INFO] [OFFGRID-WORKER] Cycle #696 response generated (34 chars)
+2026-09-19 00:33:52,341 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 00:33:52,512 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 00:33:52,513 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #696 pushed successfully (0.172s, improvements=2)
+2026-09-19 00:34:52,568 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #697 ---
+2026-09-19 00:37:52,583 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 00:37:52,583 [INFO] [OFFGRID-WORKER] Cycle #697 response generated (34 chars)
+2026-09-19 00:37:52,620 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 00:37:52,629 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 00:37:52,630 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #697 pushed successfully (0.0107s, improvements=2)
+2026-09-19 00:38:52,686 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #698 ---
+2026-09-19 00:41:52,699 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 00:41:52,700 [INFO] [OFFGRID-WORKER] Cycle #698 response generated (34 chars)
+2026-09-19 00:41:52,712 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 00:41:53,107 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 00:41:53,109 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #698 pushed successfully (0.3966s, improvements=2)
+2026-09-19 00:42:53,125 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #699 ---
+2026-09-19 00:45:53,139 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 00:45:53,139 [INFO] [OFFGRID-WORKER] Cycle #699 response generated (34 chars)
+2026-09-19 00:45:53,151 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 00:45:53,201 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 00:45:53,203 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #699 pushed successfully (0.0512s, improvements=2)
+2026-09-19 00:46:53,214 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #700 ---
+2026-09-19 00:49:53,215 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 00:49:53,216 [INFO] [OFFGRID-WORKER] Cycle #700 response generated (34 chars)
+2026-09-19 00:49:53,220 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 00:49:53,240 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 00:49:53,241 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #700 pushed successfully (0.0186s, improvements=2)
+2026-09-19 00:50:53,253 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #701 ---
+2026-09-19 00:53:53,263 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 00:53:53,263 [INFO] [OFFGRID-WORKER] Cycle #701 response generated (34 chars)
+2026-09-19 00:53:53,272 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 00:53:53,279 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 00:53:53,280 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #701 pushed successfully (0.0085s, improvements=2)
+2026-09-19 00:54:53,292 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #702 ---
+2026-09-19 00:57:53,293 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 00:57:53,299 [INFO] [OFFGRID-WORKER] Cycle #702 response generated (34 chars)
+2026-09-19 00:57:53,317 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 00:57:53,336 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 00:57:53,338 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #702 pushed successfully (0.0204s, improvements=2)
+2026-09-19 00:58:53,348 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #703 ---
+2026-09-19 01:01:53,350 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 01:01:53,350 [INFO] [OFFGRID-WORKER] Cycle #703 response generated (34 chars)
+2026-09-19 01:01:53,360 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 01:01:53,371 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 01:01:53,371 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #703 pushed successfully (0.0087s, improvements=2)
+2026-09-19 01:02:53,379 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #704 ---
+2026-09-19 01:05:53,382 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 01:05:53,382 [INFO] [OFFGRID-WORKER] Cycle #704 response generated (34 chars)
+2026-09-19 01:05:53,395 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 01:05:53,429 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 01:05:53,429 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #704 pushed successfully (0.0389s, improvements=2)
+2026-09-19 01:06:53,505 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #705 ---
+2026-09-19 01:09:53,508 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 01:09:53,508 [INFO] [OFFGRID-WORKER] Cycle #705 response generated (34 chars)
+2026-09-19 01:09:53,516 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 01:09:53,534 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 01:09:53,535 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #705 pushed successfully (0.0193s, improvements=2)
+2026-09-19 01:10:53,630 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #706 ---
+2026-09-19 01:13:53,633 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 01:13:53,634 [INFO] [OFFGRID-WORKER] Cycle #706 response generated (34 chars)
+2026-09-19 01:13:53,646 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 01:13:53,958 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 01:13:53,959 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #706 pushed successfully (0.312s, improvements=2)
+2026-09-19 01:14:54,045 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #707 ---
+2026-09-19 01:17:54,047 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 01:17:54,047 [INFO] [OFFGRID-WORKER] Cycle #707 response generated (34 chars)
+2026-09-19 01:17:54,069 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 01:17:54,076 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 01:17:54,078 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #707 pushed successfully (0.0084s, improvements=2)
+2026-09-19 01:18:54,092 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #708 ---
+2026-09-19 01:21:54,106 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 01:21:54,106 [INFO] [OFFGRID-WORKER] Cycle #708 response generated (34 chars)
+2026-09-19 01:21:54,111 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 01:21:54,130 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 01:21:54,131 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #708 pushed successfully (0.0152s, improvements=2)
+2026-09-19 01:22:54,154 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #709 ---
+2026-09-19 01:25:54,160 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 01:25:54,160 [INFO] [OFFGRID-WORKER] Cycle #709 response generated (34 chars)
+2026-09-19 01:25:54,173 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 01:25:54,191 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 01:25:54,192 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #709 pushed successfully (0.0196s, improvements=2)
+2026-09-19 01:26:54,202 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #710 ---
+2026-09-19 01:29:54,204 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 01:29:54,204 [INFO] [OFFGRID-WORKER] Cycle #710 response generated (34 chars)
+2026-09-19 01:29:54,219 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 01:29:54,571 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 01:29:54,573 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #710 pushed successfully (0.3525s, improvements=2)
+2026-09-19 01:30:54,583 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #711 ---
+2026-09-19 01:33:54,587 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 01:33:54,587 [INFO] [OFFGRID-WORKER] Cycle #711 response generated (34 chars)
+2026-09-19 01:33:54,602 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 01:33:54,777 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 01:33:54,777 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #711 pushed successfully (0.1758s, improvements=2)
+2026-09-19 01:34:54,789 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #712 ---
+2026-09-19 01:37:54,807 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 01:37:54,807 [INFO] [OFFGRID-WORKER] Cycle #712 response generated (34 chars)
+2026-09-19 01:37:54,821 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 01:37:55,269 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 01:37:55,270 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #712 pushed successfully (0.4477s, improvements=2)
+2026-09-19 01:38:55,286 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #713 ---
+2026-09-19 01:41:55,290 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 01:41:55,290 [INFO] [OFFGRID-WORKER] Cycle #713 response generated (34 chars)
+2026-09-19 01:41:55,310 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 01:41:55,329 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 01:41:55,331 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #713 pushed successfully (0.0202s, improvements=2)
+2026-09-19 01:42:55,342 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #714 ---
+2026-09-19 01:45:55,355 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 01:45:55,355 [INFO] [OFFGRID-WORKER] Cycle #714 response generated (34 chars)
+2026-09-19 01:45:55,366 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 01:45:55,377 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 01:45:55,379 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #714 pushed successfully (0.013s, improvements=2)
+2026-09-19 01:46:55,389 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #715 ---
+2026-09-19 01:49:55,404 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 01:49:55,405 [INFO] [OFFGRID-WORKER] Cycle #715 response generated (34 chars)
+2026-09-19 01:49:55,414 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 01:49:55,644 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 01:49:55,645 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #715 pushed successfully (0.2318s, improvements=2)
+2026-09-19 01:50:55,653 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #716 ---
+2026-09-19 01:53:55,668 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 01:53:55,668 [INFO] [OFFGRID-WORKER] Cycle #716 response generated (34 chars)
+2026-09-19 01:53:55,678 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 01:53:55,685 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 01:53:55,687 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #716 pushed successfully (0.0089s, improvements=2)
+2026-09-19 01:54:55,691 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #717 ---
+2026-09-19 01:57:55,705 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 01:57:55,705 [INFO] [OFFGRID-WORKER] Cycle #717 response generated (34 chars)
+2026-09-19 01:57:55,732 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 01:57:55,750 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 01:57:55,751 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #717 pushed successfully (0.019s, improvements=2)
+2026-09-19 01:58:55,763 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #718 ---
+2026-09-19 02:01:55,766 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 02:01:55,766 [INFO] [OFFGRID-WORKER] Cycle #718 response generated (34 chars)
+2026-09-19 02:01:55,861 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 02:01:55,875 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 02:01:55,875 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #718 pushed successfully (0.0209s, improvements=2)
+2026-09-19 02:02:55,906 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #719 ---
+2026-09-19 02:05:55,910 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 02:05:55,910 [INFO] [OFFGRID-WORKER] Cycle #719 response generated (34 chars)
+2026-09-19 02:05:55,919 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 02:05:55,937 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 02:05:55,938 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #719 pushed successfully (0.0189s, improvements=2)
+2026-09-19 02:06:55,949 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #720 ---
+2026-09-19 02:09:55,952 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 02:09:55,952 [INFO] [OFFGRID-WORKER] Cycle #720 response generated (34 chars)
+2026-09-19 02:09:55,986 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 02:09:56,000 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 02:09:56,001 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #720 pushed successfully (0.0168s, improvements=2)
+2026-09-19 02:10:56,013 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #721 ---
+2026-09-19 02:13:56,027 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 02:13:56,034 [INFO] [OFFGRID-WORKER] Cycle #721 response generated (34 chars)
+2026-09-19 02:13:56,046 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 02:13:56,107 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 02:13:56,109 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #721 pushed successfully (0.0624s, improvements=2)
+2026-09-19 02:14:56,119 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #722 ---
+2026-09-19 02:17:56,132 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 02:17:56,132 [INFO] [OFFGRID-WORKER] Cycle #722 response generated (34 chars)
+2026-09-19 02:17:56,159 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 02:17:56,170 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 02:17:56,171 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #722 pushed successfully (0.0191s, improvements=2)
+2026-09-19 02:18:56,182 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #723 ---
+2026-09-19 02:21:56,194 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 02:21:56,194 [INFO] [OFFGRID-WORKER] Cycle #723 response generated (34 chars)
+2026-09-19 02:21:56,207 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 02:21:56,247 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 02:21:56,248 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #723 pushed successfully (0.0397s, improvements=2)
+2026-09-19 02:22:56,255 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #724 ---
+2026-09-19 02:25:56,258 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 02:25:56,258 [INFO] [OFFGRID-WORKER] Cycle #724 response generated (34 chars)
+2026-09-19 02:25:56,270 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 02:25:56,307 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 02:25:56,309 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #724 pushed successfully (0.0376s, improvements=2)
+2026-09-19 02:26:56,318 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #725 ---
+2026-09-19 02:29:56,321 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 02:29:56,321 [INFO] [OFFGRID-WORKER] Cycle #725 response generated (34 chars)
+2026-09-19 02:29:56,335 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 02:29:56,354 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 02:29:56,355 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #725 pushed successfully (0.0203s, improvements=2)
+2026-09-19 02:30:56,365 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #726 ---
+2026-09-19 02:33:56,380 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 02:33:56,380 [INFO] [OFFGRID-WORKER] Cycle #726 response generated (34 chars)
+2026-09-19 02:33:56,400 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 02:33:56,417 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 02:33:56,417 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #726 pushed successfully (0.0208s, improvements=2)
+2026-09-19 02:34:56,431 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #727 ---
+2026-09-19 02:37:56,435 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 02:37:56,435 [INFO] [OFFGRID-WORKER] Cycle #727 response generated (34 chars)
+2026-09-19 02:37:56,465 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 02:37:56,500 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 02:37:56,502 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #727 pushed successfully (0.0389s, improvements=2)
+2026-09-19 02:38:56,520 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #728 ---
+2026-09-19 02:41:56,523 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 02:41:56,523 [INFO] [OFFGRID-WORKER] Cycle #728 response generated (34 chars)
+2026-09-19 02:41:56,535 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 02:41:56,554 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 02:41:56,555 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #728 pushed successfully (0.019s, improvements=2)
+2026-09-19 02:42:56,565 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #729 ---
+2026-09-19 02:45:56,568 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 02:45:56,568 [INFO] [OFFGRID-WORKER] Cycle #729 response generated (34 chars)
+2026-09-19 02:45:56,573 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 02:45:56,581 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 02:45:56,582 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #729 pushed successfully (0.0082s, improvements=2)
+2026-09-19 02:46:56,588 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #730 ---
+2026-09-19 02:49:56,593 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 02:49:56,593 [INFO] [OFFGRID-WORKER] Cycle #730 response generated (34 chars)
+2026-09-19 02:49:56,602 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 02:49:56,609 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 02:49:56,610 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #730 pushed successfully (0.0087s, improvements=2)
+2026-09-19 02:50:56,618 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #731 ---
+2026-09-19 02:53:56,643 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 02:53:56,643 [INFO] [OFFGRID-WORKER] Cycle #731 response generated (34 chars)
+2026-09-19 02:53:56,653 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 02:53:56,690 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 02:53:56,691 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #731 pushed successfully (0.035s, improvements=2)
+2026-09-19 02:54:56,699 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #732 ---
+2026-09-19 02:57:56,701 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 02:57:56,701 [INFO] [OFFGRID-WORKER] Cycle #732 response generated (34 chars)
+2026-09-19 02:57:56,721 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 02:57:56,729 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 02:57:56,730 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #732 pushed successfully (0.0099s, improvements=2)
+2026-09-19 02:58:56,738 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #733 ---
+2026-09-19 03:01:56,741 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 03:01:56,741 [INFO] [OFFGRID-WORKER] Cycle #733 response generated (34 chars)
+2026-09-19 03:01:56,758 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 03:01:56,766 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 03:01:56,767 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #733 pushed successfully (0.0082s, improvements=2)
+2026-09-19 03:02:56,776 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #734 ---
+2026-09-19 03:05:56,794 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 03:05:56,794 [INFO] [OFFGRID-WORKER] Cycle #734 response generated (34 chars)
+2026-09-19 03:05:56,806 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 03:05:57,010 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 03:05:57,087 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #734 pushed successfully (0.2056s, improvements=2)
+2026-09-19 03:06:57,199 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #735 ---
+2026-09-19 03:09:57,200 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 03:09:57,200 [INFO] [OFFGRID-WORKER] Cycle #735 response generated (34 chars)
+2026-09-19 03:09:57,206 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 03:09:57,822 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 03:09:57,824 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #735 pushed successfully (0.6118s, improvements=2)
+2026-09-19 03:10:57,892 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #736 ---
+2026-09-19 03:13:57,905 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 03:13:57,905 [INFO] [OFFGRID-WORKER] Cycle #736 response generated (34 chars)
+2026-09-19 03:13:57,917 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 03:13:57,982 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 03:13:57,984 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #736 pushed successfully (0.0658s, improvements=2)
+2026-09-19 03:14:58,018 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #737 ---
+2026-09-19 03:17:58,031 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 03:17:58,031 [INFO] [OFFGRID-WORKER] Cycle #737 response generated (34 chars)
+2026-09-19 03:17:58,040 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 03:17:58,057 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 03:17:58,059 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #737 pushed successfully (0.019s, improvements=2)
+2026-09-19 03:18:58,065 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #738 ---
+2026-09-19 03:21:58,079 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 03:21:58,079 [INFO] [OFFGRID-WORKER] Cycle #738 response generated (34 chars)
+2026-09-19 03:21:58,085 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 03:21:58,159 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 03:21:58,161 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #738 pushed successfully (0.0738s, improvements=2)
+2026-09-19 03:22:58,171 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #739 ---
+2026-09-19 03:25:58,173 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 03:25:58,174 [INFO] [OFFGRID-WORKER] Cycle #739 response generated (34 chars)
+2026-09-19 03:25:58,193 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 03:25:58,269 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 03:25:58,270 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #739 pushed successfully (0.0776s, improvements=2)
+2026-09-19 03:26:58,284 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #740 ---
+2026-09-19 03:29:58,286 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 03:29:58,291 [INFO] [OFFGRID-WORKER] Cycle #740 response generated (34 chars)
+2026-09-19 03:29:58,306 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 03:29:58,376 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 03:29:58,377 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #740 pushed successfully (0.0703s, improvements=2)
+2026-09-19 03:30:58,390 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #741 ---
+2026-09-19 03:33:58,397 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 03:33:58,397 [INFO] [OFFGRID-WORKER] Cycle #741 response generated (34 chars)
+2026-09-19 03:33:58,412 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 03:33:58,471 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 03:33:58,472 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #741 pushed successfully (0.0602s, improvements=2)
+2026-09-19 03:34:58,479 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #742 ---
+2026-09-19 03:37:58,483 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 03:37:58,483 [INFO] [OFFGRID-WORKER] Cycle #742 response generated (34 chars)
+2026-09-19 03:37:58,497 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 03:37:58,611 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 03:37:58,612 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #742 pushed successfully (0.1158s, improvements=2)
+2026-09-19 03:38:58,618 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #743 ---
+2026-09-19 03:41:58,631 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 03:41:58,631 [INFO] [OFFGRID-WORKER] Cycle #743 response generated (34 chars)
+2026-09-19 03:41:58,643 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 03:41:58,652 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 03:41:58,654 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #743 pushed successfully (0.0095s, improvements=2)
+2026-09-19 03:42:58,665 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #744 ---
+2026-09-19 03:45:58,668 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 03:45:58,668 [INFO] [OFFGRID-WORKER] Cycle #744 response generated (34 chars)
+2026-09-19 03:45:58,786 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 03:45:58,802 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 03:45:58,803 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #744 pushed successfully (0.0176s, improvements=2)
+2026-09-19 03:46:58,829 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #745 ---
+2026-09-19 03:49:58,831 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 03:49:58,831 [INFO] [OFFGRID-WORKER] Cycle #745 response generated (34 chars)
+2026-09-19 03:49:58,845 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 03:49:58,914 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 03:49:58,916 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #745 pushed successfully (0.0697s, improvements=2)
+2026-09-19 03:50:58,926 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #746 ---
+2026-09-19 03:53:58,929 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 03:53:58,929 [INFO] [OFFGRID-WORKER] Cycle #746 response generated (34 chars)
+2026-09-19 03:53:58,941 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 03:53:58,983 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 03:53:58,985 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #746 pushed successfully (0.041s, improvements=2)
+2026-09-19 03:54:58,990 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #747 ---
+2026-09-19 03:57:59,003 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 03:57:59,004 [INFO] [OFFGRID-WORKER] Cycle #747 response generated (34 chars)
+2026-09-19 03:57:59,023 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 03:57:59,095 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 03:57:59,097 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #747 pushed successfully (0.0737s, improvements=2)
+2026-09-19 03:58:59,104 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #748 ---
+2026-09-19 04:01:59,106 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 04:01:59,106 [INFO] [OFFGRID-WORKER] Cycle #748 response generated (34 chars)
+2026-09-19 04:01:59,200 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 04:01:59,211 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 04:01:59,212 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #748 pushed successfully (0.0111s, improvements=2)
+2026-09-19 04:02:59,218 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #749 ---
+2026-09-19 04:05:59,220 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 04:05:59,220 [INFO] [OFFGRID-WORKER] Cycle #749 response generated (34 chars)
+2026-09-19 04:05:59,234 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 04:05:59,282 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 04:05:59,284 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #749 pushed successfully (0.0494s, improvements=2)
+2026-09-19 04:06:59,316 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #750 ---
+2026-09-19 04:09:59,329 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 04:09:59,329 [INFO] [OFFGRID-WORKER] Cycle #750 response generated (34 chars)
+2026-09-19 04:09:59,339 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 04:09:59,361 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 04:09:59,364 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #750 pushed successfully (0.0236s, improvements=2)
+2026-09-19 04:10:59,371 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #751 ---
+2026-09-19 04:13:59,374 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 04:13:59,374 [INFO] [OFFGRID-WORKER] Cycle #751 response generated (34 chars)
+2026-09-19 04:13:59,400 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 04:13:59,434 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 04:13:59,435 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #751 pushed successfully (0.0298s, improvements=2)
+2026-09-19 04:14:59,459 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #752 ---
+2026-09-19 04:17:59,462 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 04:17:59,462 [INFO] [OFFGRID-WORKER] Cycle #752 response generated (34 chars)
+2026-09-19 04:17:59,467 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 04:17:59,515 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 04:17:59,516 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #752 pushed successfully (0.0491s, improvements=2)
+2026-09-19 04:18:59,523 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #753 ---
+2026-09-19 04:21:59,525 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 04:21:59,525 [INFO] [OFFGRID-WORKER] Cycle #753 response generated (34 chars)
+2026-09-19 04:21:59,532 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 04:21:59,573 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 04:21:59,574 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #753 pushed successfully (0.0421s, improvements=2)
+2026-09-19 04:22:59,587 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #754 ---
+2026-09-19 04:25:59,601 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 04:25:59,601 [INFO] [OFFGRID-WORKER] Cycle #754 response generated (34 chars)
+2026-09-19 04:25:59,620 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 04:25:59,638 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 04:25:59,638 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #754 pushed successfully (0.0185s, improvements=2)
+2026-09-19 04:26:59,651 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #755 ---
+2026-09-19 04:29:59,652 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 04:29:59,652 [INFO] [OFFGRID-WORKER] Cycle #755 response generated (34 chars)
+2026-09-19 04:29:59,658 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 04:29:59,675 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 04:29:59,676 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #755 pushed successfully (0.0174s, improvements=2)
+2026-09-19 04:30:59,682 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #756 ---
+2026-09-19 04:33:59,686 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 04:33:59,686 [INFO] [OFFGRID-WORKER] Cycle #756 response generated (34 chars)
+2026-09-19 04:33:59,729 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 04:33:59,752 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 04:33:59,753 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #756 pushed successfully (0.0256s, improvements=2)
+2026-09-19 04:34:59,762 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #757 ---
+2026-09-19 04:37:59,776 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 04:37:59,776 [INFO] [OFFGRID-WORKER] Cycle #757 response generated (34 chars)
+2026-09-19 04:37:59,786 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 04:37:59,793 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 04:37:59,794 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #757 pushed successfully (0.0079s, improvements=2)
+2026-09-19 04:38:59,801 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #758 ---
+2026-09-19 04:41:59,806 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 04:41:59,806 [INFO] [OFFGRID-WORKER] Cycle #758 response generated (34 chars)
+2026-09-19 04:41:59,816 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 04:41:59,838 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 04:41:59,841 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #758 pushed successfully (0.0229s, improvements=2)
+2026-09-19 04:42:59,848 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #759 ---
+2026-09-19 04:45:59,861 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 04:45:59,861 [INFO] [OFFGRID-WORKER] Cycle #759 response generated (34 chars)
+2026-09-19 04:45:59,873 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 04:45:59,901 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 04:45:59,902 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #759 pushed successfully (0.029s, improvements=2)
+2026-09-19 04:46:59,911 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #760 ---
+2026-09-19 04:49:59,913 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 04:49:59,913 [INFO] [OFFGRID-WORKER] Cycle #760 response generated (34 chars)
+2026-09-19 04:49:59,927 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 04:49:59,949 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 04:49:59,951 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #760 pushed successfully (0.0238s, improvements=2)
+2026-09-19 04:50:59,958 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #761 ---
+2026-09-19 04:53:59,973 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 04:53:59,973 [INFO] [OFFGRID-WORKER] Cycle #761 response generated (34 chars)
+2026-09-19 04:53:59,983 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 04:54:00,001 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 04:54:00,002 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #761 pushed successfully (0.0186s, improvements=2)
+2026-09-19 04:55:00,004 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #762 ---
+2026-09-19 04:58:00,007 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 04:58:00,007 [INFO] [OFFGRID-WORKER] Cycle #762 response generated (34 chars)
+2026-09-19 04:58:00,012 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 04:58:00,355 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 04:58:00,356 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #762 pushed successfully (0.3421s, improvements=2)
+2026-09-19 04:59:00,370 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #763 ---
+2026-09-19 05:02:00,383 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 05:02:00,383 [INFO] [OFFGRID-WORKER] Cycle #763 response generated (34 chars)
+2026-09-19 05:02:00,392 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 05:02:00,434 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 05:02:00,436 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #763 pushed successfully (0.0407s, improvements=2)
+2026-09-19 05:03:00,442 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #764 ---
+2026-09-19 05:06:00,444 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 05:06:00,444 [INFO] [OFFGRID-WORKER] Cycle #764 response generated (34 chars)
+2026-09-19 05:06:00,458 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 05:06:00,533 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 05:06:00,534 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #764 pushed successfully (0.0752s, improvements=2)
+2026-09-19 05:07:00,547 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #765 ---
+2026-09-19 05:10:00,560 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 05:10:00,560 [INFO] [OFFGRID-WORKER] Cycle #765 response generated (34 chars)
+2026-09-19 05:10:00,571 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 05:10:00,611 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 05:10:00,612 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #765 pushed successfully (0.0409s, improvements=2)
+2026-09-19 05:11:00,619 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #766 ---
+2026-09-19 05:14:00,633 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 05:14:00,633 [INFO] [OFFGRID-WORKER] Cycle #766 response generated (34 chars)
+2026-09-19 05:14:00,644 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 05:14:00,663 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 05:14:00,664 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #766 pushed successfully (0.0205s, improvements=2)
+2026-09-19 05:15:00,675 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #767 ---
+2026-09-19 05:18:00,692 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 05:18:00,693 [INFO] [OFFGRID-WORKER] Cycle #767 response generated (34 chars)
+2026-09-19 05:18:00,717 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 05:18:00,754 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 05:18:00,756 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #767 pushed successfully (0.0386s, improvements=2)
+2026-09-19 05:19:00,763 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #768 ---
+2026-09-19 05:22:00,765 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 05:22:00,765 [INFO] [OFFGRID-WORKER] Cycle #768 response generated (34 chars)
+2026-09-19 05:22:00,780 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 05:22:00,867 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 05:22:00,870 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #768 pushed successfully (0.09s, improvements=2)
+2026-09-19 05:23:00,886 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #769 ---
+2026-09-19 05:26:00,888 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 05:26:00,888 [INFO] [OFFGRID-WORKER] Cycle #769 response generated (34 chars)
+2026-09-19 05:26:00,902 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 05:26:00,921 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 05:26:00,923 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #769 pushed successfully (0.0209s, improvements=2)
+2026-09-19 05:27:00,932 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #770 ---
+2026-09-19 05:30:00,931 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 05:30:00,931 [INFO] [OFFGRID-WORKER] Cycle #770 response generated (34 chars)
+2026-09-19 05:30:00,943 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 05:30:01,093 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 05:30:01,095 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #770 pushed successfully (0.149s, improvements=2)
+2026-09-19 05:31:01,100 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #771 ---
+2026-09-19 05:34:01,111 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 05:34:01,111 [INFO] [OFFGRID-WORKER] Cycle #771 response generated (34 chars)
+2026-09-19 05:34:01,123 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 05:34:01,141 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 05:34:01,142 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #771 pushed successfully (0.0198s, improvements=2)
+2026-09-19 05:35:01,162 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #772 ---
+2026-09-19 05:38:01,171 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 05:38:01,171 [INFO] [OFFGRID-WORKER] Cycle #772 response generated (34 chars)
+2026-09-19 05:38:01,191 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 05:38:01,265 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 05:38:01,266 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #772 pushed successfully (0.0753s, improvements=2)
+2026-09-19 05:39:01,272 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #773 ---
+2026-09-19 05:42:01,272 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 05:42:01,272 [INFO] [OFFGRID-WORKER] Cycle #773 response generated (34 chars)
+2026-09-19 05:42:01,285 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 05:42:01,534 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 05:42:01,535 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #773 pushed successfully (0.2498s, improvements=2)
+2026-09-19 05:43:01,539 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #774 ---
+2026-09-19 05:46:01,539 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 05:46:01,539 [INFO] [OFFGRID-WORKER] Cycle #774 response generated (34 chars)
+2026-09-19 05:46:01,541 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 05:46:01,601 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 05:46:01,603 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #774 pushed successfully (0.0613s, improvements=2)
+2026-09-19 05:47:01,603 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #775 ---
+2026-09-19 05:49:18,978 [INFO] [OFFGRID-WORKER] Cycle #775 response generated (2579 chars)
+2026-09-19 05:49:19,000 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 05:49:19,007 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 05:49:19,008 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #775 pushed successfully (0.0073s, improvements=2)
+2026-09-19 05:50:19,022 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #776 ---
+2026-09-19 05:53:19,021 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 05:53:19,022 [INFO] [OFFGRID-WORKER] Cycle #776 response generated (34 chars)
+2026-09-19 05:53:19,030 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 05:53:19,102 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 05:53:19,103 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #776 pushed successfully (0.073s, improvements=2)
+2026-09-19 05:54:19,116 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #777 ---
+2026-09-19 05:57:19,116 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 05:57:19,116 [INFO] [OFFGRID-WORKER] Cycle #777 response generated (34 chars)
+2026-09-19 05:57:19,162 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 05:57:19,170 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 05:57:19,172 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #777 pushed successfully (0.0412s, improvements=2)
+2026-09-19 05:58:19,176 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #778 ---
+2026-09-19 06:00:27,572 [INFO] [OFFGRID-WORKER] Cycle #778 response generated (2374 chars)
+2026-09-19 06:00:27,573 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 06:00:27,583 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 06:00:27,583 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #778 pushed successfully (0.0103s, improvements=2)
+2026-09-19 06:01:27,585 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #779 ---
+2026-09-19 06:04:27,594 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 06:04:27,594 [INFO] [OFFGRID-WORKER] Cycle #779 response generated (34 chars)
+2026-09-19 06:04:27,596 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 06:04:27,645 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 06:04:27,647 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #779 pushed successfully (0.0497s, improvements=2)
+2026-09-19 06:05:27,647 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #780 ---
+2026-09-19 06:08:27,652 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 06:08:27,652 [INFO] [OFFGRID-WORKER] Cycle #780 response generated (34 chars)
+2026-09-19 06:08:27,667 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 06:08:27,719 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 06:08:27,720 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #780 pushed successfully (0.0531s, improvements=2)
+2026-09-19 06:09:27,728 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #781 ---
+2026-09-19 06:12:27,738 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 06:12:27,738 [INFO] [OFFGRID-WORKER] Cycle #781 response generated (34 chars)
+2026-09-19 06:12:27,749 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 06:12:27,768 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 06:12:27,769 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #781 pushed successfully (0.0194s, improvements=2)
+2026-09-19 06:13:27,780 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #782 ---
+2026-09-19 06:16:27,780 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 06:16:27,780 [INFO] [OFFGRID-WORKER] Cycle #782 response generated (34 chars)
+2026-09-19 06:16:27,782 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 06:16:27,822 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 06:16:27,824 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #782 pushed successfully (0.0418s, improvements=2)
+2026-09-19 06:17:27,825 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #783 ---
+2026-09-19 06:20:27,826 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 06:20:27,827 [INFO] [OFFGRID-WORKER] Cycle #783 response generated (34 chars)
+2026-09-19 06:20:27,828 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 06:20:27,861 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 06:20:27,863 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #783 pushed successfully (0.0334s, improvements=2)
+2026-09-19 06:21:27,864 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #784 ---
+2026-09-19 06:24:27,864 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 06:24:27,864 [INFO] [OFFGRID-WORKER] Cycle #784 response generated (34 chars)
+2026-09-19 06:24:27,932 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 06:24:27,961 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 06:24:27,962 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #784 pushed successfully (0.0348s, improvements=2)
+2026-09-19 06:25:27,969 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #785 ---
+2026-09-19 06:28:27,969 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 06:28:27,969 [INFO] [OFFGRID-WORKER] Cycle #785 response generated (34 chars)
+2026-09-19 06:28:27,991 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 06:28:28,040 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 06:28:28,042 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #785 pushed successfully (0.0487s, improvements=2)
+2026-09-19 06:29:28,048 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #786 ---
+2026-09-19 06:32:28,061 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 06:32:28,061 [INFO] [OFFGRID-WORKER] Cycle #786 response generated (34 chars)
+2026-09-19 06:32:28,074 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 06:32:28,120 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 06:32:28,122 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #786 pushed successfully (0.0474s, improvements=2)
+2026-09-19 06:33:28,128 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #787 ---
+2026-09-19 06:36:28,131 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 06:36:28,131 [INFO] [OFFGRID-WORKER] Cycle #787 response generated (34 chars)
+2026-09-19 06:36:28,133 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 06:36:28,186 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 06:36:28,188 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #787 pushed successfully (0.0539s, improvements=2)
+2026-09-19 06:37:28,189 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #788 ---
+2026-09-19 06:40:28,201 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 06:40:28,201 [INFO] [OFFGRID-WORKER] Cycle #788 response generated (34 chars)
+2026-09-19 06:40:28,218 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 06:40:28,247 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 06:40:28,249 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #788 pushed successfully (0.0309s, improvements=2)
+2026-09-19 06:41:28,260 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #789 ---
+2026-09-19 06:44:28,274 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 06:44:28,274 [INFO] [OFFGRID-WORKER] Cycle #789 response generated (34 chars)
+2026-09-19 06:44:28,288 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 06:44:28,505 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 06:44:28,507 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #789 pushed successfully (0.218s, improvements=2)
+2026-09-19 06:45:28,516 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #790 ---
+2026-09-19 06:48:28,530 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 06:48:28,530 [INFO] [OFFGRID-WORKER] Cycle #790 response generated (34 chars)
+2026-09-19 06:48:28,545 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 06:48:28,552 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 06:48:28,553 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #790 pushed successfully (0.0086s, improvements=2)
+2026-09-19 06:49:28,596 [INFO] [OFFGRID-WORKER] --- Continuous Off-Grid Cycle #791 ---
+2026-09-19 06:52:28,612 [ERROR] [OFFGRID-WORKER] Local inference error on sovereign-hermes: timed out
+2026-09-19 06:52:28,612 [INFO] [OFFGRID-WORKER] Cycle #791 response generated (34 chars)
+2026-09-19 06:52:28,613 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] Remediation triggered: Inference engine stall / consecutive failures exceeded
+2026-09-19 06:52:28,634 [INFO] [OFFGRID-WORKER] [XMARS-Guardian] KV-cache memory successfully released.
+2026-09-19 06:52:28,635 [INFO] [OFFGRID-WORKER] [AUTONOMY] Cycle #791 pushed successfully (0.0178s, improvements=2)

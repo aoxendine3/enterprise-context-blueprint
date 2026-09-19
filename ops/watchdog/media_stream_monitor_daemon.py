@@ -10,6 +10,7 @@ This monitor is strict by design:
 
 from __future__ import annotations
 
+import json
 import os
 import subprocess
 import sys

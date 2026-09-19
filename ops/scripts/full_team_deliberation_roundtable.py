@@ -17,6 +17,8 @@ import subprocess
 import sys
 import time
 from datetime import datetime, timezone
+from pathlib import Path
+
 SCRIPT_DIR = Path(__file__).resolve().parent
 ROOT = SCRIPT_DIR.parent.parent
 SPEAK_SCRIPT = ROOT / "ops" / "scripts" / "media_director_agent.py"
@@ -155,7 +157,7 @@ def run_roundtable(objective: str, turns_file: str | None) -> None:
         time.sleep(0.35)
 
     write_journal(mode, objective, turns, len(triads))
-    print("[✓] Roundtable complete.")
+    print("[OK] Roundtable complete.")
 
 
 def parse_args(argv: list[str]) -> argparse.Namespace:
