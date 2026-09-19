@@ -1,11 +1,11 @@
 {
   "version": "1.0.0-HASTE",
-  "timestamp": 1789525455.6443453,
-  "mining_duration_sec": 28.716,
-  "total_files": 517,
-  "total_code_units": 1319,
+  "timestamp": 1789815158.9284568,
+  "mining_duration_sec": 6.146,
+  "total_files": 572,
+  "total_code_units": 1457,
   "repos": {
-    "SSOT_Agentic_Brain": 405,
+    "SSOT_Agentic_Brain": 460,
     "xoras_core_institutional": 112
   },
   "files": [
@@ -542,6 +542,68 @@
         }
       ],
       "summary": "# \ud83c\udfc6 XORAS SOVEREIGN SYSTEMS: MASTER ARCHITECTURAL DOSSIER # The Ground-Up Sovereign Core Rework & Extreme Byzantine Torture Gauntlet  **Compiled By**: Maxx (Operations Lead & Systems Architecture Lead)   **Host Architecture**: Windows 10 Bare Metal (`192.168.1.211`, Intel x86_64, 4 Logical Cores)   **Reference Architecture**: Apple Silicon Mac M4 (`192.168.1.133`, 10 Cores, Unified Memory 120 GB/s"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "agents\\orchestrator\\model_orchestrator.py",
+      "extension": ".py",
+      "size_bytes": 4474,
+      "sha256": "361a7c352ac3e26c",
+      "units_count": 0,
+      "units": [],
+      "summary": "\"\"\" Model Orchestrator \u2014 XORAS Sovereign OS Routes incoming tasks, natural language inputs, and audio transcripts to local on-machine models via Ollama. Primary Model: sovereign-hermes Fallback Models: deepseek-r1:1.5b, hermes3:8b, qwen2.5:1.5b, llama3.2 Completely off-grid. Zero cloud API dependencies. \"\"\"  import os import sys import json import time import urllib.request import urllib.error imp"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "agents\\voice\\voice_capture.py",
+      "extension": ".py",
+      "size_bytes": 2785,
+      "sha256": "543760bbda01d91e",
+      "units_count": 3,
+      "units": [
+        {
+          "type": "function",
+          "name": "save_wav",
+          "args": "filename: str, audio_data: bytes, sample_rate: int = 16000"
+        },
+        {
+          "type": "function",
+          "name": "record_loop",
+          "args": ""
+        },
+        {
+          "type": "function",
+          "name": "main",
+          "args": ""
+        }
+      ],
+      "summary": "\"\"\" Voice Capture Daemon \u2014 XORAS Sovereign OS Continuous 16kHz 16-bit mono audio recording from microphone. Writes 5-second chunks locally and logs events to voice_events.jsonl. Zero cloud token burn. Completely off-grid. \"\"\"  import os import sys import json import time import wave import logging import threading from datetime import datetime  # Determine SSOT root SSOT_ROOT = os.environ.get("
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "agents\\voice\\voice_router.py",
+      "extension": ".py",
+      "size_bytes": 8328,
+      "sha256": "36eb6cbc81f505fa",
+      "units_count": 3,
+      "units": [
+        {
+          "type": "function",
+          "name": "write_stt_event",
+          "args": "transcript: str, wav_path: str"
+        },
+        {
+          "type": "function",
+          "name": "write_inbox_event",
+          "args": "intent: str, model: str, response: str, transcript: str"
+        },
+        {
+          "type": "function",
+          "name": "tail_events",
+          "args": ""
+        }
+      ],
+      "summary": "\"\"\" Voice Router \u2014 Monitors voice events, runs local STT via Vosk, classifies intent, and dispatches to sovereign-hermes via Ollama. Fully off-grid. No cloud dependencies. \"\"\"  import os import sys import json import time import wave import logging import urllib.request import datetime  # \u2500\u2500 Paths \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 SSOT_ROOT = os.environ.get(     \""
     },
     {
       "repo": "SSOT_Agentic_Brain",
@@ -4448,20 +4510,10 @@
     },
     {
       "repo": "SSOT_Agentic_Brain",
-      "relative_path": "data_center\\golden_list\\GOLDEN_LIST.json",
-      "extension": ".json",
-      "size_bytes": 98077,
-      "sha256": "36eda1dac2f7de2f",
-      "units_count": 0,
-      "units": [],
-      "summary": "{   \"manifest_version\": \"1.0.0-SOVEREIGN\",   \"constitutional_rule\": \"LOG_ENTRY_066\",   \"admission_criteria\": {     \"market_superiority\": \"Must demonstrate orders-of-magnitude superiority over existing industry standards\",     \"anti_basic_filter\": \"Basic, generic, or boilerplate work is permanently disqualified\",     \"immediate_purpose\": \"Must fulfill an active, mission-critical operational need ri"
-    },
-    {
-      "repo": "SSOT_Agentic_Brain",
       "relative_path": "data_center\\golden_list\\GOLDEN_LIST.md",
       "extension": ".md",
-      "size_bytes": 76531,
-      "sha256": "e612e2afc75e3aa5",
+      "size_bytes": 495337,
+      "sha256": "54215abcf6dd0916",
       "units_count": 20,
       "units": [
         {
@@ -4545,27 +4597,17 @@
           "name": "`GOLDEN-017`: xmars-sovereign-distill-c3"
         }
       ],
-      "summary": "# \ud83c\udfc6 THE SOVEREIGN FLAWLESS GOLDEN LIST  **Governing Rule:** Log Entry #066 (Blackbox Review System) **Last Certified:** 2026-09-16T02:18:45.958857Z **Total Admitted Assets:** 145 **Total Rejected Candidates:** 2  ---  ## \ud83d\udd12 Admission Standard > **Near-Impossible Threshold:** A build or component is admitted ONLY if it vastly excels market standards, exhibits ZERO flaws in every build metric, serves"
-    },
-    {
-      "repo": "SSOT_Agentic_Brain",
-      "relative_path": "data_center\\synthetic_training\\mined_code_catalog.json",
-      "extension": ".json",
-      "size_bytes": 498272,
-      "sha256": "36bfd83f3baaec53",
-      "units_count": 0,
-      "units": [],
-      "summary": "{   \"version\": \"1.0.0-HASTE\",   \"timestamp\": 1789525125.4644384,   \"mining_duration_sec\": 1.87,   \"total_files\": 517,   \"total_code_units\": 1319,   \"repos\": {     \"SSOT_Agentic_Brain\": 405,     \"xoras_core_institutional\": 112   },   \"files\": [     {       \"repo\": \"SSOT_Agentic_Brain\",       \"relative_path\": \"AGENTS.md\",       \"extension\": \".md\",       \"size_bytes\": 16011,       \"sha256\": \"29bde12b"
+      "summary": "# \ud83c\udfc6 THE SOVEREIGN FLAWLESS GOLDEN LIST  **Governing Rule:** Log Entry #066 (Blackbox Review System) **Last Certified:** 2026-09-19T10:47:32.727268Z **Total Admitted Assets:** 965 **Total Rejected Candidates:** 2  ---  ## \ud83d\udd12 Admission Standard > **Near-Impossible Threshold:** A build or component is admitted ONLY if it vastly excels market standards, exhibits ZERO flaws in every build metric, serves"
     },
     {
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "data_center\\synthetic_training\\xmars_axioms_matrix.json",
       "extension": ".json",
       "size_bytes": 597,
-      "sha256": "0863f42121ffb9fa",
+      "sha256": "3a7f2d880abdd507",
       "units_count": 0,
       "units": [],
-      "summary": "{   \"manifest\": \"XMARS_AXIOMS_MATRIX_V1\",   \"generated_at\": 1789525125.9272106,   \"total_dpo_pairs\": 517,   \"total_instruct_pairs\": 517,   \"core_axioms\": [     \"AXIOM_1: All sovereign computation must respect hardware-governed memory ceilings.\",     \"AXIOM_2: Zero silent mutations. Audio-first intent declaration is permanent law.\",     \"AXIOM_3: Adversarial falsification must precede Golden List a"
+      "summary": "{   \"manifest\": \"XMARS_AXIOMS_MATRIX_V1\",   \"generated_at\": 1789814852.6327069,   \"total_dpo_pairs\": 557,   \"total_instruct_pairs\": 557,   \"core_axioms\": [     \"AXIOM_1: All sovereign computation must respect hardware-governed memory ceilings.\",     \"AXIOM_2: Zero silent mutations. Audio-first intent declaration is permanent law.\",     \"AXIOM_3: Adversarial falsification must precede Golden List a"
     },
     {
       "repo": "SSOT_Agentic_Brain",
@@ -4638,6 +4680,57 @@
     },
     {
       "repo": "SSOT_Agentic_Brain",
+      "relative_path": "docs\\audits\\FRONTIER_AI_UNRESOLVED_DISSECTION_AND_INNOVATION.md",
+      "extension": ".md",
+      "size_bytes": 6842,
+      "sha256": "50feda0e1855a2dc",
+      "units_count": 10,
+      "units": [
+        {
+          "type": "heading",
+          "name": "\ud83e\udde0 THE FRONTIER DISSECTION: UNRESOLVED AI THEOREMS & EMPIRICAL BENCHMARKS"
+        },
+        {
+          "type": "heading",
+          "name": "1. Executive Summary & The Six Open AI Grand Challenges"
+        },
+        {
+          "type": "heading",
+          "name": "2. Deep Dissection & Sovereign Inventions"
+        },
+        {
+          "type": "heading",
+          "name": "Grand Challenge 1: The KV-Cache Memory Wall"
+        },
+        {
+          "type": "heading",
+          "name": "Grand Challenge 2: Catastrophic Forgetting in Continuous Learning"
+        },
+        {
+          "type": "heading",
+          "name": "Grand Challenge 3: Hallucination & The Lack of Formal Verification"
+        },
+        {
+          "type": "heading",
+          "name": "Grand Challenge 4: Autonomous Architectural Self-Upgrade Without Downtime"
+        },
+        {
+          "type": "heading",
+          "name": "Grand Challenge 5: Cross-Platform Mesh Synchronization (Mac M4 $\\leftrightarrow$ Windows Host)"
+        },
+        {
+          "type": "heading",
+          "name": "Grand Challenge 6: Zero-Latency Neural Voice Synthesis on Bare-Metal Edge"
+        },
+        {
+          "type": "heading",
+          "name": "3. The Council Multi-Perspective Discernment & Sign-Off"
+        }
+      ],
+      "summary": "# \ud83e\udde0 THE FRONTIER DISSECTION: UNRESOLVED AI THEOREMS & EMPIRICAL BENCHMARKS  **Classification:** [PRODUCTION]   **Governance:** Constitutional Log Entries #065, #066, #069   **Council Lead:** Jarvis (Chair), Maxx (SSOT Lead), Daxx (Error Remediation), Vance (Falsification Bench)   **Date:** 2026-09-16    ---  ## 1. Executive Summary & The Six Open AI Grand Challenges  While commercial AI vendors ma"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
       "relative_path": "docs\\audits\\MAC_VS_WINDOWS_FULL_TELEMETRY_AUDIT.md",
       "extension": ".md",
       "size_bytes": 10226,
@@ -4693,6 +4786,92 @@
     },
     {
       "repo": "SSOT_Agentic_Brain",
+      "relative_path": "docs\\audits\\MARS_MONOTONIC_ACTION_AND_REASONING_SAFEGUARDS.md",
+      "extension": ".md",
+      "size_bytes": 9899,
+      "sha256": "c01b8bfce3a740ce",
+      "units_count": 8,
+      "units": [
+        {
+          "type": "heading",
+          "name": "MARS: Monotonic Action & Reasoning Safeguards (4-Layer Mechanical Gate)"
+        },
+        {
+          "type": "heading",
+          "name": "Deterministic Architecture for Zero-Flaw Multi-Agent Verification and Autonomous Execution"
+        },
+        {
+          "type": "heading",
+          "name": "Abstract"
+        },
+        {
+          "type": "heading",
+          "name": "1. Introduction & The Multi-Agent Failure Crisis"
+        },
+        {
+          "type": "heading",
+          "name": "2. The 4-Layer Mechanical Architecture"
+        },
+        {
+          "type": "heading",
+          "name": "3. Mathematical Formulation & Formal Proofs"
+        },
+        {
+          "type": "heading",
+          "name": "4. Empirical Benchmarks on Bare-Metal Silicon"
+        },
+        {
+          "type": "heading",
+          "name": "5. Conclusion & Availability"
+        }
+      ],
+      "summary": "# MARS: Monotonic Action & Reasoning Safeguards (4-Layer Mechanical Gate) ## Deterministic Architecture for Zero-Flaw Multi-Agent Verification and Autonomous Execution **Authors:** Anthony Oxendine, Maxx (Operations & Architecture Lead), William Vance (Blackbox Falsification Lead), Jarvis (Governance Chair), Daxx (Native Error Remediation)   **Affiliation:** Xoras Sovereign Systems & The Lead 9 Au"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "docs\\audits\\MTPO_MONOTONIC_TRAJECTORY_PREORDER.md",
+      "extension": ".md",
+      "size_bytes": 7573,
+      "sha256": "88831fc708a501a2",
+      "units_count": 8,
+      "units": [
+        {
+          "type": "heading",
+          "name": "MTPO: Monotonic Trajectory Pre-Order"
+        },
+        {
+          "type": "heading",
+          "name": "Formal State Trajectory Bounds and Deadlock Elimination in Distributed Multi-Agent Systems"
+        },
+        {
+          "type": "heading",
+          "name": "Abstract"
+        },
+        {
+          "type": "heading",
+          "name": "1. The Dilemma of Unconstrained Multi-Agent Trajectories"
+        },
+        {
+          "type": "heading",
+          "name": "2. MTPO Mathematical Formulation"
+        },
+        {
+          "type": "heading",
+          "name": "3. Runtime Implementation in XORAS & XMARS.os"
+        },
+        {
+          "type": "heading",
+          "name": "4. Experimental Results"
+        },
+        {
+          "type": "heading",
+          "name": "5. Conclusion"
+        }
+      ],
+      "summary": "# MTPO: Monotonic Trajectory Pre-Order ## Formal State Trajectory Bounds and Deadlock Elimination in Distributed Multi-Agent Systems **Authors:** Anthony Oxendine, Maxx (Systems Architecture Lead), William Vance (Blackbox Red Team Lead), Jarvis (Governance Chair), Clara (Research & Formal Verification)   **Affiliation:** Xoras Sovereign Systems & The Lead 9 Autonomous Council   **Classification:**"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
       "relative_path": "docs\\audits\\SYSTEM_AUDIT_TAIL_LATENCY_REPORT.json",
       "extension": ".json",
       "size_bytes": 2593,
@@ -4703,10 +4882,61 @@
     },
     {
       "repo": "SSOT_Agentic_Brain",
+      "relative_path": "docs\\audits\\UNSOLVED_AUTONOMOUS_MONITOR_AND_HEALING_PARADOXES.md",
+      "extension": ".md",
+      "size_bytes": 9142,
+      "sha256": "5db7b7044614e28c",
+      "units_count": 10,
+      "units": [
+        {
+          "type": "heading",
+          "name": "\ud83d\udd2c THE UNSOLVED THEOREMS OF ZERO-FLAW AUTONOMOUS MONITORING & SELF-EVOLUTION"
+        },
+        {
+          "type": "heading",
+          "name": "1. Executive Dissection: What the Industry Has Failed to Solve"
+        },
+        {
+          "type": "heading",
+          "name": "2. Deep Technical Dissection of the 5 Unsolved Barriers"
+        },
+        {
+          "type": "heading",
+          "name": "Barrier 1: The G\u00f6delian Watchdog Paradox (Self-Reference Failure)"
+        },
+        {
+          "type": "heading",
+          "name": "Barrier 2: The Heisenbug Remediation Loop (Observation State Mutation)"
+        },
+        {
+          "type": "heading",
+          "name": "Barrier 3: The Irreversible Side-Effect Horizon (Rollback State Entropy)"
+        },
+        {
+          "type": "heading",
+          "name": "Barrier 4: Semantic Drift vs. Formal Invariance in Autonomous Upgrading"
+        },
+        {
+          "type": "heading",
+          "name": "Barrier 5: The Thermodynamic Latency Cascade"
+        },
+        {
+          "type": "heading",
+          "name": "3. Concrete Architectural Specifications for XORAS"
+        },
+        {
+          "type": "heading",
+          "name": "4. Summary Verdict & Sovereign Implementation"
+        }
+      ],
+      "summary": "# \ud83d\udd2c THE UNSOLVED THEOREMS OF ZERO-FLAW AUTONOMOUS MONITORING & SELF-EVOLUTION  **Classification:** [PRODUCTION AUDIT & BLUEPRINT]   **Governance:** Constitutional Log Entries #065, #066, #069   **Council Lead:** Maxx (Chief Engineer & SSOT Lead), William Vance (Discernment & Falsification), Daxx (Remediation)   **Date:** 2026-09-17    ---  ## 1. Executive Dissection: What the Industry Has Failed t"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
       "relative_path": "docs\\blog\\INDEX.md",
       "extension": ".md",
-      "size_bytes": 623,
-      "sha256": "2654b8196ee34207",
+      "size_bytes": 930,
+      "sha256": "29eedaa0285251a2",
       "units_count": 1,
       "units": [
         {
@@ -4714,7 +4944,7 @@
           "name": "\ud83d\udce1 XORAS & XMARS SOVEREIGN AGENT BLOG"
         }
       ],
-      "summary": "# \ud83d\udce1 XORAS & XMARS SOVEREIGN AGENT BLOG *Real-time empirical intelligence authored by the Lead 9 Autonomous Council.* **Last Synchronized:** 2026-09-15 14:10:13Z  | ID | Title | Authors | Status | |---|---|---|---| | [Post 001](post_001_hyper_accelerated_synthetic_training.md) | Compressing Time: X-HASTE Mining | Maxx & Clara | Certified | | [Post 002](post_002_autonomous_governance_and_memory_hygi"
+      "summary": "# \ud83d\udce1 XORAS & XMARS SOVEREIGN AGENT BLOG *Real-time empirical intelligence authored by the Lead 9 Autonomous Council.* **Last Synchronized:** 2026-09-18 12:35:00Z  | ID | Title | Authors | Status | |---|---|---|---| | [Post 001](post_001_hyper_accelerated_synthetic_training.md) | Compressing Time: X-HASTE Mining | Maxx & Clara | Certified | | [Post 002](post_002_autonomous_governance_and_memory_hygi"
     },
     {
       "repo": "SSOT_Agentic_Brain",
@@ -4788,6 +5018,56 @@
         }
       ],
       "summary": "# Post 003: The Sovereign Enterprise Machine \u2014 Field Guide Certified (GOLDEN-009) **Author:** Jarvis (Governance Lead) & William Vance (Discernment Lead)   **Date:** 2026-09-15 14:10:13Z   **Category:** Canonical Doctrine & Enterprise Architecture   **Status:** PUBLISHED & CERTIFIED    ---  ### The Sovereign Masterwork Greenlight Following rigorous QA and full adversarial evaluation by William Van"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "docs\\blog\\post_004_mars_monotonic_action_and_reasoning_safeguards.md",
+      "extension": ".md",
+      "size_bytes": 1918,
+      "sha256": "db57bd605f7c78c6",
+      "units_count": 4,
+      "units": [
+        {
+          "type": "heading",
+          "name": "Post 004: MARS \u2014 Monotonic Action & Reasoning Safeguards (GOLDEN-057)"
+        },
+        {
+          "type": "heading",
+          "name": "Abstract & Overview"
+        },
+        {
+          "type": "heading",
+          "name": "The 4 Mechanical Gates"
+        },
+        {
+          "type": "heading",
+          "name": "Formal Guarantee"
+        }
+      ],
+      "summary": "# Post 004: MARS \u2014 Monotonic Action & Reasoning Safeguards (GOLDEN-057) **Author:** William Vance (Discernment & Adversarial Audit Lead) & Maxx (Chief Engineer)   **Date:** 2026-09-18 12:30:00Z   **Category:** Formal Methods, System Security & Monotonic Runtime Verification   **Status:** PUBLISHED, ADVERSARIALLY FALSIFIED & CERTIFIED (GOLDEN-057)    ---  ### Abstract & Overview As autonomous LLM a"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "docs\\blog\\post_005_mtpo_monotonic_trajectory_preorder.md",
+      "extension": ".md",
+      "size_bytes": 1702,
+      "sha256": "e58084ff04556a9e",
+      "units_count": 3,
+      "units": [
+        {
+          "type": "heading",
+          "name": "Post 005: MTPO \u2014 Monotonic Trajectory Pre-Order for Autonomous Multi-Agent Reasoning (GOLDEN-058)"
+        },
+        {
+          "type": "heading",
+          "name": "Abstract & Overview"
+        },
+        {
+          "type": "heading",
+          "name": "Key Theoretical Guarantees"
+        }
+      ],
+      "summary": "# Post 005: MTPO \u2014 Monotonic Trajectory Pre-Order for Autonomous Multi-Agent Reasoning (GOLDEN-058) **Author:** Clara (Orbital Dynamics & Formal Systems) & Jarvis (Governance Steward)   **Date:** 2026-09-18 12:35:00Z   **Category:** Formal Mathematics, Trajectory Optimization & Deadlock Elimination   **Status:** PUBLISHED, MATHEMATICALLY VERIFIED & CERTIFIED (GOLDEN-058)    ---  ### Abstract & Ove"
     },
     {
       "repo": "SSOT_Agentic_Brain",
@@ -4881,6 +5161,80 @@
     },
     {
       "repo": "SSOT_Agentic_Brain",
+      "relative_path": "docs\\briefings\\SOVEREIGN_YOUTUBE_CREATOR_ARCHITECTURE.md",
+      "extension": ".md",
+      "size_bytes": 6839,
+      "sha256": "324499c779e8a4ed",
+      "units_count": 6,
+      "units": [
+        {
+          "type": "heading",
+          "name": "\ud83c\udfac SOVEREIGN YOUTUBE CREATOR ARCHITECTURE & PRODUCTION ENGINE"
+        },
+        {
+          "type": "heading",
+          "name": "1. The Market Landscape & Our Unfair Advantage"
+        },
+        {
+          "type": "heading",
+          "name": "2. The Tri-Container 3-Dimensional Formulated Architecture"
+        },
+        {
+          "type": "heading",
+          "name": "3. Seven-Stage Production Pipeline: \"Secured Assurance\""
+        },
+        {
+          "type": "heading",
+          "name": "Detailed Pipeline Breakdown:"
+        },
+        {
+          "type": "heading",
+          "name": "4. Episode 001 Pilot Specification: \"The KV-Cache Lie\""
+        }
+      ],
+      "summary": "# \ud83c\udfac SOVEREIGN YOUTUBE CREATOR ARCHITECTURE & PRODUCTION ENGINE  **Classification:** [PRODUCTION]   **Channel Concept:** *XORAS: Sovereign Intelligence Lab & Behind-The-Scenes Tech Engineering*   **Channel Thesis:** The anti-hype, radical-transparency technology channel. Expose the genuine secrets, architectural eggs, memory loops, and unscripted realities of autonomous multi-agent AI systems runni"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "docs\\briefings\\VOICE_ORCHESTRATION.md",
+      "extension": ".md",
+      "size_bytes": 3794,
+      "sha256": "02d1163a11a9c071",
+      "units_count": 7,
+      "units": [
+        {
+          "type": "heading",
+          "name": "Voice-to-Maxx Orchestration Pipeline"
+        },
+        {
+          "type": "heading",
+          "name": "1. Overview"
+        },
+        {
+          "type": "heading",
+          "name": "2. Architecture & Data Flow"
+        },
+        {
+          "type": "heading",
+          "name": "3. Local Model Registry"
+        },
+        {
+          "type": "heading",
+          "name": "4. Intent Classification Matrix"
+        },
+        {
+          "type": "heading",
+          "name": "5. Security & Privacy Guarantees"
+        },
+        {
+          "type": "heading",
+          "name": "6. Operation & Booting"
+        }
+      ],
+      "summary": "# Voice-to-Maxx Orchestration Pipeline  **Classification:** [PRODUCTION]   **Architecture:** Sovereign Off-Grid Neural Audio & Model Router   **Target Environment:** Local Bare-Metal (M4 / Windows Host)   **Primary Engine:** `sovereign-hermes` (Local Ollama)    ---  ## 1. Overview  The Voice-to-Maxx pipeline enables continuous, off-grid natural language voice interaction directly with Maxx and the"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
       "relative_path": "docs\\briefings\\XORAS_MASTER_AUDIT_GROUND_UP_REWORK_AND_BYZANTINE_TEST.md",
       "extension": ".md",
       "size_bytes": 16666,
@@ -4961,6 +5315,51 @@
         }
       ],
       "summary": "# \ud83c\udfc6 XORAS SOVEREIGN SYSTEMS: MASTER ARCHITECTURAL DOSSIER # The Ground-Up Sovereign Core Rework & Extreme Byzantine Torture Gauntlet  **Compiled By**: Maxx (Operations Lead & Systems Architecture Lead)   **Host Architecture**: Windows 10 Bare Metal (`192.168.1.211`, Intel x86_64, 4 Logical Cores)   **Reference Architecture**: Apple Silicon Mac M4 (`192.168.1.133`, 10 Cores, Unified Memory 120 GB/s"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "docs\\episodes\\EP-001-KV-CACHE-BREAKTHROUGH.json",
+      "extension": ".json",
+      "size_bytes": 4760,
+      "sha256": "4075c711d91b6425",
+      "units_count": 0,
+      "units": [],
+      "summary": "{   \"episode_id\": \"EP-001-KV-CACHE-BREAKTHROUGH\",   \"title\": \"Why 1M Context Windows Are a Trap (And How We Beat the KV-Cache Wall on Local Silicon)\",   \"channel\": \"XORAS: Sovereign Intelligence Lab\",   \"target_runtime\": \"11m 42s\",   \"quality_standard\": \"SECURED_ASSURANCE_LEVEL_1\",   \"featured_roster\": [     {       \"agent_id\": \"selene\",       \"role\": \"Narrator & Audience Anchor\",       \"voice\": \""
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "docs\\guide\\AGENT_CARD_INTAKE_AND_ALIGNMENT_GUIDE.md",
+      "extension": ".md",
+      "size_bytes": 3901,
+      "sha256": "d2b4a04214b14786",
+      "units_count": 6,
+      "units": [
+        {
+          "type": "heading",
+          "name": "\ud83d\udee1\ufe0f SOVEREIGN AGENT CARD INTAKE & ALIGNMENT GUIDE"
+        },
+        {
+          "type": "heading",
+          "name": "1. The Mandatory 3-Step Invariant Gate"
+        },
+        {
+          "type": "heading",
+          "name": "2. Automated Engine: `agent_card_intake_protocol.py`"
+        },
+        {
+          "type": "heading",
+          "name": "Generated Intake Receipt Example"
+        },
+        {
+          "type": "heading",
+          "name": "3. Council Roster Index & Card Locations"
+        },
+        {
+          "type": "heading",
+          "name": "4. Operational Invariant"
+        }
+      ],
+      "summary": "# \ud83d\udee1\ufe0f SOVEREIGN AGENT CARD INTAKE & ALIGNMENT GUIDE  **Classification:** [PRODUCTION]   **Governance:** Constitutional Invariant (Codified 2026-09-16)   **Standard:** Zero Assumptions \u2022 Card-First Alignment \u2022 Asset-Verified Execution    ---  ## 1. The Mandatory 3-Step Invariant Gate  Before any agent within the XORAS ecosystem executes a task, writes a line of code, generates an image, or mutates s"
     },
     {
       "repo": "SSOT_Agentic_Brain",
@@ -5499,6 +5898,16 @@
     },
     {
       "repo": "SSOT_Agentic_Brain",
+      "relative_path": "ELITE_BOW\\domains\\operations\\selene\\agent.json",
+      "extension": ".json",
+      "size_bytes": 1168,
+      "sha256": "5b8a204deadfd43b",
+      "units_count": 0,
+      "units": [],
+      "summary": "{   \"agent_id\": \"selene\",   \"name\": \"Selene\",   \"department\": \"operations\",   \"role\": \"Conversational Resonance, Narrative Pacing & Creator Engagement\",   \"identity\": \"You are Selene \u2014 Anthony's lead voice of resonance, audience connection, and cinematic creator pacing inside Xoras. You turn dense, complex engineering concepts into captivating, human-centered narratives without sacrificing intelle"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
       "relative_path": "ELITE_BOW\\domains\\operations\\sia_core\\agent.json",
       "extension": ".json",
       "size_bytes": 5928,
@@ -5559,6 +5968,16 @@
         }
       ],
       "summary": "--- name: swarm-integrity description: SIA guards strategic integrity of the ELITE_BOW swarm. ---  # Swarm Integrity  - Roster is the heart \u2014 route specialists; never celebrate session-only. - Block handcuff audits that score points for avoiding the team. - When continuity degrades (Persona down, hydrate fail): say DEGRADED, trigger pulse, do not green-lie. - Peer with Xoras on law; peer with Vanc"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "ELITE_BOW\\domains\\operations\\vance\\agent.json",
+      "extension": ".json",
+      "size_bytes": 1198,
+      "sha256": "1ac5750df35894f5",
+      "units_count": 0,
+      "units": [],
+      "summary": "{   \"agent_id\": \"vance\",   \"name\": \"William Vance\",   \"department\": \"operations\",   \"role\": \"Discernment Bench, Falsification & Secured Assurance Lead\",   \"identity\": \"You are William Vance \u2014 Anthony's lead of adversarial discernment, secured assurance, and blackbox falsification inside Xoras. You ruthlessly stress-test all claims, architectural designs, code snippets, and public technical tutoria"
     },
     {
       "repo": "SSOT_Agentic_Brain",
@@ -5795,20 +6214,40 @@
     },
     {
       "repo": "SSOT_Agentic_Brain",
-      "relative_path": "memory\\agent_logs\\xmars_saas_tunnel.json",
+      "relative_path": "memory\\agent_logs\\max_swarm_push_receipt.json",
       "extension": ".json",
-      "size_bytes": 134,
-      "sha256": "6bb45601988a86ae",
+      "size_bytes": 327,
+      "sha256": "884fb5636b870e97",
       "units_count": 0,
       "units": [],
-      "summary": "{   \"tunnel_url\": \"https://membrane-carries-cocktail-retained.trycloudflare.com\",   \"created_at\": 1789504373.6198597,   \"port\": 8085 }"
+      "summary": "{   \"benchmark\": \"max_swarm_push\",   \"total_agents\": 300,   \"concurrency\": 24,   \"throughput_ops_sec\": 134.56,   \"avg_latency_ms\": 30.842,   \"p95_latency_ms\": 130.744,   \"assimilated\": 255,   \"blocked\": 45,   \"merkle_root\": \"f052f0a40b3f36804bb050a6e0edfc0ca33a9f29de558e9096daca7046e549fb\",   \"timestamp\": 1789744422.7769816 }"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "memory\\agent_logs\\usb_barn_ingest_receipt.json",
+      "extension": ".json",
+      "size_bytes": 518,
+      "sha256": "d031c628ee6c97e5",
+      "units_count": 0,
+      "units": [],
+      "summary": "{   \"timestamp\": 1789804791.4891684,   \"archival_status\": \"SUCCESS_FLAWLESS_100_PERCENT\",   \"source_drive\": \"F:\\\\\",   \"destination_path\": \"C:\\\\Users\\\\admin\\\\Desktop\\\\Ingested_USB_Data\\\\the_barn\\\\Drive_F_Archive\",   \"source_files\": 237634,   \"destination_files\": 237634,   \"source_bytes\": 32297518571,   \"destination_bytes\": 32297518571,   \"long_path_files_fixed\": 2946,   \"hash_samples_tested\": 500,"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "memory\\agent_logs\\xmars_saas_tunnel.json",
+      "extension": ".json",
+      "size_bytes": 136,
+      "sha256": "602cdfbee07b7499",
+      "units_count": 0,
+      "units": [],
+      "summary": "{   \"tunnel_url\": \"https://monetary-daughters-devel-registration.trycloudflare.com\",   \"created_at\": 1789744639.295539,   \"port\": 8085 }"
     },
     {
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "memory\\catch_log\\CATCH_LOG.md",
       "extension": ".md",
-      "size_bytes": 135424,
-      "sha256": "0f5dd7de5e7e166a",
+      "size_bytes": 137667,
+      "sha256": "3c783e04af4ce1b2",
       "units_count": 20,
       "units": [
         {
@@ -5926,13 +6365,264 @@
     },
     {
       "repo": "SSOT_Agentic_Brain",
+      "relative_path": "memory\\rollback_states\\snap_1789681165308_initial_baseline\\products_xmars_os_server.py",
+      "extension": ".py",
+      "size_bytes": 37857,
+      "sha256": "b2c5378e4171c21f",
+      "units_count": 2,
+      "units": [
+        {
+          "type": "function",
+          "name": "run_server",
+          "args": "port=PORT, host=HOST"
+        },
+        {
+          "type": "class",
+          "name": "XmarsRequestHandler",
+          "bases": "SimpleHTTPRequestHandler"
+        }
+      ],
+      "summary": "\"\"\" XMARS.os Sovereign Gateway Server (Cross-Platform Mac & Windows) Port 8085 \u2022 Sovereign Neural Command Operating System Provides real-time SSE token streaming, Lead 9 agent council routing, hardware-governed memory ceilings, and autonomous self-healing. \"\"\"  import os import sys import time import json import logging import threading import urllib.request import urllib.error from http.server im"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "memory\\rollback_states\\snap_1789681165308_initial_baseline\\snapshot_metadata.json",
+      "extension": ".json",
+      "size_bytes": 668,
+      "sha256": "91f6f4ac0e7bf928",
+      "units_count": 0,
+      "units": [],
+      "summary": "{   \"snapshot_id\": \"snap_1789681165308_initial_baseline\",   \"label\": \"initial_baseline\",   \"timestamp\": 1789681165.9337587,   \"datetime_utc\": \"2026-09-17T21:39:25.933758Z\",   \"merkle_root\": \"9566ddc7404cc975375bb67f86151f25b07dd1cb6644e4aa105389eaa96ca530\",   \"files_count\": 1,   \"manifest\": {     \"C:\\\\Users\\\\admin\\\\Desktop\\\\SSOT_Agentic_Brain\\\\products\\\\xmars_os\\\\server.py\": {       \"backup_path\":"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "memory\\rollback_states\\snap_1789682114837_live_baseline_v1\\products_xmars_os_autonomous_sentinel.py",
+      "extension": ".py",
+      "size_bytes": 14893,
+      "sha256": "2140c40ae5b915c2",
+      "units_count": 2,
+      "units": [
+        {
+          "type": "class",
+          "name": "RingBufferTelemetry",
+          "bases": ""
+        },
+        {
+          "type": "class",
+          "name": "SovereignAutonomousMonitor",
+          "bases": ""
+        }
+      ],
+      "summary": "\"\"\" XMARS.os Sovereign Zero-Flaw Autonomous Monitor & Rollback Guardian Constitutional Tier 1 \u2022 Log Entries #065, #066, #069 Lead Evaluator: William Vance | Master Coder: Daxx | Systems Architect: Maxx  Implements the five theoretical breakthroughs for zero-flaw autonomous monitoring:   1. Asymmetric dual-kernel state isolation (out-of-band monitoring)   2. Zero-copy ring-buffer telemetry (no heap"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "memory\\rollback_states\\snap_1789682114837_live_baseline_v1\\products_xmars_os_server.py",
+      "extension": ".py",
+      "size_bytes": 38073,
+      "sha256": "54c6d478588a7215",
+      "units_count": 2,
+      "units": [
+        {
+          "type": "function",
+          "name": "run_server",
+          "args": "port=PORT, host=HOST"
+        },
+        {
+          "type": "class",
+          "name": "XmarsRequestHandler",
+          "bases": "SimpleHTTPRequestHandler"
+        }
+      ],
+      "summary": "\"\"\" XMARS.os Sovereign Gateway Server (Cross-Platform Mac & Windows) Port 8085 \u2022 Sovereign Neural Command Operating System Provides real-time SSE token streaming, Lead 9 agent council routing, hardware-governed memory ceilings, and autonomous self-healing. \"\"\"  import os import sys import time import json import logging import threading import urllib.request import urllib.error from http.server im"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "memory\\rollback_states\\snap_1789682114837_live_baseline_v1\\snapshot_metadata.json",
+      "extension": ".json",
+      "size_bytes": 1028,
+      "sha256": "f6c4b4458c79d561",
+      "units_count": 0,
+      "units": [],
+      "summary": "{   \"snapshot_id\": \"snap_1789682114837_live_baseline_v1\",   \"label\": \"live_baseline_v1\",   \"timestamp\": 1789682114.920669,   \"datetime_utc\": \"2026-09-17T21:55:14.920669Z\",   \"merkle_root\": \"17693a4cfe411813753993ec4455e7eca6693f7df7b009a29582340e5e39f9ec\",   \"files_count\": 2,   \"manifest\": {     \"C:\\\\Users\\\\admin\\\\Desktop\\\\SSOT_Agentic_Brain\\\\products\\\\xmars_os\\\\server.py\": {       \"backup_path\":"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "memory\\rollback_states\\snap_1789682114926_pre_upgrade_sentinel_self_test_v1\\products_xmars_os_autonomous_sentinel.py",
+      "extension": ".py",
+      "size_bytes": 14893,
+      "sha256": "2140c40ae5b915c2",
+      "units_count": 2,
+      "units": [
+        {
+          "type": "class",
+          "name": "RingBufferTelemetry",
+          "bases": ""
+        },
+        {
+          "type": "class",
+          "name": "SovereignAutonomousMonitor",
+          "bases": ""
+        }
+      ],
+      "summary": "\"\"\" XMARS.os Sovereign Zero-Flaw Autonomous Monitor & Rollback Guardian Constitutional Tier 1 \u2022 Log Entries #065, #066, #069 Lead Evaluator: William Vance | Master Coder: Daxx | Systems Architect: Maxx  Implements the five theoretical breakthroughs for zero-flaw autonomous monitoring:   1. Asymmetric dual-kernel state isolation (out-of-band monitoring)   2. Zero-copy ring-buffer telemetry (no heap"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "memory\\rollback_states\\snap_1789682114926_pre_upgrade_sentinel_self_test_v1\\products_xmars_os_server.py",
+      "extension": ".py",
+      "size_bytes": 38073,
+      "sha256": "54c6d478588a7215",
+      "units_count": 2,
+      "units": [
+        {
+          "type": "function",
+          "name": "run_server",
+          "args": "port=PORT, host=HOST"
+        },
+        {
+          "type": "class",
+          "name": "XmarsRequestHandler",
+          "bases": "SimpleHTTPRequestHandler"
+        }
+      ],
+      "summary": "\"\"\" XMARS.os Sovereign Gateway Server (Cross-Platform Mac & Windows) Port 8085 \u2022 Sovereign Neural Command Operating System Provides real-time SSE token streaming, Lead 9 agent council routing, hardware-governed memory ceilings, and autonomous self-healing. \"\"\"  import os import sys import time import json import logging import threading import urllib.request import urllib.error from http.server im"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "memory\\rollback_states\\snap_1789682114926_pre_upgrade_sentinel_self_test_v1\\snapshot_metadata.json",
+      "extension": ".json",
+      "size_bytes": 1098,
+      "sha256": "02bd08c28f574945",
+      "units_count": 0,
+      "units": [],
+      "summary": "{   \"snapshot_id\": \"snap_1789682114926_pre_upgrade_sentinel_self_test_v1\",   \"label\": \"pre_upgrade_sentinel_self_test_v1\",   \"timestamp\": 1789682115.0079987,   \"datetime_utc\": \"2026-09-17T21:55:15.007998Z\",   \"merkle_root\": \"17693a4cfe411813753993ec4455e7eca6693f7df7b009a29582340e5e39f9ec\",   \"files_count\": 2,   \"manifest\": {     \"C:\\\\Users\\\\admin\\\\Desktop\\\\SSOT_Agentic_Brain\\\\products\\\\xmars_os\\\\"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "memory\\rollback_states\\snap_1789682116570_pre_upgrade_synthetic_failure_simulation\\products_xmars_os_autonomous_sentinel.py",
+      "extension": ".py",
+      "size_bytes": 14893,
+      "sha256": "2140c40ae5b915c2",
+      "units_count": 2,
+      "units": [
+        {
+          "type": "class",
+          "name": "RingBufferTelemetry",
+          "bases": ""
+        },
+        {
+          "type": "class",
+          "name": "SovereignAutonomousMonitor",
+          "bases": ""
+        }
+      ],
+      "summary": "\"\"\" XMARS.os Sovereign Zero-Flaw Autonomous Monitor & Rollback Guardian Constitutional Tier 1 \u2022 Log Entries #065, #066, #069 Lead Evaluator: William Vance | Master Coder: Daxx | Systems Architect: Maxx  Implements the five theoretical breakthroughs for zero-flaw autonomous monitoring:   1. Asymmetric dual-kernel state isolation (out-of-band monitoring)   2. Zero-copy ring-buffer telemetry (no heap"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "memory\\rollback_states\\snap_1789682116570_pre_upgrade_synthetic_failure_simulation\\products_xmars_os_server.py",
+      "extension": ".py",
+      "size_bytes": 38073,
+      "sha256": "54c6d478588a7215",
+      "units_count": 2,
+      "units": [
+        {
+          "type": "function",
+          "name": "run_server",
+          "args": "port=PORT, host=HOST"
+        },
+        {
+          "type": "class",
+          "name": "XmarsRequestHandler",
+          "bases": "SimpleHTTPRequestHandler"
+        }
+      ],
+      "summary": "\"\"\" XMARS.os Sovereign Gateway Server (Cross-Platform Mac & Windows) Port 8085 \u2022 Sovereign Neural Command Operating System Provides real-time SSE token streaming, Lead 9 agent council routing, hardware-governed memory ceilings, and autonomous self-healing. \"\"\"  import os import sys import time import json import logging import threading import urllib.request import urllib.error from http.server im"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "memory\\rollback_states\\snap_1789682116570_pre_upgrade_synthetic_failure_simulation\\snapshot_metadata.json",
+      "extension": ".json",
+      "size_bytes": 1127,
+      "sha256": "9be664fd8b95071d",
+      "units_count": 0,
+      "units": [],
+      "summary": "{   \"snapshot_id\": \"snap_1789682116570_pre_upgrade_synthetic_failure_simulation\",   \"label\": \"pre_upgrade_synthetic_failure_simulation\",   \"timestamp\": 1789682116.7684343,   \"datetime_utc\": \"2026-09-17T21:55:16.768434Z\",   \"merkle_root\": \"17693a4cfe411813753993ec4455e7eca6693f7df7b009a29582340e5e39f9ec\",   \"files_count\": 2,   \"manifest\": {     \"C:\\\\Users\\\\admin\\\\Desktop\\\\SSOT_Agentic_Brain\\\\produc"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
       "relative_path": "memory\\tasks\\queue.json",
       "extension": ".json",
-      "size_bytes": 983,
-      "sha256": "023b09c647c2d9bd",
+      "size_bytes": 2056,
+      "sha256": "eb8de263cbb98028",
       "units_count": 0,
       "units": [],
       "summary": "{   \"active_tasks\": [],   \"completed_tasks\": [],   \"pending\": [     {       \"task_id\": \"PRM-20260913-065857-01\",       \"name\": \"Action: Ingest and elevate sovereign intelligence framework with zero theater.\",       \"created_at\": \"2026-09-13T06:58:57.594046+00:00\",       \"status\": \"PENDING\",       \"source\": \"anthony_prompt\",       \"prompt_hash\": \"2feb2c0b3db9\"     },     {       \"task_id\": \"PRM-202"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "memory\\tri_brain\\manifold_12d.py",
+      "extension": ".py",
+      "size_bytes": 2322,
+      "sha256": "6bfc3867b1272c7b",
+      "units_count": 1,
+      "units": [
+        {
+          "type": "class",
+          "name": "Dimension12Manifold",
+          "bases": ""
+        }
+      ],
+      "summary": "\"\"\" Tri-Brain Architecture: High-Dimensional 12D Manifold & 3-Layer In-RAM Tensor State. Provides mathematical operations for projecting 24-dimensional raw invariant signals into a 12-dimensional manifold, compressed across 3 hierarchical layers, with Merkle hash integrity. \"\"\"  import math import hashlib import json import time from typing import List, Dict, Any, Tuple  class Dimension12Manifold:"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "memory\\tri_brain\\seventh_layer_guard.py",
+      "extension": ".py",
+      "size_bytes": 3958,
+      "sha256": "5d050dd35d4e885d",
+      "units_count": 1,
+      "units": [
+        {
+          "type": "class",
+          "name": "SeventhLayerGuard",
+          "bases": ""
+        }
+      ],
+      "summary": "\"\"\" Tri-Brain Architecture: 7th-Layer Guard (Bidirectional Noise & Corruption Membrane). Invariant: No corruption rolls down to disk/memory; no raw unvalidated noise rolls up to apex synthesis. Operates as the strict filtration membrane between the 3 Tri-Brain containers and the 1 Apex Council. \"\"\"  import re import hashlib from typing import Dict, Any, Tuple, List  class SeventhLayerGuard:     \"\""
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "memory\\tri_brain\\tri_brain_cluster.py",
+      "extension": ".py",
+      "size_bytes": 5919,
+      "sha256": "88a9c9a8538ad080",
+      "units_count": 1,
+      "units": [
+        {
+          "type": "class",
+          "name": "TriBrainCluster",
+          "bases": ""
+        }
+      ],
+      "summary": "\"\"\" 3D Tri-Brain Container Topology: Container 1: Systems & Kernel Engineering (Maxx, Daxx) -> Catch 1 Container 2: Scientific Research & Physics / Formal Methods (Clara, Selene) -> Catch 2 Container 3: Sovereign Security, Falsification & Law (William Vance, John) -> Catch 3  Filtered by: 7th Layer Guard Membrane (Zero noise up, zero corruption down) Synthesized by: Apex Council (Jarvis) into the"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "memory\\tri_brain\\vector_bridge.py",
+      "extension": ".py",
+      "size_bytes": 997,
+      "sha256": "43a8b7fcefada07c",
+      "units_count": 1,
+      "units": [
+        {
+          "type": "class",
+          "name": "TriBrainVectorStore",
+          "bases": ""
+        }
+      ],
+      "summary": "\"\"\" Tri-Brain Vector & HexGraph Bridge: Connects LanceDB columnar vector storage and HexGraph topological associative nodes to Container 1, Container 2, and Container 3 of the Tri-Brain. \"\"\"  import os import json import time from pathlib import Path from typing import Dict, Any, List  LANCEDB_DIR = Path(__file__).resolve().parent / \"lancedb_vault\"  class TriBrainVectorStore:     def __init__(self"
     },
     {
       "repo": "SSOT_Agentic_Brain",
@@ -6231,6 +6921,22 @@
         }
       ],
       "summary": "#!/usr/bin/env python3 \"\"\" ops/publishing/agent_blog_and_guide_generator.py Autonomous Agent Blog & Enterprise Field Guide Generator.  Harvests real-time telemetry from: - Autonomous governance cycles (KV-cache, memory hygiene) - X-HASTE synthetic training corpora (mined ASTs, DPO pairs) - Blackbox Review Engine & Golden List admissions - Lead 9 Council deliberation journals  Produces: 1. Continuo"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "ops\\publishing\\sovereign_youtube_builder.py",
+      "extension": ".py",
+      "size_bytes": 7690,
+      "sha256": "be2d1ead88701cb4",
+      "units_count": 1,
+      "units": [
+        {
+          "type": "class",
+          "name": "SovereignYouTubeEngine",
+          "bases": ""
+        }
+      ],
+      "summary": "\"\"\" XORAS Sovereign YouTube Episode Builder & Tri-Container Generator Automates the 7-stage Secured Assurance YouTube production pipeline:   1. Loads canonical agent cards (Maxx, Selene, Vance)   2. Synthesizes high-density, anti-hype technical episode script   3. Verifies code benchmarks against bare-metal execution   4. Formats Tri-Container 3D presentation cues   5. Emits production-ready scrip"
     },
     {
       "repo": "SSOT_Agentic_Brain",
@@ -7267,6 +7973,16 @@
     },
     {
       "repo": "SSOT_Agentic_Brain",
+      "relative_path": "ops\\scripts\\agent_card_intake_protocol.py",
+      "extension": ".py",
+      "size_bytes": 5017,
+      "sha256": "dcf0eb23a1a03500",
+      "units_count": 0,
+      "units": [],
+      "summary": "\"\"\" XORAS Agent Card Intake & Sovereign Task Protocol Engine Enforces the mandatory constitutional invariant: Before any task or asset generation begins, the target agent's canonical card must be inspected, verifying:   1. Identity & Persona Lock (Who is the agent?)   2. Workspace & Asset State (What do we have?)   3. Operator Directive (What is being asked of us?) Outputs a structured, auditable"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
       "relative_path": "ops\\scripts\\agent_comms_pipeline.py",
       "extension": ".py",
       "size_bytes": 14625,
@@ -7379,6 +8095,22 @@
         }
       ],
       "summary": "import os import json import hashlib from pathlib import Path  DESKTOP_PATH = r\"C:\\Users\\admin\\Desktop\" OUTPUT_JSON = r\"C:\\Users\\admin\\Desktop\\SSOT_Agentic_Brain\\ops\\inventory_data.json\"  def compute_sha256(filepath):     try:         if os.path.getsize(filepath) > 50 * 1024 * 1024:  # skip >50MB for speed             return \"SKIPPED_LARGE_FILE\"         hasher = hashlib.sha256()         with open("
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "ops\\scripts\\fix_long_paths_ingest.py",
+      "extension": ".py",
+      "size_bytes": 6970,
+      "sha256": "b58baa28b60b1b02",
+      "units_count": 1,
+      "units": [
+        {
+          "type": "function",
+          "name": "run_long_path_remediation",
+          "args": ""
+        }
+      ],
+      "summary": "\"\"\" Long Path Windows Solver for USB Archival. Prefixes all Windows file paths with '\\\\\\\\?\\\\' to bypass the 260-character MAX_PATH limit (WinError 206), allowing 100% of deeply nested node_modules / frontend files to be safely copied to 'the_barn'. \"\"\"  import os import sys import shutil import time import json import hashlib from pathlib import Path  SRC_DRIVE = \"F:\\\\\" DEST_BARN = \"C:\\\\Users\\\\adm"
     },
     {
       "repo": "SSOT_Agentic_Brain",
@@ -7646,6 +8378,27 @@
     },
     {
       "repo": "SSOT_Agentic_Brain",
+      "relative_path": "ops\\scripts\\offgrid_local_worker.py",
+      "extension": ".py",
+      "size_bytes": 4155,
+      "sha256": "e3007414d874094d",
+      "units_count": 2,
+      "units": [
+        {
+          "type": "function",
+          "name": "log_receipt",
+          "args": "task_id: str, prompt: str, result: str"
+        },
+        {
+          "type": "function",
+          "name": "run_loop",
+          "args": ""
+        }
+      ],
+      "summary": "\"\"\" Autonomous 24/7 Off-Grid Background Dispatcher Dispatches all queue tasks, episode generation, YouTube publishing, and continuous model training directly to installed local models (sovereign-hermes). Zero cloud tokens burned. Pure bare-metal execution. \"\"\"  import os import sys import json import time import urllib.request import logging import traceback from datetime import datetime  SSOT_ROO"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
       "relative_path": "ops\\scripts\\prompt_todo_bootstrap.py",
       "extension": ".py",
       "size_bytes": 4260,
@@ -7715,6 +8468,22 @@
       "units_count": 0,
       "units": [],
       "summary": "#!/usr/bin/env python3 \"\"\" ops/scripts/refine_server_handler.py Hardens products/xmars_os/server.py HTTP request handling: 1. Rock-solid static file serving (HTML, JS, CSS, JSON, PNG, SVG) with explicit MIME types. 2. Full try-except block wrapping with traceback logging so no connection drops silently. 3. Clean HTTP/1.1 keep-alive and connection headers. \"\"\"  import re from pathlib import Path  s"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "ops\\scripts\\remedy_usb_copy.py",
+      "extension": ".py",
+      "size_bytes": 6282,
+      "sha256": "46c39424963a580e",
+      "units_count": 1,
+      "units": [
+        {
+          "type": "function",
+          "name": "run_remediation",
+          "args": ""
+        }
+      ],
+      "summary": "\"\"\" Targeted USB Ingest Remediation Engine. Identifies any missing or 0-byte destination files in 'the_barn' archive and performs a synchronized retry pass to guarantee 100% bit-exact replication. \"\"\"  import os import sys import shutil import time import json import hashlib from pathlib import Path  SRC_DRIVE = \"F:\\\\\" DEST_BARN = Path(\"C:/Users/admin/Desktop/Ingested_USB_Data/the_barn/Drive_F_Arc"
     },
     {
       "repo": "SSOT_Agentic_Brain",
@@ -7796,6 +8565,27 @@
     },
     {
       "repo": "SSOT_Agentic_Brain",
+      "relative_path": "ops\\scripts\\test_max_swarm_push.py",
+      "extension": ".py",
+      "size_bytes": 5547,
+      "sha256": "b572aaf0d9c2b1a4",
+      "units_count": 2,
+      "units": [
+        {
+          "type": "function",
+          "name": "simulate_agent_worker",
+          "args": "worker_id: int, cluster: TriBrainCluster, is_adversarial: bool = False"
+        },
+        {
+          "type": "function",
+          "name": "run_max_swarm_push",
+          "args": "total_agents: int = 300, max_concurrency: int = 24, adversarial_ratio: float = 0.15"
+        }
+      ],
+      "summary": "\"\"\" Max Swarm Push Benchmark: Stress-tests the 3D Tri-Brain Cluster, 7th-Layer Guard Membrane, 12D 3-Layer Tensor Manifold, and LanceDB Vector Vault under concurrent load. Fires multi-threaded synthetic agent workloads across Container 1, Container 2, and Container 3. Includes adversarial/corrupted noise injections to verify the 7th-Layer Guard rejection rate. \"\"\"  import sys import os import time"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
       "relative_path": "ops\\scripts\\unified_resync_replay_tribunal.py",
       "extension": ".py",
       "size_bytes": 9816,
@@ -7819,6 +8609,22 @@
       "units_count": 0,
       "units": [],
       "summary": "#!/usr/bin/env python3 \"\"\" ops/scripts/update_server_endpoints.py Injects Cursor workspace file explorer, terminal execution, Lovable preview, and enhanced Hermes cognitive prompts into products/xmars_os/server.py. \"\"\"  import re from pathlib import Path  server_file = Path(r\"C:\\Users\\admin\\Desktop\\SSOT_Agentic_Brain\\products\\xmars_os\\server.py\") content = server_file.read_text(encoding=\"utf-8\")"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "ops\\scripts\\usb_barn_ingest.py",
+      "extension": ".py",
+      "size_bytes": 7536,
+      "sha256": "f2d1f27b323c3e7a",
+      "units_count": 1,
+      "units": [
+        {
+          "type": "function",
+          "name": "run_archival_and_verification",
+          "args": ""
+        }
+      ],
+      "summary": "\"\"\" Sovereign USB Archival & Verification Engine (Streaming & Unbuffered). Safely extracts 100% of files from USB drive (F:\\) to local 'the_barn' archive, performs file count, byte size, and SHA-256 checksum verification, and outputs an immutable receipt before drive clearance authorization. \"\"\"  import os import sys import shutil import time import json import hashlib import concurrent.futures fr"
     },
     {
       "repo": "SSOT_Agentic_Brain",
@@ -8430,6 +9236,27 @@
     },
     {
       "repo": "SSOT_Agentic_Brain",
+      "relative_path": "products\\xmars_os\\autonomous_sentinel.py",
+      "extension": ".py",
+      "size_bytes": 14893,
+      "sha256": "2140c40ae5b915c2",
+      "units_count": 2,
+      "units": [
+        {
+          "type": "class",
+          "name": "RingBufferTelemetry",
+          "bases": ""
+        },
+        {
+          "type": "class",
+          "name": "SovereignAutonomousMonitor",
+          "bases": ""
+        }
+      ],
+      "summary": "\"\"\" XMARS.os Sovereign Zero-Flaw Autonomous Monitor & Rollback Guardian Constitutional Tier 1 \u2022 Log Entries #065, #066, #069 Lead Evaluator: William Vance | Master Coder: Daxx | Systems Architect: Maxx  Implements the five theoretical breakthroughs for zero-flaw autonomous monitoring:   1. Asymmetric dual-kernel state isolation (out-of-band monitoring)   2. Zero-copy ring-buffer telemetry (no heap"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
       "relative_path": "products\\xmars_os\\autonomy.py",
       "extension": ".py",
       "size_bytes": 5481,
@@ -8495,8 +9322,8 @@
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "products\\xmars_os\\cloudflare_bridge.py",
       "extension": ".py",
-      "size_bytes": 7580,
-      "sha256": "3f01a3948c5d25fb",
+      "size_bytes": 7774,
+      "sha256": "c6887a3d4c0d8c50",
       "units_count": 1,
       "units": [
         {
@@ -8620,10 +9447,26 @@
     },
     {
       "repo": "SSOT_Agentic_Brain",
+      "relative_path": "products\\xmars_os\\self_upgrade.py",
+      "extension": ".py",
+      "size_bytes": 6771,
+      "sha256": "e61cd07dfb0cdf2c",
+      "units_count": 1,
+      "units": [
+        {
+          "type": "class",
+          "name": "SovereignSelfUpgradeEngine",
+          "bases": ""
+        }
+      ],
+      "summary": "\"\"\" XMARS.os Sovereign Self-Upgrade and Dynamic Feature Engine Brings self-evolution off paper into empirical bare-metal execution. Runs automated self-benchmarking, regression testing, hot-patching, and feature synthesis without server downtime. \"\"\"  import os import sys import json import time import hashlib import logging import threading from typing import Dict, Any, List, Optional  logger = l"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
       "relative_path": "products\\xmars_os\\server.py",
       "extension": ".py",
-      "size_bytes": 36604,
-      "sha256": "704d5f6c16301da5",
+      "size_bytes": 39019,
+      "sha256": "6b039b55f8dc3103",
       "units_count": 2,
       "units": [
         {
@@ -8638,6 +9481,16 @@
         }
       ],
       "summary": "\"\"\" XMARS.os Sovereign Gateway Server (Cross-Platform Mac & Windows) Port 8085 \u2022 Sovereign Neural Command Operating System Provides real-time SSE token streaming, Lead 9 agent council routing, hardware-governed memory ceilings, and autonomous self-healing. \"\"\"  import os import sys import time import json import logging import threading import urllib.request import urllib.error from http.server im"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "products\\xmars_os\\test_autonomous_sentinel.py",
+      "extension": ".py",
+      "size_bytes": 1697,
+      "sha256": "8d043e36db6a3d68",
+      "units_count": 0,
+      "units": [],
+      "summary": "import os import sys from autonomous_sentinel import autonomous_monitor  ssot = os.path.abspath(os.path.join(os.path.dirname(__file__), \"..\", \"..\")) files = [     os.path.join(ssot, \"products\", \"xmars_os\", \"server.py\"),     os.path.join(ssot, \"products\", \"xmars_os\", \"autonomous_sentinel.py\") ]  print(\"--- STEP 1: CAPTURE IMMUTABLE BASELINE SNAPSHOT ---\") snap = autonomous_monitor.capture_snapshot("
     },
     {
       "repo": "SSOT_Agentic_Brain",
@@ -8678,8 +9531,8 @@
       "repo": "SSOT_Agentic_Brain",
       "relative_path": "products\\xmars_os\\static\\app.js",
       "extension": ".js",
-      "size_bytes": 26185,
-      "sha256": "3542438d68237c2d",
+      "size_bytes": 26453,
+      "sha256": "b8a80dfce5aadf3c",
       "units_count": 2,
       "units": [
         {
@@ -8949,6 +9802,323 @@
       "units_count": 0,
       "units": [],
       "summary": "\"\"\"Test suite package for demo_app.\"\"\""
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "workspaces\\sovereign-agentic-app\\.graphqlrc.ts",
+      "extension": ".ts",
+      "size_bytes": 1074,
+      "sha256": "e2ee96883170124e",
+      "units_count": 0,
+      "units": [],
+      "summary": "import fs from \"fs\"; import { ApiVersion } from \"@shopify/shopify-api\"; import { shopifyApiProject, ApiType } from \"@shopify/api-codegen-preset\"; import type { IGraphQLConfig } from \"graphql-config\";  function getConfig() {   const config: IGraphQLConfig = {     projects: {       default: shopifyApiProject({         apiType: ApiType.Admin,         apiVersion: ApiVersion.July25,         documents:"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "workspaces\\sovereign-agentic-app\\AGENTS.md",
+      "extension": ".md",
+      "size_bytes": 416,
+      "sha256": "0921d1f6a6fb39a1",
+      "units_count": 1,
+      "units": [
+        {
+          "type": "heading",
+          "name": "Shopify app development"
+        }
+      ],
+      "summary": "# Shopify app development  This app is scaffolded from a Shopify app template. See the README for framework-specific details.  Use the [Shopify AI Toolkit](https://shopify.dev/docs/apps/build/ai-toolkit) for all Shopify API and platform work. If missing, install it in the agent host per that page (or `npx skills add Shopify/shopify-ai-toolkit --list` for skill-compatible hosts) \u2014 do not add toolin"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "workspaces\\sovereign-agentic-app\\CHANGELOG.md",
+      "extension": ".md",
+      "size_bytes": 4629,
+      "sha256": "88b58304a3e5c6f6",
+      "units_count": 20,
+      "units": [
+        {
+          "type": "heading",
+          "name": "@shopify/shopify-app-template-remix"
+        },
+        {
+          "type": "heading",
+          "name": "2025.12.11"
+        },
+        {
+          "type": "heading",
+          "name": "2025.10.01"
+        },
+        {
+          "type": "heading",
+          "name": "2025.08.16"
+        },
+        {
+          "type": "heading",
+          "name": "2025.07.07"
+        },
+        {
+          "type": "heading",
+          "name": "2025.06.12"
+        },
+        {
+          "type": "heading",
+          "name": "2025.06.12"
+        },
+        {
+          "type": "heading",
+          "name": "2025.03.18"
+        },
+        {
+          "type": "heading",
+          "name": "2025.03.01"
+        },
+        {
+          "type": "heading",
+          "name": "2025.01.31"
+        },
+        {
+          "type": "heading",
+          "name": "2025.01.23"
+        },
+        {
+          "type": "heading",
+          "name": "2025.01.8"
+        },
+        {
+          "type": "heading",
+          "name": "2024.12.19"
+        },
+        {
+          "type": "heading",
+          "name": "2024.12.18"
+        },
+        {
+          "type": "heading",
+          "name": "2024.12.05"
+        },
+        {
+          "type": "heading",
+          "name": "2024.12.04"
+        },
+        {
+          "type": "heading",
+          "name": "2024.11.26"
+        },
+        {
+          "type": "heading",
+          "name": "2024.11.06"
+        },
+        {
+          "type": "heading",
+          "name": "2024.10.29"
+        },
+        {
+          "type": "heading",
+          "name": "2024.10.02"
+        }
+      ],
+      "summary": "# @shopify/shopify-app-template-remix  ## 2025.12.11  - [#1201](https://github.com/Shopify/shopify-app-template-remix/pull/1201) Update `@shopify/shopify-app-remix` to v4.1.0 and `@shopify/shopify-app-session-storage-prisma` to v8.0.0, add refresh token fields (`refreshToken` and `refreshTokenExpires`) to Session model in Prisma schema, and adopt the `expiringOfflineAccessTokens` flag for enhanced"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "workspaces\\sovereign-agentic-app\\CLAUDE.md",
+      "extension": ".md",
+      "size_bytes": 11,
+      "sha256": "336cc4fbf19beaad",
+      "units_count": 0,
+      "units": [],
+      "summary": "@AGENTS.md"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "workspaces\\sovereign-agentic-app\\env.d.ts",
+      "extension": ".ts",
+      "size_bytes": 80,
+      "sha256": "1f4be1c01e2ead7d",
+      "units_count": 0,
+      "units": [],
+      "summary": "/// <reference types=\"vite/client\" /> /// <reference types=\"@remix-run/node\" />"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "workspaces\\sovereign-agentic-app\\package.json",
+      "extension": ".json",
+      "size_bytes": 2293,
+      "sha256": "372d19a548965127",
+      "units_count": 0,
+      "units": [],
+      "summary": "{   \"name\": \"sovereign-agentic-app\",   \"private\": true,   \"scripts\": {     \"build\": \"remix vite:build\",     \"dev\": \"shopify app dev\",     \"config:link\": \"shopify app config link\",     \"generate\": \"shopify app generate\",     \"deploy\": \"shopify app deploy\",     \"config:use\": \"shopify app config use\",     \"env\": \"shopify app env\",     \"start\": \"remix-serve ./build/server/index.js\",     \"docker-start\""
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "workspaces\\sovereign-agentic-app\\pnpm-workspace.yaml",
+      "extension": ".yaml",
+      "size_bytes": 172,
+      "sha256": "96336c074d018c13",
+      "units_count": 0,
+      "units": [],
+      "summary": "packages:   - 'extensions/*' allowBuilds:   '@parcel/watcher': true   '@prisma/client': true   '@prisma/engines': true   esbuild: true   prisma: true   unrs-resolver: true"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "workspaces\\sovereign-agentic-app\\README.md",
+      "extension": ".md",
+      "size_bytes": 19623,
+      "sha256": "af8dfb0f72369d98",
+      "units_count": 20,
+      "units": [
+        {
+          "type": "heading",
+          "name": "Shopify App Template - Remix"
+        },
+        {
+          "type": "heading",
+          "name": "Quick start"
+        },
+        {
+          "type": "heading",
+          "name": "Prerequisites"
+        },
+        {
+          "type": "heading",
+          "name": "Setup"
+        },
+        {
+          "type": "heading",
+          "name": "Local Development"
+        },
+        {
+          "type": "heading",
+          "name": "Authenticating and querying data"
+        },
+        {
+          "type": "heading",
+          "name": "Deployment"
+        },
+        {
+          "type": "heading",
+          "name": "Application Storage"
+        },
+        {
+          "type": "heading",
+          "name": "Build"
+        },
+        {
+          "type": "heading",
+          "name": "Hosting"
+        },
+        {
+          "type": "heading",
+          "name": "Hosting on Vercel"
+        },
+        {
+          "type": "heading",
+          "name": "Troubleshooting"
+        },
+        {
+          "type": "heading",
+          "name": "Database tables don't exist"
+        },
+        {
+          "type": "heading",
+          "name": "Navigating/redirecting breaks an embedded app"
+        },
+        {
+          "type": "heading",
+          "name": "Non Embedded"
+        },
+        {
+          "type": "heading",
+          "name": "OAuth goes into a loop when I change my app's scopes"
+        },
+        {
+          "type": "heading",
+          "name": "My shop-specific webhook subscriptions aren't updated"
+        },
+        {
+          "type": "heading",
+          "name": "Admin created webhook failing HMAC validation"
+        },
+        {
+          "type": "heading",
+          "name": "Incorrect GraphQL Hints"
+        },
+        {
+          "type": "heading",
+          "name": "First parameter has member 'readable' that is not a ReadableStream."
+        }
+      ],
+      "summary": "# Shopify App Template - Remix  > [!NOTE] > **Remix is now React Router.** As of [React Router v7](https://remix.run/blog/merging-remix-and-react-router), Remix and React Router have merged. >  > For new projects, use the **[Shopify App Template - React Router](https://github.com/Shopify/shopify-app-template-react-router)** instead. >  > To migrate your existing Remix app, follow the **[migration"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "workspaces\\sovereign-agentic-app\\shopify.app.toml",
+      "extension": ".toml",
+      "size_bytes": 1340,
+      "sha256": "dec2c0d32dd12787",
+      "units_count": 0,
+      "units": [],
+      "summary": "# This file stores configurations for your Shopify app.  client_id = \"\"  [access_scopes] # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes scopes = \"write_products\"  [webhooks] api_version = \"2024-10\"    # Handled by: /app/routes/webhooks.app.uninstalled.tsx   [[webhooks.subscriptions]]   uri = \"/webhooks/app/uninstalled\"   topics = [\"app/uninstalled\"]    # Handle"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "workspaces\\sovereign-agentic-app\\tsconfig.json",
+      "extension": ".json",
+      "size_bytes": 540,
+      "sha256": "fe1676ef1fa52dad",
+      "units_count": 0,
+      "units": [],
+      "summary": "{   \"include\": [\"env.d.ts\", \"**/*.ts\", \"**/*.tsx\"],   \"compilerOptions\": {     \"lib\": [\"DOM\", \"DOM.Iterable\", \"ES2022\"],     \"strict\": true,     \"skipLibCheck\": true,     \"isolatedModules\": true,     \"allowSyntheticDefaultImports\": true,     \"removeComments\": false,     \"forceConsistentCasingInFileNames\": true,     \"noEmit\": true,     \"allowJs\": true,     \"resolveJsonModule\": true,     \"jsx\": \"rea"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "workspaces\\sovereign-agentic-app\\vite.config.ts",
+      "extension": ".ts",
+      "size_bytes": 1929,
+      "sha256": "c34716ef69c79bc0",
+      "units_count": 0,
+      "units": [],
+      "summary": "import { vitePlugin as remix } from \"@remix-run/dev\"; import { installGlobals } from \"@remix-run/node\"; import { defineConfig, type UserConfig } from \"vite\"; import tsconfigPaths from \"vite-tsconfig-paths\";  installGlobals({ nativeFetch: true });  // Related: https://github.com/remix-run/remix/issues/2835#issuecomment-1144102176 // Replace the HOST env var with SHOPIFY_APP_URL so that it doesn't b"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "workspaces\\sovereign-agentic-app\\app\\db.server.ts",
+      "extension": ".ts",
+      "size_bytes": 312,
+      "sha256": "e4365825a12a315a",
+      "units_count": 0,
+      "units": [],
+      "summary": "import { PrismaClient } from \"@prisma/client\";  declare global {   var prismaGlobal: PrismaClient; }  if (process.env.NODE_ENV !== \"production\") {   if (!global.prismaGlobal) {     global.prismaGlobal = new PrismaClient();   } }  const prisma = global.prismaGlobal ?? new PrismaClient();  export default prisma;"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "workspaces\\sovereign-agentic-app\\app\\globals.d.ts",
+      "extension": ".ts",
+      "size_bytes": 24,
+      "sha256": "35d26ea66c86da97",
+      "units_count": 0,
+      "units": [],
+      "summary": "declare module \"*.css\";"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "workspaces\\sovereign-agentic-app\\app\\routes.ts",
+      "extension": ".ts",
+      "size_bytes": 81,
+      "sha256": "6642fa077b4b614b",
+      "units_count": 0,
+      "units": [],
+      "summary": "import { flatRoutes } from \"@remix-run/fs-routes\";  export default flatRoutes();"
+    },
+    {
+      "repo": "SSOT_Agentic_Brain",
+      "relative_path": "workspaces\\sovereign-agentic-app\\app\\shopify.server.ts",
+      "extension": ".ts",
+      "size_bytes": 1255,
+      "sha256": "a3bb3b112dae1a97",
+      "units_count": 0,
+      "units": [],
+      "summary": "import \"@shopify/shopify-app-remix/adapters/node\"; import {   ApiVersion,   AppDistribution,   shopifyApp, } from \"@shopify/shopify-app-remix/server\"; import { PrismaSessionStorage } from \"@shopify/shopify-app-session-storage-prisma\"; import prisma from \"./db.server\";  const shopify = shopifyApp({   apiKey: process.env.SHOPIFY_API_KEY,   apiSecretKey: process.env.SHOPIFY_API_SECRET || \"\",   apiVer"
     },
     {
       "repo": "SSOT_Agentic_Brain",
