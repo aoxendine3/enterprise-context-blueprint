@@ -65,6 +65,22 @@
       "status": "PENDING",
       "source": "anthony_prompt",
       "prompt_hash": "1e6ab49b717b"
+    },
+    {
+      "task_id": "PRM-20260920-061232-01",
+      "name": "Action: Ingest NotebookLM evolution & MARS architectural synthesis into SSOT memory",
+      "created_at": "2026-09-20T06:12:32.681895+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "63e72b4ffa1a"
+    },
+    {
+      "task_id": "PRM-20260920-134904-01",
+      "name": "Action: Answer Claude analysis on YouTube metrics & clarify Mac vs Windows Maxx dual-repo architecture",
+      "created_at": "2026-09-20T13:49:04.146456+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "b0516d5587ce"
     }
   ]
 }
