@@ -125,9 +125,10 @@ Wake routes to **built agents** in `Xoras_agent_cards/` and `core_agents/` — n
 - **Log Entry #065 (Media Director Gateway):** `agent_speak.sh` routes exclusively through Orion / `ops/scripts/media_director_agent.py`.
 - **Log Entry #066 (Discernment Bench & Golden List):** All code and architectural proposals must pass `ops/discernment/blackbox_review_engine.py` to be admitted to the Golden List.
 - **Log Entry #069 (Universal Input-Deliberation & Output-Wisdom Gauntlet):** Any guidance/input from Anthony MUST be deliberated by the full council. ALL output must pass rigorous wisdom and discernment gauntlets before certification.
+- **Log Entry #072 (Mandatory Process Telemetry & Zero Unmonitored Executions):** Nothing runs unmonitored. All background daemons, web servers, and worker tasks must have an active sentinel monitor, continuous log sweep, and heartbeat telemetry receipt. All workflows must be robust, meticulous, and zero-defect.
 
 ## Governing Docs
-- [CATCH_LOG.md](memory/catch_log/CATCH_LOG.md) — Constitutional Log Entries 001–069
+- [CATCH_LOG.md](memory/catch_log/CATCH_LOG.md) — Constitutional Log Entries 001–072
 - [WAKE_FACE.md](WAKE_FACE.md) — Current Working-Set Map (Phase 2)
 - [GOLDEN_LIST.md](data_center/golden_list/GOLDEN_LIST.md) — Flawless Certified Assets
 

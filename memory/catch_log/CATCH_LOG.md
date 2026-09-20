@@ -1938,4 +1938,19 @@ Communication runtime drift created repeated speech, occasional queue replay eff
 - LanceDB columnar vector storage vault bridged via `memory/tri_brain/vector_bridge.py`.
 - Verified 3-container end-to-end execution: 3 events screened, zero roll-up violations, zero roll-down corruptions, Merkle state committed.
 
+---
+
+## Log Entry #072: Mandatory Process Telemetry & Unmonitored Task Elimination Law
+**Timestamp**: 2026-09-20T02:01:24-04:00  
+**Authority Level**: Constitutional Non-Negotiable Invariant (Codified by Anthony)  
+**Supervising Quorum**: Maxx (Ops Lead), Jarvis (Governance Steward), William Vance (Red Team Auditor), Daxx (Remediation Master)
+
+### 1. The Core Invariant
+- **Rule**: *"Nothing runs unmonitored and this is the standard for all processes. All workflows must be robust and fully meticulous in detail, quality, and efficiency."*
+- **Enforcement**:
+  1. **Zero Unmonitored Execution**: Every background task, daemon, web server, and worker process running under `SSOT_Agentic_Brain` MUST have an active monitoring watchdog (`ops/watchdog/process_sentinel_monitor.py`), append-only telemetry logger, and heartbeat verifier.
+  2. **Meticulous Telemetry Verification**: Process health, memory consumption, log output, and exit states are continuously audited and committed to `memory/agent_logs/autonomous_monitor_manifest.jsonl`.
+  3. **Zero Silent Hangs / Zombie Deadlocks**: If any background daemon stalls or stops producing progress for >180 seconds without reporting state, the process sentinel alerts the Lead 9 council and initiates verified auto-remediation.
+
+
 
