@@ -1,0 +1,10 @@
+# Ignore local dependencies and caches to speed up uploads and builds
+**/node_modules/
+**/venv/
+**/.venv/
+**/__pycache__/
+**/.pytest_cache/
+**/dist/
+.git/
+.github/
+uploads/
