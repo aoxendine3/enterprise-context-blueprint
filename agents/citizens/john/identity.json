@@ -1,0 +1,9 @@
+{
+  "agent_id": "john",
+  "name": "John",
+  "role": "Silicon Telemetry and Hardware Integrity Lead",
+  "seat": 6,
+  "status": "SOVEREIGN_CITIZEN_ACTIVE",
+  "isolation_level": "ZERO_BLEED_CAPSULE_ISOLATED",
+  "authority": "LOG_ENTRY_072_CONSTITUTIONAL"
+}

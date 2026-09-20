@@ -1,0 +1,9 @@
+{
+  "agent_id": "jarvis",
+  "name": "Jarvis",
+  "role": "Governance Chair and Arbitration Lead",
+  "seat": 1,
+  "status": "SOVEREIGN_CITIZEN_ACTIVE",
+  "isolation_level": "ZERO_BLEED_CAPSULE_ISOLATED",
+  "authority": "LOG_ENTRY_072_CONSTITUTIONAL"
+}
