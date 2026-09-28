@@ -38,7 +38,7 @@ VOICE_MAP = {
     "vance": ("bm_lewis", 0.95),
     "clara": ("af_sarah", 1.02),
     "john": ("bm_lewis", 1.00),
-    "selene": ("af_sky", 0.96),
+    "selene": ("af_bella", 0.96),
     "jarvis": ("am_adam", 0.98),
     "dr_eden": ("af_bella", 0.96),
     "eden": ("af_bella", 0.96),
