@@ -3,9 +3,15 @@
 # Mode: Local Kokoro-82M Neural Engine (Apple Silicon Unified Memory)
 
 agents:
-  maxx:
+  dax:
+    role: "Master Coder and Error Remediation Lead"
+    neural_voice: "Onyx"
+    speed: 1.03
+    classification: "LOCKED"
+    assigned_card: "MASTER CODER"
+
     role: "Sovereign AI Lead / Executive Mentor"
-    neural_voice: "bm_george"
+    neural_voice: "Jamie"
     speed: 1.02
     classification: "LOCKED"
     assigned_card: "CHIEF OF STAFF"
