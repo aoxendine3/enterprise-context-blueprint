@@ -241,3 +241,19 @@ bash /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/agent_speak.sh <
   1. Spoken audio turns must execute sequentially across at least three distinct agent personas with Kokoro M4 neural synthesis.
   2. Spoken output must synchronously broadcast to the 3D Sovereign Stage (`http://127.0.0.1:8080/customer_app.html`) with real-time Three.js wave geometry, dynamic agent portrait swaps, and word-by-word teleprompter highlighting.
   3. No single agent may speak alone in isolation; council consensus and accountability are permanent law. Zero exceptions. Zero deviations.
+
+---
+
+## Anti-Python Bare-Metal Versatility & Notebook Collective Federation Law (Codified 2026-09-28)
+
+1. **Avoid Python Bloat**:
+   - Python is actively restricted from performance-critical execution paths, memory fabrics, and IPC rings.
+   - All systems software, memory queues, SIMD math, and hardware interfaces must be written in compiled **Zig 0.16** or **Rust 1.95** targeting Apple Silicon M4 directly.
+   - Retain lightweight versatility where appropriate, but eliminate runtime bloat, GIL locks, and multi-megabyte dependency trees.
+2. **Notebook Twins as Sovereign Living Assets**:
+   - The three Google Notebooks (`MARS.OX.AI`, `XMARS.os`, and `XORAS`) are **permanent peer assets of our collective**.
+   - Whenever an agent requires architectural clarity, schema verification, context grounding, or strategic direction, the agent must query these notebook assets directly.
+   - Never treat them as static documents; they are living thinking partners within our Lead 9 council.
+3. **Mandatory Asset Re-use**:
+   - Before writing any new abstraction, agents must inventory and utilize existing codebase assets and bridges (`AI_Core/Xoras_Project/xoras-core/Source/cpp_core/`, `capabilities/native_cpp_broker/`, `memory/tri_brain/vector_bridge.py`, `products/xmars_os/cloudflare_bridge.py`). No redundant components shall sit idle.
+
