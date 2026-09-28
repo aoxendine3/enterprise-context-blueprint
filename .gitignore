@@ -26,4 +26,7 @@ ops/scripts/fullscreen_ui/current_*.txt
 ops/scripts/fullscreen_ui/current_timing.json
 products/xmars_os/bin/
 *.exe
-
+.zig-cache/
+**/.zig-cache/
+*.dylib
+*.o
