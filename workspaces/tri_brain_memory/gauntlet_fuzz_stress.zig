@@ -12,7 +12,7 @@ const c = @cImport({
     @cInclude("signal.h");
 });
 
-const shm = @import("xoras_shm_ring.zig");
+const shm = @import("xoras_mpmc_ring.zig");
 const simd = @import("xoras_neon_simd.zig");
 
 const SHM_GAUNTLET_PATH = "/xoras_upgp_gauntlet";
@@ -78,7 +78,7 @@ fn runSimdVectorGauntlet(random: std.Random) !void {
 // ----------------------------------------------------------------------------
 // GAUNTLET 2: PROPERTY-BASED RANDOM INPUT MUTATION FUZZING
 // ----------------------------------------------------------------------------
-fn runPropertyBasedPayloadFuzzing(ring: *shm.XorasShmRing, random: std.Random) !void {
+fn runPropertyBasedPayloadFuzzing(ring: *shm.XorasMpmcRing, random: std.Random) !void {
     std.debug.print(">>> [GAUNTLET 2/4] Running Property-Based Payload & Boundary Fuzzing...\n", .{});
     const trials: usize = 100_000;
 
@@ -138,8 +138,8 @@ fn runMultiProcessSaturationGauntlet(shm_path: [:0]const u8) !void {
         const pid = c.fork();
         if (pid == 0) {
             // Child Producer Process
-            const child_ring = shm.xoras_shm_open_existing(shm_path) orelse c._exit(1);
-            defer shm.xoras_shm_close(child_ring);
+            const child_ring = shm.xoras_mpmc_open_existing(shm_path) orelse c._exit(1);
+            defer shm.xoras_mpmc_close(child_ring);
 
             var dummy_hash = [_]u8{@intCast(worker_idx & 0xFF)} ** 32;
             const payload = "CONCURRENT_STRESS_PULSE_OK";
@@ -164,8 +164,8 @@ fn runMultiProcessSaturationGauntlet(shm_path: [:0]const u8) !void {
         const pid = c.fork();
         if (pid == 0) {
             // Child Consumer Process
-            const child_ring = shm.xoras_shm_open_existing(shm_path) orelse c._exit(1);
-            defer shm.xoras_shm_close(child_ring);
+            const child_ring = shm.xoras_mpmc_open_existing(shm_path) orelse c._exit(1);
+            defer shm.xoras_mpmc_close(child_ring);
 
             var consumed: usize = 0;
             var out_frame: shm.CognitiveFrame = undefined;
@@ -212,7 +212,7 @@ fn runMultiProcessSaturationGauntlet(shm_path: [:0]const u8) !void {
 // ----------------------------------------------------------------------------
 // GAUNTLET 4: CHAOS & DELIBERATE BIT-FLIP CORRUPTION INJECTION & SELF-HEALING
 // ----------------------------------------------------------------------------
-fn runChaosCorruptionGauntlet(ring: *shm.XorasShmRing, random: std.Random) !void {
+fn runChaosCorruptionGauntlet(ring: *shm.XorasMpmcRing, random: std.Random) !void {
     std.debug.print(">>> [GAUNTLET 4/4] Running Chaos Bit-Flip Corruption & Self-Healing Gauntlet...\n", .{});
     const corruptions: usize = 10_000;
 
@@ -227,13 +227,14 @@ fn runChaosCorruptionGauntlet(ring: *shm.XorasShmRing, random: std.Random) !void
 
     var iter: usize = 0;
     while (iter < corruptions) : (iter += 1) {
-        // Deliberately corrupt an arbitrary byte in the active frames array
-        const raw_bytes = std.mem.asBytes(&ring.frames);
-        const target_byte = random.uintLessThan(usize, raw_bytes.len);
+        // Deliberately corrupt an arbitrary byte in a random slot's CognitiveFrame
+        const slot_idx = random.uintLessThan(usize, shm.RING_CAPACITY);
+        const frame_bytes = std.mem.asBytes(&ring.slots[slot_idx].frame);
+        const target_byte = random.uintLessThan(usize, frame_bytes.len);
         const bit_to_flip = @as(u8, 1) << @intCast(random.uintLessThan(u8, 8));
 
-        // Inject bitflip
-        raw_bytes[target_byte] ^= bit_to_flip;
+        // Inject bitflip into frame data
+        frame_bytes[target_byte] ^= bit_to_flip;
 
         // Consumer reads with Self-Healing Verification Filter
         var frame: shm.CognitiveFrame = undefined;
@@ -291,11 +292,11 @@ pub fn main() !void {
     _ = c.shm_unlink(shm_path);
     defer _ = c.shm_unlink(shm_path);
 
-    const ring = shm.xoras_shm_create(shm_path) orelse {
+    const ring = shm.xoras_mpmc_create(shm_path) orelse {
         std.debug.print("FATAL: Failed to allocate shared memory for gauntlet\n", .{});
         return;
     };
-    defer shm.xoras_shm_close(ring);
+    defer shm.xoras_mpmc_close(ring);
 
     // 2. Property-Based Fuzzing
     try runPropertyBasedPayloadFuzzing(ring, random);
