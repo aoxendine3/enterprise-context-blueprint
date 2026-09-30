@@ -40,3 +40,4 @@ xmars_dag_matrix.bin
 
 *.bin
 ops/scripts/fullscreen_ui/ast_nodes.json
+.sovereign/

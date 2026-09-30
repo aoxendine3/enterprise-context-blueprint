@@ -479,6 +479,22 @@
       "status": "PENDING",
       "source": "anthony_prompt",
       "prompt_hash": "e6a11e0624fd"
+    },
+    {
+      "task_id": "PRM-20260930-092155-01",
+      "name": "Action: Candidate BBQ-004: Computational Interference Field Memory (CIFM).",
+      "created_at": "2026-09-30T09:21:55.245882+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "5125bc0da509"
+    },
+    {
+      "task_id": "PRM-20260930-092155-02",
+      "name": "Action: Deep first-principles physics and continuous retention window [5ms, 20ms] over 1e9 cycles with local gemma4:26b model adversarial dialectic review.",
+      "created_at": "2026-09-30T09:21:55.248869+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "5125bc0da509"
     }
   ]
 }
