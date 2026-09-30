@@ -2410,3 +2410,45 @@ The collective operates across six integrated memory dimensions:
 - **Active Models**: `['llama3.2:3b']`
 - **Dark Models**: `['gemma4:26b', 'qwen2.5-coder:7b', 'sovereign-jarvis:latest']`
 - **Vector Embedding**: 18,432-D HexCell Poincaré Norm `0.048219`
+
+### [MERKLE CATCH RECEIPT V2] 2026-09-30T07:35:19.703698+00:00
+- **Gate Status**: `BLOCKED`
+- **Merkle Root**: `707272b7179381a931d06f531d2d88fd4ddf9c9844d25a1ddfe0a815ec8a6cc6`
+- **Stage Telemetry**: Port 8080 `[GREEN]` (334.05 ms)
+- **Active Models**: `[]`
+- **Dark Models**: `['gemma4:26b', 'llama3.2:3b', 'qwen2.5-coder:7b', 'sovereign-jarvis:latest']`
+- **Vector Embedding**: 18,432-D HexCell Poincaré Norm `0.048219`
+
+### [MERKLE CATCH RECEIPT V2] 2026-09-30T07:37:02.344351+00:00
+- **Gate Status**: `GREEN`
+- **Merkle Root**: `5c62ec528521581ae50c9eddceeb8d2fdede909ff7f091aac8ec286b3ea65fd2`
+- **Stage Telemetry**: Port 8080 `[GREEN]` (349.83 ms)
+- **Active Models**: `['llama3.2:3b', 'sovereign-jarvis:latest']`
+- **Dark Models**: `['gemma4:26b', 'qwen2.5-coder:7b']`
+- **Vector Embedding**: 18,432-D HexCell Poincaré Norm `0.048219`
+
+### [MERKLE CATCH RECEIPT V2] 2026-09-30T07:38:08.291798+00:00
+- **Gate Status**: `GREEN`
+- **Merkle Root**: `750cc835e2bf2d28c37e1a4acdc1206216776e755e511b04a513457d3622bb05`
+- **Stage Telemetry**: Port 8080 `[GREEN]` (322.72 ms)
+- **Active Models**: `['llama3.2:3b', 'sovereign-jarvis:latest']`
+- **Dark Models**: `['gemma4:26b', 'qwen2.5-coder:7b']`
+- **Vector Embedding**: 18,432-D HexCell Poincaré Norm `0.048219`
+
+---
+## Log Entry #076 — Pre-Registered Numeric Continuous Temporal Window Invariant & Anti-Asymmetry Law (Codified 2026-09-30)
+**Trigger:** Anthony's foundational epistemological critique: *"A kill condition that fires on collapse or fidelity failure is the right shape, but it only works if the thresholds are numeric and pre-registered, not judged after the fact... A candidate could clear 0.80 at that instant and collapse immediately after. A single-point check can't distinguish a genuine plateau from a curve that happens to cross the floor there. If the ledger is immutable, that snapshot choice is now frozen. Consider whether the contract should require the floor to hold across a window, say from 1.0 to 1.5/gamma, rather than one instant."*
+
+### Constitutional Law Enacted:
+1. **Pre-Registered Quantitative Contracts**: Subjective descriptors ("reasonable", "sufficient", "preserves fidelity") are permanently unconstitutional. Every falsification condition must be expressed as exact numeric scalars pre-registered and cryptographically hashed in `identity/pre_registered_kill_specifications.json` *before* benchmark execution.
+2. **Continuous Temporal Window Invariant**: Single-instant snapshot evaluations ($t = t_0$) are strictly prohibited. Open dynamical systems decay continuously; evaluating at an isolated instant allows transient curve crossings to masquerade as asymptotic stability. All survival conditions must evaluate the **infimum** across a continuous temporal interval:
+   $$\inf_{t \in [1.0/\gamma_{\text{coll}}, 1.5/\gamma_{\text{coll}}]} \bar{F}_{\text{adapt}}(t) \ge F_{\text{floor}}$$
+   $$\inf_{t \in [1.0/\gamma_{\text{coll}}, 1.5/\gamma_{\text{coll}}]} \left( \bar{F}_{\text{adapt}}(t) - \bar{F}_{\text{baseline}}(t) \right) \ge \Delta F_{\text{min}}$$
+   $$\max_{t \in [t_{\text{start}}, t_{\text{end}}]} \left| \frac{d\bar{F}_{\text{adapt}}}{dt} \right| \le \kappa_{\text{plateau}}$$
+3. **Anti-Asymmetry (Fail-Closed Default)**: The program must not bias toward false positives. Ambiguity or boundary breaches fail closed. If the empirical curve dips below the floor at ANY point in the window, the candidate is immediately KILLED and struck from the Golden List.
+4. **Empirical Verification Receipts Committed**:
+   - **Specification v1.1.0 Locked**: SHA-256 `001c361e696b721e3442143288ab61c5711b3809c298dae797bd0b001ed36e52` (linked to Parent `f7d12935d2a3...`).
+   - **Primary Qualification (`gamma_loc = 0.020`)**: Infimum Fidelity $0.8581 \ge 0.8000$ [PASS], Infimum Delta $+0.5189 \ge +0.2500$ ($39.22\sigma$) [PASS], Plateau Decay $0.0353 \text{ s}^{-1} \le 0.0500 \text{ s}^{-1}$ [PASS]. Receipt: `docs/audits/BBQ_001_EMPIRICAL_QUALIFICATION_RECEIPT.json` (SHA-256: `66550b927fcf...`).
+   - **Hostile Stress-Test (`gamma_loc = 0.050`)**: Single-snapshot falsely passed ($0.9215$), but the Continuous Temporal Window exposed decay down to $0.6710 < 0.8000$ with decay rate $0.0776 \text{ s}^{-1} > 0.0500 \text{ s}^{-1}$. Gate triggered and cleanly **KILLED** the candidate! Receipt: `docs/audits/BBQ_001_STRESS_TEST_KILL_RECEIPT.json` (SHA-256: `33e36d2256bc...`).
+5. **Authority**: 7th-Layer Governance. Binding across all past, present, and future candidate architectures. Zero exceptions. Zero deviations.
+

@@ -167,6 +167,142 @@
       "status": "PENDING",
       "source": "anthony_prompt",
       "prompt_hash": "4bf1ea053d6b"
+    },
+    {
+      "task_id": "PRM-20260930-065817-01",
+      "name": "Action: Go: Execute immediate operational strike across the five vectors: wire Proactive Intelligence Daemon to Zig Zero-Copy memory mapped rings, establish Golden Question Set gro",
+      "created_at": "2026-09-30T06:58:17.872559+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "0d9a84709c9c"
+    },
+    {
+      "task_id": "PRM-20260930-073432-01",
+      "name": "Action: Now lets brainstorm better.",
+      "created_at": "2026-09-30T07:34:32.600406+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "4453ac96453c"
+    },
+    {
+      "task_id": "PRM-20260930-073432-02",
+      "name": "Action: we can make the model cook.",
+      "created_at": "2026-09-30T07:34:32.600410+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "4453ac96453c"
+    },
+    {
+      "task_id": "PRM-20260930-073432-03",
+      "name": "Action: do not stop there.",
+      "created_at": "2026-09-30T07:34:32.600411+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "4453ac96453c"
+    },
+    {
+      "task_id": "PRM-20260930-073432-04",
+      "name": "Action: research, breianstorm together, this is what you all together are made for.",
+      "created_at": "2026-09-30T07:34:32.600413+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "4453ac96453c"
+    },
+    {
+      "task_id": "PRM-20260930-074056-01",
+      "name": "Action: A kill condition that fires on collapse or fidelity failure is the right shape, but it only works if the thresholds are numeric and pre-registered, not judged after the fac",
+      "created_at": "2026-09-30T07:40:56.082432+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "f668a5c25c17"
+    },
+    {
+      "task_id": "PRM-20260930-074056-02",
+      "name": "Answer and resolve: 'Fails to preserve state fidelity' is vague\u2014what fidelity floor, over what time horizon, against what baseline",
+      "created_at": "2026-09-30T07:40:56.082437+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "f668a5c25c17"
+    },
+    {
+      "task_id": "PRM-20260930-074056-03",
+      "name": "Action: If the team can decide the bar after seeing the data, the condition can't actually kill anything.",
+      "created_at": "2026-09-30T07:40:56.082438+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "f668a5c25c17"
+    },
+    {
+      "task_id": "PRM-20260930-074056-04",
+      "name": "Action: And the asymmetry matters: a hypothesis that survives a vague gate gets promoted, while one that fails gets struck, so vagueness biases the whole program toward false posit",
+      "created_at": "2026-09-30T07:40:56.082440+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "f668a5c25c17"
+    },
+    {
+      "task_id": "PRM-20260930-074303-01",
+      "name": "Action: Those numbers are defensible but not obviously right.",
+      "created_at": "2026-09-30T07:43:03.165043+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "b5889a0b28e4"
+    },
+    {
+      "task_id": "PRM-20260930-074303-02",
+      "name": "Action: Fidelity floor of 0.80 is a reasonable bar for a first pass\u2014strict enough to mean something, loose enough that a real effect could clear it.",
+      "created_at": "2026-09-30T07:43:03.165047+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "b5889a0b28e4"
+    },
+    {
+      "task_id": "PRM-20260930-074303-03",
+      "name": "Action: The 0.25 relative gain over unencoded baseline is the low-bearing number; it forces the encoding to earn its keep against the simplest alternative, which is exactly what a ",
+      "created_at": "2026-09-30T07:43:03.165049+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "b5889a0b28e4"
+    },
+    {
+      "task_id": "PRM-20260930-074303-04",
+      "name": "Action: The evaluation point at t = 1.2/gamma is the weakest link; it's a single snapshot, and dephasing fidelity decays smoothly.",
+      "created_at": "2026-09-30T07:43:03.165050+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "b5889a0b28e4"
+    },
+    {
+      "task_id": "PRM-20260930-074303-05",
+      "name": "Action: A candidate could clear 0.80 at that instant and collapse immediately after.",
+      "created_at": "2026-09-30T07:43:03.165051+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "b5889a0b28e4"
+    },
+    {
+      "task_id": "PRM-20260930-074303-06",
+      "name": "Action: A single-point check can't distinguish a genuine plateau from a curve that happens to cross the floor there.",
+      "created_at": "2026-09-30T07:43:03.165052+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "b5889a0b28e4"
+    },
+    {
+      "task_id": "PRM-20260930-074303-07",
+      "name": "Action: If the ledger is immutable, that snapshot choice is now frozen.",
+      "created_at": "2026-09-30T07:43:03.165053+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "b5889a0b28e4"
+    },
+    {
+      "task_id": "PRM-20260930-074303-08",
+      "name": "Action: Consider whether the contract should require the floor to hold across a window, say from 1.0 to 1.5/gamma, rather than one instant.",
+      "created_at": "2026-09-30T07:43:03.165054+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "b5889a0b28e4"
     }
   ]
 }
