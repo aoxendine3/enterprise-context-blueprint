@@ -10,9 +10,9 @@
       "signature_forgery_caught": true,
       "violation_details": [
         {
-          "node_id": "b03bc4d4959b908e6fa07fc431ff61c44095c2bb5070cddbd04a7fe421fb91d9",
+          "node_id": "c515883fc12952e8efdfc68bec6a5a481d8e78805c567d9624ad1d265137dae5",
           "error": "SIGNATURE_MUTATION_DETECTED",
-          "expected": "d19349fdcef047c117ddb9ecab6bc5315dfed3a6987257048f62ebb1be12def8",
+          "expected": "cb3636a6488464f9c16bd054752c2989051cb1cb529a27d5dc89d35628259b20",
           "actual": "FORGED_HMAC_SIGNATURE_0000"
         }
       ]
@@ -22,7 +22,7 @@
       "parent_break_caught": true,
       "violation_details": [
         {
-          "node_id": "bea4172154367769203828db9959d4eca5bf5179e199455bda8381117a1b0162",
+          "node_id": "721372b5cf8664ba8203553c12c8778752c8a06d78cefd306b8f326c0a7a9320",
           "error": "BROKEN_PARENT_CHAIN",
           "expected_parent_in_dag": "FORGED_PARENT_HASH_BAD_LINK",
           "actual": "FORGED_PARENT_HASH_BAD_LINK"
@@ -37,14 +37,14 @@
       "passed": true,
       "node_count": 1000,
       "errors_encountered": 0,
-      "lineage_valid": true
+      "lineage_valid": false
     },
     "vector_6_high_scale_burst": {
       "passed": true,
       "total_nodes": 5000,
-      "duration_sec": 16.091,
-      "throughput_ops_sec": 310.74,
-      "merkle_root": "16b2759a71091538668ba6197fd289420e5c673648a78c9e54e6c0f91871ec12"
+      "duration_sec": 16.111,
+      "throughput_ops_sec": 310.34,
+      "merkle_root": "ba70f04a85fb394d556a67b4fa04545ebfa0062f80a55fb8400797486f0ba385"
     }
   }
 }

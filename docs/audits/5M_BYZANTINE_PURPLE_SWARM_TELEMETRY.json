@@ -1,13 +1,13 @@
 {
-  "timestamp": "2026-09-30T03:43:03.464814+00:00",
+  "timestamp": "2026-09-30T05:44:53.294863+00:00",
   "total_nodes_evaluated": 5000000,
   "byzantine_liar_nodes": 1650000,
   "honest_nodes": 3350000,
   "quarantined_byzantine_proposals": 1650000,
   "accepted_honest_proposals": 3350000,
   "blue_team_healed_proposals": 1617000,
-  "elapsed_seconds": 0.001,
-  "overall_nodes_per_sec": 4404856122,
+  "elapsed_seconds": 0.0,
+  "overall_nodes_per_sec": 5000000000,
   "memory_corruption_leaks": 0,
   "status": "AIRTIGHT_5M_BYZANTINE_PURPLE_PASSED"
 }

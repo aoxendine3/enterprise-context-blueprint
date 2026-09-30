@@ -1,5 +1,5 @@
 {
-  "timestamp": 1790745578.505427,
+  "timestamp": 1790747093.3532548,
   "overall_reproducible": true,
   "suites_verified": 5,
   "results": [
@@ -8,7 +8,7 @@
       "name": "Sovereign Context Lineage & Execution Provenance Engine",
       "reproducible": true,
       "exit_code": 0,
-      "duration_sec": 21.394,
+      "duration_sec": 22.004,
       "command": "python3 ops/provenance/break_context_lineage_engine.py",
       "files": {
         "script": {
@@ -17,11 +17,11 @@
         },
         "doc": {
           "path": "docs/audits/CONTEXT_LINEAGE_ENGINE_AUDIT.md",
-          "hash": "fd7b90acb8adcc3d"
+          "hash": "58e3763c29acdb58"
         },
         "receipt": {
           "path": "docs/audits/CONTEXT_LINEAGE_BREAKER_RECEIPT.json",
-          "hash": "b9f12f74813070bd"
+          "hash": "024e1ac3d86c8bad"
         }
       },
       "stdout_tail": [
@@ -36,7 +36,7 @@
       "name": "Governed Memory Consolidation Engine",
       "reproducible": true,
       "exit_code": 0,
-      "duration_sec": 0.215,
+      "duration_sec": 0.222,
       "command": "python3 ops/memory/break_governed_memory_engine.py",
       "files": {
         "script": {
@@ -45,7 +45,7 @@
         },
         "doc": {
           "path": "docs/audits/GOVERNED_MEMORY_CONSOLIDATION_GOVERNOR_SPEC.md",
-          "hash": "6e0a2e15763b091c"
+          "hash": "73a9bbdee75fa79b"
         },
         "receipt": {
           "path": "memory/catch_log/GOVERNED_MEMORY_BREAKER_RECEIPT.json",
@@ -64,7 +64,7 @@
       "name": "Byzantine Corruption Breaking Point Ramp",
       "reproducible": true,
       "exit_code": 0,
-      "duration_sec": 0.055,
+      "duration_sec": 0.035,
       "command": "python3 ops/discernment/byzantine_breaking_point_ramp.py",
       "files": {
         "script": {
@@ -73,11 +73,11 @@
         },
         "doc": {
           "path": "docs/audits/BYZANTINE_BREAKING_POINT_RAMP_AUDIT.md",
-          "hash": "38a8315e5be998d9"
+          "hash": "64f3f1dbb964f37f"
         },
         "receipt": {
           "path": "docs/audits/BYZANTINE_BREAKING_POINT_RAMP_AUDIT.md",
-          "hash": "38a8315e5be998d9"
+          "hash": "64f3f1dbb964f37f"
         }
       },
       "stdout_tail": [
@@ -92,7 +92,7 @@
       "name": "5-Million Agent Byzantine Purple Swarm Gauntlet",
       "reproducible": true,
       "exit_code": 0,
-      "duration_sec": 0.048,
+      "duration_sec": 0.043,
       "command": "python3 ops/discernment/5m_byzantine_purple_swarm_gauntlet.py",
       "files": {
         "script": {
@@ -101,11 +101,11 @@
         },
         "doc": {
           "path": "docs/audits/5M_BYZANTINE_PURPLE_SWARM_AUDIT.md",
-          "hash": "6d53bfd240e0c6fe"
+          "hash": "14f3b0c5a793de6e"
         },
         "receipt": {
           "path": "docs/audits/5M_BYZANTINE_PURPLE_SWARM_TELEMETRY.json",
-          "hash": "c2306ba18656ce99"
+          "hash": "738c3cbe24a2ae7e"
         }
       },
       "stdout_tail": [
@@ -120,7 +120,7 @@
       "name": "Task Supervisor Sentinel Layer",
       "reproducible": true,
       "exit_code": 0,
-      "duration_sec": 0.053,
+      "duration_sec": 0.052,
       "command": "python3 ops/watchdog/task_supervisor_sentinel.py --sweep",
       "files": {
         "script": {
