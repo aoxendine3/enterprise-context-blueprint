@@ -79,6 +79,10 @@ trap 'rm -rf "$LOCKDIR"' EXIT INT TERM
 
 # Direct Bare-Metal Audio Playback (Synchronous real-time audio output)
 CLEAN_TEXT="$(echo "$RAW_TEXT" | tr -d '"')"
+NORMALIZER="/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/bin/speech_normalizer"
+if [[ -x "$NORMALIZER" ]]; then
+  CLEAN_TEXT="$("$NORMALIZER" "$CLEAN_TEXT")"
+fi
 
 # Kokoro-first: all agents use neural synthesis. macOS say is emergency fallback only.
 KOKORO_SCRIPT="/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/fullscreen_ui/sync_stage_engine_kokoro.py"

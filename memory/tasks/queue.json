@@ -511,6 +511,102 @@
       "status": "PENDING",
       "source": "anthony_prompt",
       "prompt_hash": "bef43d2dbad1"
+    },
+    {
+      "task_id": "PRM-20260930-114659-01",
+      "name": "Action: Dr Eden Veritas and Daxx plan engaged.",
+      "created_at": "2026-09-30T11:46:59.841885+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "45be99705e8f"
+    },
+    {
+      "task_id": "PRM-20260930-114659-02",
+      "name": "Action: Business tone with epistemic humility and honesty.",
+      "created_at": "2026-09-30T11:46:59.841890+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "45be99705e8f"
+    },
+    {
+      "task_id": "PRM-20260930-114659-03",
+      "name": "Action: Orion and Daxx screen recording engine.",
+      "created_at": "2026-09-30T11:46:59.841892+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "45be99705e8f"
+    },
+    {
+      "task_id": "PRM-20260930-114659-04",
+      "name": "Action: Vance blue/purple team defense.",
+      "created_at": "2026-09-30T11:46:59.841893+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "45be99705e8f"
+    },
+    {
+      "task_id": "PRM-20260930-114659-05",
+      "name": "Action: Phonetic pronunciation fix for live with long i.",
+      "created_at": "2026-09-30T11:46:59.841894+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "45be99705e8f"
+    },
+    {
+      "task_id": "PRM-20260930-114659-06",
+      "name": "Action: Formulate comprehensive numbers and monetary pronunciation training program and place-value chart.",
+      "created_at": "2026-09-30T11:46:59.841895+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "45be99705e8f"
+    },
+    {
+      "task_id": "PRM-20260930-115126-01",
+      "name": "Action: Implement dynamic model router to avoid 16GB trap.",
+      "created_at": "2026-09-30T11:51:26.053815+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "885b9ded5b09"
+    },
+    {
+      "task_id": "PRM-20260930-115126-02",
+      "name": "Action: Route easy lookups to 7B and deep reasoning to 14B.",
+      "created_at": "2026-09-30T11:51:26.053819+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "885b9ded5b09"
+    },
+    {
+      "task_id": "PRM-20260930-115126-03",
+      "name": "Action: Enforce eviction-before-load so both models never co-exist in memory.",
+      "created_at": "2026-09-30T11:51:26.053821+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "885b9ded5b09"
+    },
+    {
+      "task_id": "PRM-20260930-115126-04",
+      "name": "Action: Optimize for swap-time trade-off.",
+      "created_at": "2026-09-30T11:51:26.053822+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "885b9ded5b09"
+    },
+    {
+      "task_id": "PRM-20260930-115907-01",
+      "name": "Answer and resolve: What about ZIG, Rust, and all that other stuff",
+      "created_at": "2026-09-30T11:59:07.976156+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "47886798c66b"
+    },
+    {
+      "task_id": "PRM-20260930-115907-02",
+      "name": "Action: You didn't mention that.",
+      "created_at": "2026-09-30T11:59:07.976161+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "47886798c66b"
     }
   ]
 }
