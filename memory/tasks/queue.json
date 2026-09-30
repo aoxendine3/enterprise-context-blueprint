@@ -399,6 +399,62 @@
       "status": "PENDING",
       "source": "anthony_prompt",
       "prompt_hash": "04284e97f19f"
+    },
+    {
+      "task_id": "PRM-20260930-082240-01",
+      "name": "Answer and resolve: Anthony question: Did you pick the parameter first and calculate Z_eff, or target Z_eff and solve backward",
+      "created_at": "2026-09-30T08:22:40.436102+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "4f51539fceb8"
+    },
+    {
+      "task_id": "PRM-20260930-082240-02",
+      "name": "Action: Explain why 1.30, 1.16, and 1.15 clustered at the gate edge.",
+      "created_at": "2026-09-30T08:22:40.436113+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "4f51539fceb8"
+    },
+    {
+      "task_id": "PRM-20260930-082240-03",
+      "name": "Action: Acknowledge the difference between natural equilibrium and inverse requirement boundaries.",
+      "created_at": "2026-09-30T08:22:40.436117+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "4f51539fceb8"
+    },
+    {
+      "task_id": "PRM-20260930-083339-01",
+      "name": "Answer and resolve: Anthony inquiry: What redeposition fraction did baseline BBQ-002 assume",
+      "created_at": "2026-09-30T08:33:39.488073+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "46f0e4265c97"
+    },
+    {
+      "task_id": "PRM-20260930-083339-02",
+      "name": "Action: Explain why published 95% redeposition literature shows low core contamination while 25 MW/m^2 benchmark fails.",
+      "created_at": "2026-09-30T08:33:39.488077+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "46f0e4265c97"
+    },
+    {
+      "task_id": "PRM-20260930-083339-03",
+      "name": "Action: Contrast physical sputtering regime (NSTX/EAST < 5 MW/m^2, T < 650K) with thermal evaporation runaway regime (25 MW/m^2, T > 1000K).",
+      "created_at": "2026-09-30T08:33:39.488079+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "46f0e4265c97"
+    },
+    {
+      "task_id": "PRM-20260930-083821-01",
+      "name": "Action: Anthony challenge on BBQ-002 f_Li = 67.5 (6750%): fraction cannot exceed 1.0; investigate whether f_Li is unphysical lithium vapor, why quasi-neutrality broke down, whether",
+      "created_at": "2026-09-30T08:38:21.036894+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "a162bec89912"
     }
   ]
 }

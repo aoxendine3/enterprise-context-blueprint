@@ -2452,3 +2452,32 @@ The collective operates across six integrated memory dimensions:
    - **Hostile Stress-Test (`gamma_loc = 0.050`)**: Single-snapshot falsely passed ($0.9215$), but the Continuous Temporal Window exposed decay down to $0.6710 < 0.8000$ with decay rate $0.0776 \text{ s}^{-1} > 0.0500 \text{ s}^{-1}$. Gate triggered and cleanly **KILLED** the candidate! Receipt: `docs/audits/BBQ_001_STRESS_TEST_KILL_RECEIPT.json` (SHA-256: `33e36d2256bc...`).
 5. **Authority**: 7th-Layer Governance. Binding across all past, present, and future candidate architectures. Zero exceptions. Zero deviations.
 
+
+---
+## Log Entry #077 — Physical Non-Linearity, Dynamic Disruption Boundary, and Anti-Ghost-State Invariant (Codified 2026-09-30)
+**Trigger:** Anthony's razor-sharp epistemological dissection: *"Your own numbers show f-Li, the lithium fraction of the core plasma, at 67.5, meaning 6750%. A fraction can't physically exceed 1.0, meaning 100%. If lithium truly outnumbered deuterium 67 to 1, that's not a contaminated fusion plasma anymore, that's just lithium vapor, and the whole confinement and quasi-neutrality model breaks down. Ask them why f_Li was allowed to exceed 1.0 in the model, whether it should have been capped or renormalized, and whether the Z-effective of 2.99 is a real result or just an artifact of an impossible input landing in a formula that happens to saturate near 3 regardless. Go hella autosearch and go all out with your quantizational ass."*
+
+### Constitutional Law Enacted:
+1. **The Anti-Ghost-State Law**: In open non-linear physical and thermodynamic systems, calculating a static "steady-state" on a system that has undergone dynamical collapse or disruption is strictly unconstitutional. Simulators must track continuous time-resolved ODEs and terminate at the exact millisecond of physical collapse ($	au_{\text{quench}}$), logging the true dynamical death of the system rather than evaluating asymptotic ghost formulas on a corpse.
+2. **Fraction vs. Dilution Ratio Disambiguation**:
+   - **True Ionic Fraction**:  = rac{n_Z}{n_{\text{DT}} + n_Z} \in [0.0, 1.0]$. (A fraction can NEVER exceed 1.0).
+   - **Impurity Electron Fraction**: {e,Z} = rac{Z n_Z}{n_e} \in [0.0, 1.0]$.
+   - **Fuel Dilution Ratio**:  = rac{n_Z}{n_{\text{DT}}} \in [0.0, \infty)$.
+   - When {\text{Li}} = 67.5$, {\text{Li}} = rac{67.5}{1 + 67.5} = 98.54\%$. The core is .5\%$ lithium ions, exceeding the Greenwald density limit by \times0
+3. **Formula Saturation Unmasked**:
+   The rational formula {\text{eff}} = rac{1 + 9 c_{\text{Li}}}{1 + 3 c_{\text{Li}}}$ possesses a horizontal asymptote $\lim_{c \to \infty} Z_{\text{eff}}(c) = 3.0000$. The reported {\text{eff}} = 2.9902$ was not a physical equilibrium; it was a mathematical saturation artifact of feeding an unphysical, post-disruption input (=67.5$) into an asymptotic function.
+4. **Quantized First-Principles Microphysics**:
+   - **Quantized Coulomb Logarithm $\ln\Lambda*: Transition boundary incorporates both the classical Landau impact parameter {\min, \text{cl}} = rac{Z e^2}{12\pi\epsilon_0 k_B T_e}$ and the quantum thermal de Broglie wavelength cutoff {\min, \text{qm}} = rac{\hbar}{2 m_e v_{\text{th}}}$, with {\min} = \max(b_{\min, \text{cl}}, b_{\min, \text{qm}})$.
+   - **Exact Bremsstrahlung Scaling**: Formulated with $ in keV ({\text{brem}} = 5.35 \times 10^{-37} g_{\text{ff}} Z_{\text{eff}} n_e^2 \sqrt{T_{e\text{ [keV]}}} V_{\text{core}}$), scaling cleanly as $.
+5. **Autosearch Empirical Findings ()**:
+   - **Baseline Screen (\text{ MW/m}^2$, unmitigated)**: ALL 5 candidate liquid metals disrupt catastrophically in $< 10\text{ ms}$:
+     - Lithium: $\tau_{\text{quench}} = 4.40\text{ ms}$ ({\text{rad}} = 280.4\text{ MW} > 150\text{ MW}$ heating).
+     - Tin: $\tau_{\text{quench}} = 8.80\text{ ms}$ ({\text{rad}} = 8,860\text{ MW}$).
+     - Gallium: $\tau_{\text{quench}} = 6.20\text{ ms}$ ({\text{rad}} = 13,224\text{ MW}$).
+     - Lead-Lithium: $\tau_{\text{quench}} = 0.40\text{ ms}$ ({\text{rad}} = 301,959\text{ MW}$).
+     - Lithium-Tin: $\tau_{\text{quench}} = 1.20\text{ ms}$ ({\text{rad}} = 115,769\text{ MW}$).
+   - **Pareto Survival Boundary**: Sustained fusion burn ({\text{eff}} \le 1.30$, no disruption) is physically possible ONLY if:
+     - Rapid forced convection: {\text{flow}} \ge 8.0\text{ m/s}$ (with ceramic FCIs to suppress MHD drag), OR
+     - Magnetic flux expansion: {\text{exp}} \ge 3.0$ combined with electrostatic biasing {\text{bias}} \le -150\text{ V}$, OR
+     - High magnetic flux expansion alone: {\text{exp}} \ge 6.0$.
+6. **Authority**: 7th-Layer Governance. Binding across all physical simulators and falsification engines. Zero exceptions. Zero deviations.
