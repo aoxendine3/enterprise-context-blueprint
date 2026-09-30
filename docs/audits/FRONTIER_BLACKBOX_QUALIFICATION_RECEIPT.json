@@ -1,0 +1,58 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "predicateType": "https://xoras.ai/evidence/blackbox_qualification/v1",
+  "timestamp": "2026-09-30T07:30:34Z",
+  "architecture": "Apple Silicon M4 Bare Metal",
+  "session_id": "blackbox_qualification_session_1790753434",
+  "governing_state_machine": "DISCOVERED -> UNDER_DELIBERATION -> ADVERSARIAL_TEST -> QUALIFIED / FAILED / UNRESOLVED",
+  "subject": [
+    {
+      "name": "BBQ-001",
+      "digest": {
+        "sha256": "ac1ef0d314c7556e58aaa973e543f18c01585e1831422b615bc38442c86adbf6"
+      },
+      "merkle_root": "3fd89f61338c7d72b41e67d8ce3901dadf15dd7a28f9444a5d458252eeb05618"
+    },
+    {
+      "name": "BBQ-002",
+      "digest": {
+        "sha256": "f50ead66a33a010299036f71580deb78f3d538d58fcb5988f43f663e67047e6f"
+      },
+      "merkle_root": "1e9e6b4064e146aad820e57abfcabd8a032fb2be92b416a081117deec2e257c6"
+    },
+    {
+      "name": "BBQ-003",
+      "digest": {
+        "sha256": "c829556b409c9321a38858eb302169b729596ef6d3767c10e69c8e1f06e2d3a1"
+      },
+      "merkle_root": "e350eac2442557b7b6027c674c879f14167381b2db2a4c13c837c1597a5d8bc5"
+    },
+    {
+      "name": "BBQ-004",
+      "digest": {
+        "sha256": "7c992507eaf7cc9880855d965a8e209794a381785448ed4acaeff9cef9c8e822"
+      },
+      "merkle_root": "bced31431ee3174ff97c70575a6239e48a02baeb48e01a4b716509f4339e6bb2"
+    },
+    {
+      "name": "BBQ-005",
+      "digest": {
+        "sha256": "13e43fd5ec58b7535303c2935bf5702c5991ac55a5a60b2cbd17e633ab495d2d"
+      },
+      "merkle_root": "99f448abd0707158831cab864ab71737084b11e17fb5fe31484425177043bb77"
+    }
+  ],
+  "predicate": {
+    "evaluator": "William Vance (Audit Lead) & Clara (Chief of Science)",
+    "specification_doc": "docs/plans/FRONTIER_BLACKBOX_QUALIFICATION_PROGRAM.md",
+    "candidates_evaluated": 5,
+    "state_distribution": {
+      "ADVERSARIAL_TEST": 4,
+      "UNDER_DELIBERATION": 1,
+      "QUALIFIED": 0,
+      "FAILED": 0
+    },
+    "status": "CANDIDATES_ENTERED_INTO_ADVERSARIAL_GAUNTLET",
+    "epistemic_note": "Candidates are discoveries under qualification, explicitly NOT proven solutions."
+  }
+}
