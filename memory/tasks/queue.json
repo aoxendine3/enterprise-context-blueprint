@@ -455,6 +455,30 @@
       "status": "PENDING",
       "source": "anthony_prompt",
       "prompt_hash": "a162bec89912"
+    },
+    {
+      "task_id": "PRM-20260930-084947-01",
+      "name": "Action: Anthony heart-to-heart: Explain what all this research is in layman terms, what results were produced that are not on the market, who this helps, whether findings are good ",
+      "created_at": "2026-09-30T08:49:47.708401+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "3a214dc669c3"
+    },
+    {
+      "task_id": "PRM-20260930-091311-01",
+      "name": "Action: Advance to Candidate BBQ-003: Multi-Timescale Infrastructure-State Long-Duration Energy Storage (LDES).",
+      "created_at": "2026-09-30T09:13:11.204243+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "e6a11e0624fd"
+    },
+    {
+      "task_id": "PRM-20260930-091311-02",
+      "name": "Action: Evaluate 100-hour continuous discharge window [50h, 150h] over 1,000 deep cycles against LFP and Pumped Hydro baseline.",
+      "created_at": "2026-09-30T09:13:11.204247+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "e6a11e0624fd"
     }
   ]
 }
