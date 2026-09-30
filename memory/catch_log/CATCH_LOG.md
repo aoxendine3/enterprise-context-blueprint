@@ -15,16 +15,28 @@ This is a structured, append-only engineering log. Observations and hypotheses a
 
 ## Log Entry #078 — The Evidence Chain, Fail-Closed Security, and Human Protection Mandate (2026-09-30)
 
-### Observation & Directive
-Anthony and the collective governance roundtable codified the core triumvirate mandate:
-1. Enforce the evidence chain without deviation.
-2. Fail closed under any anomaly, desync, or broken invariant.
-3. Keep the focus unequivocally on protecting real people.
+### 1. The Fundamental Distinction: Machine Rule vs. Human Purpose
+- **The Machine Rule (`Fail Closed`)**: The mechanical, automated enforcement contract. When compliance cannot be proven, the gate drops, halts advancement, and prevents state mutation.
+- **The Human Purpose (`Protecting People`)**: The moral, ethical, and teleological justification that gives the machine rule its reason to exist. Machines do not possess purposes; humans do. `Fail Closed` is the shield; safeguarding human lives, health, and dignity is the mission.
 
-### Mandates & Invariant Laws
-1. **The Unbroken Evidence Chain**: Every claim, mutation, tool execution, and code artifact must be bound to the cryptographic Merkle DAG (`ops/provenance/context_lineage_dag_engine.py`) with parent-child SHA-256 hashes and hardware HMAC signatures. Detached assertions or unverified metrics are rejected as non-existent.
-2. **Strict Fail-Closed Architecture**: Zero optimistic degradation. Zero silent fallbacks. If an HMAC signature fails, a Merkle root desynchronizes, a parent link is broken, or a required verification section is missing, the gate immediately drops to `VETO / FAIL-CLOSED`. The system halts the operation, locks the state, records an audit receipt, and alerts the operator.
-3. **The Human Protection Core Law**: All technological ambition, algorithmic sophistication, and agentic orchestration exist solely to safeguard real human lives, human health, and human dignity. Inspired by Anthony's battle alongside his wife against CIDP (Chronic Inflammatory Demyelinating Polyneuropathy) and embodied by Dr. Eden Veritas (Quad-Doctor Clinical Rigor) and Clara (Human Ethics & Empathy), no engineering decision or machine optimization may ever compromise human safety, clinical precision, or objective truth.
+### 2. Inseparable Constitutional Invariants
+1. **Invariant A: "No artifact advances without verified evidence."**  
+   Every claim, code mutation, model output, and architectural deliverable must be bound to the cryptographic Merkle DAG (`ops/provenance/context_lineage_dag_engine.py`) with parent-child SHA-256 hashes and hardware HMAC signatures. Detached assertions or unverified metrics are rejected as non-existent.
+2. **Invariant B: "Require independent adversarial challenge."**  
+   No artifact may advance on happy-path validation alone. It must be subjected to hostile, independent, blackbox stress testing (`ops/discernment/blackbox_review_engine.py`) and mutation gauntlets to prove failure-mode behavior before admission.
+
+### 3. Advance/Block Behavioral Encoding
+- **Enforcement Rule**: If required evidence cannot establish compliance, advancement is prohibited unless a human governance process explicitly justifies the disposition.
+- **Operational Reality**: No stamp, no advance. If evidence continuity cannot be demonstrated, the system fails closed and does not advance the artifact. This makes the standard durable, tamper-evident, and auditable.
+
+### 4. Five Standing Governance Questions
+All future system evaluations, reports, audits, and code advancements must answer these five standing questions:
+1. **Evidence Binding**: Has every claim in this artifact been cryptographically bound to concrete, verifiable evidence and code-level receipts?
+2. **Adversarial Challenge**: Has this artifact survived independent, blind adversarial challenge under hostile failure conditions (not just happy paths)?
+3. **Provenance Continuity**: Does this artifact preserve complete temporal and provenance continuity in the Merkle DAG without orphan steps or gaps?
+4. **Fail-Closed Verification**: Does this advancement fail closed if any evidence link, hash digest, or test receipt is missing or unverified?
+5. **Human Protection & Non-Theater**: Does this artifact honor its supreme human purpose: safeguarding human life, dignity, health, and objective truth without AI theater, synthetic persona posturing, or unverified claims?
+
 - **Status**: `[PERMANENTLY CODIFIED CONSTITUTIONAL LAW]`
 
 ---
