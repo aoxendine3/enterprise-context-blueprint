@@ -84,13 +84,20 @@ if [[ -x "$NORMALIZER" ]]; then
   CLEAN_TEXT="$("$NORMALIZER" "$CLEAN_TEXT")"
 fi
 
-# Kokoro-first: all agents use neural synthesis. macOS say is emergency fallback only.
-KOKORO_SCRIPT="/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/fullscreen_ui/sync_stage_engine_kokoro.py"
-if python3 "$KOKORO_SCRIPT" "$AGENT" "$CLEAN_TEXT" 2>/dev/null; then
-  : # Kokoro succeeded
-else
-  # Fallback to macOS say only if Kokoro fails
+# Daxx voice lock: Lee (Premium) is Anthony's explicit choice in ELITE_BOW card
+if [[ "$AGENT" == "daxx" ]]; then
+  echo "daxx" > /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/fullscreen_ui/current_image.txt 2>/dev/null || true
+  echo "$CLEAN_TEXT" > /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/fullscreen_ui/current_transcript.txt 2>/dev/null || true
   say -v "$VOICE" "$CLEAN_TEXT"
+else
+  # Kokoro-first: all other agents use neural synthesis. macOS say is emergency fallback only.
+  KOKORO_SCRIPT="/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/fullscreen_ui/sync_stage_engine_kokoro.py"
+  if python3 "$KOKORO_SCRIPT" "$AGENT" "$CLEAN_TEXT" 2>/dev/null; then
+    : # Kokoro succeeded
+  else
+    # Fallback to macOS say only if Kokoro fails
+    say -v "$VOICE" "$CLEAN_TEXT"
+  fi
 fi
 
 # Update Dead Man Switch timestamp receipt

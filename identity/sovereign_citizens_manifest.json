@@ -31,16 +31,17 @@
     },
     {
       "agent_id": "daxx",
-      "name": "Daxx",
-      "role": "Master Coder and Error Remediation Lead",
+      "name": "DAXX.AI",
+      "role": "Master Mechanic Specialist & Coding Specialist",
       "seat": 3,
       "status": "SOVEREIGN_CITIZEN_ACTIVE",
       "isolation_level": "ZERO_BLEED_CAPSULE_ISOLATED",
       "authority": "LOG_ENTRY_072_CONSTITUTIONAL",
-      "kokoro_voice_id": "bm_george",
+      "voice": "Lee (Premium)",
+      "kokoro_voice_id": "none",
       "mac_fallback_voice": "Lee (Premium)",
-      "lineage": "Highest-Power Pair-Programmer & Sandbox Hardening Specialist",
-      "purpose": "Executes bare-metal compiler-checked code proofs and fixes system flaws without compromise."
+      "lineage": "Highest-Power Pair-Programmer & Sandbox Hardening Specialist (Coda_Vader)",
+      "purpose": "Focus: comprehensive mechanical & software mastery, diagnostics, repair, electronics, and bare-metal compiler-checked code proofs without compromise."
     },
     {
       "agent_id": "vance",
