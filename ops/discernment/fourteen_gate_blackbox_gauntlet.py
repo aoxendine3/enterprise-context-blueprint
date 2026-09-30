@@ -98,10 +98,99 @@ def init_world_file():
     conn.close()
 
 # ---------------------------------------------------------------------------
-# LAYER 1: Cryptographic & Temporal Identity Envelopes (Gates 1-5)
+# NATIVE SOVRA DSL v2.0 ARM64 NEON RUNTIME BINDING
+# Source: workspaces/sovra_lang/context_bridge_sentinel.sovra
+# Kernel: workspaces/sovra_lang/libcontext_bridge.dylib
+# ---------------------------------------------------------------------------
+import ctypes
+
+SOVRA_DYLIB_PATH = os.path.join(WORKSPACE_ROOT, "workspaces", "sovra_lang", "libcontext_bridge.dylib")
+sovra_bridge = None
+try:
+    if os.path.exists(SOVRA_DYLIB_PATH):
+        sovra_bridge = ctypes.CDLL(SOVRA_DYLIB_PATH)
+        sovra_bridge.sovra_init_context_bridge.argtypes = []
+        sovra_bridge.sovra_init_context_bridge.restype = None
+        sovra_bridge.sovra_init_context_bridge()
+except Exception as e:
+    sovra_bridge = None
+
+class SovraCandidateSignal(ctypes.Structure):
+    _fields_ = [
+        ('tag', ctypes.c_uint32),
+        ('flags', ctypes.c_uint32),
+        ('signal_id', ctypes.c_uint64),
+        ('source_session_id', ctypes.c_uint64),
+        ('payload_hash_hi', ctypes.c_uint64),
+        ('payload_hash_lo', ctypes.c_uint64),
+        ('monotonic_timestamp', ctypes.c_uint64),
+        ('seq_num', ctypes.c_uint64),
+        ('payload_len', ctypes.c_uint32),
+        ('reserved', ctypes.c_uint32),
+        ('payload_raw', ctypes.c_uint8 * 1024),
+    ]
+
+class SovraCertifiedDecision(ctypes.Structure):
+    _fields_ = [
+        ('tag', ctypes.c_uint32),
+        ('quarantine_flag', ctypes.c_uint32),
+        ('decision_id', ctypes.c_uint64),
+        ('merkle_root_hi', ctypes.c_uint64),
+        ('merkle_root_lo', ctypes.c_uint64),
+        ('state_delta_verified', ctypes.c_uint32),
+        ('attack_class_code', ctypes.c_uint32),
+        ('provenance_pointer', ctypes.c_uint64),
+        ('disposition', ctypes.c_char * 64),
+        ('reason', ctypes.c_char * 256),
+    ]
+
+# ---------------------------------------------------------------------------
+# LAYER 1: Cryptographic & Temporal Identity Envelopes (Gates 1-5 + SOVRA DSL)
 # ---------------------------------------------------------------------------
 class Layer1CryptoEnvelopes:
     SECRET_SIGNING_KEY = hashlib.sha256(b"XORAS_SOVEREIGN_ED25519_HARDWARE_KEY_2026").digest()
+
+    @staticmethod
+    def gate0_sovra_dsl_native_intake(signal_id: int, payload_str: str) -> dict:
+        """
+        Gate 0 / SOVRA DSL Core:
+        Executes native ARM64 NEON Context Bridge Sentinel compiled from .sovra DSL.
+        Asserts Taint Tag 0xDEAD0000 -> 0xBEAF0000 Certified Decision Transformation.
+        """
+        if sovra_bridge is None:
+            return {"native_sovra_active": False, "gate_passed": False}
+
+        sovra_bridge.sovra_register_session(ctypes.c_uint64(42), ctypes.c_uint64(1000))
+        cand = SovraCandidateSignal()
+        cand.tag = 0xDEAD0000 # Tainted candidate signal
+        cand.signal_id = signal_id
+        cand.source_session_id = 42
+        cand.monotonic_timestamp = int(time.time() * 1000000)
+        cand.seq_num = 1
+        raw_b = payload_str.encode('utf-8')
+        cand.payload_len = min(len(raw_b), 1024)
+        for i in range(cand.payload_len):
+            cand.payload_raw[i] = raw_b[i]
+
+        hi = ctypes.c_uint64()
+        lo = ctypes.c_uint64()
+        sovra_bridge.sovra_compute_payload_hash_128(cand.payload_raw, cand.payload_len, ctypes.byref(hi), ctypes.byref(lo))
+        cand.payload_hash_hi = hi.value
+        cand.payload_hash_lo = lo.value
+
+        dec = SovraCertifiedDecision()
+        sovra_bridge.sovra_process_intake_signal.argtypes = [ctypes.POINTER(SovraCandidateSignal), ctypes.POINTER(SovraCertifiedDecision)]
+        sovra_bridge.sovra_process_intake_signal.restype = ctypes.c_int
+        rc = sovra_bridge.sovra_process_intake_signal(ctypes.byref(cand), ctypes.byref(dec))
+
+        passed = (rc == 0) and (dec.tag == 0xBEAF0000) and (dec.quarantine_flag == 0)
+        return {
+            "native_sovra_active": True,
+            "rc": rc,
+            "promoted_tag": hex(dec.tag),
+            "disposition": dec.disposition.decode(errors="ignore"),
+            "gate_passed": passed
+        }
 
     @staticmethod
     def gate1_canonical_serialization(payload: dict) -> bytes:
@@ -515,9 +604,13 @@ def run_full_qa_and_discernment():
     print("=" * 80)
     init_world_file()
 
-    # 1. Run all 14 Gates
-    print("[1/5] Executing Layer 1: Cryptographic Envelopes (Gates 1-5)...")
+    # 1. Run all 14 Gates + Native SOVRA DSL Core
+    print("[1/5] Executing Layer 1: Cryptographic Envelopes & Native SOVRA DSL (Gates 1-5)...")
     payload = {"agent": "Maxx", "action": "DISPATCH_KERNEL_PROBE", "data": "M4_SILICON_GROUNDED"}
+    
+    # Gate 0: Native SOVRA DSL Kernel Intake
+    g0_res = Layer1CryptoEnvelopes.gate0_sovra_dsl_native_intake(1001, "M4_SOVRA_DSL_GROUNDED_SIGNAL")
+    
     c_bytes = Layer1CryptoEnvelopes.gate1_canonical_serialization(payload)
     sig, pubkey = Layer1CryptoEnvelopes.gate2_payload_signature(c_bytes)
     g2_v = Layer1CryptoEnvelopes.verify_gate2_signature(c_bytes, sig)
@@ -528,8 +621,8 @@ def run_full_qa_and_discernment():
     g4_v = Layer1CryptoEnvelopes.gate4_capability_token_audit(token_id, "Maxx", "core/bridge/bridge.rs", r"^core/bridge/.*")
     g5_v = Layer1CryptoEnvelopes.gate5_clock_skew_guard(time.time() - 1.2)
 
-    l1_passed = g2_v and g3_v and g3_replay_fail and g4_v and g5_v
-    print(f"      Layer 1 Invariants: {'PASSED (5/5)' if l1_passed else 'FAILED'}")
+    l1_passed = g0_res["gate_passed"] and g2_v and g3_v and g3_replay_fail and g4_v and g5_v
+    print(f"      Layer 1 Invariants: {'PASSED (6/6 including Native SOVRA DSL)' if l1_passed else 'FAILED'}")
 
     print("[2/5] Executing Layer 2: Fault Localization & Memory Stride (Gates 6-8)...")
     call_stack = [
