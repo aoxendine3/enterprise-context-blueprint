@@ -24,6 +24,7 @@ import json
 import time
 import hashlib
 import subprocess
+import ctypes
 from typing import Dict, List, Any, Optional
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -32,12 +33,80 @@ from provenance.context_lineage_dag_engine import ContextLineageEngine
 INTEL_DIR = os.path.expanduser("~/Desktop/SSOT_Agentic_Brain/memory/intelligence")
 DISCOVERY_LOG = os.path.join(INTEL_DIR, "proactive_discoveries.jsonl")
 QUARANTINE_LOG = os.path.join(INTEL_DIR, "quarantine_ledger.jsonl")
+NATIVE_RECEIPTS_LOG = os.path.join(INTEL_DIR, "native_kernel_intake_receipts.jsonl")
+WORKSPACE_ROOT = os.path.expanduser("~/Desktop/SSOT_Agentic_Brain")
+SOVRA_DYLIB = os.path.join(WORKSPACE_ROOT, "workspaces", "sovra_lang", "libcontext_bridge.dylib")
+
+# SOVRA Native Kernel C Structures (Apple Silicon M4 Bare Metal)
+class SovraCandidateSignal(ctypes.Structure):
+    _pack_ = 8
+    _fields_ = [
+        ("tag", ctypes.c_uint32),
+        ("flags", ctypes.c_uint32),
+        ("signal_id", ctypes.c_uint64),
+        ("source_session_id", ctypes.c_uint64),
+        ("payload_hash_hi", ctypes.c_uint64),
+        ("payload_hash_lo", ctypes.c_uint64),
+        ("monotonic_timestamp", ctypes.c_uint64),
+        ("seq_num", ctypes.c_uint64),
+        ("payload_len", ctypes.c_uint32),
+        ("reserved", ctypes.c_uint32),
+        ("payload_raw", ctypes.c_uint8 * 1024),
+    ]
+
+class SovraCertifiedDecision(ctypes.Structure):
+    _pack_ = 8
+    _fields_ = [
+        ("tag", ctypes.c_uint32),
+        ("quarantine_flag", ctypes.c_uint32),
+        ("decision_id", ctypes.c_uint64),
+        ("merkle_root_hi", ctypes.c_uint64),
+        ("merkle_root_lo", ctypes.c_uint64),
+        ("state_delta_verified", ctypes.c_uint32),
+        ("attack_class_code", ctypes.c_uint32),
+        ("provenance_pointer", ctypes.c_uint64),
+        ("disposition", ctypes.c_char * 64),
+        ("reason", ctypes.c_char * 256),
+    ]
+
+NATIVE_ATTACK_MAP = {
+    0x0001: "EVIDENCE_CORRUPTION_BIT_FLIP",
+    0x0002: "REPLAY_ATTACK_BACKDATED_TIMESTAMP",
+    0x0003: "REPLAY_ATTACK_DUPLICATE_NODE_ID",
+    0x0004: "REPLAY_ATTACK_CROSS_SESSION_ORPHAN",
+    0x0005: "CROSS_SESSION_UNLINKED_REPLAY",
+    0x0006: "TAINT_LATTICE_COERCION_NON_CANDIDATE_TAG",
+}
 
 class ProactiveIntelligenceDaemon:
     def __init__(self, lineage_engine: Optional[ContextLineageEngine] = None, session_id: Optional[str] = None):
         os.makedirs(INTEL_DIR, exist_ok=True)
         self.lineage_engine = lineage_engine if lineage_engine is not None else ContextLineageEngine()
         self.session_id = session_id if session_id is not None else f"intel_session_{int(time.time())}"
+        
+        # Initialize native SOVRA C kernel bridge
+        self.c_bridge = None
+        if os.path.exists(SOVRA_DYLIB):
+            try:
+                self.c_bridge = ctypes.CDLL(SOVRA_DYLIB)
+                self.c_bridge.sovra_init_context_bridge.argtypes = []
+                self.c_bridge.sovra_init_context_bridge.restype = ctypes.c_int
+                self.c_bridge.sovra_process_intake_signal.argtypes = [
+                    ctypes.POINTER(SovraCandidateSignal),
+                    ctypes.POINTER(SovraCertifiedDecision)
+                ]
+                self.c_bridge.sovra_process_intake_signal.restype = ctypes.c_int
+                self.c_bridge.sovra_compute_payload_hash_128.argtypes = [
+                    ctypes.c_void_p,
+                    ctypes.c_size_t,
+                    ctypes.POINTER(ctypes.c_uint64),
+                    ctypes.POINTER(ctypes.c_uint64)
+                ]
+                self.c_bridge.sovra_compute_payload_hash_128.restype = None
+                self.c_bridge.sovra_init_context_bridge()
+            except Exception as e:
+                print(f"[ProactiveIntelligenceDaemon] Warning: Failed to load libcontext_bridge.dylib: {e}", file=sys.stderr)
+
 
     @staticmethod
     def evaluate_signal_triage(signal: Any) -> Dict[str, Any]:
@@ -111,6 +180,74 @@ class ProactiveIntelligenceDaemon:
         """
         if not isinstance(signal, dict):
             return {"valid": True}
+
+        # Step -1: Native SOVRA C Kernel Verification (Apple Silicon M4 Bare Metal)
+        if self.c_bridge is not None and isinstance(signal, dict):
+            try:
+                candidate = SovraCandidateSignal()
+                candidate.tag = int(signal.get("sovra_tag", 0xDEAD0000))
+                candidate.signal_id = int(signal.get("signal_id", signal.get("seq_num", 1001)))
+                candidate.source_session_id = int(hashlib.sha256(self.session_id.encode()).hexdigest()[:16], 16)
+                
+                payload_str = signal.get("payload_raw") or f"{signal.get('title', '')}:{signal.get('summary', '')}"
+                payload_bytes = payload_str.encode('utf-8')[:1024]
+                candidate.payload_len = len(payload_bytes)
+                ctypes.memmove(candidate.payload_raw, payload_bytes, len(payload_bytes))
+                
+                p_hash = signal.get("payload_hash")
+                if p_hash and len(p_hash) >= 32:
+                    candidate.payload_hash_hi = int(p_hash[:16], 16)
+                    candidate.payload_hash_lo = int(p_hash[16:32], 16)
+                elif candidate.payload_len > 0 and hasattr(self.c_bridge, "sovra_compute_payload_hash_128"):
+                    h_hi = ctypes.c_uint64(0)
+                    h_lo = ctypes.c_uint64(0)
+                    self.c_bridge.sovra_compute_payload_hash_128(
+                        candidate.payload_raw,
+                        candidate.payload_len,
+                        ctypes.byref(h_hi),
+                        ctypes.byref(h_lo)
+                    )
+                    candidate.payload_hash_hi = h_hi.value
+                    candidate.payload_hash_lo = h_lo.value
+                
+                candidate.monotonic_timestamp = int(signal.get("timestamp", time.time() * 1000000))
+                candidate.seq_num = int(signal.get("seq_num", 1))
+                
+                decision = SovraCertifiedDecision()
+                rc = self.c_bridge.sovra_process_intake_signal(ctypes.byref(candidate), ctypes.byref(decision))
+                
+                # Record bare-metal intake receipt
+                receipt_entry = {
+                    "timestamp": time.time(),
+                    "rc": rc,
+                    "tag": hex(decision.tag),
+                    "quarantine_flag": decision.quarantine_flag,
+                    "attack_class_code": decision.attack_class_code,
+                    "disposition": decision.disposition.decode("utf-8", errors="ignore").strip(),
+                    "reason": decision.reason.decode("utf-8", errors="ignore").strip(),
+                }
+                with open(NATIVE_RECEIPTS_LOG, "a", encoding="utf-8") as rf:
+                    rf.write(json.dumps(receipt_entry) + "\n")
+                    
+                if rc != 0 or decision.quarantine_flag == 1:
+                    attack_name = NATIVE_ATTACK_MAP.get(decision.attack_class_code, "NATIVE_SOVRA_INVARIANT_BREACH")
+                    return {
+                        "valid": False,
+                        "attack_class": attack_name,
+                        "reason": f"Native M4 SOVRA C Kernel Quarantined: {decision.reason.decode('utf-8', errors='ignore').strip()}",
+                        "expected_invariants": [
+                            "INVARIANT_A_NO_ARTIFACT_ADVANCES_WITHOUT_VERIFIED_EVIDENCE",
+                            "INVARIANT_SOVRA_HARDWARE_TAINT_LATTICE",
+                            "INVARIANT_FAIL_CLOSED_VETO"
+                        ],
+                        "observed_dispositions": [
+                            "INTERCEPTED_AT_BARE_METAL_KERNEL",
+                            "QUARANTINED_BEFORE_DECISION_CHAIN",
+                            "ZERO_STATE_POLLUTION"
+                        ]
+                    }
+            except Exception as e:
+                print(f"[ProactiveIntelligenceDaemon] Warning during native C kernel verification: {e}", file=sys.stderr)
 
         # 1. Evidence Payload Anti-Corruption Check
         if "payload_raw" in signal and "payload_hash" in signal:

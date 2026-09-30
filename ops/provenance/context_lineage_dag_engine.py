@@ -61,6 +61,14 @@ class ContextLineageEngine:
             """)
             conn.execute("CREATE INDEX IF NOT EXISTS idx_session ON lineage_nodes(session_id);")
             conn.execute("CREATE INDEX IF NOT EXISTS idx_parent ON lineage_nodes(parent_hash);")
+            # Auto-migrate older schema if seq_num or payload_raw is missing
+            cur = conn.cursor()
+            cur.execute("PRAGMA table_info(lineage_nodes);")
+            cols = [row[1] for row in cur.fetchall()]
+            if cols and "seq_num" not in cols:
+                conn.execute("ALTER TABLE lineage_nodes ADD COLUMN seq_num INTEGER NOT NULL DEFAULT 0;")
+            if cols and "payload_raw" not in cols:
+                conn.execute("ALTER TABLE lineage_nodes ADD COLUMN payload_raw TEXT NOT NULL DEFAULT '';")
             conn.execute("CREATE INDEX IF NOT EXISTS idx_seq ON lineage_nodes(session_id, seq_num);")
             conn.execute("""
                 CREATE TABLE IF NOT EXISTS global_evidence_registry (
