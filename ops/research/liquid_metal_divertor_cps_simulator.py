@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """
-BBQ-002: Sacrificial & Regenerative Liquid-Metal Plasma Divertor Simulation Harness (v2.0.0-SOVEREIGN-UNCLAMPED).
-Full physics-grounded multiphysics simulator:
-- Couples Darcy-Brinkman porous flow with Hartmann MHD damping
-- Exact Hertz-Knudsen evaporative kinetics & vapor-shielding line radiation
-- Unclamped collisional quasi-neutral core plasma impurity transport
-- Executes all 100 discrete time-domain pulse cycles across [500s, 1500s]
-- Multi-dimensional sensitivity sweep across redeposition fractions, heat fluxes, and material alternatives (Li vs Sn)
+BBQ-002: Sacrificial & Regenerative Liquid-Metal Plasma Divertor Simulation Harness (v3.0.0-SOVEREIGN-EXACT-BOUNDED).
+Auditing the Audit Fix (Constitutional Invariant 076 / Anthony Mandate 2026-09-30):
+- Purged unphysical unconstrained Z_eff (139.8 was an artifact of fixed n_e assuming negative n_D).
+- Implemented exact multi-species quasi-neutrality:
+    Z_eff = (n_DT + Z^2 * n_Z) / (n_DT + Z * n_Z) = (1 + Z^2 * f_Z) / (1 + Z * f_Z)
+    Strictly bounded: 1.0000 <= Z_eff <= 3.0000 for Lithium (Z=3)
+    Strictly bounded: 1.0000 <= Z_eff <= 45.0000 for Tin (Z=45)
+- Added core power balance & Bremsstrahlung + line radiative collapse detection:
+    P_rad = P_brem + P_line; disruption if P_rad > P_aux + P_alpha (150 MW).
+- Executes all 100 discrete time-domain cycles across [500s, 1500s].
+- Full sensitivity sweep across mesh thickness, redeposition, and material alternatives.
 """
 
 from __future__ import annotations
@@ -35,7 +39,6 @@ N_AVO = 6.02214076e23         # Avogadro constant (mol^-1)
 M_LI = 0.006941               # Molar mass of Lithium (kg/mol)
 M_SN = 0.118710               # Molar mass of Tin (kg/mol)
 M_T = 0.003016                # Molar mass of Tritium (kg/mol)
-Q_E = 1.60217663e-19          # Elementary charge (C)
 
 # Solid Tungsten Material Properties
 K_TUNGSTEN = 130.0            # Thermal conductivity (W/m K)
@@ -61,10 +64,10 @@ def load_and_verify_kill_spec() -> tuple[dict, str]:
     return spec_data["specifications"]["BBQ-002"], spec_data.get("parent_spec_sha256", "")
 
 
-class LiquidMetalCPSSimulatorV2:
+class LiquidMetalCPSSimulatorV3:
     """
-    Unclamped, first-principles multiphysics engine for liquid metal divertors.
-    Supports both Liquid Lithium (Li) and Liquid Tin (Sn).
+    Version 3.0: Exact Bounded Quasi-Neutral Multiphysics Engine.
+    Enforces strict physical bounds on Z_eff and couples radiative power collapse.
     """
     def __init__(
         self,
@@ -92,8 +95,10 @@ class LiquidMetalCPSSimulatorV2:
         # Plasma Machine Constants (ITER-like baseline)
         self.A_div = 4.0             # Divertor wetted target area (m^2)
         self.V_core = 80.0           # Core plasma volume (m^3)
-        self.n_e_core = 1.0e20        # Central electron density (m^-3)
+        self.n_DT_core = 1.0e20      # Core Deuterium-Tritium fuel density (m^-3)
+        self.T_e_core_ev = 10000.0   # Central electron temperature: 10 keV
         self.tau_p = 0.50            # Impurity particle confinement time (s)
+        self.P_heat_total_mw = 150.0 # Total core heating (Alpha + NBI + ECRH)
         
     def surface_tension(self, T: float) -> float:
         if self.metal_type == "Lithium":
@@ -106,55 +111,41 @@ class LiquidMetalCPSSimulatorV2:
     def dynamic_viscosity(self, T: float) -> float:
         if self.metal_type == "Lithium":
             return 4.5e-4 * (453.7 / max(T, 453.7))**0.5
-        else: # Tin (Sn)
+        else:
             return 1.8e-3 * (505.1 / max(T, 505.1))**0.5
 
     def electrical_conductivity(self, T: float) -> float:
         if self.metal_type == "Lithium":
             return 3.1e6 * (500.0 / max(T, 453.7))
-        else: # Tin (Sn)
+        else:
             return 2.1e6 * (550.0 / max(T, 505.1))
 
     def saturated_vapor_pressure(self, T: float) -> float:
-        """
-        Saturated vapor pressure P_sat (Pa) via thermodynamic Clausius-Clapeyron fits.
-        """
+        """Saturated vapor pressure P_sat (Pa) via Clausius-Clapeyron fits."""
         if self.metal_type == "Lithium":
             if T < 453.7:
                 return 1e-12
-            # log10(P_Pa) = 10.42 - 8200 / T
             log_p = 10.42 - (8200.0 / T)
             return 10.0**log_p
         else: # Tin (Sn)
             if T < 505.1:
                 return 1e-18
-            # Tin has extraordinarily low vapor pressure: log10(P_Pa) = 10.20 - 15300 / T
             log_p = 10.20 - (15300.0 / T)
             return 10.0**log_p
 
     def latent_heat(self, T: float) -> float:
-        if self.metal_type == "Lithium":
-            return 1.96e7 # 19.6 MJ/kg
-        else:
-            return 2.45e6 # 2.45 MJ/kg
+        return 1.96e7 if self.metal_type == "Lithium" else 2.45e6
 
     def molar_mass(self) -> float:
         return M_LI if self.metal_type == "Lithium" else M_SN
 
     def atomic_number(self) -> float:
-        # Lithium Z=3 (fully stripped in core: Z=3)
-        # Tin Z=50 (average charge state in 10-15 keV core: <Z> = 45)
         return 3.0 if self.metal_type == "Lithium" else 45.0
 
     def effective_thermal_conductivity(self) -> float:
-        # Effective conductivity of Liquid-filled refractory porous matrix
         return 45.0 if self.metal_type == "Lithium" else 35.0
 
     def solve_surface_equilibrium(self, q_incident: float) -> dict:
-        """
-        Solve coupled nonlinear thermal balance and vapor-shielding:
-        q_incident * (1 - eta_shield) = q_cond + q_evap + q_rad
-        """
         M_metal = self.molar_mass()
         Z_metal = self.atomic_number()
         k_eff = self.effective_thermal_conductivity()
@@ -162,24 +153,19 @@ class LiquidMetalCPSSimulatorV2:
         T_low = self.T_sink
         T_high = 3500.0
         best_T = self.T_sink + 100.0
-        
         best_sol = {}
         
         for _ in range(80):
             T_mid = 0.5 * (T_low + T_high)
             
             p_sat = self.saturated_vapor_pressure(T_mid)
-            # Hertz-Knudsen evaporative flux (kg / m^2 s)
             flux_evap = math.sqrt(M_metal / (2.0 * math.pi * R_GAS * T_mid)) * p_sat
             q_evap = flux_evap * self.latent_heat(T_mid)
             
-            # Conduction to active cooling sink
             q_cond = k_eff * (T_mid - self.T_sink) / self.L_mesh
-            
-            # Surface radiation
             q_rad = 0.60 * SIGMA_SB * (T_mid**4 - self.T_sink**4)
             
-            # Vapor shielding: atomic line radiation in the divertor cushion
+            # Vapor shielding factor
             cushion_density = flux_evap * (120.0 if self.metal_type == "Lithium" else 20.0)
             eta_shield = min(0.75, cushion_density / (1.0 + cushion_density))
             
@@ -202,10 +188,10 @@ class LiquidMetalCPSSimulatorV2:
                 "eta_shield": eta_shield,
                 "evaporation_flux_kg_m2_s": flux_evap
             }
-            if abs(residual) < 1.0: # Converged within 1 W/m^2
+            if abs(residual) < 1.0:
                 break
                 
-        # Capillary replenishment calculation (Darcy-Brinkman + Hartmann MHD drag)
+        # Capillary replenishment calculation
         sigma_t = self.surface_tension(best_T)
         delta_P_cap = (2.0 * sigma_t) / self.r_pore
         
@@ -213,13 +199,11 @@ class LiquidMetalCPSSimulatorV2:
         sigma_el_t = self.electrical_conductivity(best_T)
         rho_metal = 512.0 if self.metal_type == "Lithium" else 6980.0
         
-        # Micro-pore Hartmann damping
         mhd_drag_coeff = sigma_el_t * (self.B_T**2) * self.L_mesh * 0.10
         visc_drag_coeff = (mu_t * self.L_mesh) / self.permeability
         
         v_resupply_max = delta_P_cap / (visc_drag_coeff + mhd_drag_coeff)
         m_dot_resupply_max = rho_metal * self.porosity * v_resupply_max
-        
         replenishment_ratio = m_dot_resupply_max / max(best_sol["evaporation_flux_kg_m2_s"], 1e-12)
         
         best_sol["delta_p_cap_kpa"] = delta_P_cap / 1e3
@@ -227,24 +211,50 @@ class LiquidMetalCPSSimulatorV2:
         best_sol["m_dot_resupply_kg_m2_s"] = m_dot_resupply_max
         best_sol["capillary_replenishment_ratio"] = replenishment_ratio
         
-        # UNCLAMPED Core Plasma Impurity Calculation (First-Principles Quasi-Neutrality)
-        # Escape flux beyond prompt sheath redeposition:
+        # =====================================================================
+        # EXACT BOUNDED QUASI-NEUTRAL PLASMA IMPURITY EQUATIONS
+        # =====================================================================
+        # Unredeposited metal atoms escaping into core plasma:
         flux_escape_kg_s = best_sol["evaporation_flux_kg_m2_s"] * self.A_div * (1.0 - self.R_prompt)
         atoms_escape_per_sec = (flux_escape_kg_s / M_metal) * N_AVO
         
         # Steady-state core impurity density: n_Z = (Phi_in * tau_p) / V_core
         n_impurity_core = (atoms_escape_per_sec * self.tau_p) / self.V_core
         
-        # Exact Quasi-Neutral Z_eff:
-        # n_e = n_D + Z * n_Z ==> n_D = n_e - Z * n_Z
-        # Z_eff = (n_D * 1^2 + n_Z * Z^2) / n_e = 1 + (Z^2 - Z) * (n_Z / n_e)
-        delta_z_eff = (Z_metal**2 - Z_metal) * (n_impurity_core / self.n_e_core)
-        z_eff_exact = 1.0 + delta_z_eff
+        # Impurity fraction relative to background fuel: f_Z = n_Z / n_DT
+        f_impurity = n_impurity_core / self.n_DT_core
+        
+        # Exact Quasi-Neutral Definition:
+        # Z_eff = (n_DT * 1^2 + n_Z * Z^2) / (n_DT * 1 + n_Z * Z) = (1 + Z^2 * f_Z) / (1 + Z * f_Z)
+        z_eff_exact = (1.0 + (Z_metal**2) * f_impurity) / (1.0 + Z_metal * f_impurity)
+        
+        # Resulting total electron density: n_e = n_DT + Z * n_Z = n_DT * (1 + Z * f_Z)
+        n_e_total = self.n_DT_core * (1.0 + Z_metal * f_impurity)
+        
+        # Core Radiative Power Balance (Bremsstrahlung + Line radiation)
+        # Bremsstrahlung power: P_brem = 5.35e-37 * Z_eff * n_e^2 * sqrt(T_e) * V_core
+        T_e_kelvin = self.T_e_core_ev * 11604.5
+        p_brem_watts = 5.35e-37 * z_eff_exact * (n_e_total**2) * math.sqrt(T_e_kelvin) * self.V_core
+        
+        # Line radiation cooling parameter:
+        # L_Z ~ 1.0e-32 W m^3 for Li in SOL/mantle; 1.0e-30 W m^3 for Sn
+        L_line = 1.0e-32 if self.metal_type == "Lithium" else 1.0e-30
+        p_line_watts = n_e_total * n_impurity_core * L_line * self.V_core
+        
+        p_rad_total_mw = (p_brem_watts + p_line_watts) / 1e6
+        p_net_heating_mw = self.P_heat_total_mw - p_rad_total_mw
+        radiative_collapse = (p_rad_total_mw >= self.P_heat_total_mw)
         
         best_sol["atoms_escape_per_sec"] = atoms_escape_per_sec
         best_sol["n_impurity_core_m3"] = n_impurity_core
-        best_sol["delta_z_eff"] = delta_z_eff
-        best_sol["core_impurity_z_eff"] = z_eff_exact # 100% UNCLAMPED, EXACT PHYSICAL VALUE
+        best_sol["f_impurity_fraction"] = f_impurity
+        best_sol["core_impurity_z_eff"] = z_eff_exact # STRICTLY BOUNDED IN [1.0, Z_metal]
+        best_sol["n_e_total_m3"] = n_e_total
+        best_sol["p_brem_mw"] = p_brem_watts / 1e6
+        best_sol["p_line_mw"] = p_line_watts / 1e6
+        best_sol["p_rad_total_mw"] = p_rad_total_mw
+        best_sol["p_net_heating_mw"] = p_net_heating_mw
+        best_sol["radiative_collapse_triggered"] = radiative_collapse
         
         # Tritium Inventory Retention
         tritium_implant_rate_g_s = 3.0 if self.metal_type == "Lithium" else 0.05
@@ -256,11 +266,7 @@ class LiquidMetalCPSSimulatorV2:
         return best_sol
 
 
-def run_full_100_cycle_benchmark() -> dict:
-    """
-    Executes the full 100 discrete time-domain pulse cycles across [500s, 1500s].
-    Every single cycle (1 to 100) is evaluated individually.
-    """
+def run_exact_bounded_100_cycle_benchmark() -> dict:
     spec, parent_sha = load_and_verify_kill_spec()
     thresholds = spec["numeric_kill_thresholds"]
     window_cfg = spec["temporal_window"]
@@ -274,7 +280,7 @@ def run_full_100_cycle_benchmark() -> dict:
     t_end = window_cfg["t_end_seconds"]
     total_cycles = 100
     
-    sim_li = LiquidMetalCPSSimulatorV2(
+    sim_li = LiquidMetalCPSSimulatorV3(
         metal_type="Lithium",
         pore_radius_um=15.0,
         porosity=0.50,
@@ -286,23 +292,20 @@ def run_full_100_cycle_benchmark() -> dict:
     )
     
     print("=================================================================")
-    print("BBQ-002 UNCLAMPED 100-CYCLE DISCRETE TIME-DOMAIN BENCHMARK")
+    print("BBQ-002 EXACT BOUNDED 100-CYCLE BENCHMARK (AUDIT-OF-THE-AUDIT)")
     print("=================================================================")
     print(f"[*] Verified Spec SHA-256       : {EXPECTED_SPEC_SHA256[:16]}... [LOCKED]")
-    print(f"[*] Temporal Window             : [{t_start:.1f}s, {t_end:.1f}s] (dt = 10.0s, 100 DISCRETE CYCLES)")
+    print(f"[*] Temporal Window             : [{t_start:.1f}s, {t_end:.1f}s] (100 DISCRETE CYCLES)")
     print(f"[*] Pre-Registered Gates        : q_diss >= {floor_q_diss:.2f} MW/m^2 | Z_eff <= {ceil_z_eff:.2f} | Replenish >= {floor_replenish:.2f}x | Tritium <= {ceil_tritium:.1f}g")
-    print(f"[*] Unclamped Formula           : Z_eff = 1 + (Z^2 - Z) * (n_Li / n_e)")
+    print(f"[*] Exact Physical Law          : Z_eff = (1 + 9*f_Li)/(1 + 3*f_Li) in [1.0, 3.0]")
     print("-----------------------------------------------------------------")
     
     dt = (t_end - t_start) / (total_cycles - 1)
     cycle_logs = []
-    
     t0_start = time.perf_counter()
     
     for cycle_num in range(1, total_cycles + 1):
         t_current = t_start + (cycle_num - 1) * dt
-        
-        # Real-world ELM transient structure: 10% of cycles suffer intense Type-I ELM thermal shocks
         is_elm = (cycle_num % 10 == 0)
         q_incident = 38.0e6 if is_elm else 25.0e6
         
@@ -312,7 +315,6 @@ def run_full_100_cycle_benchmark() -> dict:
         sol["is_elm_transient"] = is_elm
         sol["q_incident_mw"] = q_incident / 1e6
         
-        # Solid tungsten monoblock baseline
         t_surf_w = sim_li.T_sink + (q_incident * sim_li.L_mesh / K_TUNGSTEN)
         sol["tungsten_baseline_t_surf_k"] = round(t_surf_w, 4)
         sol["tungsten_recrystallization_breached"] = (t_surf_w >= T_RECRYST_TUNGSTEN)
@@ -321,7 +323,7 @@ def run_full_100_cycle_benchmark() -> dict:
         
     duration_sec = time.perf_counter() - t0_start
     
-    # Extract Exact Unrounded Extremum Values across all 100 cycles
+    # Exact Extremum Reductions
     inf_q_diss = min(r["q_incident_mw"] for r in cycle_logs)
     sup_z_eff = max(r["core_impurity_z_eff"] for r in cycle_logs)
     min_z_eff = min(r["core_impurity_z_eff"] for r in cycle_logs)
@@ -329,8 +331,9 @@ def run_full_100_cycle_benchmark() -> dict:
     sup_tritium = max(r["tritium_inventory_g"] for r in cycle_logs)
     
     max_li_temp = max(r["T_surface_kelvin"] for r in cycle_logs)
-    min_li_temp = min(r["T_surface_kelvin"] for r in cycle_logs)
     max_w_temp = max(r["tungsten_baseline_t_surf_k"] for r in cycle_logs)
+    max_p_rad = max(r["p_rad_total_mw"] for r in cycle_logs)
+    disruptions = sum(1 for r in cycle_logs if r["radiative_collapse_triggered"])
     
     # Gate Evaluations
     gate_heat_flux = inf_q_diss >= floor_q_diss
@@ -341,18 +344,20 @@ def run_full_100_cycle_benchmark() -> dict:
     passed_all = gate_heat_flux and gate_z_eff and gate_replenish and gate_tritium
     verdict = "QUALIFIED" if passed_all else "FAILED"
     
-    print("\n--- REPRESENTATIVE TIME-DOMAIN CYCLE LOGS (SAMPLE OF 100) ---")
-    print(f"Cycle   1 (t={cycle_logs[0]['timestamp_sec']}s) [STEADY]   : Li T_surf={cycle_logs[0]['T_surface_kelvin']:.2f}K | W T_surf={cycle_logs[0]['tungsten_baseline_t_surf_k']:.1f}K | Z_eff={cycle_logs[0]['core_impurity_z_eff']:.6f} | Replenish={cycle_logs[0]['capillary_replenishment_ratio']:.2f}x")
-    print(f"Cycle  10 (t={cycle_logs[9]['timestamp_sec']}s) [ELM SHOCK]: Li T_surf={cycle_logs[9]['T_surface_kelvin']:.2f}K | W T_surf={cycle_logs[9]['tungsten_baseline_t_surf_k']:.1f}K | Z_eff={cycle_logs[9]['core_impurity_z_eff']:.6f} | Replenish={cycle_logs[9]['capillary_replenishment_ratio']:.2f}x")
-    print(f"Cycle  50 (t={cycle_logs[49]['timestamp_sec']}s) [STEADY]   : Li T_surf={cycle_logs[49]['T_surface_kelvin']:.2f}K | W T_surf={cycle_logs[49]['tungsten_baseline_t_surf_k']:.1f}K | Z_eff={cycle_logs[49]['core_impurity_z_eff']:.6f} | Replenish={cycle_logs[49]['capillary_replenishment_ratio']:.2f}x")
-    print(f"Cycle  90 (t={cycle_logs[89]['timestamp_sec']}s) [ELM SHOCK]: Li T_surf={cycle_logs[89]['T_surface_kelvin']:.2f}K | W T_surf={cycle_logs[89]['tungsten_baseline_t_surf_k']:.1f}K | Z_eff={cycle_logs[89]['core_impurity_z_eff']:.6f} | Replenish={cycle_logs[89]['capillary_replenishment_ratio']:.2f}x")
-    print(f"Cycle 100 (t={cycle_logs[99]['timestamp_sec']}s) [ELM SHOCK]: Li T_surf={cycle_logs[99]['T_surface_kelvin']:.2f}K | W T_surf={cycle_logs[99]['tungsten_baseline_t_surf_k']:.1f}K | Z_eff={cycle_logs[99]['core_impurity_z_eff']:.6f} | Replenish={cycle_logs[99]['capillary_replenishment_ratio']:.2f}x")
+    print("\n--- EXACT BOUNDED TIME-DOMAIN CYCLE LOGS (SAMPLE OF 100) ---")
+    c1 = cycle_logs[0]
+    c10 = cycle_logs[9]
+    c100 = cycle_logs[99]
+    print(f"Cycle   1 (t={c1['timestamp_sec']}s) [STEADY]   : Li T={c1['T_surface_kelvin']:.2f}K | f_Li={c1['f_impurity_fraction']:.4f} | Exact Z_eff={c1['core_impurity_z_eff']:.6f} | P_rad={c1['p_rad_total_mw']:.1f}MW")
+    print(f"Cycle  10 (t={c10['timestamp_sec']}s) [ELM SHOCK]: Li T={c10['T_surface_kelvin']:.2f}K | f_Li={c10['f_impurity_fraction']:.4f} | Exact Z_eff={c10['core_impurity_z_eff']:.6f} | P_rad={c10['p_rad_total_mw']:.1f}MW")
+    print(f"Cycle 100 (t={c100['timestamp_sec']}s) [ELM SHOCK]: Li T={c100['T_surface_kelvin']:.2f}K | f_Li={c100['f_impurity_fraction']:.4f} | Exact Z_eff={c100['core_impurity_z_eff']:.6f} | P_rad={c100['p_rad_total_mw']:.1f}MW")
     
-    print("\n--- UNCLAMPED NUMERIC VERIFICATION ---")
-    print(f"Exact Unrounded Steady Z_eff     : {min_z_eff:.8f}")
-    print(f"Exact Unrounded Peak ELM Z_eff   : {sup_z_eff:.8f}")
-    print(f"Exact Peak Lithium Surface Temp  : {max_li_temp:.4f} K")
-    print(f"Exact Peak Tungsten Baseline Temp: {max_w_temp:.4f} K")
+    print("\n--- UNMASKED PHYSICAL VERDICT ---")
+    print(f"Exact Unrounded Steady Z_eff     : {min_z_eff:.8f} (Physical bound: [1.0, 3.0])")
+    print(f"Exact Unrounded Peak ELM Z_eff   : {sup_z_eff:.8f} (Physical bound: [1.0, 3.0])")
+    print(f"Core Lithium Concentration f_Li  : {c10['f_impurity_fraction']*100:.2f}% of fuel ions (Limit for Z<=1.30: 5.88%)")
+    print(f"Peak Total Radiated Power P_rad  : {max_p_rad:.2f} MW (Available auxiliary heating: 150.00 MW)")
+    print(f"Radiative Disruptions Triggered  : {disruptions} of 100 cycles")
     print(f"Exact Infimum Replenishment      : {inf_replenish:.4f}x")
     print(f"Total Discrete Cycles Evaluated  : {len(cycle_logs)}")
     
@@ -370,16 +375,20 @@ def run_full_100_cycle_benchmark() -> dict:
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "candidate_id": "BBQ-002",
         "title": "Sacrificial & Regenerative Liquid-Metal Plasma Divertor",
-        "benchmark_engine": "v2.0.0-SOVEREIGN-UNCLAMPED",
+        "benchmark_engine": "v3.0.0-SOVEREIGN-EXACT-BOUNDED",
         "governance_rule": "Constitutional Invariant 075 (Continuous Temporal Window)",
         "spec_file_sha256": EXPECTED_SPEC_SHA256,
         "parent_spec_sha256": parent_sha,
         "temporal_window": window_cfg,
         "discrete_cycles_executed": len(cycle_logs),
-        "unclamped_metrics": {
+        "exact_bounded_metrics": {
             "infimum_heat_flux_dissipated_mw": round(inf_q_diss, 4),
             "steady_state_z_eff_unrounded": round(min_z_eff, 8),
             "peak_elm_z_eff_unrounded": round(sup_z_eff, 8),
+            "peak_f_impurity_fraction_percent": round(c10["f_impurity_fraction"] * 100.0, 4),
+            "threshold_f_impurity_for_pass_percent": 5.8824,
+            "peak_radiated_power_mw": round(max_p_rad, 2),
+            "radiative_disruptions_count": disruptions,
             "infimum_capillary_replenishment_ratio": round(inf_replenish, 4),
             "supremum_tritium_inventory_g": round(sup_tritium, 6),
             "peak_liquid_surface_temp_k": round(max_li_temp, 4),
@@ -409,15 +418,12 @@ def run_full_100_cycle_benchmark() -> dict:
     return receipt
 
 
-def run_full_sensitivity_sweep() -> dict:
+def run_exact_bounded_sensitivity_sweep() -> dict:
     """
-    Executes a multi-parameter sensitivity sweep to find the exact physical boundary:
-    1. Sweep Redeposition Fraction R_prompt from 0.980 to 0.9999
-    2. Sweep Mesh Thickness L_mesh from 1.0 mm to 5.0 mm (advanced microchannel cooling)
-    3. Material Comparison: Liquid Lithium (Li) vs Liquid Tin (Sn)
+    Sensitivity sweep under the exact bounded physical laws.
     """
     print("\n=================================================================")
-    print("BBQ-002 MULTI-PARAMETER SENSITIVITY SWEEP (FINDING THE BOUNDARY)")
+    print("BBQ-002 EXACT BOUNDED SENSITIVITY SWEEP (Li vs Sn)")
     print("=================================================================")
     
     redeposition_range = [0.980, 0.985, 0.990, 0.995, 0.999, 0.9999]
@@ -427,7 +433,7 @@ def run_full_sensitivity_sweep() -> dict:
     
     for L_mm in mesh_thickness_range:
         for r_p in redeposition_range:
-            sim = LiquidMetalCPSSimulatorV2(
+            sim = LiquidMetalCPSSimulatorV3(
                 metal_type="Lithium",
                 mesh_thickness_mm=L_mm,
                 redeposition_fraction=r_p
@@ -439,14 +445,17 @@ def run_full_sensitivity_sweep() -> dict:
                 "mesh_thickness_mm": L_mm,
                 "redeposition_fraction": r_p,
                 "steady_T_surf_k": round(sol_steady["T_surface_kelvin"], 2),
+                "steady_f_li_percent": round(sol_steady["f_impurity_fraction"] * 100.0, 4),
                 "steady_z_eff": round(sol_steady["core_impurity_z_eff"], 6),
                 "elm_T_surf_k": round(sol_elm["T_surface_kelvin"], 2),
+                "elm_f_li_percent": round(sol_elm["f_impurity_fraction"] * 100.0, 4),
                 "elm_z_eff": round(sol_elm["core_impurity_z_eff"], 6),
+                "elm_P_rad_mw": round(sol_elm["p_rad_total_mw"], 2),
                 "clears_z_eff_gate": (sol_elm["core_impurity_z_eff"] <= 1.30)
             })
             
-    # Material Comparison: Liquid Tin (Sn) under identical 5mm mesh and 0.985 redeposition
-    sim_sn = LiquidMetalCPSSimulatorV2(
+    # Liquid Tin (Sn) under identical 5mm mesh and 0.985 redeposition
+    sim_sn = LiquidMetalCPSSimulatorV3(
         metal_type="Tin",
         mesh_thickness_mm=5.0,
         redeposition_fraction=0.985
@@ -459,33 +468,34 @@ def run_full_sensitivity_sweep() -> dict:
         "mesh_thickness_mm": 5.0,
         "redeposition_fraction": 0.985,
         "steady_T_surf_k": round(sol_sn_steady["T_surface_kelvin"], 2),
-        "steady_z_eff": round(sol_sn_steady["core_impurity_z_eff"], 8),
+        "steady_f_sn_percent": round(sol_sn_steady["f_impurity_fraction"] * 100.0, 6),
+        "steady_z_eff": round(sol_sn_steady["core_impurity_z_eff"], 6),
         "elm_T_surf_k": round(sol_sn_elm["T_surface_kelvin"], 2),
-        "elm_z_eff": round(sol_sn_elm["core_impurity_z_eff"], 8),
-        "clears_z_eff_gate": (sol_sn_elm["core_impurity_z_eff"] <= 1.30),
-        "vapor_pressure_at_1100k_pa": sim_sn.saturated_vapor_pressure(1100.0)
+        "elm_f_sn_percent": round(sol_sn_elm["f_impurity_fraction"] * 100.0, 6),
+        "elm_z_eff": round(sol_sn_elm["core_impurity_z_eff"], 6),
+        "elm_P_rad_mw": round(sol_sn_elm["p_rad_total_mw"], 2),
+        "clears_z_eff_gate": (sol_sn_elm["core_impurity_z_eff"] <= 1.30)
     }
     
-    print("\n--- LITHIUM SENSITIVITY MATRIX (L_mesh vs R_prompt) ---")
-    print(f"{'Mesh (mm)':<10} {'Redeposition':<14} {'Steady T(K)':<12} {'Steady Z_eff':<14} {'ELM Z_eff':<14} {'Status'}")
-    print("-" * 75)
+    print("\n--- EXACT LITHIUM SENSITIVITY MATRIX (L_mesh vs R_prompt) ---")
+    print(f"{'Mesh(mm)':<9} {'Redeposition':<14} {'ELM T(K)':<10} {'f_Li (%)':<12} {'Exact Z_eff':<14} {'P_rad(MW)':<11} {'Status'}")
+    print("-" * 80)
     for row in results_li:
         status_str = "PASS" if row["clears_z_eff_gate"] else "FAIL (KILL)"
-        print(f"{row['mesh_thickness_mm']:<10.1f} {row['redeposition_fraction']:<14.4f} {row['steady_T_surf_k']:<12.1f} {row['steady_z_eff']:<14.4f} {row['elm_z_eff']:<14.4f} {status_str}")
+        print(f"{row['mesh_thickness_mm']:<9.1f} {row['redeposition_fraction']:<14.4f} {row['elm_T_surf_k']:<10.1f} {row['elm_f_li_percent']:<12.4f} {row['elm_z_eff']:<14.6f} {row['elm_P_rad_mw']:<11.1f} {status_str}")
         
-    print("\n--- ALTERNATIVE LIQUID METAL: LIQUID TIN (Sn) ---")
-    print(f"Tin Steady Surface Temp : {sn_result['steady_T_surf_k']} K")
+    print("\n--- EXACT LIQUID TIN (Sn) EVALUATION ---")
     print(f"Tin Peak ELM Surface Temp: {sn_result['elm_T_surf_k']} K")
-    print(f"Tin Steady Z_eff        : {sn_result['steady_z_eff']:.8f}")
-    print(f"Tin Peak ELM Z_eff      : {sn_result['elm_z_eff']:.8f}")
-    print(f"Tin Clears Z_eff Gate   : {'PASS' if sn_result['clears_z_eff_gate'] else 'FAIL'}")
-    print(f"Tin Saturated P_vap     : {sn_result['vapor_pressure_at_1100k_pa']:.2e} Pa (vs Lithium ~100 Pa)")
+    print(f"Tin Core Fraction f_Sn   : {sn_result['elm_f_sn_percent']:.6f}% of fuel")
+    print(f"Tin Exact Z_eff          : {sn_result['elm_z_eff']:.6f} (Physical bound: [1.0, 45.0])")
+    print(f"Tin Radiated Power P_rad : {sn_result['elm_P_rad_mw']:.1f} MW")
+    print(f"Tin Clears Z_eff Gate    : {'PASS' if sn_result['clears_z_eff_gate'] else 'FAIL (KILL)'}")
     print("=================================================================")
     
     sweep_data = {
         "timestamp": datetime.now(timezone.utc).isoformat(),
-        "lithium_sensitivity_matrix": results_li,
-        "tin_alternative_evaluation": sn_result
+        "lithium_exact_sensitivity_matrix": results_li,
+        "tin_exact_evaluation": sn_result
     }
     
     SWEEP_FILE.parent.mkdir(parents=True, exist_ok=True)
@@ -496,5 +506,5 @@ def run_full_sensitivity_sweep() -> dict:
 
 
 if __name__ == "__main__":
-    receipt = run_full_100_cycle_benchmark()
-    sweep = run_full_sensitivity_sweep()
+    receipt = run_exact_bounded_100_cycle_benchmark()
+    sweep = run_exact_bounded_sensitivity_sweep()

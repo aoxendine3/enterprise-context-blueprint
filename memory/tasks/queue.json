@@ -359,6 +359,38 @@
       "status": "PENDING",
       "source": "anthony_prompt",
       "prompt_hash": "21790fac13a1"
+    },
+    {
+      "task_id": "PRM-20260930-081115-01",
+      "name": "Action: Auditing the audit: Anthony critique: Z-effective of 139.8 is physically impossible for real plasma (max Z_eff for D-Li plasma is 3.0).",
+      "created_at": "2026-09-30T08:11:15.210518+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "40557da48613"
+    },
+    {
+      "task_id": "PRM-20260930-081115-02",
+      "name": "Action: Removing the clamp introduced a bug where electron density was held fixed resulting in unphysical negative deuterium density.",
+      "created_at": "2026-09-30T08:11:15.210522+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "40557da48613"
+    },
+    {
+      "task_id": "PRM-20260930-081115-03",
+      "name": "Fix the fundamental definition of Z_eff = (n_D + 9 n_Li)/(n_D + 3 n_Li) strictly bounded between 1.0 and 3.0, incorporate radiative power balance, and re-run the 100-cycle benchmar",
+      "created_at": "2026-09-30T08:11:15.210524+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "40557da48613"
+    },
+    {
+      "task_id": "PRM-20260930-081317-01",
+      "name": "Action: go max out: Execute exact bounded physics, 100-cycle divertor benchmark, full sensitivity sweep, and advance to next frontier candidates under maximum rigor",
+      "created_at": "2026-09-30T08:13:17.183439+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "c5a891d957d7"
     }
   ]
 }

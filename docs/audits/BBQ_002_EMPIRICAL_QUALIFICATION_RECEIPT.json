@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-09-30T08:07:08.163667+00:00",
+  "timestamp": "2026-09-30T08:14:32.724884+00:00",
   "candidate_id": "BBQ-002",
   "title": "Sacrificial & Regenerative Liquid-Metal Plasma Divertor",
-  "benchmark_engine": "v2.0.0-SOVEREIGN-UNCLAMPED",
+  "benchmark_engine": "v3.0.0-SOVEREIGN-EXACT-BOUNDED",
   "governance_rule": "Constitutional Invariant 075 (Continuous Temporal Window)",
   "spec_file_sha256": "001c361e696b721e3442143288ab61c5711b3809c298dae797bd0b001ed36e52",
   "parent_spec_sha256": "f7d12935d2a360d7832ae9bea0f73354f5ca3a1079b618dd603be4766a3d9841",
@@ -13,10 +13,14 @@
     "pulse_cycles": 100
   },
   "discrete_cycles_executed": 100,
-  "unclamped_metrics": {
+  "exact_bounded_metrics": {
     "infimum_heat_flux_dissipated_mw": 25.0,
-    "steady_state_z_eff_unrounded": 139.80312227,
-    "peak_elm_z_eff_unrounded": 406.00098362,
+    "steady_state_z_eff_unrounded": 2.97159154,
+    "peak_elm_z_eff_unrounded": 2.99017201,
+    "peak_f_impurity_fraction_percent": 6750.0164,
+    "threshold_f_impurity_for_pass_percent": 5.8824,
+    "peak_radiated_power_mw": 680822136.56,
+    "radiative_disruptions_count": 100,
     "infimum_capillary_replenishment_ratio": 125.0225,
     "supremum_tritium_inventory_g": 0.007503,
     "peak_liquid_surface_temp_k": 1071.9411,
@@ -32,5 +36,5 @@
   },
   "verdict": "FAILED",
   "taint_state": "0xDEAD0000",
-  "receipt_sha256": "ae7767addf3667019536613dc26e3e8a6ec35d998d17d8d96805c2f6add8597f"
+  "receipt_sha256": "05d7a0a3d42ed850d0a49aa79b8741294fbe9d1f40be7f6cda1e2de5fbdcf92a"
 }
