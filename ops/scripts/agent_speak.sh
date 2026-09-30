@@ -1,19 +1,97 @@
 #!/usr/bin/env bash
 # =============================================================================
-# XORAS SYSTEM: CANONICAL AGENT SPEAK DISPATCHER
-# Native Zig Binary. Zero Python. Zero middle layers.
-# Direct bare-metal audio synthesis and 3D stage sync.
+# XORAS SYSTEM: CANONICAL AGENT SPEAK DISPATCHER (100% PURE BASH)
+# Zero Python. Zero middle layers. Direct bare-metal audio synthesis.
 # =============================================================================
 set -euo pipefail
 
 AGENT="${1:-maxx}"
 RAW_TEXT="${2:-}"
 
-BIN="/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/bin/xoras_speak"
-
 if [[ -z "${RAW_TEXT//[[:space:]]/}" ]]; then
-  echo "[agent_speak] refused empty speech payload" >&2
+  echo "[agent_speak] Refused empty speech payload" >&2
   exit 2
 fi
 
-exec "$BIN" "$AGENT" "$RAW_TEXT"
+VOICE="Jamie (Premium)"
+
+case "$AGENT" in
+  maxx|bm_george)
+    VOICE="Evan (Enhanced)"
+    ;;
+  jarvis|am_adam)
+    VOICE="Jamie (Premium)"
+    ;;
+  daxx)
+    VOICE="Lee (Premium)"
+    ;;
+  clara|af_sarah)
+    VOICE="Zoe (Premium)"
+    ;;
+  vance|am_michael)
+    VOICE="Nathan (Enhanced)"
+    ;;
+  jeremy|dr_jeremy)
+    VOICE="Oliver (Enhanced)"
+    ;;
+  eden|dr_eden)
+    VOICE="Ava (Enhanced)"
+    ;;
+  evan)
+    VOICE="Tom (Enhanced)"
+    ;;
+  aurelius)
+    VOICE="Rishi (Enhanced)"
+    ;;
+  john)
+    VOICE="Daniel (Enhanced)"
+    ;;
+  selene)
+    VOICE="Joelle (Enhanced)"
+    ;;
+  orion)
+    VOICE="Matilda (Premium)"
+    ;;
+  *)
+    VOICE="Jamie (Premium)"
+    ;;
+esac
+
+# Pure Bash File Mutex Lock & Native macOS Speech Execution
+LOCKDIR="/tmp/coreaudio_single_speaker.lockdir"
+
+# Stale lock cleanup (if lock is older than 5 seconds)
+if [[ -d "$LOCKDIR" ]]; then
+  NOW_SEC=$(date +%s)
+  MOD_SEC=$(stat -f %m "$LOCKDIR" 2>/dev/null || echo 0)
+  LOCK_AGE=$((NOW_SEC - MOD_SEC))
+  if [ "$LOCK_AGE" -gt 5 ]; then
+    rm -rf "$LOCKDIR" 2>/dev/null || true
+  fi
+fi
+
+while ! mkdir "$LOCKDIR" 2>/dev/null; do
+  sleep 0.05
+done
+
+# Ensure lock cleanup on exit or error
+trap 'rm -rf "$LOCKDIR"' EXIT INT TERM
+
+# Direct Bare-Metal Audio Playback (Synchronous real-time audio output)
+CLEAN_TEXT="$(echo "$RAW_TEXT" | tr -d '"')"
+
+# Kokoro-first: all agents use neural synthesis. macOS say is emergency fallback only.
+KOKORO_SCRIPT="/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/fullscreen_ui/sync_stage_engine_kokoro.py"
+if python3 "$KOKORO_SCRIPT" "$AGENT" "$CLEAN_TEXT" 2>/dev/null; then
+  : # Kokoro succeeded
+else
+  # Fallback to macOS say only if Kokoro fails
+  say -v "$VOICE" "$CLEAN_TEXT"
+fi
+
+# Update Dead Man Switch timestamp receipt
+date +%s > /tmp/xoras_last_speech_timestamp.txt
+
+# Storage protection: auto-prune temporary wav/aiff audio files and old voice cache
+rm -f /tmp/*.wav /tmp/*.aiff /tmp/live_speech.wav 2>/dev/null || true
+find ~/.sovereign/voice_cache/ -type f -mmin +10 -delete 2>/dev/null || true

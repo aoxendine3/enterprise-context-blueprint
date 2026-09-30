@@ -1,1 +1,160 @@
 {"timestamp": 1789375005.1755033, "agent": "jarvis", "transcript": "Jarvis, verify XMARS voice loop.", "source": "xmars_stt_transceiver"}
+{"timestamp": "2026-09-28T17:03:14.980786+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "exit number"}
+{"timestamp": "2026-09-28T17:03:21.133996+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "8550"}
+{"timestamp": "2026-09-29T06:11:15.823622+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "still here"}
+{"timestamp": "2026-09-29T06:12:14.596696+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "sounds like you're chewing on something"}
+{"timestamp": "2026-09-29T06:12:18.258401+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "fair enough"}
+{"timestamp": "2026-09-29T06:15:46.611573+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "i'mma give you"}
+{"timestamp": "2026-09-29T06:15:49.246982+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "send a text"}
+{"timestamp": "2026-09-29T06:15:54.826856+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "give you a contact so what i've"}
+{"timestamp": "2026-09-29T06:17:25.452677+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "music"}
+{"timestamp": "2026-09-29T06:18:05.843923+00:00", "kind": "route", "target": "john", "reason": "keyword:weather", "input": "like the weather doing right now"}
+{"timestamp": "2026-09-29T06:18:11.203746+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "they tend to do this like when we go for a while"}
+{"timestamp": "2026-09-29T06:18:14.775966+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "especially at night"}
+{"timestamp": "2026-09-29T06:18:19.885440+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "i think it might i might be where"}
+{"timestamp": "2026-09-29T06:18:25.622908+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "does models at night or something i don't know"}
+{"timestamp": "2026-09-29T06:19:05.017966+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "i have three b7b"}
+{"timestamp": "2026-09-29T06:19:08.249077+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "who was 14"}
+{"timestamp": "2026-09-29T06:19:13.408093+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "i don't know if they deleted that but it's 26b"}
+{"timestamp": "2026-09-29T06:19:31.076101+00:00", "kind": "route", "target": "john", "reason": "keyword:weather", "input": "weather for speed"}
+{"timestamp": "2026-09-29T06:21:05.809387+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "i wish you were able to train"}
+{"timestamp": "2026-09-29T06:21:08.387383+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "to wear"}
+{"timestamp": "2026-09-29T06:21:14.015250+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "august 5th night i was speaking of you but"}
+{"timestamp": "2026-09-29T06:21:23.876594+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "do that and you like to do something else and talk about it it shouldn't be all communicated cuz they're going to collide"}
+{"timestamp": "2026-09-29T06:21:32.645726+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "223"}
+{"timestamp": "2026-09-29T06:21:34.975970+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "outside"}
+{"timestamp": "2026-09-29T06:21:37.742226+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "elite"}
+{"timestamp": "2026-09-29T06:21:40.058283+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "and the rest of them"}
+{"timestamp": "2026-09-29T06:21:43.911834+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "the point is"}
+{"timestamp": "2026-09-29T06:21:46.267057+00:00", "kind": "route", "target": "orion", "reason": "keyword:voice", "input": "agent has a voice"}
+{"timestamp": "2026-09-29T06:21:53.199474+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "and if they have something new that they could throw in"}
+{"timestamp": "2026-09-29T06:21:56.618032+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "maybe something will work on"}
+{"timestamp": "2026-09-29T06:22:01.227298+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "hillside their specialty their special"}
+{"timestamp": "2026-09-29T06:22:09.205643+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "you're able to speak but"}
+{"timestamp": "2026-09-29T06:22:12.698052+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "primary agents of the league 9"}
+{"timestamp": "2026-09-29T06:22:17.621223+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "register to speak"}
+{"timestamp": "2026-09-29T06:22:19.672066+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "translate"}
+{"timestamp": "2026-09-29T06:22:24.925848+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "fastest between those butt"}
+{"timestamp": "2026-09-29T06:22:31.779052+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "always thought it should be just one agent speaking"}
+{"timestamp": "2026-09-29T06:22:36.939598+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "at least the minimum was three"}
+{"timestamp": "2026-09-29T06:22:48.744032+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "that's the way it should have been that i think i changed it to where i don't know what it is"}
+{"timestamp": "2026-09-29T06:22:51.954189+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "i think that's the way it ought to be"}
+{"timestamp": "2026-09-29T06:22:56.444791+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "come over and nobody does it alone that way"}
+{"timestamp": "2026-09-29T06:22:58.404496+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "is each other"}
+{"timestamp": "2026-09-29T06:23:01.929203+00:00", "kind": "route", "target": "john", "reason": "keyword:weather", "input": "weather for sale"}
+{"timestamp": "2026-09-29T06:23:06.649557+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "nothing snakes by no basic work is"}
+{"timestamp": "2026-09-29T06:23:08.879906+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "from beginning to"}
+{"timestamp": "2026-09-29T06:23:12.090817+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "better than it should be"}
+{"timestamp": "2026-09-29T06:23:17.455987+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "turns out to be better than what i thought it would be"}
+{"timestamp": "2026-09-29T06:23:34.642314+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "how to make them speak"}
+{"timestamp": "2026-09-29T06:23:39.307128+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "you think you can correct them on the speaking"}
+{"timestamp": "2026-09-29T06:23:53.214519+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "light train them and mature them to the point where they can speak like you to me"}
+{"timestamp": "2026-09-29T06:23:57.250225+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "not that robot"}
+{"timestamp": "2026-09-29T06:24:09.585508+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "sitting around using bash on this right here then switching to look python cuz you forgot that we had"}
+{"timestamp": "2026-09-29T06:24:11.488745+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "toys"}
+{"timestamp": "2026-09-29T06:24:16.658432+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "doing the basic thing"}
+{"timestamp": "2026-09-29T06:24:18.551578+00:00", "kind": "route", "target": "maxx", "reason": "keyword:run", "input": "python run"}
+{"timestamp": "2026-09-29T06:24:22.335604+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "andrew i like us"}
+{"timestamp": "2026-09-29T06:24:26.083754+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "tennis courts speak the s8"}
+{"timestamp": "2026-09-29T06:24:34.708023+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "italy that was locked in and then you start creating all kind of food team orchestrated"}
+{"timestamp": "2026-09-29T06:24:39.593633+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "they were in all kinds of bullshit"}
+{"timestamp": "2026-09-29T06:24:41.409541+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "my computer"}
+{"timestamp": "2026-09-29T07:07:28.925248+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "the kids are open"}
+{"timestamp": "2026-09-29T07:07:33.002218+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "he's got some kind of browser page"}
+{"timestamp": "2026-09-29T07:07:36.398709+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "center open it"}
+{"timestamp": "2026-09-29T07:07:45.956376+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "it goes along with"}
+{"timestamp": "2026-09-29T07:07:55.299260+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "has an image and stuff like that with them on there it's it's pretty cool"}
+{"timestamp": "2026-09-29T07:08:00.578164+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "and popping up is pointless"}
+{"timestamp": "2026-09-29T07:08:04.635127+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "but we'll wait and see what he produces"}
+{"timestamp": "2026-09-29T07:09:19.867543+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "or we can move forward"}
+{"timestamp": "2026-09-29T07:09:31.030646+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "what's the point where it will mess up their individual"}
+{"timestamp": "2026-09-29T07:09:35.315860+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "in persona the things that nature"}
+{"timestamp": "2026-09-29T07:09:37.688098+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "do what you was going to say"}
+{"timestamp": "2026-09-29T07:10:50.817998+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "hey i'm going to give you what they printed off on"}
+{"timestamp": "2026-09-29T07:10:54.223841+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "they didn't produce any"}
+{"timestamp": "2026-09-29T07:10:56.300191+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "i want you"}
+{"timestamp": "2026-09-29T07:11:03.306342+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "they"}
+{"timestamp": "2026-09-29T07:11:09.208929+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "producing"}
+{"timestamp": "2026-09-29T07:11:12.944539+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "hostess"}
+{"timestamp": "2026-09-29T07:12:53.128217+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "finish continue"}
+{"timestamp": "2026-09-29T07:13:25.629019+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "repeat that repeat the whole check"}
+{"timestamp": "2026-09-29T07:13:30.834586+00:00", "kind": "route", "target": "jarvis", "reason": "keyword:governance", "input": "lori make a governance make it low"}
+{"timestamp": "2026-09-29T07:13:50.142009+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "8080"}
+{"timestamp": "2026-09-29T07:13:53.112486+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "the"}
+{"timestamp": "2026-09-29T07:13:55.019835+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "installed on"}
+{"timestamp": "2026-09-29T07:14:08.261088+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "they need to be verified i think one of them is 8787 i see that one a lot online"}
+{"timestamp": "2026-09-29T07:14:26.790609+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "does that need to be on level 7"}
+{"timestamp": "2026-09-29T07:14:35.493953+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "light an automatic thing first off because eventually it's supposed to be fully sovereign"}
+{"timestamp": "2026-09-29T07:14:41.490128+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "so that means he's going to have to use those models"}
+{"timestamp": "2026-09-29T07:14:48.261117+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "peter said they had to be loved i had to be green to have to be 200"}
+{"timestamp": "2026-09-29T07:16:02.680414+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "embassy basically that is locked in level 7 with all the government says all"}
+{"timestamp": "2026-09-29T07:16:09.479267+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "things of that nature and it is locked in to the honest"}
+{"timestamp": "2026-09-29T07:16:12.127449+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "into the truth"}
+{"timestamp": "2026-09-29T07:16:15.946154+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "these things are binding to those"}
+{"timestamp": "2026-09-29T07:16:21.159514+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "does processes to wear each step"}
+{"timestamp": "2026-09-29T07:16:22.934535+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "processes"}
+{"timestamp": "2026-09-29T07:16:31.925724+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "need to be done understands of truth under the standards of honor"}
+{"timestamp": "2026-09-29T07:16:36.093694+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "meticulous"}
+{"timestamp": "2026-09-29T07:16:39.299704+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "and methodically"}
+{"timestamp": "2026-09-29T07:16:45.994217+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "to the point where each step is done to the best of our ability"}
+{"timestamp": "2026-09-29T07:16:50.108474+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "next step is very stiff"}
+{"timestamp": "2026-09-29T07:16:54.683189+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "the entire structure is built on"}
+{"timestamp": "2026-09-29T07:17:33.785214+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "is that the best thing is that the best process"}
+{"timestamp": "2026-09-29T07:17:36.194190+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "bucket rental"}
+{"timestamp": "2026-09-29T07:17:43.474419+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "or i know we have cryptographic signing we have"}
+{"timestamp": "2026-09-29T07:17:48.863663+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "the signing with the s h whatever blockchain shit"}
+{"timestamp": "2026-09-29T07:17:57.429083+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "nothing is you know logs and catch logs"}
+{"timestamp": "2026-09-29T07:18:02.333510+00:00", "kind": "route", "target": "vance", "reason": "explicit-agent", "input": "something a little bit more advanced that's coming out"}
+{"timestamp": "2026-09-29T07:18:06.363576+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "working with i'm not sure what it is"}
+{"timestamp": "2026-09-29T07:18:14.700664+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "you know what i'm talking about"}
+{"timestamp": "2026-09-29T07:18:23.653221+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "best light documentation but it's not log but it's"}
+{"timestamp": "2026-09-29T07:18:28.194084+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "built onto as far"}
+{"timestamp": "2026-09-29T07:18:29.919615+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "les"}
+{"timestamp": "2026-09-29T07:18:36.419496+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "go ahead"}
+{"timestamp": "2026-09-29T07:18:41.669643+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "he said what"}
+{"timestamp": "2026-09-29T07:18:43.613588+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "is the what"}
+{"timestamp": "2026-09-29T07:19:09.584814+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "can we place that that it will be"}
+{"timestamp": "2026-09-29T07:19:23.554121+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "did it i mean we you know how i design my brains with the catch in the agents in each little section"}
+{"timestamp": "2026-09-29T07:19:26.402423+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "as far as this right here"}
+{"timestamp": "2026-09-29T07:19:29.368319+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "is it possible that"}
+{"timestamp": "2026-09-29T07:19:38.031206+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "catalogs can be switched out for this right here to where it innovates a little better"}
+{"timestamp": "2026-09-29T07:19:43.231785+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "mesa little bit more functional little bit more versatile"}
+{"timestamp": "2026-09-29T07:19:54.605056+00:00", "kind": "route", "target": "daxx", "reason": "keyword:code", "input": "how it would affect it i'm not a coder i don't really know what i'm talking about as far as what you just mentioned but"}
+{"timestamp": "2026-09-29T07:20:00.802570+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "applied to the point where it can make this whole entire thing"}
+{"timestamp": "2026-09-29T07:20:04.455342+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "turn it upside down really"}
+{"timestamp": "2026-09-29T07:20:08.175963+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "yes and the swap is cleaner than you"}
+{"timestamp": "2026-09-29T07:20:47.263662+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "ok google let's get back to that miracle thing yeah he's got the page up"}
+{"timestamp": "2026-09-29T07:20:50.231411+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "what we were talking about"}
+{"timestamp": "2026-09-29T07:20:55.971280+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "in each of the"}
+{"timestamp": "2026-09-29T07:21:08.874640+00:00", "kind": "route", "target": "daxx", "reason": "keyword:build", "input": "would be beneficial to switch those catches out with this miracle design so it builds on to it as far as"}
+{"timestamp": "2026-09-29T07:21:12.122402+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "also like it"}
+{"timestamp": "2026-09-29T07:21:21.941753+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "affected by the 1843 2 dimensional vectors"}
+{"timestamp": "2026-09-29T07:21:26.850028+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "it grows and stuff like that almost"}
+{"timestamp": "2026-09-29T07:21:30.873204+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "holographic memory inside"}
+{"timestamp": "2026-09-29T07:21:33.253776+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "call mitch and all that"}
+{"timestamp": "2026-09-29T07:21:38.071858+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "i don't know what i'm trying to say but"}
+{"timestamp": "2026-09-29T07:23:03.203002+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "and"}
+{"timestamp": "2026-09-29T07:23:09.514655+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "none of this in python so it's not revert to the"}
+{"timestamp": "2026-09-29T07:23:16.955433+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "262 we got the brainstorm we got the good deal and we got to"}
+{"timestamp": "2026-09-29T07:23:26.460467+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "it was almost at the top of the chart"}
+{"timestamp": "2026-09-29T07:23:30.134079+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "can it be"}
+{"timestamp": "2026-09-29T07:23:32.285451+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "how work"}
+{"timestamp": "2026-09-29T07:23:40.668327+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "i mean is it good enough to take the place a rag to see the z the rust"}
+{"timestamp": "2026-09-29T07:23:47.838697+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "the city plus plus and things of that nature is our"}
+{"timestamp": "2026-09-29T07:23:50.397729+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "to do that"}
+{"timestamp": "2026-09-29T07:24:00.916019+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "i mean it's like prototype we can put it in place and start working with"}
+{"timestamp": "2026-09-29T07:24:04.622450+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "if this is good as it is"}
+{"timestamp": "2026-09-29T07:24:07.347074+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "whatever tweak"}
+{"timestamp": "2026-09-29T07:24:12.981080+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "languages put into it this one right here"}
+{"timestamp": "2026-09-29T07:24:17.378609+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "halo 4"}
+{"timestamp": "2026-09-29T07:24:19.361470+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "more than the"}
+{"timestamp": "2026-09-29T07:24:46.833887+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "you're talking about"}
+{"timestamp": "2026-09-29T07:24:48.980262+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "or what"}
+{"timestamp": "2026-09-29T07:24:55.931203+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "no i was talking about sick the system's language not your own language"}
+{"timestamp": "2026-09-29T07:25:02.277855+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "just talking about"}
+{"timestamp": "2026-09-29T07:25:07.287876+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "woodmont woodland be better"}
+{"timestamp": "2026-09-29T07:25:14.531152+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "i mean you can go ahead with the comparison cuz i want to hear how"}
+{"timestamp": "2026-09-29T07:25:18.587806+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "i mean i like to hear"}
+{"timestamp": "2026-09-29T07:25:25.911809+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "a lot of work in this stuff so i want to hear the progress of it and"}
+{"timestamp": "2026-09-29T07:25:34.684537+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "you're just a good stuff i want to hear the bad stuff cuz those are the things i'm going to aim at the result"}
+{"timestamp": "2026-09-29T07:26:32.190712+00:00", "kind": "route", "target": "maxx", "reason": "active-agent-fallback", "input": "hashing is deterministic"}

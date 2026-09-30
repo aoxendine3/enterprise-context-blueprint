@@ -1,9 +1,11 @@
 {
-  "last_boot": "2026-09-06T19:40:41.254885Z",
-  "boot_count": 2,
+  "last_boot": "2026-09-29T07:05:31Z",
+  "boot_count": 4,
+  "journal_entries": 2,
+  "catch_lines": 2168,
   "verification_suite": {
-    "checks_executed": 6,
-    "checks_passed": 6,
+    "checks_executed": 8,
+    "checks_passed": 8,
     "checks_failed": 0
   },
   "system_state": "READY_ACCORDING_TO_CONFIGURED_CHECKS"

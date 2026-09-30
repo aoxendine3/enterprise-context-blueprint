@@ -103,17 +103,63 @@ def triad_chunks(turns: list[dict[str, str]]) -> list[list[dict[str, str]]]:
     return chunks
 
 
-def dispatch_chunk(chunk: list[dict[str, str]]) -> None:
+def verify_or_start_stage_server() -> bool:
+    import urllib.request
+    try:
+        req = urllib.request.urlopen("http://127.0.0.1:8080/customer_app.html", timeout=2)
+        if req.status == 200:
+            return True
+    except Exception:
+        pass
+    
+    # Attempt to auto-spawn fullscreen_server.py
+    server_script = ROOT / "ops" / "scripts" / "fullscreen_server.py"
+    if server_script.exists():
+        subprocess.Popen([sys.executable, str(server_script)], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        time.sleep(1.5)
+        try:
+            req = urllib.request.urlopen("http://127.0.0.1:8080/customer_app.html", timeout=2)
+            if req.status == 200:
+                return True
+        except Exception:
+            pass
+    return False
+
+
+def dispatch_chunk_with_retry(chunk: list[dict[str, str]], max_retries: int = 3) -> bool:
     payload = json.dumps(chunk, ensure_ascii=True)
     lead_agent = chunk[0]["agent"]
-    subprocess.run([sys.executable, str(SPEAK_SCRIPT), lead_agent, payload], check=True, stdin=subprocess.DEVNULL)
+    
+    for attempt in range(1, max_retries + 1):
+        try:
+            # Primary dispatch via media_director_agent.py
+            subprocess.run([sys.executable, str(SPEAK_SCRIPT), lead_agent, payload], check=True, stdin=subprocess.DEVNULL, timeout=30)
+            return True
+        except Exception as err:
+            backoff = 2 ** attempt
+            print(f"[WARN] Triad dispatch attempt {attempt}/{max_retries} failed for {lead_agent}: {err}. Retrying in {backoff}s...", file=sys.stderr)
+            time.sleep(backoff)
+            
+    # Fallback to local direct speech script if media director fails
+    direct_speak = ROOT / "ops" / "scripts" / "agent_speak.sh"
+    if direct_speak.exists():
+        try:
+            combined_text = f"{lead_agent} deliberating: " + ". ".join([f"{t['agent']}: {t['text']}" for t in chunk])
+            subprocess.run(["bash", str(direct_speak), lead_agent, combined_text], check=True, timeout=30)
+            return True
+        except Exception as err:
+            print(f"[ERROR] Direct speak fallback failed for {lead_agent}: {err}", file=sys.stderr)
+            
+    return False
 
 
-def write_journal(mode: str, objective: str, turns: list[dict[str, str]], triad_count: int) -> None:
+def write_journal(mode: str, objective: str, turns: list[dict[str, str]], triad_count: int, status: str = "SUCCESS", error_detail: str = "") -> None:
     ROUND_JOURNAL.parent.mkdir(parents=True, exist_ok=True)
     entry = {
         "timestamp": now_iso(),
         "mode": mode,
+        "status": status,
+        "error_detail": error_detail,
         "objective": objective,
         "turn_count": len(turns),
         "triad_count": triad_count,
@@ -122,6 +168,7 @@ def write_journal(mode: str, objective: str, turns: list[dict[str, str]], triad_
             "no_placeholder": True,
             "no_theatrical_roleplay": True,
             "no_duplicates": True,
+            "honest_failure_logging": True,
         },
     }
     with ROUND_JOURNAL.open("a", encoding="utf-8") as handle:
@@ -129,6 +176,23 @@ def write_journal(mode: str, objective: str, turns: list[dict[str, str]], triad_
 
 
 def run_roundtable(objective: str, turns_file: str | None) -> None:
+    # BINDING LAW: Enforce Pre-Deliberation Health Gate & Merkle DAG Verification
+    gate_script = ROOT / "ops" / "scripts" / "preflight_health_gate.py"
+    if gate_script.exists():
+        gate_proc = subprocess.run([sys.executable, str(gate_script)], check=False)
+        if gate_proc.returncode != 0:
+            msg = "Pre-Deliberation Health Gate BLOCKED execution. Sovereign stack halting."
+            print(f"[FATAL BINDING GATE BLOCK] {msg}", file=sys.stderr)
+            write_journal(mode="preflight-failure", objective=objective, turns=[], triad_count=0, status="HEALTH_GATE_BLOCKED", error_detail=msg)
+            sys.exit(1)
+
+    stage_online = verify_or_start_stage_server()
+    if not stage_online:
+        msg = "Stage server on port 8080 is unreachable and auto-spawn failed."
+        print(f"[FATAL ERROR] {msg}", file=sys.stderr)
+        write_journal(mode="preflight-failure", objective=objective, turns=[], triad_count=0, status="STAGE_SERVER_OFFLINE", error_detail=msg)
+        sys.exit(1)
+
     if sys.platform != "win32":
         subprocess.run(["open", "-a", "Google Chrome", STAGE_URL], check=False)
 
@@ -142,22 +206,37 @@ def run_roundtable(objective: str, turns_file: str | None) -> None:
     turns = dedupe_turns(turns)
     triads = triad_chunks(turns)
     if not triads:
-        raise ValueError("Roundtable requires at least 3 non-empty unique turns.")
+        msg = "Roundtable requires at least 3 non-empty unique turns."
+        write_journal(mode=mode, objective=objective, turns=turns, triad_count=0, status="INVALID_TURNS", error_detail=msg)
+        raise ValueError(msg)
 
     print("=================================================================")
     print("XORAS LEAD-9 ROUNDTABLE: STRICT DISPATCH MODE")
     print("=================================================================")
-    print(f"Mode: {mode}")
+    print(f"Mode: {mode} | Stage Server: ONLINE (Port 8080)")
     print(f"Turns: {len(turns)} | Triads: {len(triads)}")
+
+    dispatch_success = True
+    failed_triad_info = ""
 
     for index, chunk in enumerate(triads, start=1):
         speakers = ", ".join(turn["agent"] for turn in chunk)
         print(f"[{index}] Dispatching triad: {speakers}")
-        dispatch_chunk(chunk)
+        success = dispatch_chunk_with_retry(chunk)
+        if not success:
+            dispatch_success = False
+            failed_triad_info = f"Triad {index} ({speakers}) failed all retries and fallback."
+            print(f"[ERROR] {failed_triad_info}", file=sys.stderr)
+            break
         time.sleep(0.35)
 
-    write_journal(mode, objective, turns, len(triads))
-    print("[OK] Roundtable complete.")
+    if dispatch_success:
+        write_journal(mode, objective, turns, len(triads), status="SUCCESS")
+        print("[OK] Roundtable complete.")
+    else:
+        write_journal(mode, objective, turns, len(triads), status="DISPATCH_FAILED", error_detail=failed_triad_info)
+        print(f"[FAILED] Roundtable dispatch failed: {failed_triad_info}", file=sys.stderr)
+        sys.exit(1)
 
 
 def parse_args(argv: list[str]) -> argparse.Namespace:

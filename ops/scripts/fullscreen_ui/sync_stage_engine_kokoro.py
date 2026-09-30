@@ -2,23 +2,27 @@ import os, sys, json, time, threading, soundfile as sf
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 STAGE_DIR = SCRIPT_DIR
-MODELS_DIR = r'C:\Users\admin\Desktop\SSOT_Agentic_Brain\capabilities\neural_models'
+MODELS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '..', 'capabilities', 'neural_models')
 TIMING_JSON = os.path.join(STAGE_DIR, 'current_timing.json')
 STATE_FILE = os.path.join(STAGE_DIR, 'current_image.txt')
 TRANSCRIPT_FILE = os.path.join(STAGE_DIR, 'current_transcript.txt')
 WAV_FILE = os.path.join(STAGE_DIR, 'live_speech.wav')
 
 VOICE_MAP = {
+    "jarvis": "am_adam",
     "maxx": "bm_george",
-    "vance": "am_adam",
+    "daxx": "bm_george",
+    "vance": "am_michael",
     "clara": "af_bella",
     "john": "bm_lewis",
     "selene": "af_sarah",
-    "dr_jeremy": "am_michael",
-    "dr_eden": "af_sky",
     "orion": "bm_george",
-    "aurelius": "am_michael",
+    "eden": "af_sky",
+    "dr_eden": "af_sky",
     "evan": "am_adam",
+    "aurelius": "am_michael",
+    "jeremy": "am_michael",
+    "dr_jeremy": "am_michael",
     "zorex": "am_adam",
     "apex": "bm_lewis",
     "sentinel": "am_michael",

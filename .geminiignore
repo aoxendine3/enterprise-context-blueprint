@@ -1,0 +1,8 @@
+# EVE DIRECTIVE: BOUNDARY LOCK
+# Deny all top-level reads outside canonical subdirectories
+/*
+!/workspaces/
+!/memory/
+!/ops/
+!/docs/
+!/products/

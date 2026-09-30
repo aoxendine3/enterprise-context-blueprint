@@ -30,3 +30,13 @@ products/xmars_os/bin/
 **/.zig-cache/
 *.dylib
 *.o
+
+*.matrix.bin
+ops/scripts/fullscreen_ui/ast_nodes.json
+workspaces/sovra_zero_copy_engine/*.bin
+*.bin
+vector_matrix.bin
+xmars_dag_matrix.bin
+
+*.bin
+ops/scripts/fullscreen_ui/ast_nodes.json

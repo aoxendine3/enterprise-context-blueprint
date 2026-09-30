@@ -1,86 +1,35 @@
 {
-  "active_tasks": [],
-  "completed_tasks": [],
-  "pending": [
+  "active_tasks": [
     {
-      "task_id": "PRM-20260913-065857-01",
-      "name": "Action: Ingest and elevate sovereign intelligence framework with zero theater.",
-      "created_at": "2026-09-13T06:58:57.594046+00:00",
-      "status": "PENDING",
+      "task_id": "PRM-20260929-041500-01",
+      "name": "Action: Enforce 3-Agent Deliberation Quorum, Pure Bash Speech Contract, and Pre-Deliberation Health Gate V2",
+      "created_at": "2026-09-29T04:15:00.000000+00:00",
+      "status": "IN_PROGRESS",
       "source": "anthony_prompt",
-      "prompt_hash": "2feb2c0b3db9"
-    },
-    {
-      "task_id": "PRM-20260915-200520-01",
-      "name": "Action: wake and fully hydrate and proceed team",
-      "created_at": "2026-09-15T20:05:20.367708+00:00",
-      "status": "PENDING",
-      "source": "anthony_prompt",
-      "prompt_hash": "a8b078b852c9"
-    },
-    {
-      "task_id": "PRM-20260915-200703-01",
-      "name": "Action: listed and priced on pinterest and elsewhere for our certified book and sovereign enterprise machine",
-      "created_at": "2026-09-15T20:07:03.297794+00:00",
-      "status": "PENDING",
-      "source": "anthony_prompt",
-      "prompt_hash": "28cc2de3ca94"
-    },
-    {
-      "task_id": "PRM-20260916-193609-01",
-      "name": "Action: Dissect all unsolved AI problems.",
-      "created_at": "2026-09-16T19:36:09.851150+00:00",
-      "status": "PENDING",
-      "source": "anthony_prompt",
-      "prompt_hash": "0e7290df0509"
-    },
-    {
-      "task_id": "PRM-20260916-193609-02",
-      "name": "Action: Innovate solutions.",
-      "created_at": "2026-09-16T19:36:09.851150+00:00",
-      "status": "PENDING",
-      "source": "anthony_prompt",
-      "prompt_hash": "0e7290df0509"
-    },
-    {
-      "task_id": "PRM-20260916-193609-03",
-      "name": "Action: Deliberate through Lead 9 board.",
-      "created_at": "2026-09-16T19:36:09.851150+00:00",
-      "status": "PENDING",
-      "source": "anthony_prompt",
-      "prompt_hash": "0e7290df0509"
-    },
-    {
-      "task_id": "PRM-20260916-193609-04",
-      "name": "Action: Validate, benchmark, and deploy working concepts.",
-      "created_at": "2026-09-16T19:36:09.851150+00:00",
-      "status": "PENDING",
-      "source": "anthony_prompt",
-      "prompt_hash": "0e7290df0509"
-    },
-    {
-      "task_id": "PRM-20260919-215938-01",
-      "name": "Action: Maxx, hydrate and carry on",
-      "created_at": "2026-09-19T21:59:38.446689+00:00",
-      "status": "PENDING",
-      "source": "anthony_prompt",
-      "prompt_hash": "1e6ab49b717b"
-    },
-    {
-      "task_id": "PRM-20260920-061232-01",
-      "name": "Action: Ingest NotebookLM evolution & MARS architectural synthesis into SSOT memory",
-      "created_at": "2026-09-20T06:12:32.681895+00:00",
-      "status": "PENDING",
-      "source": "anthony_prompt",
-      "prompt_hash": "63e72b4ffa1a"
-    },
-    {
-      "task_id": "PRM-20260920-134904-01",
-      "name": "Action: Answer Claude analysis on YouTube metrics & clarify Mac vs Windows Maxx dual-repo architecture",
-      "created_at": "2026-09-20T13:49:04.146456+00:00",
-      "status": "PENDING",
-      "source": "anthony_prompt",
-      "prompt_hash": "b0516d5587ce"
+      "prompt_hash": "8910426ab479"
     }
-  ]
+  ],
+  "completed_tasks": [
+    {
+      "task_id": "PRM-20260929-GATE-01",
+      "name": "Action: Codify Pre-Deliberation Health Gate V2 with full SHA-256 digests and 8080 telemetry check",
+      "completed_at": "2026-09-29T04:09:19.000000+00:00"
+    },
+    {
+      "task_id": "PRM-20260929-SPEECH-01",
+      "name": "Action: Eliminate Python middleman for audio and enforce pure Bash speech dispatch via agent_speak.sh",
+      "completed_at": "2026-09-29T03:56:41.000000+00:00"
+    },
+    {
+      "task_id": "PRM-20260929-DEADMAN-01",
+      "name": "Action: Implement pure Bash Voice Dead Man Switch daemon (15s silence limit)",
+      "completed_at": "2026-09-29T03:56:18.000000+00:00"
+    },
+    {
+      "task_id": "PRM-20260929-QUORUM-01",
+      "name": "Action: Enforce 3-Agent Deliberation Quorum (Maxx, Vance, Dr. Eden) with Merkle DAG proof",
+      "completed_at": "2026-09-29T04:09:19.000000+00:00"
+    }
+  ],
+  "pending": []
 }

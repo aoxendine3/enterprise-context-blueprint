@@ -1,0 +1,12 @@
+{
+  "updated_at": "2026-09-29T09:33:17.775662+00:00",
+  "stage_status": "GREEN",
+  "available_models": [
+    "llama3.2:3b"
+  ],
+  "dark_models": [
+    "gemma4:26b",
+    "qwen2.5-coder:7b",
+    "sovereign-jarvis:latest"
+  ]
+}

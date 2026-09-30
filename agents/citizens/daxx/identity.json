@@ -5,5 +5,9 @@
   "seat": 3,
   "status": "SOVEREIGN_CITIZEN_ACTIVE",
   "isolation_level": "ZERO_BLEED_CAPSULE_ISOLATED",
-  "authority": "LOG_ENTRY_072_CONSTITUTIONAL"
+  "authority": "LOG_ENTRY_072_CONSTITUTIONAL",
+  "kokoro_voice_id": "bm_george",
+  "mac_fallback_voice": "Lee (Premium)",
+  "lineage": "Highest-Power Pair-Programmer & Sandbox Hardening Specialist",
+  "purpose": "Executes bare-metal compiler-checked code proofs and fixes system flaws without compromise."
 }

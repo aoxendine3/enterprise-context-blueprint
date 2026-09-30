@@ -1,5 +1,6 @@
 import json
 import time
+from pathlib import Path
 
 _initialized = False
 _data = []
@@ -36,16 +37,26 @@ def migrate_json_data(memory_path: str = "Source/xoras_memory.json", knowledge_p
     if _force_error:
         raise RuntimeError("Forced DB Error")
 
+    # Resolve paths relative to xoras-core Source directory if relative path does not exist in CWD
+    base_source_dir = Path(__file__).resolve().parent.parent.parent.parent
+    mem_p = Path(memory_path)
+    if not mem_p.exists() and (base_source_dir / "xoras_memory.json").exists():
+        mem_p = base_source_dir / "xoras_memory.json"
+
+    kn_p = Path(knowledge_path)
+    if not kn_p.exists() and (base_source_dir / "XORAS_ACTIVE_KNOWLEDGE.json").exists():
+        kn_p = base_source_dir / "XORAS_ACTIVE_KNOWLEDGE.json"
+
     # Read memory_path
     try:
-        with open(memory_path, 'r') as f:
+        with open(mem_p, 'r') as f:
             mem_data = json.load(f)
     except (json.JSONDecodeError, FileNotFoundError) as e:
         raise ValueError(f"Failed to migrate memory JSON: {str(e)}")
 
     # Read knowledge_path
     try:
-        with open(knowledge_path, 'r') as f:
+        with open(kn_p, 'r') as f:
             kn_data = json.load(f)
     except (json.JSONDecodeError, FileNotFoundError) as e:
         raise ValueError(f"Failed to migrate knowledge JSON: {str(e)}")

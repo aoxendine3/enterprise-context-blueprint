@@ -12,7 +12,7 @@ import time
 import urllib.request
 import logging
 import traceback
-from datetime import datetime
+from datetime import datetime, timezone
 
 SSOT_ROOT = os.environ.get(
     "SSOT_ROOT",
@@ -57,7 +57,7 @@ def query_local_model(prompt: str, timeout: int = 180) -> str:
 
 def log_receipt(task_id: str, prompt: str, result: str):
     entry = {
-        "timestamp": datetime.utcnow().isoformat(),
+        "timestamp": datetime.now(timezone.utc).isoformat(),
         "task_id": task_id,
         "model": PRIMARY_MODEL,
         "prompt_snippet": prompt[:150],

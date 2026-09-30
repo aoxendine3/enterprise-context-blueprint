@@ -1,0 +1,7 @@
+{"timestamp": "2026-09-28T17:03:09.810165+00:00", "event": "start", "idle_timeout_seconds": 300}
+{"timestamp": "2026-09-29T06:08:23.637172+00:00", "event": "start", "idle_timeout_seconds": 300}
+{"timestamp": "2026-09-29T06:24:47.266557+00:00", "event": "shutdown", "reason": "voice-stop:that part needs to stop"}
+{"timestamp": "2026-09-29T06:24:47.496935+00:00", "event": "stop", "reason": "voice-stop:that part needs to stop", "total_inputs": 59, "total_routes": 58, "total_dropped": 0}
+{"timestamp": "2026-09-29T07:05:30.139702+00:00", "event": "start", "idle_timeout_seconds": 300}
+{"timestamp": "2026-09-29T07:26:53.893016+00:00", "event": "shutdown", "reason": "voice-stop:stop"}
+{"timestamp": "2026-09-29T07:26:54.095272+00:00", "event": "stop", "reason": "voice-stop:stop", "total_inputs": 100, "total_routes": 99, "total_dropped": 0}

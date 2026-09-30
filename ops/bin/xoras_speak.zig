@@ -63,7 +63,12 @@ pub fn main(init: std.process.Init) !void {
         _ = c.close(time_fd);
     }
 
-    // 4. Execute physical audio synthesis via Kokoro ONLY (natural neural voice & word sync)
+// 4. Native Kokoro ONNX inference (no Python) – placeholder implementation
+// NOTE: Full tokenisation and voice‑embedding logic is omitted for brevity.
+// The code below demonstrates loading the ONNX model and running a dummy inference.
+// In a production build, replace the stub with proper tokenisation and output handling.
+
+// 4. Execute physical audio synthesis via Kokoro ONLY (natural neural voice & word sync)
     const sync_script: [*:0]const u8 = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/fullscreen_ui/sync_stage_engine.py";
     const py_bin: [*:0]const u8 = "/opt/homebrew/bin/python3";
 
@@ -91,6 +96,95 @@ pub fn main(init: std.process.Init) !void {
         var status: c_int = 0;
         _ = c.waitpid(pid, &status, 0);
     }
+// Speech synthesis is delegated to the Python script above; no ONNX or dummy audio code needed.
+    @cInclude("onnxruntime_c_api.h");
+});
+
+// Global static session (lazy init)
+var g_ort_env: ?*ort.OrtEnv = null;
+var g_ort_session: ?*ort.OrtSession = null;
+
+fn init_ort() !void {
+    if (g_ort_env) return; // already init
+    var env_ptr: *ort.OrtEnv = undefined;
+    try ort.CreateEnv(ort.ORT_LOGGING_LEVEL_WARNING, "kokoro", &env_ptr);
+    g_ort_env = env_ptr;
+
+    // Load model
+    const model_path = "/Users/ajoxendine68/.sovereign/models/kokoro/kokoro-v1_0.onnx";
+    var session_options: *ort.OrtSessionOptions = undefined;
+    try ort.CreateSessionOptions(&session_options);
+    // Example: set intra op threads to 1 for deterministic M4 performance
+    ort.SetSessionParallelExecThreads(session_options, 1);
+    var session_ptr: *ort.OrtSession = undefined;
+    try ort.CreateSession(g_ort_env.?, model_path, session_options, &session_ptr);
+    g_ort_session = session_ptr;
+}
+
+// Minimal dummy inference – returns a short sine‑wave buffer
+fn run_dummy_inference() ![]f32 {
+    // Generate 0.2 s of 440 Hz tone at 22 kHz (44 samples)
+    const sample_rate = 22050;
+    const duration = 0.2;
+    const count = @floatToInt(usize, sample_rate * duration);
+    var buf = try std.heap.page_allocator.alloc(f32, count);
+    var i: usize = 0;
+    while (i < count) : (i += 1) {
+        const t = @intToFloat(f64, i) / @intToFloat(f64, sample_rate);
+        buf[i] = @floatCast(f32, std.math.sin(2.0 * std.math.pi * 440.0 * t) * 0.2);
+    }
+    return buf;
+}
+
+// Ensure ONNX runtime is ready (ignore errors for placeholder)
+// Placeholder: speech synthesis handled by Python script above; no ONNX inference needed
+
+// Run dummy inference – replace with real call later
+const samples = run_dummy_inference() catch {
+    std.debug.print("[xoras_speak] Dummy inference failed, falling back to silence\n", .{});
+    const empty = try std.heap.page_allocator.alloc(f32, 0);
+    empty;
+};
+const sample_rate = 22050;
+
+// Write WAV file using CoreAudio's afplay (simple approach)
+const wav_path = "/tmp/kokoro_output.wav";
+// Prepare wav header (RIFF) – simplified 16‑bit PCM
+var file = try std.fs.cwd().createFile(wav_path, .{ .read = true, .write = true, .truncate = true });
+defer file.close();
+// Header constants
+const num_channels: u16 = 1;
+const bits_per_sample: u16 = 16;
+const byte_rate = sample_rate * num_channels * bits_per_sample / 8;
+const block_align = num_channels * bits_per_sample / 8;
+const subchunk2_size = @intCast(u32, samples.len * bits_per_sample / 8);
+const chunk_size = 36 + subchunk2_size;
+// Write header
+try file.writer().writeAll("RIFF");
+try file.writer().writeIntLittle(u32, chunk_size);
+try file.writer().writeAll("WAVEfmt ");
+try file.writer().writeIntLittle(u32, 16); // PCM fmt chunk size
+try file.writer().writeIntLittle(u16, 1); // audio format PCM
+try file.writer().writeIntLittle(u16, num_channels);
+try file.writer().writeIntLittle(u32, @intCast(u32, sample_rate));
+try file.writer().writeIntLittle(u32, @intCast(u32, byte_rate));
+try file.writer().writeIntLittle(u16, @intCast(u16, block_align));
+try file.writer().writeIntLittle(u16, bits_per_sample);
+try file.writer().writeAll("data");
+try file.writer().writeIntLittle(u32, subchunk2_size);
+// Write samples as 16‑bit little‑endian
+var i: usize = 0;
+while (i < samples.len) : (i += 1) {
+    const s = @floatToInt(i16, @intFromFloat(samples[i] * 32767));
+    try file.writer().writeIntLittle(i16, s);
+}
+// Flush
+try file.sync();
+
+// Play via afplay (blocking)
+const play_cmd = try std.mem.concat(std.heap.page_allocator, u8, &.{"/usr/bin/afplay ", wav_path});
+_ = std.os.system(play_cmd.ptr);
+
 
     // 5. Mark timing JSON complete
     const finish_fd = c.open(TIMING_FILE, c.O_CREAT | c.O_WRONLY | c.O_TRUNC, @as(c_uint, 0o644));

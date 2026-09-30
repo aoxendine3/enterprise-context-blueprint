@@ -3,7 +3,7 @@ import sys
 import time
 import json
 import string
-from datetime import datetime
+from datetime import datetime, timezone
 
 SSOT_ROOT = r"C:\Users\admin\Desktop\SSOT_Agentic_Brain"
 LOG_OUT = os.path.join(SSOT_ROOT, "memory", "DEVICE_SWARM_AUDIT_AND_OPTIMIZATION.md")
@@ -87,7 +87,7 @@ def run_swarm():
     # Write Telemetry & Resolution Report
     with open(LOG_OUT, "w", encoding="utf-8") as f:
         f.write("# 🛸 FULL MAX DEVICE & STORAGE SWARM AUDIT REPORT\n\n")
-        f.write(f"> **Execution Timestamp**: {datetime.utcnow().isoformat()}Z  \n")
+        f.write(f"> **Execution Timestamp**: {datetime.now(timezone.utc).isoformat()}Z  \n")
         f.write(f"> **Evaluator Lead**: Maxx & Xoras Swarm Team  \n")
         f.write(f"> **Detected Storage Drives**: `{', '.join(drives)}`  \n\n")
         f.write("---\n\n")
