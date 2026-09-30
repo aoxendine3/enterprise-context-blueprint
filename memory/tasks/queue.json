@@ -311,6 +311,54 @@
       "status": "PENDING",
       "source": "anthony_prompt",
       "prompt_hash": "24a6802d9a8c"
+    },
+    {
+      "task_id": "PRM-20260930-080504-01",
+      "name": "Action: Anthony challenge: The catch is they only showed you the narrative report this time, not the actual simulator code, so I can't check the math like I could before.",
+      "created_at": "2026-09-30T08:05:04.935516+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "21790fac13a1"
+    },
+    {
+      "task_id": "PRM-20260930-080504-02",
+      "name": "Action: And two small red flags: the Z-effective number landing on an exact 5.000 is suspiciously round for simulation output, and the 100 pulse cycles claim isn't backed by any vi",
+      "created_at": "2026-09-30T08:05:04.935521+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "21790fac13a1"
+    },
+    {
+      "task_id": "PRM-20260930-080504-03",
+      "name": "Action: Worth asking them to show the raw simulator file and unrounded numbers before treating this kill as fully proven.",
+      "created_at": "2026-09-30T08:05:04.935523+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "21790fac13a1"
+    },
+    {
+      "task_id": "PRM-20260930-080504-04",
+      "name": "Action: Encourage them to push the stress a little further.",
+      "created_at": "2026-09-30T08:05:04.935525+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "21790fac13a1"
+    },
+    {
+      "task_id": "PRM-20260930-080504-05",
+      "name": "Action: Pushing for that sensitivity sweep and the real code is exactly how you'd find out where that ceiling actually is instead of guessing at it.",
+      "created_at": "2026-09-30T08:05:04.935526+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "21790fac13a1"
+    },
+    {
+      "task_id": "PRM-20260930-080504-06",
+      "name": "Action: Team Xoras, you have the challenge",
+      "created_at": "2026-09-30T08:05:04.935527+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "21790fac13a1"
     }
   ]
 }

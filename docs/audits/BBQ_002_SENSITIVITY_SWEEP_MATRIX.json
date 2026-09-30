@@ -1,0 +1,232 @@
+{
+  "timestamp": "2026-09-30T08:07:08.171045+00:00",
+  "lithium_sensitivity_matrix": [
+    {
+      "mesh_thickness_mm": 1.0,
+      "redeposition_fraction": 0.98,
+      "steady_T_surf_k": 865.05,
+      "steady_z_eff": 9.899962,
+      "elm_T_surf_k": 900.79,
+      "elm_z_eff": 21.73606,
+      "clears_z_eff_gate": false
+    },
+    {
+      "mesh_thickness_mm": 1.0,
+      "redeposition_fraction": 0.985,
+      "steady_T_surf_k": 865.05,
+      "steady_z_eff": 7.674972,
+      "elm_T_surf_k": 900.79,
+      "elm_z_eff": 16.552045,
+      "clears_z_eff_gate": false
+    },
+    {
+      "mesh_thickness_mm": 1.0,
+      "redeposition_fraction": 0.99,
+      "steady_T_surf_k": 865.05,
+      "steady_z_eff": 5.449981,
+      "elm_T_surf_k": 900.79,
+      "elm_z_eff": 11.36803,
+      "clears_z_eff_gate": false
+    },
+    {
+      "mesh_thickness_mm": 1.0,
+      "redeposition_fraction": 0.995,
+      "steady_T_surf_k": 865.05,
+      "steady_z_eff": 3.224991,
+      "elm_T_surf_k": 900.79,
+      "elm_z_eff": 6.184015,
+      "clears_z_eff_gate": false
+    },
+    {
+      "mesh_thickness_mm": 1.0,
+      "redeposition_fraction": 0.999,
+      "steady_T_surf_k": 865.05,
+      "steady_z_eff": 1.444998,
+      "elm_T_surf_k": 900.79,
+      "elm_z_eff": 2.036803,
+      "clears_z_eff_gate": false
+    },
+    {
+      "mesh_thickness_mm": 1.0,
+      "redeposition_fraction": 0.9999,
+      "steady_T_surf_k": 865.05,
+      "steady_z_eff": 1.0445,
+      "elm_T_surf_k": 900.79,
+      "elm_z_eff": 1.10368,
+      "clears_z_eff_gate": true
+    },
+    {
+      "mesh_thickness_mm": 2.0,
+      "redeposition_fraction": 0.98,
+      "steady_T_surf_k": 918.88,
+      "steady_z_eff": 32.015997,
+      "elm_T_surf_k": 944.17,
+      "elm_z_eff": 54.061552,
+      "clears_z_eff_gate": false
+    },
+    {
+      "mesh_thickness_mm": 2.0,
+      "redeposition_fraction": 0.985,
+      "steady_T_surf_k": 918.88,
+      "steady_z_eff": 24.261998,
+      "elm_T_surf_k": 944.17,
+      "elm_z_eff": 40.796164,
+      "clears_z_eff_gate": false
+    },
+    {
+      "mesh_thickness_mm": 2.0,
+      "redeposition_fraction": 0.99,
+      "steady_T_surf_k": 918.88,
+      "steady_z_eff": 16.507999,
+      "elm_T_surf_k": 944.17,
+      "elm_z_eff": 27.530776,
+      "clears_z_eff_gate": false
+    },
+    {
+      "mesh_thickness_mm": 2.0,
+      "redeposition_fraction": 0.995,
+      "steady_T_surf_k": 918.88,
+      "steady_z_eff": 8.753999,
+      "elm_T_surf_k": 944.17,
+      "elm_z_eff": 14.265388,
+      "clears_z_eff_gate": false
+    },
+    {
+      "mesh_thickness_mm": 2.0,
+      "redeposition_fraction": 0.999,
+      "steady_T_surf_k": 918.88,
+      "steady_z_eff": 2.5508,
+      "elm_T_surf_k": 944.17,
+      "elm_z_eff": 3.653078,
+      "clears_z_eff_gate": false
+    },
+    {
+      "mesh_thickness_mm": 2.0,
+      "redeposition_fraction": 0.9999,
+      "steady_T_surf_k": 918.88,
+      "steady_z_eff": 1.15508,
+      "elm_T_surf_k": 944.17,
+      "elm_z_eff": 1.265308,
+      "clears_z_eff_gate": true
+    },
+    {
+      "mesh_thickness_mm": 3.0,
+      "redeposition_fraction": 0.98,
+      "steady_T_surf_k": 942.35,
+      "steady_z_eff": 52.095297,
+      "elm_T_surf_k": 1009.73,
+      "elm_z_eff": 188.961595,
+      "clears_z_eff_gate": false
+    },
+    {
+      "mesh_thickness_mm": 3.0,
+      "redeposition_fraction": 0.985,
+      "steady_T_surf_k": 942.35,
+      "steady_z_eff": 39.321473,
+      "elm_T_surf_k": 1009.73,
+      "elm_z_eff": 141.971196,
+      "clears_z_eff_gate": false
+    },
+    {
+      "mesh_thickness_mm": 3.0,
+      "redeposition_fraction": 0.99,
+      "steady_T_surf_k": 942.35,
+      "steady_z_eff": 26.547648,
+      "elm_T_surf_k": 1009.73,
+      "elm_z_eff": 94.980798,
+      "clears_z_eff_gate": false
+    },
+    {
+      "mesh_thickness_mm": 3.0,
+      "redeposition_fraction": 0.995,
+      "steady_T_surf_k": 942.35,
+      "steady_z_eff": 13.773824,
+      "elm_T_surf_k": 1009.73,
+      "elm_z_eff": 47.990399,
+      "clears_z_eff_gate": false
+    },
+    {
+      "mesh_thickness_mm": 3.0,
+      "redeposition_fraction": 0.999,
+      "steady_T_surf_k": 942.35,
+      "steady_z_eff": 3.554765,
+      "elm_T_surf_k": 1009.73,
+      "elm_z_eff": 10.39808,
+      "clears_z_eff_gate": false
+    },
+    {
+      "mesh_thickness_mm": 3.0,
+      "redeposition_fraction": 0.9999,
+      "steady_T_surf_k": 942.35,
+      "steady_z_eff": 1.255476,
+      "elm_T_surf_k": 1009.73,
+      "elm_z_eff": 1.939808,
+      "clears_z_eff_gate": false
+    },
+    {
+      "mesh_thickness_mm": 5.0,
+      "redeposition_fraction": 0.98,
+      "steady_T_surf_k": 1008.87,
+      "steady_z_eff": 186.07083,
+      "elm_T_surf_k": 1071.94,
+      "elm_z_eff": 541.001311,
+      "clears_z_eff_gate": false
+    },
+    {
+      "mesh_thickness_mm": 5.0,
+      "redeposition_fraction": 0.985,
+      "steady_T_surf_k": 1008.87,
+      "steady_z_eff": 139.803122,
+      "elm_T_surf_k": 1071.94,
+      "elm_z_eff": 406.000984,
+      "clears_z_eff_gate": false
+    },
+    {
+      "mesh_thickness_mm": 5.0,
+      "redeposition_fraction": 0.99,
+      "steady_T_surf_k": 1008.87,
+      "steady_z_eff": 93.535415,
+      "elm_T_surf_k": 1071.94,
+      "elm_z_eff": 271.000656,
+      "clears_z_eff_gate": false
+    },
+    {
+      "mesh_thickness_mm": 5.0,
+      "redeposition_fraction": 0.995,
+      "steady_T_surf_k": 1008.87,
+      "steady_z_eff": 47.267707,
+      "elm_T_surf_k": 1071.94,
+      "elm_z_eff": 136.000328,
+      "clears_z_eff_gate": false
+    },
+    {
+      "mesh_thickness_mm": 5.0,
+      "redeposition_fraction": 0.999,
+      "steady_T_surf_k": 1008.87,
+      "steady_z_eff": 10.253541,
+      "elm_T_surf_k": 1071.94,
+      "elm_z_eff": 28.000066,
+      "clears_z_eff_gate": false
+    },
+    {
+      "mesh_thickness_mm": 5.0,
+      "redeposition_fraction": 0.9999,
+      "steady_T_surf_k": 1008.87,
+      "steady_z_eff": 1.925354,
+      "elm_T_surf_k": 1071.94,
+      "elm_z_eff": 3.700007,
+      "clears_z_eff_gate": false
+    }
+  ],
+  "tin_alternative_evaluation": {
+    "metal_type": "Tin (Sn)",
+    "mesh_thickness_mm": 5.0,
+    "redeposition_fraction": 0.985,
+    "steady_T_surf_k": 1826.87,
+    "steady_z_eff": 2808.68724667,
+    "elm_T_surf_k": 1881.97,
+    "elm_z_eff": 4866.48626985,
+    "clears_z_eff_gate": false,
+    "vapor_pressure_at_1100k_pa": 0.0001953930404689611
+  }
+}
