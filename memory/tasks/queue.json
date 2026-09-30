@@ -391,6 +391,14 @@
       "status": "PENDING",
       "source": "anthony_prompt",
       "prompt_hash": "c5a891d957d7"
+    },
+    {
+      "task_id": "PRM-20260930-081642-01",
+      "name": "Action: add what ifs: Formulate and simulate counterfactual architectural scenarios for liquid metal divertors and frontier candidates",
+      "created_at": "2026-09-30T08:16:42.581655+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "04284e97f19f"
     }
   ]
 }
