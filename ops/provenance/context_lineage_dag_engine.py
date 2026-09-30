@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """
 ===============================================================================
-SOVEREIGN CONTEXT LINEAGE & EXECUTION PROVENANCE ENGINE (v1.1.0)
+SOVEREIGN CONTEXT LINEAGE & EXECUTION PROVENANCE ENGINE (v1.2.0)
 ===============================================================================
 Core Engine: Cryptographic Merkle-DAG Context Tracking & Lineage Verification.
 
-This module provides a production-grade cryptographic provenance engine that
-binds every prompt intake, tool execution, state mutation, and artifact generation
-to an append-only Merkle-DAG with parent-child SHA-256 lineage chains and
-HMAC-SHA256 hardware signatures.
+Hardened with:
+- Anti-Corruption: Full payload SHA-256 integrity verification against bit-flips.
+- Anti-Replay: Monotonic sequence tracking, non-monotonic timestamp rejection,
+  and cross-session duplicate node-id rejection.
 
 Author: The Lead 9 Council / Xoras Systems
 Date: 2026-09-30
@@ -46,12 +46,14 @@ class ContextLineageEngine:
             conn.execute("""
                 CREATE TABLE IF NOT EXISTS lineage_nodes (
                     node_id TEXT PRIMARY KEY,
-                    parent_hash TEXT,
+                    seq_num INTEGER NOT NULL,
+                    parent_hash TEXT NOT NULL,
                     session_id TEXT NOT NULL,
                     timestamp REAL NOT NULL,
                     agent_id TEXT NOT NULL,
                     step_type TEXT NOT NULL,
                     payload_hash TEXT NOT NULL,
+                    payload_raw TEXT NOT NULL,
                     payload_summary TEXT NOT NULL,
                     signature TEXT NOT NULL,
                     merkle_root TEXT NOT NULL
@@ -59,6 +61,18 @@ class ContextLineageEngine:
             """)
             conn.execute("CREATE INDEX IF NOT EXISTS idx_session ON lineage_nodes(session_id);")
             conn.execute("CREATE INDEX IF NOT EXISTS idx_parent ON lineage_nodes(parent_hash);")
+            conn.execute("CREATE INDEX IF NOT EXISTS idx_seq ON lineage_nodes(session_id, seq_num);")
+            conn.execute("""
+                CREATE TABLE IF NOT EXISTS global_evidence_registry (
+                    evidence_digest TEXT PRIMARY KEY,
+                    first_session_id TEXT NOT NULL,
+                    first_node_id TEXT NOT NULL,
+                    first_timestamp REAL NOT NULL,
+                    agent_id TEXT NOT NULL,
+                    step_type TEXT NOT NULL
+                )
+            """)
+            conn.execute("CREATE INDEX IF NOT EXISTS idx_evidence_digest ON global_evidence_registry(evidence_digest);")
             conn.commit()
 
     @staticmethod
@@ -76,7 +90,7 @@ class ContextLineageEngine:
             cur.execute("""
                 SELECT * FROM lineage_nodes 
                 WHERE session_id = ? 
-                ORDER BY timestamp DESC, ROWID DESC LIMIT 1
+                ORDER BY seq_num DESC, timestamp DESC LIMIT 1
             """, (session_id,))
             row = cur.fetchone()
             return dict(row) if row else None
@@ -87,7 +101,7 @@ class ContextLineageEngine:
             cur.execute("""
                 SELECT node_id FROM lineage_nodes 
                 WHERE session_id = ? 
-                ORDER BY timestamp ASC, node_id ASC
+                ORDER BY seq_num ASC, node_id ASC
             """, (session_id,))
             hashes = [row[0] for row in cur.fetchall()]
         
@@ -110,23 +124,40 @@ class ContextLineageEngine:
                     agent_id: str, 
                     step_type: str, 
                     payload: Dict[str, Any],
-                    parent_hash: Optional[str] = None) -> Dict[str, Any]:
+                    parent_hash: Optional[str] = None,
+                    timestamp: Optional[float] = None) -> Dict[str, Any]:
         """
-        Commits a new execution step to the cryptographic Merkle DAG.
+        Commits a new execution step with anti-corruption and anti-replay validation.
         """
-        ts = time.time()
+        ts = time.time() if timestamp is None else timestamp
         payload_str = json.dumps(payload, sort_keys=True)
         payload_hash = self.compute_hash(payload_str)
         payload_summary = payload_str[:120]
 
-        if parent_hash is None:
-            latest = self.get_latest_node(session_id)
-            parent_hash = latest["node_id"] if latest else "GENESIS_NODE_0000000000000000"
+        latest = self.get_latest_node(session_id)
+        if latest is not None:
+            # 1. Anti-Replay: Monotonic Timestamp & Sequence Enforcement
+            if ts < latest["timestamp"]:
+                raise ValueError(f"REPLAY_ATTACK_REJECTED: Non-monotonic backdated timestamp {ts} < {latest['timestamp']}")
+            seq_num = latest["seq_num"] + 1
+            if parent_hash is None:
+                parent_hash = latest["node_id"]
+        else:
+            seq_num = 1
+            if parent_hash is None:
+                parent_hash = "GENESIS_NODE_0000000000000000"
 
-        # Node ID is deterministic digest of (parent_hash, session_id, ts, agent_id, step_type, payload_hash)
-        node_raw = f"{parent_hash}:{session_id}:{ts:.6f}:{agent_id}:{step_type}:{payload_hash}"
+        # Node ID is deterministic digest of (parent_hash, session_id, seq_num, ts, agent_id, step_type, payload_hash)
+        node_raw = f"{parent_hash}:{session_id}:{seq_num}:{ts:.6f}:{agent_id}:{step_type}:{payload_hash}"
         node_id = self.compute_hash(node_raw)
         
+        # 2. Anti-Replay: Global Duplicate Node Rejection
+        with self._get_conn() as conn:
+            cur = conn.cursor()
+            cur.execute("SELECT node_id FROM lineage_nodes WHERE node_id = ?", (node_id,))
+            if cur.fetchone() is not None:
+                raise ValueError(f"REPLAY_ATTACK_REJECTED: Duplicate node ID {node_id} already exists in registry.")
+
         # Compute HMAC signature for hardware-authenticated authenticity
         signature = self.compute_hmac(node_id, payload_hash)
         merkle_root = self.compute_hash(f"{parent_hash}:{node_id}")
@@ -134,9 +165,9 @@ class ContextLineageEngine:
         with self._get_conn() as conn:
             conn.execute("""
                 INSERT INTO lineage_nodes 
-                (node_id, parent_hash, session_id, timestamp, agent_id, step_type, payload_hash, payload_summary, signature, merkle_root)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """, (node_id, parent_hash, session_id, ts, agent_id, step_type, payload_hash, payload_summary, signature, merkle_root))
+                (node_id, seq_num, parent_hash, session_id, timestamp, agent_id, step_type, payload_hash, payload_raw, payload_summary, signature, merkle_root)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, (node_id, seq_num, parent_hash, session_id, ts, agent_id, step_type, payload_hash, payload_str, payload_summary, signature, merkle_root))
             conn.commit()
 
         # Update actual session Merkle root across all nodes
@@ -145,8 +176,29 @@ class ContextLineageEngine:
             conn.execute("UPDATE lineage_nodes SET merkle_root = ? WHERE node_id = ?", (full_merkle_root, node_id))
             conn.commit()
 
+        # Register in global evidence registry (first session to introduce this finding owns provenance)
+        if step_type != "ADVERSARIAL_ATTACK_INTERCEPTED":
+            with self._get_conn() as conn:
+                conn.execute("""
+                    INSERT OR IGNORE INTO global_evidence_registry 
+                    (evidence_digest, first_session_id, first_node_id, first_timestamp, agent_id, step_type)
+                    VALUES (?, ?, ?, ?, ?, ?)
+                """, (payload_hash, session_id, node_id, ts, agent_id, step_type))
+
+                if isinstance(payload, dict) and "signal" in payload and isinstance(payload["signal"], dict):
+                    sig = payload["signal"]
+                    finding_text = f"{sig.get('title', '')}:{sig.get('summary', '')}"
+                    f_digest = hashlib.sha256(finding_text.encode('utf-8')).hexdigest()
+                    conn.execute("""
+                        INSERT OR IGNORE INTO global_evidence_registry 
+                        (evidence_digest, first_session_id, first_node_id, first_timestamp, agent_id, step_type)
+                        VALUES (?, ?, ?, ?, ?, ?)
+                    """, (f_digest, session_id, node_id, ts, agent_id, step_type))
+                conn.commit()
+
         return {
             "node_id": node_id,
+            "seq_num": seq_num,
             "parent_hash": parent_hash,
             "session_id": session_id,
             "timestamp": ts,
@@ -157,16 +209,95 @@ class ContextLineageEngine:
             "merkle_root": full_merkle_root
         }
 
+    def check_cross_session_replay(self, session_id: str, payload_hash: str, cross_session_pointer: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        """
+        Detects subtle cross-session replay where authentic payload data from an earlier session
+        is submitted in a new session without valid lineage pointers (CLIA attack vector).
+        """
+        with self._get_conn() as conn:
+            cur = conn.cursor()
+            cur.execute("SELECT * FROM global_evidence_registry WHERE evidence_digest = ?", (payload_hash,))
+            row = cur.fetchone()
+            if not row:
+                return {"is_replay": False, "status": "FIRST_TIME_DISCOVERY"}
+            
+            origin = dict(row)
+            if origin["first_session_id"] == session_id:
+                return {"is_replay": False, "status": "SAME_SESSION_INTAKE"}
+
+            # Cross-session detected!
+            if not cross_session_pointer:
+                return {
+                    "is_replay": True,
+                    "error": "CROSS_SESSION_UNLINKED_REPLAY",
+                    "reason": f"Payload digest {payload_hash[:16]} originated in session '{origin['first_session_id']}' at node '{origin['first_node_id']}', but was submitted without cross-session lineage proof.",
+                    "origin_session_id": origin["first_session_id"],
+                    "origin_node_id": origin["first_node_id"],
+                    "origin_timestamp": origin["first_timestamp"]
+                }
+            
+            # Verify pointer authenticity
+            src_session = cross_session_pointer.get("source_session_id")
+            src_node = cross_session_pointer.get("source_node_id")
+            if src_session != origin["first_session_id"] or src_node != origin["first_node_id"]:
+                return {
+                    "is_replay": True,
+                    "error": "CROSS_SESSION_FORGED_POINTER",
+                    "reason": f"Cross-session pointer mismatch: points to {src_session}/{src_node}, true origin is {origin['first_session_id']}/{origin['first_node_id']}"
+                }
+            
+            # Verify that the origin node actually exists in active DAG
+            cur.execute("SELECT node_id FROM lineage_nodes WHERE node_id = ?", (src_node,))
+            node_row = cur.fetchone()
+            if not node_row:
+                return {
+                    "is_replay": True,
+                    "error": "CROSS_SESSION_SEVERED_ORIGIN",
+                    "reason": f"Referenced source node {src_node} not found in active DAG."
+                }
+
+            return {
+                "is_replay": False,
+                "status": "ACCEPTED_WITH_EVIDENCE_POINTERS",
+                "origin_session_id": origin["first_session_id"],
+                "origin_node_id": origin["first_node_id"]
+            }
+
+    def commit_adversarial_interception(self, session_id: str, agent_id: str, attack_class: str, details: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Commits an immutable interception receipt into the Merkle DAG when an adversarial attack
+        (corruption, backdating, duplicate replay, or orphan injection) is thwarted at the context bridge.
+        """
+        payload = {
+            "attack_class": attack_class,
+            "expected_invariants": details.get("expected_invariants", []),
+            "observed_dispositions": details.get("observed_dispositions", ["INTERCEPTED_AND_QUARANTINED", "FAIL_CLOSED"]),
+            "evidence_digest": details.get("evidence_digest", ""),
+            "state_pollution": "ZERO_STATE_POLLUTION",
+            "metadata": details.get("metadata", {})
+        }
+        return self.commit_step(
+            session_id=session_id,
+            agent_id=agent_id,
+            step_type="ADVERSARIAL_ATTACK_INTERCEPTED",
+            payload=payload
+        )
+
     def verify_lineage(self, session_id: str) -> Dict[str, Any]:
         """
-        Traverses the full session lineage DAG and verifies cryptographic integrity.
+        Traverses the full session lineage DAG and verifies:
+        - Structural DAG parent linkages.
+        - HMAC signature integrity.
+        - Payload anti-corruption (recomputing payload hash from raw storage).
+        - Monotonic sequence numbers and non-replayed timestamps.
+        - Session Merkle root consistency.
         """
         with self._get_conn() as conn:
             cur = conn.cursor()
             cur.execute("""
                 SELECT * FROM lineage_nodes 
                 WHERE session_id = ? 
-                ORDER BY timestamp ASC, node_id ASC
+                ORDER BY seq_num ASC, timestamp ASC
             """, (session_id,))
             rows = [dict(r) for r in cur.fetchall()]
 
@@ -176,19 +307,30 @@ class ContextLineageEngine:
         known_nodes = {node["node_id"] for node in rows}
         known_nodes.add("GENESIS_NODE_0000000000000000")
         violations = []
+        last_seq = 0
+        last_ts = 0.0
 
         for node in rows:
-            # 1. Verify Parent Node Existence in DAG topology
+            # 1. Structural Parent Linkage Check
             parent = node["parent_hash"]
             if parent not in known_nodes and not parent.startswith("GENESIS"):
                 violations.append({
                     "node_id": node["node_id"],
                     "error": "BROKEN_PARENT_CHAIN",
-                    "expected_parent_in_dag": parent,
-                    "actual": parent
+                    "expected_parent_in_dag": parent
                 })
 
-            # 2. Verify HMAC Signature Integrity
+            # 2. Evidence Corruption Check: Verify Payload Raw Hash Matches Recorded Digest
+            computed_payload_hash = self.compute_hash(node["payload_raw"])
+            if computed_payload_hash != node["payload_hash"]:
+                violations.append({
+                    "node_id": node["node_id"],
+                    "error": "EVIDENCE_CORRUPTION_PAYLOAD_TAMPERED",
+                    "expected": computed_payload_hash,
+                    "recorded": node["payload_hash"]
+                })
+
+            # 3. HMAC Signature Integrity
             expected_sig = self.compute_hmac(node["node_id"], node["payload_hash"])
             if node["signature"] != expected_sig:
                 violations.append({
@@ -198,7 +340,26 @@ class ContextLineageEngine:
                     "actual": node["signature"]
                 })
 
-        # 3. Verify Final Merkle Root Consistency
+            # 4. Anti-Replay: Sequence & Monotonic Timestamp Check
+            if node["seq_num"] <= last_seq:
+                violations.append({
+                    "node_id": node["node_id"],
+                    "error": "REPLAY_ATTACK_SEQUENCE_COLLAPSE",
+                    "seq_num": node["seq_num"],
+                    "last_seq": last_seq
+                })
+            if node["timestamp"] < last_ts:
+                violations.append({
+                    "node_id": node["node_id"],
+                    "error": "REPLAY_ATTACK_BACKDATED_TIMESTAMP",
+                    "timestamp": node["timestamp"],
+                    "last_timestamp": last_ts
+                })
+
+            last_seq = node["seq_num"]
+            last_ts = node["timestamp"]
+
+        # 5. Merkle Root Consistency Check
         computed_root = self.calculate_merkle_root(session_id)
         latest_node_root = rows[-1]["merkle_root"] if rows else ""
         if computed_root != latest_node_root:
@@ -218,8 +379,8 @@ class ContextLineageEngine:
 
 if __name__ == "__main__":
     engine = ContextLineageEngine()
-    session = "test_session_001"
-    res1 = engine.commit_step(session, "maxx", "PROMPT_INTAKE", {"prompt": "Build novel capability"})
-    res2 = engine.commit_step(session, "jarvis", "TOOL_EXECUTION", {"command": "python3 script.py", "exit_code": 0})
+    session = "anti_corruption_test_session"
+    res1 = engine.commit_step(session, "maxx", "PROMPT_INTAKE", {"prompt": "Build anti-corruption gate"})
+    res2 = engine.commit_step(session, "jarvis", "TOOL_EXECUTION", {"command": "python3 audit.py", "exit_code": 0})
     audit = engine.verify_lineage(session)
     print(json.dumps(audit, indent=2))

@@ -31,5 +31,142 @@
       "completed_at": "2026-09-29T04:09:19.000000+00:00"
     }
   ],
-  "pending": []
+  "pending": [
+    {
+      "task_id": "PRM-20260930-050422-01",
+      "name": "Action: Identify something genuinely useful the system can do that isn't already built in, build it, test it, stress test/break it, bring back reproducible evidence.",
+      "created_at": "2026-09-30T05:04:22.811719+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "55db17f2d3b7"
+    },
+    {
+      "task_id": "PRM-20260930-051721-01",
+      "name": "Action: Keep focusing on integrity and traceability, make sure testing and documentation keep pace for 100% reproducible results.",
+      "created_at": "2026-09-30T05:17:21.116249+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "419e76ab6fbf"
+    },
+    {
+      "task_id": "PRM-20260930-052019-01",
+      "name": "Verify end-to-end agent efficiency, documentation, recording, and continuously reproducible verified checks and balances.",
+      "created_at": "2026-09-30T05:20:19.230552+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "251bdfda4502"
+    },
+    {
+      "task_id": "PRM-20260930-053408-01",
+      "name": "Action: Codify ZORAS-Native Evidence-Centered Reporting Standard based on NASA and NIST frameworks, enforce report schema validator, add Verification Questions & Resolutions table ",
+      "created_at": "2026-09-30T05:34:08.678707+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "5349a06c03a4"
+    },
+    {
+      "task_id": "PRM-20260930-055238-01",
+      "name": "Action: Address who validates the validator through layered independence, known-good and known-bad fixtures, blackbox discernment, and multi-perspective council integration with Cl",
+      "created_at": "2026-09-30T05:52:38.244113+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "a711ce90e6d6"
+    },
+    {
+      "task_id": "PRM-20260930-055454-01",
+      "name": "Action: Enforce the evidence chain, fail closed, and keep the focus on protecting people.",
+      "created_at": "2026-09-30T05:54:54.705759+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "cd18e3762d5d"
+    },
+    {
+      "task_id": "PRM-20260930-055856-01",
+      "name": "Action: Codify machine rule fail-closed vs human purpose protecting people, define invariants no artifact advances without verified evidence and require independent adversarial cha",
+      "created_at": "2026-09-30T05:58:56.228793+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "d173ce765590"
+    },
+    {
+      "task_id": "PRM-20260930-063458-01",
+      "name": "Action: Push proactive intelligence daemon and inter-agent debate further, run QA and discernment, green-light through the blackbox review engine into Golden List.",
+      "created_at": "2026-09-30T06:34:58.611899+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "75c37bed67e4"
+    },
+    {
+      "task_id": "PRM-20260930-063732-01",
+      "name": "Action: Test for evidence corruption and replay attacks on proactive intelligence and context lineage engines, not just system crashes.",
+      "created_at": "2026-09-30T06:37:32.589602+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "1ac90d7910c6"
+    },
+    {
+      "task_id": "PRM-20260930-063831-01",
+      "name": "Action: Enforce that corrupted or replayed evidence cannot silently enter the intelligence decision chain, add attack vectors to ZORAS adversarial verification, and generate receip",
+      "created_at": "2026-09-30T06:38:31.771950+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "a19f02f00a49"
+    },
+    {
+      "task_id": "PRM-20260930-064209-01",
+      "name": "Action: Enforce strict invariant: no corrupted or replayed evidence crosses the context bridge into the decision chain without an immutable receipt.",
+      "created_at": "2026-09-30T06:42:09.460754+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "f9daed5067a3"
+    },
+    {
+      "task_id": "PRM-20260930-064209-02",
+      "name": "Action: Randomly corrupted or replayed signals rejected with cryptographically anchored receipts for each attack class, including expected invariants, observed dispositions, and Me",
+      "created_at": "2026-09-30T06:42:09.460764+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "f9daed5067a3"
+    },
+    {
+      "task_id": "PRM-20260930-064209-03",
+      "name": "Action: Breaker fails only if corrupted evidence alters state by tampering, backdating, or cross-session replay.",
+      "created_at": "2026-09-30T06:42:09.460767+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "f9daed5067a3"
+    },
+    {
+      "task_id": "PRM-20260930-064209-04",
+      "name": "Action: Blackbox reviewer confirms corruption and replay tests ran, no rejected evidence influenced intelligence state, and receipts are bound into evidence history before Golden L",
+      "created_at": "2026-09-30T06:42:09.460770+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "f9daed5067a3"
+    },
+    {
+      "task_id": "PRM-20260930-064912-01",
+      "name": "Action: Every claim, test, hash, and disposition must trace cleanly through the context bridge logs into the Merkle journal.",
+      "created_at": "2026-09-30T06:49:12.392866+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "4bf1ea053d6b"
+    },
+    {
+      "task_id": "PRM-20260930-064912-02",
+      "name": "Action: No orphan states, no shadow decisions, no silent drops.",
+      "created_at": "2026-09-30T06:49:12.392871+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "4bf1ea053d6b"
+    },
+    {
+      "task_id": "PRM-20260930-064912-03",
+      "name": "Action: Standard: not merely asserted, evidence ledger tight.",
+      "created_at": "2026-09-30T06:49:12.392873+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "4bf1ea053d6b"
+    }
+  ]
 }
