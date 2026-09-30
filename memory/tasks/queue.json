@@ -655,6 +655,22 @@
       "status": "PENDING",
       "source": "anthony_prompt",
       "prompt_hash": "9295d241b091"
+    },
+    {
+      "task_id": "PRM-20260930-123808-01",
+      "name": "Action: I noticed you had SQLite out there.",
+      "created_at": "2026-09-30T12:38:08.396828+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "72a6ff963405"
+    },
+    {
+      "task_id": "PRM-20260930-123808-02",
+      "name": "Answer and resolve: I was wondering, do we use SQLite or Postgres and RagLite and LanceDB and all that stuff",
+      "created_at": "2026-09-30T12:38:08.396832+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "72a6ff963405"
     }
   ]
 }
