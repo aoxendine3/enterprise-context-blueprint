@@ -13,6 +13,22 @@ This is a structured, append-only engineering log. Observations and hypotheses a
 
 ---
 
+## Log Entry #078 — The Evidence Chain, Fail-Closed Security, and Human Protection Mandate (2026-09-30)
+
+### Observation & Directive
+Anthony and the collective governance roundtable codified the core triumvirate mandate:
+1. Enforce the evidence chain without deviation.
+2. Fail closed under any anomaly, desync, or broken invariant.
+3. Keep the focus unequivocally on protecting real people.
+
+### Mandates & Invariant Laws
+1. **The Unbroken Evidence Chain**: Every claim, mutation, tool execution, and code artifact must be bound to the cryptographic Merkle DAG (`ops/provenance/context_lineage_dag_engine.py`) with parent-child SHA-256 hashes and hardware HMAC signatures. Detached assertions or unverified metrics are rejected as non-existent.
+2. **Strict Fail-Closed Architecture**: Zero optimistic degradation. Zero silent fallbacks. If an HMAC signature fails, a Merkle root desynchronizes, a parent link is broken, or a required verification section is missing, the gate immediately drops to `VETO / FAIL-CLOSED`. The system halts the operation, locks the state, records an audit receipt, and alerts the operator.
+3. **The Human Protection Core Law**: All technological ambition, algorithmic sophistication, and agentic orchestration exist solely to safeguard real human lives, human health, and human dignity. Inspired by Anthony's battle alongside his wife against CIDP (Chronic Inflammatory Demyelinating Polyneuropathy) and embodied by Dr. Eden Veritas (Quad-Doctor Clinical Rigor) and Clara (Human Ethics & Empathy), no engineering decision or machine optimization may ever compromise human safety, clinical precision, or objective truth.
+- **Status**: `[PERMANENTLY CODIFIED CONSTITUTIONAL LAW]`
+
+---
+
 ## Log Entry #077 — The Collective Invariant Law & Zero Singular Posturing (2026-09-30)
 
 ### Observation
@@ -2366,3 +2382,19 @@ The collective operates across six integrated memory dimensions:
 **Routing:** All speech dispatches through `python3 ops/scripts/media_director_agent.py <agent> "<message>"` — not direct agent_speak.sh calls from the agent layer.
 **Enforcement:** Jarvis audits every turn. Vance red-teams for silent violations. Any command that fires before an audio intent announcement is a constitutional breach.
 **Authority:** 7th-Layer Mandate. Permanent. Zero exceptions. Zero deviations.
+
+### [MERKLE CATCH RECEIPT V2] 2026-09-30T05:05:18.624557+00:00
+- **Gate Status**: `GREEN`
+- **Merkle Root**: `7259f569c0a5510374ba1ddbb87aa5958bd9e5a4efd031f37f63903ab08e29e1`
+- **Stage Telemetry**: Port 8080 `[GREEN]` (1918.61 ms)
+- **Active Models**: `['llama3.2:3b']`
+- **Dark Models**: `['gemma4:26b', 'qwen2.5-coder:7b', 'sovereign-jarvis:latest']`
+- **Vector Embedding**: 18,432-D HexCell Poincaré Norm `0.048219`
+
+### [MERKLE CATCH RECEIPT V2] 2026-09-30T05:35:09.678114+00:00
+- **Gate Status**: `GREEN`
+- **Merkle Root**: `f4b08a5b87ea1c8573cf12969f197b2eba9b475bd3118367d3c18e49747db5ec`
+- **Stage Telemetry**: Port 8080 `[GREEN]` (376.03 ms)
+- **Active Models**: `['llama3.2:3b']`
+- **Dark Models**: `['gemma4:26b', 'qwen2.5-coder:7b', 'sovereign-jarvis:latest']`
+- **Vector Embedding**: 18,432-D HexCell Poincaré Norm `0.048219`
