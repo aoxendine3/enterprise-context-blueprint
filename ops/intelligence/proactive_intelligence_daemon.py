@@ -123,7 +123,13 @@ class ProactiveIntelligenceDaemon:
 
         # Fast heuristic and score calculation
         score = 0.50
-        if any(k in (title + summary).lower() for k in ["breakthrough", "neural", "simd", "byzantine", "merkle", "myelin", "cidp", "immunology", "llm", "latency"]):
+        frontier_keywords = [
+            "breakthrough", "neural", "simd", "byzantine", "merkle", "myelin", "cidp", 
+            "immunology", "llm", "latency", "quantum", "qubit", "surface code", "fusion", 
+            "plasma", "divertor", "battery", "storage", "flow battery", "wave", "photonic", 
+            "magnon", "robotic", "autonomous", "synthesis", "crystal"
+        ]
+        if any(k in (title + summary).lower() for k in frontier_keywords):
             score += 0.35
         if bool(signal.get("verified_source", False)):
             score += 0.15
