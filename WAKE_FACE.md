@@ -1,69 +1,15 @@
-# WAKE FACE — Maxx / SSOT_Agentic_Brain working-set map
+# WAKE FACE — working-set map (regenerated 2026-10-03)
 
-> Regenerated every wake. **Map, not second brain.** One glance → path. Deep recall = hippocampus refresh.
-> Host apps (Cursor, Sovereign_Shell, etc.) are **shells**. They do not own the agent.
+Host apps are shells. They do not own the council.
 
-_Updated: 2026-09-03 21:12 EDT | Phase: **Phase 2 (Sovereign Metal & Golden List)** | State: **VERIFIED & SOUND**_
+- **Root:** `/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain`
+- **Roster:** `identity/lead9_roster.json` + `Xoras_agent_cards/` (frozen)
+- **Covenant:** `identity/working_covenant.md` (honor in working English; no extra overlay)
+- **Speak:** `bash ops/scripts/agent_speak.sh <maxx|clara|jarvis|vance> "text"` → Kokoro `capabilities/neural_models/kokoro-v1.0.onnx`
+- **One door:** `bash ops/scripts/ssot_door.sh`
+- **Barn:** `archives/the_barn/` (Elite Bow, Windows `C:` leak, root bats, retired Kokoro v0.19)
+- **Bins:** `scratch/hardware_bins/`
+- **Gemini:** `~/.gemini` is host cache. Not wired into `memory/`. See `memory/host_shells/GEMINI.md`
+- **Home pointer:** `~/.sovereign/CANONICAL.txt`
 
----
-
-## Identity & Core Sovereignty (Locked Program)
-
-- **Brand:** **Xoras** | Role: Operations Lead & Local SSOT Agent (Maxx)
-- **Primary Governance:** Anthony → Media Director → Discernment Bench (Vance, Maxx, Clara, John) → Specialists
-- **Lead 9 Roster:** `identity/lead9_roster.json` (seats, roles, triad-cycle speech governance)
-- **Git Repository:** `https://github.com/aoxendine3/SSOT_Agentic_Brain.git` (branch: `main`)
-- **Root Directory:** `/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain`
-- **Constitutional Catch Log:** [memory/catch_log/CATCH_LOG.md](file:///Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/catch_log/CATCH_LOG.md) (Sealed Entries 001–066)
-
-## Live Services & Metal Assets
-
-- **Port 8080:** Sovereign Rust Stage — `http://127.0.0.1:8080/customer_app.html`
-  - Real-time double-harmonic ocean wave (Three.js, zero vertex tearing)
-  - Word-by-word dynamic glowing teleprompter
-  - Dynamic 10-agent portrait projection
-- **Port 11434:** Local Ollama Bare Metal Daemon (`qwen2.5:14b`, `sovereign-jarvis:latest`, `nomic-embed-text`)
-- **Kernel Audio Mutex:** `capabilities/sovereign_systems_core/bin/sovereign_gatekeeper` (`GOLDEN-002`)
-- **NEON SIMD Vector Engine:** ARM64 768-D Dot Product Fabric (`GOLDEN-001`, 35.24ns)
-- **Neural Speech Synthesis:** Kokoro ONNX on Apple Silicon M4 with Clara Crisp Voice (`af_sarah`)
-
-## Primary Doors (Canonical Gateway Protocol)
-
-| Purpose | Canonical Command / Gateway | Protocol Invariant |
-|---------|-----------------------------|--------------------|
-| **Speak** | `bash ops/scripts/agent_speak.sh <agent> "<text>"` | **Log #065**: Routes exclusively through `media_director_agent.py` |
-| **Director** | `python3 ops/scripts/media_director_agent.py <agent> "<text>"` | Sole authorized broadcast sequencer; audits to `media_director_audit.jsonl` |
-| **Review** | `python3 ops/discernment/blackbox_review_engine.py` | **Log #066**: Blackbox gauntlet; admits only zero-flaw assets to Golden List |
-| **Stage** | `http://127.0.0.1:8080/customer_app.html` | Word-synced stage stream, zero placeholder text |
-| **Roundtable** | `python3 ops/scripts/full_team_deliberation_roundtable.py "<focus>"` | Lead-9 triad-cycle deliberation; no fewer than 3 speakers per dispatch |
-| **Prompt Intake** | `python3 ops/scripts/prompt_todo_bootstrap.py "<anthony_prompt>"` | Todo-first conversion of prompts into `memory/tasks/queue.json` |
-| **Boot Contract** | `bash ops/scripts/wake_contract.sh` | Authoritative data-driven 8-stage verification suite |
-
-## Daily Conversational Cadence (Non-Negotiable)
-
-- Every active day must create a journal entry in `memory/journals/agents/`.
-- Every entry includes: learning, blockers, one humor line, one dream-seed focus.
-- Conversational quality target: clear, human, direct, technically grounded, never robotic.
-
-## Certified Golden List Assets
-
-- **GOLDEN-001:** ARM64 NEON SIMD 768-D Vector Fabric (35.24ns latency)
-- **GOLDEN-002:** Kernel-Level Audio Mutex with Stale PID Self-Healing (`sovereign_gatekeeper`)
-- **Ledger:** [data_center/golden_list/GOLDEN_LIST.json](file:///Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/data_center/golden_list/GOLDEN_LIST.json) / [GOLDEN_LIST.md](file:///Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/data_center/golden_list/GOLDEN_LIST.md)
-
-## Architectural Topology: XORAS_OS
-
-- **Ring 0 (Immutable Sanctuary):** Read-only core root, certified binaries, constitutional catch log.
-- **Ring 1 (Ephemeral Compilation Sandbox):** RAM-cached compilation buffer for builds, Cargo, and npm. Zero core contamination.
-- **Validation Gate:** Vance's Blackbox Review Engine with cryptographic handshake before promotion.
-
-## Portability & Sovereignty Law
-
-- Work root lives strictly under `/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain`.
-- Zero cloud token burn for heavy computation: front-end chat is communication-only; all heavy tasks delegate to local off-grid models and shell workers.
-- Zero loss of data, ever: all merges governed by safe hash comparison prior to action.
-- Every speech event must engage the **Media Director Agent** (Log #065).
-
----
-
-_Next step: Dispatch through the Media Director or evaluate proposals through the Discernment Bench._
+Desktop is two items: this folder, and `Launch_Chrome_Debug.command`.

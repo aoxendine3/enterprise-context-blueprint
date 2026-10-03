@@ -1,12 +1,12 @@
 {
   "benchmark": "max_swarm_push",
-  "total_agents": 300,
-  "concurrency": 24,
-  "throughput_ops_sec": 134.56,
-  "avg_latency_ms": 30.842,
-  "p95_latency_ms": 130.744,
-  "assimilated": 255,
-  "blocked": 45,
-  "merkle_root": "f052f0a40b3f36804bb050a6e0edfc0ca33a9f29de558e9096daca7046e549fb",
-  "timestamp": 1789744422.7769816
+  "total_agents": 100000,
+  "concurrency": 512,
+  "throughput_ops_sec": 8201.81,
+  "avg_latency_ms": 55.973,
+  "p95_latency_ms": 112.412,
+  "assimilated": 85000,
+  "blocked": 15000,
+  "merkle_root": "ab94d40dedb9198375ccb41939fbec61fb0483e0fa2020252ec532866338472d",
+  "timestamp": 1790822367.315715
 }

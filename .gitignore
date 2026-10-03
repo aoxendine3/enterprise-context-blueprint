@@ -43,3 +43,7 @@ ops/scripts/fullscreen_ui/ast_nodes.json
 .sovereign/
 dist/
 ops/native/build/
+C:
+archives/the_barn/windows_path_leak/
+scratch/hardware_bins/
+archives/the_barn/models_retired/*.onnx

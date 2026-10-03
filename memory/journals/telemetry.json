@@ -1,8 +1,8 @@
 {
-  "last_boot": "2026-09-29T07:05:31Z",
-  "boot_count": 4,
-  "journal_entries": 2,
-  "catch_lines": 2168,
+  "last_boot": "2026-10-03T15:41:02Z",
+  "boot_count": 14,
+  "journal_entries": 3,
+  "catch_lines": 2672,
   "verification_suite": {
     "checks_executed": 8,
     "checks_passed": 8,

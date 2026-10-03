@@ -1,9 +1,9 @@
 {
   "_type": "https://in-toto.io/Statement/v1",
   "predicateType": "https://xoras.ai/evidence/blackbox_qualification/v1",
-  "timestamp": "2026-09-30T07:30:34Z",
+  "timestamp": "2026-10-01T01:33:29Z",
   "architecture": "Apple Silicon M4 Bare Metal",
-  "session_id": "blackbox_qualification_session_1790753434",
+  "session_id": "blackbox_qualification_session_1790818409",
   "governing_state_machine": "DISCOVERED -> UNDER_DELIBERATION -> ADVERSARIAL_TEST -> QUALIFIED / FAILED / UNRESOLVED",
   "subject": [
     {
@@ -11,35 +11,35 @@
       "digest": {
         "sha256": "ac1ef0d314c7556e58aaa973e543f18c01585e1831422b615bc38442c86adbf6"
       },
-      "merkle_root": "3fd89f61338c7d72b41e67d8ce3901dadf15dd7a28f9444a5d458252eeb05618"
+      "merkle_root": "22d33426b915162ab48b759da7d6908030aca74fc913a412791e7cbce8193922"
     },
     {
       "name": "BBQ-002",
       "digest": {
         "sha256": "f50ead66a33a010299036f71580deb78f3d538d58fcb5988f43f663e67047e6f"
       },
-      "merkle_root": "1e9e6b4064e146aad820e57abfcabd8a032fb2be92b416a081117deec2e257c6"
+      "merkle_root": "a91a7c48e821630bd3fbe8febdda2abe18845034f6eab83b7dd629414c2baf22"
     },
     {
       "name": "BBQ-003",
       "digest": {
         "sha256": "c829556b409c9321a38858eb302169b729596ef6d3767c10e69c8e1f06e2d3a1"
       },
-      "merkle_root": "e350eac2442557b7b6027c674c879f14167381b2db2a4c13c837c1597a5d8bc5"
+      "merkle_root": "493d34aa75a2fc9d821ad7b72cdcdcc1a262e533788b1cb5f0926051362c123d"
     },
     {
       "name": "BBQ-004",
       "digest": {
         "sha256": "7c992507eaf7cc9880855d965a8e209794a381785448ed4acaeff9cef9c8e822"
       },
-      "merkle_root": "bced31431ee3174ff97c70575a6239e48a02baeb48e01a4b716509f4339e6bb2"
+      "merkle_root": "77f0fb7d370fdbbee73c78827edb57b2316ddca5faa4a0da15a17a25502945c8"
     },
     {
       "name": "BBQ-005",
       "digest": {
         "sha256": "13e43fd5ec58b7535303c2935bf5702c5991ac55a5a60b2cbd17e633ab495d2d"
       },
-      "merkle_root": "99f448abd0707158831cab864ab71737084b11e17fb5fe31484425177043bb77"
+      "merkle_root": "ca8bcb6890ab9ec74afbfa946d8c8551211175c21b94d00d16710b3d8a0b0167"
     }
   ],
   "predicate": {

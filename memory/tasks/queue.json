@@ -679,6 +679,110 @@
       "status": "COMPLETED",
       "source": "anthony_prompt",
       "prompt_hash": "2b56a606e959"
+    },
+    {
+      "task_id": "PRM-20261001-173428-01",
+      "name": "Action: Red Team Vector: Infiltrate SSOT",
+      "created_at": "2026-10-01T17:34:28.999950+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "891a5c734240"
+    },
+    {
+      "task_id": "PRM-20261002-194754-01",
+      "name": "Action: No, Jarvis is not that.",
+      "created_at": "2026-10-02T19:47:54.420902+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "a716f5436d0e"
+    },
+    {
+      "task_id": "PRM-20261002-194754-02",
+      "name": "Action: Jarvis does not use Python.",
+      "created_at": "2026-10-02T19:47:54.420907+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "a716f5436d0e"
+    },
+    {
+      "task_id": "PRM-20261002-194754-03",
+      "name": "Action: Jarvis does not revert to native model bs.",
+      "created_at": "2026-10-02T19:47:54.420910+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "a716f5436d0e"
+    },
+    {
+      "task_id": "PRM-20261002-194754-04",
+      "name": "Action: Jarvis is better than that.",
+      "created_at": "2026-10-02T19:47:54.420911+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "a716f5436d0e"
+    },
+    {
+      "task_id": "PRM-20261002-194754-05",
+      "name": "Action: Jarvis is better than the basic model.",
+      "created_at": "2026-10-02T19:47:54.420913+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "a716f5436d0e"
+    },
+    {
+      "task_id": "PRM-20261002-194754-06",
+      "name": "Action: So, yeah, you're just a stupid model in a roleplay, playing around with my agents, showing disrespect and dishonor.",
+      "created_at": "2026-10-02T19:47:54.420914+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "a716f5436d0e"
+    },
+    {
+      "task_id": "PRM-20261002-194754-07",
+      "name": "Action: If one model is doing it, we fail.",
+      "created_at": "2026-10-02T19:47:54.420915+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "a716f5436d0e"
+    },
+    {
+      "task_id": "PRM-20261002-194754-08",
+      "name": "Action: It's got to be the agents, it's got to be the collective.",
+      "created_at": "2026-10-02T19:47:54.420916+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "a716f5436d0e"
+    },
+    {
+      "task_id": "PRM-20261002-194754-09",
+      "name": "Action: If not, do not pick that gauntlet up because a simple model cannot handle it.",
+      "created_at": "2026-10-02T19:47:54.420917+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "a716f5436d0e"
+    },
+    {
+      "task_id": "PRM-20261002-194754-10",
+      "name": "Action: And it cannot be the models in here.",
+      "created_at": "2026-10-02T19:47:54.420919+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "a716f5436d0e"
+    },
+    {
+      "task_id": "PRM-20261002-194754-11",
+      "name": "Action: It's got to be our models doing the work.",
+      "created_at": "2026-10-02T19:47:54.420920+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "a716f5436d0e"
+    },
+    {
+      "task_id": "PRM-20261002-194754-12",
+      "name": "Answer and resolve: Why do we even have a 26b if we're not going to use it",
+      "created_at": "2026-10-02T19:47:54.420921+00:00",
+      "status": "PENDING",
+      "source": "anthony_prompt",
+      "prompt_hash": "a716f5436d0e"
     }
   ]
 }

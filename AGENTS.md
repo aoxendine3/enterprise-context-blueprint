@@ -82,3 +82,9 @@ The rewritten `AGENTS.md` now reflects the **action‑first, self‑healing** co
 1. **Source Code Specification**: Core signal verification logic is expressed natively in `.sovra` files (`workspaces/sovra_lang/*.sovra`) and compiled to native dynamic libraries (`libcontext_bridge.dylib`).
 2. **Hardware Taint Lattice**: Inbound signals are marked `candidate<T>` (`0xDEAD0000`). Only mechanical invariant gates may promote signals to `decision<T>` (`0xBEAF0000`). Direct sink execution of tainted candidate signals is blocked at bare-metal level.
 
+
+## The Absolute Architectural Verification Law (Codified 2026-10-01)
+- **Mandatory Process**: Theoretical assumptions, shallow Python/Rust scripts, and legacy DB benchmarks are strictly banned as primary evidence. All architectural alignments, state transitions, and breakthrough claims must be proven via the **14-Gate Blackbox Gauntlet (Sovereign BBQ Falsification)**.
+- **Reporting Standard**: You will never rely on simple chat output for architectural proof. You must generate a **NASA-style Technical Memorandum (V&V)** and store it in `docs/audits/` (e.g., `XORAS_012_BBQ_GAUNTLET_VERIFICATION.md`).
+- **Legacy Substrate Rejection**: The 512-byte HexCell and the unified Merkle fabric explicitly reject and bypass SQLite, Postgres, and Raglight. You will not rely on these bottlenecks.
+- **Amnesia Prevention**: Do not revert to basic LLM behaviors, generic chat responses, or shortcut scripts. The 14-Gate Gauntlet is the only path to the `[0xBEAF]` taint and the Golden List.

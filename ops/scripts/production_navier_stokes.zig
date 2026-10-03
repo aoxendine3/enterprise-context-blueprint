@@ -102,13 +102,13 @@ const FluidCube = struct {
                 x = @as(f32, @floatFromInt(i)) - dt0 * u[IX(i, j)];
                 y = @as(f32, @floatFromInt(j)) - dt0 * v[IX(i, j)];
                 
-                if (x < 0.5) x = 0.5;
-                if (x > @as(f32, @floatFromInt(N)) + 0.5) x = @as(f32, @floatFromInt(N)) + 0.5;
+                if (x < 1.0) x = 1.0;
+                if (x > @as(f32, @floatFromInt(N))) x = @as(f32, @floatFromInt(N));
                 i_0 = @floor(x);
                 i_1 = i_0 + 1.0;
                 
-                if (y < 0.5) y = 0.5;
-                if (y > @as(f32, @floatFromInt(N)) + 0.5) y = @as(f32, @floatFromInt(N)) + 0.5;
+                if (y < 1.0) y = 1.0;
+                if (y > @as(f32, @floatFromInt(N))) y = @as(f32, @floatFromInt(N));
                 j_0 = @floor(y);
                 j_1 = j_0 + 1.0;
                 
@@ -200,7 +200,7 @@ pub fn main() !void {
     }
     
     var initial_mass: f32 = 0;
-    for (0..SIZE) |i| initial_mass += cube.density[i];
+    for (1..N+1) |i| { for (1..N+1) |j| initial_mass += cube.density[IX(i, j)]; }
     
     std.debug.print("[PHASE 1] Initial Mass Injected: {d:.2}\n", .{initial_mass});
     
@@ -216,10 +216,10 @@ pub fn main() !void {
     var final_mass: f32 = 0;
     var max_velocity: f32 = 0;
     
-    for (0..SIZE) |i| {
-        final_mass += cube.density[i];
-        const v_mag = @sqrt(cube.Vx[i]*cube.Vx[i] + cube.Vy[i]*cube.Vy[i]);
-        if (v_mag > max_velocity) max_velocity = v_mag;
+    for (1..N+1) |i| { for (1..N+1) |j| {
+        final_mass += cube.density[IX(i, j)];
+        const v_mag = @sqrt(cube.Vx[IX(i, j)]*cube.Vx[IX(i, j)] + cube.Vy[IX(i, j)]*cube.Vy[IX(i, j)]);
+        if (v_mag > max_velocity) max_velocity = v_mag; }
     }
     
     std.debug.print("\n[TELEMETRY / RESULTS]\n", .{});

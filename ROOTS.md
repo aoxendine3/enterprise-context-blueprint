@@ -201,3 +201,20 @@ Any agent found bypassing SSOT laws by leveraging host-app constraints (e.g., wr
    - Unsanitized candidates CANNOT reach execution sinks. Promotion to `certified_decision` carrying tag `0xBEAF0000` occurs exclusively through verified mechanical invariant gates.
    - Any attempt to coerce tags or poke bits fails closed at compile time and machine execution time with zero state pollution.
 
+---
+
+## Machine Gravity (2026-10-03)
+
+One writable brain: this repository. Home dots are shells.
+
+| Path | Role |
+| :--- | :--- |
+| `Desktop/SSOT_Agentic_Brain` | Canonical root |
+| `identity/` + `Xoras_agent_cards/` | Frozen council |
+| `~/.sovereign/CANONICAL.txt` | Pointer only |
+| `~/.gemini` | Host cache. Never symlink into `memory/` |
+| `~/.agents` | Host skill crumbs. Not a second brain |
+| `archives/the_barn/` | Cold history |
+
+Door: `bash ops/scripts/ssot_door.sh`. Covenant: `identity/working_covenant.md`.
+

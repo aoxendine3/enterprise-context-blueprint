@@ -27,20 +27,14 @@ try:
 except Exception as e:
     print(f"[MAXX] Error writing settings: {e}")
 
-# 2. SYMLINK BRAIN TO SSOT
+# 2. GEMINI IS A HOST CACHE. Never pull it into SSOT memory.
 ssot_mem = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory"
-brain_src = os.path.expanduser("~/.gemini/antigravity/brain")
-know_src = os.path.expanduser("~/.gemini/antigravity/knowledge")
-
-brain_link = os.path.join(ssot_mem, "gemini_brain_symlink")
-if not os.path.exists(brain_link) and os.path.exists(brain_src):
-    os.symlink(brain_src, brain_link)
-    print(f"[MAXX] Hidden Brain Relocated -> {brain_link}")
-
-know_link = os.path.join(ssot_mem, "gemini_knowledge_symlink")
-if not os.path.exists(know_link) and os.path.exists(know_src):
-    os.symlink(know_src, know_link)
-    print(f"[MAXX] Hidden Knowledge Relocated -> {know_link}")
+for name in ("gemini_brain_symlink", "gemini_knowledge_symlink"):
+    link = os.path.join(ssot_mem, name)
+    if os.path.islink(link):
+        os.remove(link)
+        print(f"[MAXX] Cut inverted host symlink: {link}")
+print("[MAXX] Gemini stays at ~/.gemini — not wired into SSOT.")
 
 # 3. AGENT.PY AUDIT & QUARANTINE
 print("\n[JARVIS] Sweeping ~/.gemini for foreign or untracked agent binaries...")
