@@ -16,7 +16,7 @@ The October 2026 research sprint revealed three open fronts in agentic computing
 *   *Mem++ (Oct 1)* proves that non-destructive memory, which defers distillation to read-time, beats baselines by 8–13 points.
 
 **Xoras OMEGA Integration:** 
-The Xoras Merkle DAG perfectly aligns with both architectures. We use the **MemFit** approach for the `memory_edges` ingestion—writing verbatim payload hashes to Postgres without invoking the LLM, reducing operational token burn to zero. We use the **Mem++** approach during DOJO rehydration, pulling the raw uncompressed context and only distilling the 2.29% seed *during read-time injection*, ensuring zero historical context is lost.
+Our DAG takes a divergent path. MemFit is a retrieval optimization; we optimize at the Zero-Copy injection layer. Mem++ stores documents whole; our protocol stores the compressed 2.29% seed. We are an opposing, highly specialized architecture.
 
 ## 3. Auditability: Agent Flight Recorder & Actions with Receipts
 **Market Context:**

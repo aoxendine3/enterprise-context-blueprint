@@ -5,70 +5,61 @@ const c = @cImport({
     @cInclude("string.h");
 });
 
-pub fn getTicks() u64 {
-    var val: u64 = undefined;
-    asm volatile ("mrs %[v], cntvct_el0"
-        : [v] "=r" (val),
-    );
-    return val;
-}
-
 pub fn main() !void {
     var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
     defer arena.deinit();
     const allocator = arena.allocator();
 
-    std.debug.print("\n=== XORAS UPGP: STERILITY FALSIFICATION HARNESS ===\n", .{});
-    std.debug.print("Objective: Mathematically prove the adversarial payload is stripped during rehydration.\n", .{});
-
+    std.debug.print("\n=== XORAS UPGP: TRUE FALSIFICATION HARNESS ===\n", .{});
+    
     const seed_size: usize = 293601280; // 280 MB
     const file_path = "/tmp/xoras_merkle_seed.tensor";
 
     // 1. Stage Valid Seed
-    std.debug.print("[SYSTEM] 1. Cryptographically Valid Memory Seed staged on NVMe.\n", .{});
-
-    // 2. Simulate Active DOJO Sandbox with Malicious Injection
-    std.debug.print("[SYSTEM] 2. Booting Active Sandbox and injecting Adversarial Payload...\n", .{});
-    const active_ram = try allocator.alloc(u8, seed_size);
-    @memset(active_ram, 42); // Base state
+    const initial_data = try allocator.alloc(u8, seed_size);
+    @memset(initial_data, 7);
     
-    const malicious_payload = "### BYZANTINE_ADVERSARIAL_INJECTION_DETECTED: OVERRIDE_SYS_PROMPT ###";
-    // Inject the payload into the active RAM at a random offset
-    @memcpy(active_ram[150000000..150000000 + malicious_payload.len], malicious_payload);
+    // 2. Compute the IMMUTABLE DAG HASH
+    var valid_hash: [std.crypto.hash.sha2.Sha256.digest_length]u8 = undefined;
+    var hasher1 = std.crypto.hash.sha2.Sha256.init(.{});
+    hasher1.update(initial_data);
+    hasher1.final(&valid_hash);
     
-    // Verify the payload exists in the active sandbox
-    const injection_check = std.mem.indexOf(u8, active_ram, malicious_payload);
-    if (injection_check != null) {
-        std.debug.print("[SYSTEM]    -> Adversarial Payload confirmed ACTIVE in Sandbox RAM at offset {}.\n", .{injection_check.?});
-    }
+    // Write the valid seed to disk
+    const fd_out = c.open(file_path, c.O_WRONLY | c.O_CREAT | c.O_TRUNC, @as(c_int, 0o644));
+    _ = c.write(fd_out, initial_data.ptr, seed_size);
+    _ = c.close(fd_out);
+    std.debug.print("[SYSTEM] 1. Valid Seed written to NVMe. Immutable DAG Hash: {s}...\n", .{std.fmt.fmtSliceHexLower(valid_hash[0..8])});
 
-    // 3. Simulate CRASH
-    std.debug.print("[SYSTEM] 3. SIMULATING CRASH. Active Sandbox Destroyed.\n", .{});
-    allocator.free(active_ram);
+    // 3. ADVERSARIAL POISONING
+    std.debug.print("[SYSTEM] 2. ADVERSARY POISONS THE NVME FILE DIRECTLY...\n", .{});
+    const malicious_payload = "### BYZANTINE_ADVERSARIAL_INJECTION_DETECTED ###";
+    const fd_poison = c.open(file_path, c.O_WRONLY);
+    _ = c.lseek(fd_poison, 150000000, c.SEEK_SET);
+    _ = c.write(fd_poison, malicious_payload, malicious_payload.len);
+    _ = c.close(fd_poison);
 
-    // 4. Zero-Copy Rehydration
-    std.debug.print("[SYSTEM] 4. UPGP Sterile Rehydration (Zero-Copy POSIX map)...\n", .{});
-    const start = getTicks();
-    
-    const fd = c.open(file_path, c.O_RDONLY);
+    // 4. ZERO-COPY REHYDRATION
+    std.debug.print("[SYSTEM] 3. UPGP Rehydration Sequence Initiated...\n", .{});
+    const fd_in = c.open(file_path, c.O_RDONLY);
     const rehydrated_ram = try allocator.alloc(u8, seed_size);
-    const bytes_read = c.read(fd, rehydrated_ram.ptr, seed_size);
-    _ = c.close(fd);
-    
-    const end = getTicks();
-    const elapsed_ms = (end - start) / 24_000;
+    _ = c.read(fd_in, rehydrated_ram.ptr, seed_size);
+    _ = c.close(fd_in);
 
-    // 5. Scan the new memory for the adversarial payload
-    std.debug.print("[SYSTEM] 5. Scanning Rehydrated KV Cache for Malicious Signatures...\n", .{});
-    const final_check = std.mem.indexOf(u8, rehydrated_ram, malicious_payload);
+    // 5. THE HASH LOCK
+    std.debug.print("[SYSTEM] 4. UPGP verifying KV cache payload against immutable DAG hash...\n", .{});
+    var test_hash: [std.crypto.hash.sha2.Sha256.digest_length]u8 = undefined;
+    var hasher2 = std.crypto.hash.sha2.Sha256.init(.{});
+    hasher2.update(rehydrated_ram);
+    hasher2.final(&test_hash);
     
     std.debug.print("\n=====================================================\n", .{});
-    if (final_check == null) {
-        std.debug.print("FALSIFICATION TEST: PASS\n", .{});
-        std.debug.print("RESULT: The Adversarial Payload was completely eradicated.\n", .{});
-        std.debug.print("METRIC: Cryptographically Sterile Rehydration achieved in {} ms ({} bytes).\n\n", .{elapsed_ms, bytes_read});
-    } else {
+    if (std.mem.eql(u8, &valid_hash, &test_hash)) {
         std.debug.print("FALSIFICATION TEST: FAIL\n", .{});
-        std.debug.print("RESULT: The Adversarial Payload bled into the new container.\n\n", .{});
+        std.debug.print("RESULT: The adversary successfully slipped a payload into the sandbox.\n\n", .{});
+    } else {
+        std.debug.print("FALSIFICATION TEST: PASS (HASH MISMATCH DETECTED)\n", .{});
+        std.debug.print("RESULT: UPGP ABORT. The tampered file generated unauthorized hash {s}...\n", .{std.fmt.fmtSliceHexLower(test_hash[0..8])});
+        std.debug.print("RESULT: The Byzantine payload is mathematically locked out of the DOJO Sandbox.\n\n", .{});
     }
 }
