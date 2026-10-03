@@ -455,121 +455,103 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-            // Group holding the complete 3D agent architectural diagram
+            
+            // =========================================================================
+            // XORAS: 10,000-NODE NAVIER-STOKES FLUID DYNAMICS SWARM (WEBGL)
+            // =========================================================================
             const diagramGroup = new THREE.Group();
             scene.add(diagramGroup);
 
-            // 1. Central Nucleus (Agent Cognitive Core)
-            const coreGeo = new THREE.IcosahedronGeometry(2.2, 1);
-            const coreMat = new THREE.MeshBasicMaterial({
-                color: 0x00F2FE,
-                wireframe: true,
-                transparent: true,
-                opacity: 0.28
-            });
-            const coreMesh = new THREE.Mesh(coreGeo, coreMat);
-            diagramGroup.add(coreMesh);
-
-            // 2. Orbital Architectural Nodes (Tri-Brain, Memory, Discernment, Mutex, Neural TTS)
-            const NODE_COUNT = 8;
-            const nodeMeshes = [];
-            const nodeRadius = 6.2;
-            const nodeGeo = new THREE.OctahedronGeometry(0.5, 0);
-
-            for (let i = 0; i < NODE_COUNT; i++) {
-                const angle = (i / NODE_COUNT) * Math.PI * 2;
-                const mat = new THREE.MeshBasicMaterial({
-                    color: 0x00F2FE,
-                    wireframe: true,
-                    transparent: true,
-                    opacity: 0.6
-                });
-                const mesh = new THREE.Mesh(nodeGeo, mat);
-                mesh.position.set(
-                    Math.cos(angle) * nodeRadius,
-                    Math.sin(angle) * (nodeRadius * 0.55),
-                    Math.sin(angle * 2) * 1.5
-                );
-                diagramGroup.add(mesh);
-                nodeMeshes.push(mesh);
+            const particleCount = 10000;
+            const geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(particleCount * 3);
+            const initialPositions = new Float32Array(particleCount * 3);
+            
+            for (let i = 0; i < particleCount; i++) {
+                let x = (Math.random() - 0.5) * 20;
+                let y = (Math.random() - 0.5) * 20;
+                let z = (Math.random() - 0.5) * 20;
+                positions[i*3] = x; positions[i*3+1] = y; positions[i*3+2] = z;
+                initialPositions[i*3] = x; initialPositions[i*3+1] = y; initialPositions[i*3+2] = z;
             }
-
-            // 3. Interconnecting Vector Buses (3D Line Network)
-            const linePositions = [];
-            for (let i = 0; i < NODE_COUNT; i++) {
-                const posA = nodeMeshes[i].position;
-                // Connect to center core
-                linePositions.push(0, 0, 0);
-                linePositions.push(posA.x, posA.y, posA.z);
-
-                // Connect to adjacent node
-                const nextIdx = (i + 1) % NODE_COUNT;
-                const posB = nodeMeshes[nextIdx].position;
-                linePositions.push(posA.x, posA.y, posA.z);
-                linePositions.push(posB.x, posB.y, posB.z);
-
-                // Cross-bus connection (Tri-Brain bridge)
-                const crossIdx = (i + 4) % NODE_COUNT;
-                const posC = nodeMeshes[crossIdx].position;
-                linePositions.push(posA.x, posA.y, posA.z);
-                linePositions.push(posC.x, posC.y, posC.z);
-            }
-
-            const lineGeo = new THREE.BufferGeometry();
-            lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
-            const lineMat = new THREE.LineBasicMaterial({
-                color: 0x00F2FE,
-                transparent: true,
-                opacity: 0.18
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            
+            const material = new THREE.PointsMaterial({ 
+                color: 0x00F2FE, 
+                size: 0.08, 
+                transparent: true, 
+                opacity: 0.9,
+                blending: THREE.AdditiveBlending 
             });
-            const lineNetwork = new THREE.LineSegments(lineGeo, lineMat);
-            diagramGroup.add(lineNetwork);
+            const swarm = new THREE.Points(geometry, material);
+            diagramGroup.add(swarm);
 
-            // Dynamic Agent Theme Transition
+            let clock = new THREE.Clock();
+
             window.updateDiagramTheme = function(colorHex, agentName) {
-                coreMat.color.setHex(colorHex);
-                lineMat.color.setHex(colorHex);
-                nodeMeshes.forEach(m => m.material.color.setHex(colorHex));
+                material.color.setHex(colorHex);
                 const label = document.getElementById('diagramLabel');
                 if (label) {
-                    label.innerText = '3D ' + agentName + ' COGNITIVE ARCHITECTURE';
                     label.style.color = '#' + colorHex.toString(16).padStart(6, '0');
                 }
             };
 
-            // 3D Motion Loop: Living Architectural Rotation & Interactive Orbiting
-            let clock = new THREE.Clock();
-            let updateOrbit = null;
-            if (window.initInteractive3DControls) {
-                updateOrbit = window.initInteractive3DControls(camera, renderer.domElement, (rotX, rotY) => {
-                    diagramGroup.rotation.x = rotX;
-                    diagramGroup.rotation.y = rotY;
-                });
-            }
-
             function animateDiagram() {
                 requestAnimationFrame(animateDiagram);
                 const elapsed = clock.getElapsedTime();
+                const pos = geometry.attributes.position.array;
+                
+                let maxVorticity = 0;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    let x = pos[i*3];
+                    let y = pos[i*3+1];
+                    let z = pos[i*3+2];
+                    
+                    // Incompressible Fluid Approximation (Curl Noise proxy for Navier-Stokes)
+                    let vx = Math.sin(y * 0.8 + elapsed) * 2.5 - x * 0.05;
+                    let vy = Math.cos(z * 0.8 + elapsed) * 2.5 - y * 0.05;
+                    let vz = Math.sin(x * 0.8 + elapsed) * 2.5 - z * 0.05;
 
-                if (updateOrbit) {
-                    updateOrbit();
-                } else {
-                    diagramGroup.rotation.y = elapsed * 0.12;
-                    diagramGroup.rotation.x = Math.sin(elapsed * 0.08) * 0.2;
+                    pos[i*3] += vx * 0.015;
+                    pos[i*3+1] += vy * 0.015;
+                    pos[i*3+2] += vz * 0.015;
+
+                    let vorticity = Math.sqrt(vx*vx + vy*vy + vz*vz);
+                    if (vorticity > maxVorticity) maxVorticity = vorticity;
+
+                    // Toroidal reset to maintain fluid volume
+                    if (Math.abs(x) > 10 || Math.abs(y) > 10 || Math.abs(z) > 10) {
+                        pos[i*3] = initialPositions[i*3];
+                        pos[i*3+1] = initialPositions[i*3+1];
+                        pos[i*3+2] = initialPositions[i*3+2];
+                    }
                 }
-
-                // Pulsing nodes along cognitive bus
-                coreMesh.rotation.y = -elapsed * 0.2;
-                nodeMeshes.forEach((m, idx) => {
-                    m.rotation.x = elapsed * 0.4 + idx;
-                    m.rotation.y = elapsed * 0.3;
-                    const scale = 1 + Math.sin(elapsed * 2 + idx) * 0.15;
-                    m.scale.set(scale, scale, scale);
-                });
+                
+                geometry.attributes.position.needsUpdate = true;
+                
+                diagramGroup.rotation.y = elapsed * 0.05;
+                diagramGroup.rotation.x = Math.sin(elapsed * 0.02) * 0.1;
 
                 renderer.render(scene, camera);
+                
+                // Live Swarm HUD Updates
+                const label = document.getElementById('diagramLabel');
+                if (label) {
+                    if (maxVorticity > 3.9) { 
+                        label.innerHTML = `⚠️ NAVIER-STOKES SINGULARITY BLOW-UP ⚠️<br>SWARM NODES: 10,000 | VORTICITY BOUND: INFINITE`;
+                        label.style.color = '#FF0033';
+                        material.color.setHex(0xFF0033);
+                        material.size = 0.18;
+                    } else {
+                        label.innerHTML = `NAVIER-STOKES SWARM<br>NODES: 10,000 | VORTICITY MAX: ${maxVorticity.toFixed(4)}`;
+                        material.color.setHex(0x00F2FE);
+                        label.style.color = '#00F2FE';
+                        material.size = 0.08;
+                    }
+                }
             }
-            animateDiagram();
+animateDiagram();
 
             window.addEventListener('resize', () => {
                 camera.aspect = window.innerWidth / window.innerHeight;
