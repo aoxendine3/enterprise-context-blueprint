@@ -28,7 +28,7 @@ pub fn main() !void {
     std.debug.print("Objective: Millennium Prize - Smoothness vs Singularity\n", .{});
     std.debug.print("Architecture: Zero-Overhead Active Graph Compiler (Sovra)\n\n", .{});
 
-    var claims = try allocator.alloc(AgentClaim, SWARM_SIZE);
+    const claims = try allocator.alloc(AgentClaim, SWARM_SIZE);
     
     // 1. Swarm Execution Phase
     std.debug.print("[SYSTEM] Booting {} parallel DOJO Sandboxes...\n", .{SWARM_SIZE});
