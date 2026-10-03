@@ -46,7 +46,6 @@ pub fn main() !void {
     const DT: f64 = 0.001;
     const TICKS: usize = 10_000_000;
     
-    
     var t: usize = 0;
     while (t < TICKS) : (t += 1) {
         const w = tensor.vorticity_3d;
@@ -59,7 +58,6 @@ pub fn main() !void {
             break;
         }
     }
-    
     
     std.debug.print("[TELEMETRY]\n", .{});
     std.debug.print("  - Ticks Executed: {}\n", .{t});
@@ -80,5 +78,7 @@ pub fn main() !void {
     hasher.update(std.mem.asBytes(&tensor));
     hasher.final(&hash_out);
     
-    std.debug.print("  - State SHA-256: {}\n\n", .{std.fmt.hex(hash_out)});
+    std.debug.print("  - State SHA-256: ", .{});
+    for (hash_out) |b| std.debug.print("{x:0>2}", .{b});
+    std.debug.print("\n\n", .{});
 }
