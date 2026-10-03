@@ -105,12 +105,12 @@ const FluidCube = struct {
                 if (x < 0.5) x = 0.5;
                 if (x > @as(f32, @floatFromInt(N)) + 0.5) x = @as(f32, @floatFromInt(N)) + 0.5;
                 i_0 = @floor(x);
-                i_1 = i0 + 1.0;
+                i_1 = i_0 + 1.0;
                 
                 if (y < 0.5) y = 0.5;
                 if (y > @as(f32, @floatFromInt(N)) + 0.5) y = @as(f32, @floatFromInt(N)) + 0.5;
                 j_0 = @floor(y);
-                j_1 = j0 + 1.0;
+                j_1 = j_0 + 1.0;
                 
                 s1 = x - i_0;
                 s0 = 1.0 - s1;
