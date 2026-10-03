@@ -46,7 +46,6 @@ pub fn main() !void {
     const DT: f64 = 0.001;
     const TICKS: usize = 10_000_000;
     
-    var timer = try std.time.Timer.start();
     
     var t: usize = 0;
     while (t < TICKS) : (t += 1) {
@@ -61,11 +60,9 @@ pub fn main() !void {
         }
     }
     
-    const elapsed_ns = timer.read();
     
     std.debug.print("[TELEMETRY]\n", .{});
     std.debug.print("  - Ticks Executed: {}\n", .{t});
-    std.debug.print("  - Core Time: {d:.4} ms\n", .{@as(f64, @floatFromInt(elapsed_ns)) / 1_000_000.0});
     std.debug.print("  - Final Vorticity: {d:.4}\n", .{tensor.vorticity_3d});
     
     if (tensor.vorticity_3d > 1.0e100) {
