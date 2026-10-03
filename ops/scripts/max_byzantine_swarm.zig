@@ -57,7 +57,6 @@ pub fn main() !void {
     
     // Phase 2: Execute PBFT Voting (Mode / Consensus Extraction)
     std.debug.print("[PHASE 2] Executing O(N) Distributed State Consensus...\n", .{});
-    var timer = try std.time.Timer.start();
     
     // Fast single-pass voting map
     var vote_map = std.AutoHashMap(u64, u32).init(allocator);
@@ -81,12 +80,10 @@ pub fn main() !void {
         }
     }
     
-    const elapsed_ns = timer.read();
     const consensus_mass = @as(f64, @bitCast(consensus_mass_bits));
     const consensus_ratio = (@as(f32, @floatFromInt(max_votes)) / @as(f32, @floatFromInt(SWARM_SIZE))) * 100.0;
     
     std.debug.print("[TELEMETRY / RESULTS]\n", .{});
-    std.debug.print("-> PBFT Consensus Time: {d:.2} ms\n", .{@as(f64, @floatFromInt(elapsed_ns)) / 1_000_000.0});
     std.debug.print("-> Network Agreement: {d:.2}%\n", .{consensus_ratio});
     std.debug.print("-> Final Approved State (Mass): {d:.2}\n", .{consensus_mass});
     
