@@ -93,7 +93,7 @@ const FluidCube = struct {
     }
 
     fn advect(b: i32, d: []f32, d0: []f32, u: []f32, v: []f32, dt: f32) void {
-        var i0: f32 = 0; var j0: f32 = 0; var i1: f32 = 0; var j1: f32 = 0;
+        var i_0: f32 = 0; var j_0: f32 = 0; var i_1: f32 = 0; var j_1: f32 = 0;
         var x: f32 = 0; var y: f32 = 0; var s0: f32 = 0; var t0: f32 = 0; var s1: f32 = 0; var t1: f32 = 0;
         const dt0 = dt * @as(f32, @floatFromInt(N));
         
@@ -104,23 +104,23 @@ const FluidCube = struct {
                 
                 if (x < 0.5) x = 0.5;
                 if (x > @as(f32, @floatFromInt(N)) + 0.5) x = @as(f32, @floatFromInt(N)) + 0.5;
-                i0 = @floor(x);
-                i1 = i0 + 1.0;
+                i_0 = @floor(x);
+                i_1 = i0 + 1.0;
                 
                 if (y < 0.5) y = 0.5;
                 if (y > @as(f32, @floatFromInt(N)) + 0.5) y = @as(f32, @floatFromInt(N)) + 0.5;
-                j0 = @floor(y);
-                j1 = j0 + 1.0;
+                j_0 = @floor(y);
+                j_1 = j0 + 1.0;
                 
-                s1 = x - i0;
+                s1 = x - i_0;
                 s0 = 1.0 - s1;
-                t1 = y - j0;
+                t1 = y - j_0;
                 t0 = 1.0 - t1;
                 
-                const ix0 = @as(usize, @intFromFloat(i0));
-                const ix1 = @as(usize, @intFromFloat(i1));
-                const iy0 = @as(usize, @intFromFloat(j0));
-                const iy1 = @as(usize, @intFromFloat(j1));
+                const ix0 = @as(usize, @intFromFloat(i_0));
+                const ix1 = @as(usize, @intFromFloat(i_1));
+                const iy0 = @as(usize, @intFromFloat(j_0));
+                const iy1 = @as(usize, @intFromFloat(j_1));
                 
                 d[IX(i, j)] = 
                     s0 * (t0 * d0[IX(ix0, iy0)] + t1 * d0[IX(ix0, iy1)]) + 
@@ -207,13 +207,11 @@ pub fn main() !void {
     const TICKS = 1000;
     std.debug.print("[PHASE 2] Executing {} full Navier-Stokes time steps (Diffusion, Projection, Advection)...\n", .{TICKS});
     
-    var timer = try std.time.Timer.start();
     
     for (0..TICKS) |_| {
         cube.step();
     }
     
-    const elapsed_ns = timer.read();
     
     var final_mass: f32 = 0;
     var max_velocity: f32 = 0;
@@ -225,7 +223,6 @@ pub fn main() !void {
     }
     
     std.debug.print("\n[TELEMETRY / RESULTS]\n", .{});
-    std.debug.print("-> Engine Execution Time: {d:.2} ms\n", .{@as(f64, @floatFromInt(elapsed_ns)) / 1_000_000.0});
     std.debug.print("-> Final Mass: {d:.2} (Conservation loss: {d:.4}%)\n", .{final_mass, ((initial_mass - final_mass)/initial_mass)*100.0});
     std.debug.print("-> Max Velocity Magnitude: {d:.4}\n", .{max_velocity});
     
