@@ -1,0 +1,5 @@
+# GitHub Sponsors & Payment Integration Configuration
+# GitHub natively displays the "Sponsor this project" button on the repo homepage
+
+github: [aoxendine3]
+custom: ["https://buy.stripe.com/aoxendine3_sovereign"]

@@ -105,6 +105,16 @@ SOVRA is a **structural consistency verifier**, not an oracle or knowledge retri
 
 ---
 
+## Sponsorship & Support
+
+If SOVRA is helpful in your evaluation pipelines and you would like to support ongoing cross-platform infrastructure maintenance:
+
+- **GitHub Sponsors**: [github.com/sponsors/aoxendine3](https://github.com/sponsors/aoxendine3)
+- **Stripe Payment Link**: [buy.stripe.com/aoxendine3_sovereign](https://buy.stripe.com/aoxendine3_sovereign)
+- **Commercial Tiers**: See [docs/COMMERCIAL_PRICING_TIERS.md](docs/COMMERCIAL_PRICING_TIERS.md) for enterprise integration options.
+
+---
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
