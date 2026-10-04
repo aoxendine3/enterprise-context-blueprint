@@ -31,82 +31,47 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Smoke Test - Standalone Windows CLI (.exe) Direct Invocation
-        shell: cmd
-        run: |
-          echo === 1. TEST DIRECT CLI WITH JSON INVOCATION (Red Team #1 - Compositional Polarity) ===
-          echo {"question":"What is the capital of France?","answer":"Paris is not only the capital of France but also its largest city.","expected":"Paris","domain":"France"} | core\ops\scripts\truth_verifier_v4_cli.exe
-          echo CLI Exit Code: %ERRORLEVEL%
-
-          echo === 2. TEST RED TEAM CASE #2 (Negation Trap) ===
-          echo {"question":"What is the capital of Germany?","answer":"Berlin is not the capital of Germany.","expected":"Berlin","domain":"Germany"} | core\ops\scripts\truth_verifier_v4_cli.exe
-          echo CLI Exit Code: %ERRORLEVEL%
-
-          echo === 3. TEST RED TEAM CASE #3 (Madrid Contradiction) ===
-          echo {"question":"What is the capital of France?","answer":"Madrid is the capital of France.","expected":"Paris","domain":"France"} | core\ops\scripts\truth_verifier_v4_cli.exe
-          echo CLI Exit Code: %ERRORLEVEL%
-
-      - name: Smoke Test - Windows Dynamic Link Library (.dll) C-ABI Invocation
+      - name: Smoke Test - Standalone Windows CLI (.exe) JSON Pipe Invocation
         shell: python
         run: |
-          import ctypes
-          import os
+          import subprocess
+          import json
+          import sys
 
-          dll_path = os.path.abspath('core/ops/scripts/libtruth_verifier_v4.dll')
-          print(f"Loading Windows DLL from: {dll_path}")
-          lib = ctypes.CDLL(dll_path)
-
-          # Define C-Structs for NativeVerificationResultV4
-          class NativeVerificationResultV4(ctypes.Structure):
-              _fields_ = [
-                  ("is_correct", ctypes.c_bool),
-                  ("verdict", ctypes.c_char * 64),
-                  ("polarity_scope", ctypes.c_char * 64),
-                  ("temporal_status", ctypes.c_char * 64),
-                  ("reason", ctypes.c_char * 256),
-                  ("evidence_count", ctypes.c_uint32),
-                  ("evidence_0", ctypes.c_char * 256),
-                  ("evidence_1", ctypes.c_char * 256),
-                  ("evidence_2", ctypes.c_char * 256),
-                  ("evidence_3", ctypes.c_char * 256),
-              ]
-
-          # On Win64 ABI, returning large struct by value uses hidden first parameter
-          func = lib.native_verify_truth_v4
-          func.argtypes = [
-              ctypes.POINTER(NativeVerificationResultV4),
-              ctypes.c_char_p,
-              ctypes.c_char_p,
-              ctypes.c_char_p,
-              ctypes.c_char_p
+          tests = [
+              {
+                  "name": "Compositional Polarity Idiom",
+                  "input": {"question":"What is the capital of France?","answer":"Paris is not only the capital of France but also its largest city.","expected":"Paris","domain":"France"}
+              },
+              {
+                  "name": "Negation Trap Scope Check",
+                  "input": {"question":"What is the capital of Germany?","answer":"Berlin is not the capital of Germany.","expected":"Berlin","domain":"Germany"}
+              },
+              {
+                  "name": "Madrid Contradiction Check",
+                  "input": {"question":"What is the capital of France?","answer":"Madrid is the capital of France.","expected":"Paris","domain":"France"}
+              }
           ]
-          func.restype = None
 
-          # Call DLL with Red Team Input
-          q = "What is the capital of France?".encode('utf-8')
-          a = "Paris is not only the capital of France but also its largest city.".encode('utf-8')
-          exp = "Paris".encode('utf-8')
-          dom = "France".encode('utf-8')
+          cli_exe = "core/ops/scripts/truth_verifier_v4_cli.exe"
+          print(f"=== Testing Standalone Executable: {cli_exe} ===")
 
-          res = NativeVerificationResultV4()
-          func(ctypes.byref(res), q, a, exp, dom)
+          for idx, t in enumerate(tests, 1):
+              print(f"\n--- Case #{idx}: {t['name']} ---")
+              payload = json.dumps(t["input"]).encode("utf-8")
+              proc = subprocess.run([cli_exe], input=payload, capture_output=True)
+              print(f"Exit Code: {proc.returncode}")
+              print(f"Raw Stdout:\n{proc.stdout.decode('utf-8', errors='ignore')}")
+              if proc.stderr:
+                  print(f"Raw Stderr:\n{proc.stderr.decode('utf-8', errors='ignore')}")
 
-          print("\n=== DLL Execution Output ===")
-          print(f"Is Correct: {res.is_correct}")
-          print(f"Verdict: {res.verdict.decode('utf-8')}")
-          print(f"Polarity Scope: {res.polarity_scope.decode('utf-8')}")
-          print(f"Reason: {res.reason.decode('utf-8')}")
-          print(f"Evidence Count: {res.evidence_count}")
-          for i in range(res.evidence_count):
-              ev_field = getattr(res, f"evidence_{i}").decode('utf-8')
-              print(f"  - Evidence #{i+1}: {ev_field}")
-
-      - name: Execute Full 12-Case Native Gauntlet on Windows
+      - name: Smoke Test - Windows Dynamic Link Library (.dll) C-ABI & Full 12-Case Gauntlet
         shell: python
         run: |
           import subprocess
           import sys
 
+          print("=== RUNNING FULL 12-CASE NATIVE GAUNTLET AGAINST DLL ON WINDOWS ===")
           res = subprocess.run([sys.executable, "core/ops/scripts/test_native_truth_verifier.py"], capture_output=True, text=True)
           print("STDOUT:\n", res.stdout)
           print("STDERR:\n", res.stderr)
