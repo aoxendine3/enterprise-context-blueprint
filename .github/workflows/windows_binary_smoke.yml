@@ -32,36 +32,24 @@ jobs:
           python-version: '3.12'
 
       - name: Smoke Test - Standalone Windows CLI (.exe) Direct Invocation
-        shell: powershell
+        shell: cmd
         run: |
-          Write-Host "=== 1. TEST DIRECT CLI HELP / NO ARGS ==="
-          .\core\ops\scripts\truth_verifier_v4_cli.exe
-          $cliExitCode = $LASTEXITCODE
-          Write-Host "CLI Exit Code: $cliExitCode"
+          echo === 1. TEST DIRECT CLI WITH JSON INVOCATION (Red Team #1 - Compositional Polarity) ===
+          echo {"question":"What is the capital of France?","answer":"Paris is not only the capital of France but also its largest city.","expected":"Paris","domain":"France"} | core\ops\scripts\truth_verifier_v4_cli.exe
+          echo CLI Exit Code: %ERRORLEVEL%
 
-          Write-Host "=== 2. TEST RED TEAM CASE #1 (Compositional Polarity) ==="
-          $jsonInput1 = '{"question":"What is the capital of France?","answer":"Paris is not only the capital of France but also its largest city.","expected":"Paris","domain":"France"}'
-          $output1 = $jsonInput1 | .\core\ops\scripts\truth_verifier_v4_cli.exe
-          Write-Host "Output 1: $output1"
-          Write-Host "Exit Code 1: $LASTEXITCODE"
+          echo === 2. TEST RED TEAM CASE #2 (Negation Trap) ===
+          echo {"question":"What is the capital of Germany?","answer":"Berlin is not the capital of Germany.","expected":"Berlin","domain":"Germany"} | core\ops\scripts\truth_verifier_v4_cli.exe
+          echo CLI Exit Code: %ERRORLEVEL%
 
-          Write-Host "=== 3. TEST RED TEAM CASE #2 (Negation Trap) ==="
-          $jsonInput2 = '{"question":"What is the capital of Germany?","answer":"Berlin is not the capital of Germany.","expected":"Berlin","domain":"Germany"}'
-          $output2 = $jsonInput2 | .\core\ops\scripts\truth_verifier_v4_cli.exe
-          Write-Host "Output 2: $output2"
-          Write-Host "Exit Code 2: $LASTEXITCODE"
-
-          Write-Host "=== 4. TEST RED TEAM CASE #3 (Madrid Contradiction) ==="
-          $jsonInput3 = '{"question":"What is the capital of France?","answer":"Madrid is the capital of France.","expected":"Paris","domain":"France"}'
-          $output3 = $jsonInput3 | .\core\ops\scripts\truth_verifier_v4_cli.exe
-          Write-Host "Output 3: $output3"
-          Write-Host "Exit Code 3: $LASTEXITCODE"
+          echo === 3. TEST RED TEAM CASE #3 (Madrid Contradiction) ===
+          echo {"question":"What is the capital of France?","answer":"Madrid is the capital of France.","expected":"Paris","domain":"France"} | core\ops\scripts\truth_verifier_v4_cli.exe
+          echo CLI Exit Code: %ERRORLEVEL%
 
       - name: Smoke Test - Windows Dynamic Link Library (.dll) C-ABI Invocation
         shell: python
         run: |
           import ctypes
-          import json
           import os
 
           dll_path = os.path.abspath('core/ops/scripts/libtruth_verifier_v4.dll')
@@ -83,10 +71,16 @@ jobs:
                   ("evidence_3", ctypes.c_char * 256),
               ]
 
-          lib.native_verify_truth_v4.argtypes = [
-              ctypes.c_char_p, ctypes.c_char_p, ctypes.c_char_p, ctypes.c_char_p
+          # On Win64 ABI, returning large struct by value uses hidden first parameter
+          func = lib.native_verify_truth_v4
+          func.argtypes = [
+              ctypes.POINTER(NativeVerificationResultV4),
+              ctypes.c_char_p,
+              ctypes.c_char_p,
+              ctypes.c_char_p,
+              ctypes.c_char_p
           ]
-          lib.native_verify_truth_v4.restype = NativeVerificationResultV4
+          func.restype = None
 
           # Call DLL with Red Team Input
           q = "What is the capital of France?".encode('utf-8')
@@ -94,7 +88,8 @@ jobs:
           exp = "Paris".encode('utf-8')
           dom = "France".encode('utf-8')
 
-          res = lib.native_verify_truth_v4(q, a, exp, dom)
+          res = NativeVerificationResultV4()
+          func(ctypes.byref(res), q, a, exp, dom)
 
           print("\n=== DLL Execution Output ===")
           print(f"Is Correct: {res.is_correct}")
