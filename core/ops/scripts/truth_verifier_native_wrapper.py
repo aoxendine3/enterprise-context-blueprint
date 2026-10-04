@@ -17,9 +17,14 @@ import datetime
 from typing import Dict, Any, List
 
 SCRIPT_PATH = pathlib.Path(__file__).resolve()
-ROOT_DIR = SCRIPT_PATH.parents[2] if "ops/scripts" in str(SCRIPT_PATH) else SCRIPT_PATH.parents[1]
+ROOT_DIR = SCRIPT_PATH.parents[2]
 if not (ROOT_DIR / "knowledge_base.json").exists():
-    ROOT_DIR = pathlib.Path("/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain")
+    ROOT_DIR = SCRIPT_PATH.parents[1]
+if not (ROOT_DIR / "knowledge_base.json").exists():
+    for parent in SCRIPT_PATH.parents:
+        if (parent / "knowledge_base.json").exists():
+            ROOT_DIR = parent
+            break
 
 if sys.platform == "win32":
     try:
@@ -37,7 +42,16 @@ elif sys.platform.startswith("win32") or os.name == "nt":
 else:
     DYLIB_NAME = "libtruth_verifier.so"
 
-DYLIB_PATH = ROOT_DIR / "ops" / "scripts" / DYLIB_NAME
+candidate_paths = [
+    ROOT_DIR / "core" / "ops" / "scripts" / DYLIB_NAME,
+    ROOT_DIR / "ops" / "scripts" / DYLIB_NAME,
+    SCRIPT_PATH.parent / DYLIB_NAME,
+]
+DYLIB_PATH = candidate_paths[0]
+for p in candidate_paths:
+    if p.exists():
+        DYLIB_PATH = p
+        break
 LOG_DIR = ROOT_DIR / "memory" / "catch_log"
 LOG_DIR.mkdir(parents=True, exist_ok=True)
 LOG_FILE = LOG_DIR / "truth_verifier_advanced.log"
