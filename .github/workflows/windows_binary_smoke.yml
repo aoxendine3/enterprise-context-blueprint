@@ -11,6 +11,8 @@ jobs:
   windows-smoke-test:
     name: Windows x86_64 Native Execution Verification
     runs-on: windows-latest
+    env:
+      PYTHONIOENCODING: utf-8
 
     steps:
       - name: Enable Long Paths in Git
@@ -31,7 +33,7 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Smoke Test - Standalone Windows CLI (.exe) JSON Pipe Invocation
+      - name: Smoke Test - Standalone Windows CLI (.exe) Direct Pipe Invocation
         shell: python
         run: |
           import subprocess
@@ -61,7 +63,8 @@ jobs:
               payload = json.dumps(t["input"]).encode("utf-8")
               proc = subprocess.run([cli_exe], input=payload, capture_output=True)
               print(f"Exit Code: {proc.returncode}")
-              print(f"Raw Stdout:\n{proc.stdout.decode('utf-8', errors='ignore')}")
+              stdout_str = proc.stdout.decode('utf-8', errors='ignore')
+              print(f"Raw Stdout:\n{stdout_str}")
               if proc.stderr:
                   print(f"Raw Stderr:\n{proc.stderr.decode('utf-8', errors='ignore')}")
 
@@ -72,7 +75,7 @@ jobs:
           import sys
 
           print("=== RUNNING FULL 12-CASE NATIVE GAUNTLET AGAINST DLL ON WINDOWS ===")
-          res = subprocess.run([sys.executable, "core/ops/scripts/test_native_truth_verifier.py"], capture_output=True, text=True)
+          res = subprocess.run([sys.executable, "core/ops/scripts/test_native_truth_verifier.py"], capture_output=True, text=True, encoding='utf-8')
           print("STDOUT:\n", res.stdout)
           print("STDERR:\n", res.stderr)
           sys.exit(res.returncode)

@@ -21,12 +21,19 @@ ROOT_DIR = SCRIPT_PATH.parents[2] if "ops/scripts" in str(SCRIPT_PATH) else SCRI
 if not (ROOT_DIR / "knowledge_base.json").exists():
     ROOT_DIR = pathlib.Path("/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain")
 
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+        sys.stderr.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
+
 if sys.platform.startswith("darwin"):
-    DYLIB_NAME = "libtruth_verifier.dylib"
+    DYLIB_NAME = "libtruth_verifier_v4.dylib" if (ROOT_DIR / "ops" / "scripts" / "libtruth_verifier_v4.dylib").exists() else "libtruth_verifier.dylib"
 elif sys.platform.startswith("linux"):
-    DYLIB_NAME = "libtruth_verifier.so"
+    DYLIB_NAME = "libtruth_verifier_v4.so" if (ROOT_DIR / "ops" / "scripts" / "libtruth_verifier_v4.so").exists() else "libtruth_verifier.so"
 elif sys.platform.startswith("win32") or os.name == "nt":
-    DYLIB_NAME = "libtruth_verifier.dll"
+    DYLIB_NAME = "libtruth_verifier_v4.dll" if (ROOT_DIR / "ops" / "scripts" / "libtruth_verifier_v4.dll").exists() else "libtruth_verifier.dll"
 else:
     DYLIB_NAME = "libtruth_verifier.so"
 

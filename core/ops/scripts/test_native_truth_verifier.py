@@ -8,6 +8,13 @@ import pathlib
 
 PYTHON_BIN = pathlib.Path(sys.executable)
 
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+        sys.stderr.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
+
 NATIVE_WRAPPER = pathlib.Path(__file__).parents[0] / "truth_verifier_native_wrapper.py"
 
 tests = [
