@@ -26,6 +26,7 @@ jobs:
             ops
             docs
             README.md
+            knowledge_base.json
             memory/catch_log
 
       - name: Setup Python
