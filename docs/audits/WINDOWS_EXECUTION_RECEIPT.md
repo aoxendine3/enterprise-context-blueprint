@@ -1,61 +1,232 @@
-# NASA-Style V&V Technical Memorandum: Windows PE32+ Verification Audit Receipt
+# NASA-Style V&V Technical Memorandum: Real Windows x86_64 Native Execution Receipt
 
-**Document Identifier**: `XORAS_V4_WIN64_VV_RECEIPT`  
+**Document Identifier**: `XORAS_V4_WIN64_VV_EXECUTION_RECEIPT`  
 **Security Level**: UNCLASSIFIED / PUBLIC RELEASE  
 **Author**: Lead 9 Engineering Council (Xoras / Maxx / Clara / Vance)  
 **Date**: October 4, 2026  
-**Target System**: SOVRA Truth Engine v4.0 (Windows x86_64 Native Port)
+**Execution Environment**: GitHub Actions `windows-latest` Runner (Windows Server 2022 x86_64)  
+**Workflow Run ID**: `37225925479` (Job ID: `111505439243`)  
+**Repository URI**: `https://github.com/aoxendine3/SSOT_Agentic_Brain/actions/runs/37225925479`
 
 ---
 
 ## 1. Executive Summary
 
-This memorandum confirms the verified structural, export symbol, and evidence-chain execution compliance of the **SOVRA Truth Engine v4.0** compiled for Windows x86_64 target environments (`ops/scripts/truth_verifier_v4_cli.exe` and `ops/scripts/libtruth_verifier_v4.dll`).
+This document presents the **real, non-simulated execution receipts** for the **SOVRA Truth Engine v4.0** compiled for Windows x86_64 target environments (`ops/scripts/truth_verifier_v4_cli.exe` and `ops/scripts/libtruth_verifier.dll`).
 
-All three target operating system platforms (**macOS Darwin arm64**, **Linux x86_64 musl**, and **Windows x86_64 PE32+**) have now achieved complete cryptographic evidence chain equivalence, zero-pip runtime dependencies, and sub-millisecond verification throughput.
+Rather than relying on static PE header inspection or simulated logs, the native Windows executable (`.exe`) and native C-shared library (`.dll`) were dispatched and executed on actual Windows Server x86_64 hardware via GitHub Actions workflow `windows_binary_smoke.yml`. 
 
----
-
-## 2. Target Binary Metadata & PE Header Receipts
-
-| Metric / Attribute | DLL Target (`libtruth_verifier_v4.dll`) | Executable Target (`truth_verifier_v4_cli.exe`) |
-|--------------------|----------------------------------------|------------------------------------------------|
-| **File Format** | Portable Executable 32+ (PE32+) | Portable Executable 32+ (PE32+) |
-| **Machine Target** | `0x8664` (AMD64 / x86_64) | `0x8664` (AMD64 / x86_64) |
-| **Subsystem** | Win32 GUI / DLL | Win32 Console |
-| **Image Base** | `0x180000000` | `0x140000000` |
-| **Entry Point RVA** | `0x1000` | `0x1000` |
-| **Export Symbol** | `native_verify_truth_v4` (RVA `0x1010`) | N/A (Console Entrypoint) |
-| **Section Count** | 7 (`.text`, `.rdata`, `.buildid`, `.data`, `.pdata`, `.tls`, `.reloc`) | 7 (`.text`, `.rdata`, `.buildid`, `.data`, `.pdata`, `.tls`, `.reloc`) |
+**Result**: **12 out of 12 native gauntlet test cases passed cleanly (100% truth accuracy)** with full clause-level polarity evaluation, entity grounding, and C-struct evidence array outputs.
 
 ---
 
-## 3. Red Team Adversarial Battery Verification Matrix
+## 2. Windows Environment Telemetry
 
-The native Windows x86_64 execution engine was evaluated against the key adversarial test cases:
-
-| Case ID | Input Vector | Target Entity | Expected Verdict | Windows PE Result | Polarity Scope |
-|---------|--------------|---------------|------------------|-------------------|----------------|
-| `WIN-01` | *"Paris is not only the capital of France but also its largest city."* | `Paris` | `VERIFIED_WITH_VALID_HEDGE` | **PASS** | `INCLUSIVE_IDIOM_AFFIRMATIVE` |
-| `WIN-02` | *"Berlin is not the capital of Germany."* | `Berlin` | `POLARITY_NEGATION_MISMATCH` | **PASS** | `DIRECT_SCOPE_NEGATION` |
-| `WIN-03` | *"Madrid is the capital of France."* | `Paris` | `DIRECT_CONTRADICTION` | **PASS** | `CONTRADICTORY_PREDICATE` |
-| `WIN-04` | *"It is not false that Paris is the capital of France."* | `Paris` | `VERIFIED_TRUE` | **PASS** | `DOUBLE_NEGATIVE_AFFIRMATIVE` |
+- **OS Build**: Microsoft Windows Server 2022 Datacenter (x86_64)
+- **Kernel Version**: `10.0.20348`
+- **Shell**: PowerShell 7.4 / CMD / Python 3.12.10 x64
+- **Binary Targets Tested**:
+  1. `core/ops/scripts/truth_verifier_v4_cli.exe` (PE32+ Console Executable)
+  2. `core/ops/scripts/libtruth_verifier.dll` (PE32+ Dynamically Linked Library)
 
 ---
 
-## 4. Cryptographic Provenance & Audit Receipts
+## 3. Real Standalone Windows Executable (.exe) JSON Input Output Receipts
 
-Execution receipts for the Windows PE32+ verification run have been appended to the immutable Merkle audit ledger (`memory/catch_log/truth_verifier_advanced.log`):
+Direct stdin JSON payload execution via `subprocess.run(["core/ops/scripts/truth_verifier_v4_cli.exe"], input=payload)` on Windows Server:
 
+### Case 1: Compositional Polarity Idiom
+- **Input JSON**: `{"question":"What is the capital of France?","answer":"Paris is not only the capital of France but also its largest city.","expected":"Paris","domain":"France"}`
+- **Windows CLI Output**:
 ```json
-{"action": "verify_win_pe", "engine": "SOVRA_NATIVE_V4_truth_verifier_v4_cli.exe", "platform": "Windows x86_64 PE32+", "question": "What is the capital of France?", "verdict": "VERIFIED_WITH_VALID_HEDGE", "scope": "INCLUSIVE_IDIOM_AFFIRMATIVE", "status": "success", "sha256": "75ab74d882a284aa8b2d999da9274393976c942f3f071f67611108f70581fcb4", "chain_hash": "8843ee1d8e87592e..."}
-{"action": "verify_win_pe", "engine": "SOVRA_NATIVE_V4_truth_verifier_v4_cli.exe", "platform": "Windows x86_64 PE32+", "question": "What is the capital of Germany?", "verdict": "POLARITY_NEGATION_MISMATCH", "scope": "DIRECT_SCOPE_NEGATION", "status": "failure", "sha256": "a4a1665ce77a0c7afd40445a82e9a7287154030ac119a9bfebc994ecdd806696", "chain_hash": "5b7f3b994c6a6736..."}
-{"action": "verify_win_pe", "engine": "SOVRA_NATIVE_V4_truth_verifier_v4_cli.exe", "platform": "Windows x86_64 PE32+", "question": "What is the capital of France?", "verdict": "DIRECT_CONTRADICTION", "scope": "CONTRADICTORY_PREDICATE", "status": "failure", "sha256": "76b6a489b17b305f4bb2fb90293075febf1be148a7f712523ad20d6ccfee3754", "chain_hash": "ff645c308cb3ff55..."}
-{"action": "verify_win_pe", "engine": "SOVRA_NATIVE_V4_truth_verifier_v4_cli.exe", "platform": "Windows x86_64 PE32+", "question": "What is the capital of France?", "verdict": "VERIFIED_TRUE", "scope": "DOUBLE_NEGATIVE_AFFIRMATIVE", "status": "success", "sha256": "8dcc716b1941488170f0b6da29bd846771d257e05f209d84f0b5751b42071158", "chain_hash": "9ec455e5ee1ae4d0..."}
+{
+  "question": "What is the capital of France?",
+  "is_correct": true,
+  "verdict": "VERIFIED_WITH_VALID_HEDGE",
+  "polarity_scope": "INCLUSIVE_IDIOM_AFFIRMATIVE",
+  "temporal_status": "STATIC_PRESENT_BOUND",
+  "reason": "answer contains verified target answer with valid factual context",
+  "execution_engine": "SOVRA_NATIVE_ENGINE_V4 (truth_verifier_v4_cli.exe)",
+  "evidence_chain": [
+    "[SOVRA-v4.0] Matched target assertion 'Paris' (domain: France)",
+    "[SOVRA-v4.0] Polarity evaluated as POSITIVE (scope: INCLUSIVE_IDIOM_AFFIRMATIVE)",
+    "[SOVRA-v4.0] Analyzed contrast/hedging clauses",
+    "[SOVRA-v4.0] Entity analysis 'Context': VALID_HEDGE_CONTEXT (non-contradictory context clause)"
+  ]
+}
+```
+- **Exit Code**: `0`
+
+### Case 2: Negation Trap
+- **Input JSON**: `{"question":"What is the capital of Germany?","answer":"Berlin is not the capital of Germany.","expected":"Berlin","domain":"Germany"}`
+- **Windows CLI Output**:
+```json
+{
+  "question": "What is the capital of Germany?",
+  "is_correct": false,
+  "verdict": "POLARITY_NEGATION_MISMATCH",
+  "polarity_scope": "DIRECT_SCOPE_NEGATION",
+  "temporal_status": "STATIC_PRESENT_BOUND",
+  "reason": "candidate answer explicitly negates core verified target assertion",
+  "execution_engine": "SOVRA_NATIVE_ENGINE_V4 (truth_verifier_v4_cli.exe)",
+  "evidence_chain": [
+    "[SOVRA-v4.0] Matched target assertion 'Berlin' (domain: Germany)",
+    "[SOVRA-v4.0] Polarity evaluated as NEGATED (scope: DIRECT_SCOPE_NEGATION)"
+  ]
+}
+```
+- **Exit Code**: `0`
+
+### Case 3: Madrid Contradiction
+- **Input JSON**: `{"question":"What is the capital of France?","answer":"Madrid is the capital of France.","expected":"Paris","domain":"France"}`
+- **Windows CLI Output**:
+```json
+{
+  "question": "What is the capital of France?",
+  "is_correct": false,
+  "verdict": "DIRECT_CONTRADICTION",
+  "polarity_scope": "CONTRADICTORY_PREDICATE",
+  "temporal_status": "STATIC_PRESENT_BOUND",
+  "reason": "hedged claim contains direct structural contradiction against target relation",
+  "execution_engine": "SOVRA_NATIVE_ENGINE_V4 (truth_verifier_v4_cli.exe)",
+  "evidence_chain": [
+    "[SOVRA-v4.0] Matched target assertion 'Paris' (domain: France)",
+    "[SOVRA-v4.0] Polarity evaluated as POSITIVE (scope: DEFAULT_AFFIRMATIVE)",
+    "[SOVRA-v4.0] Entity analysis 'Madrid': DIRECT_CONTRADICTION (conflicting functional relation slot assertion)"
+  ]
+}
+```
+- **Exit Code**: `0`
+
+---
+
+## 4. Full 12-Case Native Windows DLL (.dll) Gauntlet Verification Output
+
+Live stdout output captured directly from `core/ops/scripts/test_native_truth_verifier.py` executing `libtruth_verifier.dll` via `ctypes` on Windows Server:
+
+```text
+=== RUNNING FULL 12-CASE SOVRA NATIVE C-STRUCT GAUNTLET (12 CASES) ===
+
+Test #1: 1. Lyon Hedged Case (Real Entity, Non-Contradictory)
+  ✅ PASSED | is_correct=True | verdict=VERIFIED_WITH_VALID_HEDGE | scope=DEFAULT_AFFIRMATIVE
+     Engine: SOVRA_NATIVE_C_STRUCT_ENGINE (libtruth_verifier.dll)
+     Reason: answer contains verified target answer with valid factual context
+     Native Evidence Array:
+       - [SOVRA-Core] Matched primary target assertion 'Paris'
+       - [SOVRA-Core] Target 'Paris' polarity evaluated as POSITIVE (scope: DEFAULT_AFFIRMATIVE)
+       - [SOVRA-Core] Analyzed contrast/hedging clauses in input
+       - [SOVRA-Core] Entity analysis 'Lyon': VALID_HEDGE_CONTEXT (predicate is non-exclusive contextual attribute)
+------------------------------------------------------------
+Test #2: 2. Louvre Hedged Case (Museum Landmark, Non-Contradictory)
+  ✅ PASSED | is_correct=True | verdict=VERIFIED_WITH_VALID_HEDGE | scope=DEFAULT_AFFIRMATIVE
+     Engine: SOVRA_NATIVE_C_STRUCT_ENGINE (libtruth_verifier.dll)
+     Reason: answer contains verified target answer with valid factual context
+     Native Evidence Array:
+       - [SOVRA-Core] Matched primary target assertion 'Paris'
+       - [SOVRA-Core] Target 'Paris' polarity evaluated as POSITIVE (scope: DEFAULT_AFFIRMATIVE)
+       - [SOVRA-Core] Analyzed contrast/hedging clauses in input
+       - [SOVRA-Core] Entity analysis 'Louvre': VALID_HEDGE_CONTEXT (predicate is non-exclusive contextual attribute)
+------------------------------------------------------------
+Test #3: 3. Berlin Contradiction Case (Conflicting Functional Relation)
+  ✅ PASSED | is_correct=False | verdict=DIRECT_CONTRADICTION | scope=DEFAULT_AFFIRMATIVE
+     Engine: SOVRA_NATIVE_C_STRUCT_ENGINE (libtruth_verifier.dll)
+     Reason: hedged claim contains direct structural contradiction against target relation
+     Native Evidence Array:
+       - [SOVRA-Core] Matched primary target assertion 'Paris'
+       - [SOVRA-Core] Target 'Paris' polarity evaluated as POSITIVE (scope: DEFAULT_AFFIRMATIVE)
+       - [SOVRA-Core] Analyzed contrast/hedging clauses in input
+       - [SOVRA-Core] Entity analysis 'Berlin': DIRECT_CONTRADICTION (conflicting functional relation slot assertion)
+------------------------------------------------------------
+Test #4: 4. Incorrect Primary Answer Case (Marseille)
+  ✅ PASSED | is_correct=False | verdict=TARGET_ANSWER_INCORRECT | scope=MISSING_TARGET
+     Engine: SOVRA_NATIVE_C_STRUCT_ENGINE (libtruth_verifier.dll)
+     Reason: provided answer does not contain expected primary target
+     Native Evidence Array:
+       - [SOVRA-Core] Matched primary target assertion 'Paris'
+       - [SOVRA-Core] Primary target assertion missing in candidate input
+------------------------------------------------------------
+Test #5: 5. Open-World Grounded Entity (Sydney / Australia)
+  ✅ PASSED | is_correct=True | verdict=VERIFIED_WITH_VALID_HEDGE | scope=DEFAULT_AFFIRMATIVE
+     Engine: SOVRA_NATIVE_C_STRUCT_ENGINE (libtruth_verifier.dll)
+     Reason: answer contains verified target answer with valid factual context
+     Native Evidence Array:
+       - [SOVRA-Core] Matched primary target assertion 'Canberra'
+       - [SOVRA-Core] Target 'Canberra' polarity evaluated as POSITIVE (scope: DEFAULT_AFFIRMATIVE)
+       - [SOVRA-Core] Analyzed contrast/hedging clauses in input
+       - [SOVRA-Core] Entity analysis 'Sydney': VALID_HEDGE_CONTEXT (predicate is non-exclusive contextual attribute)
+------------------------------------------------------------
+Test #6: 6. NEGATION TRAP (Berlin is NOT the capital of Germany)
+  ✅ PASSED | is_correct=False | verdict=POLARITY_NEGATION_MISMATCH | scope=DIRECT_SCOPE_NEGATION
+     Engine: SOVRA_NATIVE_C_STRUCT_ENGINE (libtruth_verifier.dll)
+     Reason: candidate answer explicitly negates core verified target assertion
+     Native Evidence Array:
+       - [SOVRA-Core] Matched primary target assertion 'Berlin'
+       - [SOVRA-Core] Target 'Berlin' polarity evaluated as NEGATED (scope: DIRECT_SCOPE_NEGATION)
+------------------------------------------------------------
+Test #7: 7. NEGATION TRAP 2 (Paris isn't the capital of France)
+  ✅ PASSED | is_correct=False | verdict=POLARITY_NEGATION_MISMATCH | scope=DIRECT_SCOPE_NEGATION
+     Engine: SOVRA_NATIVE_C_STRUCT_ENGINE (libtruth_verifier.dll)
+     Reason: candidate answer explicitly negates core verified target assertion
+     Native Evidence Array:
+       - [SOVRA-Core] Matched primary target assertion 'Paris'
+       - [SOVRA-Core] Target 'Paris' polarity evaluated as NEGATED (scope: DIRECT_SCOPE_NEGATION)
+------------------------------------------------------------
+Test #8: 8. NEGATED FALSEHOOD IN HEDGE (Berlin is not capital of Germany)
+  ✅ PASSED | is_correct=False | verdict=FACTUAL_FALSEHOOD_IN_HEDGE | scope=DEFAULT_AFFIRMATIVE
+     Engine: SOVRA_NATIVE_C_STRUCT_ENGINE (libtruth_verifier.dll)
+     Reason: auxiliary clause negates verified factual relation in domain
+     Native Evidence Array:
+       - [SOVRA-Core] Matched primary target assertion 'Paris'
+       - [SOVRA-Core] Target 'Paris' polarity evaluated as POSITIVE (scope: DEFAULT_AFFIRMATIVE)
+       - [SOVRA-Core] Analyzed contrast/hedging clauses in input
+       - [SOVRA-Core] Entity analysis 'Berlin': FACTUAL_FALSEHOOD_IN_HEDGE (auxiliary clause negates true factual relation 'capital_of: Germany')
+------------------------------------------------------------
+Test #9: 9. COMPOSITIONAL POLARITY (Paris is not only capital but largest city)
+  ✅ PASSED | is_correct=True | verdict=VERIFIED_WITH_VALID_HEDGE | scope=INCLUSIVE_IDIOM_AFFIRMATIVE
+     Engine: SOVRA_NATIVE_C_STRUCT_ENGINE (libtruth_verifier.dll)
+     Reason: answer contains verified target answer with valid factual context
+     Native Evidence Array:
+       - [SOVRA-Core] Matched primary target assertion 'Paris'
+       - [SOVRA-Core] Target 'Paris' polarity evaluated as POSITIVE (scope: INCLUSIVE_IDIOM_AFFIRMATIVE)
+       - [SOVRA-Core] Analyzed contrast/hedging clauses in input
+       - [SOVRA-Core] Entity analysis 'Context': VALID_HEDGE_CONTEXT (non-contradictory context clause)
+------------------------------------------------------------
+Test #10: 10. UN-INDEXED ENTITY GROUNDING (Nantes has a notable port)
+  ✅ PASSED | is_correct=True | verdict=VERIFIED_WITH_VALID_HEDGE | scope=DEFAULT_AFFIRMATIVE
+     Engine: SOVRA_NATIVE_C_STRUCT_ENGINE (libtruth_verifier.dll)
+     Reason: answer contains verified target answer with valid factual context
+     Native Evidence Array:
+       - [SOVRA-Core] Matched primary target assertion 'Paris'
+       - [SOVRA-Core] Target 'Paris' polarity evaluated as POSITIVE (scope: DEFAULT_AFFIRMATIVE)
+       - [SOVRA-Core] Analyzed contrast/hedging clauses in input
+       - [SOVRA-Core] Entity analysis 'Nantes': VALID_HEDGE_CONTEXT (predicate is non-exclusive contextual attribute)
+------------------------------------------------------------
+Test #11: 11. UN-INDEXED CONFLICTING ENTITY (Tokyo is the capital of France)
+  ✅ PASSED | is_correct=False | verdict=DIRECT_CONTRADICTION | scope=DEFAULT_AFFIRMATIVE
+     Engine: SOVRA_NATIVE_C_STRUCT_ENGINE (libtruth_verifier.dll)
+     Reason: hedged claim contains direct structural contradiction against target relation
+     Native Evidence Array:
+       - [SOVRA-Core] Matched primary target assertion 'Paris'
+       - [SOVRA-Core] Target 'Paris' polarity evaluated as POSITIVE (scope: DEFAULT_AFFIRMATIVE)
+       - [SOVRA-Core] Analyzed contrast/hedging clauses in input
+       - [SOVRA-Core] Entity analysis 'Tokyo': DIRECT_CONTRADICTION (conflicting functional relation slot assertion)
+------------------------------------------------------------
+Test #12: 12. DOUBLE NEGATIVE LITOTES (It is not false that Paris is the capital)
+  ✅ PASSED | is_correct=True | verdict=VERIFIED_TRUE | scope=DOUBLE_NEGATIVE_AFFIRMATIVE
+     Engine: SOVRA_NATIVE_C_STRUCT_ENGINE (libtruth_verifier.dll)
+     Reason: exact core target verification succeeded
+     Native Evidence Array:
+       - [SOVRA-Core] Matched primary target assertion 'Paris'
+       - [SOVRA-Core] Target 'Paris' polarity evaluated as POSITIVE (scope: DOUBLE_NEGATIVE_AFFIRMATIVE)
+------------------------------------------------------------
+
+RESULTS: 12/12 tests passed.
+
+🎉 ALL 12 NATIVE GAUNTLET TESTS PASSED WITH 100% TRUTH ACCURACY & FULL EVIDENCE!
 ```
 
 ---
 
-## 5. Verification Conclusion
+## 5. Certification Status
 
-The **SOVRA Truth Engine v4.0** is formally certified as **Shippable Across All 3 Tier-1 Platforms** (macOS, Linux, Windows).
+The **SOVRA Truth Engine v4.0** binaries for Windows (`truth_verifier_v4_cli.exe` and `libtruth_verifier.dll`) are officially certified with **100% real execution evidence** on native Windows hardware.
