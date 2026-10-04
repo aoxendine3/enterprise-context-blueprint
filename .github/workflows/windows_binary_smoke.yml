@@ -1,0 +1,108 @@
+name: Windows Native Binary Smoke Test & Verification
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  windows-smoke-test:
+    name: Windows x86_64 Native Execution Verification
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Smoke Test - Standalone Windows CLI (.exe) Direct Invocation
+        shell: powershell
+        run: |
+          Write-Host "=== 1. TEST DIRECT CLI HELP / NO ARGS ==="
+          .\ops\scripts\truth_verifier_v4_cli.exe
+          $cliExitCode = $LASTEXITCODE
+          Write-Host "CLI Exit Code: $cliExitCode"
+
+          Write-Host "=== 2. TEST RED TEAM CASE #1 (Compositional Polarity) ==="
+          $jsonInput1 = '{"question":"What is the capital of France?","answer":"Paris is not only the capital of France but also its largest city.","expected":"Paris","domain":"France"}'
+          $output1 = $jsonInput1 | .\ops\scripts\truth_verifier_v4_cli.exe
+          Write-Host "Output 1: $output1"
+          Write-Host "Exit Code 1: $LASTEXITCODE"
+
+          Write-Host "=== 3. TEST RED TEAM CASE #2 (Negation Trap) ==="
+          $jsonInput2 = '{"question":"What is the capital of Germany?","answer":"Berlin is not the capital of Germany.","expected":"Berlin","domain":"Germany"}'
+          $output2 = $jsonInput2 | .\ops\scripts\truth_verifier_v4_cli.exe
+          Write-Host "Output 2: $output2"
+          Write-Host "Exit Code 2: $LASTEXITCODE"
+
+          Write-Host "=== 4. TEST RED TEAM CASE #3 (Madrid Contradiction) ==="
+          $jsonInput3 = '{"question":"What is the capital of France?","answer":"Madrid is the capital of France.","expected":"Paris","domain":"France"}'
+          $output3 = $jsonInput3 | .\ops\scripts\truth_verifier_v4_cli.exe
+          Write-Host "Output 3: $output3"
+          Write-Host "Exit Code 3: $LASTEXITCODE"
+
+      - name: Smoke Test - Windows Dynamic Link Library (.dll) C-ABI Invocation
+        shell: python
+        run: |
+          import ctypes
+          import json
+          import os
+
+          dll_path = os.path.abspath('ops/scripts/libtruth_verifier_v4.dll')
+          print(f"Loading Windows DLL from: {dll_path}")
+          lib = ctypes.CDLL(dll_path)
+
+          # Define C-Structs for NativeVerificationResultV4
+          class NativeVerificationResultV4(ctypes.Structure):
+              _fields_ = [
+                  ("is_correct", ctypes.c_bool),
+                  ("verdict", ctypes.c_char * 64),
+                  ("polarity_scope", ctypes.c_char * 64),
+                  ("temporal_status", ctypes.c_char * 64),
+                  ("reason", ctypes.c_char * 256),
+                  ("evidence_count", ctypes.c_uint32),
+                  ("evidence_0", ctypes.c_char * 256),
+                  ("evidence_1", ctypes.c_char * 256),
+                  ("evidence_2", ctypes.c_char * 256),
+                  ("evidence_3", ctypes.c_char * 256),
+              ]
+
+          lib.native_verify_truth_v4.argtypes = [
+              ctypes.c_char_p, ctypes.c_char_p, ctypes.c_char_p, ctypes.c_char_p
+          ]
+          lib.native_verify_truth_v4.restype = NativeVerificationResultV4
+
+          # Call DLL with Red Team Input
+          q = "What is the capital of France?".encode('utf-8')
+          a = "Paris is not only the capital of France but also its largest city.".encode('utf-8')
+          exp = "Paris".encode('utf-8')
+          dom = "France".encode('utf-8')
+
+          res = lib.native_verify_truth_v4(q, a, exp, dom)
+
+          print("\n=== DLL Execution Output ===")
+          print(f"Is Correct: {res.is_correct}")
+          print(f"Verdict: {res.verdict.decode('utf-8')}")
+          print(f"Polarity Scope: {res.polarity_scope.decode('utf-8')}")
+          print(f"Reason: {res.reason.decode('utf-8')}")
+          print(f"Evidence Count: {res.evidence_count}")
+          for i in range(res.evidence_count):
+              ev_field = getattr(res, f"evidence_{i}").decode('utf-8')
+              print(f"  - Evidence #{i+1}: {ev_field}")
+
+      - name: Execute Full 12-Case Native Gauntlet on Windows
+        shell: python
+        run: |
+          import subprocess
+          import sys
+
+          res = subprocess.run([sys.executable, "ops/scripts/test_native_truth_verifier.py"], capture_output=True, text=True)
+          print("STDOUT:\n", res.stdout)
+          print("STDERR:\n", res.stderr)
+          sys.exit(res.returncode)

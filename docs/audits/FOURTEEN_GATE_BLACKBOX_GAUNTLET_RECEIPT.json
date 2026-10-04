@@ -1,6 +1,6 @@
 {
   "gauntlet_title": "XORAS::OS 14-Gate Exponential Blackbox Gauntlet & Enterprise Governance",
-  "timestamp_utc": "2026-10-02T18:31:27.622571+00:00",
+  "timestamp_utc": "2026-10-04T16:08:06.788197+00:00",
   "host_substrate": "Apple Silicon M4 Bare Metal (aarch64-apple-darwin)",
   "database_backend": "SQLite WAL blackboard (.sovereign/world_file.db) with POSIX flock(LOCK_EX)",
   "fourteen_gates_summary": {
@@ -19,7 +19,7 @@
       "detected_and_dropped": 500,
       "drop_rate_pct": 100.0,
       "memory_bleed_bytes": 0.0,
-      "mean_latency_us": 2.6955127716064453,
+      "mean_latency_us": 2.5439023971557617,
       "slo_target_us": 12000.0,
       "scenario_passed": true
     },
@@ -64,7 +64,7 @@
   },
   "discernment_bench_ruling": {
     "admitted_to_golden_list": true,
-    "verdict": "GOLDEN-990",
+    "verdict": "GOLDEN-003",
     "signoff": [
       "William Vance (Discernment Bench Lead)",
       "Maxx (Systems Architect)",
