@@ -33,7 +33,16 @@ For organizations needing specialized integration, custom domain graph ingestion
 To support ongoing maintenance, continuous integration hardware, and cross-platform verification:
 
 - **GitHub Sponsors**: [github.com/sponsors/aoxendine3](https://github.com/sponsors/aoxendine3)
-- **Direct Stripe Payment Link**: [buy.stripe.com/aoxendine3_sovereign](https://buy.stripe.com/aoxendine3_sovereign)
+- **Direct Stripe Payment Link**: [buy.stripe.com/eVq00jcRof7W3jp158dIA00](https://buy.stripe.com/eVq00jcRof7W3jp158dIA00)
+
+### Stripe Buy Button Embed Snippet (HTML Web Embeds)
+```html
+<script async src="https://js.stripe.com/v3/buy-button.js"></script>
+<stripe-buy-button
+  buy-button-id="buy_btn_1UMvNZDvwBN84qg66VqfyYeE"
+  publishable-key="pk_live_51TVkhdDvwBN84qg6xvgNc7EmIqwfPn5JuWPlt26pIoHAD4Nh5FCVtbGW0nhH276AAOgzZGWO3Z3L0ioidVbAcqUv00tRy9YkDm">
+</stripe-buy-button>
+```
 
 ---
 
