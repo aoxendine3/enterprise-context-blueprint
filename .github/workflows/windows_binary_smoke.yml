@@ -13,8 +13,18 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Enable Long Paths in Git
+        run: git config --global core.longpaths true
+
+      - name: Checkout Repository (Sparse)
         uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            core/ops
+            ops
+            docs
+            README.md
+            memory/catch_log
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -25,25 +35,25 @@ jobs:
         shell: powershell
         run: |
           Write-Host "=== 1. TEST DIRECT CLI HELP / NO ARGS ==="
-          .\ops\scripts\truth_verifier_v4_cli.exe
+          .\core\ops\scripts\truth_verifier_v4_cli.exe
           $cliExitCode = $LASTEXITCODE
           Write-Host "CLI Exit Code: $cliExitCode"
 
           Write-Host "=== 2. TEST RED TEAM CASE #1 (Compositional Polarity) ==="
           $jsonInput1 = '{"question":"What is the capital of France?","answer":"Paris is not only the capital of France but also its largest city.","expected":"Paris","domain":"France"}'
-          $output1 = $jsonInput1 | .\ops\scripts\truth_verifier_v4_cli.exe
+          $output1 = $jsonInput1 | .\core\ops\scripts\truth_verifier_v4_cli.exe
           Write-Host "Output 1: $output1"
           Write-Host "Exit Code 1: $LASTEXITCODE"
 
           Write-Host "=== 3. TEST RED TEAM CASE #2 (Negation Trap) ==="
           $jsonInput2 = '{"question":"What is the capital of Germany?","answer":"Berlin is not the capital of Germany.","expected":"Berlin","domain":"Germany"}'
-          $output2 = $jsonInput2 | .\ops\scripts\truth_verifier_v4_cli.exe
+          $output2 = $jsonInput2 | .\core\ops\scripts\truth_verifier_v4_cli.exe
           Write-Host "Output 2: $output2"
           Write-Host "Exit Code 2: $LASTEXITCODE"
 
           Write-Host "=== 4. TEST RED TEAM CASE #3 (Madrid Contradiction) ==="
           $jsonInput3 = '{"question":"What is the capital of France?","answer":"Madrid is the capital of France.","expected":"Paris","domain":"France"}'
-          $output3 = $jsonInput3 | .\ops\scripts\truth_verifier_v4_cli.exe
+          $output3 = $jsonInput3 | .\core\ops\scripts\truth_verifier_v4_cli.exe
           Write-Host "Output 3: $output3"
           Write-Host "Exit Code 3: $LASTEXITCODE"
 
@@ -54,7 +64,7 @@ jobs:
           import json
           import os
 
-          dll_path = os.path.abspath('ops/scripts/libtruth_verifier_v4.dll')
+          dll_path = os.path.abspath('core/ops/scripts/libtruth_verifier_v4.dll')
           print(f"Loading Windows DLL from: {dll_path}")
           lib = ctypes.CDLL(dll_path)
 
@@ -102,7 +112,7 @@ jobs:
           import subprocess
           import sys
 
-          res = subprocess.run([sys.executable, "ops/scripts/test_native_truth_verifier.py"], capture_output=True, text=True)
+          res = subprocess.run([sys.executable, "core/ops/scripts/test_native_truth_verifier.py"], capture_output=True, text=True)
           print("STDOUT:\n", res.stdout)
           print("STDERR:\n", res.stderr)
           sys.exit(res.returncode)
