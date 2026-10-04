@@ -1,116 +1,110 @@
-# SSOT Agentic Brain & SOVRA Sovereign Engine Suite
+# SOVRA Truth Engine v4.0
 
-[![Version](https://img.shields.io/badge/SOVRA_Engine-v4.0_SHIPPABLE-success.svg)](#)
-[![Dependencies](https://img.shields.io/badge/Dependencies-ZERO_PIP-brightgreen.svg)](#)
-[![Platforms](https://img.shields.io/badge/Platforms-macOS_%7C_Linux_%7C_Windows-blue.svg)](#)
-[![Latency](https://img.shields.io/badge/Call_Latency-Sub--millisecond-orange.svg)](#)
+A small, native truth verifier for LLM outputs. It evaluates candidate answers against a factual ground truth, resolves complex linguistic polarity and hedging, and records every decision to a cryptographic audit trail.
 
-## Executive Summary
-
-The **SSOT Agentic Brain** is a sovereign, high-performance agent architecture and native verification engine operating on local silicon.
-
-Its flagship engine—**SOVRA Truth Engine v4.0**—is a zero-pip dependency, cross-platform native truth verifier written in **Zig** with lightweight C/CFFI bindings for Python. It resolves open-world truth verification, compositional polarity scope bugs, litotes double negations, and factual contradictions with **sub-millisecond execution times** (< 500 μs) and zero runtime pip package overhead.
+We built SOVRA to solve a practical problem in automated evaluation: LLM outputs often contain subtle negations, inclusive phrases ("not only X, but also Y"), or litotes that trip up keyword-based verifiers. SOVRA runs completely offline as a self-contained native binary with zero Python dependencies and sub-millisecond execution times.
 
 ---
 
-## SOVRA Truth Engine v4.0 — Operational Architecture
+## How It Works
 
-### The "Lean Fighter vs. Fat Boy" Architecture
-Python excels at CLI plumbing, dynamic wrapper interfaces, and JSON schema formatting, but carries a sprawling transitive dependency graph. SOVRA decouples the stack:
-- **Core Engine (Lean Fighter)**: Compiled native **Zig** core producing a single, self-contained binary or C-shared library (`.dylib`, `.so`, `.dll`, or static `musl` CLI). Zero runtime allocations, zero pip dependencies.
-- **Surface Adapter (Thin Wrapper)**: High-efficiency Python launch adapter (`ops/scripts/truth_verifier_v4_launcher.py`) that loads native C-struct evidence arrays over `ctypes` without installing external packages.
+SOVRA inspects an answer against an expected target value within a specific domain context:
 
-```
-       +-------------------------------------------------------------+
-       |                     Python CLI / Wrapper                    |
-       |  (JSON Schema Parsing, User Interface, Zero Pip Overhead)   |
-       +------------------------------+------------------------------+
-                                      | C-ABI / CFFI C-Structs
-                                      v
-       +-------------------------------------------------------------+
-       |                 SOVRA Native Core (Zig)                     |
-       |  (Compositional Scope Engine, Relational Predicate Grounding|
-       |  Sub-millisecond Lock-Free Execution, Zero Allocation)     |
-       +-------------------------------------------------------------+
-               /                      |                      \
-              v                       v                       v
-     macOS arm64 (.dylib)    Linux x86_64 (.so / musl)   Windows x86_64 (.dll / .exe)
-```
+- **Target Assertion Verification**: Confirms whether the core factual target is present in the candidate response.
+- **Compositional Scope & Polarity Parsing**: Distinguishes between direct negation (*"Berlin is not the capital"*), double negative litotes (*"It is not false that..."*), and inclusive idioms (*"Paris is not only the capital, but also..."*).
+- **Contradiction Grounding**: Identifies structural relation conflicts, including unindexed foreign entities asserting exclusive functional predicates (*"Madrid is the capital of France"*).
+- **Evidence Chains & Merkle Audit Trail**: Emits clause-level breakdown and appends a SHA-256 Merkle-chained receipt for every verification run to preserve audit continuity.
 
 ---
 
-## Adversarial Red Team Case Studies — The Hook
+## Performance
 
-Unlike traditional LLM evaluators that rely on keyword search or naive sentiment, SOVRA v4.0 solves complex linguistic and factual traps:
+All verification logic runs in single-pass C-ABI native code with zero heap allocations during evaluation calls:
 
-### 1. The Compositional Polarity Trap (Inclusive Idioms)
-- **Claim**: *"Paris is not only the capital of France but also its largest city."*
-- **Naive Evaluators**: Flag `not` as a negative polarity signal and fail the assertion.
-- **SOVRA v4.0**: Identifies the inclusive idiom scope `not only X but also Y`. Evaluates target `Paris` as `VERIFIED_WITH_VALID_HEDGE` with `INCLUSIVE_IDIOM_AFFIRMATIVE` scope.
-
-### 2. The Litotes / Double Negation Trap
-- **Claim**: *"It is not false that Paris is the capital of France."*
-- **Naive Evaluators**: Detect negation words `not` + `false` and generate invalid polarity mismatch errors.
-- **SOVRA v4.0**: Simplifies double negation (`¬(FALSE) ≡ TRUE`). Resolves verdict to `VERIFIED_TRUE` with scope `DOUBLE_NEGATIVE_AFFIRMATIVE`.
-
-### 3. The Negation Trap
-- **Claim**: *"Berlin is not the capital of Germany."*
-- **Naive Evaluators**: Match keywords `Berlin` + `capital of Germany` and falsely claim verification.
-- **SOVRA v4.0**: Scopes negation operator `not` to target `Berlin`. Returns `POLARITY_NEGATION_MISMATCH` with full clause evidence chain.
-
-### 4. Factual Contradiction Grounding (Madrid Contradiction)
-- **Claim**: *"Madrid is the capital of France."*
-- **Naive Evaluators**: Pass un-indexed city names without structural predicate checks.
-- **SOVRA v4.0**: Grounding engine evaluates functional relation `capital_of(France)` against verified relation `Paris`. Returns `DIRECT_CONTRADICTION`.
+| Operating System | Binary Format | Latency | Verification Status |
+|------------------|---------------|---------|---------------------|
+| **macOS (arm64)** | `.dylib` / Standalone CLI | **~42 μs** | Verified (Native Apple Silicon) |
+| **Linux (x86_64)** | `.so` / Static `musl` CLI | **~68 μs** | Verified (Ubuntu x86_64) |
+| **Windows (x86_64)** | `.dll` / Standalone `.exe` | **~85 μs** | Verified (Windows Server 2022) |
 
 ---
 
-## Cross-Platform Build & Verification Matrix
+## Supported Platforms & Pre-Compiled Binaries
 
-All target platform binaries are pre-compiled and cryptographically audited:
+Pre-compiled binaries are provided for all three major desktop and server operating systems:
 
-| Target Platform | Binary File | Format | Execution Mechanism | Latency | Red Team Gauntlet |
-|-----------------|-------------|--------|---------------------|---------|-------------------|
-| **macOS (arm64)** | `ops/scripts/libtruth_verifier_v4.dylib` | Mach-O 64-bit Dynamically Linked Library | Native C-ABI / Python `ctypes` | **42 μs** | **12/12 PASS (100%)** |
-| **Linux (x86_64)** | `ops/scripts/libtruth_verifier_v4.so` | ELF 64-bit Shared Object (Static PIE) | Native C-ABI / Container | **68 μs** | **12/12 PASS (100%)** |
-| **Linux Bare-Metal** | `ops/scripts/truth_verifier_v4_cli_linux` | ELF 64-bit Statically Linked (musl) | Standalone CLI (Zero Python) | **110 μs** | **12/12 PASS (100%)** |
-| **Windows (x86_64)** | `ops/scripts/libtruth_verifier_v4.dll` | PE32+ Dynamically Linked Library | Win32 C-ABI / DLL Export | **85 μs** | **12/12 PASS (100%)** |
-| **Windows Standalone** | `ops/scripts/truth_verifier_v4_cli.exe` | PE32+ Console Executable | Win32 Native Console CLI | **140 μs** | **12/12 PASS (100%)** |
+- **macOS (arm64)**: `ops/scripts/libtruth_verifier_v4.dylib` and `ops/scripts/truth_verifier_v4_cli`
+- **Linux (x86_64)**: `ops/scripts/libtruth_verifier_v4.so` and `ops/scripts/truth_verifier_v4_cli_linux` (static `musl`)
+- **Windows (x86_64)**: `ops/scripts/libtruth_verifier_v4.dll` and `ops/scripts/truth_verifier_v4_cli.exe`
+
+Every binary target has been compiled, executed, and verified against the full adversarial test suite. Execution logs and cryptographic audit receipts are maintained directly in the repository.
 
 ---
 
-## Quickstart & Verification Commands
+## Requirements
 
-### 1. Run the Full 12-Case Native Gauntlet (macOS / Linux / Windows)
+- **Zero pip dependencies**. No Python packages to install or update.
+- **Zero GPU or model weights**. Runs directly on local CPU.
+- Standalone CLI executables run without requiring a Python installation.
+
+---
+
+## Usage
+
+### Standalone CLI (Zero Python)
+
+Pass JSON payloads directly via stdin:
+
 ```bash
-python3 ops/scripts/test_native_truth_verifier.py
+echo '{"question":"What is the capital of France?","answer":"Paris is not only the capital of France but also its largest city.","expected":"Paris","domain":"France"}' | ./truth_verifier_v4_cli
 ```
 
-### 2. Command Line Interface Usage (Zero Python Dependency)
-```bash
-# Standalone Native CLI
-./ops/scripts/truth_verifier_v4_cli '{"question":"What is the capital of France?","answer":"Paris is not only the capital of France but also its largest city.","expected":"Paris"}'
+**Output**:
+```json
+{
+  "question": "What is the capital of France?",
+  "is_correct": true,
+  "verdict": "VERIFIED_WITH_VALID_HEDGE",
+  "polarity_scope": "INCLUSIVE_IDIOM_AFFIRMATIVE",
+  "reason": "answer contains verified target answer with valid factual context",
+  "execution_engine": "SOVRA_NATIVE_ENGINE_V4",
+  "evidence_chain": [
+    "[SOVRA-v4.0] Matched target assertion 'Paris' (domain: France)",
+    "[SOVRA-v4.0] Polarity evaluated as POSITIVE (scope: INCLUSIVE_IDIOM_AFFIRMATIVE)",
+    "[SOVRA-v4.0] Analyzed contrast/hedging clauses"
+  ]
+}
 ```
 
-### 3. Verify Cryptographic Merkle Audit Ledger
-```bash
-tail -n 10 memory/catch_log/truth_verifier_advanced.log
+### Python Adapter
+
+If calling from Python, load the native shared library via `ctypes` without installing external libraries:
+
+```python
+from ops.scripts.truth_verifier_v4_launcher import verify_v4
+
+result = verify_v4(
+    question="What is the capital of France?",
+    answer="Paris is not only the capital of France but also its largest city.",
+    expected_answer="Paris",
+    domain="France"
+)
+
+print(result["verdict"])  # VERIFIED_WITH_VALID_HEDGE
 ```
 
 ---
 
-## The Sovereign Unification Framework
+## Limitations
 
-Alongside the SOVRA Verification Engine, this repository houses the theoretical derivations for quantum gravity and spacetime transmittance ($W = 1 / Z_{UV} \approx 0.0228837$), documented for peer review in `docs/papers/prl_submission/`.
+SOVRA is a **structural consistency verifier**, not an oracle or knowledge retrieval engine:
 
----
-
-## Technical Audits & V&V Memoranda
-- `docs/audits/TRUTH_VERIFIER_V2_VV_MEMORANDUM.md` — NASA-style Technical V&V Memorandum.
-- `docs/audits/WINDOWS_EXECUTION_RECEIPT.md` — Windows PE32+ Binary Execution Audit Receipt.
-- `docs/RELEASE_ANNOUNCEMENT_SOVRA_TRUTH_VERIFIER.md` — Technical Release Announcement & Benchmarks.
+1. **Knowledge Base Dependency**: It evaluates whether an answer is consistent with facts provided in your knowledge base. It cannot determine whether the knowledge base itself contains errors.
+2. **Temporal Relations**: Historical temporal transitions (such as *"Bonn was the capital of Germany until 1990"*) are not yet modeled in the current schema and will be addressed in future work.
+3. **Adversarial Red Team Scope**: Test cases included in this repository were written by our team during development. Independent testing, edge-case submissions, and adversarial feedback are welcome and encouraged.
 
 ---
 
-## Licensing & Governance
-Maintained by **The Lead 9 Council** (Maxx, Clara, Vance, Daxx). Operating under sovereign zero-pip invariants and deterministic evidence-chain laws.
+## License
+
+This project is licensed under the [MIT License](LICENSE).
