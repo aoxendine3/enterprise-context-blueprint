@@ -6,9 +6,7 @@ import subprocess
 import sys
 import pathlib
 
-PYTHON_BIN = pathlib.Path(__file__).parents[2] / ".venv" / "bin" / "python"
-if not PYTHON_BIN.exists():
-    PYTHON_BIN = pathlib.Path("/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/.venv/bin/python")
+PYTHON_BIN = pathlib.Path(sys.executable)
 
 NATIVE_WRAPPER = pathlib.Path(__file__).parents[0] / "truth_verifier_native_wrapper.py"
 
