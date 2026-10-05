@@ -12,7 +12,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#define RING_BUFFER_CAPACITY 65536
+#define RING_BUFFER_CAPACITY 4096
 #define STRIDE_SIZE 3200 // 3,200-byte aligned HexCell stride
 
 typedef struct {
@@ -32,6 +32,7 @@ typedef struct {
 static SharedRingBuffer* g_ring_buffer = NULL;
 
 int init_shm_ring_buffer(const char* shm_name) {
+    shm_unlink(shm_name);
     int shm_fd = shm_open(shm_name, O_CREAT | O_RDWR, 0666);
     if (shm_fd < 0) {
         perror("shm_open failed");
