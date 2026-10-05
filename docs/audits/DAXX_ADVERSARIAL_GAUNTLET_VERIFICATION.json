@@ -1,0 +1,19 @@
+{
+  "timestamp": 1791184775.650699,
+  "elapsed_seconds": 1.276,
+  "all_passed": true,
+  "metrics": {
+    "c_substrate_exit_code": 0,
+    "c_substrate_pass": true,
+    "rust_substrate_exit_code": 0,
+    "rust_substrate_pass": true,
+    "socket_flood_packets_sent": 1000,
+    "socket_flood_success_count": 1000,
+    "socket_flood_pass": true,
+    "db_concurrency_errors": 0,
+    "db_concurrency_pass": true,
+    "atlan_groundedness_score_pct": 100.0,
+    "fin_hallucination_rate_pct": 0.0,
+    "atlan_fin_pass": true
+  }
+}
