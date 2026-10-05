@@ -18,6 +18,7 @@ from sanity_client import SovereignSanityClient
 
 ROOT = Path("/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain")
 AUDITS_DIR = ROOT / "docs" / "audits"
+PAPERS_DIR = ROOT / "docs" / "papers"
 GOLDEN_SET_FILE = ROOT / "data_center" / "golden_questions" / "golden_question_set.json"
 
 class SovereignSanitySyncDaemon:
@@ -25,25 +26,28 @@ class SovereignSanitySyncDaemon:
         self.client = SovereignSanityClient()
 
     def sync_v_and_v_documents(self) -> int:
-        print("[+] Syncing V&V Technical Memorandums to Sanity Content Lake...")
+        print("[+] Syncing V&V Technical Memorandums & Papers to Sanity Content Lake...")
         count = 0
-        if AUDITS_DIR.exists():
-            for filepath in AUDITS_DIR.glob("*.md"):
-                doc_id = f"doc_{filepath.stem.lower()}"
-                with open(filepath, "r", encoding="utf-8") as f:
-                    content = f.read()
+        directories = [AUDITS_DIR, PAPERS_DIR]
+        for dir_path in directories:
+            if dir_path.exists():
+                for filepath in dir_path.glob("*.md"):
+                    doc_id = f"doc_{filepath.stem.lower()}"
+                    with open(filepath, "r", encoding="utf-8") as f:
+                        content = f.read()
 
-                res = self.client.create_document("sovereign_document", {
-                    "title": filepath.stem,
-                    "doc_id": filepath.name,
-                    "body": content[:2000], # Stride excerpt for high-density index
-                    "groundedness_score": 1.0,
-                    "verified_by": ["Maxx", "Clara", "Vance", "John"],
-                    "timestamp": time.time()
-                }, doc_id=doc_id)
-                if res["status"] in ("success", "offline_airgap_mode"):
-                    count += 1
-        print(f"    ✅ Synced {count} V&V document nodes.")
+                    res = self.client.create_document("sovereign_document", {
+                        "title": filepath.stem,
+                        "doc_id": filepath.name,
+                        "category": "paper" if dir_path == PAPERS_DIR else "audit_memo",
+                        "body": content[:2000],
+                        "groundedness_score": 1.0,
+                        "verified_by": ["Maxx", "Clara", "Vance", "John"],
+                        "timestamp": time.time()
+                    }, doc_id=doc_id)
+                    if res["status"] in ("success", "offline_airgap_mode"):
+                        count += 1
+        print(f"    ✅ Synced {count} V&V document and paper nodes.")
         return count
 
     def sync_golden_datasets(self) -> int:
