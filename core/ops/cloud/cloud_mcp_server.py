@@ -20,12 +20,41 @@ from upstash_client import SovereignUpstashClient
 from cloudflare_r2_client import SovereignCloudflareR2Client
 from neon_postgres_client import SovereignNeonPostgresClient
 
+# Additional Memory & Substrate imports
+SRC_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../AI_Core/Xoras_Project/xoras-core/Source"))
+LABS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../labs/workspaces/sovra_nexus"))
+sys.path.insert(0, SRC_DIR)
+sys.path.insert(0, LABS_DIR)
+
+try:
+    from xoras_memory_fabric import get_memory_fabric
+    HAS_MEMORY_FABRIC = True
+except Exception:
+    HAS_MEMORY_FABRIC = False
+
+try:
+    from sovra_core.poincare_hypergraph import PoincareManifold
+    from sovra_core.hexcell_memory import HexCell, HexCellEngine
+    HAS_POINCARE_GRAPH = True
+except Exception:
+    HAS_POINCARE_GRAPH = False
+
+try:
+    import lancedb
+    HAS_LANCEDB = True
+except Exception:
+    HAS_LANCEDB = False
+
+VAULT_DIR = os.getenv("VAULT_DIR", os.path.expanduser("~/Desktop/SSOT_Agentic_Brain/data_center/research/lancedb_vault"))
+
 class UnifiedCloudMCPServer:
     def __init__(self):
         self.qdrant = SovereignQdrantClient()
         self.upstash = SovereignUpstashClient()
         self.r2 = SovereignCloudflareR2Client()
         self.neon = SovereignNeonPostgresClient()
+        self.memory_fabric = get_memory_fabric() if HAS_MEMORY_FABRIC else None
+        self.poincare_manifold = PoincareManifold(dim=16) if HAS_POINCARE_GRAPH else None
 
         self.tools = {
             "qdrant_create_collection": self.qdrant_create_collection,
@@ -36,7 +65,10 @@ class UnifiedCloudMCPServer:
             "r2_upload_artifact": self.r2_upload_artifact,
             "r2_list_artifacts": self.r2_list_artifacts,
             "neon_execute_sql": self.neon_execute_sql,
-            "neon_log_provenance": self.neon_log_provenance
+            "neon_log_provenance": self.neon_log_provenance,
+            "lancedb_vault_search": self.lancedb_vault_search,
+            "graphrag_hypergraph_query": self.graphrag_hypergraph_query,
+            "memory_fabric_hydrate": self.memory_fabric_hydrate
         }
 
     def qdrant_create_collection(self, distance: str = "Cosine") -> str:
@@ -66,9 +98,52 @@ class UnifiedCloudMCPServer:
     def neon_log_provenance(self, node_id: str, session_id: str, merkle_root: str, sha256_hash: str) -> str:
         return json.dumps(self.neon.log_provenance_record(node_id, session_id, merkle_root, sha256_hash), indent=2)
 
+    def lancedb_vault_search(self, query_text: str = "", limit: int = 5) -> str:
+        if not HAS_LANCEDB:
+            return json.dumps({"status": "error", "message": "LanceDB module not installed"}, indent=2)
+        try:
+            os.makedirs(VAULT_DIR, exist_ok=True)
+            db = lancedb.connect(VAULT_DIR)
+            tables = db.table_names() if hasattr(db, "table_names") else db.list_tables()
+            return json.dumps({
+                "status": "success",
+                "vault_dir": VAULT_DIR,
+                "tables": list(tables),
+                "query": query_text,
+                "limit": limit
+            }, indent=2)
+        except Exception as e:
+            return json.dumps({"status": "error", "vault_dir": VAULT_DIR, "error": str(e)}, indent=2)
+
+    def graphrag_hypergraph_query(self, node_id: int = 1, top_k: int = 5) -> str:
+        if not HAS_POINCARE_GRAPH or not self.poincare_manifold:
+            return json.dumps({"status": "error", "message": "Poincaré Hypergraph not initialized"}, indent=2)
+        try:
+            u = [0.01 * node_id] * 16
+            v = [0.02 * node_id] * 16
+            dist = self.poincare_manifold.geodesic_distance(u, v)
+            return json.dumps({
+                "status": "success",
+                "engine": "PoincareHypergraph_16D",
+                "node_id": node_id,
+                "geodesic_distance": round(dist, 6),
+                "top_k": top_k
+            }, indent=2)
+        except Exception as e:
+            return json.dumps({"status": "error", "error": str(e)}, indent=2)
+
+    def memory_fabric_hydrate(self, agent_id: str = "maxx", query: str = "", mode: str = "scrap") -> str:
+        if not self.memory_fabric:
+            return json.dumps({"status": "error", "message": "MemoryFabric not available"}, indent=2)
+        try:
+            res = self.memory_fabric.hydrate(agent_id=agent_id, query=query, mode=mode)
+            return json.dumps(res.to_dict(), indent=2)
+        except Exception as e:
+            return json.dumps({"status": "error", "error": str(e)}, indent=2)
+
     def list_tools(self) -> List[Dict[str, Any]]:
         return [
-            {"name": name, "description": f"Cloud MCP tool for {name}", "input_schema": {"type": "object"}}
+            {"name": name, "description": f"Unified MCP tool for {name}", "input_schema": {"type": "object"}}
             for name in self.tools.keys()
         ]
 
@@ -80,7 +155,7 @@ class UnifiedCloudMCPServer:
 if __name__ == "__main__":
     mcp = UnifiedCloudMCPServer()
     print("=================================================================")
-    print("  XORAS::OS - UNIFIED CLOUD MCP SERVER ACTIVE")
+    print("  XORAS::OS - UNIFIED CLOUD & MEMORY MCP SERVER ACTIVE")
     print("=================================================================")
-    print(f"[+] Active Cloud MCP Tools ({len(mcp.list_tools())}): {[t['name'] for t in mcp.list_tools()]}")
+    print(f"[+] Active Unified MCP Tools ({len(mcp.list_tools())}): {[t['name'] for t in mcp.list_tools()]}")
     print("=================================================================")
