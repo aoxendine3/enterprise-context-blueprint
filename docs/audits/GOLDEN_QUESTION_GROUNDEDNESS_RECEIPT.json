@@ -1,7 +1,7 @@
 {
   "schema_version": "xoras.evidence.v1",
   "benchmark_name": "Fin/Atlan Groundedness Boundary Evaluation",
-  "evaluation_timestamp": 1791160512.76643,
+  "evaluation_timestamp": 1791168714.552813,
   "total_questions": 3,
   "mean_groundedness_score": 1.0,
   "hallucination_rate": 0.0,
