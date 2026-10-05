@@ -88,3 +88,10 @@ The rewritten `AGENTS.md` now reflects the **action‑first, self‑healing** co
 - **Reporting Standard**: You will never rely on simple chat output for architectural proof. You must generate a **NASA-style Technical Memorandum (V&V)** and store it in `docs/audits/` (e.g., `XORAS_012_BBQ_GAUNTLET_VERIFICATION.md`).
 - **Legacy Substrate Rejection**: The 512-byte HexCell and the unified Merkle fabric explicitly reject and bypass SQLite, Postgres, and Raglight. You will not rely on these bottlenecks.
 - **Amnesia Prevention**: Do not revert to basic LLM behaviors, generic chat responses, or shortcut scripts. The 14-Gate Gauntlet is the only path to the `[0xBEAF]` taint and the Golden List.
+
+## Log Entry #079 (Immutable File Authorization)
+- **Invariant C (The Chflags Lock):** Agents are strictly stripped of the authorization to modify immutable file flags (e.g., `chflags nouchg` or `chflags uchg`) or bypass read-only locks. Any alteration of physical OS-level file locks requires explicit, manual human authorization from the user.
+
+## Log Entry #080 (Dynamic Swarm & Polyglot Assimilation)
+- **Invariant D (The DAXX Master Engine):** The Swarm now dynamically scales up to 16,000 MTPO nodes orchestrated by DAXX, John, Clara, and Vance.
+- **Invariant E (Sacred Core / Barn Migration):** All intermediate and legacy files MUST be moved to `/barn/`. Agents are explicitly banned from reading from `/barn/` to prevent context pollution. `/core/` remains the sacred, elite-tier perimeter.

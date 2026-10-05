@@ -1,12 +1,12 @@
 {
-  "last_boot": "2026-10-03T15:41:02Z",
-  "boot_count": 14,
-  "journal_entries": 3,
-  "catch_lines": 2672,
+  "last_boot": "2026-10-04T15:04:13Z",
+  "boot_count": 1,
+  "journal_entries": 1,
+  "catch_lines": 0,
   "verification_suite": {
     "checks_executed": 8,
-    "checks_passed": 8,
-    "checks_failed": 0
+    "checks_passed": 7,
+    "checks_failed": 1
   },
-  "system_state": "READY_ACCORDING_TO_CONFIGURED_CHECKS"
+  "system_state": "DEGRADED"
 }

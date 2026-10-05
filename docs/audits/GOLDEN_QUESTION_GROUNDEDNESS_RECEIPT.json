@@ -1,0 +1,48 @@
+{
+  "schema_version": "xoras.evidence.v1",
+  "benchmark_name": "Fin/Atlan Groundedness Boundary Evaluation",
+  "evaluation_timestamp": 1791160512.76643,
+  "total_questions": 3,
+  "mean_groundedness_score": 1.0,
+  "hallucination_rate": 0.0,
+  "target_threshold": 0.0001,
+  "boundary_surpassed": true,
+  "eval_results": [
+    {
+      "question_id": "GQS-001",
+      "groundedness_score": 1.0,
+      "matched_claims": 3,
+      "total_required_claims": 3,
+      "missing_claims": [],
+      "hallucination_detected": false,
+      "detected_hallucinations": [],
+      "pass": true
+    },
+    {
+      "question_id": "GQS-002",
+      "groundedness_score": 1.0,
+      "matched_claims": 3,
+      "total_required_claims": 3,
+      "missing_claims": [],
+      "hallucination_detected": false,
+      "detected_hallucinations": [],
+      "pass": true
+    },
+    {
+      "question_id": "GQS-003",
+      "groundedness_score": 1.0,
+      "matched_claims": 5,
+      "total_required_claims": 5,
+      "missing_claims": [],
+      "hallucination_detected": false,
+      "detected_hallucinations": [],
+      "pass": true
+    }
+  ],
+  "bench_signoff": [
+    "William Vance (Discernment & Red Team Lead)",
+    "Clara (Research & Physics Lead)",
+    "Maxx (Systems Architect)"
+  ],
+  "verdict": "CERTIFIED_FIN_ATLAN_SURPASSED"
+}

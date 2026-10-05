@@ -18,6 +18,8 @@ node_modules/
 *.mp4
 *.dmg
 capabilities/neural_models/*.onnx
+*.onnx
+**/*.onnx
 capabilities/neural_models/*.bin
 ops/scripts/fullscreen_ui/*.png
 capabilities/native_cpp_broker/upgp_broker_gauntlet

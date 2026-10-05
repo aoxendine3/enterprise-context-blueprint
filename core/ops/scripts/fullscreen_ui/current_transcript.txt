@@ -1,0 +1,1 @@
+Jarvis speaking. The NIST Known Answer Test fixture contains 10 nodes, matching the hardcoded ground truth Merkle root 6cb2138b. All counts match physical disk reality.
