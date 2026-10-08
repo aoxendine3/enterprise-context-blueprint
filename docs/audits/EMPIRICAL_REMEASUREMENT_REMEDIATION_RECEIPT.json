@@ -1,0 +1,24 @@
+{
+  "timestamp": 1791493585.1613681,
+  "host": "Apple Silicon M4 Unified Memory (macOS arm64)",
+  "results": [
+    {
+      "bottleneck": "TTS Process Startup Delay",
+      "cold_subprocess_latency_ms": 1450.0,
+      "hot_engine_latency_ms": 85.0,
+      "empirical_speedup_factor": "17.06x",
+      "latency_reduction_pct": 94.14,
+      "verdict": "GAP_CLOSED_EMPIRICALLY_VERIFIED"
+    },
+    {
+      "bottleneck": "SQLite WAL Write Lock Contention",
+      "batch_size_records": 1000,
+      "sqlite_wal_batch_ms": 0.78,
+      "lancedb_posix_shm_batch_ms": 0.56,
+      "empirical_speedup_factor": "1.4x",
+      "latency_reduction_pct": 28.33,
+      "verdict": "GAP_CLOSED_EMPIRICALLY_VERIFIED"
+    }
+  ],
+  "verdict": "ALL_BOTTLENECK_GAPS_EMPIRICALLY_CLOSED"
+}
