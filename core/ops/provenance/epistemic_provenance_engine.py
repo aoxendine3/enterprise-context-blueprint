@@ -130,10 +130,14 @@ class EpistemicProvenanceEngine:
     def execute_recovery_loop(self) -> Dict[str, Any]:
         """Runs the complete 3-step Unrecorded Asset Recovery Loop."""
         scan_targets = [
-            SSOT_ROOT / "core" / "ops",
+            SSOT_ROOT / "core",
             SSOT_ROOT / "ops" / "scripts",
-            SSOT_ROOT / "docs" / "specs",
-            SSOT_ROOT / ".agents" / "skills"
+            SSOT_ROOT / "docs",
+            SSOT_ROOT / ".agents" / "skills",
+            SSOT_ROOT / "scratch",
+            SSOT_ROOT / "barn",
+            SSOT_ROOT / "memory" / "catch_log",
+            SSOT_ROOT / "agents"
         ]
 
         print("======================================================================")
