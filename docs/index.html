@@ -16,7 +16,7 @@
         header { border-bottom: 1px solid var(--border); padding: 1.25rem 2rem; display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
         .logo { font-size: 1.25rem; font-weight: 700; }
         .logo span { color: var(--accent); }
-        nav a { color: var(--text-muted); text-decoration: none; margin-left: 1.5rem; font-size: 0.95rem; }
+        nav a { color: var(--text-muted); text-decoration: none; margin-left: 1.5rem; font-size: 0.95rem; transition: color 0.2s; }
         nav a:hover { color: var(--text); }
         
         .hero { text-align: center; padding: 4rem 2rem 2rem; max-width: 900px; margin: 0 auto; }
@@ -27,12 +27,19 @@
         .banner-img { max-width: 1000px; width: 100%; border-radius: 12px; border: 1px solid var(--border); margin: 2rem auto; display: block; box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
 
         .cta-group { display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; }
-        .btn { padding: 0.85rem 1.75rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.2s; }
-        .btn-primary { background: var(--accent); color: white; }
+        .btn { padding: 0.85rem 1.75rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.2s; display: inline-block; }
+        .btn-primary { background: var(--accent); color: white; border: none; }
         .btn-primary:hover { background: var(--accent-hover); }
         .btn-secondary { background: var(--card); color: var(--text); border: 1px solid var(--border); }
         .btn-secondary:hover { border-color: var(--text-muted); }
         
+        .features-grid-section { max-width: 1100px; margin: 4rem auto; padding: 0 2rem; }
+        .features-grid-section h2 { text-align: center; font-size: 2.25rem; font-weight: 700; margin-bottom: 2.5rem; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+        .feature-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; }
+        .feature-card h3 { font-size: 1.1rem; color: var(--accent); margin-bottom: 0.5rem; }
+        .feature-card p { font-size: 0.95rem; color: var(--text-muted); }
+
         .pricing-section { max-width: 1100px; margin: 4rem auto; padding: 0 2rem; }
         .pricing-section h2 { text-align: center; font-size: 2.25rem; font-weight: 700; margin-bottom: 0.5rem; }
         .pricing-section p.sub { text-align: center; color: var(--text-muted); margin-bottom: 3rem; }
@@ -51,8 +58,9 @@
         .features-list li::before { content: "✓"; color: var(--green); font-weight: bold; margin-right: 0.5rem; }
         
         .code-section { max-width: 1000px; margin: 4rem auto; padding: 0 2rem; }
-        .code-section h2 { text-align: center; margin-bottom: 2rem; font-size: 1.8rem; }
-        .code-block { background: #000; border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; font-family: monospace; font-size: 0.9rem; overflow-x: auto; color: #10b981; }
+        .code-section h2 { text-align: center; margin-bottom: 1rem; font-size: 1.8rem; }
+        .code-section p.sub { text-align: center; color: var(--text-muted); margin-bottom: 2rem; }
+        .code-block { background: #000; border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; font-family: monospace; font-size: 0.9rem; overflow-x: auto; color: #10b981; margin-bottom: 1.5rem; }
 
         footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 4rem; }
     </style>
@@ -79,6 +87,28 @@
 </section>
 
 <img src="https://raw.githubusercontent.com/aoxendine3/kaggle-benchmark-assets/main/xoras_toolkit_architecture_banner.png" alt="Xoras Architecture Banner" class="banner-img">
+
+<section class="features-grid-section" id="features">
+    <h2>Core Architectural Capabilities</h2>
+    <div class="features-grid">
+        <div class="feature-card">
+            <h3>⏱️ Time-Travel Scrubbing</h3>
+            <p>Scrub back and forth through agent thoughts, states, and logic splits frame-by-frame with nanosecond precision.</p>
+        </div>
+        <div class="feature-card">
+            <h3>🔒 Zero-Dependency Core</h3>
+            <p>Runs 100% offline in browser memory. No backend server, no npm packages, and zero third-party telemetry calls.</p>
+        </div>
+        <div class="feature-card">
+            <h3>📡 Horizon Sentinel Daemon</h3>
+            <p>Autonomous background daemon sweeping GitHub trends and local Ollama model audits for real-time market signals.</p>
+        </div>
+        <div class="feature-card">
+            <h3>📜 Dual Commercial License</h3>
+            <p>Free MIT license for individual developers. Commercial dual-licensing protecting enterprise SaaS deployments.</p>
+        </div>
+    </div>
+</section>
 
 <section class="pricing-section" id="pricing">
     <h2>Commercial Tiers & Subscriptions</h2>
@@ -131,9 +161,11 @@
 </section>
 
 <section class="code-section" id="integrations">
-    <h2>One-Line Framework Integrations</h2>
+    <h2>Framework Integrations</h2>
+    <p class="sub">Export execution traces into Chronos time-scrubbing format with single-line adapters.</p>
+    
     <div class="code-block">
-# Export LangGraph Run to Chronos Time-Scrubber
+# 1. LangGraph Run Exporter
 from ops.scripts.integrations.langgraph_exporter import ChronosLangGraphExporter
 
 exporter = ChronosLangGraphExporter("my_run.jsonl")
@@ -142,6 +174,19 @@ exporter.record_node_execution(
     input_state={"query": "Market analysis"},
     output_state={"plan": ["scrape", "summarize"]},
     reasoning="Evaluating multi-source retrieval."
+)
+    </div>
+
+    <div class="code-block">
+# 2. CrewAI Task Execution Exporter
+from ops.scripts.integrations.crewai_exporter import ChronosCrewAIExporter
+
+exporter = ChronosCrewAIExporter("crew_run.jsonl")
+exporter.record_task_step(
+    agent_role="Senior Analyst",
+    task_description="Competitive intelligence sweep",
+    task_output="Identified 3 primary cloud SaaS competitors.",
+    internal_thoughts="Scraped 15 market reports."
 )
     </div>
 </section>
