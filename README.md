@@ -28,10 +28,11 @@ All verification logic runs in single-pass C-ABI native code with zero heap allo
 | **Windows (x86_64)** | `.dll` / Standalone `.exe` | **~85 μs** | Verified (Windows Server 2022) |
 
 ### Figure 1: Sub-Millisecond Execution Latency Comparison (μs)
-![SOVRA Latency Benchmark](https://raw.githubusercontent.com/aoxendine3/SSOT_Agentic_Brain/main/docs/assets/sovra_v4_latency_benchmark_chart.png)
+![SOVRA Latency Benchmark](https://raw.githubusercontent.com/aoxendine3/kaggle-benchmark-assets/main/sovra_v4_latency_benchmark_chart.png)
 
 ### Figure 2: Polarity Scope & Hedging Verification Precision Matrix
-![SOVRA Precision Matrix](https://raw.githubusercontent.com/aoxendine3/SSOT_Agentic_Brain/main/docs/assets/sovra_v4_accuracy_matrix_chart.png)
+![SOVRA Precision Matrix](https://raw.githubusercontent.com/aoxendine3/kaggle-benchmark-assets/main/sovra_v4_accuracy_matrix_chart.png)
+
 
 
 ---
