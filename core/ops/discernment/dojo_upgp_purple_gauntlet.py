@@ -6,7 +6,7 @@ Escalated Adversarial Fuzzing, Sandbox Escape Defense & Remediation:
 - Red Team (Vance): Injects 10-vector sandbox escape vectors + 50% fault probability.
 - Blue Team (Daxx): Live self-heals detected sandbox breaches, seals memory caps, and logs receipts.
 - R&D (Clara): 18,432-D Poincaré math & SIMD tensor alignment profiling.
-- Humanistic (Selene): Audits tone resonance & Kokoro neural speech purity.
+- Human Safety & QA (Clara): Audits tone resonance & non-deceptive safety purity.
 """
 
 import sys
@@ -126,7 +126,7 @@ def run_dojo_rnd_math_chamber(cycle):
     ]
     results = []
     for m_id, name in math_tests:
-        res = log_receipt("DOJO_RND_MATH", "Clara", f"{m_id}: {name}", "PASSED_VERIFIED", f"Cycle {cycle}")
+        res = log_receipt("DOJO_RND_MATH", "Clara (Human Safety & QA)", f"{m_id}: {name}", "PASSED_VERIFIED", f"Cycle {cycle}")
         results.append(res)
     return results
 
