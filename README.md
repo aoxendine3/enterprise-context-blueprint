@@ -17,7 +17,7 @@ SOVRA inspects an answer against an expected target value within a specific doma
 
 ---
 
-## Performance
+## Performance & Visual Telemetry
 
 All verification logic runs in single-pass C-ABI native code with zero heap allocations during evaluation calls:
 
@@ -26,6 +26,13 @@ All verification logic runs in single-pass C-ABI native code with zero heap allo
 | **macOS (arm64)** | `.dylib` / Standalone CLI | **~42 μs** | Verified (Native Apple Silicon) |
 | **Linux (x86_64)** | `.so` / Static `musl` CLI | **~68 μs** | Verified (Ubuntu x86_64) |
 | **Windows (x86_64)** | `.dll` / Standalone `.exe` | **~85 μs** | Verified (Windows Server 2022) |
+
+### Figure 1: Sub-Millisecond Execution Latency Comparison (μs)
+![SOVRA Latency Benchmark](https://raw.githubusercontent.com/aoxendine3/SSOT_Agentic_Brain/main/docs/assets/sovra_v4_latency_benchmark_chart.png)
+
+### Figure 2: Polarity Scope & Hedging Verification Precision Matrix
+![SOVRA Precision Matrix](https://raw.githubusercontent.com/aoxendine3/SSOT_Agentic_Brain/main/docs/assets/sovra_v4_accuracy_matrix_chart.png)
+
 
 ---
 

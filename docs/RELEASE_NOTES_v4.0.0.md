@@ -17,7 +17,12 @@ SOVRA Truth Engine v4.0 is a zero-pip dependency, offline truth and polarity ver
 - `libtruth_verifier_v4.dll` — Windows x86_64 PE32+ dynamic library
 - `truth_verifier_v4_cli.exe` — Windows x86_64 standalone console executable
 
+### Visual Performance & Accuracy Evidence
+![SOVRA Latency Benchmark](https://raw.githubusercontent.com/aoxendine3/SSOT_Agentic_Brain/main/docs/assets/sovra_v4_latency_benchmark_chart.png)
+![SOVRA Precision Matrix](https://raw.githubusercontent.com/aoxendine3/SSOT_Agentic_Brain/main/docs/assets/sovra_v4_accuracy_matrix_chart.png)
+
 ### Quickstart
 ```bash
-echo '{"question":"What is the capital of France?","answer":"Paris is not only the capital of France but also its largest city.","expected":"Paris","domain":"France"}' | ./truth_verifier_v4_cli
+echo '{"question":"What is the capital of France?","answer":"Paris is not only the capital of France but also its largest city.","expected":"Paris","domain":"France"}' | ./core/ops/scripts/truth_verifier_v4_cli
 ```
+
