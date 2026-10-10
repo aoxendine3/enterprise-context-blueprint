@@ -30,7 +30,7 @@ UPGP v4.0 Ultra enforces fifteen un-mocked runtime controls designed to contain 
 
 ## Active Seccomp-BPF Kernel Enforcement & Native C Bindings
 
-Unlike legacy declarative-only profiles, UPGP v4.0 Ultra features **Active Runtime Enforcement Hooks** ([SeccompProfile.ts](file:///Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/products/upgp/SeccompProfile.ts) & [upgp_seccomp_native.c](file:///Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/src/native/upgp_seccomp_native.c)):
+Unlike legacy declarative-only profiles, UPGP v4.0 Ultra features **Active Runtime Enforcement Hooks** ([SeccompProfile.ts](core/products/upgp/SeccompProfile.ts) & [upgp_seccomp_native.c](src/native/upgp_seccomp_native.c)):
 
 - **Native Process Attachment**: Calls `prctl(PR_SET_NO_NEW_PRIVS, 1)` and `prctl(PR_SET_SECCOMP, SECCOMP_MODE_FILTER)` directly from native C N-API bindings to lock the active process.
 - **19 Explicit SCMP_ACT_KILL Syscall Rules**: Immediately terminates processes attempting restricted syscalls (`ptrace`, `process_vm_writev`, `process_vm_readv`, `unshare`, `kexec_load`, `kexec_file_load`, `reboot`, `userfaultfd`, `bpf`, `perf_event_open`, `keyctl`, `io_uring_setup`, etc.).
