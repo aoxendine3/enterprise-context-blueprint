@@ -96,7 +96,7 @@
 
     <!-- Live Telemetry Dashboard Graphic -->
     <div class="media-card" id="telemetry">
-      <img src="docs/assets/images/upgp_v4_ultra_telemetry_dashboard.jpg" alt="UPGP v4.0 Ultra Live Cryptographic Telemetry Dashboard UI">
+      <img src="assets/images/upgp_v4_ultra_telemetry_dashboard.jpg" alt="UPGP v4.0 Ultra Live Cryptographic Telemetry Dashboard UI">
       <div class="media-caption">
         <strong>Figure 1: Real-Time Cryptographic Telemetry Dashboard</strong> — Live HTTP/WebSocket server rendering active Seccomp-BPF syscall intercept counts, HMAC-SHA256 signature verification, anti-replay nonce tracking, and 0.00ms latency.
       </div>
@@ -104,7 +104,7 @@
 
     <!-- 4-Tier Kernel Architecture Graphic -->
     <div class="media-card" id="architecture">
-      <img src="docs/assets/images/upgp_v4_ultra_kernel_isolation_flow.jpg" alt="UPGP v4.0 Ultra 4-Tier Kernel Isolation System Architecture">
+      <img src="assets/images/upgp_v4_ultra_kernel_isolation_flow.jpg" alt="UPGP v4.0 Ultra 4-Tier Kernel Isolation System Architecture">
       <div class="media-caption">
         <strong>Figure 2: 4-Tier Kernel Isolation System Architecture</strong> — TypeScript API Runtime ➔ Native C N-API BPF Enclave ➔ Lock-Free POSIX SHM Buffer ➔ Linux Kernel Seccomp Syscall Filter.
       </div>
@@ -199,10 +199,9 @@
       
       <div class="card" style="margin-bottom:50px;">
         <ul style="list-style:none; line-height:2.2;">
-          <li>📜 <a href="docs/audits/XORAS_029_SECCOMP_RUNTIME_ENFORCEMENT_HOOKS_V_AND_V.md" style="color:var(--primary); font-weight:600;">XORAS_029_SECCOMP_RUNTIME_ENFORCEMENT_HOOKS_V_AND_V.md</a> — Active Kernel Seccomp Hooks V&amp;V Memorandum</li>
-          <li>📜 <a href="docs/audits/UPGP_BREAKING_POINT_AND_REMEDIATION_AUDIT.md" style="color:var(--primary); font-weight:600;">UPGP_BREAKING_POINT_AND_REMEDIATION_AUDIT.md</a> — Red-Team Exploit Breaking Point Analysis</li>
-          <li>📜 <a href="docs/research/GLOBAL_SANDBOX_LANDSCAPE_AND_UPGP_FUTURE_SPECIFICATION.md" style="color:var(--primary); font-weight:600;">GLOBAL_SANDBOX_LANDSCAPE_AND_UPGP_FUTURE_SPECIFICATION.md</a> — Global Sandbox Landscape &amp; eBPF Architecture</li>
-          <li>📜 <a href="ops/licensing/SOVEREIGN_TIER_LICENSING.md" style="color:var(--primary); font-weight:600;">ops/licensing/SOVEREIGN_TIER_LICENSING.md</a> — Sovereign Tier Licensing &amp; Distribution Blueprint</li>
+          <li>📜 <a href="audits/XORAS_029_SECCOMP_RUNTIME_ENFORCEMENT_HOOKS_V_AND_V.md" style="color:var(--primary); font-weight:600;">XORAS_029_SECCOMP_RUNTIME_ENFORCEMENT_HOOKS_V_AND_V.md</a> — Active Kernel Seccomp Hooks V&amp;V Memorandum</li>
+          <li>📜 <a href="audits/UPGP_BREAKING_POINT_AND_REMEDIATION_AUDIT.md" style="color:var(--primary); font-weight:600;">UPGP_BREAKING_POINT_AND_REMEDIATION_AUDIT.md</a> — Red-Team Exploit Breaking Point Analysis</li>
+          <li>📜 <a href="research/GLOBAL_SANDBOX_LANDSCAPE_AND_UPGP_FUTURE_SPECIFICATION.md" style="color:var(--primary); font-weight:600;">GLOBAL_SANDBOX_LANDSCAPE_AND_UPGP_FUTURE_SPECIFICATION.md</a> — Global Sandbox Landscape &amp; eBPF Architecture</li>
         </ul>
       </div>
     </div>
@@ -214,21 +213,58 @@
   </footer>
 
   <script>
+    let isLiveConnected = false;
+
+    async function checkLiveTelemetryServer() {
+      try {
+        const res = await fetch('http://localhost:8443/api/telemetry', { mode: 'cors' });
+        if (res.ok) {
+          const data = await res.json();
+          isLiveConnected = true;
+          updateUIWithLiveData(data);
+        }
+      } catch (e) {
+        if (!isLiveConnected) {
+          // Keep default pristine state
+        }
+      }
+    }
+
+    function updateUIWithLiveData(data) {
+      const statusBadge = document.getElementById('demo-status');
+      const logBox = document.getElementById('demo-log');
+
+      if (data.signatureValid) {
+        statusBadge.className = 'demo-badge valid';
+        statusBadge.textContent = '● LIVE HARDWARE ENCLAVE: SECURE';
+      } else {
+        statusBadge.className = 'demo-badge invalid';
+        statusBadge.textContent = '✖ LIVE HARDWARE ENCLAVE: REJECTED / CORRUPTED';
+      }
+
+      logBox.textContent = JSON.stringify(data, null, 2);
+    }
+
     function simValid() {
+      isLiveConnected = false;
       document.getElementById('demo-status').className = 'demo-badge valid';
-      document.getElementById('demo-status').textContent = '● SECURE (SIGNATURE VALID / NONCE CONSUMED)';
+      document.getElementById('demo-status').textContent = '● SIMULATED ENCLAVE: SECURE (SIGNATURE VALID)';
       document.getElementById('demo-log').textContent = JSON.stringify({
+        mode: "INTERACTIVE_DEMO_SIMULATION",
         sandboxLatencyMs: "0.00ms",
         signatureValid: true,
         enclaveState: "SECURE",
-        enclaveIntegrity: "PASSED (Signature Valid / Freshness Verified / Nonce 1791638752494)",
+        enclaveIntegrity: "PASSED (Signature Valid / Freshness Verified / Nonce " + Date.now() + ")",
         state_pollution: "0.00000%"
       }, null, 2);
     }
+
     function simBitFlip() {
+      isLiveConnected = false;
       document.getElementById('demo-status').className = 'demo-badge invalid';
-      document.getElementById('demo-status').textContent = '✖ ALERT: SIGNATURE CORRUPTED / BIT FLIP DETECTED';
+      document.getElementById('demo-status').textContent = '✖ SIMULATED ENCLAVE: CORRUPTED (BIT FLIP DETECTED)';
       document.getElementById('demo-log').textContent = JSON.stringify({
+        mode: "INTERACTIVE_DEMO_SIMULATION",
         sandboxLatencyMs: "0.00ms",
         signatureValid: false,
         enclaveState: "CORRUPTED",
@@ -236,17 +272,24 @@
         state_pollution: "TAINT DETECTED [0xDEAD0000]"
       }, null, 2);
     }
+
     function simReplay() {
+      isLiveConnected = false;
       document.getElementById('demo-status').className = 'demo-badge invalid';
-      document.getElementById('demo-status').textContent = '✖ ALERT: REPLAY ATTACK INTERCEPTED (DUPLICATE NONCE)';
+      document.getElementById('demo-status').textContent = '✖ SIMULATED ENCLAVE: REPLAY ATTACK INTERCEPTED';
       document.getElementById('demo-log').textContent = JSON.stringify({
+        mode: "INTERACTIVE_DEMO_SIMULATION",
         sandboxLatencyMs: "0.00ms",
         signatureValid: false,
         enclaveState: "CORRUPTED",
-        enclaveIntegrity: "ALERT: REPLAY ATTACK (DUPLICATE PAYLOAD REPLAY)! Nonce 1791638752494 already consumed.",
+        enclaveIntegrity: "ALERT: REPLAY ATTACK (DUPLICATE PAYLOAD REPLAY)! Nonce " + Date.now() + " already consumed.",
         state_pollution: "CROSS_SESSION_UNLINKED_REPLAY"
       }, null, 2);
     }
+
+    // Auto-poll local server every 2 seconds for live connection
+    setInterval(checkLiveTelemetryServer, 2000);
+    checkLiveTelemetryServer();
   </script>
 </body>
 </html>

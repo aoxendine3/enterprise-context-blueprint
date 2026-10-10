@@ -213,21 +213,58 @@
   </footer>
 
   <script>
+    let isLiveConnected = false;
+
+    async function checkLiveTelemetryServer() {
+      try {
+        const res = await fetch('http://localhost:8443/api/telemetry', { mode: 'cors' });
+        if (res.ok) {
+          const data = await res.json();
+          isLiveConnected = true;
+          updateUIWithLiveData(data);
+        }
+      } catch (e) {
+        if (!isLiveConnected) {
+          // Keep default pristine state
+        }
+      }
+    }
+
+    function updateUIWithLiveData(data) {
+      const statusBadge = document.getElementById('demo-status');
+      const logBox = document.getElementById('demo-log');
+
+      if (data.signatureValid) {
+        statusBadge.className = 'demo-badge valid';
+        statusBadge.textContent = '● LIVE HARDWARE ENCLAVE: SECURE';
+      } else {
+        statusBadge.className = 'demo-badge invalid';
+        statusBadge.textContent = '✖ LIVE HARDWARE ENCLAVE: REJECTED / CORRUPTED';
+      }
+
+      logBox.textContent = JSON.stringify(data, null, 2);
+    }
+
     function simValid() {
+      isLiveConnected = false;
       document.getElementById('demo-status').className = 'demo-badge valid';
-      document.getElementById('demo-status').textContent = '● SECURE (SIGNATURE VALID / NONCE CONSUMED)';
+      document.getElementById('demo-status').textContent = '● SIMULATED ENCLAVE: SECURE (SIGNATURE VALID)';
       document.getElementById('demo-log').textContent = JSON.stringify({
+        mode: "INTERACTIVE_DEMO_SIMULATION",
         sandboxLatencyMs: "0.00ms",
         signatureValid: true,
         enclaveState: "SECURE",
-        enclaveIntegrity: "PASSED (Signature Valid / Freshness Verified / Nonce 1791638752494)",
+        enclaveIntegrity: "PASSED (Signature Valid / Freshness Verified / Nonce " + Date.now() + ")",
         state_pollution: "0.00000%"
       }, null, 2);
     }
+
     function simBitFlip() {
+      isLiveConnected = false;
       document.getElementById('demo-status').className = 'demo-badge invalid';
-      document.getElementById('demo-status').textContent = '✖ ALERT: SIGNATURE CORRUPTED / BIT FLIP DETECTED';
+      document.getElementById('demo-status').textContent = '✖ SIMULATED ENCLAVE: CORRUPTED (BIT FLIP DETECTED)';
       document.getElementById('demo-log').textContent = JSON.stringify({
+        mode: "INTERACTIVE_DEMO_SIMULATION",
         sandboxLatencyMs: "0.00ms",
         signatureValid: false,
         enclaveState: "CORRUPTED",
@@ -235,17 +272,24 @@
         state_pollution: "TAINT DETECTED [0xDEAD0000]"
       }, null, 2);
     }
+
     function simReplay() {
+      isLiveConnected = false;
       document.getElementById('demo-status').className = 'demo-badge invalid';
-      document.getElementById('demo-status').textContent = '✖ ALERT: REPLAY ATTACK INTERCEPTED (DUPLICATE NONCE)';
+      document.getElementById('demo-status').textContent = '✖ SIMULATED ENCLAVE: REPLAY ATTACK INTERCEPTED';
       document.getElementById('demo-log').textContent = JSON.stringify({
+        mode: "INTERACTIVE_DEMO_SIMULATION",
         sandboxLatencyMs: "0.00ms",
         signatureValid: false,
         enclaveState: "CORRUPTED",
-        enclaveIntegrity: "ALERT: REPLAY ATTACK (DUPLICATE PAYLOAD REPLAY)! Nonce 1791638752494 already consumed.",
+        enclaveIntegrity: "ALERT: REPLAY ATTACK (DUPLICATE PAYLOAD REPLAY)! Nonce " + Date.now() + " already consumed.",
         state_pollution: "CROSS_SESSION_UNLINKED_REPLAY"
       }, null, 2);
     }
+
+    // Auto-poll local server every 2 seconds for live connection
+    setInterval(checkLiveTelemetryServer, 2000);
+    checkLiveTelemetryServer();
   </script>
 </body>
 </html>
