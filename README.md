@@ -40,6 +40,19 @@ UPGP v4.0 Ultra enforces fifteen un-mocked runtime controls designed to contain 
 
 ---
 
+## 4-Axis Side-Channel Statistical Verification Suite
+
+UPGP includes a 4-axis statistical side-channel analysis harness ([SideChannelVerificationSuite.ts](core/products/upgp/SideChannelVerificationSuite.ts) & [test_side_channel_verification.cjs](core/ops/scripts/test_side_channel_verification.cjs)) that evaluates timing leakage between approved vs vetoed consensus paths across 100 continuous rounds using `process.hrtime.bigint()`:
+
+| Diagnostic Axis | Mathematical Test | Target Threshold | Verification Criteria | Status |
+| :--- | :--- | :--- | :--- | :---: |
+| **Axis 1** | Welch's T-Test | $t < 1.96$ | First-Order Mean Indistinguishability | **PASS** |
+| **Axis 2** | F-Test Variance Ratio | $F < 1.25$ (or $\sigma^2 < 400\,\mu\text{s}^2$) | Second-Order Variance Sealed | **PASS** |
+| **Axis 3** | Kolmogorov-Smirnov Test | $KS < 0.15$ | Cumulative Distribution Shape Indistinguishable | **PASS** |
+| **Axis 4** | Wasserstein Distance | $< 5,000\,\text{ns}$ | Physical Earth Mover's Distance Containment | **PASS** |
+
+---
+
 ## Active Seccomp-BPF Kernel Enforcement & Native C Bindings
 
 Unlike legacy declarative-only profiles, UPGP v4.0 Ultra features **Active Runtime Enforcement Hooks** ([SeccompProfile.ts](core/products/upgp/SeccompProfile.ts) & [upgp_seccomp_native.c](src/native/upgp_seccomp_native.c)):
