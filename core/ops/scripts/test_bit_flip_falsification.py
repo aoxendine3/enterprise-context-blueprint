@@ -7,11 +7,37 @@ Demonstrates un-mocked telemetry verification by intentionally mutating 1 bit in
 import json
 import os
 import urllib.request
+import hmac
+import hashlib
 import time
 import sys
 
 MANIFEST_PATH = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/tri_brain/state_manifest.json"
+SEEN_NONCES_PATH = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/tri_brain/seen_nonces.json"
 API_URL = "http://localhost:8443/api/telemetry"
+SECRET_KEY = b"XORAS_SOVEREIGN_TRINITY_GATE_SECRET_KEY_2026"
+
+def write_fresh_manifest():
+    os.makedirs(os.path.dirname(MANIFEST_PATH), exist_ok=True)
+    if os.path.exists(SEEN_NONCES_PATH):
+        os.remove(SEEN_NONCES_PATH)
+    
+    payload = {
+        "version": "UPGP-4.0-ULTRA",
+        "vectors": 15,
+        "enclave": "APPLE_SILICON_M4_POSIX_SHM",
+        "timestamp": int(time.time()),
+        "nonce": int(time.time() * 1000)
+    }
+    payload_bytes = json.dumps(payload, sort_keys=True).encode('utf-8')
+    sig = hmac.new(SECRET_KEY, payload_bytes, hashlib.sha256).hexdigest()
+    manifest = {
+        "payload": payload,
+        "signature": sig
+    }
+    with open(MANIFEST_PATH, "w", encoding="utf-8") as f:
+        json.dump(manifest, f, indent=2)
+    return manifest
 
 def get_telemetry():
     req = urllib.request.Request(API_URL)
@@ -23,8 +49,9 @@ def test_falsification():
     print("  UPGP v4.0 ULTRA ADVERSARIAL BIT-FLIP SIGNATURE FALSIFICATION TEST")
     print("==========================================================================")
 
-    # 1. Fetch baseline telemetry with pristine manifest
-    print("\n[STEP 1] Querying Telemetry Dashboard with Valid Signature...")
+    # 1. Fetch baseline telemetry with pristine fresh manifest
+    print("\n[STEP 1] Writing Pristine Fresh Manifest & Querying Dashboard...")
+    write_fresh_manifest()
     t1 = get_telemetry()
     print(f"  * signatureValid: {t1.get('signatureValid')}")
     print(f"  * enclaveState  : {t1.get('enclaveState')}")
@@ -40,7 +67,6 @@ def test_falsification():
         manifest = json.load(f)
     
     orig_sig = manifest["signature"]
-    # Flip first character (e.g. 'a' -> 'b', '0' -> '1')
     char_0 = orig_sig[0]
     flipped_char = '1' if char_0 == '0' else '0'
     corrupted_sig = flipped_char + orig_sig[1:]
@@ -65,11 +91,8 @@ def test_falsification():
     print("  ✓ ADVERSARIAL FALSIFICATION PASSED: Dashboard caught bit flip and raised CORRUPTED ALERT!")
 
     # 4. Restore valid signature
-    print("\n[STEP 4] Restoring Original Valid Signature...")
-    manifest["signature"] = orig_sig
-    with open(MANIFEST_PATH, "w", encoding="utf-8") as f:
-        json.dump(manifest, f, indent=2)
-
+    print("\n[STEP 4] Restoring Original Valid Fresh Signature...")
+    write_fresh_manifest()
     time.sleep(0.5)
     t3 = get_telemetry()
     print(f"  * signatureValid: {t3.get('signatureValid')}")
