@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "log_entry": "082",
+  "title": "Tiered Discernment & Standard/Golden List Governance Law",
+  "effective_date": "2026-10-10",
+  "posture": "Action-First, Tiered Discernment, Zero-Bypass Verification",
+  "tiers": {
+    "standard_list": {
+      "tag": "[0xBEAF_STANDARD]",
+      "description": "Applies to routine maintenance, bug fixes, script updates, documentation updates, and minor operational scripts.",
+      "required_gates": [
+        "Link & Asset Verifier Engine (enforce_link_and_asset_verifier.py)",
+        "Documentation Sync Gate (enforce_doc_sync_gate.py)",
+        "Local Test Harness Pass (100% exit 0)"
+      ],
+      "trinity_consensus_required": false
+    },
+    "golden_list": {
+      "tag": "[0xBEAF_GOLDEN]",
+      "description": "Reserved strictly for major architectural breakthroughs, core system rewrites, new cryptographic primitives, or sovereign deployment releases.",
+      "required_gates": [
+        "14-Gate Blackbox Gauntlet (Sovereign BBQ Falsification)",
+        "Trinity Gate 3-Agent Consensus (2-out-of-3 Ed25519/Audio SHA-256 Hashes)",
+        "NASA-style Technical Memorandum (V&V Audit)",
+        "Zero-Trust Bit-Flip Audit Protocol"
+      ],
+      "trinity_consensus_required": true
+    }
+  },
+  "invariant_rules": [
+    "Rule 1: No routine or minor asset fix shall require Golden List escalation; polluting the Golden List is prohibited.",
+    "Rule 2: No release candidate shall advance to remote deployment without 100% PASS on the designated tier's verification gates.",
+    "Rule 3: All media display assets (videos/GIFs) must be physically embedded and verified prior to commit."
+  ]
+}

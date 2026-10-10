@@ -2,6 +2,14 @@
 
 > **UPGP v4.0 Ultra** is an ultra-hardened, lock-free AI sandbox runtime and microarchitectural security suite. It provides active Linux kernel Seccomp-BPF system call filtering (`prctl` PR_SET_SECCOMP native C bindings), Landlock LSM path isolation, Z3 SMT formal proof verification, 15-vector escape defense, 290,000+ ops/sec lock-free POSIX shared memory atomic double-buffering, and a live web telemetry dashboard.
 
+<p align="center">
+  <video src="docs/assets/videos/upgp_wasm_walkthrough.mp4" controls width="100%" poster="docs/assets/videos/upgp_wasm_walkthrough.gif">
+    <img src="docs/assets/videos/upgp_wasm_walkthrough.gif" alt="UPGP WASM Walkthrough Video Preview" width="100%" />
+  </video>
+</p>
+
+![UPGP WASM Walkthrough Video Preview](docs/assets/videos/upgp_wasm_walkthrough.gif)
+
 ![UPGP v4.0 Ultra Live Cryptographic Telemetry Dashboard](docs/assets/images/upgp_v4_ultra_telemetry_dashboard.jpg)
 
 ![UPGP v4.0 Ultra 4-Tier Kernel Isolation Architecture](docs/assets/images/upgp_v4_ultra_kernel_isolation_flow.jpg)
