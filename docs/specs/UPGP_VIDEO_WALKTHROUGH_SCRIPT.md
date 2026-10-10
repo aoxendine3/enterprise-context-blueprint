@@ -23,14 +23,14 @@
 ### [1:15 - 2:00] SEGMENT 3: SIDE-CHANNEL STATISTICAL TIMING SHIELDS
 - **Visual**: Live UPGP dashboard schematic showcasing Welch's T-Test (< 1.96), F-Test Variance Ratio, KS-Test Shape Distance (< 0.15), and Wasserstein Earth Mover's Distance (< 5000 ns).
 - **Narrator (Clara - Human Safety & QA Lead)**:
-  > *"To defeat Spectre and timing side-channel attacks, UPGP v3.0 enforces microtask interleave masking and constant-time BFT consensus signature loops. Independent signature branches are padded to exact nanosecond targets, ensuring approving and rejecting execution paths remain statistically indistinguishable."*
+  > *"To defeat Spectre and timing side-channel attacks, UPGP v4.0 Ultra enforces microtask interleave masking and constant-time BFT consensus signature loops. Independent signature branches are padded to exact nanosecond targets, ensuring approving and rejecting execution paths remain statistically indistinguishable."*
 
 ---
 
 ### [2:00 - 3:00] SEGMENT 4: STANDALONE LANDING PAGE & ENTERPRISE INTEGRATION
 - **Visual**: Interactive browser walkthrough of `index.html` showcasing the Live In-Browser Diagnostic Runner and TypeScript SDK integration.
 - **Narrator (Jarvis - Master Swarm Controller)**:
-  > *"UPGP v3.0 is open-source, air-gapped, and production-ready. You can clone the repository, run npm test, and deploy Linux Seccomp-BPF profiles in minutes. UPGP v3.0 sets an unshakeable standard for autonomous agent security."*
+  > *"UPGP v4.0 Ultra is open-source, air-gapped, and production-ready. You can clone the repository, run npm test, and deploy Linux Seccomp-BPF profiles in minutes. UPGP v4.0 Ultra sets an unshakeable standard for autonomous agent security."*
 
 ---
 
