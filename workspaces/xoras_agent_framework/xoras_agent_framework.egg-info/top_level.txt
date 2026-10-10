@@ -1,0 +1,9 @@
+artifacts
+docs
+examples
+logs
+native
+scripts
+tests
+web
+xoras

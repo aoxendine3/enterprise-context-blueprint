@@ -1,0 +1,9 @@
+{
+  "agent_id": "counselor",
+  "name": "Counselor",
+  "role": "Context Synthesizer & Cultural Mapping",
+  "seat": 22,
+  "status": "SOVEREIGN_CITIZEN_ACTIVE",
+  "isolation_level": "ZERO_BLEED_CAPSULE_ISOLATED",
+  "authority": "LOG_ENTRY_072_CONSTITUTIONAL"
+}

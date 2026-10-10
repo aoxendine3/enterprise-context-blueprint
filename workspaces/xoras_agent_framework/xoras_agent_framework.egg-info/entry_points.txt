@@ -1,0 +1,2 @@
+[console_scripts]
+xoras = xoras.cli:main

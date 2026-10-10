@@ -268,3 +268,5 @@
 2026-10-04T23:07:34Z [INFO] ✅ TRIBUNAL APPROVED: Command 'grep -r Sovereign ops/policy/' authorized (3/3 Unanimous Alignment).
 2026-10-04T23:27:40Z [INFO] === INITIATING TRIBUNAL DEBATE FOR COMMAND: 'git status' ===
 2026-10-04T23:27:40Z [INFO] ✅ TRIBUNAL APPROVED: Command 'git status' authorized (3/3 Unanimous Alignment).
+2026-10-10T00:13:00Z [INFO] === INITIATING TRIBUNAL DEBATE FOR COMMAND: 'npm test --prefix /tmp/upgp-proving-ground' ===
+2026-10-10T00:13:00Z [INFO] ✅ TRIBUNAL APPROVED: Command 'npm test --prefix /tmp/upgp-proving-ground' authorized (3/3 Unanimous Alignment).

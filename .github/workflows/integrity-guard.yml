@@ -1,0 +1,30 @@
+name: XORAS Sentry Guard
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  integrity-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install XORAS Sentry CLI
+        run: npm install -g integrity-sentry-core
+
+      - name: Lint code
+        run: npm run lint
+
+      - name: Run XORAS Sentry Guard
+        uses: ./
+        with:
+          target_path: '.'
+          fail_on_secrets: 'true'

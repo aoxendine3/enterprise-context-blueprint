@@ -1,0 +1,13 @@
+name: Integrity Check
+
+on: [push, pull_request]
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run integrity sentry
+        run: npx integrity-sentry .

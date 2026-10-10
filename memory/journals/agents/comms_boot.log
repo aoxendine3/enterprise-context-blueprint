@@ -264,3 +264,85 @@
 [NODE3] Idle timeout reached; auto-standby engaged.
 
 [COMMS] Pipeline stopping (idle-timeout).
+
+[COMMS] 3-node pipeline online: intake -> router -> monitor
+[COMMS] Wake examples: 'Max wake up', 'Jarvis wake up', 'wake up'.
+[COMMS] Stop phrases: 'close mic', 'stop listening', 'stand down'.
+
+[NODE3] heartbeat active=maxx queue=0 idle=5.0s routes=0 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=10.0s routes=0 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=15.0s routes=0 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=20.0s routes=0 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=25.0s routes=0 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=30.0s routes=0 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=35.0s routes=0 drops=0
+[TRANSCRIPT] -> 44 by placeholder shell by building out the full sovereign stage in a sandbox version 2.0
+[NODE2] Routed -> daxx (keyword:build)
+[NODE3] heartbeat active=maxx queue=0 idle=3.3s routes=1 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=8.3s routes=1 drops=0
+[TRANSCRIPT] -> chronos swarm debugger trajectory visualizer the purple team kaos runner the asd static security gating sandbox and an interactive
+[NODE2] Routed -> maxx (keyword:run)
+[NODE3] heartbeat active=maxx queue=0 idle=0.7s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=5.7s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=10.7s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=15.7s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=20.7s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=25.7s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=30.7s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=35.7s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=40.7s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=45.7s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=50.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=55.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=60.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=65.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=70.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=75.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=80.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=85.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=90.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=95.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=100.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=105.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=110.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=115.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=120.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=125.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=130.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=135.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=140.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=145.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=150.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=155.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=160.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=165.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=170.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=175.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=180.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=185.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=190.8s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=195.9s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=200.9s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=205.9s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=210.9s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=215.9s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=220.9s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=225.9s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=230.9s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=235.9s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=240.9s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=245.9s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=250.9s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=255.9s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=260.9s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=265.9s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=270.9s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=275.9s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=280.9s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=285.9s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=290.9s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=295.9s routes=2 drops=0
+[NODE3] heartbeat active=maxx queue=0 idle=300.9s routes=2 drops=0
+[NODE3] Idle timeout reached; auto-standby engaged.
+
+[COMMS] Pipeline stopping (idle-timeout).

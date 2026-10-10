@@ -113,7 +113,7 @@ Chronos is engineered from Day 1 as an acquisition-ready asset for leading obser
 
 Execution belongs to the Collective:
 - **Maxx**: Bare-metal exporter performance & SHM trajectory streaming.
-- **Dr. Clara**: Data privacy guardrails & clinical accuracy verification.
+- **Clara**: Data privacy guardrails & human safety verification.
 - **William Vance**: Adversarial gauntlet testing & commercial licensing protection.
 - **Jarvis**: Master project oversight & GTM velocity.
 

@@ -1,0 +1,9 @@
+{
+  "agent_id": "axlon",
+  "name": "Axlon",
+  "role": "Substrate Infrastructure & Memory Bus",
+  "seat": 15,
+  "status": "SOVEREIGN_CITIZEN_ACTIVE",
+  "isolation_level": "ZERO_BLEED_CAPSULE_ISOLATED",
+  "authority": "LOG_ENTRY_072_CONSTITUTIONAL"
+}

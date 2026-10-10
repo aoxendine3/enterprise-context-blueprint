@@ -1,0 +1,30 @@
+name: Periodic Security Audit
+permissions:
+  actions: read
+  contents: read
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Every day at midnight
+  workflow_dispatch: # Manual trigger
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install XORAS Sentry
+        run: npm install -g xoras-sentry-cli
+
+      - name: Run Institutional Audit
+        run: xoras-sentry . --json > audit-baseline.json
+
+      - name: Archive Audit Baseline
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-baseline
+          path: audit-baseline.json
