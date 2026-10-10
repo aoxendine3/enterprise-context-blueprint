@@ -1,0 +1,13 @@
+{
+  "institutional_benchmarks": {
+    "latency_budget": 150,
+    "security_threshold": 0,
+    "max_dependencies": 20,
+    "required_headers": ["Content-Security-Policy", "Strict-Transport-Security"]
+  },
+  "target_references": [
+    { "name": "LOCAL_CORE", "latency": 102, "score": 100 },
+    { "name": "SANDBOX_VULNERABLE", "latency": 800, "score": 25 },
+    { "name": "PUBLIC_PROD", "latency": 140, "score": 95 }
+  ]
+}

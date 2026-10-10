@@ -1,0 +1,25 @@
+{
+  "profiles": {
+    "PERF_DRIFT_01": {
+      "type": "PERFORMANCE",
+      "action": "INJECT_LATENCY",
+      "value": 500,
+      "expected_verdict": "BLOCK",
+      "expected_score_range": [70, 80]
+    },
+    "SECRET_LEAK_01": {
+      "type": "SECURITY",
+      "action": "INJECT_SECRET",
+      "value": "AKIA_MOCK_SECRET_KEY_PROD_01",
+      "expected_verdict": "BLOCK",
+      "expected_score_range": [0, 50]
+    },
+    "DEP_BLOAT_01": {
+      "type": "ARCHITECTURE",
+      "action": "INJECT_DEPS",
+      "value": 50,
+      "expected_verdict": "WARN",
+      "expected_score_range": [85, 95]
+    }
+  }
+}
