@@ -11,9 +11,9 @@ cover_image: https://raw.githubusercontent.com/aoxendine3/kaggle-benchmark-asset
 
 ## Video Demonstration & Architecture Walkthrough
 
-{% embed https://www.youtube.com/watch?v=dQw4w9WgXcQ %}
+![UPGP WASM Walkthrough Video Preview](https://raw.githubusercontent.com/aoxendine3/SSOT_Agentic_Brain/main/docs/assets/videos/upgp_wasm_walkthrough.gif)
 
-*Figure 0: Live terminal walkthrough showing 50-turn agentic context benchmark execution and 14-Gate BBQ Gauntlet verification on Apple Silicon M4 unified memory.*
+*Figure 0: Live WebAssembly kernel walkthrough showing 16,000-thread MTPO concurrency saturation, deterministic Saga inverse rollbacks, zero-trust bit-flip falsification, and 14-Gate BBQ Gauntlet verification on Apple Silicon M4 unified memory. [Interactive Live Simulator](https://aoxendine3.github.io/upgp-proving-ground/)*
 
 ---
 
