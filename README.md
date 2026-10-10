@@ -10,6 +10,18 @@
 
 ![UPGP WASM Walkthrough Video Preview](docs/assets/videos/upgp_wasm_walkthrough.gif)
 
+---
+
+### 🎙️ Special Podcast Showcase: Replacing Vibe Coding with MARS Framework
+
+<p align="center">
+  <video src="docs/assets/videos/vibe_coding_highlights_showcase.mp4" controls width="100%" poster="docs/assets/videos/vibe_coding_highlights_showcase.gif">
+    <img src="docs/assets/videos/vibe_coding_highlights_showcase.gif" alt="Replacing Vibe Coding with MARS Framework Podcast Showcase" width="100%" />
+  </video>
+</p>
+
+![Replacing Vibe Coding with MARS Framework Podcast Showcase](docs/assets/videos/vibe_coding_highlights_showcase.gif)
+
 ![UPGP v4.0 Ultra Live Cryptographic Telemetry Dashboard](docs/assets/images/upgp_v4_ultra_telemetry_dashboard.jpg)
 
 ![UPGP v4.0 Ultra 4-Tier Kernel Isolation Architecture](docs/assets/images/upgp_v4_ultra_kernel_isolation_flow.jpg)
