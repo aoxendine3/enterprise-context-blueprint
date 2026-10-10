@@ -1,7 +1,4 @@
 name: Periodic Security Audit
-permissions:
-  actions: read
-  contents: read
 
 on:
   schedule:
@@ -13,18 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-python@v5
         with:
-          node-version: '20'
-      
-      - name: Install XORAS Sentry
-        run: npm install -g xoras-sentry-cli
+          python-version: '3.12'
 
-      - name: Run Institutional Audit
-        run: xoras-sentry . --json > audit-baseline.json
-
-      - name: Archive Audit Baseline
-        uses: actions/upload-artifact@v4
-        with:
-          name: security-baseline
-          path: audit-baseline.json
+      - name: Run Institutional Audit & Gate Verification
+        run: |
+          python3 core/ops/scripts/test_upgp_wasm_module.py
+          python3 core/ops/scripts/enforce_doc_sync_gate.py

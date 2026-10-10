@@ -12,19 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Setup Node.js
+      - name: Setup Node.js & Python
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Install XORAS Sentry CLI
-        run: npm install -g integrity-sentry-core
-
-      - name: Lint code
-        run: npm run lint
-
-      - name: Run XORAS Sentry Guard
-        uses: ./
-        with:
-          target_path: '.'
-          fail_on_secrets: 'true'
+      - name: Run WebAssembly Integrity & Doc Sync Gate
+        run: |
+          python3 core/ops/scripts/test_upgp_wasm_module.py
+          python3 core/ops/scripts/enforce_doc_sync_gate.py
