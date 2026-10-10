@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
-UPGP v4.0 Ultra — Telemetry Dashboard Launcher with Real Cryptographic Signature Verification
-Includes live bit-flip detection and zero-trust state verification.
+UPGP v4.0 Ultra — Telemetry Dashboard Launcher with Cryptographic Signature & Anti-Replay Engine
+Includes:
+- HMAC-SHA256 signature verification (Correctness)
+- Monotonic Nonce & Seen-Signature Ledger (Anti-Replay / Freshness)
+- Timestamp Freshness Window (Max 30 seconds drift)
 """
 
 import http.server
@@ -16,16 +19,39 @@ import time
 PORT = 8443
 LOG_PATH = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/catch_log/seccomp_runtime_enforcement.log"
 MANIFEST_PATH = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/tri_brain/state_manifest.json"
+SEEN_NONCES_PATH = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/tri_brain/seen_nonces.json"
 SECRET_KEY = b"XORAS_SOVEREIGN_TRINITY_GATE_SECRET_KEY_2026"
+MAX_TIMESTAMP_DRIFT_SEC = 30
 
-def ensure_valid_manifest():
-    """Generates canonical signed state manifest if missing."""
+# In-memory and disk-backed replay tracker
+SEEN_NONCES = set()
+
+def load_seen_nonces():
+    global SEEN_NONCES
+    if os.path.exists(SEEN_NONCES_PATH):
+        try:
+            with open(SEEN_NONCES_PATH, "r", encoding="utf-8") as f:
+                SEEN_NONCES = set(json.load(f))
+        except Exception:
+            SEEN_NONCES = set()
+
+def save_seen_nonces():
+    os.makedirs(os.path.dirname(SEEN_NONCES_PATH), exist_ok=True)
+    with open(SEEN_NONCES_PATH, "w", encoding="utf-8") as f:
+        json.dump(list(SEEN_NONCES), f)
+
+def ensure_valid_manifest(nonce: int = None, ts: int = None):
+    """Generates canonical signed state manifest with fresh timestamp and nonce."""
     os.makedirs(os.path.dirname(MANIFEST_PATH), exist_ok=True)
+    current_ts = int(time.time()) if ts is None else ts
+    current_nonce = int(time.time() * 1000) if nonce is None else nonce
+    
     payload = {
         "version": "UPGP-4.0-ULTRA",
         "vectors": 15,
         "enclave": "APPLE_SILICON_M4_POSIX_SHM",
-        "timestamp": 1760000000
+        "timestamp": current_ts,
+        "nonce": current_nonce
     }
     payload_bytes = json.dumps(payload, sort_keys=True).encode('utf-8')
     sig = hmac.new(SECRET_KEY, payload_bytes, hashlib.sha256).hexdigest()
@@ -37,11 +63,16 @@ def ensure_valid_manifest():
         json.dump(manifest, f, indent=2)
     return manifest
 
-def verify_state_signature():
+def verify_state_signature_and_freshness():
     """
-    Real un-mocked cryptographic signature check.
-    Returns (is_valid, message)
+    Real un-mocked cryptographic signature + anti-replay freshness verification.
+    Checks:
+    1. Signature correctness (HMAC-SHA256)
+    2. Timestamp freshness (within ±30 seconds)
+    3. Replay attack prevention (duplicate nonce/signature rejection)
     """
+    load_seen_nonces()
+    
     if not os.path.exists(MANIFEST_PATH):
         ensure_valid_manifest()
 
@@ -55,10 +86,28 @@ def verify_state_signature():
         payload_bytes = json.dumps(payload, sort_keys=True).encode('utf-8')
         expected_sig = hmac.new(SECRET_KEY, payload_bytes, hashlib.sha256).hexdigest()
 
-        if hmac.compare_digest(sig, expected_sig):
-            return True, "PASSED (Signature Valid / 0.00000% Taint)"
-        else:
+        # 1. Correctness Check
+        if not hmac.compare_digest(sig, expected_sig):
             return False, f"ALERT: CORRUPTED SIGNATURE! Expected {expected_sig[:12]}... Got {sig[:12]}..."
+
+        # 2. Timestamp Freshness Check
+        ts = payload.get("timestamp", 0)
+        now = int(time.time())
+        time_diff = abs(now - ts)
+        if time_diff > MAX_TIMESTAMP_DRIFT_SEC:
+            return False, f"ALERT: REPLAY ATTACK (STALE TIMESTAMP)! Age: {time_diff}s > {MAX_TIMESTAMP_DRIFT_SEC}s threshold."
+
+        # 3. Anti-Replay Nonce Check
+        nonce_id = f"{payload.get('nonce')}:{sig}"
+        if nonce_id in SEEN_NONCES:
+            return False, f"ALERT: REPLAY ATTACK (DUPLICATE PAYLOAD REPLAY)! Nonce {payload.get('nonce')} already consumed."
+
+        # Mark nonce as consumed
+        SEEN_NONCES.add(nonce_id)
+        save_seen_nonces()
+
+        return True, f"PASSED (Signature Valid / Freshness Verified / Nonce {payload.get('nonce')})"
+
     except Exception as e:
         return False, f"ALERT: MANIFEST PARSE ERROR ({str(e)})"
 
@@ -67,7 +116,7 @@ HTML_CONTENT = """<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UPGP v4.0 Ultra Sandbox — Real-Time Telemetry Dashboard</title>
+  <title>UPGP v4.0 Ultra Sandbox — Anti-Replay Telemetry Dashboard</title>
   <style>
     :root {
       --bg-dark: #0b131e;
@@ -101,7 +150,7 @@ HTML_CONTENT = """<!DOCTYPE html>
 </head>
 <body>
   <header>
-    <h1>🛡️ UPGP v4.0 Ultra Sandbox — Cryptographic Telemetry Dashboard</h1>
+    <h1>🛡️ UPGP v4.0 Ultra — Anti-Replay Telemetry Dashboard</h1>
     <div id="status-badge" class="status-badge secure">● SYSTEM OPTIMAL</div>
   </header>
   <div class="grid">
@@ -116,9 +165,9 @@ HTML_CONTENT = """<!DOCTYPE html>
       <div style="font-size:12px; color:var(--text-sub); margin-top:8px;">Seccomp-BPF Active Intercept</div>
     </div>
     <div class="card col-6">
-      <div class="card-title">Cryptographic Enclave Lock & Signature Integrity</div>
+      <div class="card-title">Anti-Replay & Cryptographic Signature Integrity</div>
       <div id="enclave-status" class="metric-hero" style="color:var(--accent-green); font-size:24px;">SECURE</div>
-      <div id="enclave-msg" style="font-size:12px; color:var(--text-sub); margin-top:8px;">HMAC-SHA256 Signature Verification</div>
+      <div id="enclave-msg" style="font-size:12px; color:var(--text-sub); margin-top:8px;">HMAC-SHA256 + Monotonic Nonce Freshness</div>
     </div>
     <div class="card col-6">
       <div class="card-title">Active Blocked Syscalls (15 Vectors)</div>
@@ -150,14 +199,14 @@ HTML_CONTENT = """<!DOCTYPE html>
         
         if (data.signatureValid) {
           badge.className = 'status-badge secure';
-          badge.textContent = '● SECURE (SIGNATURE VERIFIED)';
+          badge.textContent = '● SECURE (FRESHNESS VERIFIED)';
           enclaveStatus.style.color = 'var(--accent-green)';
           enclaveStatus.textContent = 'SECURE';
         } else {
           badge.className = 'status-badge corrupted';
-          badge.textContent = '✖ ALERT: SIGNATURE CORRUPTED / TAMPERED';
+          badge.textContent = '✖ ALERT: REPLAY ATTACK / SIGNATURE CORRUPTED';
           enclaveStatus.style.color = 'var(--accent-red)';
-          enclaveStatus.textContent = 'CORRUPTED';
+          enclaveStatus.textContent = 'ALERT / REJECTED';
         }
 
         enclaveMsg.textContent = data.enclaveIntegrity;
@@ -180,7 +229,7 @@ class DashboardHandler(http.server.SimpleHTTPRequestHandler):
             self.send_header('Access-Control-Allow-Origin', '*')
             self.end_headers()
             
-            sig_valid, sig_msg = verify_state_signature()
+            sig_valid, sig_msg = verify_state_signature_and_freshness()
             
             logs = []
             if os.path.exists(LOG_PATH):
@@ -188,7 +237,7 @@ class DashboardHandler(http.server.SimpleHTTPRequestHandler):
                     logs = [line.strip() for line in f.readlines()[-10:]]
 
             if not sig_valid:
-                alert_entry = f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] [SECURITY_ALERT] Cryptographic Signature Verification FAILED! {sig_msg}"
+                alert_entry = f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] [SECURITY_ALERT] Replay/Signature Verification FAILED! {sig_msg}"
                 logs.append(alert_entry)
 
             data = {
@@ -211,7 +260,7 @@ def run_server():
     ensure_valid_manifest()
     socketserver.TCPServer.allow_reuse_address = True
     with socketserver.TCPServer(("", PORT), DashboardHandler) as httpd:
-        print(f"[UPGP Dashboard Server] Serving real-time signature telemetry UI at http://localhost:{PORT}")
+        print(f"[UPGP Dashboard Server] Serving anti-replay signature telemetry UI at http://localhost:{PORT}")
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:

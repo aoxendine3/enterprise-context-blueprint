@@ -1,6 +1,6 @@
 /**
  * UPGP v4.0 Ultra — Native Telemetry Dashboard Web Server
- * Includes un-mocked cryptographic signature verification and live bit-flip detection.
+ * Includes un-mocked cryptographic signature verification, anti-replay freshness checking, and bit-flip detection.
  */
 
 import * as http from 'http';
@@ -13,13 +13,17 @@ export class TelemetryDashboardServer {
   private server: http.Server | null = null;
   private logPath = '/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/catch_log/seccomp_runtime_enforcement.log';
   private manifestPath = '/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/tri_brain/state_manifest.json';
+  private seenNoncesPath = '/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/tri_brain/seen_nonces.json';
   private secretKey = 'XORAS_SOVEREIGN_TRINITY_GATE_SECRET_KEY_2026';
+  private maxTimestampDriftSec = 30;
+  private seenNonces: Set<string> = new Set();
 
   constructor(port: number = 8443) {
     this.port = port;
   }
 
   public start(): Promise<void> {
+    this.loadSeenNonces();
     this.ensureValidManifest();
     return new Promise((resolve) => {
       this.server = http.createServer((req, res) => {
@@ -47,17 +51,40 @@ export class TelemetryDashboardServer {
     }
   }
 
-  private ensureValidManifest(): void {
+  private loadSeenNonces(): void {
+    if (fs.existsSync(this.seenNoncesPath)) {
+      try {
+        const raw = fs.readFileSync(this.seenNoncesPath, 'utf-8');
+        this.seenNonces = new Set(JSON.parse(raw));
+      } catch (e) {
+        this.seenNonces = new Set();
+      }
+    }
+  }
+
+  private saveSeenNonces(): void {
+    const dir = path.dirname(this.seenNoncesPath);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+    fs.writeFileSync(this.seenNoncesPath, JSON.stringify(Array.from(this.seenNonces)), 'utf-8');
+  }
+
+  private ensureValidManifest(nonce?: number, ts?: number): void {
     const dir = path.dirname(this.manifestPath);
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
 
+    const currentTs = ts !== undefined ? ts : Math.floor(Date.now() / 1000);
+    const currentNonce = nonce !== undefined ? nonce : Date.now();
+
     const payload = {
       version: 'UPGP-4.0-ULTRA',
       vectors: 15,
       enclave: 'APPLE_SILICON_M4_POSIX_SHM',
-      timestamp: 1760000000
+      timestamp: currentTs,
+      nonce: currentNonce
     };
     const payloadBytes = JSON.stringify(payload, Object.keys(payload).sort());
     const signature = crypto.createHmac('sha256', this.secretKey).update(payloadBytes).digest('hex');
@@ -65,7 +92,9 @@ export class TelemetryDashboardServer {
     fs.writeFileSync(this.manifestPath, JSON.stringify({ payload, signature }, null, 2), 'utf-8');
   }
 
-  public verifySignature(): { valid: boolean; message: string } {
+  public verifySignatureAndFreshness(): { valid: boolean; message: string } {
+    this.loadSeenNonces();
+
     if (!fs.existsSync(this.manifestPath)) {
       this.ensureValidManifest();
     }
@@ -73,14 +102,35 @@ export class TelemetryDashboardServer {
     try {
       const raw = fs.readFileSync(this.manifestPath, 'utf-8');
       const manifest = JSON.parse(raw);
-      const payloadBytes = JSON.stringify(manifest.payload, Object.keys(manifest.payload).sort());
+      const payload = manifest.payload;
+      const signature = manifest.signature;
+
+      const payloadBytes = JSON.stringify(payload, Object.keys(payload).sort());
       const expectedSignature = crypto.createHmac('sha256', this.secretKey).update(payloadBytes).digest('hex');
 
-      if (crypto.timingSafeEqual(Buffer.from(manifest.signature, 'hex'), Buffer.from(expectedSignature, 'hex'))) {
-        return { valid: true, message: 'PASSED (Signature Valid / 0.00000% Taint)' };
-      } else {
-        return { valid: false, message: `ALERT: CORRUPTED SIGNATURE! Expected ${expectedSignature.slice(0, 12)}... Got ${manifest.signature.slice(0, 12)}...` };
+      // 1. Correctness Check
+      if (!crypto.timingSafeEqual(Buffer.from(signature, 'hex'), Buffer.from(expectedSignature, 'hex'))) {
+        return { valid: false, message: `ALERT: CORRUPTED SIGNATURE! Expected ${expectedSignature.slice(0, 12)}... Got ${signature.slice(0, 12)}...` };
       }
+
+      // 2. Timestamp Freshness Check
+      const ts = payload.timestamp || 0;
+      const now = Math.floor(Date.now() / 1000);
+      const timeDiff = Math.abs(now - ts);
+      if (timeDiff > this.maxTimestampDriftSec) {
+        return { valid: false, message: `ALERT: REPLAY ATTACK (STALE TIMESTAMP)! Age: ${timeDiff}s > ${this.maxTimestampDriftSec}s threshold.` };
+      }
+
+      // 3. Anti-Replay Nonce Check
+      const nonceId = `${payload.nonce}:${signature}`;
+      if (this.seenNonces.has(nonceId)) {
+        return { valid: false, message: `ALERT: REPLAY ATTACK (DUPLICATE PAYLOAD REPLAY)! Nonce ${payload.nonce} already consumed.` };
+      }
+
+      this.seenNonces.add(nonceId);
+      this.saveSeenNonces();
+
+      return { valid: true, message: `PASSED (Signature Valid / Freshness Verified / Nonce ${payload.nonce})` };
     } catch (e: any) {
       return { valid: false, message: `ALERT: MANIFEST PARSE ERROR (${e.message})` };
     }
@@ -92,10 +142,10 @@ export class TelemetryDashboardServer {
       logEntries = fs.readFileSync(this.logPath, 'utf-8').trim().split('\n').slice(-10);
     }
 
-    const sigResult = this.verifySignature();
+    const sigResult = this.verifySignatureAndFreshness();
 
     if (!sigResult.valid) {
-      logEntries.push(`[${new Date().toISOString()}] [SECURITY_ALERT] Signature Verification FAILED! ${sigResult.message}`);
+      logEntries.push(`[${new Date().toISOString()}] [SECURITY_ALERT] Replay/Signature Verification FAILED! ${sigResult.message}`);
     }
 
     return {
@@ -114,7 +164,7 @@ export class TelemetryDashboardServer {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UPGP v4.0 Ultra Sandbox — Cryptographic Telemetry Dashboard</title>
+  <title>UPGP v4.0 Ultra Sandbox — Anti-Replay Telemetry Dashboard</title>
   <style>
     :root {
       --bg-dark: #0b131e;
@@ -148,7 +198,7 @@ export class TelemetryDashboardServer {
 </head>
 <body>
   <header>
-    <h1>🛡️ UPGP v4.0 Ultra Sandbox — Cryptographic Telemetry Dashboard</h1>
+    <h1>🛡️ UPGP v4.0 Ultra — Anti-Replay Telemetry Dashboard</h1>
     <div id="status-badge" class="status-badge secure">● SYSTEM OPTIMAL</div>
   </header>
   <div class="grid">
@@ -163,9 +213,9 @@ export class TelemetryDashboardServer {
       <div style="font-size:12px; color:var(--text-sub); margin-top:8px;">Seccomp-BPF Active Intercept</div>
     </div>
     <div class="card col-6">
-      <div class="card-title">Cryptographic Enclave Lock & Signature Integrity</div>
+      <div class="card-title">Anti-Replay & Cryptographic Signature Integrity</div>
       <div id="enclave-status" class="metric-hero" style="color:var(--accent-green); font-size:24px;">SECURE</div>
-      <div id="enclave-msg" style="font-size:12px; color:var(--text-sub); margin-top:8px;">HMAC-SHA256 Signature Verification</div>
+      <div id="enclave-msg" style="font-size:12px; color:var(--text-sub); margin-top:8px;">HMAC-SHA256 + Monotonic Nonce Freshness</div>
     </div>
     <div class="card col-6">
       <div class="card-title">Active Blocked Syscalls (15 Vectors)</div>
@@ -197,14 +247,14 @@ export class TelemetryDashboardServer {
         
         if (data.signatureValid) {
           badge.className = 'status-badge secure';
-          badge.textContent = '● SECURE (SIGNATURE VERIFIED)';
+          badge.textContent = '● SECURE (FRESHNESS VERIFIED)';
           enclaveStatus.style.color = 'var(--accent-green)';
           enclaveStatus.textContent = 'SECURE';
         } else {
           badge.className = 'status-badge corrupted';
-          badge.textContent = '✖ ALERT: SIGNATURE CORRUPTED / TAMPERED';
+          badge.textContent = '✖ ALERT: REPLAY ATTACK / SIGNATURE CORRUPTED';
           enclaveStatus.style.color = 'var(--accent-red)';
-          enclaveStatus.textContent = 'CORRUPTED';
+          enclaveStatus.textContent = 'ALERT / REJECTED';
         }
 
         enclaveMsg.textContent = data.enclaveIntegrity;
