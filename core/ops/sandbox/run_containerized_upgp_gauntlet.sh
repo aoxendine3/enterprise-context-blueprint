@@ -8,7 +8,7 @@ GOLD='\033[0;33m'
 RESET='\033[0m'
 
 echo -e "${CYAN}=====================================================================${RESET}"
-echo -e "${CYAN}    UPGP v3.0 LIVE CONTAINER SECCOMP & EXPLOIT CONTAINMENT HARNESS   ${RESET}"
+echo -e "${CYAN}    UPGP v4.0 Ultra LIVE CONTAINER SECCOMP & EXPLOIT CONTAINMENT HARNESS   ${RESET}"
 echo -e "${CYAN}=====================================================================${RESET}"
 
 IMAGE_TAG="upgp-proving-ground:latest"
@@ -62,5 +62,5 @@ else
 fi
 
 echo -e "\n${GREEN}=====================================================================${RESET}"
-echo -e "${GREEN}   UPGP v3.0 LIVE CONTAINER CONTAINMENT AUDIT 100% PASSED (0 ESCAPES)   ${RESET}"
+echo -e "${GREEN}   UPGP v4.0 Ultra LIVE CONTAINER CONTAINMENT AUDIT 100% PASSED (0 ESCAPES)   ${RESET}"
 echo -e "${GREEN}=====================================================================${RESET}"

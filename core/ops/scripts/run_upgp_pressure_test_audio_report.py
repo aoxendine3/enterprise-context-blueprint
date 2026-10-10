@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-UPGP v3.0 Byzantine Pressure Test Audio Report Session
+UPGP v4.0 Ultra Byzantine Pressure Test Audio Report Session
 Dispatches live ElevenLabs audio dispatches across Maxx, Clara, Vance, and Jarvis.
 """
 import subprocess
@@ -11,7 +11,7 @@ DIALOGUE = [
     (
         "maxx",
         "Maxx (Operations Lead)",
-        "We pushed hard with a full Byzantine pressure test against UPGP v3.0. Stating the hardware limits first: full kernel seccomp enforcement requires a Linux host VM, and microarchitectural side-channels depend on CPU hardware mitigations. That is our exact operating bound."
+        "We pushed hard with a full Byzantine pressure test against UPGP v4.0 Ultra. Stating the hardware limits first: full kernel seccomp enforcement requires a Linux host VM, and microarchitectural side-channels depend on CPU hardware mitigations. That is our exact operating bound."
     ),
     (
         "vance",
@@ -32,7 +32,7 @@ DIALOGUE = [
 
 def main():
     print("==========================================================================")
-    print("  UPGP v3.0 BYZANTINE PRESSURE TEST AUDIO REPORT SESSION")
+    print("  UPGP v4.0 Ultra BYZANTINE PRESSURE TEST AUDIO REPORT SESSION")
     print("==========================================================================")
     for idx, (agent, name, text) in enumerate(DIALOGUE, 1):
         words = len(text.split())

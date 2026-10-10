@@ -149,7 +149,7 @@ def run_single_gauntlet_cycle(cycle):
 def main():
     max_cycles = int(sys.argv[1]) if len(sys.argv) > 1 else 3
     print(f"\n{Colors.HEADER}{Colors.BOLD}========================================================================={Colors.END}")
-    print(f"{Colors.HEADER}{Colors.BOLD}   XORAS UPGP v3.0 10-VECTOR UNBREAKABLE SANDBOX GAUNTLET               {Colors.END}")
+    print(f"{Colors.HEADER}{Colors.BOLD}   XORAS UPGP v4.0 Ultra 15-VECTOR UNBREAKABLE SANDBOX GAUNTLET         {Colors.END}")
     print(f"{Colors.HEADER}{Colors.BOLD}========================================================================={Colors.END}\n")
     
     for c in range(1, max_cycles + 1):

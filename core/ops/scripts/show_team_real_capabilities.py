@@ -54,7 +54,7 @@ def main():
     print(res_shm.stdout.strip())
 
     # 4. 15-Vector TS Escape Gauntlet & Red Team Exploit Harness
-    print("\n⚡ [4/5] Running UPGP v3.0 15-Vector TS Escape & Red Team Exploit Suite...")
+    print("\n⚡ [4/5] Running UPGP v4.0 Ultra 15-Vector TS Escape & Red Team Exploit Suite...")
     cmd_ts = ["node", "--experimental-strip-types", "tests/UPGPProvingGround.test.ts"]
     res_ts = subprocess.run(cmd_ts, cwd="/tmp/upgp-proving-ground", capture_output=True, text=True)
     print(res_ts.stdout.strip())
