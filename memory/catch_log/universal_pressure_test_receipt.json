@@ -1,0 +1,67 @@
+{
+  "timestamp": 1791906432.964725,
+  "total_runtime_seconds": 50.129907082999125,
+  "all_passed": true,
+  "results": [
+    {
+      "name": "Vector 01: Concurrent TonyDB Committal Stress",
+      "passed": true,
+      "details": "3,200 concurrent records across 16 threads; Errors: 0; Throughput: 85 ops/s",
+      "duration_s": 37.80664637500013
+    },
+    {
+      "name": "Vector 02: Torn-Write Crash Recovery Integrity",
+      "passed": true,
+      "details": "Injected 1,600B partial write. Verified valid record count preserved: 3200/3200; Merkle root stable",
+      "duration_s": 0.005898874995182268
+    },
+    {
+      "name": "Vector 03: Ambient Authority FD Leak Audit",
+      "passed": true,
+      "details": "Audited /dev/fd descriptors; Host credential/system descriptor leaks detected: 0",
+      "duration_s": 0.0005579170028795488
+    },
+    {
+      "name": "Vector 04: 256-Agent Lock-Free MTPO Contention",
+      "passed": true,
+      "details": "128,000 atomic commits across 256 agent slots; Zero aborts; Advisories Dispatched: 0; Errors: 0",
+      "duration_s": 1.0575755420068162
+    },
+    {
+      "name": "Vector 05: ARM64 Memory Barrier & Tearing Audit",
+      "passed": true,
+      "details": "50,000 parallel read/write strides; Out-of-order 64-bit word tears detected: 0",
+      "duration_s": 0.09019395799987251
+    },
+    {
+      "name": "Vector 06: Z3 SMT Contradiction & Timeout Stress",
+      "passed": true,
+      "details": "Cyclic state contradiction evaluated in 246.44ms; Correctly returned UNSAT with zero solver timeout hang",
+      "duration_s": 0.2464388339940342
+    },
+    {
+      "name": "Vector 07: Large-Scale Merkle Proof Verification",
+      "passed": true,
+      "details": "1000 tree leaves; 50 random external proofs verified in 399.63ms (7992.6\u00b5s/proof); Failures: 0",
+      "duration_s": 7.505005415994674
+    },
+    {
+      "name": "Vector 08: 1-Hour Epoch Roll-Over Boundary Verification",
+      "passed": true,
+      "details": "Historical epoch 497750 vs current 497751; Deterministic historical chain verification confirmed with 0 off-by-one errors",
+      "duration_s": 0.00010733299859566614
+    },
+    {
+      "name": "Vector 09: Master Secret Memory Sanitization Audit",
+      "passed": true,
+      "details": "Quarantine ledger and attestation streams verified clean: zero raw master secrets leaked to disk",
+      "duration_s": 0.0026595829986035824
+    },
+    {
+      "name": "Vector 10: Bootstrap Gauntlet Under 4-Core CPU Contention",
+      "passed": true,
+      "details": "Bootstrap under synthetic 4-core saturated CPU load completed in 3.19s with all 5 gates green",
+      "duration_s": 3.185974583000643
+    }
+  ]
+}
