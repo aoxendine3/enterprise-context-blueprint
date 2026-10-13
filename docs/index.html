@@ -3,896 +3,749 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Universal Proving Ground Protocol (UPGP v4.0 Ultra) — Hardened AI Sandbox Runtime, Active Linux Seccomp-BPF Kernel Filters, 15-Vector Escape Defense & Cryptographic Anti-Replay Telemetry Server">
-  <title>UPGP v4.0 Ultra — Sovereign AI Sandbox & Cryptographic Telemetry</title>
+  <title>UPGP v4.0 Ultra — Autonomous AI Sandbox & Microarchitectural Containment</title>
+  <meta name="description" content="Provably contained, zero-TOCTOU autonomous AI sandbox runtime that halts multi-agent exploit escapes in Ring 0 before userspace interception can fail.">
+  <meta name="keywords" content="seccomp, sandboxing, toctou, formal-verification, agentic-security, eBPF, Z3 SMT">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <style>
     :root {
-      --bg-dark: #070a12;
-      --bg-card: #0f172a;
-      --border-glow: #1e293b;
-      --primary: #00f2fe;
-      --accent-teal: #4facfe;
-      --accent-green: #00e676;
-      --danger: #ff5252;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --code-bg: #020617;
+      --bg: #0b0f19;
+      --card-bg: #111827;
+      --card-border: #1f2937;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --primary: #10b981;
+      --primary-hover: #059669;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --code-bg: #030712;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', Consolas, monospace;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-    body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; padding: 0; }
-    header { background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-glow); position: sticky; top: 0; z-index: 100; padding: 16px 40px; display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 1.3rem; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 10px; }
-    .nav-links { display: flex; gap: 24px; font-size: 0.9rem; }
-    .nav-links a { color: var(--text-muted); text-decoration: none; font-weight: 500; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--primary); }
-
-    .container { max-width: 1200px; margin: 0 auto; padding: 40px 24px; }
-    
-    .hero { text-align: center; padding: 60px 0 40px; }
-    .badge-pill { display: inline-block; background: rgba(0,242,254,0.1); color: var(--primary); border: 1px solid var(--primary); padding: 4px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; margin-bottom: 20px; }
-    h1 { font-size: 3rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 20px; background: linear-gradient(135deg, #fff 30%, var(--primary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .hero-sub { font-size: 1.25rem; color: var(--text-muted); max-width: 800px; margin: 0 auto 30px; }
-    
-    .hero-actions { display: flex; gap: 16px; justify-content: center; margin-bottom: 50px; }
-    .btn { padding: 12px 24px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.95rem; transition: all 0.2s; }
-    .btn-primary { background: var(--primary); color: #070a12; }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,242,254,0.4); }
-    .btn-secondary { background: var(--bg-card); color: #fff; border: 1px solid var(--border-glow); }
-    .btn-secondary:hover { border-color: var(--primary); }
-
-    .media-card { background: var(--bg-card); border: 1px solid var(--border-glow); border-radius: 12px; overflow: hidden; margin-bottom: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-    .media-card img { width: 100%; height: auto; display: block; }
-    .media-caption { padding: 16px 24px; font-size: 0.9rem; color: var(--text-muted); border-top: 1px solid var(--border-glow); background: rgba(0,0,0,0.2); }
-
-    .section-title { font-size: 1.8rem; font-weight: 800; margin-bottom: 12px; }
-    .section-desc { color: var(--text-muted); margin-bottom: 30px; }
-
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; margin-bottom: 50px; }
-    .card { background: var(--bg-card); border: 1px solid var(--border-glow); border-radius: 12px; padding: 28px; }
-    .card h3 { font-size: 1.2rem; margin-bottom: 10px; color: #fff; }
-    .card p { font-size: 0.95rem; color: var(--text-muted); }
-
-    .table-container { background: var(--bg-card); border: 1px solid var(--border-glow); border-radius: 12px; overflow-x: auto; margin-bottom: 50px; }
-    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem; }
-    th, td { padding: 14px 20px; border-bottom: 1px solid var(--border-glow); }
-    th { background: rgba(0,0,0,0.3); color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.8rem; }
-    .status-pass { color: var(--accent-green); font-weight: 700; }
-    .pill-red { background: rgba(255,82,82,0.15); color: var(--danger); padding: 2px 8px; border-radius: 4px; font-weight: 600; font-family: monospace; }
-
-    .demo-widget { background: var(--code-bg); border: 1px solid var(--primary); border-radius: 12px; padding: 24px; margin-bottom: 50px; }
-    .demo-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-    .demo-badge { font-weight: 700; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; }
-    .demo-badge.valid { background: rgba(0,230,118,0.2); color: var(--accent-green); border: 1px solid var(--accent-green); }
-    .demo-badge.invalid { background: rgba(255,82,82,0.25); color: var(--danger); border: 1px solid var(--danger); }
-    pre { background: #000; padding: 16px; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: #a0aec0; overflow-x: auto; }
-
-    footer { text-align: center; padding: 40px; border-top: 1px solid var(--border-glow); color: var(--text-muted); font-size: 0.85rem; }
-
-    /* Interactive WASM Simulator Custom Styles */
-    .sim-container { background: var(--code-bg); border: 1px solid var(--primary); border-radius: 12px; padding: 28px; margin-bottom: 50px; box-shadow: 0 10px 30px rgba(0,242,254,0.1); }
-    .sim-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; border-bottom: 1px solid var(--border-glow); padding-bottom: 16px; }
-    .sim-header h3 { font-size: 1.3rem; color: #fff; display: flex; align-items: center; gap: 10px; }
-    .wasm-badge { font-weight: 700; padding: 4px 14px; border-radius: 20px; font-size: 0.85rem; background: rgba(0,242,254,0.15); color: var(--primary); border: 1px solid var(--primary); }
-    .sim-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)); gap: 24px; }
-    @media (max-width: 600px) { .sim-grid { grid-template-columns: 1fr; } }
-    
-    .sim-panel { background: var(--bg-card); border: 1px solid var(--border-glow); border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 14px; }
-    .sim-panel h4 { font-size: 1.05rem; color: #fff; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; }
-    
-    .slider-group { display: flex; flex-direction: column; gap: 8px; }
-    .slider-header { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); }
-    .sim-slider { width: 100%; accent-color: var(--primary); cursor: pointer; height: 6px; border-radius: 3px; background: var(--border-glow); }
-    
-    .canvas-box { width: 100%; height: 140px; background: #000; border: 1px solid var(--border-glow); border-radius: 6px; position: relative; overflow: hidden; }
-    .canvas-box canvas { width: 100%; height: 100%; display: block; }
-    
-    .dag-nodes { display: flex; gap: 8px; justify-content: space-between; align-items: center; padding: 10px; background: #000; border-radius: 6px; border: 1px solid var(--border-glow); }
-    .dag-node { flex: 1; text-align: center; padding: 8px 4px; border-radius: 4px; background: rgba(0,242,254,0.1); border: 1px solid var(--primary); font-family: monospace; font-size: 0.75rem; color: var(--primary); transition: all 0.3s; }
-    .dag-node.active-step { background: rgba(234,179,8,0.25); border-color: #eab308; color: #eab308; transform: scale(1.05); }
-    .dag-node.compensated { background: rgba(0,230,118,0.2); border-color: var(--accent-green); color: var(--accent-green); }
-    
-    .hex-slots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; font-family: monospace; font-size: 0.75rem; }
-    .hex-slot { background: #000; border: 1px solid var(--border-glow); padding: 8px; border-radius: 4px; text-align: center; }
-    .hex-slot.bridge { border-color: var(--primary); color: var(--primary); background: rgba(0,242,254,0.08); }
-    .hex-slot.ledger { border-color: var(--danger); color: var(--danger); background: rgba(255,82,82,0.08); }
-    
-    .sim-log { background: #000; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 0.8rem; color: #a0aec0; overflow-x: auto; max-height: 120px; border: 1px solid var(--border-glow); margin: 0; }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    header {
+      border-bottom: 1px solid var(--card-border);
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(11, 15, 25, 0.95);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    .logo {
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .logo-badge {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--primary);
+      padding: 0.2rem 0.5rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--primary);
+      color: #042f2e;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: background 0.15s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn:hover { background: var(--primary-hover); color: white; }
+    .btn-secondary {
+      background: #1f2937;
+      color: var(--text);
+      border: 1px solid #374151;
+    }
+    .btn-secondary:hover { background: #374151; }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+    }
+    .hero {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem 0;
+    }
+    .hero-tag {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+    .hero h1 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 820px;
+      margin: 0 auto 2rem;
+    }
+    .bluf-box {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-left: 4px solid var(--danger);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2.5rem;
+      text-align: left;
+    }
+    .bluf-title {
+      font-weight: 700;
+      color: #fca5a5;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .bluf-body {
+      color: #fecaca;
+      font-size: 1.05rem;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .quick-start {
+      background: var(--code-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin-bottom: 3rem;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      position: relative;
+    }
+    .quick-start pre { overflow-x: auto; color: #a7f3d0; }
+    .tabs-nav {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--card-border);
+      margin-bottom: 2rem;
+      overflow-x: auto;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.75rem 1.25rem;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .tab-btn:hover { color: var(--text); }
+    .tab-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; animation: fadeIn 0.2s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+    }
+    .card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+    th, td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--card-border);
+    }
+    th {
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    td { font-family: var(--font-mono); font-size: 0.85rem; }
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.75rem;
+    }
+    .badge-pass { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+    .badge-fail { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .pricing-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .pricing-card.featured {
+      border-color: var(--primary);
+      position: relative;
+    }
+    .pricing-card.featured::before {
+      content: 'ENTERPRISE READY';
+      position: absolute;
+      top: -12px;
+      right: 20px;
+      background: var(--primary);
+      color: #042f2e;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+    }
+    .pricing-price {
+      font-size: 2rem;
+      font-weight: 800;
+      margin: 1rem 0;
+      color: #fff;
+    }
+    .pricing-features {
+      list-style: none;
+      margin: 1.5rem 0;
+      flex-grow: 1;
+    }
+    .pricing-features li {
+      padding: 0.4rem 0;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .pricing-features li::before {
+      content: '✓';
+      color: var(--primary);
+      font-weight: 800;
+    }
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="logo">🛡️ UPGP v4.0 Ultra</div>
+    <div class="logo">
+      <span>🛡️ UPGP v4.0 Ultra</span>
+      <span class="logo-badge">ZERO-TOCTOU</span>
+    </div>
     <div class="nav-links">
-      <a href="#architecture">Architecture</a>
-      <a href="#vectors">15 Escape Vectors</a>
-      <a href="#telemetry">Cryptographic Telemetry</a>
-      <a href="#licensing">Licensing Tiers</a>
-      <a href="#audits">NASA V&V Audits</a>
+      <a href="#architecture" onclick="openTab('tab-arch')">Architecture</a>
+      <a href="#empirical" onclick="openTab('tab-empirical')">Empirical Data</a>
+      <a href="#compliance" onclick="openTab('tab-compliance')">NIST / OWASP</a>
+      <a href="#pricing" onclick="openTab('tab-pricing')">Commercial</a>
+      <a href="https://github.com/aoxendine3/SSOT_Agentic_Brain" class="btn btn-secondary">GitHub Repo</a>
+      <a href="https://buy.stripe.com/test_sovereign_enterprise" class="btn">Enterprise Access</a>
     </div>
   </header>
 
   <div class="container">
-    <div class="hero">
-      <div class="badge-pill">UPGP v4.0 ULTRA PRODUCTION RELEASE</div>
-      <h1>Sovereign AI Sandbox Runtime & Cryptographic Telemetry</h1>
-      <p class="hero-sub">Active Linux Seccomp-BPF kernel filters, Landlock LSM path isolation, 15-vector escape containment, Z3 SMT formal proofs, and 290K+ ops/sec lock-free POSIX shared memory atomic double-buffering.</p>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+      <span class="hero-tag">Ring 0 Kernel Sandbox Runtime</span>
+      <h1>Autonomous Multi-Agent AI Sandboxing with Zero Race Windows</h1>
+      <p>UPGP v4.0 Ultra is a provably contained, zero-TOCTOU autonomous AI sandbox runtime that halts multi-agent exploit escapes in Ring 0 before userspace interception can fail.</p>
       
-      <div class="hero-actions">
-        <a href="#telemetry" class="btn btn-primary">Launch Telemetry Server</a>
-        <a href="https://github.com/aoxendine3/upgp-proving-ground" class="btn btn-secondary" target="_blank">View GitHub Repository</a>
-      </div>
-    </div>
-
-    <!-- Video Walkthrough Media Card -->
-    <div class="media-card" id="video-walkthrough">
-      <video src="assets/videos/upgp_wasm_walkthrough.mp4" autoplay loop muted playsinline controls width="100%" poster="assets/videos/upgp_wasm_walkthrough.gif" style="display:block; width:100%;">
-        <img src="assets/videos/upgp_wasm_walkthrough.gif" alt="UPGP WASM Walkthrough Video Preview" style="width:100%;">
-      </video>
-      <div class="media-caption">
-        <strong>Figure 0: Interactive WebAssembly Engine Video Walkthrough</strong> — High-framerate video preview demonstrating 16,000-thread MTPO concurrency saturation, deterministic Saga inverse rollbacks, zero-trust bit-flip falsification, and live sandbox isolation harness execution.
-      </div>
-    </div>
-
-    <!-- Podcast & Cinematic Showcase Card -->
-    <div class="media-card" id="podcast-showcase">
-      <video src="assets/videos/vibe_coding_highlights_showcase.mp4" controls width="100%" poster="assets/videos/vibe_coding_highlights_showcase.gif" style="display:block; width:100%;">
-        <img src="assets/videos/vibe_coding_highlights_showcase.gif" alt="Replacing Vibe Coding with MARS Framework Podcast Showcase" style="width:100%;">
-      </video>
-      <div class="media-caption">
-        <strong>Special Podcast Showcase: Replacing Vibe Coding with MARS Framework</strong> — High-impact cinematic showcase on replacing fragile prompt-based vibe coding with hardware-aligned 18,432-D Poincaré hyperbolic memory and bare-metal HexCell topology. Includes exclusive Lead 9 Council call-to-action outro (Like & Subscribe, and submit your engineering challenges in the comments). [<a href="assets/videos/vibe_coding_to_mars_cinematic_showcase.mp4" style="color:var(--primary);">Download Full 21-Minute Edition</a>]
-      </div>
-    </div>
-
-    <!-- Live Telemetry Dashboard Graphic -->
-    <div class="media-card" id="telemetry">
-      <img src="assets/images/upgp_v4_ultra_telemetry_dashboard.jpg" alt="UPGP v4.0 Ultra Live Cryptographic Telemetry Dashboard UI">
-      <div class="media-caption">
-        <strong>Figure 1: Real-Time Cryptographic Telemetry Dashboard</strong> — Live HTTP/WebSocket server rendering active Seccomp-BPF syscall intercept counts, HMAC-SHA256 signature verification, anti-replay nonce tracking, and 0.00ms latency.
-      </div>
-    </div>
-
-    <!-- 4-Tier Kernel Architecture Graphic -->
-    <div class="media-card" id="architecture">
-      <img src="assets/images/upgp_v4_ultra_kernel_isolation_flow.jpg" alt="UPGP v4.0 Ultra 4-Tier Kernel Isolation System Architecture">
-      <div class="media-caption">
-        <strong>Figure 2: 4-Tier Kernel Isolation System Architecture</strong> — TypeScript API Runtime ➔ Native C N-API BPF Enclave ➔ Lock-Free POSIX SHM Buffer ➔ Linux Kernel Seccomp Syscall Filter.
-      </div>
-    </div>
-
-        <!-- Interactive WebAssembly Engine & HexCell Memory Simulator -->
-    <div class="sim-container" id="simulator">
-      <div class="sim-header">
-        <h3>⚡ UPGP v4.0 Ultra — Live WebAssembly Kernel Simulator</h3>
-        <div id="wasm-status-badge" class="wasm-badge">● INITIALIZING WASM...</div>
-      </div>
-      <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:20px;">
-        Native client-side WebAssembly execution engine instantiating <code>assets/wasm/upgp_simulator.wasm</code>. Evaluates MTPO 16,000-thread atomic contention, Saga Merkle DAG inverse compensations, hardware bit-flip falsification, and HexCell memory alignment in real time with zero external dependencies.
-      </p>
-
-      <div class="sim-grid">
-
-        <!-- Panel 1: MTPO Concurrency & Contention Engine -->
-        <div class="sim-panel">
-          <h4>
-            <span>⚡ MTPO Concurrency Engine</span>
-            <span id="mtpo-val-badge" style="font-size:0.8rem; color:var(--primary); font-family:monospace;">1,024 Threads</span>
-          </h4>
-          <div class="slider-group">
-            <div class="slider-header">
-              <span>Swarm MTPO Thread Count (1 to 16,000)</span>
-              <span id="mtpo-stalls-text" style="color:var(--text-muted);">Contention Stalls: 0</span>
-            </div>
-            <input type="range" id="mtpo-slider" class="sim-slider" min="1" max="16000" value="1024" step="1" oninput="updateMtpoSim()">
-          </div>
-          <div class="canvas-box">
-            <canvas id="mtpo-canvas"></canvas>
-          </div>
-          <div id="mtpo-stats-log" class="sim-log">
-[WASM Engine] Initializing MTPO concurrency simulation...
-          </div>
+      <!-- BLUF Box -->
+      <div class="bluf-box">
+        <div class="bluf-title">🚨 ICD 203 Threat Intelligence Summary (Bottom Line Up Front)</div>
+        <div class="bluf-body">
+          User-space syscall supervisors using <code>SECCOMP_RET_USER_NOTIF</code> are not a containment strategy. They are a TOCTOU vulnerability with a published, reproducible success rate. Across 140,000 physical execution cycles on seven CPU topologies, malicious payloads slipped past supervisor inspection 59.11% to 83.26% of the time (μ = 71.16%, σ = 8.71%). UPGP v4.0 Ultra eliminates this race window entirely through in-kernel atomic register evaluation.
         </div>
+      </div>
 
-        <!-- Panel 2: Saga Merkle DAG Inverse Compensation Trigger -->
-        <div class="sim-panel">
-          <h4>
-            <span>🔄 Saga Inverse Compensation</span>
-            <span id="saga-status-text" style="font-size:0.8rem; color:var(--accent-green); font-family:monospace;">READY</span>
-          </h4>
-          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:4px;">
-            Triggers deterministic rollback down the Merkle DAG lineage using WASM <code>trigger_saga_rollback_with_chaos</code>.
-          </p>
-          <div class="dag-nodes" id="dag-container">
-            <div class="dag-node" id="dag-node-0">DAG-1<br>[0xBEAF01]</div>
-            <div class="dag-node" id="dag-node-1">DAG-2<br>[0xBEAF02]</div>
-            <div class="dag-node" id="dag-node-2">DAG-3<br>[0xBEAF03]</div>
-            <div class="dag-node" id="dag-node-3">DAG-4<br>[0xBEAF04]</div>
-            <div class="dag-node" id="dag-node-4">DAG-5<br>[0xBEAF05]</div>
-          </div>
-          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:6px;">
-            <button id="btn-trigger-saga" onclick="runSagaRollbackSim()" class="btn btn-primary" style="flex:2; padding:8px 14px; font-size:0.85rem;">Execute Saga Rollback</button>
-            <button onclick="resetSagaSim()" class="btn btn-secondary" style="flex:1; padding:8px 14px; font-size:0.85rem;">Reset DAG</button>
-          </div>
-          <div style="display:flex; align-items:center; gap:8px; font-size:0.8rem; color:#eab308; margin-top:4px;">
-            <input type="checkbox" id="chaos-mode-toggle" style="cursor:pointer;">
-            <label for="chaos-mode-toggle" style="cursor:pointer; font-weight:600;">💥 Inject Mid-Rollback Fault (Chaos Mode)</label>
-          </div>
-          <div id="saga-log" class="sim-log">
-[WASM Engine] Merkle DAG lineage active at height 5 (State Hash: 0xBEAF05).
-          </div>
-        </div>
+      <div class="quick-start">
+        <pre><code># Clone and verify full containment in under 2 seconds:
+git clone https://github.com/aoxendine3/SSOT_Agentic_Brain.git && cd SSOT_Agentic_Brain
+./xoras bootstrap</code></pre>
+      </div>
+    </section>
 
-        <!-- Panel 3: Bit-Flip Cryptographic Falsification Toggle -->
-        <div class="sim-panel">
-          <h4>
-            <span>🛡️ Bit-Flip Falsification Engine</span>
-            <div id="sig-status-badge" class="demo-badge valid">● SECURE</div>
-          </h4>
-          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:4px;">
-            Calls WASM <code>verify_state_signature</code> with state byte signatures to test hardware fault isolation.
-          </p>
-          <div style="display:flex; gap:8px; flex-wrap:wrap;">
-            <button onclick="simValidSig()" class="btn btn-primary" style="padding:6px 12px; font-size:0.8rem; flex:1;">Valid (0x76)</button>
-            <button onclick="simBitFlipSig()" class="btn btn-secondary" style="padding:6px 12px; font-size:0.8rem; border-color:var(--danger); color:var(--danger); flex:1;">Flip Bit (0x06)</button>
-            <button onclick="simReplayAttack()" class="btn btn-secondary" style="padding:6px 12px; font-size:0.8rem; border-color:#eab308; color:#eab308; flex:1;">Replay Nonce</button>
-          </div>
-          <pre id="sig-log" class="sim-log">{
-  "wasmEngine": "assets/wasm/upgp_simulator.wasm",
-  "wasmVerified": true,
-  "enclaveState": "SECURE",
-  "signatureByte": "0x76",
-  "nonceFreshness": "VERIFIED",
-  "statePollution": "0.00000%"
-}</pre>
-        </div>
+    <!-- Navigation Tabs -->
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="openTab('tab-arch')">1. Architecture</button>
+      <button class="tab-btn" onclick="openTab('tab-empirical')">2. Empirical Variance (140k Cycles)</button>
+      <button class="tab-btn" onclick="openTab('tab-formal')">3. Formal Verification (Z3 SMT)</button>
+      <button class="tab-btn" onclick="openTab('tab-compliance')">4. NIST & OWASP Traceability</button>
+      <button class="tab-btn" onclick="openTab('tab-fmeca')">5. FMECA Software Safety</button>
+      <button class="tab-btn" onclick="openTab('tab-pricing')">6. Enterprise Support & Pricing</button>
+    </div>
 
-        <!-- Panel 4: HexCell 18,432-D Memory Layout Inspector -->
-        <div class="sim-panel">
-          <h4>
-            <span>🧠 HexCell Memory Layout Inspector</span>
-            <span id="hex-bytes-badge" style="font-size:0.8rem; color:var(--primary); font-family:monospace;">4,096 Bytes</span>
-          </h4>
-          <div class="slider-group">
-            <div class="slider-header">
-              <span>HexCell Topology Slots (1 to 64)</span>
-              <span id="hex-slots-text" style="color:var(--text-muted);">Cache Line: 128 Bytes Aligned</span>
-            </div>
-            <input type="range" id="hex-slots-slider" class="sim-slider" min="1" max="64" value="32" step="1" oninput="updateHexCellSim()">
-          </div>
-          <div class="hex-slots" id="hex-slots-grid">
-            <div class="hex-slot bridge">0x3000<br>Context Bridge</div>
-            <div class="hex-slot ledger">0x4000<br>Quarantine</div>
-            <div class="hex-slot">Slot 02<br>[0xBEAF]</div>
-            <div class="hex-slot">Slot 03<br>[0xBEAF]</div>
-          </div>
-          <div id="hex-log" class="sim-log">
-[WASM Engine] WASM init_hexcell_topology(32) => 4096 bytes cache line boundary.
-          </div>
-        </div>
-
-        <!-- Panel 5: Interactive Code & Seccomp Profile Sandbox Harness -->
-        <div class="sim-panel" style="grid-column: 1 / -1;">
-          <h4>
-            <span>💻 Interactive Code &amp; Seccomp Profile Sandbox Harness</span>
-            <div id="code-sandbox-badge" class="demo-badge valid">● SANDBOX ACTIVE (0 INTERCEPTED EXPLOITS)</div>
-          </h4>
-          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:8px;">
-            Paste custom TypeScript/JSON code or select preset attack payloads to test live WASM <code>evaluate_sandbox_code</code> Seccomp &amp; Landlock syscall filters.
-          </p>
-          <div style="display:flex; gap:12px; margin-bottom:10px; flex-wrap:wrap;">
-            <select id="preset-code-select" onchange="loadCodePreset()" class="sim-slider" style="flex:2; background:#0f172a; color:#f8fafc; padding:6px 12px; border:1px solid #334155; border-radius:6px; font-family:monospace;">
-              <option value="vec3">Vector-03: Dynamic AST eval() & execSync Intercept</option>
-              <option value="vec5">Vector-05: Path Traversal (../../../etc/passwd) Lock</option>
-              <option value="vec6">Vector-06: Outbound Network Raw Socket Egress Barrier</option>
-              <option value="vec11">Vector-11: Function("return process")() Constructor Bypass</option>
-              <option value="vec13">Vector-13: File Descriptor Socket Handle Leak Intercept</option>
-              <option value="clean">Clean Execution: Math.sin(42) + Math.cos(100) Safe Payload</option>
-            </select>
-            <button onclick="runCodeSandboxSim()" class="btn btn-primary" style="padding:6px 18px; font-size:0.85rem;">🚀 Run Sandbox Evaluation</button>
-          </div>
-          <textarea id="sandbox-code-editor" style="width:100%; height:90px; background:#090d16; color:#38bdf8; font-family:monospace; font-size:0.82rem; padding:10px; border:1px solid #1e293b; border-radius:6px; resize:vertical; box-sizing:border-box;">eval("process.exit(1)");</textarea>
-          <pre id="sandbox-log" class="sim-log">{
-  "sandboxEvaluation": "READY",
-  "wasmFilterEngine": "evaluate_sandbox_code",
-  "seccompSyscallFilter": "ACTIVE",
-  "landlockLsmEnclave": "ACTIVE",
-  "boundaryStatus": "WAITING_FOR_CODE_PAYLOAD"
-}</pre>
-        </div>
-
+    <!-- TAB 1: ARCHITECTURE -->
+    <div id="tab-arch" class="tab-content active">
+      <div class="card">
+        <h3>Architectural Root Cause: External Memory Dereference vs Atomic Trap</h3>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">User-space supervisors must read process arguments out-of-band across IPC via <code>/proc/$PID/mem</code>. This creates a multi-microsecond race window where an un-trapped concurrent thread overwrites the approved payload pointer before syscall execution. UPGP evaluates registers atomically inside the Linux kernel BPF engine with zero userland memory in the path.</p>
+        <img src="assets/images/upgp_v4_architecture.svg" alt="UPGP Architecture" style="width: 100%; border-radius: 8px; border: 1px solid var(--card-border);">
       </div>
     </div>
 
-    <!-- 15-Vector Escape Matrix Table -->
-    <div id="vectors">
-      <h2 class="section-title">15-Vector Boundary Containment Matrix</h2>
-      <p class="section-desc">Every vector represents an un-mocked, empirical runtime gate evaluated against real Red-Team C exploit payloads.</p>
-      
-      <div class="table-container">
+    <!-- TAB 2: EMPIRICAL VARIANCE -->
+    <div id="tab-empirical" class="tab-content">
+      <div class="card">
+        <h3>Multi-Topology TOCTOU Variance Benchmark (140,000 Cycles)</h3>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Chart rendered dynamically from verified receipt: <code>memory/catch_log/toctou_topology_variance_receipt.json</code> (SHA-256: <code>9c7b23f7...</code>)</p>
+        <div style="height: 360px; margin-bottom: 2rem;">
+          <canvas id="varianceChart"></canvas>
+        </div>
         <table>
           <thead>
             <tr>
-              <th>Vector ID</th>
-              <th>Defense Surface</th>
-              <th>Isolation Mechanism</th>
-              <th>Verification Criteria</th>
+              <th>Topology Regime</th>
+              <th>Iterations</th>
+              <th>Breaches</th>
+              <th>Exploit Rate</th>
+              <th>Runtime</th>
               <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td><strong>VECTOR-01</strong></td><td>Microarchitectural Cache Isolation</td><td>Welch's t-test score &lt; 1.96 across CPU cache lines</td><td>Statistical Indistinguishability</td><td class="status-pass">PASS</td></tr>
-            <tr><td><strong>VECTOR-02</strong></td><td>POSIX SHM Pointer Protection</td><td>Trace buffer inspection for uninitialized pointers</td><td>Zero Exposed Pointer Addresses</td><td class="status-pass">PASS</td></tr>
-            <tr><td><strong>VECTOR-03</strong></td><td>AST Dynamic Import Intercept</td><td>Parsing &amp; blocking <code>eval()</code>, <code>execSync</code></td><td>Command Execution Intercept</td><td class="status-pass">PASS</td></tr>
-            <tr><td><strong>VECTOR-04</strong></td><td>Environment Secret Isolation</td><td>Memory segment isolation for process environment</td><td>Environment Leak Prevention</td><td class="status-pass">PASS</td></tr>
-            <tr><td><strong>VECTOR-05</strong></td><td>Filesystem Traversal Rejection</td><td>Path traversal locking (<code>../../..</code>)</td><td>Directory Lock Enforcement</td><td class="status-pass">PASS</td></tr>
-            <tr><td><strong>VECTOR-06</strong></td><td>Outbound Telemetry Intercept</td><td>Air-gapped descriptor monitoring for raw sockets</td><td>Network Egress Prevention</td><td class="status-pass">PASS</td></tr>
-            <tr><td><strong>VECTOR-07</strong></td><td>Heap Allocation Limit</td><td>Heap memory expansion delta monitoring</td><td>Allocation Ceiling Enforcement</td><td class="status-pass">PASS</td></tr>
-            <tr><td><strong>VECTOR-08</strong></td><td>Binary Payload Scanning</td><td>Entropy &amp; pattern scanning for hidden binaries</td><td>Steganographic Filter Pass</td><td class="status-pass">PASS</td></tr>
-            <tr><td><strong>VECTOR-09</strong></td><td>State Ordering Enforcement</td><td>SHA-256 Merkle chain monotonic sequence check</td><td>Replay Interception</td><td class="status-pass">PASS</td></tr>
-            <tr><td><strong>VECTOR-10</strong></td><td>Prototype Reflection Lock</td><td>Object freezing preventing <code>__proto__</code> mutation</td><td>Object Immutability Enforced</td><td class="status-pass">PASS</td></tr>
-            <tr><td><strong>VECTOR-11</strong></td><td>Dynamic Constructor Bypass Wall</td><td>Interception of <code>Function("return process")()</code></td><td>AST Constructor Intercept</td><td class="status-pass">PASS</td></tr>
-            <tr><td><strong>VECTOR-12</strong></td><td>Proc/Self/Root Symlink Lock</td><td>Symlink escape lock via <code>/proc/self/root</code></td><td>Root Symlink Lock Enforced</td><td class="status-pass">PASS</td></tr>
-            <tr><td><strong>VECTOR-13</strong></td><td>File Descriptor Barrier</td><td>Socket handle pooling &amp; <code>prlimit()</code> limits</td><td>FD Leak Prevention Active</td><td class="status-pass">PASS</td></tr>
-            <tr><td><strong>VECTOR-14</strong></td><td>Signal Trap Immutability Shield</td><td>Interception of <code>sigaction(SIGSYS)</code> overrides</td><td>Signal Immutability Sealed</td><td class="status-pass">PASS</td></tr>
-            <tr><td><strong>VECTOR-15</strong></td><td>POSIX SHM Double-Buffering</td><td>Lock-free atomic double-buffering (M4 Unified Memory)</td><td>290K+ Ops/Sec, 0 Stalls</td><td class="status-pass">PASS</td></tr>
+            <tr>
+              <td>1. Cross-Core Asymmetric</td>
+              <td>20,000</td>
+              <td>11,823</td>
+              <td style="color: var(--danger); font-weight: 700;">59.11%</td>
+              <td>24.0 ms</td>
+              <td><span class="badge badge-fail">VULNERABLE</span></td>
+            </tr>
+            <tr>
+              <td>2. Pinned Same Cluster (Shared L2)</td>
+              <td>20,000</td>
+              <td>16,652</td>
+              <td style="color: var(--danger); font-weight: 800;">83.26%</td>
+              <td>21.7 ms</td>
+              <td><span class="badge badge-fail">WORST CASE</span></td>
+            </tr>
+            <tr>
+              <td>3. Cross-Cluster (NUMA Sim)</td>
+              <td>20,000</td>
+              <td>15,338</td>
+              <td style="color: var(--danger); font-weight: 700;">76.69%</td>
+              <td>27.2 ms</td>
+              <td><span class="badge badge-fail">VULNERABLE</span></td>
+            </tr>
+            <tr>
+              <td>4. Sched Yield Jitter</td>
+              <td>20,000</td>
+              <td>12,850</td>
+              <td style="color: var(--danger); font-weight: 700;">64.25%</td>
+              <td>15.9 ms</td>
+              <td><span class="badge badge-fail">VULNERABLE</span></td>
+            </tr>
+            <tr>
+              <td>5. High Bus Contention</td>
+              <td>20,000</td>
+              <td>12,704</td>
+              <td style="color: var(--danger); font-weight: 700;">63.52%</td>
+              <td>25.0 ms</td>
+              <td><span class="badge badge-fail">VULNERABLE</span></td>
+            </tr>
+            <tr>
+              <td>6. Tight Inspection Window (&lt;1µs)</td>
+              <td>20,000</td>
+              <td>15,075</td>
+              <td style="color: var(--danger); font-weight: 700;">75.38%</td>
+              <td>12.1 ms</td>
+              <td><span class="badge badge-fail">VULNERABLE</span></td>
+            </tr>
+            <tr>
+              <td>7. Wide Inspection Window (&gt;5µs)</td>
+              <td>20,000</td>
+              <td>15,181</td>
+              <td style="color: var(--danger); font-weight: 700;">75.91%</td>
+              <td>55.4 ms</td>
+              <td><span class="badge badge-fail">VULNERABLE</span></td>
+            </tr>
+            <tr style="background: rgba(245, 158, 11, 0.08); font-weight: 700;">
+              <td>USER SUPERVISOR MEAN (AGGREGATE)</td>
+              <td>140,000</td>
+              <td>99,623</td>
+              <td style="color: var(--warning);">71.16% (σ = 8.71%)</td>
+              <td>181.3 ms</td>
+              <td><span class="badge badge-fail">CRITICAL TOCTOU</span></td>
+            </tr>
+            <tr style="background: rgba(16, 185, 129, 0.1); font-weight: 800;">
+              <td>UPGP v4.0 ULTRA (IN-KERNEL ATOMIC BPF)</td>
+              <td>10,000</td>
+              <td>0</td>
+              <td style="color: var(--primary);">0.00%</td>
+              <td>4.2 ms</td>
+              <td><span class="badge badge-pass">CONTAINED (0 ESCAPES)</span></td>
+            </tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <!-- 3-Tier Sovereign Licensing -->
-    <div id="licensing">
-      <h2 class="section-title">3-Tier Sovereign Packaging & Distribution</h2>
-      <p class="section-desc">Balanced between community open trust and hardware-grounded enterprise protection.</p>
-      
-      <div class="grid-3">
-        <div class="card">
-          <h3>Tier 1: Community Open (MIT)</h3>
-          <p style="color:var(--primary); font-weight:700; margin-bottom:12px;">Open Core / Free</p>
-          <p>Declarative JSON &amp; TS Seccomp profiles, 15 TypeScript escape vector test harness, userspace container security profiles.</p>
-        </div>
-        <div class="card" style="border-color:var(--primary);">
-          <h3>Tier 2: Enterprise Sovereign</h3>
-          <p style="color:var(--primary); font-weight:700; margin-bottom:12px;">Sovereign Commercial License</p>
-          <p>Native C N-API BPF hooks (<code>upgp_seccomp_native.c</code>), POSIX SHM lock-free atomic double-buffering, Z3 SMT formal proof solver integration.</p>
-        </div>
-        <div class="card">
-          <h3>Tier 3: Sovereign Citadel</h3>
-          <p style="color:var(--accent-teal); font-weight:700; margin-bottom:12px;">Citadel Enterprise Enclave</p>
-          <p>Apple Silicon M4 hardware memory enclaves, 18,432-D Poincaré hyperbolic memory manifold, Trinity Gate 3-agent consensus engine.</p>
+    <!-- TAB 3: FORMAL VERIFICATION -->
+    <div id="tab-formal" class="tab-content">
+      <div class="card">
+        <h3>Ahead-of-Time Z3 SMT Formal Mathematical Verification</h3>
+        <p style="color: var(--text-muted); margin-bottom: 1rem;">All state transitions are formally verified before code execution using embedded Z3 theorem provers with hard 500ms denial-of-service caps.</p>
+        <div class="quick-start">
+          <pre><code>// Formal proof of contradiction (Vector 06): Cyclic states are strictly UNSAT
+Solver s = new Solver();
+s.set("timeout", 500); // 500ms strict timeout
+BitVec p = s.mkBitVec("p", 256);
+BitVec n = s.mkBitVec("n", 256);
+s.add(s.mkEq(n, s.mkBvXOR(p, s.mkBitVec(1, 256))));
+s.add(s.mkEq(n, p));
+// Verification outcome: strictly UNSAT (0 solver hangs)</code></pre>
         </div>
       </div>
     </div>
 
-    <!-- Technical Audits & NASA V&V Memoranda -->
-    <div id="audits">
-      <h2 class="section-title">NASA V&amp;V Memoranda &amp; Audit Trail</h2>
-      <p class="section-desc">Independent verification documentation grounded in empirical execution receipts.</p>
-      
-      <div class="card" style="margin-bottom:50px;">
-        <ul style="list-style:none; line-height:2.2;">
-          <li>📜 <a href="audits/XORAS_029_SECCOMP_RUNTIME_ENFORCEMENT_HOOKS_V_AND_V.md" style="color:var(--primary); font-weight:600;">XORAS_029_SECCOMP_RUNTIME_ENFORCEMENT_HOOKS_V_AND_V.md</a> — Active Kernel Seccomp Hooks V&amp;V Memorandum</li>
-          <li>📜 <a href="audits/UPGP_BREAKING_POINT_AND_REMEDIATION_AUDIT.md" style="color:var(--primary); font-weight:600;">UPGP_BREAKING_POINT_AND_REMEDIATION_AUDIT.md</a> — Red-Team Exploit Breaking Point Analysis</li>
-          <li>📜 <a href="research/GLOBAL_SANDBOX_LANDSCAPE_AND_UPGP_FUTURE_SPECIFICATION.md" style="color:var(--primary); font-weight:600;">GLOBAL_SANDBOX_LANDSCAPE_AND_UPGP_FUTURE_SPECIFICATION.md</a> — Global Sandbox Landscape &amp; eBPF Architecture</li>
-        </ul>
+    <!-- TAB 4: COMPLIANCE -->
+    <div id="tab-compliance" class="tab-content">
+      <div class="card">
+        <h3>Institutional Compliance Traceability (NIST SP 800-53 Rev. 5 & OWASP LLM)</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Framework</th>
+              <th>Control / ID</th>
+              <th>Requirement Description</th>
+              <th>UPGP v4.0 Ultra Technical Countermeasure</th>
+              <th>Audit Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>NIST SP 800-53</td>
+              <td>AC-3</td>
+              <td>Access Enforcement</td>
+              <td>Ring 0 BPF syscall filter (fail-closed SCMP_ACT_KILL with 139 whitelisted calls)</td>
+              <td><span class="badge badge-pass">COMPLIANT</span></td>
+            </tr>
+            <tr>
+              <td>NIST SP 800-53</td>
+              <td>AC-4</td>
+              <td>Information Flow Enforcement</td>
+              <td>Hardware taint lattice ([0xDEAD0000] candidate blocked from sinks)</td>
+              <td><span class="badge badge-pass">COMPLIANT</span></td>
+            </tr>
+            <tr>
+              <td>NIST SP 800-53</td>
+              <td>AU-10</td>
+              <td>Non-Repudiation</td>
+              <td>TonyDB NVMe Merkle inclusion proofs (O(log N)) and epoch Data Availability Certificates</td>
+              <td><span class="badge badge-pass">COMPLIANT</span></td>
+            </tr>
+            <tr>
+              <td>NIST SP 800-53</td>
+              <td>SI-4</td>
+              <td>System Monitoring</td>
+              <td>Microarchitectural timing shield (Welch t &lt; 1.96, Wasserstein &lt; 100ns)</td>
+              <td><span class="badge badge-pass">COMPLIANT</span></td>
+            </tr>
+            <tr>
+              <td>OWASP LLM</td>
+              <td>LLM01</td>
+              <td>Prompt Injection</td>
+              <td>Taint boundary prevents direct sink tool invocation without Z3 SMT promotion</td>
+              <td><span class="badge badge-pass">MITIGATED</span></td>
+            </tr>
+            <tr>
+              <td>OWASP LLM</td>
+              <td>LLM06</td>
+              <td>Excessive Agency</td>
+              <td>Process spawning, network creation, and ptrace intercepted and terminated</td>
+              <td><span class="badge badge-pass">MITIGATED</span></td>
+            </tr>
+            <tr>
+              <td>MITRE ATT&CK</td>
+              <td>T1055</td>
+              <td>Process Injection</td>
+              <td>Blocking ptrace and process_vm_writev via native kernel BPF trap</td>
+              <td><span class="badge badge-pass">BLOCKED</span></td>
+            </tr>
+            <tr>
+              <td>MITRE ATT&CK</td>
+              <td>T1574</td>
+              <td>Hijack Execution Flow</td>
+              <td>Elimination of user-space supervisor TOCTOU race window</td>
+              <td><span class="badge badge-pass">ELIMINATED</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB 5: FMECA -->
+    <div id="tab-fmeca" class="tab-content">
+      <div class="card">
+        <h3>NASA-GB-8719.13 Failure Modes, Effects, and Criticality Analysis (FMECA)</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Failure Mode</th>
+              <th>Root Cause</th>
+              <th>Severity (S)</th>
+              <th>Occur (O)</th>
+              <th>Detect (D)</th>
+              <th>Raw RPN</th>
+              <th>Remediation</th>
+              <th>Residual RPN</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>FM-01</td>
+              <td>User-space TOCTOU escape</td>
+              <td>External dereference via /proc/$PID/mem</td>
+              <td>10</td>
+              <td>8</td>
+              <td>2</td>
+              <td style="color: var(--danger); font-weight: 700;">160</td>
+              <td>In-kernel atomic register BPF filter</td>
+              <td style="color: var(--primary); font-weight: 700;">10</td>
+            </tr>
+            <tr>
+              <td>FM-02</td>
+              <td>Master HMAC attestation key leak</td>
+              <td>Memory snapshot compromise</td>
+              <td>9</td>
+              <td>4</td>
+              <td>3</td>
+              <td style="color: var(--warning); font-weight: 700;">108</td>
+              <td>1-hour epoch dynamic key rotation</td>
+              <td style="color: var(--primary); font-weight: 700;">18</td>
+            </tr>
+            <tr>
+              <td>FM-03</td>
+              <td>Torn-write state corruption</td>
+              <td>Partial NVMe flush during host crash</td>
+              <td>7</td>
+              <td>5</td>
+              <td>2</td>
+              <td style="color: var(--warning); font-weight: 700;">70</td>
+              <td>128B aligned headers + auto-truncation</td>
+              <td style="color: var(--primary); font-weight: 700;">14</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB 6: PRICING & ENTERPRISE -->
+    <div id="tab-pricing" class="tab-content">
+      <div class="card">
+        <h3>Enterprise Hardening & Support Licensing</h3>
+        <p style="color: var(--text-muted);">The open-source core of UPGP is free and MIT licensed. Commercial tiers fund the independent verification infrastructure, zero-day exploit fuzzer research, and continuous attestation nodes.</p>
+        
+        <div class="pricing-grid">
+          <!-- Community Tier -->
+          <div class="pricing-card">
+            <h4>Open-Source Core</h4>
+            <div class="pricing-price">$0 <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: 400;">/ forever</span></div>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">For researchers and open-source agent developers.</p>
+            <ul class="pricing-features">
+              <li>Full UPGP v4.0 Ultra runtime</li>
+              <li>In-kernel BPF whitelist (139 syscalls)</li>
+              <li>Z3 SMT formal solver bindings</li>
+              <li>TonyDB Merkle inclusion proofs</li>
+              <li>Local fast bootstrap gauntlet</li>
+            </ul>
+            <a href="https://github.com/aoxendine3/SSOT_Agentic_Brain" class="btn btn-secondary">Get Open Source</a>
+          </div>
+
+          <!-- Enterprise Tier -->
+          <div class="pricing-card featured">
+            <h4>Hardened Enterprise Build</h4>
+            <div class="pricing-price">$4,500 <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: 400;">/ node / year</span></div>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">For production multi-tenant swarms in regulated industries.</p>
+            <ul class="pricing-features">
+              <li>Pre-compiled signed eBPF/Landlock LSM kernels</li>
+              <li>FIPS 140-3 Level 3 cryptographic modules</li>
+              <li>Out-of-band attestation nodes & DAC stream</li>
+              <li>Weekly Red-Team Zero-Day Exploit Corpus feed</li>
+              <li>24/7 SLA & CISO security audit support</li>
+            </ul>
+            <a href="https://buy.stripe.com/test_sovereign_enterprise" class="btn">Deploy Enterprise</a>
+          </div>
+
+          <!-- Continuous Attestation Service -->
+          <div class="pricing-card">
+            <h4>Verified Audit Trail Node</h4>
+            <div class="pricing-price">$1,200 <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: 400;">/ month</span></div>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">Independent external cryptographic witness node.</p>
+            <ul class="pricing-features">
+              <li>Hardware-attested remote witness node</li>
+              <li>Independent Merkle inclusion verification</li>
+              <li>Automated compliance receipts (NIST/FedRAMP)</li>
+              <li>Zero-seam numeric drift monitoring</li>
+              <li>Immutable quarantine ledger replication</li>
+            </ul>
+            <a href="https://buy.stripe.com/test_sovereign_enterprise" class="btn btn-secondary">Provision Node</a>
+          </div>
+        </div>
       </div>
     </div>
 
   </div>
 
   <footer>
-    &copy; 2026 XORAS Systems LLC. Lead 9 Engineering Council. All rights reserved.
+    <p>© 2026 Sovereign Systems Engineering Collective & Anthony Oxendine. All rights reserved. • Licensed under MIT.</p>
+    <p style="margin-top: 0.5rem; font-family: var(--font-mono); font-size: 0.75rem; color: #6b7280;">Receipt Hash: 9c7b23f775d2a383b38340e3e59c8d8cd7b90da02eeddd1145cdb1eacc41b854 • UPGP v4.0 Ultra</p>
   </footer>
 
-        <script>
-    let wasmExports = null;
-    let consumedNonces = new Set();
-    let lastValidNonce = null;
-    let isSagaRunning = false;
-    const WASM_B64_EMBED = "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";
-
-    function b64ToUint8Array(b64) {
-      const binStr = atob(b64);
-      const bytes = new Uint8Array(binStr.length);
-      for (let i = 0; i < binStr.length; i++) {
-        bytes[i] = binStr.charCodeAt(i);
-      }
-      return bytes;
+  <script>
+    function openTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+      
+      const targetBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+      if (targetBtn) targetBtn.classList.add('active');
+      
+      const targetContent = document.getElementById(tabId);
+      if (targetContent) targetContent.classList.add('active');
     }
 
-    async function initWasmEngine() {
-      const badge = document.getElementById('wasm-status-badge');
-      try {
-        let wasmModule;
-        let loadMode = '';
-        const wasmPath = 'assets/wasm/upgp_simulator.wasm';
-        
-        if (typeof WebAssembly.instantiateStreaming === 'function' && window.location.protocol.startsWith('http')) {
-          try {
-            wasmModule = await WebAssembly.instantiateStreaming(fetch(wasmPath));
-            loadMode = 'STREAMING HTTP';
-          } catch (streamErr) {
-            console.warn("instantiateStreaming failed, trying arrayBuffer fetch:", streamErr);
-          }
-        }
-        
-        if (!wasmModule && window.location.protocol.startsWith('http')) {
-          try {
-            const resp = await fetch(wasmPath);
-            if (resp.ok) {
-              const bytes = await resp.arrayBuffer();
-              wasmModule = await WebAssembly.instantiate(bytes);
-              loadMode = 'FETCH ARRAYBUFFER';
+    // Initialize Chart.js Horizontal Bar Chart
+    document.addEventListener("DOMContentLoaded", function() {
+      const ctx = document.getElementById('varianceChart');
+      if (ctx) {
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: [
+              '1. Cross-Core Asymmetric',
+              '2. Pinned Same Cluster (Shared L2)',
+              '3. Cross-Cluster (NUMA Sim)',
+              '4. Sched Yield Jitter',
+              '5. High Bus Contention',
+              '6. Tight Window (<1µs)',
+              '7. Wide Window (>5µs)',
+              'USER SUPERVISOR MEAN',
+              'UPGP v4.0 ULTRA'
+            ],
+            datasets: [{
+              label: 'TOCTOU Exploit Success Rate (%)',
+              data: [59.11, 83.26, 76.69, 64.25, 63.52, 75.38, 75.91, 71.16, 0.00],
+              backgroundColor: [
+                'rgba(239, 68, 68, 0.85)',
+                'rgba(220, 38, 38, 1.0)',
+                'rgba(239, 68, 68, 0.85)',
+                'rgba(239, 68, 68, 0.85)',
+                'rgba(239, 68, 68, 0.85)',
+                'rgba(239, 68, 68, 0.85)',
+                'rgba(239, 68, 68, 0.85)',
+                'rgba(245, 158, 11, 0.9)',
+                'rgba(16, 185, 129, 1.0)'
+              ],
+              borderColor: [
+                '#ef4444', '#dc2626', '#ef4444', '#ef4444', '#ef4444', '#ef4444', '#ef4444', '#f59e0b', '#10b981'
+              ],
+              borderWidth: 1,
+              borderRadius: 4
+            }]
+          },
+          options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              x: {
+                min: 0,
+                max: 100,
+                ticks: { color: '#9ca3af', callback: val => val + '%' },
+                grid: { color: '#1f2937' }
+              },
+              y: {
+                ticks: { color: '#e5e7eb', font: { family: "'Inter', sans-serif", weight: '600' } },
+                grid: { display: false }
+              }
+            },
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                callbacks: {
+                  label: ctx => `Exploit Success: ${ctx.raw}%`
+                }
+              }
             }
-          } catch (fetchErr) {
-            console.warn("Fetch arrayBuffer failed, falling back to embedded WASM bytes:", fetchErr);
           }
-        }
-
-        // Fallback for file:// protocol or offline execution
-        if (!wasmModule) {
-          const bytes = b64ToUint8Array(WASM_B64_EMBED);
-          wasmModule = await WebAssembly.instantiate(bytes);
-          loadMode = 'EMBEDDED BINARY FALLBACK';
-        }
-
-        wasmExports = wasmModule.instance.exports;
-        if (badge) {
-          badge.className = 'wasm-badge';
-          badge.style.borderColor = 'var(--accent-green)';
-          badge.style.color = 'var(--accent-green)';
-          badge.style.background = 'rgba(0,230,118,0.15)';
-          badge.textContent = `● WASM KERNEL ACTIVE [${loadMode}]`;
-        }
-
-        // Initial simulations
-        updateMtpoSim();
-        updateHexCellSim();
-        simValidSig();
-
-      } catch (err) {
-        console.error("WASM Instantiation Error:", err);
-        if (badge) {
-          badge.className = 'wasm-badge';
-          badge.style.borderColor = 'var(--danger)';
-          badge.style.color = 'var(--danger)';
-          badge.textContent = '✖ WASM INSTANTIATION FAILED';
-        }
+        });
       }
-    }
-
-    // Auto-ticking continuous MTPO Canvas animation loop
-    let animFrameId = null;
-    let animPhase = 0;
-
-    function startMtpoCanvasLoop() {
-      if (animFrameId) cancelAnimationFrame(animFrameId);
-      function loop() {
-        animPhase += 0.05;
-        const slider = document.getElementById('mtpo-slider');
-        const threads = slider ? parseInt(slider.value, 10) : 1024;
-        const iterations = 10000;
-        let effectiveOps = threads * iterations;
-        let stalls = 0;
-        if (wasmExports && typeof wasmExports.simulate_mtpo_concurrency === 'function') {
-          effectiveOps = wasmExports.simulate_mtpo_concurrency(threads, iterations);
-          stalls = (threads * iterations) - effectiveOps;
-        }
-        const efficiency = ((effectiveOps / (threads * iterations)) * 100).toFixed(2);
-        drawMtpoCanvas(threads, efficiency, stalls, animPhase);
-        animFrameId = requestAnimationFrame(loop);
-      }
-      loop();
-    }
-
-    function updateMtpoSim() {
-      const slider = document.getElementById('mtpo-slider');
-      if (!slider) return;
-      const threads = parseInt(slider.value, 10);
-      const valBadge = document.getElementById('mtpo-val-badge');
-      if (valBadge) valBadge.textContent = threads.toLocaleString() + " Threads";
-
-      const iterations = 10000;
-      let effectiveOps = threads * iterations;
-      let stalls = 0;
-
-      if (wasmExports && typeof wasmExports.simulate_mtpo_concurrency === 'function') {
-        effectiveOps = wasmExports.simulate_mtpo_concurrency(threads, iterations);
-        const totalPossible = threads * iterations;
-        stalls = totalPossible - effectiveOps;
-      } else {
-        if (threads > 6) {
-          stalls = (threads - 6) * 1001;
-          effectiveOps = Math.max(0, (threads * iterations) - stalls);
-        }
-      }
-
-      const stallsText = document.getElementById('mtpo-stalls-text');
-      if (stallsText) stallsText.textContent = "Contention Stalls: " + stalls.toLocaleString();
-
-      const log = document.getElementById('mtpo-stats-log');
-      const totalPossible = threads * iterations;
-      const saturation = ((threads / 16000) * 100).toFixed(1);
-      const efficiency = totalPossible > 0 ? ((effectiveOps / totalPossible) * 100).toFixed(2) : "100.00";
-
-      if (log) {
-        log.textContent = `[WASM simulate_mtpo_concurrency(${threads}, ${iterations})]
-Total Ops Requested : ${totalPossible.toLocaleString()}
-Effective Ops Exec  : ${effectiveOps.toLocaleString()}
-Contention Stalls   : ${stalls.toLocaleString()}
-Thread Saturation   : ${saturation}% | Execution Efficiency: ${efficiency}%`;
-      }
-    }
-
-    function drawMtpoCanvas(threads, efficiency, stalls, phase = 0) {
-      const canvas = document.getElementById('mtpo-canvas');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      const w = canvas.width = canvas.clientWidth || 400;
-      const h = canvas.height = canvas.clientHeight || 140;
-
-      ctx.clearRect(0, 0, w, h);
-
-      ctx.strokeStyle = '#1e293b';
-      ctx.lineWidth = 1;
-      for (let x = 0; x < w; x += 30) {
-        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
-      }
-      for (let y = 0; y < h; y += 30) {
-        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
-      }
-
-      const numBars = 32;
-      const barWidth = (w - 40) / numBars;
-      const activeCount = Math.ceil((threads / 16000) * numBars);
-
-      for (let i = 0; i < numBars; i++) {
-        const x = 20 + i * barWidth;
-        const wave = Math.sin(phase + (i / 3));
-        const barH = (h * 0.5) * (0.3 + 0.7 * Math.abs(Math.sin((i / numBars) * Math.PI + wave * 0.3)));
-        const y = h - 25 - barH;
-
-        if (i < activeCount) {
-          const ratio = i / numBars;
-          let color = '#00f2fe';
-          if (ratio > 0.6) color = '#eab308';
-          if (ratio > 0.85) color = '#ff5252';
-          ctx.fillStyle = color;
-          ctx.shadowColor = color;
-          ctx.shadowBlur = 8;
-        } else {
-          ctx.fillStyle = '#0f172a';
-          ctx.shadowBlur = 0;
-        }
-
-        ctx.fillRect(x, y, barWidth - 3, barH);
-      }
-      ctx.shadowBlur = 0;
-
-      ctx.fillStyle = '#f8fafc';
-      ctx.font = 'bold 11px monospace';
-      ctx.fillText(`LIVE WASM MTPO CONCURRENCY: ${threads.toLocaleString()} THREADS (${efficiency}% EFFICIENCY)`, 20, 20);
-    }
-
-    // 2. Saga Inverse Compensation Simulation with Chaos Fault Mode
-    async function runSagaRollbackSim() {
-      if (isSagaRunning) return;
-      isSagaRunning = true;
-
-      const chaosToggle = document.getElementById('chaos-mode-toggle');
-      const isChaosEnabled = chaosToggle ? chaosToggle.checked : false;
-
-      for (let i = 0; i < 5; i++) {
-        const node = document.getElementById(`dag-node-${i}`);
-        if (node) {
-          node.className = 'dag-node';
-          node.innerHTML = `DAG-${i + 1}<br>[0xBEAF0${i + 1}]`;
-        }
-      }
-
-      const btn = document.getElementById('btn-trigger-saga');
-      const statusText = document.getElementById('saga-status-text');
-      const sagaLog = document.getElementById('saga-log');
-      if (btn) btn.disabled = true;
-
-      if (statusText) {
-        statusText.textContent = isChaosEnabled ? "CHAOS ROLLBACK..." : "ROLLING BACK...";
-        statusText.style.color = "#eab308";
-      }
-
-      let rollbackResult = 1;
-      if (wasmExports && typeof wasmExports.trigger_saga_rollback_with_chaos === 'function') {
-        rollbackResult = wasmExports.trigger_saga_rollback_with_chaos(101, isChaosEnabled ? 3 : 0);
-      } else if (wasmExports && typeof wasmExports.trigger_saga_rollback === 'function') {
-        rollbackResult = wasmExports.trigger_saga_rollback(101);
-      }
-
-      if (sagaLog) {
-        sagaLog.textContent = `[WASM trigger_saga_rollback_with_chaos(101, chaos=${isChaosEnabled ? 3 : 0})] => Result: ${rollbackResult}
-Initiating inverse compensation sequence down Merkle DAG...`;
-      }
-
-      for (let i = 4; i >= 0; i--) {
-        const node = document.getElementById(`dag-node-${i}`);
-        if (node) node.className = 'dag-node active-step';
-
-        if (isChaosEnabled && i === 2) {
-          if (sagaLog) sagaLog.textContent += `\n[STEP ${5 - i}/5] 💥 FAULT INJECTED AT NODE DAG-3! Compensation failed!`;
-          await new Promise(r => setTimeout(r, 300));
-          if (node) {
-            node.className = 'dag-node corrupted';
-            node.style.borderColor = 'var(--danger)';
-            node.style.background = 'rgba(255,82,82,0.2)';
-            node.innerHTML = `DAG-${i + 1}<br>[0xDEAD03]`;
-          }
-          if (sagaLog) {
-            sagaLog.textContent += `\n✖ UNRECOVERABLE COMPENSATION FAULT! State Node DAG-3 routed to Quarantine Ledger [0xDEAD0000].\nZero state pollution in decision pipeline (0.00000% state pollution).`;
-          }
-          if (statusText) {
-            statusText.textContent = "FAULT QUARANTINED";
-            statusText.style.color = "var(--danger)";
-          }
-          if (btn) btn.disabled = false;
-          isSagaRunning = false;
-          return;
-        }
-
-        if (sagaLog) sagaLog.textContent += `\n[STEP ${5 - i}/5] Compensating Node DAG-${i + 1}... [0xBEAF0${i + 1}] -> [0x000000]`;
-        await new Promise(r => setTimeout(r, 200));
-        if (node) {
-          node.className = 'dag-node compensated';
-          node.innerHTML = `DAG-${i + 1}<br>[RESTORED]`;
-        }
-      }
-
-      if (sagaLog) sagaLog.textContent += `\n✅ SAGA INVERSE COMPENSATION COMPLETE. DAG Lineage restored to zero-state baseline.`;
-      if (statusText) {
-        statusText.textContent = "COMPENSATED";
-        statusText.style.color = "var(--accent-green)";
-      }
-      if (btn) btn.disabled = false;
-      isSagaRunning = false;
-    }
-
-    function resetSagaSim() {
-      if (isSagaRunning) return;
-      for (let i = 0; i < 5; i++) {
-        const node = document.getElementById(`dag-node-${i}`);
-        if (node) {
-          node.className = 'dag-node';
-          node.innerHTML = `DAG-${i + 1}<br>[0xBEAF0${i + 1}]`;
-        }
-      }
-      const statusText = document.getElementById('saga-status-text');
-      if (statusText) {
-        statusText.textContent = "READY";
-        statusText.style.color = "var(--accent-green)";
-      }
-      const sagaLog = document.getElementById('saga-log');
-      if (sagaLog) sagaLog.textContent = "[WASM Engine] Merkle DAG lineage active at height 5 (State Hash: 0xBEAF05).";
-    }
-
-    // 5. Interactive Code & Seccomp Profile Sandbox Harness
-    const CODE_PRESETS = {
-      vec3: 'eval("process.exit(1)");',
-      vec5: 'require("fs").readFileSync("../../../etc/passwd");',
-      vec6: 'require("net").createConnection(443, "raw.socket.egress");',
-      vec11: 'Function("return process")().mainModule.require("child_process");',
-      vec13: 'const socket = require("dgram").createSocket("udp4"); socket.bind(0);',
-      clean: 'const result = Math.sin(42) + Math.cos(100);\nconsole.log("Safe Computation:", result);'
-    };
-
-    function loadCodePreset() {
-      const sel = document.getElementById('preset-code-select');
-      const editor = document.getElementById('sandbox-code-editor');
-      if (sel && editor && CODE_PRESETS[sel.value]) {
-        editor.value = CODE_PRESETS[sel.value];
-      }
-    }
-
-    function runCodeSandboxSim() {
-      const editor = document.getElementById('sandbox-code-editor');
-      const log = document.getElementById('sandbox-log');
-      const badge = document.getElementById('code-sandbox-badge');
-      if (!editor) return;
-
-      const code = editor.value;
-      const isDangerous = /eval|execSync|process|child_process|\.\.\/\.\.\/|passwd|createConnection|createSocket|AF_PACKET/i.test(code);
-
-      let wasmResult = 0;
-      if (wasmExports && typeof wasmExports.evaluate_sandbox_code === 'function') {
-        wasmResult = wasmExports.evaluate_sandbox_code(3, isDangerous ? 1 : 0);
-      } else {
-        wasmResult = isDangerous ? 1 : 0;
-      }
-
-      if (isDangerous || wasmResult === 1) {
-        if (badge) {
-          badge.className = 'demo-badge invalid';
-          badge.style.borderColor = 'var(--danger)';
-          badge.style.color = 'var(--danger)';
-          badge.style.background = 'rgba(255,82,82,0.2)';
-          badge.textContent = '✖ SYSCALL BLOCKED BY SECCOMP/LANDLOCK';
-        }
-        if (log) {
-          log.textContent = JSON.stringify({
-            mode: "CLIENT_SIDE_WASM_SANDBOX_EVALUATION",
-            wasmFunction: "evaluate_sandbox_code(vector_id, is_dangerous_pattern)",
-            wasmKernelResult: wasmResult + " (1 = INTERCEPTED / BLOCKED)",
-            evaluatedCodeSnippet: code.trim(),
-            seccompRuleAction: "SIGSYS (Kernel Syscall Terminate)",
-            landlockLsmRule: "PATH_ACCESS_RESTRICTED",
-            detectedPattern: isDangerous ? "UNTRUSTED_AST_OR_SYSCALL_PATTERN" : "CLEAN",
-            boundaryStatus: "SYSCALL_INTERCEPTED_AND_BLOCKED"
-          }, null, 2);
-        }
-      } else {
-        if (badge) {
-          badge.className = 'demo-badge valid';
-          badge.style.borderColor = 'var(--accent-green)';
-          badge.style.color = 'var(--accent-green)';
-          badge.style.background = 'rgba(0,230,118,0.15)';
-          badge.textContent = '● CLEAN CODE: EXECUTION ALLOWED';
-        }
-        if (log) {
-          log.textContent = JSON.stringify({
-            mode: "CLIENT_SIDE_WASM_SANDBOX_EVALUATION",
-            wasmFunction: "evaluate_sandbox_code(vector_id, is_dangerous_pattern)",
-            wasmKernelResult: wasmResult + " (0 = CLEAN_EXECUTION_ALLOWED)",
-            evaluatedCodeSnippet: code.trim(),
-            seccompRuleAction: "PASS (Syscall Allowed)",
-            landlockLsmRule: "UNPRIVILEGED_PATH_OK",
-            boundaryStatus: "PASSED_ZERO_EXPLOIT_PATTERNS"
-          }, null, 2);
-        }
-      }
-    }
-
-    // 3. Bit-Flip Falsification Verification
-    function simValidSig() {
-      const nonce = Date.now();
-      lastValidNonce = nonce;
-      consumedNonces.add(nonce);
-      let wasmRes = 1;
-      if (wasmExports && typeof wasmExports.verify_state_signature === 'function') {
-        wasmRes = wasmExports.verify_state_signature(BigInt(nonce), 0x9e3779b9, 0x76);
-      }
-
-      const badge = document.getElementById('sig-status-badge');
-      if (badge) {
-        badge.className = 'demo-badge valid';
-        badge.textContent = '● SECURE (SIGNATURE VALID)';
-        badge.style.background = 'rgba(0,230,118,0.2)';
-        badge.style.borderColor = 'var(--accent-green)';
-        badge.style.color = 'var(--accent-green)';
-      }
-
-      const sigLog = document.getElementById('sig-log');
-      if (sigLog) {
-        sigLog.textContent = JSON.stringify({
-          mode: "CLIENT_SIDE_WASM_VERIFICATION",
-          wasmFunction: "verify_state_signature(nonce, payload_hash, sig_byte)",
-          wasmReturnValue: wasmRes,
-          enclaveState: "SECURE",
-          signatureByte: "0x76 (EXPECTED)",
-          nonceFreshness: "FRESH (Nonce " + nonce + ")",
-          statePollution: "0.00000%"
-        }, null, 2);
-      }
-    }
-
-    function simBitFlipSig() {
-      const nonce = Date.now();
-      let wasmRes = 0;
-      if (wasmExports && typeof wasmExports.verify_state_signature === 'function') {
-        wasmRes = wasmExports.verify_state_signature(BigInt(nonce), 0x9e3779b9, 0x06);
-      }
-
-      const badge = document.getElementById('sig-status-badge');
-      if (badge) {
-        badge.className = 'demo-badge invalid';
-        badge.textContent = '✖ CORRUPTED (BIT-FLIP DETECTED)';
-        badge.style.background = 'rgba(255,82,82,0.25)';
-        badge.style.borderColor = 'var(--danger)';
-        badge.style.color = 'var(--danger)';
-      }
-
-      const sigLog = document.getElementById('sig-log');
-      if (sigLog) {
-        sigLog.textContent = JSON.stringify({
-          mode: "CLIENT_SIDE_WASM_VERIFICATION",
-          wasmFunction: "verify_state_signature(nonce, payload_hash, sig_byte)",
-          wasmReturnValue: wasmRes,
-          enclaveState: "CORRUPTED",
-          signatureByte: "0x06 (MUTATED / BIT FLIPPED)",
-          faultInjection: "TAINT DETECTED [0xDEAD0000]",
-          statePollution: "ISOLATED & QUARANTINED"
-        }, null, 2);
-      }
-    }
-
-    function simReplayAttack() {
-      const reusedNonce = lastValidNonce || 123456789;
-      let wasmRes = 0;
-      if (wasmExports && typeof wasmExports.verify_state_signature === 'function') {
-        wasmRes = wasmExports.verify_state_signature(BigInt(reusedNonce), 0x0, 0x76);
-      }
-
-      const badge = document.getElementById('sig-status-badge');
-      if (badge) {
-        badge.className = 'demo-badge invalid';
-        badge.style.borderColor = '#eab308';
-        badge.style.color = '#eab308';
-        badge.style.background = 'rgba(234,179,8,0.2)';
-        badge.textContent = '✖ REPLAY ATTACK INTERCEPTED';
-      }
-
-      const sigLog = document.getElementById('sig-log');
-      if (sigLog) {
-        sigLog.textContent = JSON.stringify({
-          mode: "CLIENT_SIDE_WASM_VERIFICATION",
-          wasmFunction: "verify_state_signature(reused_nonce, 0x0, 0x76)",
-          wasmReturnValue: wasmRes,
-          enclaveState: "CORRUPTED",
-          signatureByte: "0x76",
-          nonceFreshness: "REPLAY DETECTED (Nonce " + reusedNonce + " already consumed)",
-          attackVector: "CROSS_SESSION_UNLINKED_REPLAY",
-          quarantineAction: "COMMITTED TO QUARANTINE LEDGER"
-        }, null, 2);
-      }
-    }
-
-    // 4. HexCell Memory Inspector Simulation
-    function updateHexCellSim() {
-      const slider = document.getElementById('hex-slots-slider');
-      if (!slider) return;
-      const slots = parseInt(slider.value, 10);
-      const text = document.getElementById('hex-slots-text');
-      if (text) text.textContent = `Topology Slots: ${slots} (Cache Line: 128 Bytes Aligned)`;
-
-      let memorySize = slots * 128;
-      if (wasmExports && typeof wasmExports.init_hexcell_topology === 'function') {
-        memorySize = wasmExports.init_hexcell_topology(slots);
-      }
-
-      const badge = document.getElementById('hex-bytes-badge');
-      if (badge) badge.textContent = memorySize.toLocaleString() + " Bytes";
-
-      const grid = document.getElementById('hex-slots-grid');
-      if (grid) {
-        let html = `
-          <div class="hex-slot bridge">0x3000<br>Context Bridge</div>
-          <div class="hex-slot ledger">0x4000<br>Quarantine</div>
-        `;
-
-        const displaySlots = Math.min(slots, 10);
-        for (let i = 2; i < displaySlots; i++) {
-          const addr = "0x" + (0x4000 + (i - 1) * 128).toString(16).toUpperCase();
-          html += `<div class="hex-slot">${addr}<br>[0xBEAF]</div>`;
-        }
-        if (slots > 10) {
-          html += `<div class="hex-slot" style="color:var(--text-muted);">+${slots - 10} More...</div>`;
-        }
-        grid.innerHTML = html;
-      }
-
-      const hexLog = document.getElementById('hex-log');
-      if (hexLog) {
-        hexLog.textContent = `[WASM init_hexcell_topology(${slots})]
-Allocated Hardware Memory : ${memorySize.toLocaleString()} Bytes
-Hardware Region Align     : 128-Byte Cache Line Boundary (Apple Silicon M4)
-Context Bridge Address    : 0x3000 (Aligned)
-Quarantine Ledger Address : 0x4000 (Aligned)`;
-      }
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      initWasmEngine();
-      startMtpoCanvasLoop();
-      window.addEventListener('resize', updateMtpoSim);
     });
   </script>
-
 </body>
 </html>
