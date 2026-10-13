@@ -1,0 +1,707 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "audit_type": "Sovereign Multi-Language Native AST & Surface Audit (Zig, C, Rust, TS)",
+    "timestamp": "2026-10-13T16:49:04Z",
+    "duration_seconds": 1.261,
+    "total_native_files_scanned": 402,
+    "flagged_native_files": 32,
+    "total_findings": 64,
+    "summary_by_language": {
+      "zig": 35,
+      "c/cpp": 19,
+      "rust": 8,
+      "typescript/js": 2
+    },
+    "summary_by_severity": {
+      "CRITICAL": 33,
+      "HIGH": 26,
+      "MEDIUM": 5,
+      "LOW": 0
+    },
+    "summary_by_pattern": {
+      "ZIG_UNCHECKED_PTR_CAST": 17,
+      "ZIG_INLINE_ASM_VOLATILE": 13,
+      "ZIG_ALIGNMENT_CAST": 5,
+      "C_INLINE_ASM_VOLATILE": 7,
+      "C_SUBPROCESS_COMMAND_EXEC": 12,
+      "RUST_UNSAFE_BLOCK": 8,
+      "TS_PROTOTYPE_POLLUTION": 1,
+      "TS_EVAL_EXECUTION": 1
+    }
+  },
+  "flagged_files": [
+    {
+      "filepath": "core/ops/native/zig/sovra_truth_engine_v4.zig",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 47,
+          "pattern_id": "ZIG_UNCHECKED_PTR_CAST",
+          "severity": "HIGH",
+          "description": "Unchecked pointer reinterpretation (@ptrCast)",
+          "snippet": "return @ptrCast(&target[0]);"
+        }
+      ],
+      "language": "zig"
+    },
+    {
+      "filepath": "core/ops/native/zig/stateless_airblocked_witness.zig",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 185,
+          "pattern_id": "ZIG_UNCHECKED_PTR_CAST",
+          "severity": "HIGH",
+          "description": "Unchecked pointer reinterpretation (@ptrCast)",
+          "snippet": "const claim_hash = std.mem.trim(u8, std.mem.span(@as([*:0]u8, @ptrCast(&buf))), \" \\t\\r\\n\");"
+        }
+      ],
+      "language": "zig"
+    },
+    {
+      "filepath": "core/ops/native/zig/independent_merkle_verifier.zig",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 153,
+          "pattern_id": "ZIG_UNCHECKED_PTR_CAST",
+          "severity": "HIGH",
+          "description": "Unchecked pointer reinterpretation (@ptrCast)",
+          "snippet": "const disk_hash = std.mem.trim(u8, std.mem.span(@as([*:0]u8, @ptrCast(&buf))), \" \\t\\r\\n\");"
+        }
+      ],
+      "language": "zig"
+    },
+    {
+      "filepath": "core/ops/bin/xoras_speak.zig",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 72,
+          "pattern_id": "ZIG_UNCHECKED_PTR_CAST",
+          "severity": "HIGH",
+          "description": "Unchecked pointer reinterpretation (@ptrCast)",
+          "snippet": "_ = c.execvp(py_bin, @ptrCast(&py_argv));"
+        }
+      ],
+      "language": "zig"
+    },
+    {
+      "filepath": "core/ops/scripts/sandbox_rehydration_benchmark_7B.zig",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 5,
+          "pattern_id": "ZIG_INLINE_ASM_VOLATILE",
+          "severity": "CRITICAL",
+          "description": "Raw hardware inline assembly mutation (asm volatile)",
+          "snippet": "asm volatile (\"mrs %[v], cntvct_el0\""
+        }
+      ],
+      "language": "zig"
+    },
+    {
+      "filepath": "core/ops/scripts/sandbox_rehydration_benchmark_4GB.zig",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 5,
+          "pattern_id": "ZIG_INLINE_ASM_VOLATILE",
+          "severity": "CRITICAL",
+          "description": "Raw hardware inline assembly mutation (asm volatile)",
+          "snippet": "asm volatile (\"mrs %[v], cntvct_el0\""
+        }
+      ],
+      "language": "zig"
+    },
+    {
+      "filepath": "core/ops/scripts/atomic_sequence_harness.zig",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 5,
+          "pattern_id": "ZIG_INLINE_ASM_VOLATILE",
+          "severity": "CRITICAL",
+          "description": "Raw hardware inline assembly mutation (asm volatile)",
+          "snippet": "asm volatile (\"mrs %[v], cntvct_el0\""
+        }
+      ],
+      "language": "zig"
+    },
+    {
+      "filepath": "core/ops/scripts/sandbox_rehydration_benchmark.zig",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 5,
+          "pattern_id": "ZIG_INLINE_ASM_VOLATILE",
+          "severity": "CRITICAL",
+          "description": "Raw hardware inline assembly mutation (asm volatile)",
+          "snippet": "asm volatile (\"mrs %[v], cntvct_el0\""
+        }
+      ],
+      "language": "zig"
+    },
+    {
+      "filepath": "core/ops/scripts/zero_copy_rehydration.zig",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 5,
+          "pattern_id": "ZIG_INLINE_ASM_VOLATILE",
+          "severity": "CRITICAL",
+          "description": "Raw hardware inline assembly mutation (asm volatile)",
+          "snippet": "asm volatile (\"mrs %[v], cntvct_el0\""
+        }
+      ],
+      "language": "zig"
+    },
+    {
+      "filepath": "core/ops/scripts/truth_verifier_core.zig",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 44,
+          "pattern_id": "ZIG_UNCHECKED_PTR_CAST",
+          "severity": "HIGH",
+          "description": "Unchecked pointer reinterpretation (@ptrCast)",
+          "snippet": "return @ptrCast(&target[0]);"
+        }
+      ],
+      "language": "zig"
+    },
+    {
+      "filepath": "labs/workspaces/attestation_service/attestation_service.zig",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 52,
+          "pattern_id": "ZIG_UNCHECKED_PTR_CAST",
+          "severity": "HIGH",
+          "description": "Unchecked pointer reinterpretation (@ptrCast)",
+          "snippet": "if (c.connect(fd, @ptrCast(&addr), @sizeOf(c.struct_sockaddr_in)) < 0) {"
+        },
+        {
+          "line": 93,
+          "pattern_id": "ZIG_UNCHECKED_PTR_CAST",
+          "severity": "HIGH",
+          "description": "Unchecked pointer reinterpretation (@ptrCast)",
+          "snippet": "if (c.bind(server_fd, @ptrCast(&addr), @sizeOf(c.struct_sockaddr_in)) < 0) {"
+        }
+      ],
+      "language": "zig"
+    },
+    {
+      "filepath": "labs/workspaces/capability_graph/benchmark.zig",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 12,
+          "pattern_id": "ZIG_INLINE_ASM_VOLATILE",
+          "severity": "CRITICAL",
+          "description": "Raw hardware inline assembly mutation (asm volatile)",
+          "snippet": "asm volatile (\"mrs %[val], cntvct_el0\""
+        },
+        {
+          "line": 20,
+          "pattern_id": "ZIG_INLINE_ASM_VOLATILE",
+          "severity": "CRITICAL",
+          "description": "Raw hardware inline assembly mutation (asm volatile)",
+          "snippet": "asm volatile (\"mrs %[val], cntfrq_el0\""
+        }
+      ],
+      "language": "zig"
+    },
+    {
+      "filepath": "labs/workspaces/sovra_lang_zig/sovra_zig.zig",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 87,
+          "pattern_id": "ZIG_UNCHECKED_PTR_CAST",
+          "severity": "HIGH",
+          "description": "Unchecked pointer reinterpretation (@ptrCast)",
+          "snippet": "const typed_ptr: *const u32 = @ptrCast(@alignCast(ptr));"
+        },
+        {
+          "line": 87,
+          "pattern_id": "ZIG_ALIGNMENT_CAST",
+          "severity": "MEDIUM",
+          "description": "Alignment boundary cast (@alignCast)",
+          "snippet": "const typed_ptr: *const u32 = @ptrCast(@alignCast(ptr));"
+        }
+      ],
+      "language": "zig"
+    },
+    {
+      "filepath": "labs/workspaces/tri_brain_memory/xoras_neon_simd.zig",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 84,
+          "pattern_id": "ZIG_INLINE_ASM_VOLATILE",
+          "severity": "CRITICAL",
+          "description": "Raw hardware inline assembly mutation (asm volatile)",
+          "snippet": "asm volatile (\"mrs %[val], cntvct_el0\" : [val] \"=r\" (val));"
+        }
+      ],
+      "language": "zig"
+    },
+    {
+      "filepath": "labs/workspaces/tri_brain_memory/tri_brain_ring.zig",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 43,
+          "pattern_id": "ZIG_INLINE_ASM_VOLATILE",
+          "severity": "CRITICAL",
+          "description": "Raw hardware inline assembly mutation (asm volatile)",
+          "snippet": "asm volatile (\"mrs %[val], cntvct_el0\" : [val] \"=r\" (val));"
+        }
+      ],
+      "language": "zig"
+    },
+    {
+      "filepath": "labs/workspaces/tri_brain_memory/xoras_mpmc_ring.zig",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 59,
+          "pattern_id": "ZIG_INLINE_ASM_VOLATILE",
+          "severity": "CRITICAL",
+          "description": "Raw hardware inline assembly mutation (asm volatile)",
+          "snippet": "asm volatile (\"mrs %[val], cntvct_el0\" : [val] \"=r\" (val));"
+        },
+        {
+          "line": 181,
+          "pattern_id": "ZIG_UNCHECKED_PTR_CAST",
+          "severity": "HIGH",
+          "description": "Unchecked pointer reinterpretation (@ptrCast)",
+          "snippet": "const ring: *XorasMpmcRing = @ptrCast(@alignCast(ptr));"
+        },
+        {
+          "line": 181,
+          "pattern_id": "ZIG_ALIGNMENT_CAST",
+          "severity": "MEDIUM",
+          "description": "Alignment boundary cast (@alignCast)",
+          "snippet": "const ring: *XorasMpmcRing = @ptrCast(@alignCast(ptr));"
+        },
+        {
+          "line": 195,
+          "pattern_id": "ZIG_UNCHECKED_PTR_CAST",
+          "severity": "HIGH",
+          "description": "Unchecked pointer reinterpretation (@ptrCast)",
+          "snippet": "const ring: *XorasMpmcRing = @ptrCast(@alignCast(ptr));"
+        },
+        {
+          "line": 195,
+          "pattern_id": "ZIG_ALIGNMENT_CAST",
+          "severity": "MEDIUM",
+          "description": "Alignment boundary cast (@alignCast)",
+          "snippet": "const ring: *XorasMpmcRing = @ptrCast(@alignCast(ptr));"
+        },
+        {
+          "line": 213,
+          "pattern_id": "ZIG_UNCHECKED_PTR_CAST",
+          "severity": "HIGH",
+          "description": "Unchecked pointer reinterpretation (@ptrCast)",
+          "snippet": "if (hash) |h| h_ptr = @ptrCast(h);"
+        },
+        {
+          "line": 224,
+          "pattern_id": "ZIG_UNCHECKED_PTR_CAST",
+          "severity": "HIGH",
+          "description": "Unchecked pointer reinterpretation (@ptrCast)",
+          "snippet": "_ = c.munmap(@ptrCast(ring), @sizeOf(XorasMpmcRing));"
+        }
+      ],
+      "language": "zig"
+    },
+    {
+      "filepath": "labs/workspaces/tri_brain_memory/xoras_apex_engine.zig",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 32,
+          "pattern_id": "ZIG_INLINE_ASM_VOLATILE",
+          "severity": "CRITICAL",
+          "description": "Raw hardware inline assembly mutation (asm volatile)",
+          "snippet": "asm volatile (\"mrs %[val], cntvct_el0\" : [val] \"=r\" (val));"
+        },
+        {
+          "line": 121,
+          "pattern_id": "ZIG_UNCHECKED_PTR_CAST",
+          "severity": "HIGH",
+          "description": "Unchecked pointer reinterpretation (@ptrCast)",
+          "snippet": "const first_line: *const [128]u8 = @ptrCast(&entry.embedding);"
+        }
+      ],
+      "language": "zig"
+    },
+    {
+      "filepath": "labs/workspaces/tri_brain_memory/gauntlet_fuzz_stress.zig",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 23,
+          "pattern_id": "ZIG_INLINE_ASM_VOLATILE",
+          "severity": "CRITICAL",
+          "description": "Raw hardware inline assembly mutation (asm volatile)",
+          "snippet": "asm volatile (\"mrs %[val], cntvct_el0\" : [val] \"=r\" (val));"
+        }
+      ],
+      "language": "zig"
+    },
+    {
+      "filepath": "labs/workspaces/tri_brain_memory/xoras_shm_ring.zig",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 63,
+          "pattern_id": "ZIG_INLINE_ASM_VOLATILE",
+          "severity": "CRITICAL",
+          "description": "Raw hardware inline assembly mutation (asm volatile)",
+          "snippet": "asm volatile (\"mrs %[val], cntvct_el0\" : [val] \"=r\" (val));"
+        },
+        {
+          "line": 156,
+          "pattern_id": "ZIG_UNCHECKED_PTR_CAST",
+          "severity": "HIGH",
+          "description": "Unchecked pointer reinterpretation (@ptrCast)",
+          "snippet": "const ring: *XorasShmRing = @ptrCast(@alignCast(ptr));"
+        },
+        {
+          "line": 156,
+          "pattern_id": "ZIG_ALIGNMENT_CAST",
+          "severity": "MEDIUM",
+          "description": "Alignment boundary cast (@alignCast)",
+          "snippet": "const ring: *XorasShmRing = @ptrCast(@alignCast(ptr));"
+        },
+        {
+          "line": 170,
+          "pattern_id": "ZIG_UNCHECKED_PTR_CAST",
+          "severity": "HIGH",
+          "description": "Unchecked pointer reinterpretation (@ptrCast)",
+          "snippet": "const ring: *XorasShmRing = @ptrCast(@alignCast(ptr));"
+        },
+        {
+          "line": 170,
+          "pattern_id": "ZIG_ALIGNMENT_CAST",
+          "severity": "MEDIUM",
+          "description": "Alignment boundary cast (@alignCast)",
+          "snippet": "const ring: *XorasShmRing = @ptrCast(@alignCast(ptr));"
+        },
+        {
+          "line": 189,
+          "pattern_id": "ZIG_UNCHECKED_PTR_CAST",
+          "severity": "HIGH",
+          "description": "Unchecked pointer reinterpretation (@ptrCast)",
+          "snippet": "h_ptr = @ptrCast(h);"
+        },
+        {
+          "line": 210,
+          "pattern_id": "ZIG_UNCHECKED_PTR_CAST",
+          "severity": "HIGH",
+          "description": "Unchecked pointer reinterpretation (@ptrCast)",
+          "snippet": "_ = c.munmap(@ptrCast(ring), total_bytes);"
+        }
+      ],
+      "language": "zig"
+    },
+    {
+      "filepath": "core/ops/runtime/sovra_dsl_destruction_harness.c",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 97,
+          "pattern_id": "C_INLINE_ASM_VOLATILE",
+          "severity": "CRITICAL",
+          "description": "Kernel bypass inline assembly (__asm__ volatile)",
+          "snippet": "__asm__ volatile("
+        }
+      ],
+      "language": "c/cpp"
+    },
+    {
+      "filepath": "labs/workspaces/multilang_benchmark/sovra_bench_runner.c",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 22,
+          "pattern_id": "C_SUBPROCESS_COMMAND_EXEC",
+          "severity": "CRITICAL",
+          "description": "Process execution shell escape (system/popen)",
+          "snippet": "FILE *fp = popen(full_cmd, \"r\");"
+        },
+        {
+          "line": 48,
+          "pattern_id": "C_SUBPROCESS_COMMAND_EXEC",
+          "severity": "CRITICAL",
+          "description": "Process execution shell escape (system/popen)",
+          "snippet": "system(\"clang++ -O3 -std=c++20 -march=armv8.5-a /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/multilang_benc"
+        },
+        {
+          "line": 51,
+          "pattern_id": "C_SUBPROCESS_COMMAND_EXEC",
+          "severity": "CRITICAL",
+          "description": "Process execution shell escape (system/popen)",
+          "snippet": "system(\"clang -O3 -march=armv8.5-a /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/multilang_benchmark/sovra_c"
+        },
+        {
+          "line": 54,
+          "pattern_id": "C_SUBPROCESS_COMMAND_EXEC",
+          "severity": "CRITICAL",
+          "description": "Process execution shell escape (system/popen)",
+          "snippet": "system(\"cargo build --manifest-path /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/hexological_engine/Cargo.t"
+        },
+        {
+          "line": 57,
+          "pattern_id": "C_SUBPROCESS_COMMAND_EXEC",
+          "severity": "CRITICAL",
+          "description": "Process execution shell escape (system/popen)",
+          "snippet": "system(\"/opt/homebrew/bin/zig build-exe -O ReleaseFast /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/multila"
+        },
+        {
+          "line": 60,
+          "pattern_id": "C_SUBPROCESS_COMMAND_EXEC",
+          "severity": "CRITICAL",
+          "description": "Process execution shell escape (system/popen)",
+          "snippet": "system(\"/opt/homebrew/bin/go build -o /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/multilang_benchmark/go/b"
+        },
+        {
+          "line": 63,
+          "pattern_id": "C_SUBPROCESS_COMMAND_EXEC",
+          "severity": "CRITICAL",
+          "description": "Process execution shell escape (system/popen)",
+          "snippet": "system(\"clang -O3 -march=armv8.5-a /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/multilang_benchmark/mem_cop"
+        }
+      ],
+      "language": "c/cpp"
+    },
+    {
+      "filepath": "labs/workspaces/sovra_lang/model_swap_router_engine.c",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 160,
+          "pattern_id": "C_INLINE_ASM_VOLATILE",
+          "severity": "CRITICAL",
+          "description": "Kernel bypass inline assembly (__asm__ volatile)",
+          "snippet": "__asm__ volatile(\"isb\" ::: \"memory\");"
+        }
+      ],
+      "language": "c/cpp"
+    },
+    {
+      "filepath": "workspaces/OS_Build/limine/host/limine.c",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 1056,
+          "pattern_id": "C_SUBPROCESS_COMMAND_EXEC",
+          "severity": "CRITICAL",
+          "description": "Process execution shell escape (system/popen)",
+          "snippet": "system(\"pause\");"
+        },
+        {
+          "line": 1880,
+          "pattern_id": "C_SUBPROCESS_COMMAND_EXEC",
+          "severity": "CRITICAL",
+          "description": "Process execution shell escape (system/popen)",
+          "snippet": "system(\"pause\");"
+        }
+      ],
+      "language": "c/cpp"
+    },
+    {
+      "filepath": "workspaces/OS_Build/limine-binary/limine.c",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 1056,
+          "pattern_id": "C_SUBPROCESS_COMMAND_EXEC",
+          "severity": "CRITICAL",
+          "description": "Process execution shell escape (system/popen)",
+          "snippet": "system(\"pause\");"
+        },
+        {
+          "line": 1880,
+          "pattern_id": "C_SUBPROCESS_COMMAND_EXEC",
+          "severity": "CRITICAL",
+          "description": "Process execution shell escape (system/popen)",
+          "snippet": "system(\"pause\");"
+        }
+      ],
+      "language": "c/cpp"
+    },
+    {
+      "filepath": "workspaces/OS_Build/kernel/gdt.c",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 40,
+          "pattern_id": "C_INLINE_ASM_VOLATILE",
+          "severity": "CRITICAL",
+          "description": "Kernel bypass inline assembly (__asm__ volatile)",
+          "snippet": "__asm__ volatile ("
+        }
+      ],
+      "language": "c/cpp"
+    },
+    {
+      "filepath": "workspaces/OS_Build/kernel/io.h",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 6,
+          "pattern_id": "C_INLINE_ASM_VOLATILE",
+          "severity": "CRITICAL",
+          "description": "Kernel bypass inline assembly (__asm__ volatile)",
+          "snippet": "__asm__ volatile ( \"outb %0, %1\" : : \"a\"(val), \"Nd\"(port) : \"memory\");"
+        },
+        {
+          "line": 11,
+          "pattern_id": "C_INLINE_ASM_VOLATILE",
+          "severity": "CRITICAL",
+          "description": "Kernel bypass inline assembly (__asm__ volatile)",
+          "snippet": "__asm__ volatile ( \"inb %1, %0\""
+        }
+      ],
+      "language": "c/cpp"
+    },
+    {
+      "filepath": "workspaces/OS_Build/kernel/idt.c",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 55,
+          "pattern_id": "C_INLINE_ASM_VOLATILE",
+          "severity": "CRITICAL",
+          "description": "Kernel bypass inline assembly (__asm__ volatile)",
+          "snippet": "__asm__ volatile (\"lidt %0\" : : \"m\"(idtp));"
+        },
+        {
+          "line": 56,
+          "pattern_id": "C_INLINE_ASM_VOLATILE",
+          "severity": "CRITICAL",
+          "description": "Kernel bypass inline assembly (__asm__ volatile)",
+          "snippet": "__asm__ volatile (\"sti\");"
+        }
+      ],
+      "language": "c/cpp"
+    },
+    {
+      "filepath": "workspaces/xoras_agent_framework/native/xoras_native_taint_lattice.c",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 32,
+          "pattern_id": "C_SUBPROCESS_COMMAND_EXEC",
+          "severity": "CRITICAL",
+          "description": "Process execution shell escape (system/popen)",
+          "snippet": "\"eval(\", \"exec(\", \"system(\", \"popen(\", \"drop table\", \"sudo \", \"rm -rf\", NULL"
+        }
+      ],
+      "language": "c/cpp"
+    },
+    {
+      "filepath": "core/ops/src/zero_copy_engine/src/lib.rs",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 33,
+          "pattern_id": "RUST_UNSAFE_BLOCK",
+          "severity": "HIGH",
+          "description": "Unsafe memory block execution (unsafe { ... })",
+          "snippet": "let cell: &HexCell = unsafe { &*(raw_buffer as *const HexCell) };"
+        },
+        {
+          "line": 51,
+          "pattern_id": "RUST_UNSAFE_BLOCK",
+          "severity": "HIGH",
+          "description": "Unsafe memory block execution (unsafe { ... })",
+          "snippet": "let cells: &[HexCell] = unsafe {"
+        }
+      ],
+      "language": "rust"
+    },
+    {
+      "filepath": "labs/workspaces/sovra_lang_rust/src/lib.rs",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 54,
+          "pattern_id": "RUST_UNSAFE_BLOCK",
+          "severity": "HIGH",
+          "description": "Unsafe memory block execution (unsafe { ... })",
+          "snippet": "unsafe { sovra_process_intake_signal(candidate, decision) }"
+        },
+        {
+          "line": 59,
+          "pattern_id": "RUST_UNSAFE_BLOCK",
+          "severity": "HIGH",
+          "description": "Unsafe memory block execution (unsafe { ... })",
+          "snippet": "unsafe { sovra_init_context_bridge() }"
+        },
+        {
+          "line": 64,
+          "pattern_id": "RUST_UNSAFE_BLOCK",
+          "severity": "HIGH",
+          "description": "Unsafe memory block execution (unsafe { ... })",
+          "snippet": "unsafe { sovra_register_session(session_id) }"
+        },
+        {
+          "line": 69,
+          "pattern_id": "RUST_UNSAFE_BLOCK",
+          "severity": "HIGH",
+          "description": "Unsafe memory block execution (unsafe { ... })",
+          "snippet": "unsafe { sovra_verify_simd_hash(payload, len, expected_hi, expected_lo) }"
+        },
+        {
+          "line": 74,
+          "pattern_id": "RUST_UNSAFE_BLOCK",
+          "severity": "HIGH",
+          "description": "Unsafe memory block execution (unsafe { ... })",
+          "snippet": "unsafe { sovra_get_lattice_tag(ptr) }"
+        },
+        {
+          "line": 79,
+          "pattern_id": "RUST_UNSAFE_BLOCK",
+          "severity": "HIGH",
+          "description": "Unsafe memory block execution (unsafe { ... })",
+          "snippet": "unsafe { sovra_check_cross_session_replay(session_id, hash_hi, hash_lo, pointer_session_id, pointer_node_id) }"
+        }
+      ],
+      "language": "rust"
+    },
+    {
+      "filepath": "core/ops/scripts/fullscreen_ui/three.min.js",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 6,
+          "pattern_id": "TS_PROTOTYPE_POLLUTION",
+          "severity": "HIGH",
+          "description": "Prototype pollution attribute access (__proto__)",
+          "snippet": "!function(t,e){\"object\"==typeof exports&&\"undefined\"!=typeof module?e(exports):\"function\"==typeof define&&define.amd?def"
+        }
+      ],
+      "language": "typescript/js"
+    },
+    {
+      "filepath": "workspaces/xoras_agent_framework/web/js/main.js",
+      "status": "SCANNED",
+      "findings": [
+        {
+          "line": 22,
+          "pattern_id": "TS_EVAL_EXECUTION",
+          "severity": "CRITICAL",
+          "description": "Dynamic string script evaluation (eval())",
+          "snippet": "violations.push(\"Line AST: Dynamic eval() invocation detected (Forbidden under XORAS AST Policy)\");"
+        }
+      ],
+      "language": "typescript/js"
+    }
+  ]
+}

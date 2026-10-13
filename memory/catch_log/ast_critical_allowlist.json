@@ -1,0 +1,4141 @@
+{
+  "version": "1.0.0",
+  "policy": "ZERO_TOLERANCE_CORE_EXEC_EVAL",
+  "rules": {
+    "core_allowed_critical": 0,
+    "agents_allowed_critical": 0,
+    "products_allowed_critical": 0
+  },
+  "approved_entries": {
+    "./AI_Core/Xoras_Project/xoras-core/Source/xoras_dynamic_compiler.py": {
+      "sha256": "10d6cf5551c65275878f1111773200b13c1826a4a650dfa00c28ddb36f5606ee",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 376,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/M_E_T_A_.py": {
+      "sha256": "b00ea8a24723721c3c518544b92f1011773ad88f7f466b3d72efe3280e8c90d2",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 286,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/S_I_N_G_.py": {
+      "sha256": "0850f2f11d9f0de627ee871fad9afb522ed4f43d21e06e7909d3df639e60f819",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 66,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/_bootstrap.py": {
+      "sha256": "2aa31b7369a9725ce893fed35e33a2ffb1c908ecc7411a34d7975cb25a28f695",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 980,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/_bunch.py": {
+      "sha256": "5a8a05c472fab744b08dcc0c0c408ce7071658b212d12b7cccfdeeac354af95d",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 160,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/_cffi_gen_src.py": {
+      "sha256": "c94479de91526ec6b7b2c17bfd53aa5d368a78be402531ccfddc99f48198f6cc",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 53,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/_descriptors.py": {
+      "sha256": "0c51d1045fc9d7d35c0facdee11225906ee237c78accaa7a2345fc605c056f19",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 393,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 395,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/_dill.py": {
+      "sha256": "35d695c86cce6f94b9eda6d83747855dca20a1c1d0ad306452bbbb72ac367f03",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 980,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1038,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/_distn_infrastructure.py": {
+      "sha256": "9df9372d87b6e8f8d9ceb4ee83e64328a088faab264ec4027e3f7df9f47d4efc",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 359,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 735,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/_lazyimport.py": {
+      "sha256": "b73467775da086393907870dd6bb2cebff1065dbbe68e3d869c72f15ebe31152",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 373,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/_make.py": {
+      "sha256": "351243192f2cca0da1dd835f9553682b61704770a9752671c7c33a95a7309630",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 227,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/_nonlin.py": {
+      "sha256": "06d0d1944c1296f3a1c68d38997407a73cada15f8523f2b9c95b344405fc7812",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 1590,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/_pydev_completer.py": {
+      "sha256": "b937b34a705c1a28b2d408707a13355f31ceafb35b4c75d0cffd02f6ecdeebbe",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 136,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 139,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/_pydev_execfile.py": {
+      "sha256": "61e1483c5e67155680d6c79121afca00c33569ce50a38dc34bd8aec817beb45a",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 16,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/_tblib.py": {
+      "sha256": "28452a754196b41422a9f7e0fa216ce435cf161c6ce41fa975f0e38c3b1fd828",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 154,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/_tempita.py": {
+      "sha256": "689c0c15e0eec3eeb2073a1c835d8fdd97bbb482909d708d8b0ab543950f765f",
+      "critical_count": 3,
+      "findings": [
+        {
+          "line": 307,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 323,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1070,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/_trace.py": {
+      "sha256": "c689ba65ebbe984f7e71c7110b0cd266aabd031afc6517de611dbc6c99a6da74",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 365,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/_traceback.py": {
+      "sha256": "7b3ca006f971e30fdb044b3e7fbd3d78d6282ba916cb1add2a06d9ceecca6c98",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 113,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/_ufunc_tools.py": {
+      "sha256": "697b88890451f6b99f28f41334dca13580f14bd7adb3afcd00b103915dbf9465",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 159,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/_unlift.py": {
+      "sha256": "401bb35f9f9d6bcc3e10baa4aaf59cc1070eff76f8c85334a1cd9bb0f76259b4",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 147,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/annotations.py": {
+      "sha256": "7ec328e11fdf0aea4d4284742848d89563f2e61b16573062c9f1d65a1a028ec1",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 209,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/array_exprs.py": {
+      "sha256": "a496d6afd4bccc2a6464f5c54492299e37fe14a7b741f61e4c1eafc992324eb8",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 383,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/arrayobj.py": {
+      "sha256": "d57dcf561ac3dbac488a161c7111df69ba5c024b8795010fd7147e57b0f8b79c",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 4782,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/ast_parser.py": {
+      "sha256": "889bebe9b866d518cce6b856cd90387382c64c7e650056b3379ceef32f2af9a6",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 72,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 79,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/auto_jailbreak.py": {
+      "sha256": "52f8b36f41518dbb73d79361c0a0b0fdbff471a8a68c83d72ce692f1919ef650",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 52,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 54,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/autocomplete.py": {
+      "sha256": "0d36f7694a50cbaa22d9bf03b91fa0658a147bd90dd867714a9b411febb36427",
+      "critical_count": 3,
+      "findings": [
+        {
+          "line": 185,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 189,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 221,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/auxfuncs.py": {
+      "sha256": "35fd88a7d098995ca1ce197d3ab5acf65238f0a7fba07ab03ed070f07bc138c1",
+      "critical_count": 3,
+      "findings": [
+        {
+          "line": 615,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 623,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 627,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/backgroundjobs.py": {
+      "sha256": "cd9fb81363cf3e2f23365f895a5f4e6e45a91bc0f36f9c7116d0f526db6669bf",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 465,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/bdb.py": {
+      "sha256": "314d8bf11b4824d47471ad25dab64bda895e39673fb744e88e7f622a3dd374f2",
+      "critical_count": 3,
+      "findings": [
+        {
+          "line": 600,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 620,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 845,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/bench_meijerint.py": {
+      "sha256": "75235d661a1cf1ae21e74c11b5b3b12f0a668148ae305a5eeb2b532d445ca656",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 249,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/build_meta.py": {
+      "sha256": "ddc1c05ae70968b03d0d4e4e7c26ca924b5e4c3890e5b0782e891f4d1320253e",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 317,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/cProfile.py": {
+      "sha256": "0a97cf92d0e3efd2e08c2f9b0f0fb8e52a2b26978550804d8e59435201f3fa84",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 101,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/calltip.py": {
+      "sha256": "3a723fdf88c0018dfadd19757142a643b01b785c6df17a50bbe21463663ab590",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 140,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/capi_maps.py": {
+      "sha256": "3a60e4cdbcad0ba89faa217d4467bf98f21ecaa20f0bec5c134b750cffc56810",
+      "critical_count": 3,
+      "findings": [
+        {
+          "line": 157,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 295,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 451,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/cgi.py": {
+      "sha256": "f0ead624d43ebbfa8c4055a59076e610a2808a1c9038ce15329735d3487e0e61",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 872,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/cli_mcp.py": {
+      "sha256": "8f67140f910e8123bdbd48b768614fef69da0eda3489c30a2257798f198eaf0c",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 105,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 128,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/code.py": {
+      "sha256": "266841655656d5b2370e80addcdb959f5173142d5e3778b489e734802447c5e8",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 90,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/comm_analysis.py": {
+      "sha256": "f4b751fa9bee01e73b87e30ec7dc8a82e9bc546082245d8f662bfa28edf7036a",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 186,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/compile_tasks.py": {
+      "sha256": "ec49308cc60d8b3538213b9cd645b7ba7e75f1ad72d30467aafd8664c064f02c",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 33,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/compiler_bisector.py": {
+      "sha256": "6e166f083a427175bd59c0ffef42a8e49b18d1daff610fe3a8ecc2db9be67470",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 288,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/completer.py": {
+      "sha256": "edb5e2fc979fd32518d0c7de8847e668ae5e74cfceda07fcbed0180d0f08297e",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 2977,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/conv.py": {
+      "sha256": "e2946a686c12e02248fafb1a57e7514e0c22bdb2b4a66e644215c86fedc37bff",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 187,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 213,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/core.py": {
+      "sha256": "1841ca6850b8f13de8fbf4a61f8f3ae06bcacb1d4881b542e884883d5971edae",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 268,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/crackfortran.py": {
+      "sha256": "5c0cb28282002903a677d2804ca355dc60b5076e57269683eadcf4ad1cdea970",
+      "critical_count": 9,
+      "findings": [
+        {
+          "line": 1322,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 2291,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 2583,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 2661,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 2670,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 2938,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 3009,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 3040,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 3498,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/csv2rdf.py": {
+      "sha256": "7b7d0c1e8ef2cbf3b0836f2243fd13e8f8cf6c6a4873bab54093eafe0836cfc9",
+      "critical_count": 7,
+      "findings": [
+        {
+          "line": 300,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 497,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 499,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 537,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 539,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 542,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 544,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/custom_code_guardrail.py": {
+      "sha256": "60c76d208e8c9474b4779db4f194ae4d10ccafe2340d8f44db17bde49ab02d26",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 157,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/custom_doctests.py": {
+      "sha256": "7ba9cb07576c2eb998130b0ab8969be9ea5d39f660fab5d3aa6608ae0f1a4812",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 79,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/dataclasses.py": {
+      "sha256": "77a41ea9eb35d959781087b72ef5b452218b57b9d8f2d28688d45a40ca7f8a09",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 433,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/debugger_backport.py": {
+      "sha256": "a8ff7ab556df1fbc2938522386e17215554cd732200866cfd40c90cce05fc36f",
+      "critical_count": 3,
+      "findings": [
+        {
+          "line": 130,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 138,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 200,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/debugobj.py": {
+      "sha256": "aae9e2468a3d05366480864dc56689c65896757faf3b0364b8eef9feb4876a43",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 37,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/decompiler.py": {
+      "sha256": "54c4787abb8527aaa21f58a815857d69fb2c7a0a23680ea314ddbad2fee7fa1b",
+      "critical_count": 5,
+      "findings": [
+        {
+          "line": 133,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 190,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 852,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 882,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1031,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/deduperreload.py": {
+      "sha256": "46e877cedf8299ad0218b5d95ee2b5fccedf6208fb2c45f87689539419479afd",
+      "critical_count": 3,
+      "findings": [
+        {
+          "line": 469,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 501,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 518,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/deviceufunc.py": {
+      "sha256": "cb1007ef576980958af289260899b415457acf602a75384260e4d9b294fbcf43",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 394,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 471,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/django_debug.py": {
+      "sha256": "a6b12ab98b72625a1649e7e05fd3cdf121bb5b48059fec735330f415699e831d",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 432,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/django_handler.py": {
+      "sha256": "8ed1a063d8c17817b3b9dd95c2e211a72f70bd0d2f262c5f09d10804abb7c9ca",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 107,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/doctest.py": {
+      "sha256": "83fa675e613f9082e127b94c0e7dfe6a4e7c46349c4094429039d0e5ba688b88",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 1355,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 2668,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/evmcontract.py": {
+      "sha256": "7089cce4a650295939f25ecc67fdbffa5a26c567ff1ab27846a36a11eaba4e67",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 119,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/execfile.py": {
+      "sha256": "58013da5eac20d4e81d8a60a075d27584f688844ea105acce1e45e251cdba492",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 199,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/experimental_lambdify.py": {
+      "sha256": "c5c06196f676876d1a23532950deaa004a4ed3be43bf5df60166d027b9775b38",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 268,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/expression.py": {
+      "sha256": "edae43a0bfb44f6ae09747551f6c139cdbd985b8a66e2af33352c4c57ac1f27d",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 353,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/extformat.py": {
+      "sha256": "d5931d7b5a59c5a705afaa6d3c8f37f26980578993c17094ee830ad8d0d700fb",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 48,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/extratest_gamma.py": {
+      "sha256": "c627615d47a520b731b623c6a130478ea50e28827311a67fbf79e7b464325994",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 56,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 64,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/find_trace.py": {
+      "sha256": "0216adf8a9ace798a1bb896c184591f3275b5f860959f1538a58de7b24fd7637",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 36,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/fpdf.py": {
+      "sha256": "aa835dfd8127d2605240e6c6f1e00238f3570ef4f078994315fcb0e8b422eef5",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 597,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/frontend.py": {
+      "sha256": "2215d8cf8491f5faf6e754ca84e66ddfe0b47d44f6eb22f64c9ff6749505971b",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 589,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/funcutils.py": {
+      "sha256": "b92e9a61e301b1c4d8a76bbf8dd0532ae936480e3fa0680c02cbfd1bcf4de4a2",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 1035,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/gemini_type_array_probe.py": {
+      "sha256": "245c47353838b273708709c0a9b96afd341964738127764938b037690bbf0c8b",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 106,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/getJupyterVariableShape.py": {
+      "sha256": "01d5a311f82e060aab37547ee840dadab92c27c6d89a8084eeaf22ff0e59f30c",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 11,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/get_output_via_markers.py": {
+      "sha256": "1c224977bc52f0cfbe6fc40f8aabcba4664aad9152a9b537cf7beea5de1d0f00",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 19,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/gettext.py": {
+      "sha256": "a5c249a522b6b8e3aa6f1b12a8bcc09508b99ad612b58d2fc973db27ea3b7cc3",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 212,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/guarded_eval.py": {
+      "sha256": "84d6357bb98aa75f015c19df8277d54df0160436dadf6f7dfdee21375cb5d436",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 462,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/guardrail_endpoints.py": {
+      "sha256": "014a1006d0be1b1bd9f31e0b7379dd73b6c7d9799e23ac329055664920c050cb",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 1977,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/guards.py": {
+      "sha256": "2ba997f35d79d829e04cf3f3109360cdcffc6b6881730cfea81736b47e56d05d",
+      "critical_count": 5,
+      "findings": [
+        {
+          "line": 1744,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1765,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 4012,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 4085,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 4242,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/heartbeat_idle_wire.py": {
+      "sha256": "7c31f2734063f145571a13e85f540282dbbed9c3f37c471a8852fd90fb6b076c",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 55,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/identification.py": {
+      "sha256": "eda31d9e044069e2ff31a7c350d6e61089464129251c367ca663c5b7e38b824c",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 777,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/importtools.py": {
+      "sha256": "43bb52d9c74667d6b8348ff5b201aea157120effeb224f80bf40691536ba1330",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 21,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/infer_schema.py": {
+      "sha256": "c7cb3345d3f485d2851c4630466058e40307d5aad369f94ab6c7ee69e10ae2d7",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 73,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/input.py": {
+      "sha256": "4030bc4af92103bd4fa31412185e0a647871042a5f0b0705f30e9499f33f20c9",
+      "critical_count": 3,
+      "findings": [
+        {
+          "line": 237,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 902,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1179,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/inspect.py": {
+      "sha256": "7a134c67f2256307547f2f0b81eb6f89b652c078ab22e59c062770ba9736c6ff",
+      "critical_count": 3,
+      "findings": [
+        {
+          "line": 277,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 2213,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 2216,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/internals.py": {
+      "sha256": "2da906de2042ed4e4fee46ea30197f1872d2d64b324fa9aa975e0d7e50b29bb0",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 231,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/ir_utils.py": {
+      "sha256": "bac4f1ea3fd73b2b72d00eb1adaa28c07af6d8cbb424ac55e23617827f9a012c",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 1782,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/jinja2_debug.py": {
+      "sha256": "7363f7cd82654071a057e2b3c4e3deb6815f6e81819f53d60c609da6acbdbf38",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 254,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/jit_utils.py": {
+      "sha256": "e0f7f499adddc5315fc4fb0cc6f569e11eb98933c42a1f7dab2ec171bf91679f",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 56,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/lambdify.py": {
+      "sha256": "95ea62784c48d7d42f6583eb1a5fd665a170b5af18641a3a020c439f0ab4d68c",
+      "critical_count": 5,
+      "findings": [
+        {
+          "line": 163,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 170,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 903,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 909,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 920,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/launch.py": {
+      "sha256": "2016f9944bfaf42cae67d7b022b98a957875e7891d2e63f6f4b29f4cc9318a61",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 32,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/lex.py": {
+      "sha256": "6da6d12129c801fcc7a3b5aa2d8176a86092687d1bb4cf1ddf3b601da2b7480d",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 215,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1036,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/load_config_py3.py": {
+      "sha256": "9c22766454a9ac2f6869d37830b2efc699e7b8c3125484e9976c6e677c066029",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 9,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/load_godmode.py": {
+      "sha256": "864a7209d75efebf55e9e7737661ce81cdd708ca4c7cb8b9a610f3d63e65a0cf",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 29,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/managers.py": {
+      "sha256": "7a67d8ccc2805e519917911abb9913a3a9650f8e9623ac98d8ec8a289dba69e2",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 965,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/matchpy_connector.py": {
+      "sha256": "edd48338f6cde58fd75ba6c819534addd27e81575307f96227c3b9ac8a9ddbc7",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 269,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 270,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/misc_util.py": {
+      "sha256": "a6ef808a4361a5b987986beae6e85c1c07517a0bdcd23ad8e4ef0923533fc63f",
+      "critical_count": 3,
+      "findings": [
+        {
+          "line": 157,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 163,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 847,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/mock.py": {
+      "sha256": "2576119e5653ca21ab32dd5a1a5f5604deb2b1c7a240e315710ea927bc193749",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 202,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/monkey_test.py": {
+      "sha256": "b4e91346b0b88f2021e432e13b7b4d35e3cb3ca8cfa6e216232f0a82153910c9",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 161,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/monomials.py": {
+      "sha256": "e9c0c24d534d3c379e7b96edd114271ae627b0efdf79f8a81c0e661032874ae0",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 401,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/namedutils.py": {
+      "sha256": "ace45d4e88f3f6d1e6d9cd12c7ddc1d2f12e67bd5b3ffb069531e8f80c827590",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 64,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 68,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/objtypes.py": {
+      "sha256": "de10c49d14b4e34995c80de7309a74b1e222030f5269fc5bbaf1b9b45bed85f1",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 18,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/operator_schemas.py": {
+      "sha256": "8d2c93026d79f0daca93108db1d8d2da8596913fba3711d4583e62cc6d91089e",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 93,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/ops_handler.py": {
+      "sha256": "13963f4b88f314acacd6947bc70ed85e0249ead44d07933164a70cc9bca65e7c",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 789,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/optparse.py": {
+      "sha256": "07d224301cba312fa0697bff9cd5a4bb4f778a90629632091b3f4ae874d89af5",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 879,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/otBase.py": {
+      "sha256": "0a37bbb6475a6d9f1fa30cf3d5d5eb05c48eb51769060be902ae6d40150a9170",
+      "critical_count": 4,
+      "findings": [
+        {
+          "line": 954,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 992,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1096,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1138,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/otConverters.py": {
+      "sha256": "7e056a73523ff7dadb542f5d905f1116275364b032ac529ac41a9775c9cfae86",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 81,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/otTables.py": {
+      "sha256": "4254d7b5ed5a1c64d0e26ecdd4ee6b08dabd821ef2a3ee1cec60c5eddfeeefa7",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 1726,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/overloads.py": {
+      "sha256": "8dc380db1782bfb3ab1f78afe7ff6b5503ceb2dffbe5cc831c79ea68a922c365",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 44,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/package_importer.py": {
+      "sha256": "9e33e87f96a3e5f12ac5560cc293fbae842f8a1b178202ac1d6f2d1ad4cf8509",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 401,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/parfor_lowering.py": {
+      "sha256": "fec1d36f6a416508e6a19ed402b945e48bc49914b7b29ef3c75edbb6a18b8d6a",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 1441,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/patched__exec_with_source.py": {
+      "sha256": "c84001de4f4a3ab43be76ef97d8d2085d8ecdea31711260a574547e82f78ef09",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 20,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/patched_lazy_format_graph_code.py": {
+      "sha256": "fcae9155b821815d590a47c7180aaa5469edef1f8d029fff7db80b604c1bbb39",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 50,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/path.py": {
+      "sha256": "72a0a7d1a9b32a1a92aa25b55b3b782aabc52369dc281cc69f011152c5a90bfd",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 1153,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/pdb.py": {
+      "sha256": "bb1603e96c17a4c8c3266b0df9fbcca25565d492f0444e968cdba045058e4f03",
+      "critical_count": 5,
+      "findings": [
+        {
+          "line": 443,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 720,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1232,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1240,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1242,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/pdfencrypt.py": {
+      "sha256": "ad7b11cb3f8a807a4f03a83cd2f9880b3181e01e9a90425a01c5e362200c76a0",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 723,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 725,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/peewee.py": {
+      "sha256": "3cf20faaa48aa92c8cf4dbec7dd934302a671c8f45f8ac089d6176b39a11b180",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 174,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/pgen.py": {
+      "sha256": "8fe2ac7e0303f0110d75832d746e6661fcd5373fa498d929163f557fd1027434",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 88,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/pickleutil.py": {
+      "sha256": "0574f8206114996b573e56af1ba78adaced891d54e391dc780f46f1b23ae8cb0",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 184,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/plot_axes.py": {
+      "sha256": "43d60df16d077753de7e51cbbcebd267e87178b5382aade75052d80c2d31d04f",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 44,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/plot_directive.py": {
+      "sha256": "e8610e5f6cb42b523373df00a23b7ca425d2db551caeee84f93ff7de5454f76b",
+      "critical_count": 4,
+      "findings": [
+        {
+          "line": 543,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 546,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 552,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 554,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/plot_interval.py": {
+      "sha256": "768aabdb0c67ac40f83090e5931434ec616f69a817dfa1d46fbee5cbfbc8b8a4",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 27,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/plural.py": {
+      "sha256": "cd4decc5a2dbfa36137229b2f903994a70ee2efd22b7e071713e47f44e3d98cd",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 240,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/polyconfig.py": {
+      "sha256": "9a07c5a69f52535e7db40fcf336a34e16672ccca167ceb5666e8117079cfe367",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 61,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/proxy_tensor.py": {
+      "sha256": "425025ac9f9076dde11b31819ae7d782ab92e7d3c2621e8724ae317a97885c26",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 145,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/pydevconsole_code.py": {
+      "sha256": "8e9734a56542a908ba34ba6691f5291052c20d252e4b33e35bb93a736ac53d2f",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 231,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 332,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/pydevd.py": {
+      "sha256": "1e08b2e40f280eb6caac24f59cce55d5809b7e4a24e8561ed0dd8e94a7033532",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 960,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 993,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/pydevd_breakpoints.py": {
+      "sha256": "4691942c699fbb46f19e00a8190582cb078620d7e043e306bf855fc059bba49b",
+      "critical_count": 3,
+      "findings": [
+        {
+          "line": 72,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 101,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 179,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/pydevd_console.py": {
+      "sha256": "14cfc77bb60ae6a57ae42fed64edafc68696a55cb7a6d37785963c48660786b7",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 173,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/pydevd_exec2.py": {
+      "sha256": "b78e8e7478b1eb2491584ee66b063c34c357af06d25a616e9b7ad5579b0ba641",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 3,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 5,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/pydevd_runpy.py": {
+      "sha256": "75010832ca1c79bf8ab829a13c5467c4a731aeaa04b618525b48f4ac1ae79ab5",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 118,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/pydevd_suspended_frames.py": {
+      "sha256": "cfea4489cf7aace898c846edd072dbe13f9f7ad3cd1f08b81218ffc2e036bb7b",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 219,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/pydevd_vars.py": {
+      "sha256": "24178c5d101801255cfd0d173e786ef029ce060e243e47ef532a9895af7cf184",
+      "critical_count": 6,
+      "findings": [
+        {
+          "line": 268,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 429,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 574,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 620,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 629,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 636,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/pydoc.py": {
+      "sha256": "8ec708a846132f72b35184595c1a6498518f3ee63b10fc8244be8f225f582e78",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 2149,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/pylabtools.py": {
+      "sha256": "afbd8d408859016f512f5c3d59601600c6d8a180bc29f68634a07d2416cc83be",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 435,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 440,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/pyshell.py": {
+      "sha256": "bf5182b2565539c6ee6c5941db9ba3a4bfa60e21ac17ec23a675a1b2269ab19f",
+      "critical_count": 3,
+      "findings": [
+        {
+          "line": 286,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 765,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 782,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/pytester.py": {
+      "sha256": "9e791d0a3446b04324e70bb939712f8d490005ad13eb46ab3249592baa08ff17",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 296,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/railroad_diagrams.py": {
+      "sha256": "0fa16892d5d164e958c5bf37abe3a1c4ee905ae51982a40f0a99def83d37c9a1",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 427,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/rcsetup.py": {
+      "sha256": "f3b2ab41e0c5838b11bb8a1bc45e26734786482b82946caecd7b31a19fe499ee",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 830,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/rearrange.py": {
+      "sha256": "f9e869d4ce9ae9881d4d59e2d3e221dbc119220a2ce4d56ee27b8329d7804c49",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 149,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/recompiler.py": {
+      "sha256": "efc27a94c1043b28173668cdf7e7ce1453b78fb796fa21714abc5fbd06f9e1b6",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 78,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/rewriter.py": {
+      "sha256": "986b67e70cf0f878357714efb39ad6387bf72516a342f3575e429a364f010e29",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 48,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/ring_series.py": {
+      "sha256": "ec38a39a58f201a42bba9581d0999a3701a6df0353b2d9c4b01967fa8d6e5f53",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 2011,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/rl_accel.py": {
+      "sha256": "31e4f4a9b8d6ea3443311803d7cc79453b12d07a88ef3ee1f15304952ede91f8",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 26,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/rl_safe_eval.py": {
+      "sha256": "1d256d12f2a898dd739796dba8e1904cff04a0ba00c8b06ab5e1aa50a368edbf",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 1199,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1287,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/rlcompleter.py": {
+      "sha256": "fee9ad9c55529be48329b78e982fbba0201bd218326eaf80a87996c9f8c805bb",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 155,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/runpy.py": {
+      "sha256": "f7af4206d8cbb27fce7731174b190edd6569ec3fad060a727d4bfcde69dd965c",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 88,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/secondquant.py": {
+      "sha256": "d570ec6e7529142ef3989e150bd0d712c2bfb264aa34c6837ec8bab25224c2cd",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 1601,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/select_algorithm.py": {
+      "sha256": "823878fa4b532e92c1f682ad476a35e39e8cd9aac407f1f50ec563100d762660",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 2033,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 3257,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/serialize_usecases.py": {
+      "sha256": "45f2b1e388c53d4bdf1236ae9983a3dd728778e70128268fea122457eb7582a3",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 93,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/setuptools_ext.py": {
+      "sha256": "d2b0b0049d56ec51d6b6230a7cd5ec4924fcf15f145ebba2e687971650cd2c6f",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 26,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/sharedctypes.py": {
+      "sha256": "77ef522912474652490b7df523112858e51721e63dcf109b8567a35ce9b31b0d",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 153,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/sigutils.py": {
+      "sha256": "2a9a32b9527944682dc8c2b6720ce63743f7a54dfdcd4d4cf8d6f149a8bdd1de",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 19,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/sinter.py": {
+      "sha256": "7857f00161e88b4ac1e1f368e42cf84851845809c4719011f9e669a8f2ea05a6",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 142,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/site.py": {
+      "sha256": "0577e4b379d8ef4aa0ecf88a264ef18c10f72ea72119afae36524d1aae77c9bf",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 195,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/six.py": {
+      "sha256": "c51c91f703d3d4b3696c923cb5fec213e05e75d9215393befac7f2fa6a3904df",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 740,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/skipping.py": {
+      "sha256": "cc2102f5f8d19478f91ce77117c109348b8766ae04ebc4b8c33e5f9923e50aee",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 119,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/spark_stage_diagnostics.py": {
+      "sha256": "8798b95a067e7ef8bb356b55fc0670520faf09d45508df2028bed83751428a86",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 261,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 275,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/stencil.py": {
+      "sha256": "15326cda9850793f75c749b1314e0319b7452a42045809533c280741bc629388",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 407,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 666,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/stencilparfor.py": {
+      "sha256": "02be867bd513db9c9b0ac32713c478d2f0e91ee7caf33873295456dd8c00daf0",
+      "critical_count": 3,
+      "findings": [
+        {
+          "line": 770,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 947,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 957,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/string_repr.py": {
+      "sha256": "61e0bf0d578825d3c496a8e0cf384f161790b33fd08cc116fd22ce0c5bc4b080",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 108,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/structref.py": {
+      "sha256": "2d56bfd31539d23ceb98da783c2d6d8e76fc2d491129307b72467e901f7f8f1d",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 220,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/symbolic_shapes.py": {
+      "sha256": "d3532c5e343bdf0636cd27dfefbd1c4f70b0d791777e6798a9a5f24be8d72439",
+      "critical_count": 3,
+      "findings": [
+        {
+          "line": 6019,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 6029,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 6037,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/symfont.py": {
+      "sha256": "c79670a8af4893da2b1baa927ed8151b2801144d704d29e0acc2b659ed59e403",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 241,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/sympy_parser.py": {
+      "sha256": "3d1461352ff42ca05570716683b2c6ca0cf147242debebf2092322b179118551",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 905,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1052,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/temp.py": {
+      "sha256": "785c8c8192094545607518b66b8236b597798371d25059df9b92b72d5d99f779",
+      "critical_count": 4,
+      "findings": [
+        {
+          "line": 71,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 72,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 220,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 221,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/template.py": {
+      "sha256": "f0027ffa860b061d9968839742b16d329f6c5b265a8e0a634812435b1aa42f65",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 58,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/templite.py": {
+      "sha256": "40b7f5bd430d850400999751884ab06b16bae822c67d1c63a5497e966b4ca9e6",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 68,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_92450_outer_error_retry_bound.py": {
+      "sha256": "9a6a53cdc561ebf83eff4178277a9b8317108a42705ac5879af750c422e54744",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 84,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test__execmodules.py": {
+      "sha256": "51ff63578cc85a85f9fda69e61421c56089c6d5c6582408fcb0162a808a27668",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 26,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test__threading_2.py": {
+      "sha256": "b2208637f45c160341ebf16c22d64fc78b100d2f1b57bf91c7250bb2c0a01284",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 24,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_advice.py": {
+      "sha256": "8058656c7bd25ae0bd91d9413de5ceffcffd8a191253e8a1d29561a2871da785",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 69,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_algorithms.py": {
+      "sha256": "96097ac3777b59a4fc2c9ae9ef5eb05a27316e09d1e21424e1a973042743ac8c",
+      "critical_count": 3,
+      "findings": [
+        {
+          "line": 81,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 82,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 170,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_all.py": {
+      "sha256": "3ea8eff50880d3cef9625f43e68e9ce4c974b78287a47d9ae636e90286505c57",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 28,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_arrayprint.py": {
+      "sha256": "a926be3e01c58c198c00ff50a8b63f6b47a7a9f97f3ef0964342834912580f18",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 331,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 332,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_atomics.py": {
+      "sha256": "36f6765f140c6ba3ecca0f4f40015871d60c3abf4e8e118c62f603dd5a795a22",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 434,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_autolev.py": {
+      "sha256": "b50b9415af18a9576c1cf39c52103094c281f14934f077a30e10c275af255ecd",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 140,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_basic.py": {
+      "sha256": "b2414e59944da83ba3990f0602c9161fb39872caced2688174cf761b2d359345",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 325,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_bedrock_adapter.py": {
+      "sha256": "9b4a4c10cfe4083cfe368e28cfc6f6f58c6c2b9c0eb067f8efc2da01bedccb38",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 1168,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_binary.py": {
+      "sha256": "9353ad09a81d7c061945297624ec87f48ee083045e7f6b9b54d6a24a01b5cafd",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 23,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_bitarray.py": {
+      "sha256": "e664fe27373061aa61b644091df5891739dcda35e336a710087bb903f9e27a53",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 1937,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_bracketed_paste_timeout.py": {
+      "sha256": "e667a456bf883454fb02f05dcde3690c479a4a78ec9328db796bfca0b49a1fe4",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 45,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_bytecode.py": {
+      "sha256": "742347df7ce596ad08d5c74924c8893154843da939f47b9dbcf4df2d027fa632",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 177,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_ccompiler_opt.py": {
+      "sha256": "377a4dfbd8313d8d4abef3048e85ebee42f14c637c6903abf2aa3982696b9bdd",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 805,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_certifi_repair.py": {
+      "sha256": "3d8ae02c9b5bbe73407c040e25e2f502836915ecd1b2bd59f2a9f09bb8565b98",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 112,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_classdef.py": {
+      "sha256": "51372d4bdb296adfcac22b9b476fb4e6155b32f993e7f06a6495917830b7e253",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 265,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_closure.py": {
+      "sha256": "185ec5f743f3262399cb138d29fd6bc5a2cc3fc9d0c2de88d3794138552c8bde",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 158,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_commonmatrix.py": {
+      "sha256": "0846186b97eb18318f015cfbf2e6154c10b7207a102c6d7c5519eadbcf57b414",
+      "critical_count": 4,
+      "findings": [
+        {
+          "line": 825,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 864,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 894,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 902,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_compression_concurrent_fork.py": {
+      "sha256": "41fab1c8e679d55f6f127c842c0dabb554fb37901e175c9d3a4d587d5b8dcbc8",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 1307,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_concrete.py": {
+      "sha256": "036b73e4e93745cd3dea70384e27122dce3ea79fd17a0299d88d2659bc4e3213",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 1180,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_connections.py": {
+      "sha256": "0872fae6ad886316fc12bb4901487ced1c8a48259ec309808385452bcd1aacef",
+      "critical_count": 4,
+      "findings": [
+        {
+          "line": 361,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 363,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 366,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 368,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_constraints.py": {
+      "sha256": "d3748dd74b9b5e982b36af59e031293d20ba8535f39d6f98505fa7c5d6b1490e",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 183,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_continuous.py": {
+      "sha256": "c6ab4cbcb93fd1ebeeec95df0f79bdf5707868639bf3ac5f67fbedd0b453a3dd",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 85,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1728,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_convert.py": {
+      "sha256": "24f7037132485a1e69ac8c63c790ccd5a35682a954a05d8aa47bc080adee1e2e",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 88,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_debuginfo.py": {
+      "sha256": "7072109ca05ffb213416eef459289ce22066a994bbce2bebceaf8a6af95c5fe1",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 720,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_declarations.py": {
+      "sha256": "2961308c703894682bc064de7fae27a5d7e3381a5c3553858a0591394d65650d",
+      "critical_count": 5,
+      "findings": [
+        {
+          "line": 59,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 2051,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 2066,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 2076,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 2091,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_distance.py": {
+      "sha256": "efddee6c661b5a3ef82027bd921b9bb03a31ceb8c4df6f87c452659605c6a6d5",
+      "critical_count": 9,
+      "findings": [
+        {
+          "line": 444,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 451,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 558,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 568,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 753,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 760,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1391,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1401,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 2134,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_dtype.py": {
+      "sha256": "3d204fa5665cefe818c6ad4edbcf4343a2e336ab7c910c9e6f710a150fdba0ff",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 1057,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_dufunc.py": {
+      "sha256": "4e4166a471f659722d6be495dd62bbd962cc64c4606d2e0ba9f2a74eb9635ec0",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 130,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_dyn_func.py": {
+      "sha256": "55e6292420329ae8d73759c1bb21e5d16f291d2ddc6e90430690064360a26093",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 23,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_editable_install.py": {
+      "sha256": "4e0e24ba7bf06280cb62c7ef4a48209de520a4a41f7ab503c77104bef75f9b01",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 449,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_firstlinefinder.py": {
+      "sha256": "af446021de7501cefde08a366ba60eadd5156d07c8e212ff1280e48182486a74",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 75,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_funcdesc.py": {
+      "sha256": "3c9e2cd7dc222866144e53b9c291cdae83361f989f75d62c3e23e922088a36ff",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 25,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_graph_laplacian.py": {
+      "sha256": "f67403463e7fa152b409733e0d6d976f68e87d6dd80a22344017b3741525ffad",
+      "critical_count": 3,
+      "findings": [
+        {
+          "line": 44,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 300,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 302,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_injections.py": {
+      "sha256": "10e3468200543566954b08bcd7b0b32c16098244de845abcfa6f9076a7acf7ce",
+      "critical_count": 24,
+      "findings": [
+        {
+          "line": 9,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 10,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 12,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 13,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 14,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 15,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 16,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 17,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 19,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 20,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 21,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 22,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 26,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 27,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 29,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 30,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 31,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 32,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 33,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 34,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 36,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 37,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 38,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 39,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_inspect_args.py": {
+      "sha256": "0e4931757d6a489ed2e3ccff225618ce73ccb45005b2ec5b20f29a5ddc919f4d",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 22,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_interpreter.py": {
+      "sha256": "a954ac94ac958e776a269e7de7b419cf69e774cad1006058aac4ee148e7df2f1",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 157,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_jitclasses.py": {
+      "sha256": "0e0c945980a282af4cd74e307c356e46a8ade90ba6e11acb29d6f6c1b978278d",
+      "critical_count": 5,
+      "findings": [
+        {
+          "line": 1644,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1993,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1994,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1998,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1999,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_lambdarepr.py": {
+      "sha256": "0cca087d13665241742945e836727fb2434f538dad276c6512fa824f61b1c1a0",
+      "critical_count": 11,
+      "findings": [
+        {
+          "line": 43,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 52,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 60,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 69,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 79,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 89,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 102,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 115,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 128,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 141,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 153,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_lambdify.py": {
+      "sha256": "7a64d20f01dd1a9ac434edee80af3a9352fa9bc63721a98f8f5a1434829a62b4",
+      "critical_count": 5,
+      "findings": [
+        {
+          "line": 1521,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1523,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1524,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1525,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1527,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_lazy_imports.py": {
+      "sha256": "3f297112f46d0fc7a4c07fb5335b239d5ff8bb28426109785af97217a6a1d30a",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 83,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_libcython_in_gdb.py": {
+      "sha256": "f84dc0531a094192490b27d60ebc1c3cb0306e4862ccee829f06df0ab4a71892",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 153,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_libdevice.py": {
+      "sha256": "e0db19057c1e0cf429a9f828e93ede4076960d50687f50990d3a48d504e457be",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 144,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_listobject.py": {
+      "sha256": "e767fa136457d2f012881e9dec28e643adad8e6705146bbda54007cb1f1d6243",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 1625,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_matrices.py": {
+      "sha256": "ab2038325d82bcdbd6d37e25cc1d351bac1580dafb52b819aa1db090c5eda733",
+      "critical_count": 4,
+      "findings": [
+        {
+          "line": 25,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 27,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 28,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 63,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_matrixbase.py": {
+      "sha256": "d84528cf40e5de13c536f594fbe96ce913c67e595925b56f652b0303d0fa8cfa",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 506,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 514,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_memory.py": {
+      "sha256": "c87a136a862c584683a340902cd1eb070639702a58b4815cdc78b93c0ac1d223",
+      "critical_count": 4,
+      "findings": [
+        {
+          "line": 164,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 334,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 336,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 368,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_minifier_common.py": {
+      "sha256": "74562e6ebadd32a8a73f7e4412d92e64f495ea26356abbc300a363384afff4d5",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 150,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_mixed_tuple_unroller.py": {
+      "sha256": "4cc54083faa6dfd5957e7cfa5d3fd364ce0d82b2e0ed2db415e30070e74111f0",
+      "critical_count": 5,
+      "findings": [
+        {
+          "line": 1985,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1994,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 2003,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 2021,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 2039,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_module.py": {
+      "sha256": "2d5770c1d91d6d1a1fa041e139fb338bba15114a04fff619cb2273472cdafd6b",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 72,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_mutation.py": {
+      "sha256": "01f869a7165704d71985cda35cff5f50b45c51874a747a414cd11bf45d2fd89a",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 36,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_np_functions.py": {
+      "sha256": "66132e707457278898a090937b766b25d6c9f511fa4fe7695e26af8a360dc25b",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 6814,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_object_mode.py": {
+      "sha256": "5756fb737d9d7e9710a8c4ee24802c1d5ce3a42e1a2ce443822e85cc7d84ff5f",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 184,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_old_base.py": {
+      "sha256": "3677cde166fe51af62d569626e2341aec688ebe6022e2efad144498c92490f44",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 239,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_orthogonal.py": {
+      "sha256": "cb3673d0696d0d0d8920140c517aaaf11131f99b8e9516116bc1d405ecb44ec7",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 281,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_plugin_ownership_ledger.py": {
+      "sha256": "ee6b95732a967b43343120ec053c79c36954f53ca9fc735e79a119d225d2f0ab",
+      "critical_count": 4,
+      "findings": [
+        {
+          "line": 468,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 530,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 564,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1126,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_prefixes.py": {
+      "sha256": "637be52117961aef1bc30653acd199495a16623873814642df70837b222fc38f",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 85,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 86,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_public_api.py": {
+      "sha256": "076bd7e148f1a60a99ac1f850660fcca7bb77151c0f336bc8fb890a4faebdeff",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 420,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_query_eval.py": {
+      "sha256": "3ded31374bf51f860fcf9e56219b39b7257acc9c1192b2da93fc75c571fa7414",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 117,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 120,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_range.py": {
+      "sha256": "01aa0e43f3ee7e0ae09ce992ec045847275b754d63b1bebe0cabb6a17e762ee2",
+      "critical_count": 3,
+      "findings": [
+        {
+          "line": 63,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 71,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 398,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_records.py": {
+      "sha256": "d09249e051d142affd0bb3a2984a376b27f1618df3e32788c889063337e08654",
+      "critical_count": 3,
+      "findings": [
+        {
+          "line": 166,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 167,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 169,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_registry.py": {
+      "sha256": "9f8517042b656bee93f6e3a3fd80b660272ca94587c3a00beb9262350723ff7c",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 650,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 703,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_repr.py": {
+      "sha256": "e579837480e54250967245aaf07f79170f3687ea03c6b46931665e3dbea11dae",
+      "critical_count": 6,
+      "findings": [
+        {
+          "line": 33,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 47,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 50,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 72,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 184,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 206,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_scalarmath.py": {
+      "sha256": "c97704d7fd87aa845bc513d326614a7e26a392c977fbce571e43e71530316dac",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 639,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_simd.py": {
+      "sha256": "70829b2596c963a261ff819b64e33a7cf146ebc73faefb33f951f4f921d6b985",
+      "critical_count": 11,
+      "findings": [
+        {
+          "line": 239,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 505,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 635,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 696,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 716,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 736,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 762,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 799,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 838,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 890,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1096,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_singleton.py": {
+      "sha256": "c4b249817c2691b2a1b28b7fa93b3ea3876788c8c7521dffbdad31b00e61f8a0",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 57,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_snippets.py": {
+      "sha256": "14f42ea07f26b7ba4edc8b9a1b4d85f4975a948fed7afea634bf25f73da2136c",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 58,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_sources.py": {
+      "sha256": "4165ff39cdcd8e988c66a2cb209b17a4aee4186398143bf8eeb0adec7217ffbb",
+      "critical_count": 11,
+      "findings": [
+        {
+          "line": 118,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 119,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 121,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 122,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 152,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 153,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 155,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 156,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 158,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 159,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 161,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_sparse.py": {
+      "sha256": "1af5cdea405595d8eaa11f1637c23f3e36e52a1466c915af56e2d4819120ba06",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 99,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_ssl_certs.py": {
+      "sha256": "f3bdda7e1dfa3b8b1ef7e9961769d0e2243ab5ea5bdfc158b0c8d3e5541068d7",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 42,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_stale_utils_module_import.py": {
+      "sha256": "52f2354a297638b296176ddbd395b332baeca33a9eb0728d57a499c55fc96449",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 46,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_svml.py": {
+      "sha256": "07a07fc144cd9ee28ee3450e0bd603e0b6bc5fca5c2447181e08a2c1422e3bf9",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 163,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_sympify.py": {
+      "sha256": "1443ac45db985f712a13d1213082f013dc2eea30e3fe8d9653d5c4647b17154a",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 549,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_sympy_parser.py": {
+      "sha256": "1ff7432fcf4049ec77b08f05f7671e5c8272e50775dfbaf14dadb4463fbd9760",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 156,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_tensorflow.py": {
+      "sha256": "fb9e8be48758b33672f4218dc52f08c7c51a152b59b9d16e290972cb3e91cf3b",
+      "critical_count": 5,
+      "findings": [
+        {
+          "line": 55,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 87,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 115,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 132,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 148,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_testing_raisesgroup.py": {
+      "sha256": "0a0f314c37b65177258e0d1fd0cdbe741b1ecba10abad0861bff8590ab797d4c",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 1089,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_typedlist.py": {
+      "sha256": "c372149859df67c3368c2db464e9028b592008c72b36e779483ace773a06fa31",
+      "critical_count": 4,
+      "findings": [
+        {
+          "line": 679,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1428,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1486,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1525,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_ufuncs.py": {
+      "sha256": "13648e71cb3ff1823e2c3c6cd0a9d09bcaf8aab405312040050aeb63ce067aca",
+      "critical_count": 4,
+      "findings": [
+        {
+          "line": 42,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 50,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 58,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 71,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_umath.py": {
+      "sha256": "a385bad72f29d287006353d19cf9056188b74286318578ffd03de39fd660f183",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 500,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 564,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_umath_accuracy.py": {
+      "sha256": "b63f917c7d8daa7b821e31a3661cf24455e67d894b5bd86f06aefa87f0c5fd8a",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 66,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 67,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_unicode_names.py": {
+      "sha256": "60f25bc44e03ce3429162ed6a30ec319be26c1da9a4c64dbe5d7adf1aca2ba9c",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 22,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/test_var.py": {
+      "sha256": "85ec4ffb4ab69cdf61fddca128b0aebea15780b0bd7bf1eba278bc2dd6f5e8aa",
+      "critical_count": 11,
+      "findings": [
+        {
+          "line": 7,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 10,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 17,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 30,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 31,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 39,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 40,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 41,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 49,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 55,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 59,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/testrunner.py": {
+      "sha256": "1a62654088028169352e63425d0c5fb37f81f3c9d05123ad4731457817af21d0",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 938,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/textobject.py": {
+      "sha256": "b8268fe29383d3585f497f66e307718061039c3203972dd3d08621f9f2dc6d7e",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 56,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 79,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/texttiling.py": {
+      "sha256": "9d01d810d88f090dbe72ee30f5ed513229a2d7c4c43241b9a7d3cd2a6d657b1f",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 531,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/threadpoolctl.py": {
+      "sha256": "12fb9526b6a74d2e686b7ec148dc165c3587999b14fa86984aa180e10802400b",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 1286,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/timeit.py": {
+      "sha256": "e6414bbc158ad2007fc17f892ec49cca67cbb6d4f90920f4267ddeb19f032a03",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 136,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/timer_comparison.py": {
+      "sha256": "1a6e7341817f5fc20431d2814a74b8985322db09a88f27ed51afa22e0e25c1c5",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 441,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/triton_heuristics.py": {
+      "sha256": "0dd634ba30beddd0a4ea6f4ed0bdaf24ecc4d92071e0bc11ad4b070715157662",
+      "critical_count": 5,
+      "findings": [
+        {
+          "line": 1390,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 3205,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 3206,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 3207,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 3208,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/triton_kernel_wrap.py": {
+      "sha256": "92c92d16d1e216f22b90336986b4b88a9d11f320b3189fc5871b4277a65f71ba",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 1040,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/turtle.py": {
+      "sha256": "787af385d6d4417aac8b686e8d5f49ce4afd7d1d09bde685bb378ed6ecc4fb7d",
+      "critical_count": 6,
+      "findings": [
+        {
+          "line": 189,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 327,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 3854,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 3857,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 3885,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 3985,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/typeddicts.py": {
+      "sha256": "0a4dd032bfc1d53eefc31c918df64f1da7caa6137686774bd7cd5da50371ccfb",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 222,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 516,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/typing.py": {
+      "sha256": "eff3df4f1d65e13d690b8f427cada4dd3b88431dd1e7f319fda1bd0062113203",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 905,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/typing_objects.py": {
+      "sha256": "91a8d5821f09ed467bc1389d571cc53298f04a71460680e84ea7d5000bce1d9f",
+      "critical_count": 2,
+      "findings": [
+        {
+          "line": 101,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 133,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/unsupported_tensor_ops.py": {
+      "sha256": "e590aaece81136216c3220b4d8e1c1944ece3417ff14cec42d6d61e8fdf3004a",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 9,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/untyped_passes.py": {
+      "sha256": "e89c284e7ca4f05cb83e0e771b161f9bd61fc8c2ffd708439f77248e62e6fd5c",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 1010,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/wheel.py": {
+      "sha256": "fc9ba18a75a6950c011c9add221d727e1ac34bb18531a70288988e6371f98300",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 211,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/wrapper.py": {
+      "sha256": "f7b3de7ba0ae616f3927c388a5fa813130f9b178f789d619c0edd74f2cb7e3e5",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 1693,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/yacc.py": {
+      "sha256": "9268e0d005a294904694ea393a291358aab915e44212807bba70de1447707fab",
+      "critical_count": 3,
+      "findings": [
+        {
+          "line": 1562,
+          "pattern_id": "DYNAMIC_EVAL_EXECUTION",
+          "desc": "eval() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 1982,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        },
+        {
+          "line": 3201,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./code/zipimport.py": {
+      "sha256": "e84b98dd13d3a8ae3ff2094ef2889dcead41d754f0531686f0b70b8d225676cc",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 301,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    },
+    "./labs/scratch/validator_proof/validate_the_validator.py": {
+      "sha256": "61c713a83a32c9252ee5229f304ffba92b87be77990884d9e9015d36acdc0396",
+      "critical_count": 1,
+      "findings": [
+        {
+          "line": 25,
+          "pattern_id": "DYNAMIC_EXEC_EXECUTION",
+          "desc": "exec() invocation (arbitrary code execution vector)"
+        }
+      ]
+    }
+  }
+}
