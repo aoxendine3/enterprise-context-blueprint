@@ -172,8 +172,22 @@ As of the current operational cycle on `Desktop/SSOT_Agentic_Brain`:
   1. *50-Step Open-Ended Task Horizon:* While standard un-gated attention context windows experienced contextual stasis and abandoned the canonical goal at Step 16 (100% drift), the XORAS Minimal Living Goal Graph (MLGG) maintained 100% goal alignment across all 50 steps, committing 48 verified transitions and intercepting 2 sub-goal adversarial drifts.
   2. *Semantic Refutation Stripping:* Tested adversarial injection of discredited claims wrapped inside valid cryptographic HMAC shells. 100% of inner AST refutations were enforced (0% leakage), preventing cryptographic laundering of falsified propositions.
   3. *Action Route-Around Exploits:* Indirect alias graph resolution blocked 100% of indirect routing attempts to mutated protected namespaces.
-
----
+### 5.10 Execution Kernels for Seats 7, 8, & 9 and the Bidirectional Taint Lattice
+- **Operationalization of Citizen Seats:** Preserved all 22 citizen identities while transitioning Seats 7, 8, and 9 from declarative role capsules into deterministic, mechanical enforcement kernels:
+  1. *Arthur (Seat 7 — Compliance & Security AST Kernel):* Evaluates static Abstract Syntax Trees for forbidden syscalls (`eval`, `exec`, `compile`, `__import__`), dynamic reflection indirection (`getattr`, `hasattr`, `operator.attrgetter`), multi-stage string concatenation, dictionary reflections, and external runtime taint propagation.
+  2. *Aurelius (Seat 8 — Invariant & Genesis Path Integral Kernel):* Evaluates hyperbolic distance $d_H(u, v)$ against the step threshold ($0.50$) and computes continuous path integrals $\sum d_H \le 0.025$ against the Genesis anchor to prevent gradual epistemic drift.
+  3. *Axlon (Seat 9 — Infrastructure & Resource Sentry Kernel):* Senses host and container POSIX process metrics directly via `resource.getrusage`, enforcing an RSS memory ceiling of $1.5\text{ GB}$ and an open file descriptor bound of $< 512$.
+- **Closing the Spec-Intention Seam (Poison & Antidote Taint Lattice):**
+  - *The False-Positive Trap:* A naive taint model labeling all external runtime state (`os.getenv`, `open.read`, `sys.argv`, network) as fatal poison flags legitimate, safe dynamic access (e.g. `getattr(config, key)` where `key` is verified against an allowlist) as malicious injection, inducing alert fatigue and pressuring operators to weaken the security gate.
+  - *Antidote Invariant Recognition:* Arthur's AST traversal was upgraded with bidirectional lattice propagation:
+    - **POISON Sources:** Variables sourced from external state are flagged with `TAINT_EXTERNAL`. Passing tainted variables into reflection sinks (`getattr`, `importlib.import_module`) triggers an immediate mechanical veto (`TAINTED_GETATTR_REFLECTION` / `TAINTED_IMPORTLIB_INJECTION`).
+    - **ANTIDOTE Guards:** AST conditional branches (`ast.If` -> `ast.Compare` with `ast.In`) and strict type casts (`int()`, `float()`) neutralize taint to `TAINT_SANITIZED`. Whitelisted dynamic attribute resolutions clear the gate without false alarms.
+  - *Empirical Gauntlet Results (`arthur_sanitizer_antidote_gauntlet.py`):*
+    - Raw tainted `getattr` injection: 100% intercepted and quarantined.
+    - Raw tainted `importlib` injection: 100% intercepted and quarantined.
+    - Whitelist-guarded `getattr` lookup (`if key in ALLOWED_KEYS`): 100% recognized as clean and permitted.
+    - Type-cast sanitized attribute access (`int(env_port)`): 100% recognized as clean and permitted.
+    - Cross-environment fidelity: identical 5/5 (100.0%) pass rate on Apple Silicon macOS host and isolated Linux Docker container (`python:3.11-slim`).
 
 ---
 
