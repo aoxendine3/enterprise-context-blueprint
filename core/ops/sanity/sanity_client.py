@@ -44,11 +44,17 @@ class SovereignSanityClient:
         return {}
 
     def _load_token(self, creds: Optional[Dict[str, Any]] = None) -> str:
+        # 1. Environment variable takes highest precedence (zero disk leak vector)
+        env_token = os.environ.get("SANITY_API_TOKEN", "").strip()
+        if env_token:
+            return env_token
+        # 2. Strict 0600 POSIX key file outside tracked git tree
         if os.path.exists(TOKEN_FILE):
             with open(TOKEN_FILE, "r", encoding="utf-8") as f:
                 token = f.read().strip()
                 if token:
                     return token
+        # 3. Fallback to local credentials structure if present
         if creds and creds.get("token"):
             return creds["token"]
         if os.path.exists(CREDENTIALS_FILE):
@@ -58,7 +64,7 @@ class SovereignSanityClient:
                     return data.get("credentials", {}).get("sanity", {}).get("token", "")
             except Exception:
                 pass
-        return os.environ.get("SANITY_API_TOKEN", "")
+        return ""
 
     def _headers(self) -> Dict[str, str]:
         headers = {
