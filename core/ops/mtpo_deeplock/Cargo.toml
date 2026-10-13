@@ -7,13 +7,12 @@ description = "Zero-Abort Concurrency Middleware for Multi-Agent Swarms"
 
 [lib]
 name = "mtpo_deeplock_core"
-crate-type = ["cdylib"]
+crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 pyo3 = { version = "0.20.0", features = ["extension-module"] }
 tokio = { version = "1.35", features = ["full"] }
-hexcell-memory = { path = "../../core/ops/src/hexcell-memory", optional = true }
-
+sha2 = "0.10"
 [features]
 default = []
-enterprise_swarm = ["hexcell-memory"]
+
