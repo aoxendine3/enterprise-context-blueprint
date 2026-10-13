@@ -112,14 +112,11 @@ Unlike legacy declarative-only profiles, UPGP v4.0 Ultra features **Active Runti
 git clone https://github.com/aoxendine3/SSOT_Agentic_Brain.git
 cd SSOT_Agentic_Brain
 
-# Run full UPGP v4.0 Ultra verification suite (Z3 proofs, 15 TS vectors, 5 C exploits)
-python3 ops/scripts/run_upgp_full_test_gauntlet.py
+# Run fast, zero-dependency bootstrap verification (Sub-1s, zero hangs)
+python3 ops/scripts/bootstrap_verify.py
 
 # Launch live dark-mode UPGP Telemetry Web Dashboard (http://localhost:8443)
 python3 ops/scripts/launch_upgp_dashboard.py
-
-# Run SeccompProfile active runtime enforcement hooks verification
-python3 ops/scripts/test_seccomp_runtime_hooks.py
 
 # Enforce documentation & version sync gate
 python3 ops/scripts/enforce_doc_sync_gate.py
