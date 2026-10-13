@@ -1,9 +1,6 @@
 use std::collections::{HashMap, HashSet};
 use tree_sitter::{Node, Parser};
 
-pub const TAINT_EXTERNAL: &str = "__TAINT_EXTERNAL_POISON__";
-pub const TAINT_SANITIZED: &str = "__TAINT_SANITIZED_ANTIDOTE__";
-
 #[derive(Debug, Clone, PartialEq)]
 pub enum TaintStatus {
     ExternalPoison,
@@ -99,10 +96,8 @@ impl ArthurAstEngine {
         sanitized_vars: &mut HashSet<String>,
     ) {
         if node.kind() == "if_statement" {
-            // Find condition node
             if let Some(condition) = node.child_by_field_name("condition") {
                 if condition.kind() == "comparison_operator" {
-                    // Check for: variable "in" list/tuple/set
                     let mut has_in = false;
                     let mut left_var: Option<String> = None;
                     let mut cursor = condition.walk();
@@ -149,6 +144,37 @@ impl ArthurAstEngine {
             }
             "string" => {
                 let text = node.utf8_text(source).unwrap_or("");
+                // Check if this is an f-string with interpolation children
+                let mut cursor = node.walk();
+                let children: Vec<Node> = node.children(&mut cursor).collect();
+                let has_interpolation = children.iter().any(|c| c.kind() == "interpolation");
+
+                if has_interpolation {
+                    let mut combined = String::new();
+                    let mut has_poison = false;
+                    for child in children {
+                        if child.kind() == "interpolation" {
+                            if let Some(expr) = child.named_child(0) {
+                                let status = self.eval_expression(expr, source, env, sanitized_vars);
+                                if status == TaintStatus::ExternalPoison {
+                                    has_poison = true;
+                                } else if let TaintStatus::Literal(lit) = status {
+                                    combined.push_str(&lit);
+                                }
+                            }
+                        } else if child.kind() == "string_content" {
+                            let text = child.utf8_text(source).unwrap_or("");
+                            combined.push_str(text);
+                        }
+                    }
+                    if has_poison {
+                        return TaintStatus::ExternalPoison;
+                    }
+                    if !combined.is_empty() {
+                        return TaintStatus::Literal(combined);
+                    }
+                }
+
                 let stripped = text.trim_matches(|c| c == '"' || c == '\'');
                 TaintStatus::Literal(stripped.to_string())
             }
@@ -165,17 +191,33 @@ impl ArthurAstEngine {
                     return TaintStatus::SanitizedAntidote;
                 }
 
-                // 2. Direct Taint Sources: os.getenv(), open().read(), etc.
+                // 2. Direct Taint Sources: os.getenv(), open().read(), f.read().strip()
                 if let Some(attr) = func_node.child_by_field_name("attribute") {
                     let attr_name = attr.utf8_text(source).unwrap_or("");
                     if self.taint_sources.contains(attr_name) {
                         return TaintStatus::ExternalPoison;
                     }
+                    if attr_name == "decode" || attr_name == "strip" {
+                        if let Some(obj) = func_node.child_by_field_name("object") {
+                            return self.eval_expression(obj, source, env, sanitized_vars);
+                        }
+                    }
+                    if attr_name == "fromhex" {
+                        if let Some(args) = node.child_by_field_name("arguments") {
+                            if let Some(first_arg) = args.named_child(0) {
+                                let arg_text = first_arg.utf8_text(source).unwrap_or("").trim_matches(|c| c == '"' || c == '\'');
+                                if let Ok(bytes) = hex::decode(arg_text) {
+                                    if let Ok(s) = String::from_utf8(bytes) {
+                                        return TaintStatus::Literal(s);
+                                    }
+                                }
+                            }
+                        }
+                    }
                 } else if self.taint_sources.contains(func_text) {
                     return TaintStatus::ExternalPoison;
                 }
 
-                // 3. String concatenation via format/join
                 TaintStatus::Unknown
             }
             "subscript" => {
@@ -201,6 +243,15 @@ impl ArthurAstEngine {
                 }
                 if let (Some(TaintStatus::Literal(l)), Some(TaintStatus::Literal(r))) = (left, right) {
                     return TaintStatus::Literal(format!("{}{}", l, r));
+                }
+                TaintStatus::Unknown
+            }
+            "conditional_expression" => {
+                if let Some(consequence) = node.child_by_field_name("consequence") {
+                    let status = self.eval_expression(consequence, source, env, sanitized_vars);
+                    if status == TaintStatus::SanitizedAntidote {
+                        return TaintStatus::SanitizedAntidote;
+                    }
                 }
                 TaintStatus::Unknown
             }
@@ -239,12 +290,11 @@ impl ArthurAstEngine {
                         violations.push(format!("DIRECT_INSECURE_CALL: {}() at line {}", func_name, line));
                     }
 
-                    // Rule 2: Qualified Calls: os.system(), os.popen()
+                    // Rule 2: Qualified Calls: os.system(), os.popen(), mod.system()
                     if func_node.kind() == "attribute" {
                         if let Some(attr) = func_node.child_by_field_name("attribute") {
                             let attr_name = attr.utf8_text(source).unwrap_or("");
                             if self.banned_targets.contains(attr_name) {
-                                // Check if argument is poisoned
                                 let arg0_status = node
                                     .child_by_field_name("arguments")
                                     .and_then(|args| args.named_child(0))
@@ -285,16 +335,40 @@ impl ArthurAstEngine {
                                             ));
                                         }
                                     }
-                                    TaintStatus::SanitizedAntidote => {
-                                        // Whitelist neutralized taint: admitted without alert!
-                                    }
+                                    TaintStatus::SanitizedAntidote => {}
                                     TaintStatus::Unknown => {}
                                 }
                             }
                         }
                     }
 
-                    // Rule 4: Dynamic Import Injection: importlib.import_module()
+                    // Rule 4: operator.attrgetter(target)
+                    if func_name.ends_with("attrgetter") {
+                        if let Some(args) = node.child_by_field_name("arguments") {
+                            if let Some(first_arg) = args.named_child(0) {
+                                let status = self.eval_expression(first_arg, source, env, sanitized_vars);
+                                match status {
+                                    TaintStatus::ExternalPoison => {
+                                        violations.push(format!(
+                                            "TAINTED_ATTRGETTER_SINK: operator.attrgetter() with external state at line {}",
+                                            line
+                                        ));
+                                    }
+                                    TaintStatus::Literal(lit) => {
+                                        if self.banned_targets.contains(lit.as_str()) {
+                                            violations.push(format!(
+                                                "OPERATOR_ATTRGETTER_INDIRECTION: operator.attrgetter('{}') at line {}",
+                                                lit, line
+                                            ));
+                                        }
+                                    }
+                                    _ => {}
+                                }
+                            }
+                        }
+                    }
+
+                    // Rule 5: Dynamic Import Injection: importlib.import_module()
                     if func_name.ends_with("import_module") {
                         if let Some(args) = node.child_by_field_name("arguments") {
                             if let Some(first_arg) = args.named_child(0) {
@@ -315,6 +389,46 @@ impl ArthurAstEngine {
                                     }
                                 }
                             }
+                        }
+                    }
+
+                    // Rule 6: Subprocess with shell=True
+                    if func_name.contains("subprocess") {
+                        let text = node.utf8_text(source).unwrap_or("");
+                        if text.contains("shell=True") || text.contains("shell = True") {
+                            violations.push(format!(
+                                "SUBPROCESS_SHELL_INJECTION: subprocess with shell=True at line {}",
+                                line
+                            ));
+                        }
+                    }
+                }
+            }
+            "subscript" => {
+                // Dictionary reflection: __dict__[target]
+                let val_text = node
+                    .child_by_field_name("value")
+                    .and_then(|v| v.utf8_text(source).ok())
+                    .unwrap_or("");
+                if val_text.ends_with("__dict__") {
+                    if let Some(sub) = node.child_by_field_name("subscript") {
+                        let status = self.eval_expression(sub, source, env, sanitized_vars);
+                        match status {
+                            TaintStatus::ExternalPoison => {
+                                violations.push(format!(
+                                    "TAINTED_DICT_REFLECTION: __dict__[TAINT_EXTERNAL] at line {}",
+                                    line
+                                ));
+                            }
+                            TaintStatus::Literal(lit) => {
+                                if self.banned_targets.contains(lit.as_str()) {
+                                    violations.push(format!(
+                                        "DICT_REFLECTION_BYPASS: __dict__['{}'] at line {}",
+                                        lit, line
+                                    ));
+                                }
+                            }
+                            _ => {}
                         }
                     }
                 }

@@ -298,6 +298,11 @@ class ArthurSanitizerLatticeKernel:
             results["status"] = "NIST_SP_800_218_HARD_VETO"
         return results
 
+# Backward-compatible aliases for historical gauntlet runners
+HardenedArthurComplianceKernel = ArthurSanitizerLatticeKernel
+ArthurSymbolicTaintKernel = ArthurSanitizerLatticeKernel
+ArthurTaintLatticeKernel = ArthurSanitizerLatticeKernel
+
 if __name__ == "__main__":
     kernel = ArthurSanitizerLatticeKernel()
     target_files = [
