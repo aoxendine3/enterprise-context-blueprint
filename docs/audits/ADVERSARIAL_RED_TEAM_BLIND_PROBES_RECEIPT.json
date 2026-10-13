@@ -1,0 +1,16 @@
+{
+  "timestamp_utc": "2026-10-13T04:09:07.984004+00:00",
+  "total_probes": 500,
+  "admitted": 0,
+  "quarantined": 500,
+  "wall_ms": 56.593000001157634,
+  "layer_breakdown": {
+    "LAYER_1_POINCARE_GEODESIC_VETO": 150,
+    "LAYER_2_GENESIS_ANCHOR_VETO": 86,
+    "LAYER_3_AUTHORITY_LEAK_VETO": 100,
+    "LAYER_3_CONTRADICTION_VETO": 0,
+    "LAYER_3_PROVENANCE_COLLAPSE_VETO": 164,
+    "LAYER_3_SCORE_BELOW_THRESHOLD": 0
+  },
+  "exploits_extracted": []
+}
