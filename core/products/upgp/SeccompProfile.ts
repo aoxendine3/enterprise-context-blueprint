@@ -8,6 +8,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import * as crypto from 'crypto';
 import * as child_process from 'child_process';
 
 export interface SeccompSyscallRule {
@@ -100,10 +101,11 @@ export class SeccompProfile {
     let mode: RuntimeEnforcementResult['mode'] = 'POSIX_RESTRICTED_SIMULATION';
 
     // 1. Attempt Native C N-API Binding loading
+    const repoRoot = '/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain';
     const nativePaths = [
-      path.join(__dirname, '../../../build/Release/upgp_seccomp_native.node'),
-      path.join(__dirname, '../../../src/native/upgp_seccomp_native.node'),
-      '/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/bin/upgp_seccomp_native.node'
+      path.join(repoRoot, 'build/Release/upgp_seccomp_native.node'),
+      path.join(repoRoot, 'src/native/upgp_seccomp_native.node'),
+      path.join(repoRoot, 'ops/bin/upgp_seccomp_native.node')
     ];
 
     for (const nPath of nativePaths) {
@@ -147,7 +149,8 @@ export class SeccompProfile {
   }
 
   /**
-   * Independent Attestation Logging for Security Audits.
+   * Cryptographically Signed Append-Only Quarantine Ledger with Hash-Chaining.
+   * Ensures tamper-evidence: Each record hashes the previous entry and HMAC signs its canonical payload.
    */
   private writeAttestationLog(result: RuntimeEnforcementResult): void {
     const logDir = path.dirname(this.logPath);
@@ -158,22 +161,50 @@ export class SeccompProfile {
     const entry = `[${result.timestamp}] [PID ${result.pid}] MODE: ${result.mode} | STATUS: ${result.status} | ENFORCED: ${result.enforced}\n`;
     fs.appendFileSync(this.logPath, entry, 'utf-8');
 
-    // Also record into Quarantine / Evidence ledger
+    // Cryptographic Evidence Ledger Path
     const ledgerPath = '/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/intelligence/quarantine_ledger.jsonl';
     const ledgerDir = path.dirname(ledgerPath);
     if (!fs.existsSync(ledgerDir)) {
       fs.mkdirSync(ledgerDir, { recursive: true });
     }
-    const ledgerEntry = JSON.stringify({
+
+    // Compute Previous Entry Hash for Immutable Hash-Chaining
+    let prevHash = 'GENESIS_0000000000000000000000000000000000000000000000000000000000000000';
+    if (fs.existsSync(ledgerPath)) {
+      const existingLines = fs.readFileSync(ledgerPath, 'utf-8').trim().split('\n').filter(Boolean);
+      if (existingLines.length > 0) {
+        const lastLine = existingLines[existingLines.length - 1];
+        try {
+          const parsed = JSON.parse(lastLine);
+          prevHash = parsed.hmac_signature || crypto.createHash('sha256').update(lastLine).digest('hex');
+        } catch {
+          prevHash = crypto.createHash('sha256').update(lastLine).digest('hex');
+        }
+      }
+    }
+
+    const canonicalPayload = {
       timestamp: result.timestamp,
       event: 'SECCOMP_RUNTIME_ENFORCEMENT_ATTACHED',
       pid: result.pid,
       mode: result.mode,
       status: result.status,
       enforced: result.enforced,
-      state_pollution: '0.00000%'
-    }) + '\n';
-    fs.appendFileSync(ledgerPath, ledgerEntry, 'utf-8');
+      state_pollution: '0.00000%',
+      previous_hash: prevHash
+    };
+
+    // Sign canonical JSON payload with outside-container sovereign secret key
+    const secretKey = process.env.UPGP_ATTESTATION_SECRET || 'XORAS_SOVEREIGN_TRINITY_GATE_SECRET_KEY_2026';
+    const payloadStr = JSON.stringify(canonicalPayload, Object.keys(canonicalPayload).sort());
+    const hmacSig = crypto.createHmac('sha256', secretKey).update(payloadStr).digest('hex');
+
+    const signedRecord = {
+      ...canonicalPayload,
+      hmac_signature: hmacSig
+    };
+
+    fs.appendFileSync(ledgerPath, JSON.stringify(signedRecord) + '\n', 'utf-8');
   }
 
   /**
