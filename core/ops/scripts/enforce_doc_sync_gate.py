@@ -48,7 +48,19 @@ def check_doc_sync():
         print(f"❌ DOCUMENTATION GATE FAILED: {outdated_count} files contain version mismatch.", file=sys.stderr)
         return False
     
-    print(f"✅ DOCUMENTATION GATE PASSED: All {checked_count} customer-facing docs verified.")
+    # Execute Sovereign Report Standards & Zero-Seam Numeric Cross-Check Engine
+    try:
+        sys.path.insert(0, REPO_ROOT)
+        from core.ops.reports.sovereign_report_validator import validate_all_standard_reports
+        print("\n  Executing Sovereign Report Standards & Zero-Seam Cross-Check Gate...")
+        if not validate_all_standard_reports():
+            print("❌ DOCUMENTATION GATE FAILED: Standardized report validation or numeric drift error.", file=sys.stderr)
+            return False
+    except Exception as e:
+        print(f"❌ DOCUMENTATION GATE FAILED: Report validator execution error: {e}", file=sys.stderr)
+        return False
+
+    print(f"✅ DOCUMENTATION GATE PASSED: All {checked_count} customer docs and standardized reports verified.")
     return True
 
 def main():

@@ -89,7 +89,8 @@ Python Runtime:             CPython 3.14.7 (Hermetic POSIX Environment)
 
 ### 4.1 TOCTOU Supervisor Exploit Variance Across 7 CPU Topologies (140,000 Cycles)
 *Test Harness*: [`tests/exploits/demonstrate_user_notif_topologies.c`](file:///Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/tests/exploits/demonstrate_user_notif_topologies.c)  
-*Receipt File*: [`memory/catch_log/toctou_topology_variance_receipt.json`](file:///Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/catch_log/toctou_topology_variance_receipt.json)
+*Receipt File*: [`memory/catch_log/toctou_topology_variance_receipt.json`](file:///Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/catch_log/toctou_topology_variance_receipt.json)  
+*Receipt SHA-256*: `9c7b23f775d2a383b38340e3e59c8d8cd7b90da02eeddd1145cdb1eacc41b854`
 
 | Topology ID | Hardware Topology & Affinity Profile | Cycles ($N$) | Breaches ($k$) | Exploit Success Rate | Wall Clock Time | Exploit Probability ($\pm \text{CI}_{99.9\%}$) |
 | :---: | :--- | :---: | :---: | :---: | :---: | :---: |
@@ -116,6 +117,7 @@ UPGP v4.0 Ultra (In-Kernel Atomic):  ─────► [                       
 ### 4.2 Universal 10-Vector Pressure Test Gauntlet
 *Test Harness*: [`core/ops/scripts/universal_pressure_test_gauntlet.py`](file:///Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/ops/scripts/universal_pressure_test_gauntlet.py)  
 *Receipt File*: [`memory/catch_log/universal_pressure_test_receipt.json`](file:///Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/catch_log/universal_pressure_test_receipt.json)  
+*Receipt SHA-256*: `fb3d994a488fab64f5d6a3bb49b929895744376f683168d6782a4dfcbe0b1771`  
 *Total Runtime*: 50.13 Seconds | *Overall Outcome*: **10/10 VECTORS PASSED (100.0%)**
 
 | Vector ID | Target Substrate & Pressure Domain | Invariants & Test Vectors Applied | Duration | Outcome |

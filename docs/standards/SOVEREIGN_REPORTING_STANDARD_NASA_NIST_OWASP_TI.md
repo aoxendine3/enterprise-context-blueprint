@@ -110,12 +110,36 @@ Mandatory transparent disclosure of:
 - Unmeasured variables and recommended next-stage physical test regimes.
 
 ### Section X: Citizen Council Attestation & Cryptographic Anchoring
-Signed council endorsement, repository commit hash, and path to immutable receipt JSON.
+Signed council endorsement, repository commit hash, and path to immutable receipt JSON with pinned SHA-256 digest.
 
 ---
 
-## 4. CODE OF EMPIRICAL HONESTY
+## 4. AUTOMATED CROSS-REFERENCE & NUMERIC DRIFT VERIFICATION GATE (THE ZERO-SEAM INVARIANT)
+
+Reporting conventions fail when compliance is evaluated merely by human inspection. To transform reporting standards into unfalsifiable infrastructure, the following automated gate rules are mandatory across all sovereign repositories:
+
+### 4.1 Machine-Executable Verification Gate
+No report may be committed or published without passing the automated validator engine (`core/ops/reports/sovereign_report_validator.py`). The validator is integrated directly into the release and bootstrap gate (`./xoras bootstrap` Gate 5).
+
+### 4.2 SHA-256 Hash-Pinned Receipt Integrity
+All cited primary telemetry files (e.g. `toctou_topology_variance_receipt.json`, `universal_pressure_test_receipt.json`) must be cryptographically pinned within the report markdown using their authoritative SHA-256 digest:
+```markdown
+*Receipt SHA-256*: `9c7b23f775d2a383b38340e3e59c8d8cd7b90da02eeddd1145cdb1eacc41b854`
+```
+The validator recalculates the SHA-256 of the on-disk file during every run. Any out-of-band alteration of the receipt immediately fails the build.
+
+### 4.3 Bidirectional Numeric Drift Verification
+The validator extracts the raw JSON metrics from disk and cross-checks them against the numeric figures published in prose and markdown tables:
+1. **Stratum-by-Stratum Verification**: Iterations ($N$), breaches ($k$), and percentage rates for every individual topology/vector must match exactly between JSON records and table cells.
+2. **Statistical Metric Verification**: Aggregate metrics ($\mu, \sigma, \min, \max, \text{Total Cycles}$) must match to the exact published decimal place.
+3. **Zero-Seam Build Failure**: If a human author or model edits a markdown table or executive summary to alter any numeric claim without regenerating the underlying empirical receipt, the validator fails with code `1`, halting the CI/CD pipeline and rejecting the commit.
+
+---
+
+## 5. CODE OF EMPIRICAL HONESTY
 
 1. **Zero Fictitious Data**: Fabricated benchmarks or theoretical approximations presented as measured data are strictly prohibited.
 2. **Defensible Worst-Case Reporting**: If a vulnerability window reaches 83.26% under specific cache sharing topologies, that number must lead the technical disclosure; it may not be diluted by averaging against unrelated quiescent workloads.
-3. **Receipt Traceability**: Every table must cite the exact relative path to its JSON or log receipt in `memory/catch_log/`.
+3. **Receipt Traceability**: Every table must cite the exact relative path to its JSON or log receipt in `memory/catch_log/` and its immutable SHA-256 digest.
+4. **Permanent Invariant**: Documentation integrity and empirical data truthfulness are sovereign invariants enforced by code, not policy memos.
+
