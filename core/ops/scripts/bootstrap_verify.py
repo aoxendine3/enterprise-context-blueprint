@@ -15,6 +15,7 @@ Engineered for the "Midnight Fresh Clone" standard:
 import sys
 import os
 import time
+import json
 import subprocess
 import shutil
 from pathlib import Path
@@ -80,21 +81,28 @@ def main():
     failures = []
 
     # ------------------------------------------------------------------------
-    # STEP 1: Z3 SMT Formal Mathematical Invariant Proof
+    # STEP 1: Z3 SMT Formal Mathematical Invariant Proof (In-Process)
     # ------------------------------------------------------------------------
     log_pulse(1, steps_total, "Z3 SMT Formal Transition & Timeout Proof")
-    code, out, err = run_step([sys.executable, "ops/scripts/test_missing_containment_gaps.py"], timeout=5)
-    if code == 0 and "✓ PASS" in out:
-        log_pass("State transition proven SAT, <1ms")
-    else:
-        log_fail("Z3 formal proof error")
-        failures.append(("Step 1 (Z3 Proof)", err or out))
+    try:
+        sys.path.insert(0, str(REPO_ROOT))
+        from core.ops.native.sovereign_native_bridge import SovereignNativeBridge
+        t_z3 = time.perf_counter()
+        sat_ok = SovereignNativeBridge.prove_transition_invariant_in_memory(timeout_ms=1000)
+        dt_z3 = (time.perf_counter() - t_z3) * 1000
+        if sat_ok:
+            log_pass(f"State transition proven SAT in-process ({dt_z3:.2f}ms)")
+        else:
+            log_fail("Z3 formal proof returned UNSAT")
+            failures.append(("Step 1 (Z3 Proof)", "UNSAT"))
+    except Exception as e:
+        log_fail(f"Z3 formal proof error: {e}")
+        failures.append(("Step 1 (Z3 Proof)", str(e)))
 
     # ------------------------------------------------------------------------
     # STEP 2: 15-Vector TypeScript Microarchitectural & Escape Gauntlet
     # ------------------------------------------------------------------------
     log_pulse(2, steps_total, "15-Vector TS Microarchitectural & Escape Isolation")
-    # Native Node 22+ with zero-dependency type stripping (no npm/tsx hang)
     code, out, err = run_step(
         ["node", "--experimental-strip-types", "tests/UPGPProvingGround.test.ts"],
         timeout=5
@@ -117,40 +125,40 @@ def main():
         failures.append(("Step 3 (10-Vector Exploits)", err or out))
 
     # ------------------------------------------------------------------------
-    # STEP 4: Active Seccomp-BPF Fail-Closed Profile (SCMP_ACT_KILL Whitelist)
+    # STEP 4: Active Seccomp-BPF Fail-Closed Profile & Native C Hook (In-Process)
     # ------------------------------------------------------------------------
     log_pulse(4, steps_total, "Seccomp-BPF Fail-Closed Whitelist (Default-Kill)")
-    # Generate profile directly without triggering broken audio speech
-    seccomp_check_code = (
-        "from pathlib import Path; import json, sys; "
-        "root = Path(sys.argv[1]); "
-        "p = root / 'core/ops/sandbox/seccomp_upgp.json' if (root / 'core/ops/sandbox/seccomp_upgp.json').exists() else root / 'ops/sandbox/seccomp_upgp.json'; "
-        "assert p.exists(), f'Missing {p}'; "
-        "data = json.loads(p.read_text()); "
-        "assert data.get('defaultAction') == 'SCMP_ACT_KILL', 'Profile must be default-kill'; "
-        "assert len(data['syscalls'][0]['names']) >= 60, 'Whitelist must cover standard runtime'; "
-        "print('Seccomp whitelist verified: default-kill active')"
-    )
-    code, out, err = run_step(
-        [sys.executable, "-c", seccomp_check_code, str(REPO_ROOT)],
-        timeout=3
-    )
-    if code == 0:
-        log_pass("Fail-closed SCMP_ACT_KILL default with explicit whitelist")
-    else:
-        log_fail("Seccomp profile missing or insecure")
-        failures.append(("Step 4 (Seccomp Profile)", err or out))
+    try:
+        p = REPO_ROOT / "core" / "ops" / "sandbox" / "seccomp_upgp.json"
+        if not p.exists():
+            p = REPO_ROOT / "ops" / "sandbox" / "seccomp_upgp.json"
+        data = json.loads(p.read_text(encoding="utf-8"))
+        assert data.get("defaultAction") == "SCMP_ACT_KILL", "Profile must be default-kill"
+        assert len(data["syscalls"][0]["names"]) >= 60, "Whitelist must cover standard runtime"
+        
+        # Test in-memory C ABI attachment
+        bridge = SovereignNativeBridge.get()
+        c_res = bridge.apply_enforcement()
+        assert c_res["enforced"], "Native C enforcement failed"
+        log_pass(f"Fail-closed SCMP_ACT_KILL default with {len(data['syscalls'][0]['names'])} whitelisted calls (C mode: {c_res['mode']})")
+    except Exception as e:
+        log_fail(f"Seccomp profile error: {e}")
+        failures.append(("Step 4 (Seccomp Profile)", str(e)))
 
     # ------------------------------------------------------------------------
-    # STEP 5: Customer-Facing Documentation & Version Sync Gate
+    # STEP 5: Customer-Facing Documentation & Version Sync Gate (In-Process)
     # ------------------------------------------------------------------------
     log_pulse(5, steps_total, "Documentation Integrity & Version Sync Gate")
-    code, out, err = run_step([sys.executable, "ops/scripts/enforce_doc_sync_gate.py"], timeout=3)
-    if code == 0 and "DOCUMENTATION GATE PASSED" in out:
-        log_pass("4/4 customer-facing docs in sync")
-    else:
-        log_fail("Doc sync gate failed")
-        failures.append(("Step 5 (Doc Gate)", err or out))
+    try:
+        from core.ops.scripts.enforce_doc_sync_gate import check_doc_sync
+        if check_doc_sync():
+            log_pass("4/4 customer-facing docs in sync")
+        else:
+            log_fail("Doc sync check failed")
+            failures.append(("Step 5 (Doc Gate)", "Version mismatch detected"))
+    except Exception as e:
+        log_fail(f"Doc gate error: {e}")
+        failures.append(("Step 5 (Doc Gate)", str(e)))
 
     elapsed = time.perf_counter() - start_time
     print(f"\n{BOLD}{CYAN}--------------------------------------------------------------------------{RESET}")

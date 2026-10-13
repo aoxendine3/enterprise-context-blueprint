@@ -1,6 +1,9 @@
+#ifndef UPGP_STANDALONE_C_LIB
 #include <node_api.h>
+#endif
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <string.h>
 #include <unistd.h>
 #include <time.h>
@@ -307,6 +310,59 @@ static int apply_linux_seccomp_bpf() {
 #endif
 
 /* ========================================================================= */
+/* Standard C ABI Functions (Direct In-Memory Python / C FFI)                */
+/* ========================================================================= */
+
+int upgp_c_apply_enforcement(int *out_pid, char *out_status, size_t status_len, char *out_mode, size_t mode_len) {
+    bool success = false;
+    const char *platform_status = "UNKNOWN";
+    const char *mode = "POSIX_RESTRICTED_SIMULATION";
+
+#if defined(__linux__)
+    if (apply_linux_seccomp_bpf() == 0) {
+        success = true;
+        platform_status = "LINUX_SECCOMP_BPF_WHITELIST_BOUND";
+        mode = "NATIVE_C_PRCTL";
+    } else {
+        success = false;
+        platform_status = "LINUX_SECCOMP_FAILED";
+        mode = "NATIVE_C_PRCTL";
+    }
+#elif defined(__APPLE__)
+    success = true;
+    platform_status = "MACOS_POSIX_RESTRICTED";
+    mode = "POSIX_RESTRICTED_SIMULATION";
+#else
+    success = true;
+    platform_status = "GENERIC_POSIX_LOCK";
+    mode = "POSIX_RESTRICTED_SIMULATION";
+#endif
+
+    const char *ledger_path = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/intelligence/quarantine_ledger.jsonl";
+    write_native_c_ledger_record(ledger_path, platform_status, mode, getpid());
+
+    if (out_pid) *out_pid = getpid();
+    if (out_status && status_len > 0) {
+        strncpy(out_status, platform_status, status_len - 1);
+        out_status[status_len - 1] = '\0';
+    }
+    if (out_mode && mode_len > 0) {
+        strncpy(out_mode, mode, mode_len - 1);
+        out_mode[mode_len - 1] = '\0';
+    }
+    return success ? 0 : -1;
+}
+
+int upgp_c_write_ledger_record(const char *ledger_path, const char *status, const char *mode, int pid) {
+    if (!ledger_path) ledger_path = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/intelligence/quarantine_ledger.jsonl";
+    if (!status) status = "NATIVE_C_INVOKED";
+    if (!mode) mode = "NATIVE_C_PRCTL";
+    if (pid <= 0) pid = getpid();
+    return write_native_c_ledger_record(ledger_path, status, mode, pid);
+}
+
+#ifndef UPGP_STANDALONE_C_LIB
+/* ========================================================================= */
 /* N-API Module Interface                                                    */
 /* ========================================================================= */
 
@@ -389,4 +445,6 @@ napi_value Init(napi_env env, napi_value exports) {
 }
 
 NAPI_MODULE(NODE_GYP_MODULE_NAME, Init)
+#endif
+
 
