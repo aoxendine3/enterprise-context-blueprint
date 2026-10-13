@@ -106,42 +106,20 @@ def main():
         failures.append(("Step 2 (TS Vectors)", err or out))
 
     # ------------------------------------------------------------------------
-    # STEP 3: Linux Kernel C Exploit Containment (Containerized vs Host)
+    # STEP 3: 10-Vector Red-Team C & Machine-Discovered Exploit Containment
     # ------------------------------------------------------------------------
-    log_pulse(3, steps_total, "5-Vector Linux C Exploit Containment")
-    if sys.platform != "linux":
-        # Check if Docker engine is available for real kernel containment verification
-        has_docker = shutil.which("docker") is not None
-        if has_docker:
-            # Run containerized containment probe
-            dock_cmd = [
-                "docker", "run", "--rm",
-                "-v", f"{REPO_ROOT}:/workspace",
-                "-w", "/workspace",
-                "python:3.11-slim",
-                "python3", "-c",
-                "import os, sys; print('Container kernel ready: ' + os.uname().sysname)"
-            ]
-            d_code, d_out, d_err = run_step(dock_cmd, timeout=5)
-            if d_code == 0:
-                log_pass("Darwin host detected: Linux enclaves verified via Docker")
-            else:
-                log_warn("Darwin host: Docker probe skipped; Seccomp verified via profile generator")
-        else:
-            log_warn("Darwin host: Seccomp requires Linux; profile generator verified")
+    log_pulse(3, steps_total, "10-Vector Red-Team & Corpus Exploit Containment")
+    code, out, err = run_step(["node", "--experimental-strip-types", "tests/RedTeamExploitGauntlet.ts"], timeout=5)
+    if code == 0 and "0 KERNEL ESCAPES DETECTED" in out:
+        log_pass("10/10 exploits contained (0 escapes across baseline & corpus)")
     else:
-        # Native Linux kernel execution
-        code, out, err = run_step(["node", "--experimental-strip-types", "tests/RedTeamExploitGauntlet.ts"], timeout=5)
-        if code == 0:
-            log_pass("5/5 native Linux exploits killed via SIGSYS")
-        else:
-            log_fail("Linux exploits containment error")
-            failures.append(("Step 3 (Linux Exploits)", err or out))
+        log_fail("Red-team exploit gauntlet containment error")
+        failures.append(("Step 3 (10-Vector Exploits)", err or out))
 
     # ------------------------------------------------------------------------
-    # STEP 4: Active Seccomp-BPF Profile Synthesis (19 SCMP_ACT_KILL Rules)
+    # STEP 4: Active Seccomp-BPF Fail-Closed Profile (SCMP_ACT_KILL Whitelist)
     # ------------------------------------------------------------------------
-    log_pulse(4, steps_total, "Seccomp-BPF Active Profile & Attestation Hooks")
+    log_pulse(4, steps_total, "Seccomp-BPF Fail-Closed Whitelist (Default-Kill)")
     # Generate profile directly without triggering broken audio speech
     seccomp_check_code = (
         "from pathlib import Path; import json, sys; "
@@ -149,17 +127,18 @@ def main():
         "p = root / 'core/ops/sandbox/seccomp_upgp.json' if (root / 'core/ops/sandbox/seccomp_upgp.json').exists() else root / 'ops/sandbox/seccomp_upgp.json'; "
         "assert p.exists(), f'Missing {p}'; "
         "data = json.loads(p.read_text()); "
-        "assert len(data['syscalls'][0]['names']) >= 19; "
-        "print('Seccomp profile verified: 19 rules')"
+        "assert data.get('defaultAction') == 'SCMP_ACT_KILL', 'Profile must be default-kill'; "
+        "assert len(data['syscalls'][0]['names']) >= 60, 'Whitelist must cover standard runtime'; "
+        "print('Seccomp whitelist verified: default-kill active')"
     )
     code, out, err = run_step(
         [sys.executable, "-c", seccomp_check_code, str(REPO_ROOT)],
         timeout=3
     )
     if code == 0:
-        log_pass("19 SCMP_ACT_KILL syscall filters valid")
+        log_pass("Fail-closed SCMP_ACT_KILL default with explicit whitelist")
     else:
-        log_fail("Seccomp profile missing or corrupt")
+        log_fail("Seccomp profile missing or insecure")
         failures.append(("Step 4 (Seccomp Profile)", err or out))
 
     # ------------------------------------------------------------------------

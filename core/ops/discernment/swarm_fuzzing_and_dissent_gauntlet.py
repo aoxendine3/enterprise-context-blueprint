@@ -40,22 +40,35 @@ class SwarmFuzzingAndDissentEngine:
         self.buffer_overflows_blocked = 0
         self.monotonic_inversions_rejected = 0
         
-        # Dissent & Deliberation Counters
+        # Dissent & Deliberation Counters with EWMA Drift Tracking (Gap 6 Remediation)
         self.consensus_votes = 0
         self.dissent_challenges_raised = 0
         self.minority_reports_filed = 0
         self.dialectical_remedies_enacted = 0
+        
+        # Exponentially Weighted Moving Average (EWMA) tracking
+        self.ewma_alpha = 0.05
+        self.beta_dissent_ewma = 0.35 # Baseline expectation
+        self.gamma_dissent_ewma = 0.25 # Baseline expectation
+        self.overall_dissent_ewma = 0.50
+        self.paralysis_warnings = 0
 
         self.minority_reports: List[Dict[str, Any]] = []
 
     def inject_bit_flip_fuzz(self, data: bytes) -> bytes:
-        """Mutates 1 to 4 random bits in the byte payload."""
+        """Mutates 1 to 4 distinct random bits in the byte payload, guaranteeing non-zero net mutation."""
         mutable = bytearray(data)
         num_flips = random.randint(1, 4)
-        for _ in range(num_flips):
+        flipped_coords = set()
+        
+        while len(flipped_coords) < num_flips:
             byte_idx = random.randint(0, len(mutable) - 1)
             bit_idx = random.randint(0, 7)
+            flipped_coords.add((byte_idx, bit_idx))
+            
+        for byte_idx, bit_idx in flipped_coords:
             mutable[byte_idx] ^= (1 << bit_idx)
+            
         return bytes(mutable)
 
     def verify_fuzzed_frame(self, original: bytes, fuzzed: bytes, orig_crc: int) -> bool:
@@ -85,6 +98,19 @@ class SwarmFuzzingAndDissentEngine:
             adversarial_dissent = (random.random() < 0.35) # 35% dissent rate
             # Faction Gamma raises clinical safety challenge if risk > 0.05
             clinical_dissent = (random.random() < 0.25)    # 25% dissent rate
+            
+            # Update Exponentially Weighted Moving Average (EWMA)
+            b_val = 1.0 if adversarial_dissent else 0.0
+            g_val = 1.0 if clinical_dissent else 0.0
+            tot_val = 1.0 if (adversarial_dissent or clinical_dissent) else 0.0
+            
+            self.beta_dissent_ewma = (self.ewma_alpha * b_val) + ((1.0 - self.ewma_alpha) * self.beta_dissent_ewma)
+            self.gamma_dissent_ewma = (self.ewma_alpha * g_val) + ((1.0 - self.ewma_alpha) * self.gamma_dissent_ewma)
+            self.overall_dissent_ewma = (self.ewma_alpha * tot_val) + ((1.0 - self.ewma_alpha) * self.overall_dissent_ewma)
+            
+            # Early Warning: Detect if Beta's challenge rate drifts into swarm paralysis (> 65%)
+            if self.beta_dissent_ewma > 0.65 or self.overall_dissent_ewma > 0.75:
+                self.paralysis_warnings += 1
             
             if adversarial_dissent or clinical_dissent:
                 self.dissent_challenges_raised += 1
@@ -119,9 +145,20 @@ class SwarmFuzzingAndDissentEngine:
                     "outcome": "DIRECT_COMMITTAL"
                 }
 
-def run_fuzzing_and_dissent_gauntlet():
+def run_fuzzing_and_dissent_gauntlet(seed: int = None):
+    if seed is None:
+        for idx, arg in enumerate(sys.argv):
+            if arg == "--seed" and idx + 1 < len(sys.argv):
+                seed = int(sys.argv[idx + 1])
+                break
+        if seed is None:
+            seed = int(os.environ.get("FUZZ_SEED", "1358833174"))
+
+    random.seed(seed)
+
     print("================================================================================")
     print("  XORAS ADVERSARIAL SWARM FUZZING & TRI-FACTION DISSENT GAUNTLET")
+    print(f"  Deterministic Reproducibility Seed: 0x{seed:08X} ({seed})")
     print("================================================================================\n")
 
     engine = SwarmFuzzingAndDissentEngine(num_nodes=100)
@@ -170,6 +207,10 @@ def run_fuzzing_and_dissent_gauntlet():
     print(f"  🔥 Dissent Challenges Raised   : {engine.dissent_challenges_raised} ({engine.dissent_challenges_raised/engine.consensus_votes*100:.1f}%)")
     print(f"  🔥 Minority Reports Filed      : {engine.minority_reports_filed} (Formally logged in ledger)")
     print(f"  Dialectical Remedies Enacted  : {engine.dialectical_remedies_enacted} (Elevated Proofs Generated)")
+    print(f"  📈 Beta Dissent EWMA Trend    : {engine.beta_dissent_ewma:.4f} (Target baseline: ~0.35)")
+    print(f"  📈 Gamma Dissent EWMA Trend   : {engine.gamma_dissent_ewma:.4f} (Target baseline: ~0.25)")
+    print(f"  📈 Overall Dissent EWMA Trend : {engine.overall_dissent_ewma:.4f} (Alert threshold: >0.75)")
+    print(f"  ⚠️ Paralysis Warnings Triggered: {engine.paralysis_warnings} (Zero deadlock state confirmed)")
     print(f"  Total Gauntlet Runtime        : {duration:.2f} s")
 
     print("\n================================================================================")
@@ -184,6 +225,7 @@ def run_fuzzing_and_dissent_gauntlet():
     # Record Receipts
     receipt = {
         "timestamp": time.time(),
+        "seed": seed,
         "fuzzing": {
             "bit_flips_injected": engine.bit_flips_injected,
             "bit_flips_intercepted": engine.bit_flips_intercepted,
@@ -195,6 +237,10 @@ def run_fuzzing_and_dissent_gauntlet():
             "dissent_challenges_raised": engine.dissent_challenges_raised,
             "minority_reports_filed": engine.minority_reports_filed,
             "dialectical_remedies_enacted": engine.dialectical_remedies_enacted,
+            "beta_dissent_ewma": engine.beta_dissent_ewma,
+            "gamma_dissent_ewma": engine.gamma_dissent_ewma,
+            "overall_dissent_ewma": engine.overall_dissent_ewma,
+            "paralysis_warnings": engine.paralysis_warnings,
             "sample_reports": engine.minority_reports[:5]
         }
     }

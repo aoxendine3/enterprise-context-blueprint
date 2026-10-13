@@ -50,9 +50,9 @@ def main():
         print(res_ts.stdout.strip())
         f.write(f"TS GAUNTLET STDOUT:\n{res_ts.stdout}\n")
 
-        # 3. Run Red-Team C Exploit Harness
-        print("\n⚡ [3/4] Executing 5-Vector Red-Team C Exploit Harness...")
-        cmd_red = ["npx", "tsx", "tests/RedTeamExploitGauntlet.ts"]
+        # 3. Run Red-Team C Exploit Harness (10 vectors: 5 baseline + 5 autonomous corpus)
+        print("\n⚡ [3/4] Executing 10-Vector Red-Team C Exploit Harness...")
+        cmd_red = ["node", "--experimental-strip-types", "tests/RedTeamExploitGauntlet.ts"]
         res_red = subprocess.run(cmd_red, cwd=REPO_ROOT, capture_output=True, text=True)
         print(res_red.stdout.strip())
         f.write(f"RED TEAM EXPLOIT STDOUT:\n{res_red.stdout}\n")

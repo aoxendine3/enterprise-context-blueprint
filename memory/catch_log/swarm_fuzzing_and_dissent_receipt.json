@@ -1,0 +1,72 @@
+{
+  "timestamp": 1791904526.622441,
+  "seed": 1358833174,
+  "fuzzing": {
+    "bit_flips_injected": 10000,
+    "bit_flips_intercepted": 10000,
+    "buffer_overflows_blocked": 100,
+    "monotonic_inversions_rejected": 200
+  },
+  "dissent": {
+    "consensus_votes": 1000,
+    "dissent_challenges_raised": 503,
+    "minority_reports_filed": 503,
+    "dialectical_remedies_enacted": 503,
+    "beta_dissent_ewma": 0.39227349628530034,
+    "gamma_dissent_ewma": 0.3204581157059636,
+    "overall_dissent_ewma": 0.6393155496290164,
+    "paralysis_warnings": 0,
+    "sample_reports": [
+      {
+        "proposal_id": "PROP_0000",
+        "timestamp": 1791904526.618165,
+        "dissenting_factions": [
+          "FACTION_BETA_INQUISITORS"
+        ],
+        "grounds": [
+          "Formal challenge: Throughput claims lack bit-flip proof."
+        ]
+      },
+      {
+        "proposal_id": "PROP_0002",
+        "timestamp": 1791904526.618191,
+        "dissenting_factions": [
+          "FACTION_BETA_INQUISITORS"
+        ],
+        "grounds": [
+          "Formal challenge: Throughput claims lack bit-flip proof."
+        ]
+      },
+      {
+        "proposal_id": "PROP_0006",
+        "timestamp": 1791904526.618345,
+        "dissenting_factions": [
+          "FACTION_BETA_INQUISITORS"
+        ],
+        "grounds": [
+          "Formal challenge: Throughput claims lack bit-flip proof."
+        ]
+      },
+      {
+        "proposal_id": "PROP_0007",
+        "timestamp": 1791904526.618349,
+        "dissenting_factions": [
+          "FACTION_BETA_INQUISITORS"
+        ],
+        "grounds": [
+          "Formal challenge: Throughput claims lack bit-flip proof."
+        ]
+      },
+      {
+        "proposal_id": "PROP_0009",
+        "timestamp": 1791904526.6183538,
+        "dissenting_factions": [
+          "FACTION_GAMMA_CLINICAL"
+        ],
+        "grounds": [
+          "Safety veto: State transition lacks human dignity boundary certificate."
+        ]
+      }
+    ]
+  }
+}
