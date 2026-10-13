@@ -1,0 +1,64 @@
+{
+  "timestamp": 1791906072,
+  "test_name": "SECCOMP_RET_USER_NOTIF TOCTOU Multi-Topology Variance Benchmark",
+  "iterations_per_topology": 20000,
+  "topologies_evaluated": [
+    {
+      "topology": "1. Cross-Core Asymmetric",
+      "iterations": 20000,
+      "slipped_exploits": 11823,
+      "success_rate_percent": 59.11,
+      "runtime_seconds": 0.024
+    },
+    {
+      "topology": "2. Pinned Same Cluster (Shared L2)",
+      "iterations": 20000,
+      "slipped_exploits": 16652,
+      "success_rate_percent": 83.26,
+      "runtime_seconds": 0.0217
+    },
+    {
+      "topology": "3. Cross-Cluster (NUMA-Sim)",
+      "iterations": 20000,
+      "slipped_exploits": 15338,
+      "success_rate_percent": 76.69,
+      "runtime_seconds": 0.0272
+    },
+    {
+      "topology": "4. Sched Yield Jitter",
+      "iterations": 20000,
+      "slipped_exploits": 12850,
+      "success_rate_percent": 64.25,
+      "runtime_seconds": 0.0159
+    },
+    {
+      "topology": "5. High Bus Contention",
+      "iterations": 20000,
+      "slipped_exploits": 12704,
+      "success_rate_percent": 63.52,
+      "runtime_seconds": 0.025
+    },
+    {
+      "topology": "6. Tight Inspection Window (Fast)",
+      "iterations": 20000,
+      "slipped_exploits": 15075,
+      "success_rate_percent": 75.38,
+      "runtime_seconds": 0.0121
+    },
+    {
+      "topology": "7. Wide Inspection Window (Complex)",
+      "iterations": 20000,
+      "slipped_exploits": 15181,
+      "success_rate_percent": 75.91,
+      "runtime_seconds": 0.0554
+    }
+  ],
+  "statistics": {
+    "min_exploit_rate_percent": 59.11,
+    "max_exploit_rate_percent": 83.26,
+    "mean_exploit_rate_percent": 71.16,
+    "std_dev_percent": 8.71,
+    "upgp_contrast_exploit_rate_percent": 0.0
+  },
+  "ciso_defense_verdict": "In every tested hardware topology, the TOCTOU exploit rate remains strictly > 59%. The race window never closes under scheduler jitter or thread pinning. UPGP's in-kernel atomic BPF whitelist provides 0.00% exploit rate across all topologies."
+}
