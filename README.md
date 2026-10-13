@@ -115,6 +115,12 @@ cd SSOT_Agentic_Brain
 # Run fast, zero-dependency bootstrap verification (Sub-1s, zero hangs)
 python3 ops/scripts/bootstrap_verify.py
 
+# Inspect all 22 Sovereign Citizens & council seats
+./xoras status
+
+# Run interactive task consensus loop (or single-shot with: ./xoras run "<task>")
+./xoras repl
+
 # Launch live dark-mode UPGP Telemetry Web Dashboard (http://localhost:8443)
 python3 ops/scripts/launch_upgp_dashboard.py
 
