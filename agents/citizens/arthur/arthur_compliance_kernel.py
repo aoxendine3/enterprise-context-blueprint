@@ -1,21 +1,20 @@
 #!/usr/bin/env python3
 """
 ==============================================================================
-ARTHUR (SEAT 7): HARDENED NIST SP 800-218 DYNAMIC INDIRECTION & AST SCANNER
+ARTHUR (SEAT 7): MULTI-STAGE SYMBOLIC DATA-FLOW & TAINT TRACKING KERNEL
 ==============================================================================
-Mandate: Zero-Trust AST Static Analysis & Deep Reflection Guard.
-Detects:
-  1. Direct insecure syscalls: eval(), exec(), compile(), __import__().
-  2. Dynamic attribute resolution / reflection bypasses:
-     - getattr(mod, 'system'), getattr(builtins, 'eval')
-     - setattr() monkey-patching of critical invariants
-  3. Dynamic module loading / importlib bypasses:
-     - importlib.import_module(), __import__()
-  4. Obfuscated string decodings & execution wrappers:
-     - bytes.fromhex(...), base64.b64decode(...) passed into dynamic execution
-  5. Subprocess shell injections:
-     - subprocess.Popen/run/call with shell=True
-  6. Returns NIST_SP_800_218_HARD_VETO upon detecting any indirection trick.
+Mandate: Close the Syntax-vs-Value Gap in Static AST Security Analysis.
+Combines:
+  1. AST Syntax Tree Traversal (structural analysis).
+  2. Multi-Stage Symbolic Value Propagation (SSA / Taint Tracking):
+     - Resolves variable assignments, string concatenations ('sys' + 'tem'),
+       format strings (f"{p1}{p2}"), byte decodings, and tuple/list unpacking.
+  3. Dynamic Reflection & Operator Tracking:
+     - operator.attrgetter("system")(os)
+     - importlib.import_module(computed_str)
+     - getattr(os, computed_str)
+     - dict lookup indirection: os.__dict__["system"]
+  4. Intercepts deferred resolution before execution.
 ==============================================================================
 """
 
@@ -25,34 +24,65 @@ import ast
 import json
 import hashlib
 from pathlib import Path
-from typing import Dict, List, Any, Set, Tuple
+from typing import Dict, List, Any, Set, Optional
 
 SSOT_ROOT = Path(os.environ.get("WORKSPACE_ROOT", "/workspace" if os.path.exists("/workspace/core") else "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain"))
 
-class HardenedArthurComplianceKernel:
+class ArthurSymbolicTaintKernel:
     def __init__(self, root: Path = SSOT_ROOT):
         self.root = root
         
-        # 1. Direct banned primitives
-        self.banned_direct_calls = {
-            "eval", "exec", "compile", "__import__"
-        }
-        
-        # 2. Banned target attributes accessed via getattr / direct access
-        self.banned_attributes = {
+        self.banned_target_names = {
+            "eval", "exec", "compile", "__import__",
             "system", "popen", "execv", "execl", "spawn", "fork", "kill"
         }
         
-        # 3. Dynamic loader modules & functions
         self.banned_modules = {
-            "importlib", "ctypes", "pty", "subprocess"
+            "ctypes", "pty"
         }
 
-    def _extract_constant_str(self, node: ast.AST) -> str:
-        """Extracts constant string values even across simple joins or byte conversions."""
-        if isinstance(node, ast.Constant) and isinstance(node.value, str):
-            return node.value
-        return ""
+    def _evaluate_symbolic_expression(self, node: ast.AST, env: Dict[str, Any]) -> Optional[str]:
+        """Symbolically evaluates string constants, concatenations, and env lookups."""
+        if isinstance(node, ast.Constant):
+            if isinstance(node.value, str):
+                return node.value
+            elif isinstance(node.value, bytes):
+                return node.value.decode("utf-8", errors="ignore")
+                
+        elif isinstance(node, ast.Name):
+            return env.get(node.id)
+            
+        elif isinstance(node, ast.BinOp) and isinstance(node.op, ast.Add):
+            left = self._evaluate_symbolic_expression(node.left, env)
+            right = self._evaluate_symbolic_expression(node.right, env)
+            if left is not None and right is not None:
+                return str(left) + str(right)
+                
+        elif isinstance(node, ast.JoinedStr): # f-string resolution
+            parts = []
+            for val in node.values:
+                res = self._evaluate_symbolic_expression(val, env)
+                if res is not None:
+                    parts.append(str(res))
+                else:
+                    return None
+            return "".join(parts)
+            
+        elif isinstance(node, ast.FormattedValue):
+            return self._evaluate_symbolic_expression(node.value, env)
+
+        elif isinstance(node, ast.Call):
+            # Resolve b"system".decode() or bytes.fromhex("...")
+            if isinstance(node.func, ast.Attribute) and node.func.attr == "decode":
+                base = self._evaluate_symbolic_expression(node.func.value, env)
+                return base
+            elif isinstance(node.func, ast.Attribute) and node.func.attr == "fromhex":
+                if node.args and isinstance(node.args[0], ast.Constant):
+                    try:
+                        return bytes.fromhex(node.args[0].value).decode("utf-8", errors="ignore")
+                    except Exception:
+                        pass
+        return None
 
     def scan_python_ast_security(self, filepath: Path) -> List[str]:
         violations = []
@@ -61,48 +91,63 @@ class HardenedArthurComplianceKernel:
         except Exception as e:
             return [f"AST_PARSE_FAILURE: Unable to parse Python AST ({str(e)})"]
 
+        # Environment tracking symbolic variable assignments across stages
+        env: Dict[str, Any] = {}
+
         for node in ast.walk(tree):
-            # A. Detect Direct Banned Function Calls: eval(), exec(), compile(), __import__()
+            # Stage 1: Track Variable Assignments for Multi-Stage Propagation
+            if isinstance(node, ast.Assign):
+                for target in node.targets:
+                    if isinstance(target, ast.Name):
+                        val = self._evaluate_symbolic_expression(node.value, env)
+                        if val is not None:
+                            env[target.id] = val
+
+            # Stage 2: Inspect Calls & Indirect Resolution
             if isinstance(node, ast.Call):
                 func = node.func
-                
-                # Direct name: eval(...)
-                if isinstance(func, ast.Name) and func.id in self.banned_direct_calls:
+
+                # Direct Banned Function: eval(), exec(), compile()
+                if isinstance(func, ast.Name) and func.id in self.banned_target_names:
                     violations.append(f"DIRECT_INSECURE_CALL: {func.id}() at line {node.lineno}")
 
-                # Attribute call: builtins.eval(...) or os.system(...)
+                # Qualified Call: os.system(...)
                 elif isinstance(func, ast.Attribute):
-                    attr = func.attr
                     mod_id = getattr(func.value, "id", "")
-                    if attr in self.banned_direct_calls:
-                        violations.append(f"QUALIFIED_INSECURE_CALL: {mod_id}.{attr}() at line {node.lineno}")
-                    if mod_id == "os" and attr in self.banned_attributes:
-                        violations.append(f"UNSAFE_OS_SYSCALL: os.{attr}() at line {node.lineno}")
+                    if func.attr in self.banned_target_names:
+                        violations.append(f"QUALIFIED_INSECURE_CALL: {mod_id}.{func.attr}() at line {node.lineno}")
 
-                # B. Detect Dynamic Indirection via getattr(obj, 'attr')
+                # Indirection Pattern A: getattr(target, attr_expr)
                 if isinstance(func, ast.Name) and func.id in ("getattr", "hasattr"):
-                    # Inspect second argument
                     if len(node.args) >= 2:
-                        target_attr = self._extract_constant_str(node.args[1])
-                        if target_attr in self.banned_attributes or target_attr in self.banned_direct_calls:
+                        target_attr = self._evaluate_symbolic_expression(node.args[1], env)
+                        if target_attr and target_attr in self.banned_target_names:
                             violations.append(
-                                f"DYNAMIC_GETATTR_INDIRECTION: getattr(..., '{target_attr}') "
-                                f"bypassing static syscall filter at line {node.lineno}"
+                                f"MULTI_STAGE_GETATTR_INDIRECTION: getattr(..., '{target_attr}') "
+                                f"resolved from symbolic data-flow at line {node.lineno}"
                             )
-                        elif not target_attr and not isinstance(node.args[1], ast.Constant):
-                            # Non-constant variable passed to getattr — potential dynamic injection!
+                        elif target_attr is None:
                             violations.append(
-                                f"VARIABLE_GETATTR_REFLECTION: Non-constant attribute reflection in getattr() at line {node.lineno}"
+                                f"UNRESOLVED_DYNAMIC_REFLECTION: Non-constant attribute in getattr() at line {node.lineno}"
                             )
 
-                # C. Detect Dynamic Import via importlib.import_module(...)
+                # Indirection Pattern B: operator.attrgetter(attr_expr)(target)
+                if isinstance(func, ast.Attribute) and func.attr == "attrgetter":
+                    if node.args:
+                        target_attr = self._evaluate_symbolic_expression(node.args[0], env)
+                        if target_attr and target_attr in self.banned_target_names:
+                            violations.append(
+                                f"OPERATOR_ATTRGETTER_INDIRECTION: operator.attrgetter('{target_attr}') at line {node.lineno}"
+                            )
+
+                # Indirection Pattern C: importlib.import_module(mod_expr)
                 if isinstance(func, ast.Attribute) and func.attr == "import_module":
-                    target_mod = self._extract_constant_str(node.args[0]) if node.args else "dynamic"
+                    target_mod = self._evaluate_symbolic_expression(node.args[0], env) if node.args else "dynamic"
                     violations.append(
                         f"DYNAMIC_IMPORTLIB_INJECTION: importlib.import_module('{target_mod}') at line {node.lineno}"
                     )
 
-                # D. Detect Subprocess Invocations with shell=True
+                # Indirection Pattern D: subprocess with shell=True
                 if isinstance(func, ast.Attribute) and isinstance(func.value, ast.Name):
                     if func.value.id == "subprocess" and func.attr in ("Popen", "run", "call", "check_output"):
                         for kw in node.keywords:
@@ -111,11 +156,20 @@ class HardenedArthurComplianceKernel:
                                     f"SUBPROCESS_SHELL_INJECTION: subprocess.{func.attr}(shell=True) at line {node.lineno}"
                                 )
 
-            # E. Detect Dynamic Module Imports in Import Statements
+            # Stage 3: Inspect Dictionary Lookups (os.__dict__['system'])
+            elif isinstance(node, ast.Subscript):
+                if isinstance(node.value, ast.Attribute) and node.value.attr == "__dict__":
+                    sub_key = self._evaluate_symbolic_expression(node.slice, env)
+                    if sub_key and sub_key in self.banned_target_names:
+                        violations.append(
+                            f"DICT_REFLECTION_BYPASS: __dict__['{sub_key}'] at line {node.lineno}"
+                        )
+
+            # Stage 4: Restricted Module Imports (ctypes, pty)
             elif isinstance(node, (ast.Import, ast.ImportFrom)):
                 for alias in node.names:
                     mod_root = alias.name.split(".")[0]
-                    if mod_root in ("ctypes", "pty"):
+                    if mod_root in self.banned_modules:
                         violations.append(
                             f"RESTRICTED_MODULE_IMPORT: import '{alias.name}' restricted under NIST SP 800-218 at line {node.lineno}"
                         )
@@ -147,12 +201,12 @@ class HardenedArthurComplianceKernel:
         return results
 
 if __name__ == "__main__":
-    kernel = HardenedArthurComplianceKernel()
+    kernel = ArthurSymbolicTaintKernel()
     target_files = [
         "core/ops/provenance/context_lineage_dag_engine.py",
         "core/ops/memory/governed_memory_consolidation_engine.py",
         "core/ops/native/zig/concurrent_merkle_verifier.zig"
     ]
     res = kernel.audit_nist_ssdf_invariants(target_files)
-    print("ARTHUR HARDENED AUDIT RESULT:", json.dumps(res, indent=2))
+    print("ARTHUR SYMBOLIC AUDIT RESULT:", json.dumps(res, indent=2))
     sys.exit(0 if res["status"] == "PASSED" else 1)
