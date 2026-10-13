@@ -27,48 +27,70 @@ class SovereignSanitySyncDaemon:
 
     def sync_v_and_v_documents(self) -> int:
         print("[+] Syncing V&V Technical Memorandums & Papers to Sanity Content Lake...")
-        count = 0
+        mutations = []
+        import re
         directories = [AUDITS_DIR, PAPERS_DIR]
         for dir_path in directories:
             if dir_path.exists():
                 for filepath in dir_path.glob("*.md"):
-                    doc_id = f"doc_{filepath.stem.lower()}"
+                    clean_id = re.sub(r"[^a-zA-Z0-9_\-]", "_", filepath.stem.lower())
+                    doc_id = f"doc_{clean_id}"
                     with open(filepath, "r", encoding="utf-8") as f:
                         content = f.read()
 
-                    res = self.client.create_document("sovereign_document", {
-                        "title": filepath.stem,
-                        "doc_id": filepath.name,
-                        "category": "paper" if dir_path == PAPERS_DIR else "audit_memo",
-                        "body": content[:2000],
-                        "groundedness_score": 1.0,
-                        "verified_by": ["Maxx", "Clara", "Vance", "John"],
-                        "timestamp": time.time()
-                    }, doc_id=doc_id)
-                    if res["status"] in ("success", "offline_airgap_mode"):
-                        count += 1
+                    mutations.append({
+                        "createOrReplace": {
+                            "_id": doc_id,
+                            "_type": "sovereign_document",
+                            "title": filepath.stem,
+                            "doc_id": filepath.name,
+                            "category": "paper" if dir_path == PAPERS_DIR else "audit_memo",
+                            "body": content[:2000],
+                            "groundedness_score": 1.0,
+                            "verified_by": ["Maxx", "Clara", "Vance", "John"],
+                            "timestamp": time.time()
+                        }
+                    })
+
+        count = 0
+        chunk_size = 50
+        for i in range(0, len(mutations), chunk_size):
+            chunk = mutations[i:i + chunk_size]
+            res = self.client.mutate_documents(chunk)
+            if res["status"] in ("success", "offline_airgap_mode"):
+                count += len(chunk)
+
         print(f"    ✅ Synced {count} V&V document and paper nodes.")
         return count
 
     def sync_golden_datasets(self) -> int:
         print("[+] Syncing Golden Question Set scenarios to Sanity Content Lake...")
-        count = 0
+        mutations = []
         if GOLDEN_SET_FILE.exists():
             with open(GOLDEN_SET_FILE, "r", encoding="utf-8") as f:
                 data = json.load(f)
             
             for q in data.get("questions", []):
                 doc_id = f"gqs_{q['id'].lower()}"
-                res = self.client.create_document("golden_question", {
-                    "question_id": q["id"],
-                    "domain": q.get("domain", "Enterprise"),
-                    "question": q["question"],
-                    "authoritative_context": q["authoritative_context"],
-                    "risk_tier": q.get("risk_tier", "high"),
-                    "timestamp": time.time()
-                }, doc_id=doc_id)
-                if res["status"] in ("success", "offline_airgap_mode"):
-                    count += 1
+                mutations.append({
+                    "createOrReplace": {
+                        "_id": doc_id,
+                        "_type": "golden_question",
+                        "question_id": q["id"],
+                        "domain": q.get("domain", "Enterprise"),
+                        "question": q["question"],
+                        "authoritative_context": q["authoritative_context"],
+                        "risk_tier": q.get("risk_tier", "high"),
+                        "timestamp": time.time()
+                    }
+                })
+
+        count = 0
+        if mutations:
+            res = self.client.mutate_documents(mutations)
+            if res["status"] in ("success", "offline_airgap_mode"):
+                count = len(mutations)
+
         print(f"    ✅ Synced {count} Golden Question scenarios.")
         return count
 

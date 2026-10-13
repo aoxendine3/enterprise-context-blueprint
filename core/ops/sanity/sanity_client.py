@@ -24,24 +24,38 @@ TOKEN_FILE = os.path.expanduser("~/Desktop/SSOT_Agentic_Brain/.sovereign/crypto_
 AUDIT_DIR = os.path.expanduser("~/Desktop/SSOT_Agentic_Brain/docs/audits")
 
 class SovereignSanityClient:
-    def __init__(self, project_id: str = "xoras_brain", dataset: str = "production", api_version: str = "v2021-06-07"):
-        self.project_id = os.environ.get("SANITY_PROJECT_ID", project_id)
-        self.dataset = os.environ.get("SANITY_DATASET", dataset)
+    def __init__(self, project_id: Optional[str] = None, dataset: Optional[str] = None, api_version: str = "v2021-06-07"):
+        creds_sanity = self._load_sanity_creds()
+        self.project_id = os.environ.get("SANITY_PROJECT_ID") or project_id or creds_sanity.get("project_id", "on7ly92s")
+        self.organization_id = os.environ.get("SANITY_ORGANIZATION_ID") or creds_sanity.get("organization_id", "or68rr8k0")
+        self.dataset = os.environ.get("SANITY_DATASET") or dataset or creds_sanity.get("dataset", "production")
         self.api_version = api_version
-        self.token = self._load_token()
+        self.token = self._load_token(creds_sanity)
         self.base_url = f"https://{self.project_id}.api.sanity.io/{self.api_version}"
 
-    def _load_token(self) -> str:
+    def _load_sanity_creds(self) -> Dict[str, Any]:
+        if os.path.exists(CREDENTIALS_FILE):
+            try:
+                with open(CREDENTIALS_FILE, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    return data.get("credentials", {}).get("sanity", {})
+            except Exception:
+                pass
+        return {}
+
+    def _load_token(self, creds: Optional[Dict[str, Any]] = None) -> str:
         if os.path.exists(TOKEN_FILE):
             with open(TOKEN_FILE, "r", encoding="utf-8") as f:
                 token = f.read().strip()
                 if token:
                     return token
+        if creds and creds.get("token"):
+            return creds["token"]
         if os.path.exists(CREDENTIALS_FILE):
             try:
                 with open(CREDENTIALS_FILE, "r", encoding="utf-8") as f:
-                    creds = json.load(f)
-                    return creds.get("credentials", {}).get("sanity", {}).get("token", "")
+                    data = json.load(f)
+                    return data.get("credentials", {}).get("sanity", {}).get("token", "")
             except Exception:
                 pass
         return os.environ.get("SANITY_API_TOKEN", "")
