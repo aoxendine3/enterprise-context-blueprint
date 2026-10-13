@@ -124,10 +124,38 @@ def validate_hash_pinning_and_numeric_truth(report_path: Path, content: str) -> 
         if len(results) != 10:
             errors.append(f"PRESSURE TEST INTEGRITY FAILURE: Expected 10 vectors in receipt, found {len(results)}!")
 
-        for r in results:
+        # Check Total Runtime in Section 4.2 header
+        total_rt = p_data.get("total_runtime_seconds", 0.0)
+        expected_rt_str = f"{total_rt:.2f}"
+        if expected_rt_str not in content:
+            errors.append(f"NUMERIC DRIFT: Pressure test total runtime '{expected_rt_str} Seconds' not found in report Section 4.2 header!")
+
+        # Vector-by-Vector Row Check: ID, Duration in ms, Outcome, and Details
+        for i, r in enumerate(results):
+            vec_id = f"VEC-{i+1:02d}"
             vec_name = r.get("name", "")
             if not r.get("passed"):
                 errors.append(f"PRESSURE TEST VECTOR FAILURE: {vec_name} is marked failed in receipt!")
+
+            if vec_id not in content:
+                errors.append(f"TABLE DRIFT: Vector ID '{vec_id}' not found in report Section 4.2 table!")
+
+            # Verify duration formatted to 1 decimal place with or without thousands comma
+            dur_ms = r.get("duration_s", 0.0) * 1000.0
+            dur_str_plain = f"{dur_ms:.1f} ms"
+            dur_str_comma = f"{dur_ms:,.1f} ms"
+
+            if dur_str_plain not in content and dur_str_comma not in content:
+                errors.append(
+                    f"NUMERIC DRIFT on {vec_id}: Duration '{dur_str_comma}' from receipt not found in report table row!"
+                )
+
+            # Check that table asserts PASS for passing vector
+            if r.get("passed") and f"**{vec_id}**" in content:
+                # Find line containing **vec_id**
+                vec_lines = [line for line in content.splitlines() if f"**{vec_id}**" in line]
+                if vec_lines and "PASS" not in vec_lines[0]:
+                    errors.append(f"TABLE STATUS DRIFT on {vec_id}: Table row does not indicate 'PASS'!")
 
     return errors
 
