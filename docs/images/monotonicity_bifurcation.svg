@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16"/>
+      <stop offset="100%" stop-color="#020408"/>
+    </linearGradient>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#f87171"/>
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <filter id="glowRed" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter id="glowGreen" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  
+  <!-- Subtle Grid -->
+  <g opacity="0.05" stroke="#38bdf8" stroke-width="0.5">
+    <line x1="50" y1="135" x2="1150" y2="135"/>
+    <line x1="50" y1="270" x2="1150" y2="270"/>
+    <line x1="50" y1="405" x2="1150" y2="405"/>
+    <line x1="50" y1="540" x2="1150" y2="540"/>
+    <line x1="240" y1="50" x2="240" y2="625"/>
+    <line x1="480" y1="50" x2="480" y2="625"/>
+    <line x1="720" y1="50" x2="720" y2="625"/>
+    <line x1="960" y1="50" x2="960" y2="625"/>
+  </g>
+
+  <!-- Title Header -->
+  <text x="60" y="65" font-family="-apple-system, BlinkMacSystemFont, monospace" font-weight="900" font-size="28" fill="#f8fafc" letter-spacing="1">THE MONOTONICITY BIFURCATION</text>
+  <text x="60" y="92" font-family="monospace" font-weight="600" font-size="14" fill="#94a3b8" letter-spacing="2">UNCONSTRAINED AGM CONTRACTION VS MTPO FORCED INVERSE DELTA</text>
+
+  <!-- Origin State -->
+  <g transform="translate(60, 310)">
+    <circle cx="40" cy="40" r="32" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+    <text x="40" y="36" text-anchor="middle" font-family="monospace" font-weight="800" font-size="14" fill="#f8fafc">S₀</text>
+    <text x="40" y="52" text-anchor="middle" font-family="monospace" font-size="10" fill="#94a3b8">INIT</text>
+  </g>
+
+  <!-- Split Fork Paths -->
+  <!-- Top Path (RED): Unconstrained AGM Contraction -->
+  <path d="M 132 335 C 220 335, 260 210, 340 210 L 820 210" fill="none" stroke="#ef4444" stroke-width="3" stroke-dasharray="6 4"/>
+  
+  <!-- Step S1 Red -->
+  <g transform="translate(340, 170)">
+    <circle cx="40" cy="40" r="28" fill="#1e1b24" stroke="#ef4444" stroke-width="2"/>
+    <text x="40" y="36" text-anchor="middle" font-family="monospace" font-weight="800" font-size="13" fill="#fca5a5">S₁</text>
+    <text x="40" y="50" text-anchor="middle" font-family="monospace" font-size="9" fill="#f87171">Action α</text>
+  </g>
+
+  <!-- Step S2 Red (Destructive Retraction) -->
+  <g transform="translate(560, 170)">
+    <circle cx="40" cy="40" r="28" fill="#3f1418" stroke="#ef4444" stroke-width="2.5" filter="url(#glowRed)"/>
+    <text x="40" y="34" text-anchor="middle" font-family="monospace" font-weight="900" font-size="13" fill="#ffffff">S₂*</text>
+    <text x="40" y="48" text-anchor="middle" font-family="monospace" font-size="9" fill="#fca5a5">AGM -α</text>
+  </g>
+
+  <!-- Failure Loop Arrow (Red) -->
+  <path d="M 640 198 C 690 198, 730 160, 690 130 C 640 90, 480 120, 390 170" fill="none" stroke="#f87171" stroke-width="2" stroke-dasharray="4 4"/>
+  <polygon points="385,173 397,174 391,164" fill="#f87171"/>
+  <text x="560" y="115" text-anchor="middle" font-family="monospace" font-weight="700" font-size="11" fill="#fca5a5">TRAJECTORY REORDERED (NON-MONOTONE)</text>
+
+  <!-- SAT Witness Card (Red) -->
+  <g transform="translate(840, 155)">
+    <rect width="300" height="110" rx="8" fill="#181116" stroke="#ef4444" stroke-width="2"/>
+    <text x="16" y="28" font-family="monospace" font-weight="800" font-size="13" fill="#ef4444">Z3 SMT2 WITNESS: SAT</text>
+    <text x="16" y="50" font-family="monospace" font-size="11" fill="#cbd5e1">• Postulate: K ÷ α ⊄ K</text>
+    <text x="16" y="68" font-family="monospace" font-size="11" fill="#cbd5e1">• Counter-Model: Overwrite Mutation</text>
+    <text x="16" y="92" font-family="monospace" font-weight="700" font-size="11" fill="#f87171">STATUS: CRITICAL CONTEXT DRIFT</text>
+  </g>
+
+  <!-- Bottom Path (GREEN): MTPO Enforced Inverse Delta -->
+  <path d="M 132 365 C 220 365, 260 490, 340 490 L 820 490" fill="none" stroke="#10b981" stroke-width="3"/>
+  
+  <!-- Step S1 Green -->
+  <g transform="translate(340, 450)">
+    <circle cx="40" cy="40" r="28" fill="#062d24" stroke="#10b981" stroke-width="2"/>
+    <text x="40" y="36" text-anchor="middle" font-family="monospace" font-weight="800" font-size="13" fill="#a7f3d0">S₁</text>
+    <text x="40" y="50" text-anchor="middle" font-family="monospace" font-size="9" fill="#34d399">+Δ₁</text>
+  </g>
+
+  <!-- Step S2 Green (Atomic Inverse Delta) -->
+  <g transform="translate(560, 450)">
+    <circle cx="40" cy="40" r="28" fill="#064e3b" stroke="#10b981" stroke-width="2.5" filter="url(#glowGreen)"/>
+    <text x="40" y="34" text-anchor="middle" font-family="monospace" font-weight="900" font-size="13" fill="#ffffff">S₂</text>
+    <text x="40" y="48" text-anchor="middle" font-family="monospace" font-size="9" fill="#a7f3d0">+Δ₁⁻¹</text>
+  </g>
+
+  <!-- Append Progression Arrow (Green) -->
+  <path d="M 640 490 L 820 490" fill="none" stroke="#10b981" stroke-width="2"/>
+  <polygon points="825,490 815,484 815,496" fill="#10b981"/>
+  <text x="730" y="475" text-anchor="middle" font-family="monospace" font-weight="700" font-size="11" fill="#34d399">STRICT APPEND-ONLY PREORDER</text>
+
+  <!-- UNSAT / Lean 4 Card (Green) -->
+  <g transform="translate(840, 435)">
+    <rect width="300" height="110" rx="8" fill="#091c15" stroke="#10b981" stroke-width="2"/>
+    <text x="16" y="28" font-family="monospace" font-weight="800" font-size="13" fill="#34d399">LEAN 4 KERNEL: UNSAT / PROVED</text>
+    <text x="16" y="50" font-family="monospace" font-size="11" fill="#cbd5e1">• Theorem: reaches_monotone</text>
+    <text x="16" y="68" font-family="monospace" font-size="11" fill="#cbd5e1">• Inductive Proof: 0 sorryAx</text>
+    <text x="16" y="92" font-family="monospace" font-weight="700" font-size="11" fill="#6ee7b7">TAINT: [0xBEAF0000] APPROVED</text>
+  </g>
+
+  <!-- Footer Verification Ticker -->
+  <rect x="60" y="605" width="1080" height="40" rx="6" fill="#0b1120" stroke="#1e293b"/>
+  <text x="80" y="630" font-family="monospace" font-size="11" fill="#64748b">OUTSIDE CI RECEIPT:</text>
+  <text x="215" y="630" font-family="monospace" font-size="11" fill="#38bdf8">GITHUB RUN #38708977957</text>
+  <text x="430" y="630" font-family="monospace" font-size="11" fill="#94a3b8">|</text>
+  <text x="450" y="630" font-family="monospace" font-size="11" fill="#34d399">AZURE LINUX (x86_64) + APPLE SILICON (M4 arm64): 100% GREEN</text>
+</svg>
