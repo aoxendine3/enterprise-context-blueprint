@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you utilize this architecture, formal proofs, or concurrency engine in academic research or production systems, please cite it as below."
+title: "The Sovereign Triad: High-Throughput Concurrency, Formal Verification, and Epistemic Provenance for Autonomous AI Agent Swarms"
+authors:
+  - family-names: "Oxendine"
+    given-names: "Anthony"
+    affiliation: "XORAS Systems"
+  - name: "The Sovereign Lead 9 Council"
+    affiliation: "XORAS Autonomous Verification Group"
+version: 4.2.0
+date-released: 2026-10-15
+url: "https://github.com/aoxendine3/enterprise-context-blueprint"
+repository-code: "https://github.com/aoxendine3/enterprise-context-blueprint"
+license: MIT
+keywords:
+  - "autonomous-agents"
+  - "concurrency-control"
+  - "formal-verification"
+  - "smt-solvers"
+  - "z3"
+  - "merkle-dag"
+  - "saga-pattern"
+  - "usenix-atc"
