@@ -11,7 +11,10 @@ $(TARGET): $(SRCS)
 	$(CC) $(CFLAGS) -o $(TARGET) $(SRCS)
 
 test: $(TARGET)
+	@echo "=== [1/2] Bare-Metal C11 Concurrency Stress Test ==="
 	@./$(TARGET)
+	@echo "=== [2/2] Upstream Z3 Formal Pre-Order Invariant Audit ==="
+	@python3 -m unittest discover -s tests -v
 
 clean:
 	rm -rf bin
