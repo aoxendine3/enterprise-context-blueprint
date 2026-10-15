@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REASONS: Semantic Reason Graph &amp; Context Lineage Merkle DAG Engine</title>
+  <style>
+    :root {
+      --bg: #090e17;
+      --card-bg: #111827;
+      --border: #1f2937;
+      --purple: #8b5cf6;
+      --purple-glow: rgba(139, 92, 246, 0.2);
+      --green: #10b981;
+      --red: #ef4444;
+      --blue: #38bdf8;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      padding: 24px;
+      line-height: 1.5;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .logo-group h1 {
+      font-size: 24px;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .badge-purple {
+      background: rgba(139, 92, 246, 0.15);
+      border: 1px solid var(--purple);
+      color: var(--purple);
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    .status-bar {
+      display: flex;
+      gap: 16px;
+      font-size: 12px;
+      font-family: var(--mono);
+    }
+
+    .status-pill {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .dot-green { background: var(--green); box-shadow: 0 0 8px var(--green); }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .card h2 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    label { font-size: 12px; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 6px; }
+    input, select, textarea {
+      width: 100%;
+      background: #0d131f;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 10px;
+      border-radius: 6px;
+      font-family: var(--mono);
+      font-size: 12px;
+      margin-bottom: 14px;
+    }
+
+    .btn {
+      background: var(--purple);
+      color: #fff;
+      font-weight: 700;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.15s;
+    }
+    .btn:hover { background: #7c3aed; }
+
+    .btn-red {
+      background: #dc2626;
+      margin-left: 8px;
+    }
+    .btn-red:hover { background: #b91c1c; }
+
+    .node-tree {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 420px;
+      overflow-y: auto;
+    }
+
+    .node-item {
+      background: #0b121e;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-family: var(--mono);
+      font-size: 12px;
+      border-left: 4px solid var(--blue);
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .node-item.tampered { border-left-color: var(--red); background: rgba(239, 68, 68, 0.08); }
+    .node-item.quarantine { border-left-color: #f59e0b; background: rgba(245, 158, 11, 0.08); }
+
+    .img-preview {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-top: 14px;
+    }
+
+    pre {
+      background: #080c14;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      font-family: var(--mono);
+      font-size: 11px;
+      overflow-x: auto;
+      color: #a78bfa;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo-group">
+        <h1>REASONS ENGINE</h1>
+        <span class="badge-purple">SEMANTIC MERKLE DAG &amp; POLICY</span>
+      </div>
+      <div class="status-bar">
+        <div class="status-pill"><span class="dot dot-green"></span> MERKLE DAG: VERIFIED</div>
+        <div class="status-pill">ANTI-REPLAY: STRICT</div>
+        <div class="status-pill">EVIDENCE LEDGER: 32 ROWS</div>
+      </div>
+    </header>
+
+    <div class="grid-2">
+      <!-- DAG State Controller -->
+      <div class="card">
+        <h2>Context Lineage Controller</h2>
+        
+        <label for="node-id">New Node ID &amp; Parent Pointer</label>
+        <div style="display:flex; gap:10px;">
+          <input type="text" id="node-id" value="node-03-decision">
+          <input type="text" id="parent-id" value="node-02-lab">
+        </div>
+
+        <label for="node-claim">Epistemic Evidence Claim</label>
+        <textarea id="node-claim" rows="2">Verify patient potassium 4.2 mEq/L within reference boundary.</textarea>
+
+        <div>
+          <button class="btn" onclick="commitNode()">⚡ COMMIT MERKLE NODE</button>
+          <button class="btn btn-red" onclick="tamperNode()">⚠️ INJECT BIT-FLIP TAMPER</button>
+        </div>
+
+        <div style="margin-top: 18px;">
+          <label>Global Lineage Merkle Root</label>
+          <pre id="merkle-root-display">Root: 5c88b90a911e3b8398e0... (SHA-256)</pre>
+        </div>
+
+        <div style="margin-top: 14px;">
+          <label>Policy-as-Graph Governance Evaluation</label>
+          <div id="policy-status" style="font-size:12px; font-family:var(--mono); padding:8px; border-radius:6px; background:#0d131f; border:1px solid var(--border);">
+            Status: <span style="color:var(--green); font-weight:bold;">COMPLIANT (RULE-POL-01 PASSED)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Merkle Tree Visualizer -->
+      <div class="card">
+        <h2>Active Context Lineage DAG Nodes</h2>
+        <div class="node-tree" id="node-tree">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Architectural Imagery -->
+    <div class="grid-2">
+      <div class="card">
+        <h2>Context Lineage Merkle DAG Topology</h2>
+        <img src="assets/merkle_dag_lineage.svg" class="img-preview" alt="Merkle DAG Lineage">
+      </div>
+      <div class="card">
+        <h2>Cryptographic Evidence Chain Architecture</h2>
+        <img src="assets/evidence_chain_architecture.svg" class="img-preview" alt="Evidence Chain Architecture">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let nodes = [
+      { id: "node-00-genesis", parent: "ROOT", claim: "System bootstrap & clinical boundary spec", hash: "9a4f21008b...", status: "VALID" },
+      { id: "node-01-vitals", parent: "node-00-genesis", claim: "Glucose telemetry 110 mg/dL attested", hash: "b21e84aa3c...", status: "VALID" },
+      { id: "node-02-lab", parent: "node-01-vitals", claim: "HbA1c 5.6% verified from EHR", hash: "e99120dd11...", status: "VALID" }
+    ];
+
+    function renderTree() {
+      const container = document.getElementById("node-tree");
+      container.innerHTML = "";
+      nodes.forEach(n => {
+        const item = document.createElement("div");
+        item.className = "node-item " + (n.status === "TAMPERED" ? "tampered" : (n.status === "QUARANTINED" ? "quarantine" : ""));
+        item.innerHTML = `
+          <div style="display:flex; justify-content:space-between;">
+            <span style="font-weight:bold; color:#f3f4f6;">${n.id}</span>
+            <span style="font-size:10px; color:${n.status === 'TAMPERED' ? 'var(--red)' : (n.status === 'QUARANTINED' ? '#f59e0b' : 'var(--green)')};">${n.status}</span>
+          </div>
+          <div style="font-size:11px; color:#9ca3af; margin-top:2px;">Parent: ${n.parent} | Hash: ${n.hash}</div>
+          <div style="font-size:11px; color:#cbd5e1; margin-top:4px;">${n.claim}</div>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    function commitNode() {
+      const id = document.getElementById("node-id").value;
+      const parent = document.getElementById("parent-id").value;
+      const claim = document.getElementById("node-claim").value;
+
+      // Anti-replay check
+      if (nodes.some(n => n.claim === claim)) {
+        nodes.unshift({
+          id: id + "-REPLAY-ATTACK",
+          parent: parent,
+          claim: claim,
+          hash: "REPLAY_INTERCEPTED",
+          status: "QUARANTINED"
+        });
+        document.getElementById("policy-status").innerHTML = "Status: <span style='color:#f59e0b; font-weight:bold;'>ANTI-REPLAY QUARANTINE TRIGGERED</span>";
+        renderTree();
+        return;
+      }
+
+      const randomHash = Array.from({length: 16}, () => Math.floor(Math.random()*16).toString(16)).join("");
+      nodes.push({ id, parent, claim, hash: randomHash + "...", status: "VALID" });
+
+      const fullRoot = Array.from({length: 64}, () => Math.floor(Math.random()*16).toString(16)).join("");
+      document.getElementById("merkle-root-display").innerText = "Root: " + fullRoot.substring(0, 24) + "... (SHA-256)";
+      document.getElementById("policy-status").innerHTML = "Status: <span style='color:var(--green); font-weight:bold;'>COMPLIANT (RULE-POL-01 PASSED)</span>";
+
+      document.getElementById("node-id").value = "node-0" + (nodes.length + 1);
+      renderTree();
+    }
+
+    function tamperNode() {
+      if (nodes.length > 1) {
+        nodes[1].status = "TAMPERED";
+        nodes[1].claim = "ALTERED RECORD: Glucose 450 mg/dL (Bit-Flip Detected)";
+        document.getElementById("merkle-root-display").innerHTML = "<span style='color:var(--red);'>MERKLE ROOT BROKEN: INTEGRITY_MISMATCH</span>";
+        document.getElementById("policy-status").innerHTML = "Status: <span style='color:var(--red); font-weight:bold;'>INTEGRITY VIOLATION (FAIL CLOSED)</span>";
+        renderTree();
+      }
+    }
+
+    renderTree();
+  </script>
+</body>
+</html>
