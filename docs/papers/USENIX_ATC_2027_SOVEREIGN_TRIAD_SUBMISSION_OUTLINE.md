@@ -109,7 +109,7 @@ All results below come from `dist/sovereign_falsification_suite/run_falsificatio
 | Saga implementation, 5,000 random logs | prefix preserved and effect undone | 5,000 / 5,000 |
 | Mutant implementation, same 5,000 logs | must be detected | 251 / 5,000 pass (detected) |
 
-*v2 was executed in CI on Linux x86_64 (Azure) and macOS-14 arm64 GitHub runners: run [38707130576](https://github.com/aoxendine3/enterprise-context-blueprint/actions/runs/38707130576). Receipts were downloaded and inspected: formal results and property-test counts are identical on both runners (the RNG is seeded). The v1 run (38705410503) is superseded: v1 could not fail.*
+*The verification suite and Lean 4 kernel check executed in CI on Linux x86_64 (Azure) and macOS-14 arm64 GitHub runners: run [38708977957](https://github.com/aoxendine3/enterprise-context-blueprint/actions/runs/38708977957). Both runners compiled the pinned Lean 4 toolchain (v4.35.0), verified that `step_monotone` and `reaches_monotone` hold without `sorryAx`, verified non-monotonicity of destructive contraction and mutants, and verified 1:1 differential agreement with Z3 SMT2 outputs.*
 
 ### 5.2 Storage: WAL Growth Curve (measured)
 SQLite WAL, autocheckpoint disabled, one commit per mutation. Baseline: a single JSON document rewritten on each mutation. Typed: one row per edge.
@@ -137,7 +137,7 @@ The ratio is not a constant: the baseline is quadratic in log length because it 
 * **Reversibility Domain:** Mechanical Saga inverses are strictly bounded to operations with pre-registered algebraic inverse functions ($\Delta^{-1}$) or deterministic compiler AST rules. For non-invertible external side effects (e.g., third-party HTTP payments, external webhook emissions, physical actuation), mechanical rollback cannot apply; runtime advisory notifications and cognitive compensatory re-planning remain strictly necessary.
 * **Axiomatic SMT2 Limits:** The Z3 SMT2 trajectory monotonicity proof verifies the declared QF_LIA state-transition axioms. It does not model bare-metal kernel failures, power loss during fsync, or weakly-ordered hardware memory bus reordering.
 * **The Human Protection First Invariant:** In compliance with Sovereign Log Entry #078, mechanical fail-closed gates protect human safety and clinical integrity above operational throughput.
-* **Open-Source Availability & External Falsification:** Complete clean-room falsification suite and GitHub Actions matrix runs are publicly available at `https://github.com/aoxendine3/enterprise-context-blueprint/actions/runs/38707130576` (v2, fail-closed suite).
+* **Open-Source Availability & External Falsification:** Complete clean-room falsification suite, Lean 4 proofs, and GitHub Actions matrix runs are publicly available at `https://github.com/aoxendine3/enterprise-context-blueprint/actions/runs/38708977957` (fail-closed suite with Lean 4 kernel verification).
 
 ---
 
