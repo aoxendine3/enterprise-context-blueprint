@@ -93,3 +93,13 @@ Modern GitHub Rulesets supersede legacy branch protections to enforce fail-close
    ```
 4. **Push with OS Keychain:**
    Run `git push origin <branch>`. The macOS Keychain modal or terminal prompt will securely transmit credentials without logging them to shell history or scripts.
+
+---
+
+## 5. Epistemic Reporting Standard & Bounded Claims Invariant
+
+To ensure institutional credibility under adversarial peer review (USENIX, IEEE, defense evaluation):
+- **Prohibited Claim Framing:** Never assert unconditioned, sweeping absolutes such as *"mathematically zero defects"*, *"infallible"*, or *"unhackable"*. (As Dijkstra noted, testing demonstrates the presence of defects, not their absence, and formal theorems hold strictly within their declared axiomatic models).
+- **Mandated Claim Framing:** Always specify the exact empirical parameters, hardware baseline, and formal boundary conditions under which the results hold:
+  > *"All 7 validation suites passed under specified boundary conditions (Apple Silicon M4 bare-metal, C11 lock-free stdatomic concurrency, Z3 SMT-LIB v2 formal theorems, Ed25519 cryptographic signatures)."*
+- **Skeptic-Resistant Verification:** Every claim must provide the direct, one-command reproduction bitstring (e.g., `z3 proofs/mtpo_preorder_invariant.smt2 -> unsat`, `make test -> 14.8M ops/sec`) so reviewers can independently falsify or confirm the result in seconds.
