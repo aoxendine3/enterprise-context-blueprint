@@ -1,0 +1,41 @@
+{
+  "trials_per_fault": 100,
+  "faults": {
+    "OUT_OF_ORDER_WRITE_COLLISION": {
+      "mechanical": {
+        "avg_tokens": 0,
+        "avg_wall_clock_ms": 0.04,
+        "convergence_rate_pct": 100.0
+      },
+      "llm_self_patch": {
+        "avg_tokens": 2528.2,
+        "avg_wall_clock_ms": 3606.07,
+        "convergence_rate_pct": 95.0
+      }
+    },
+    "AST_INVARIANT_SYNTAX_VIOLATION": {
+      "mechanical": {
+        "avg_tokens": 0,
+        "avg_wall_clock_ms": 0.0657,
+        "convergence_rate_pct": 100.0
+      },
+      "llm_self_patch": {
+        "avg_tokens": 2711.8,
+        "avg_wall_clock_ms": 3593.92,
+        "convergence_rate_pct": 96.0
+      }
+    },
+    "EPISTEMIC_STATE_CONTRADICTION": {
+      "mechanical": {
+        "avg_tokens": 0,
+        "avg_wall_clock_ms": 0.04,
+        "convergence_rate_pct": 100.0
+      },
+      "llm_self_patch": {
+        "avg_tokens": 2612.5,
+        "avg_wall_clock_ms": 3560.29,
+        "convergence_rate_pct": 96.0
+      }
+    }
+  }
+}

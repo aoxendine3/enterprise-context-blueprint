@@ -1,0 +1,51 @@
+name: Outside Falsification Gauntlet (Independent Hardware Matrix)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'dist/sovereign_falsification_suite/**'
+      - 'core/ops/security/agm_mtpo_monotonicity.smt2'
+      - 'core/ops/benchmarks/failure_injection_harness.py'
+      - '.github/workflows/outside_falsification_gauntlet.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  outside-hardware-falsification:
+    name: Clean-Room Falsification (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-14]
+
+    steps:
+      - name: Checkout Codebase
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Z3 SMT Solver
+        run: |
+          python -m pip install --upgrade pip
+          pip install z3-solver
+
+      - name: Run Clean-Room Falsification Suite
+        run: |
+          echo "================================================================================"
+          echo "EXECUTING CLEAN-ROOM FALSIFICATION ON OUTSIDE HOST: ${{ matrix.os }}"
+          echo "================================================================================"
+          python dist/sovereign_falsification_suite/run_falsification.py
+
+      - name: Upload Clean-Room Attestation Receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: cleanroom-receipt-${{ matrix.os }}
+          path: cleanroom_receipt_*.json
+          retention-days: 30

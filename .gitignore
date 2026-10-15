@@ -43,8 +43,10 @@ xmars_dag_matrix.bin
 *.bin
 ops/scripts/fullscreen_ui/ast_nodes.json
 .sovereign/
-dist/
+dist/*
 !dist/sovereign_proof_enclave_v1.0.0.tar.gz
+!dist/sovereign_falsification_suite/
+!dist/sovereign_falsification_suite/**
 ops/native/build/
 C:
 archives/the_barn/windows_path_leak/

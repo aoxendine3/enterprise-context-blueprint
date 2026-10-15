@@ -1,0 +1,14 @@
+{
+  "operations": 1000,
+  "json_method": {
+    "elapsed_sec": 0.3736,
+    "wal_size_bytes": 4218912,
+    "wal_size_kb": 4120.03
+  },
+  "typed_link_method": {
+    "elapsed_sec": 0.2132,
+    "wal_size_bytes": 1087712,
+    "wal_size_kb": 1062.22
+  },
+  "wal_reduction_factor": 3.88
+}
