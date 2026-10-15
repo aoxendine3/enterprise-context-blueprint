@@ -14,7 +14,7 @@
 
 As large language model (LLM) agents transition from single-turn chat interfaces to autonomous multi-agent operating swarms, classical concurrency control protocols fail. Traditional Two-Phase Locking (2PL) induces multi-minute deadlocks during token generation, while Optimistic Concurrency Control (OCC) aborts conflicting transactions, discarding expensive inference compute and triggering cascading retry storms. Recent academic proposals (e.g., CoAgent) introduce static pre-orders but rely on the LLM itself as the runtime repair mechanism, trading transaction aborts for unbounded inference latency, token bloat, and stochastic non-convergence.
 
-We present **MTPO (Monotonic Trajectory Pre-Order)**, a concurrency design for multi-agent swarms that couples monotonic serialization ranks ($\sigma$) with a three-phase Saga protocol in which every speculative mutation pre-registers an algebraic inverse ($\Delta^{-1}$). We give a Z3 (QF_ALIA) encoding in which trajectory monotonicity, defined as prefix-immutability of an append-only log, is *derived* from the semantics of saga operations rather than assumed: the MTPO model is `unsat`, a companion model of destructive AGM contraction is `sat` with a concrete witness, and a mutant that overwrites history flips back to `sat`. The result holds for the abstract log model only. We also report a typed-link storage layout whose SQLite WAL growth is $2.3\times$–$9.6\times$ smaller than a monolithic-JSON baseline over 100–1,000 commits, a ratio that grows with log length because the baseline rewrites a growing document. We do not yet report a live LLM-in-the-loop comparison, sustained fault injection, or multi-writer contention results; these are stated as future work. Mechanical recovery applies only where a deterministic inverse or compiler invariant is pre-declared.
+We present **MTPO (Monotonic Trajectory Pre-Order)**, a concurrency design for multi-agent swarms that couples monotonic serialization ranks ($\sigma$) with a three-phase Saga protocol in which every speculative mutation pre-registers an algebraic inverse ($\Delta^{-1}$). We give a Z3 (QF_ALIA) encoding in which trajectory monotonicity, defined as prefix-immutability of an append-only log, is *derived* from the semantics of saga operations rather than assumed: the MTPO model is `unsat`, a companion model of destructive AGM contraction is `sat` with a concrete witness, and a mutant that overwrites history flips back to `sat`. The result holds for the abstract log model only. We also report a typed-link storage layout whose SQLite WAL growth is $2.3\times$–$16\times$ smaller than a monolithic-JSON baseline over 100–1,000 commits (range across macOS arm64 and Linux x86_64), a ratio that grows with log length because the baseline rewrites a growing document and varies by platform. We do not yet report a live LLM-in-the-loop comparison, sustained fault injection, or multi-writer contention results; these are stated as future work. Mechanical recovery applies only where a deterministic inverse or compiler invariant is pre-declared.
 
 ---
 
@@ -109,16 +109,18 @@ All results below come from `dist/sovereign_falsification_suite/run_falsificatio
 | Saga implementation, 5,000 random logs | prefix preserved and effect undone | 5,000 / 5,000 |
 | Mutant implementation, same 5,000 logs | must be detected | 251 / 5,000 pass (detected) |
 
-*Pending re-run of v2 in CI; v1 CI receipts (run 38705410503) confirmed `unsat` on both runners but v1 could not fail and is superseded.*
+*v2 was executed in CI on Linux x86_64 (Azure) and macOS-14 arm64 GitHub runners: run [38707130576](https://github.com/aoxendine3/enterprise-context-blueprint/actions/runs/38707130576). Receipts were downloaded and inspected: formal results and property-test counts are identical on both runners (the RNG is seeded). The v1 run (38705410503) is superseded: v1 could not fail.*
 
 ### 5.2 Storage: WAL Growth Curve (measured)
 SQLite WAL, autocheckpoint disabled, one commit per mutation. Baseline: a single JSON document rewritten on each mutation. Typed: one row per edge.
 
-| Commits | Monolithic JSON | Typed links | Ratio |
-| ---: | ---: | ---: | ---: |
-| 100 | 954 KB | 414 KB | 2.3× |
-| 500 | 13.9 MB | 2.3 MB | 6.0× |
-| 1,000 | 47.0 MB | 4.9 MB | 9.6× |
+| Commits | Monolithic JSON | Typed links | Ratio (macOS arm64) | Ratio (Linux x86_64, CI) |
+| ---: | ---: | ---: | ---: | ---: |
+| 100 | 954 KB | 414 KB | 2.3× | 2.3× |
+| 500 | 13.9 MB | 2.3 MB | 6.0× | 8.8× |
+| 1,000 | 47.0 MB | 4.9 MB | 9.6× | 16.0× |
+
+Byte columns are from the macOS arm64 run. The ratio varies with log length and with platform, so no single reduction factor is claimed; we attribute the platform difference to filesystem and page-handling behaviour but have not isolated the cause.
 
 The ratio is not a constant: the baseline is quadratic in log length because it rewrites a growing document. A fixed figure from one run (an earlier draft's "3.88×") depended on checkpoint timing and is withdrawn. Typed links cost roughly 4–5 KB of WAL per commit, since SQLite logs whole pages, so a "56-byte edge" describes the logical row, not WAL cost. A fairer baseline (one row per edge in a conventional relational schema) is future work and would be expected to narrow the gap substantially.
 
@@ -135,7 +137,7 @@ The ratio is not a constant: the baseline is quadratic in log length because it 
 * **Reversibility Domain:** Mechanical Saga inverses are strictly bounded to operations with pre-registered algebraic inverse functions ($\Delta^{-1}$) or deterministic compiler AST rules. For non-invertible external side effects (e.g., third-party HTTP payments, external webhook emissions, physical actuation), mechanical rollback cannot apply; runtime advisory notifications and cognitive compensatory re-planning remain strictly necessary.
 * **Axiomatic SMT2 Limits:** The Z3 SMT2 trajectory monotonicity proof verifies the declared QF_LIA state-transition axioms. It does not model bare-metal kernel failures, power loss during fsync, or weakly-ordered hardware memory bus reordering.
 * **The Human Protection First Invariant:** In compliance with Sovereign Log Entry #078, mechanical fail-closed gates protect human safety and clinical integrity above operational throughput.
-* **Open-Source Availability & External Falsification:** Complete clean-room falsification suite and GitHub Actions matrix runs are publicly available at `https://github.com/aoxendine3/enterprise-context-blueprint/actions/runs/38705410503`.
+* **Open-Source Availability & External Falsification:** Complete clean-room falsification suite and GitHub Actions matrix runs are publicly available at `https://github.com/aoxendine3/enterprise-context-blueprint/actions/runs/38707130576` (v2, fail-closed suite).
 
 ---
 
