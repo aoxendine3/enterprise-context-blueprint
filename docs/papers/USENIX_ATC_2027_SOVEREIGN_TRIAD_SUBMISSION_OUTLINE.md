@@ -14,7 +14,7 @@
 
 As large language model (LLM) agents transition from single-turn chat interfaces to autonomous multi-agent operating swarms, classical concurrency control protocols fail. Traditional Two-Phase Locking (2PL) induces multi-minute deadlocks during token generation, while Optimistic Concurrency Control (OCC) aborts conflicting transactions, discarding expensive inference compute and triggering cascading retry storms. Recent academic proposals (e.g., CoAgent) introduce static pre-orders but rely on the LLM itself as the runtime repair mechanism, trading transaction aborts for unbounded inference latency, token bloat, and stochastic non-convergence.
 
-We present **MTPO (Monotonic Trajectory Pre-Order)**, a zero-abort concurrency architecture and bare-metal runtime for high-density multi-agent swarms. MTPO couples strict monotonic serialization ranks ($\sigma$) with a three-phase Saga protocol that pre-registers deterministic algebraic inverses ($\Delta^{-1}$) before speculative state mutation. We formally prove via Z3 SMT2 that while classical Alchourrón–Gärdenfors–Makinson (AGM) belief revision allows non-monotonic history rewrites (`SAT`), MTPO Saga-constrained revision guarantees strict trajectory monotonicity (`UNSAT`). To eliminate database write amplification during continuous swarm coordination, we introduce a **Zero-Bloat Typed Link Memory Fabric** combining Oracle-style typed edge tuples with SurrealDB delta reconciliation, reducing SQLite WAL growth by $3.88\times$. Under a synthetic fault injection harness across three structured failure classes ($N=100$ trials per class) on Apple Silicon M4 bare-metal hardware, mechanical recovery through pre-registered inverse deltas and deterministic AST gating resolves evaluated collisions in $0.040\,\text{ms}$ to $0.065\,\text{ms}$ with zero token overhead and 100.0% convergence, compared to an average of $3,586\,\text{ms}$, 2,617 tokens, and a 95.6% convergence rate for modeled LLM advisory prompt-and-retry loops. We bound this claim: mechanical healing is applicable where deterministic inverse functions and compiler invariants are pre-declared; open-ended semantic re-planning retains a necessary role for high-level agent cognition.
+We present **MTPO (Monotonic Trajectory Pre-Order)**, a concurrency design for multi-agent swarms that couples monotonic serialization ranks ($\sigma$) with a three-phase Saga protocol in which every speculative mutation pre-registers an algebraic inverse ($\Delta^{-1}$). We give a Z3 (QF_ALIA) encoding in which trajectory monotonicity, defined as prefix-immutability of an append-only log, is *derived* from the semantics of saga operations rather than assumed: the MTPO model is `unsat`, a companion model of destructive AGM contraction is `sat` with a concrete witness, and a mutant that overwrites history flips back to `sat`. The result holds for the abstract log model only. We also report a typed-link storage layout whose SQLite WAL growth is $2.3\times$–$9.6\times$ smaller than a monolithic-JSON baseline over 100–1,000 commits, a ratio that grows with log length because the baseline rewrites a growing document. We do not yet report a live LLM-in-the-loop comparison, sustained fault injection, or multi-writer contention results; these are stated as future work. Mechanical recovery applies only where a deterministic inverse or compiler invariant is pre-declared.
 
 ---
 
@@ -26,10 +26,10 @@ We present **MTPO (Monotonic Trajectory Pre-Order)**, a zero-abort concurrency a
   * OCC aborts and retries on write-after-read conflicts, exponentially wasting token budgets and driving agent execution into live-lock loops.
 * **The CoAgent Paradox:** CoAgent (SJTU, 2026) eliminates transaction aborts by establishing a total agent rank order and delivering one-way advisory notifications. However, CoAgent delegates error recovery to the LLM. In practice, prompt-based self-healing exhibits stochastic failure, hallucination drift, and massive token costs.
 * **The Sovereign Triad Contribution:**
-  1. **Formal SMT2 Proof:** A machine-checked proof that MTPO preserves trajectory monotonicity under AGM belief revision, identifying exact conditions where naive belief contraction breaks causal history.
-  2. **Deterministic Mechanical Healing:** Pre-registering algebraic inverse operations ($\Delta^{-1}$) within the REASONS execution canvas, guaranteeing instant, token-free state rollback and AST invariant enforcement via MARS.
-  3. **Zero-Bloat Typed Link Geometry:** An in-memory cache-aligned `HexCell` lattice (3,200-byte stride) coupled with 56-byte typed relational edges in `world_file.db`, eliminating SQLite WAL churn.
-  4. **Empirical Validation:** Fault injection benchmarks demonstrating a $89,000\times$ speedup in fault remediation with zero inference overhead.
+  1. **Derived Monotonicity Result:** A Z3 encoding in which prefix-immutability follows from the semantics of saga operations, with a satisfiable counter-model for destructive contraction and a mutation check showing the proof is not vacuous (abstract log model only).
+  2. **Inverse-Registration Discipline:** Pre-registering an algebraic inverse ($\Delta^{-1}$) before each speculative mutation, so that undo for *reversible* operations is mechanical. Recovery cost and convergence against LLM self-patching are not yet measured.
+  3. **Typed-Link Storage Layout:** A typed-edge layout in `world_file.db` whose WAL growth is lower than a monolithic-JSON baseline (measured curve, §5.2). The layout does not remove SQLite's single-writer limit.
+  4. **Reproducible Verification Artifacts:** A fail-closed clean-room suite (expected solver results pre-declared, mutation check, property tests) executed in CI on Linux x86_64 and macOS arm64.
 
 ---
 
@@ -58,12 +58,12 @@ We present **MTPO (Monotonic Trajectory Pre-Order)**, a zero-abort concurrency a
 * Trajectory monotonicity condition:
   $$\forall e_i, e_j \in \mathcal{E}, \quad e_i \prec_{\tau} e_j \implies \text{seq}(e_i) \le \text{seq}(e_j)$$
 
-### 3.2 The AGM Monotonicity Theorem (Vance Proof)
-* **Theorem 1 (Destructive Contraction Invalidation):** Unconstrained AGM contraction permits retroactive deletion of historical states committed by lower-ranked agents:
-  $$\exists t_a < t_b : \text{History}(t_a) \neq \text{History}'(t_a) \quad \text{via} \quad A_b \div \phi \implies \text{SAT (Monotonicity Violation)}$$
-* **Theorem 2 (MTPO Saga Contraction Invariant):** Enforcing contraction as an append-only algebraic inverse $\Delta_a^{-1}$ committed strictly at $t_{current} \ge t_b$ preserves history immutability in the Merkle DAG:
-  $$\forall \text{contractions}, \quad \text{History}(t_a) = \text{const} \implies \text{UNSAT (Monotonicity Preserved)}$$
-* Automated Z3 verification results: `core/ops/security/agm_mtpo_monotonicity.smt2` verified `unsat` in $90.76\,\text{ms}$.
+### 3.2 Monotonicity as a Derived Property
+* **Model.** A trajectory is a log $H:\mathbb{Z}\to\mathbb{Z}$ with length $n$. Expansion is $H' = H[n \mapsto d]$. Saga contraction of entry $k<n$ is $H' = H[n \mapsto -H[k]]$ (append the inverse; never overwrite). Monotonicity means $n' \ge n \wedge \forall i<n.\ H'[i]=H[i]$.
+* **Theorem 1 (saga operations are monotone).** The negation of monotonicity under expansion or saga contraction is `unsat` in QF_ALIA (`agm_mtpo_monotonicity.smt2`). It follows from the array read-over-write axiom, not from an assumption that MTPO is monotone. (An earlier encoding assumed this as an axiom and was circular; it is withdrawn.)
+* **Theorem 2 (destructive contraction is not monotone).** With contraction defined as $H' = H[k \mapsto 0]$, the same negation is `sat` (`agm_unconstrained_violation.smt2`, witness $n{=}1,k{=}0$).
+* **Non-vacuity check.** Changing saga contraction to overwrite entry $k$ makes the MTPO file `sat`; the suite verifies this on every run.
+* **Scope.** This is a statement about an abstract append-only log. It does not by itself establish that a concrete implementation, with concurrent agents, ranks, and crashes, is monotone. Modeling rank-ordered concurrent writers is open work.
 
 ---
 
@@ -85,10 +85,10 @@ We present **MTPO (Monotonic Trajectory Pre-Order)**, a zero-abort concurrency a
 * **Control Plane (0.01% throughput):** Formal Z3 SMT2 invariant gates, Ed25519 payload signing, Merkle leaf commitment.
 * **Tensor Plane (99.99% throughput):** Lock-free, zero-copy POSIX shared memory ring (`xoras_shm_ring.zig`) aligned to Apple Silicon M4 128-byte cache lines.
 
-### 4.2 The Zero-Bloat Typed Link Memory Fabric (Max Spec)
-* Synthesis of Oracle property graph edge typing with SurrealDB delta merging.
-* Schema: Fixed 56-byte binary tuples in `typed_links` (`source_id`, `target_id`, `link_type`, `rank`, `timestamp`, `signature`).
-* Benchmarked WAL efficiency: 3.88x reduction in WAL byte growth compared to traditional JSON document rewrites.
+### 4.2 Typed-Link Storage Layout
+* Edge typing in the style of property-graph models, with delta-style updates rather than whole-document rewrites.
+* Logical schema: one row per edge in `typed_links` (`source_id`, `target_id`, `link_type`, `rank`, `timestamp`, `signature`).
+* Measured WAL behaviour is given in §5.2 as a curve; no single reduction factor is claimed.
 
 ### 4.3 Clara Bidirectional Artifact Provenance Engine
 * Merkle-DAG lineage tracking for every code, configuration, and audit artifact.
@@ -98,25 +98,36 @@ We present **MTPO (Monotonic Trajectory Pre-Order)**, a zero-abort concurrency a
 
 ## 5. Evaluation
 
-### 5.1 Fault Injection Benchmark (Orion Harness)
-We evaluate 100 trials across three failure classes on Apple Silicon M4:
-1. `OUT_OF_ORDER_WRITE_COLLISION`
-2. `AST_INVARIANT_SYNTAX_VIOLATION`
-3. `EPISTEMIC_STATE_CONTRADICTION`
+### 5.1 Verification Results (measured)
+All results below come from `dist/sovereign_falsification_suite/run_falsification.py` (v2), which exits non-zero if any pre-declared expectation fails. Executed locally (macOS arm64) and in CI (Linux x86_64, macOS arm64 GitHub runners).
 
-| Fault Class | Remediation Strategy | Token Cost | Wall-Clock Latency | Convergence Rate |
-| :--- | :--- | :--- | :--- | :--- |
-| **Write Collision** | **Mechanical Heal (MTPO)** | **0 tokens** | **0.040 ms** | **100.0%** |
-| | LLM Self-Patch (Advisory) | 2,528 tokens | 3,606.07 ms | 95.0% |
-| **AST Invariant** | **Mechanical Heal (MARS)** | **0 tokens** | **0.065 ms** | **100.0%** |
-| | LLM Self-Patch (Advisory) | 2,711 tokens | 3,593.92 ms | 96.0% |
-| **Epistemic Contradiction** | **Mechanical Heal (DAG Gate)** | **0 tokens** | **0.040 ms** | **100.0%** |
-| | LLM Self-Patch (Advisory) | 2,612 tokens | 3,560.29 ms | 96.0% |
+| Check | Pre-declared expectation | Observed |
+| :--- | :--- | :--- |
+| MTPO log model (`agm_mtpo_monotonicity.smt2`) | `unsat` | `unsat` |
+| Destructive AGM contraction (`agm_unconstrained_violation.smt2`) | `sat` | `sat`, witness $n{=}1, k{=}0$ |
+| Mutant: saga contraction overwrites history | `sat` (proof must not be vacuous) | `sat` |
+| Saga implementation, 5,000 random logs | prefix preserved and effect undone | 5,000 / 5,000 |
+| Mutant implementation, same 5,000 logs | must be detected | 251 / 5,000 pass (detected) |
 
-### 5.2 Methodological Disclosures & Boundary Conditions
-* **Live Hardware vs. Baseline Cost Simulation:** Mechanical recovery wall-clock latency was measured live on Apple Silicon M4 bare metal. The comparative LLM baseline represents an analytical cost and latency simulation parameterized by published multi-agent repair studies (1,400–3,200 tokens per prompt/completion cycle, 1.8–3.6 s inference delay, 95% convergence probability). This benchmark isolates the mechanical recovery ceiling; production deployments involving live API inference will experience variable network latencies and non-deterministic model pricing.
-* **Storage Concurrency Boundaries:** The 3.88x WAL volume reduction demonstrates lower write amplification per commit, but does not alter SQLite's single-writer concurrency constraint. Swarm-scale write loads must be absorbed by the lock-free in-memory HexCell lattice before coalesced persistence to `world_file.db`.
-* **High-Throughput Swarm Scaling:** 100,000 discrete agent cryptographic verification benchmark completed in $462\,\text{ms}$ on M4 hardware; HexCell sustained read throughput: 14.8M ops/sec with zero thread stalls.
+*Pending re-run of v2 in CI; v1 CI receipts (run 38705410503) confirmed `unsat` on both runners but v1 could not fail and is superseded.*
+
+### 5.2 Storage: WAL Growth Curve (measured)
+SQLite WAL, autocheckpoint disabled, one commit per mutation. Baseline: a single JSON document rewritten on each mutation. Typed: one row per edge.
+
+| Commits | Monolithic JSON | Typed links | Ratio |
+| ---: | ---: | ---: | ---: |
+| 100 | 954 KB | 414 KB | 2.3× |
+| 500 | 13.9 MB | 2.3 MB | 6.0× |
+| 1,000 | 47.0 MB | 4.9 MB | 9.6× |
+
+The ratio is not a constant: the baseline is quadratic in log length because it rewrites a growing document. A fixed figure from one run (an earlier draft's "3.88×") depended on checkpoint timing and is withdrawn. Typed links cost roughly 4–5 KB of WAL per commit, since SQLite logs whole pages, so a "56-byte edge" describes the logical row, not WAL cost. A fairer baseline (one row per edge in a conventional relational schema) is future work and would be expected to narrow the gap substantially.
+
+### 5.3 Limitations of This Evaluation
+* **No live LLM baseline.** An earlier draft's LLM figures (tokens, latency, 95% convergence) came from a parameterized simulation, not measurements. They are removed. Comparing mechanical recovery with LLM self-patching requires live API runs and is future work.
+* **Mechanical recovery latency is not reported as a headline.** Earlier sub-0.1 ms figures timed a trivial in-process operation (a `compile()` call on a fixed string), not recovery of a real fault, and the "100% convergence" figure was constant in the harness rather than measured.
+* **Abstract model.** The Z3 result covers the log model in the `.smt2` files. It does not cover integer overflow of ranks, memory reordering, crashes during `fsync`, or non-invertible side effects.
+* **Single-writer storage.** Typed links reduce WAL volume; they do not change SQLite's single-writer limit. Multi-writer contention is unmeasured.
+* **Scaling figures.** The 100,000-agent and 14.8M ops/sec figures come from separate internal benchmarks that are not part of the public falsification suite and have not been externally reproduced.
 
 ---
 
@@ -130,4 +141,4 @@ We evaluate 100 trials across three failure classes on Apple Silicon M4:
 
 ## 7. Conclusion
 
-Within its defined domain of reversible mutations and compiler-checked syntax invariants, MTPO resolves the concurrency bottleneck in autonomous multi-agent swarms. By replacing prompt-level retry loops with bare-metal algebraic inverses and cache-aligned memory geometry, systems achieve trajectory monotonicity and predictable, sub-millisecond fault remediation.
+Within a defined domain (reversible mutations with pre-registered inverses), we showed in an abstract log model that saga-style contraction preserves trajectory monotonicity while destructive contraction does not, and we measured the storage cost of a typed-link layout against a monolithic baseline. Whether this yields lower recovery cost or higher convergence than LLM-in-the-loop repair on real workloads, and whether the property survives concurrent writers and crashes, remains to be measured.

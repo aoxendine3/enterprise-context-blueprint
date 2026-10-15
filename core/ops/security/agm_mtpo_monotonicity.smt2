@@ -1,120 +1,46 @@
 ; ==============================================================================
-; AGM BELIEF REVISION vs. MTPO TRAJECTORY MONOTONICITY FORMAL SMT2 PROOF
-; SMT-LIB Standard v2.6 | Logic: QF_LIA (Quantifier-Free Linear Integer Arithmetic)
-; Author: Vance (Lead 9 Council, Chief Formalization Officer)
-; Date: 2026-10-15
-; Invariant: Trajectory Monotonicity under Alchourron-Gardenfors-Makinson (AGM) Postulates
+; MTPO TRAJECTORY MONOTONICITY -- SEMANTIC ENCODING (v2, replaces circular v1)
+; Logic: QF_ALIA (arrays + linear integer arithmetic)   EXPECTED: unsat
 ;
-; THEOREM:
-; 1. Unconstrained AGM Contraction and Revision allow historical state invalidation,
-;    producing non-monotonic trajectory reordering (SAT: monotonicity violation exists).
-; 2. MTPO Saga Inverse Pre-Order strictly bounds Contraction and Revision to
-;    monotonic append-only inverse deltas, guaranteeing Trajectory Monotonicity (UNSAT).
+; MODEL. A trajectory is a log: an array H : Int -> Int of entries with length n.
+; Entry values encode a state delta; the algebraic inverse of delta d is (- d).
+;
+; MTPO operations are defined by what they DO to the log:
+;   expansion          : H' = store(H, n, d)        , n' = n + 1
+;   saga contraction   : H' = store(H, n, -H[k])    , n' = n + 1   (append inverse
+;                        of an earlier entry k < n; history is never overwritten)
+;
+; MONOTONICITY (prefix-immutability): n' >= n and for every i < n, H'[i] = H[i].
+;
+; The negation is asserted: some committed prefix entry changed OR the log shrank.
+; UNSAT follows from the array read-over-write axiom, NOT from an assumption
+; that MTPO is monotonic.
+;
+; SCOPE: proves the abstract log model only. It says nothing about integer
+; overflow of ranks, memory reordering, crashes, or non-invertible side effects.
 ; ==============================================================================
+(set-logic QF_ALIA)
 
-(set-logic QF_LIA)
-(set-info :source |XORAS Lead 9 Council - Vance Formalization Desk|)
-(set-info :category |industrial|)
-(set-info :status unsat)
+(declare-const H  (Array Int Int))
+(declare-const n  Int)
+(declare-const k  Int)          ; entry being compensated
+(declare-const d  Int)          ; new delta for expansion
+(declare-const op Int)          ; 1 = expansion, 2 = saga contraction
 
-; ------------------------------------------------------------------------------
-; 1. SORTS & CONSTANTS: Timestamps, Monotonic Serialization Ranks, State Tokens
-; ------------------------------------------------------------------------------
-(declare-const sigma_A Int)      ; Rank of Agent A (Lower priority, e.g. Rank 10)
-(declare-const sigma_B Int)      ; Rank of Agent B (Higher priority, e.g. Rank 20)
+(assert (>= n 0))
+(assert (and (>= k 0) (< k n)))
+(assert (or (= op 1) (= op 2)))
 
-(declare-const t_commit_A Int)   ; Monotonic execution timestamp of Agent A
-(declare-const t_action_B Int)   ; Monotonic execution timestamp of Agent B
+(declare-const H1 (Array Int Int))
+(declare-const n1 Int)
 
-; Belief State Values
-(declare-const state_t0 Int)
-(declare-const delta_A Int)      ; Belief state introduced by Agent A
-(declare-const delta_B Int)      ; Belief state introduced by Agent B
+(assert (=> (= op 1) (and (= H1 (store H n d))            (= n1 (+ n 1)))))
+(assert (=> (= op 2) (and (= H1 (store H n (- (select H k)))) (= n1 (+ n 1)))))
 
-; ------------------------------------------------------------------------------
-; 2. AXIOMS: Strict Monotonic Ordering and Causal History
-; ------------------------------------------------------------------------------
-(assert (> sigma_A 0))
-(assert (> sigma_B sigma_A))     ; Agent B has strictly higher rank
-
-(assert (>= t_commit_A 0))
-(assert (> t_action_B t_commit_A)) ; B acts causally after A has committed state
-
-; Agent A commits delta_A > 0 at t_commit_A
-(assert (> delta_A 0))
-
-; ------------------------------------------------------------------------------
-; 3. AGM POSTULATE MODELING
-; ------------------------------------------------------------------------------
-; Operation Types:
-; 1 = AGM Expansion (+)
-; 2 = Unconstrained AGM Contraction (-/div)
-; 3 = MTPO Saga Inverse Contraction (Delta^-1 append-only)
-; 4 = AGM Revision (*) via Levi Identity
-(declare-const agm_operation Int)
-(assert (and (>= agm_operation 1) (<= agm_operation 4)))
-
-; Boolean flags for execution mechanics
-(declare-const violates_causal_history Bool)
-(declare-const preserves_trajectory_monotonicity Bool)
-
-; ------------------------------------------------------------------------------
-; 3.1 AGM EXPANSION (+):
-; Postulate (+ Success): phi in K + phi. Appends new fact, preserves past history.
-; Monotonicity is invariant under pure expansion.
-; ------------------------------------------------------------------------------
-(assert (=> (= agm_operation 1)
-            (and (not violates_causal_history)
-                 preserves_trajectory_monotonicity)))
-
-; ------------------------------------------------------------------------------
-; 3.2 UNCONSTRAINED AGM CONTRACTION (\div):
-; Postulate (\div Recovery): K \subseteq (K \div phi) + phi
-; Postulate (\div Success): If not \vdash phi, then phi \notin (K \div phi)
-; If B executes destructive retraction directly against A's historical commit at t_commit_A,
-; the history at t_commit_A is invalidated post-hoc, causing trajectory reordering.
-; ------------------------------------------------------------------------------
-(declare-const unconstrained_history_rewrite Bool)
-(assert (=> (= agm_operation 2)
-            (= violates_causal_history unconstrained_history_rewrite)))
-
-; ------------------------------------------------------------------------------
-; 3.3 MTPO SAGA INVERSE CONTRACTION:
-; Retraction is NEVER destructive history rewriting.
-; B registers an inverse delta Delta_A^-1 at t_action_B >= t_commit_A.
-; State at t_commit_A remains immutable in the Merkle DAG.
-; Trajectory sequence monotonically increases: seq(B) > seq(A).
-; ------------------------------------------------------------------------------
-(assert (=> (= agm_operation 3)
-            (and (not violates_causal_history)
-                 preserves_trajectory_monotonicity)))
-
-; ------------------------------------------------------------------------------
-; 3.4 AGM REVISION (*) via Levi Identity: K * phi = (K \div \neg phi) + phi
-; Inherits the monotonicity violation of the underlying contraction unless MTPO-bounded.
-; ------------------------------------------------------------------------------
-(declare-const mtpo_saga_bounded Bool)
-(assert (=> (= agm_operation 4)
-            (= preserves_trajectory_monotonicity mtpo_saga_bounded)))
-
-; ------------------------------------------------------------------------------
-; 4. SAFETY PROPERTY UNDER MTPO (Goal: Prove UNSAT for violation under MTPO guard)
-; ------------------------------------------------------------------------------
-; Suppose MTPO Saga Invariant is enforced:
-; - All contractions must use MTPO Saga Inverses (agm_operation = 3 or mtpo_saga_bounded = true)
-; - Destructive unconstrained rewriting is forbidden (unconstrained_history_rewrite = false)
-; We assert that under MTPO guard, a trajectory monotonicity violation occurs:
-; ------------------------------------------------------------------------------
-(assert (=> (or (= agm_operation 3) (and (= agm_operation 4) mtpo_saga_bounded))
-            preserves_trajectory_monotonicity))
-
-; Invariant: MTPO Guard active
-(assert (or (= agm_operation 1)
-            (= agm_operation 3)
-            (and (= agm_operation 4) mtpo_saga_bounded)))
-
-; Monotonicity Violation assertion:
-(assert (not preserves_trajectory_monotonicity))
+; --- negation of monotonicity: exists a witness index i that breaks it ---
+(declare-const i Int)
+(assert (or (< n1 n)
+            (and (>= i 0) (< i n) (distinct (select H1 i) (select H i)))))
 
 (check-sat)
 (exit)

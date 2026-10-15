@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# DEPRECATED (ledger row 38): superseded by dist/sovereign_falsification_suite/run_falsification.py (v2).
+# Known defects: circular/tautological checks, simulated LLM baseline, constant-valued convergence. Do not cite its outputs.
 """
 ===============================================================================
 JOHN & JARVIS SANITY LAYER: CROSS-AGENT CONTRADICTION & INTEGRITY GATE
