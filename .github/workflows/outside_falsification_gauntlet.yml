@@ -36,6 +36,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install z3-solver
 
+      - name: Install Lean 4 via elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> $GITHUB_PATH
+
       - name: Run Clean-Room Falsification Suite
         run: |
           echo "================================================================================"
@@ -43,9 +48,18 @@ jobs:
           echo "================================================================================"
           python dist/sovereign_falsification_suite/run_falsification.py
 
-      - name: Upload Clean-Room Attestation Receipt
+      - name: Run Lean 4 Kernel Verification & SMT Differential Check
+        run: |
+          echo "================================================================================"
+          echo "EXECUTING LEAN 4 KERNEL CHECK & SMT DIFFERENTIAL: ${{ matrix.os }}"
+          echo "================================================================================"
+          python dist/sovereign_falsification_suite/check_lean.py
+
+      - name: Upload Clean-Room Attestation Receipts
         uses: actions/upload-artifact@v4
         with:
           name: cleanroom-receipt-${{ matrix.os }}
-          path: cleanroom_receipt_*.json
+          path: |
+            cleanroom_receipt_*.json
+            lean_differential_receipt.json
           retention-days: 30

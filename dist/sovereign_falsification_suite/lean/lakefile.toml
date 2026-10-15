@@ -1,0 +1,6 @@
+name = "MtpoMonotonicity"
+version = "0.1.0"
+defaultTargets = ["MtpoMonotonicity"]
+
+[[lean_lib]]
+name = "MtpoMonotonicity"
