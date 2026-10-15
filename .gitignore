@@ -44,10 +44,22 @@ xmars_dag_matrix.bin
 ops/scripts/fullscreen_ui/ast_nodes.json
 .sovereign/
 dist/
+!dist/sovereign_proof_enclave_v1.0.0.tar.gz
 ops/native/build/
 C:
 archives/the_barn/windows_path_leak/
 scratch/hardware_bins/
 archives/the_barn/models_retired/*.onnx
 core/ops/scripts/fullscreen_ui/ast_nodes.json
-core/ops/scripts/fullscreen_ui/ast_nodes.json
+
+# Zero-Trust Security & Secret Scrub Invariants
+*.pem
+*.priv
+*.key
+.env*
+logs/
+memory/agent_logs/*.aiff
+memory/agent_logs/*.mp3
+memory/agent_logs/*.mp4
+memory/catch_log/*.log
+

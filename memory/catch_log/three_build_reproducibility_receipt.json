@@ -1,0 +1,27 @@
+{
+  "schema": "xoras.three_build_reproducibility_receipt.v1",
+  "timestamp": "2026-10-15T03:15:32Z",
+  "host": "Apple Silicon M4 Bare Metal",
+  "source_file": "ops/runtime/sovrac_v3_1.zig",
+  "source_sha256": "91cc7f3d102dd8e8c48865f02d66c408694644566989c348f0a4805cb08454e4",
+  "five_moves": {
+    "move_1_pinned_zig": "0.16.0",
+    "move_2_source_date_epoch": "1700000000",
+    "move_3_strip_flags": "-O ReleaseFast -fstrip -fno-incremental",
+    "move_4_sorted_inputs": "LC_ALL=C sort",
+    "move_5_cmp_differential_audit": "cmp -l"
+  },
+  "builds": [
+    {"build_id": 1, "sha256": "7a64443648e2a9f9603b7700b461e871cec0ec01809e2896043064c487e8d451", "bytes": 239224},
+    {"build_id": 2, "sha256": "7a64443648e2a9f9603b7700b461e871cec0ec01809e2896043064c487e8d451", "bytes": 239224},
+    {"build_id": 3, "sha256": "7a64443648e2a9f9603b7700b461e871cec0ec01809e2896043064c487e8d451", "bytes": 239224}
+  ],
+  "differential_audit": {
+    "cmp_1_vs_2_diff_bytes": 0,
+    "cmp_2_vs_3_diff_bytes": 0,
+    "cmp_1_vs_3_diff_bytes": 0,
+    "total_diverging_bytes": 0
+  },
+  "lockfile_expected_hash": "7a64443648e2a9f9603b7700b461e871cec0ec01809e2896043064c487e8d451",
+  "verdict": "PROVEN"
+}

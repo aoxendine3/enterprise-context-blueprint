@@ -1,0 +1,41 @@
+{
+  "schema": "xoras.reproducible_build.v1",
+  "target_asset": "SOVRAC Native Compiler v3.1",
+  "source_file": "ops/runtime/sovrac_v3_1.zig",
+  "source_sha256": "91cc7f3d102dd8e8c48865f02d66c408694644566989c348f0a4805cb08454e4",
+  "toolchain": {
+    "zig_version": "0.16.0",
+    "homebrew_formula": "zig 0.16.0_1",
+    "rust_version": "1.95.0",
+    "llvm_version": "22.1.8",
+    "target_triple": "arm64-macos-none",
+    "compiler_binary": "/opt/homebrew/bin/zig",
+    "zig_release_tarball": {
+      "filename": "zig-aarch64-macos-0.16.0.tar.xz",
+      "sha256": "b23d70deaa879b5c2d486ed3316f7eaa53e84acf6fc9cc747de152450d401489",
+      "size": 52238004,
+      "primary_source": "https://ziglang.org/download/0.16.0/zig-aarch64-macos-0.16.0.tar.xz",
+      "mirror_source": "https://pkg.hexops.org/zig/zig-aarch64-macos-0.16.0.tar.xz"
+    }
+  },
+  "deterministic_build_spec": {
+    "flags": [
+      "-O",
+      "ReleaseFast",
+      "-fstrip",
+      "-fno-incremental"
+    ],
+    "output_binary_name": "sovrac",
+    "canonical_build_command": "/opt/homebrew/bin/zig build-exe -O ReleaseFast -fstrip -fno-incremental ops/runtime/sovrac_v3_1.zig -femit-bin=core/ops/reproducibility/bin/sovrac"
+  },
+  "expected_output": {
+    "bytes": 239224,
+    "sha256": "7a64443648e2a9f9603b7700b461e871cec0ec01809e2896043064c487e8d451"
+  },
+  "reproducibility_proof": {
+    "clean_room_isolated_rebuilds": 3,
+    "cache_bypass_verified": true,
+    "bit_divergence": 0,
+    "status": "DETERMINISTIC_BIT_FOR_BIT_IDENTICAL"
+  }
+}
