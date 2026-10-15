@@ -113,19 +113,21 @@ We evaluate 100 trials across three failure classes on Apple Silicon M4:
 | **Epistemic Contradiction** | **Mechanical Heal (DAG Gate)** | **0 tokens** | **0.040 ms** | **100.0%** |
 | | LLM Self-Patch (Advisory) | 2,612 tokens | 3,560.29 ms | 96.0% |
 
-### 5.2 High-Throughput Swarm Scaling
-* 100,000 discrete agent cryptographic verification benchmark completed in $462\,\text{ms}$.
-* HexCell sustained read throughput: 14.8M ops/sec with zero thread stalls.
+### 5.2 Methodological Disclosures & Boundary Conditions
+* **Live Hardware vs. Baseline Cost Simulation:** Mechanical recovery wall-clock latency was measured live on Apple Silicon M4 bare metal. The comparative LLM baseline represents an analytical cost and latency simulation parameterized by published multi-agent repair studies (1,400–3,200 tokens per prompt/completion cycle, 1.8–3.6 s inference delay, 95% convergence probability). This benchmark isolates the mechanical recovery ceiling; production deployments involving live API inference will experience variable network latencies and non-deterministic model pricing.
+* **Storage Concurrency Boundaries:** The 3.88x WAL volume reduction demonstrates lower write amplification per commit, but does not alter SQLite's single-writer concurrency constraint. Swarm-scale write loads must be absorbed by the lock-free in-memory HexCell lattice before coalesced persistence to `world_file.db`.
+* **High-Throughput Swarm Scaling:** 100,000 discrete agent cryptographic verification benchmark completed in $462\,\text{ms}$ on M4 hardware; HexCell sustained read throughput: 14.8M ops/sec with zero thread stalls.
 
 ---
 
-## 6. Discussion & Governance
-* When is LLM re-planning actually necessary? Only when mechanical inverse delta leaves the problem space under-constrained.
-* The Human Protection First invariant and fail-closed security boundary.
-* Open-source availability and artifact reproducibility.
+## 6. Discussion, Limitations & Governance
+* **Reversibility Domain:** Mechanical Saga inverses are strictly bounded to operations with pre-registered algebraic inverse functions ($\Delta^{-1}$) or deterministic compiler AST rules. For non-invertible external side effects (e.g., third-party HTTP payments, external webhook emissions, physical actuation), mechanical rollback cannot apply; runtime advisory notifications and cognitive compensatory re-planning remain strictly necessary.
+* **Axiomatic SMT2 Limits:** The Z3 SMT2 trajectory monotonicity proof verifies the declared QF_LIA state-transition axioms. It does not model bare-metal kernel failures, power loss during fsync, or weakly-ordered hardware memory bus reordering.
+* **The Human Protection First Invariant:** In compliance with Sovereign Log Entry #078, mechanical fail-closed gates protect human safety and clinical integrity above operational throughput.
+* **Open-Source Availability & External Falsification:** Complete clean-room falsification suite and GitHub Actions matrix runs are publicly available at `https://github.com/aoxendine3/enterprise-context-blueprint/actions/runs/38705410503`.
 
 ---
 
 ## 7. Conclusion
 
-MTPO and the Sovereign Triad resolve the fundamental tension in multi-agent concurrency. By offloading transaction ordering and fault remediation from prompt-level LLM heuristics to bare-metal mechanical invariants, systems achieve mathematical monotonicity, zero write aborts, and instantaneous recovery.
+Within its defined domain of reversible mutations and compiler-checked syntax invariants, MTPO resolves the concurrency bottleneck in autonomous multi-agent swarms. By replacing prompt-level retry loops with bare-metal algebraic inverses and cache-aligned memory geometry, systems achieve trajectory monotonicity and predictable, sub-millisecond fault remediation.
