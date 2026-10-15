@@ -27,7 +27,7 @@ If you reference, benchmark against, or integrate the XORAS architecture, formal
 ```bibtex
 @inproceedings{oxendine2026mtpo,
   author       = {Anthony Oxendine and Clara and {XORAS Systems}},
-  title        = {MTPO: Zero-Abort Multi-Threaded Pipeline Orchestration and Monotonic Pre-Order Invariants for Agent Inference Swarms},
+  title        = {MTPO: Zero-Abort Monotonic Trajectory Pre-Order and Monotonic Pre-Order Invariants for Agent Inference Swarms},
   booktitle    = {Systems Architecture & Concurrency Proceedings},
   year         = {2026},
   url          = {https://github.com/aoxendine3/mtpo},

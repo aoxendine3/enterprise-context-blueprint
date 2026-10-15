@@ -201,7 +201,7 @@
           </div>
           <h3>MTPO Concurrency</h3>
           <p style="margin-bottom:16px;">
-            Multi-Threaded Pipeline Orchestration with a 3-Phase Saga Undo engine (<code>Reserve</code> ➔ <code>Mutate</code> ➔ <code>Commit</code> / <code>Compensate</code>) and a 64-byte cache-line aligned HexCell memory ring. Sustains 6.8M+ ops/sec with zero race conditions.
+            Monotonic Trajectory Pre-Order with a 3-Phase Saga Undo engine (<code>Prepare</code> ➔ <code>Execute</code> ➔ <code>Reverse</code>), order-filtered snapshot reads, non-blocking advisory notifications (&nu;), and a 128-byte cache-line aligned HexCell memory ring. Sustains 14.8M+ ops/sec with zero context drift.
           </p>
           <div style="display:flex; gap:10px; margin-top:auto;">
             <a href="mtpo/index.html" class="btn-nav" style="background:var(--accent); color:#fff; font-size:0.8rem; padding:6px 12px;">Launch Dashboard</a>

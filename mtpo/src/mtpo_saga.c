@@ -1,5 +1,5 @@
 /**
- * MTPO: Multi-Threaded Pipeline Orchestration & 3-Phase Saga Engine
+ * MTPO: Monotonic Trajectory Pre-Order & 3-Phase Saga Engine
  * =================================================================
  * Implementation of lock-free double-buffered HexCell ring and 3-Phase Saga.
  */

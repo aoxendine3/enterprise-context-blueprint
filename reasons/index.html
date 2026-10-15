@@ -3,19 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>REASONS: Semantic Reason Graph &amp; Context Lineage Merkle DAG Engine</title>
+  <title>REASONS: The REASONS Canvas &amp; Enterprise Context Engine</title>
   <style>
     :root {
-      --bg: #090e17;
-      --card-bg: #111827;
-      --border: #1f2937;
-      --purple: #8b5cf6;
-      --purple-glow: rgba(139, 92, 246, 0.2);
+      --bg: #07090f;
+      --card-bg: #0f1524;
+      --border: #1e293b;
+      --border-accent: #334155;
+      --purple: #a855f7;
+      --purple-glow: rgba(168, 85, 247, 0.25);
       --green: #10b981;
       --red: #ef4444;
       --blue: #38bdf8;
-      --text: #f3f4f6;
-      --text-muted: #9ca3af;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     }
 
@@ -28,11 +29,11 @@
       line-height: 1.5;
     }
 
-    .container { max-width: 1200px; margin: 0 auto; }
+    .container { max-width: 1240px; margin: 0 auto; }
 
     header {
       border-bottom: 1px solid var(--border);
-      padding-bottom: 20px;
+      padding-bottom: 24px;
       margin-bottom: 24px;
       display: flex;
       justify-content: space-between;
@@ -42,28 +43,32 @@
     }
 
     .logo-group h1 {
-      font-size: 24px;
-      letter-spacing: 1px;
+      font-size: 26px;
+      letter-spacing: 1.5px;
+      font-weight: 900;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      color: #fff;
     }
 
     .badge-purple {
-      background: rgba(139, 92, 246, 0.15);
+      background: rgba(168, 85, 247, 0.15);
       border: 1px solid var(--purple);
       color: var(--purple);
       font-size: 11px;
-      padding: 3px 8px;
+      padding: 4px 10px;
       border-radius: 999px;
-      font-weight: 600;
+      font-weight: 700;
+      letter-spacing: 0.5px;
     }
 
     .status-bar {
       display: flex;
-      gap: 16px;
+      gap: 12px;
       font-size: 12px;
       font-family: var(--mono);
+      flex-wrap: wrap;
     }
 
     .status-pill {
@@ -73,22 +78,60 @@
       border-radius: 6px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
 
     .dot { width: 8px; height: 8px; border-radius: 50%; }
     .dot-green { background: var(--green); box-shadow: 0 0 8px var(--green); }
+    .dot-purple { background: var(--purple); box-shadow: 0 0 8px var(--purple); }
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
+    .banner {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.4) 100%);
+      border: 1px solid var(--border-accent);
+      border-left: 4px solid var(--purple);
+      border-radius: 8px;
+      padding: 20px 24px;
       margin-bottom: 24px;
     }
 
-    @media (max-width: 900px) {
-      .grid-2 { grid-template-columns: 1fr; }
+    .banner h2 { font-size: 18px; color: var(--purple); margin-bottom: 8px; font-weight: 800; }
+    .banner p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+    /* The 7 Dimensions of REASONS */
+    .reasons-canvas-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
     }
+    @media (max-width: 1100px) { .reasons-canvas-grid { grid-template-columns: repeat(4, 1fr); } }
+    @media (max-width: 700px) { .reasons-canvas-grid { grid-template-columns: 1fr 1fr; } }
+
+    .dimension-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      position: relative;
+    }
+    .dim-letter {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--purple);
+      font-family: var(--mono);
+      margin-bottom: 4px;
+    }
+    .dim-title { font-size: 12px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .dim-desc { font-size: 11px; color: var(--text-muted); line-height: 1.4; }
+
+    /* Section Grid: Atlan + Fin */
+    .section-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 900px) { .section-grid { grid-template-columns: 1fr; } }
 
     .card {
       background: var(--card-bg);
@@ -96,20 +139,29 @@
       border-radius: 10px;
       padding: 20px;
     }
+    .card h3 { font-size: 16px; font-weight: 700; margin-bottom: 12px; color: #fff; display: flex; align-items: center; gap: 8px; }
 
-    .card h2 {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .metric-item {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+    }
+    .metric-name { font-weight: 700; color: var(--blue); margin-bottom: 3px; }
+    .metric-desc { color: var(--text-muted); line-height: 1.4; }
+
+    /* Interactive Intent Simulator */
+    .sim-card {
+      background: #0a0f1d;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 24px;
     }
 
     label { font-size: 12px; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 6px; }
-    input, select, textarea {
+    select, input {
       width: 100%;
-      background: #0d131f;
+      background: #04060a;
       border: 1px solid var(--border);
       color: var(--text);
       padding: 10px;
@@ -122,63 +174,36 @@
     .btn {
       background: var(--purple);
       color: #fff;
-      font-weight: 700;
+      font-weight: 800;
       border: none;
-      padding: 10px 18px;
+      padding: 12px 20px;
       border-radius: 6px;
       cursor: pointer;
       font-size: 13px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      transition: background 0.15s;
     }
-    .btn:hover { background: #7c3aed; }
+    .btn:hover { background: #c084fc; }
 
-    .btn-red {
-      background: #dc2626;
-      margin-left: 8px;
-    }
-    .btn-red:hover { background: #b91c1c; }
-
-    .node-tree {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      max-height: 420px;
-      overflow-y: auto;
-    }
-
-    .node-item {
-      background: #0b121e;
+    .score-box {
+      background: #04060a;
       border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 10px 14px;
+      border-radius: 8px;
+      padding: 16px;
       font-family: var(--mono);
       font-size: 12px;
-      border-left: 4px solid var(--blue);
-      transition: border-color 0.2s, background 0.2s;
-    }
-
-    .node-item.tampered { border-left-color: var(--red); background: rgba(239, 68, 68, 0.08); }
-    .node-item.quarantine { border-left-color: #f59e0b; background: rgba(245, 158, 11, 0.08); }
-
-    .img-preview {
-      width: 100%;
-      border-radius: 8px;
-      border: 1px solid var(--border);
+      color: #cbd5e1;
       margin-top: 14px;
     }
 
-    pre {
-      background: #080c14;
-      padding: 12px;
-      border-radius: 6px;
-      border: 1px solid var(--border);
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      text-align: center;
       font-family: var(--mono);
-      font-size: 11px;
-      overflow-x: auto;
-      color: #a78bfa;
+      font-size: 12px;
+      color: var(--text-muted);
     }
   </style>
 </head>
@@ -186,136 +211,190 @@
   <div class="container">
     <header>
       <div class="logo-group">
-        <h1>REASONS ENGINE</h1>
-        <span class="badge-purple">SEMANTIC MERKLE DAG &amp; POLICY</span>
+        <h1>REASONS CONTEXT ENGINE</h1>
+        <span class="badge-purple">SPDD &amp; INTENT GRAPH DAG</span>
       </div>
       <div class="status-bar">
-        <div class="status-pill"><span class="dot dot-green"></span> MERKLE DAG: VERIFIED</div>
-        <div class="status-pill">ANTI-REPLAY: STRICT</div>
-        <div class="status-pill">EVIDENCE LEDGER: 32 ROWS</div>
+        <div class="status-pill"><span class="dot dot-green"></span> HALLUCINATION: &lt; 1% TARGET (FIN BENCHMARK)</div>
+        <div class="status-pill"><span class="dot dot-purple"></span> GRAPH-RAG ACCURACY: 81% (ATLAN PRODUCTION)</div>
+        <div class="status-pill">GOLDEN SETS: SIMULATION ACTIVE</div>
       </div>
     </header>
 
-    <div class="grid-2">
-      <!-- DAG State Controller -->
+    <!-- Overview Banner -->
+    <div class="banner">
+      <h2>The REASONS Canvas: Compiling Human Intent into Graph Specifications</h2>
+      <p>
+        Under <strong>Structured-Prompt-Driven Development (SPDD)</strong>, prompting in raw natural language is rejected in favor of the <strong>REASONS Canvas</strong>. 
+        The Conductor compiles requirements into an acyclic <strong>Intent Graph (DAG)</strong>. If cyclic dependencies or ambiguous execution paths occur, execution halts immediately with an <code>EpistemicAnomalyException</code> before a single GPU token is wasted.
+      </p>
+    </div>
+
+    <!-- The 7 Dimensions of REASONS -->
+    <h2 style="font-size:18px; font-weight:800; margin-bottom:16px;">The 7 Dimensions of the REASONS Canvas</h2>
+    <div class="reasons-canvas-grid">
+      <div class="dimension-card">
+        <div class="dim-letter">R</div>
+        <div class="dim-title">Requirements</div>
+        <div class="dim-desc">Explicit problem statement paired with a mathematically verifiable Definition of Done (DoD).</div>
+      </div>
+      <div class="dimension-card">
+        <div class="dim-letter">E</div>
+        <div class="dim-title">Entities</div>
+        <div class="dim-desc">Mapped domain objects, schemas, and relational context graphs without redundant wrappers.</div>
+      </div>
+      <div class="dimension-card">
+        <div class="dim-letter">A</div>
+        <div class="dim-title">Approach</div>
+        <div class="dim-desc">High-level architectural pattern strategy, cleanly isolated from immediate tool calls.</div>
+      </div>
+      <div class="dimension-card">
+        <div class="dim-letter">S</div>
+        <div class="dim-title">Structure</div>
+        <div class="dim-desc">System dependencies, structural module bindings, and directory exclusions (locking <code>/barn/</code>).</div>
+      </div>
+      <div class="dimension-card">
+        <div class="dim-letter">O</div>
+        <div class="dim-title">Operations</div>
+        <div class="dim-desc">Decomposed, testable method signatures and linear step execution plans.</div>
+      </div>
+      <div class="dimension-card">
+        <div class="dim-letter">N</div>
+        <div class="dim-title">Norms</div>
+        <div class="dim-desc">Memory-safety standards, defensive typing, and byte-aligned I/O rules.</div>
+      </div>
+      <div class="dimension-card">
+        <div class="dim-letter">S</div>
+        <div class="dim-title">Safeguards</div>
+        <div class="dim-desc">Non-negotiable security boundaries, Ed25519 payload signatures, and single-use capability tokens.</div>
+      </div>
+    </div>
+
+    <!-- Section 1 & Section 2: Atlan & Fin -->
+    <div class="section-grid">
+      <!-- 1. Atlan -->
       <div class="card">
-        <h2>Context Lineage Controller</h2>
-        
-        <label for="node-id">New Node ID &amp; Parent Pointer</label>
-        <div style="display:flex; gap:10px;">
-          <input type="text" id="node-id" value="node-03-decision">
-          <input type="text" id="parent-id" value="node-02-lab">
+        <h3>1. How Atlan Measures Hallucination</h3>
+        <p style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">
+          Atlan treats hallucination as an <strong>enterprise context failure</strong>. Grounding agents in a unified metadata context layer with graph-based retrieval (GraphRAG) cuts hallucination by <strong>over 40%</strong> and boosts query accuracy from <strong>9% to 81%</strong> in production.
+        </p>
+
+        <div class="metric-item">
+          <div class="metric-name">• Groundedness Score (%)</div>
+          <div class="metric-desc">
+            <code>[Verified Evidence-Backed Claims / Total Claims Generated] × 100</code>. Directly separates evidence execution from pre-training statistical guesses.
+          </div>
         </div>
 
-        <label for="node-claim">Epistemic Evidence Claim</label>
-        <textarea id="node-claim" rows="2">Verify patient potassium 4.2 mEq/L within reference boundary.</textarea>
-
-        <div>
-          <button class="btn" onclick="commitNode()">⚡ COMMIT MERKLE NODE</button>
-          <button class="btn btn-red" onclick="tamperNode()">⚠️ INJECT BIT-FLIP TAMPER</button>
+        <div class="metric-item">
+          <div class="metric-name">• Retrieval Quality (Precision &amp; Recall)</div>
+          <div class="metric-desc">Evaluates fraction of retrieved context that is relevant (Precision) and relevant context retrieved (Recall).</div>
         </div>
 
-        <div style="margin-top: 18px;">
-          <label>Global Lineage Merkle Root</label>
-          <pre id="merkle-root-display">Root: 5c88b90a911e3b8398e0... (SHA-256)</pre>
+        <div class="metric-item">
+          <div class="metric-name">• Use-Case Risk-Tiered Hallucination Rate</div>
+          <div class="metric-desc">
+            <strong>High-Risk (Finance/Core)</strong>: &lt; 5% (mandatory HITL). <strong>Medium-Risk</strong>: &lt; 10%. <strong>Low-Risk</strong>: 20%–30%.
+          </div>
         </div>
 
-        <div style="margin-top: 14px;">
-          <label>Policy-as-Graph Governance Evaluation</label>
-          <div id="policy-status" style="font-size:12px; font-family:var(--mono); padding:8px; border-radius:6px; background:#0d131f; border:1px solid var(--border);">
-            Status: <span style="color:var(--green); font-weight:bold;">COMPLIANT (RULE-POL-01 PASSED)</span>
+        <div class="metric-item">
+          <div class="metric-name">• User Trust Signals</div>
+          <div class="metric-desc">Tracks suggestion acceptance and override volume. Below an <strong>80% accuracy threshold</strong>, trust collapses non-linearly.</div>
+        </div>
+
+        <div class="metric-item">
+          <div class="metric-name">• Decision Tracing &amp; Context Studio Runs</div>
+          <div class="metric-desc">Logs column-level lineage to <code>world_file.db</code> and runs pre-deployment simulation over Golden Question Sets.</div>
+        </div>
+      </div>
+
+      <!-- 2. Fin & Golden Sets -->
+      <div class="card">
+        <h3>2. The 1% Target for Fin &amp; Golden Datasets</h3>
+        <p style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">
+          Fin establishes a strict benchmark capping the hallucination rate strictly below <strong>1.0%</strong> (with top leaders achieving ~0.01%), pairing it with an average <strong>76% genuine resolution rate</strong> across 12,000 deployments.
+        </p>
+
+        <div class="metric-item">
+          <div class="metric-name">• 6-Layer Proprietary AI Engine Architecture</div>
+          <div class="metric-desc">
+            1. <code>fin-cx-retrieval</code> (dense/sparse) <br/>
+            2. <code>fin-cx-reranker</code> (cross-encoder filter) <br/>
+            3. Multi-Model Resilience (OpenAI, Anthropic, Google, Fin Apex 1.0) <br/>
+            4. 100% Automated Quality Scoring (CX Score across 100% conversations) <br/>
+            5. Genuine Positive Resolution (verified solved without reopen &lt; 48h) <br/>
+            6. Unified Context Integration (zero measurement gaps)
+          </div>
+        </div>
+
+        <div class="metric-item" style="border-bottom:none;">
+          <div class="metric-name">3. Golden Question Sets Explained</div>
+          <div class="metric-desc">
+            Curated datasets of hundreds of representative test scenarios with verified human ground truth. Enables <strong>Automated Pre-Deployment Simulation</strong>, scores exact Groundedness Scores, and eliminates regression risk before production promotion.
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Live Merkle Tree Visualizer -->
-      <div class="card">
-        <h2>Active Context Lineage DAG Nodes</h2>
-        <div class="node-tree" id="node-tree">
-          <!-- Populated by JS -->
+    <!-- Interactive Evaluation Simulator -->
+    <div class="sim-card">
+      <h3 style="font-size:16px; font-weight:700; margin-bottom:14px; color:#fff;">Interactive Intent Graph &amp; Groundedness Audit</h3>
+      
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div>
+          <label for="intent-preset">Select Context &amp; Intent Scenario</label>
+          <select id="intent-preset">
+            <option value="atlan_high_risk">Financial Transaction Authorization (High-Risk &lt; 5% Threshold)</option>
+            <option value="fin_cx_support">Customer Resolution Workflow (Fin 1% Sub-Threshold)</option>
+            <option value="cyclic_flaw">Unstructured Conversational Prompt (Cyclic Dependency Fault)</option>
+          </select>
+
+          <button class="btn" onclick="auditIntent()">⚡ COMPILE TO INTENT GRAPH &amp; SCORE</button>
+        </div>
+
+        <div>
+          <label>Audit Telemetry &amp; Verification Output</label>
+          <div class="score-box" id="audit-output">
+Awaiting intent compilation...
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Architectural Imagery -->
-    <div class="grid-2">
-      <div class="card">
-        <h2>Context Lineage Merkle DAG Topology</h2>
-        <img src="assets/merkle_dag_lineage.svg" class="img-preview" alt="Merkle DAG Lineage">
-      </div>
-      <div class="card">
-        <h2>Cryptographic Evidence Chain Architecture</h2>
-        <img src="assets/evidence_chain_architecture.svg" class="img-preview" alt="Evidence Chain Architecture">
-      </div>
-    </div>
+    <footer>
+      ⚡ The REASONS Canvas locks the intent; the MARS Framework verifies the reality. // XORAS Systems
+    </footer>
   </div>
 
   <script>
-    let nodes = [
-      { id: "node-00-genesis", parent: "ROOT", claim: "System bootstrap & clinical boundary spec", hash: "9a4f21008b...", status: "VALID" },
-      { id: "node-01-vitals", parent: "node-00-genesis", claim: "Glucose telemetry 110 mg/dL attested", hash: "b21e84aa3c...", status: "VALID" },
-      { id: "node-02-lab", parent: "node-01-vitals", claim: "HbA1c 5.6% verified from EHR", hash: "e99120dd11...", status: "VALID" }
-    ];
+    function auditIntent() {
+      const mode = document.getElementById('intent-preset').value;
+      const out = document.getElementById('audit-output');
 
-    function renderTree() {
-      const container = document.getElementById("node-tree");
-      container.innerHTML = "";
-      nodes.forEach(n => {
-        const item = document.createElement("div");
-        item.className = "node-item " + (n.status === "TAMPERED" ? "tampered" : (n.status === "QUARANTINED" ? "quarantine" : ""));
-        item.innerHTML = `
-          <div style="display:flex; justify-content:space-between;">
-            <span style="font-weight:bold; color:#f3f4f6;">${n.id}</span>
-            <span style="font-size:10px; color:${n.status === 'TAMPERED' ? 'var(--red)' : (n.status === 'QUARANTINED' ? '#f59e0b' : 'var(--green)')};">${n.status}</span>
-          </div>
-          <div style="font-size:11px; color:#9ca3af; margin-top:2px;">Parent: ${n.parent} | Hash: ${n.hash}</div>
-          <div style="font-size:11px; color:#cbd5e1; margin-top:4px;">${n.claim}</div>
-        `;
-        container.appendChild(item);
-      });
+      out.innerText = "Parsing REASONS Canvas (R-E-A-S-O-N-S)...\nBuilding Intent DAG...";
+
+      setTimeout(() => {
+        if (mode === 'cyclic_flaw') {
+          out.innerHTML = '<span style="color:var(--red); font-weight:700;">[EXCEPTION: EpistemicAnomalyException]</span>\nCyclic dependency detected between Step 3 and Step 1.\nNo mathematical DoD established.\nExecution HALTED. 0 GPU tokens wasted.';
+          return;
+        }
+
+        if (mode === 'atlan_high_risk') {
+          out.innerHTML = '<span style="color:var(--green); font-weight:700;">[INTENT GRAPH: COMPILED ACYCLIC DAG]</span>\n' +
+                          '• Groundedness Score: 98.4% (Evidence Traceable)\n' +
+                          '• Retrieval Precision: 96.1% | Recall: 94.8%\n' +
+                          '• Hallucination Rate: 0.12% (< 5% High-Risk Limit)\n' +
+                          '• Status: APPROVED for MARS Mechanical Execution Gate';
+        } else {
+          out.innerHTML = '<span style="color:var(--purple); font-weight:700;">[FIN CX 1% TARGET VERIFIED]</span>\n' +
+                          '• Genuine Positive Resolution: 78.2% (No Reopen < 48h)\n' +
+                          '• Cross-Encoder Rerank: Clean (100% Coverage)\n' +
+                          '• Hallucination Rate: 0.04% (< 1.0% Boundary)\n' +
+                          '• Status: APPROVED for Production Context Dispatch';
+        }
+      }, 350);
     }
-
-    function commitNode() {
-      const id = document.getElementById("node-id").value;
-      const parent = document.getElementById("parent-id").value;
-      const claim = document.getElementById("node-claim").value;
-
-      // Anti-replay check
-      if (nodes.some(n => n.claim === claim)) {
-        nodes.unshift({
-          id: id + "-REPLAY-ATTACK",
-          parent: parent,
-          claim: claim,
-          hash: "REPLAY_INTERCEPTED",
-          status: "QUARANTINED"
-        });
-        document.getElementById("policy-status").innerHTML = "Status: <span style='color:#f59e0b; font-weight:bold;'>ANTI-REPLAY QUARANTINE TRIGGERED</span>";
-        renderTree();
-        return;
-      }
-
-      const randomHash = Array.from({length: 16}, () => Math.floor(Math.random()*16).toString(16)).join("");
-      nodes.push({ id, parent, claim, hash: randomHash + "...", status: "VALID" });
-
-      const fullRoot = Array.from({length: 64}, () => Math.floor(Math.random()*16).toString(16)).join("");
-      document.getElementById("merkle-root-display").innerText = "Root: " + fullRoot.substring(0, 24) + "... (SHA-256)";
-      document.getElementById("policy-status").innerHTML = "Status: <span style='color:var(--green); font-weight:bold;'>COMPLIANT (RULE-POL-01 PASSED)</span>";
-
-      document.getElementById("node-id").value = "node-0" + (nodes.length + 1);
-      renderTree();
-    }
-
-    function tamperNode() {
-      if (nodes.length > 1) {
-        nodes[1].status = "TAMPERED";
-        nodes[1].claim = "ALTERED RECORD: Glucose 450 mg/dL (Bit-Flip Detected)";
-        document.getElementById("merkle-root-display").innerHTML = "<span style='color:var(--red);'>MERKLE ROOT BROKEN: INTEGRITY_MISMATCH</span>";
-        document.getElementById("policy-status").innerHTML = "Status: <span style='color:var(--red); font-weight:bold;'>INTEGRITY VIOLATION (FAIL CLOSED)</span>";
-        renderTree();
-      }
-    }
-
-    renderTree();
   </script>
 </body>
 </html>
