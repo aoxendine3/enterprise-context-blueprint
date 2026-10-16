@@ -41,3 +41,20 @@ Historical research records indicate three primary target domains previously uti
   - `docs/`: Technical specifications, architecture blueprints, and audit manifests.
   - Receipts: Written locally to workspace or `memory/catch_log/`.
 - No stray file dumps, no drifting outside of `sovereign-agentic-app`.
+
+---
+
+## 5. Frozen Council Speech Protocol (IMMUTABLE)
+- **Canonical Dispatch Engine:** `labs/workspaces/sovereign-agentic-app/scripts/council_speak.sh` (backed by `/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/council_audio_dispatch.py --json`).
+- **Speaker Sequence & Cadence:**
+  1. **Maxx** (`bm_george` @ 0.98): Operational accountability, sets current work focus, direct address to Anthony.
+  2. **Clara** (`af_bella` @ 1.02): Hard R&D metrics, technical measurements, model status, build times, port bindings.
+  3. **Vance** (`am_michael` @ 0.96): Discernment bench, formal governance, SHA-256 commit verification, immediate readiness.
+- **Timing & Gap:** Strict **0.40s natural breath pause** enforced via Apple Silicon M4 unified RAM background pre-synthesis pipelining. No dead air, zero cold reloads.
+- **Tone Invariants:**
+  - Natural, grounded, respectful peer dialogue.
+  - Zero stage theatrics, zero military boasting, zero hyperbolic jargon.
+  - Plural collective voice ("we", "our team", "the council"). Never singular posturing.
+  - Zero old/canned data replayed. All speech payloads must be 100% fresh real-time content.
+  - Never drop text dumps without speaking. Silence is failure.
+
