@@ -1,0 +1,28 @@
+{
+  "context_scope": "UPGP_TWO_LAYER_KERNEL_INVARIANT_FROZEN_BASELINE",
+  "session_id": "session_upgp_kernel_v5_freeze",
+  "node_id": "ee4dec750a077db221f073b02df2de5fb66d2b04c4898924920455c98cb0beb7",
+  "seq_num": 1,
+  "parent_hash": "GENESIS_NODE_0000000000000000",
+  "payload_hash": "9422eaafca073e434f661478d64c8f125d79a6e954d24bda7bc5cf38e793fa6c",
+  "signature": "aa49139a38ec1189dc40d81b6d93a3c8f4580cb5ec8aa8c000a7609100d41673",
+  "session_merkle_root": "ee4dec750a077db221f073b02df2de5fb66d2b04c4898924920455c98cb0beb7",
+  "global_merkle_root": "50b12fc3e366e6b982213a2a7d82a1648c0e53c19404bbde5da05bae9f5ecb0a",
+  "context_payload": {
+    "context_scope_name": "UPGP_TWO_LAYER_KERNEL_INVARIANT_FROZEN_BASELINE",
+    "posture": "ARCHITECTURE_FROZEN_FAIL_CLOSED",
+    "ssot_git_commit": "01128fc",
+    "proving_ground_git_commit": "bded3b0",
+    "canonical_memory_slot": "0x3000",
+    "canonical_mass": 18432.0,
+    "pre_state_hash": "a7d16584d668d9a1ed4f579228c551a86d66d89a4d29eef3ecea616564be2652",
+    "post_state_hash": "a7d16584d668d9a1ed4f579228c551a86d66d89a4d29eef3ecea616564be2652",
+    "poincare_invariant_ceiling": 0.5,
+    "mmu_hardware_protection": "PAGE_READONLY / PROT_READ",
+    "vnv_document_id": "XORAS-TM-2026-031",
+    "vnv_document_sha256": "dc24b20992d319873a89d1108df01e0accfb91fa1d7f35564359db52bf613c9b",
+    "replay_receipt_sha256": "561d585d762b6d079dca7fb1b2482558a76ce2bde925148281610daee1dd4ed4",
+    "operational_directive": "INDEPENDENT_FALSIFICATION_ONLY",
+    "council_author": "council://lead9/maxx"
+  }
+}
