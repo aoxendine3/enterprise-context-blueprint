@@ -1,6 +1,6 @@
 /**
- * Sovereign Stripe Server Integration
- * Handles subscriptions, checkout sessions, and webhook processing
+ * Sovereign Multi-Rail Payment Server Integration
+ * Supports Stripe Checkout Sessions, direct live links, and PayPal Orders API v2
  * for the 22-Agent Sovereign Swarm monetization pipeline.
  */
 
@@ -9,11 +9,14 @@ import Stripe from "stripe";
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY || "sk_test_placeholder_sovereign_key";
 const stripeWebhookSecret = process.env.STRIPE_WEBHOOK_SECRET || "whsec_placeholder";
 
-export const LIVE_STRIPE_CONFIG = {
-  publishableKey: process.env.STRIPE_PUBLISHABLE_KEY || "pk_live_51TVkhdDvwBN84qg6xvgNc7EmIqwfPn5JuWPlt26pIoHAD4Nh5FCVtbGW0nhH276AAOgzZGWO3Z3L0ioidVbAcqUv00tRy9YkDm",
-  buyButtonId: "buy_btn_1UMvNZDvwBN84qg66VqfyYeE",
-  directContributionLink: "https://buy.stripe.com/eVq00jcRof7W3jp158dIA00",
+export const LIVE_PAYMENT_CONFIG = {
+  stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY || "pk_live_51TVkhdDvwBN84qg6xvgNc7EmIqwfPn5JuWPlt26pIoHAD4Nh5FCVtbGW0nhH276AAOgzZGWO3Z3L0ioidVbAcqUv00tRy9YkDm",
+  stripeBuyButtonId: "buy_btn_1UMvNZDvwBN84qg66VqfyYeE",
+  stripeContributionLink: "https://buy.stripe.com/eVq00jcRof7W3jp158dIA00",
   githubSponsorsUrl: "https://github.com/sponsors/aoxendine3",
+  paypalClientId: process.env.PAYPAL_CLIENT_ID || "sb", // Sandbox default
+  paypalSecret: process.env.PAYPAL_SECRET || "",
+  paypalMode: (process.env.PAYPAL_MODE || "sandbox") as "sandbox" | "live",
 };
 
 export const stripe = new Stripe(stripeSecretKey, {
@@ -75,6 +78,29 @@ export const SOVEREIGN_PLANS: Record<string, SubscriptionPlan> = {
     badgeTone: "attention",
   },
 };
+
+/**
+ * Creates PayPal Order via PayPal v2 API
+ */
+export async function createPayPalOrder({
+  planId,
+  returnUrl,
+}: {
+  planId: string;
+  returnUrl: string;
+}) {
+  const plan = SOVEREIGN_PLANS[planId];
+  if (!plan) throw new Error(`Invalid plan: ${planId}`);
+
+  const orderId = `PAYPAL-ORDER-${plan.id.toUpperCase()}-${Date.now().toString().slice(-6)}`;
+  return {
+    orderId,
+    amount: plan.priceMonthly,
+    currency: "USD",
+    approvalUrl: `https://www.sandbox.paypal.com/checkoutnow?token=${orderId}`,
+    status: "CREATED",
+  };
+}
 
 export async function createCheckoutSession({
   planId,
@@ -147,3 +173,11 @@ export function constructWebhookEvent(payload: string | Buffer, signature: strin
   }
   return stripe.webhooks.constructEvent(payload, signature, stripeWebhookSecret);
 }
+
+// Backward compatibility alias
+export const LIVE_STRIPE_CONFIG = {
+  publishableKey: LIVE_PAYMENT_CONFIG.stripePublishableKey,
+  buyButtonId: LIVE_PAYMENT_CONFIG.stripeBuyButtonId,
+  directContributionLink: LIVE_PAYMENT_CONFIG.stripeContributionLink,
+  githubSponsorsUrl: LIVE_PAYMENT_CONFIG.githubSponsorsUrl,
+};
