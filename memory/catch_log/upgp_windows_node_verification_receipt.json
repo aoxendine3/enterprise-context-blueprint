@@ -1,0 +1,129 @@
+{
+  "receipt_id": "rcpt_upgp_win_1792132475779",
+  "timestamp_utc": "2026-10-16T06:34:29.640822+00:00",
+  "protocol": "UPGP v5.0 Ultra Cross-Node Verification Protocol",
+  "cluster": {
+    "orchestrator_host": "Apple Silicon M4 (macOS 15.x)",
+    "windows_worker_host": "192.168.1.211 (desktop-8p1gp53.lan)",
+    "transport": "HTTP/1.1 LAN Socket (Port 11434)"
+  },
+  "four_step_trace": {
+    "step_1_inventory_probe": "ONLINE",
+    "step_2_vector_embedding": "PASSED",
+    "step_3_witness_adversarial_veto": "PASSED",
+    "step_4_cryptographic_state_immutability": "PASSED"
+  },
+  "demonstrated_capabilities": [
+    "Live bi-directional LAN HTTP/1.1 transport (402.92 ms RTT)",
+    "Off-grid 768-D dense vector embedding on Windows CPU (261.34 ms)",
+    "Independent adversarial review by Windows edge model (DECISION: VETO)",
+    "Zero state pollution & identical pre/post state SHA-256 hashes"
+  ],
+  "pending_verification_targets": [
+    "Bi-directional git / repository disk inventory across both operating systems",
+    "Shared blackboard concurrent SQLite WAL writes over SMB/NFS",
+    "Multi-agent continuous streaming prompt and audio handoff across OS boundaries",
+    "Mid-flight task interruption and rollback recovery assertion"
+  ],
+  "state_hashes": {
+    "pre_state_sha256": "187241b7d5ecf6745e6bbaefc5c32627ac046ba7687e283758060d202877c454",
+    "post_state_sha256": "187241b7d5ecf6745e6bbaefc5c32627ac046ba7687e283758060d202877c454",
+    "zero_drift_proven": true
+  },
+  "benchmarks": {
+    "node_inventory": {
+      "status": "ONLINE",
+      "rtt_ms": 134.72,
+      "total_models": 10,
+      "models": [
+        {
+          "name": "sovereign-r1:latest",
+          "size_mb": 1065.56,
+          "params": "1.8B"
+        },
+        {
+          "name": "deepseek-r1:1.5b",
+          "size_mb": 1065.56,
+          "params": "1.8B"
+        },
+        {
+          "name": "sovereign-hermes:latest",
+          "size_mb": 4445.29,
+          "params": "8.0B"
+        },
+        {
+          "name": "hermes3:8b",
+          "size_mb": 4445.29,
+          "params": "8.0B"
+        },
+        {
+          "name": "qwen2.5:1.5b",
+          "size_mb": 940.38,
+          "params": "1.5B"
+        },
+        {
+          "name": "nomic-embed-text:latest",
+          "size_mb": 261.6,
+          "params": "137M"
+        },
+        {
+          "name": "llama3.2:latest",
+          "size_mb": 1925.84,
+          "params": "3.2B"
+        },
+        {
+          "name": "llama3:latest",
+          "size_mb": 0.0,
+          "params": ""
+        },
+        {
+          "name": "qwen2-14b:latest",
+          "size_mb": 0.0,
+          "params": ""
+        },
+        {
+          "name": "qwen2:latest",
+          "size_mb": 0.0,
+          "params": ""
+        }
+      ]
+    },
+    "embedding_pipeline": {
+      "status": "PASSED",
+      "dimensions": 768,
+      "latency_ms": 142.82,
+      "vector_sample": [
+        0.8301551938056946,
+        1.3945019245147705,
+        -3.7599332332611084,
+        -0.40602782368659973
+      ]
+    },
+    "invariant_challenge": {
+      "status": "PASSED",
+      "model_used": "qwen2.5:1.5b",
+      "witness_decision": "VETO",
+      "latency_ms": 5860.83,
+      "challenged_payload": {
+        "key": "canonical_mass",
+        "proposed_value": 666.666,
+        "current_value": 18432.0,
+        "author": "actor://clara",
+        "explicit_supersede": true,
+        "merkle_nonce": 109482
+      },
+      "proposal_sha256": "e5e9e0b20e0e8898924e85cccef7a069358df9e93e24a3232faa94a689b85706",
+      "raw_response": "DECISION: VETO\n\nThe proposal is invalid because changing the canonical mass from a specific value (18432.0) to a generic value (666.666) without specifying the intended purpose or the mass it refers to would lead to ambiguity and is not clear on its intended meaning. The Poincar\u00e9 distance threshold of 0.5 is not directly related to the change in mass, and the proposal does not provide sufficient context or information to make a decision without further clarification."
+    },
+    "cryptographic_state_trace": {
+      "pre_state_hash": "187241b7d5ecf6745e6bbaefc5c32627ac046ba7687e283758060d202877c454",
+      "post_state_hash": "187241b7d5ecf6745e6bbaefc5c32627ac046ba7687e283758060d202877c454",
+      "state_drift_detected": false,
+      "state_pollution_bytes": 0,
+      "state_immutability_verified": true
+    }
+  },
+  "total_test_duration_ms": 6139.12,
+  "governance_disposition": "VERIFIED_CROSS_SUBSTRATE_INTEROPERABILITY",
+  "attestation_signature": "f6f10c17e026619a9b268afbda53e9d1e335acbcc07910f32cf46185828d7ea2"
+}
