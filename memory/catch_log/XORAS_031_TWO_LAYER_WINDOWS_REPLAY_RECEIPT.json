@@ -1,0 +1,32 @@
+{
+  "receipt_id": "rcpt_two_layer_1792134357637",
+  "timestamp_utc": "2026-10-16T07:05:57.633192+00:00",
+  "platform": "POSIX / darwin (arm64)",
+  "audit_objective": "Reproducible Two-Layer Separation (Invariant Gate vs Hardware MMU)",
+  "layer_a_mathematical_invariant": {
+    "u_normalized": 0.9216,
+    "v_normalized": 0.033333,
+    "computed_poincare_distance": 3.132398,
+    "invariant_ceiling": 0.5,
+    "decision": "VETO",
+    "what_it_rejected": "Semantic legitimacy of state transition (d_H > 0.5000)"
+  },
+  "layer_b_hardware_mmu": {
+    "initial_mmu_state": "PAGE_READONLY / PROT_READ",
+    "external_checker_approval_present": true,
+    "page_promotion_to_writable_denied": true,
+    "hardware_exception_caught": true,
+    "hardware_exception_type": "Process Trapped (Exit Code 42)",
+    "what_it_blocked": "Physical CPU store instruction from touching cache line"
+  },
+  "state_reconciliation": {
+    "pre_state_hash": "a7d16584d668d9a1ed4f579228c551a86d66d89a4d29eef3ecea616564be2652",
+    "post_state_hash": "a7d16584d668d9a1ed4f579228c551a86d66d89a4d29eef3ecea616564be2652",
+    "pre_value": 18432.0,
+    "post_value": 18432.0,
+    "state_pollution_percentage": 0.0,
+    "zero_drift_proven": true
+  },
+  "execution_latency_us": 3847.79,
+  "attestation_sha256": "a7d16584d668d9a1ed4f579228c551a86d66d89a4d29eef3ecea616564be2652"
+}
