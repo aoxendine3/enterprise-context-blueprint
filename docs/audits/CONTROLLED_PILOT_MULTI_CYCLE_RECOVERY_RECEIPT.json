@@ -1,0 +1,110 @@
+{
+  "timestamp_utc": "2026-10-16T05:30:18.909290+00:00",
+  "total_cycles": 10,
+  "successful_recoveries": 10,
+  "stalled_or_orphaned_tasks": 0,
+  "start_sequence_number": 4,
+  "final_sequence_number": 14,
+  "sequence_continuity": true,
+  "sqlite_integrity": "ok",
+  "state_conservation_rate": "100.00%",
+  "recovery_latency_us": {
+    "mean": 466.23,
+    "min": 169.83,
+    "max": 1912.12,
+    "p50": 234.56,
+    "p95": 1409.18
+  },
+  "cycle_telemetry": [
+    {
+      "cycle": 1,
+      "task_id": "pilot_cycle_1_1792128618782",
+      "interrupted_at_step": 2,
+      "recovered_to_step": 3,
+      "sequence_number": 5,
+      "recovery_time_us": 794.46,
+      "merkle_root": "284e8273d747a579f3cb3834"
+    },
+    {
+      "cycle": 2,
+      "task_id": "pilot_cycle_2_1792128618797",
+      "interrupted_at_step": 1,
+      "recovered_to_step": 3,
+      "sequence_number": 6,
+      "recovery_time_us": 202.5,
+      "merkle_root": "29d50f4a6d6d7ec20ad4ac2b"
+    },
+    {
+      "cycle": 3,
+      "task_id": "pilot_cycle_3_1792128618810",
+      "interrupted_at_step": 2,
+      "recovered_to_step": 3,
+      "sequence_number": 7,
+      "recovery_time_us": 180.92,
+      "merkle_root": "fa1d6a39ed4e8b96afc5a8ae"
+    },
+    {
+      "cycle": 4,
+      "task_id": "pilot_cycle_4_1792128618823",
+      "interrupted_at_step": 1,
+      "recovered_to_step": 3,
+      "sequence_number": 8,
+      "recovery_time_us": 241.79,
+      "merkle_root": "06b0be2ef12cb6a06706503d"
+    },
+    {
+      "cycle": 5,
+      "task_id": "pilot_cycle_5_1792128618834",
+      "interrupted_at_step": 2,
+      "recovered_to_step": 3,
+      "sequence_number": 9,
+      "recovery_time_us": 169.83,
+      "merkle_root": "e2787d4535ee56a97c94edb3"
+    },
+    {
+      "cycle": 6,
+      "task_id": "pilot_cycle_6_1792128618846",
+      "interrupted_at_step": 2,
+      "recovered_to_step": 3,
+      "sequence_number": 10,
+      "recovery_time_us": 203.58,
+      "merkle_root": "20fb47280ac56075242c0aa5"
+    },
+    {
+      "cycle": 7,
+      "task_id": "pilot_cycle_7_1792128618857",
+      "interrupted_at_step": 1,
+      "recovered_to_step": 3,
+      "sequence_number": 11,
+      "recovery_time_us": 227.33,
+      "merkle_root": "103161ea7035513ec009d506"
+    },
+    {
+      "cycle": 8,
+      "task_id": "pilot_cycle_8_1792128618869",
+      "interrupted_at_step": 1,
+      "recovered_to_step": 3,
+      "sequence_number": 12,
+      "recovery_time_us": 462.83,
+      "merkle_root": "6e01da2a737130b9a1d24dba"
+    },
+    {
+      "cycle": 9,
+      "task_id": "pilot_cycle_9_1792128618881",
+      "interrupted_at_step": 1,
+      "recovered_to_step": 3,
+      "sequence_number": 13,
+      "recovery_time_us": 266.88,
+      "merkle_root": "094fdec0cf5ea0c1645d03a6"
+    },
+    {
+      "cycle": 10,
+      "task_id": "pilot_cycle_10_1792128618892",
+      "interrupted_at_step": 2,
+      "recovered_to_step": 3,
+      "sequence_number": 14,
+      "recovery_time_us": 1912.12,
+      "merkle_root": "c7cfc80b130a5048eda0e617"
+    }
+  ]
+}
