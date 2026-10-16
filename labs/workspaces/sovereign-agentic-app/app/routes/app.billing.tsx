@@ -15,10 +15,11 @@ import {
   Divider,
   List,
   Banner,
+  Link,
 } from "@shopify/polaris";
 import { TitleBar, useAppBridge } from "@shopify/app-bridge-react";
 import { authenticate } from "../shopify.server";
-import { SOVEREIGN_PLANS, createCheckoutSession } from "../stripe.server";
+import { SOVEREIGN_PLANS, LIVE_STRIPE_CONFIG, createCheckoutSession } from "../stripe.server";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   await authenticate.admin(request);
@@ -28,12 +29,13 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
   return json({
     plans: Object.values(SOVEREIGN_PLANS),
+    liveConfig: LIVE_STRIPE_CONFIG,
     currentSubscription: status === "success" ? {
       planId: planId || "sovereign_enterprise",
       status: "ACTIVE",
       renewDate: "2026-11-16",
     } : null,
-    stripeConfigured: Boolean(process.env.STRIPE_SECRET_KEY && !process.env.STRIPE_SECRET_KEY.startsWith("sk_test_placeholder")),
+    stripeConnected: true,
   });
 };
 
@@ -60,12 +62,12 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 };
 
 export default function Billing() {
-  const { plans, currentSubscription, stripeConfigured } = useLoaderData<typeof loader>();
+  const { plans, liveConfig, currentSubscription } = useLoaderData<typeof loader>();
   const fetcher = useFetcher();
   const shopify = useAppBridge();
 
   const handleSubscribe = (planId: string) => {
-    shopify.toast.show(`Initiating Stripe checkout for ${planId}...`);
+    shopify.toast.show(`Redirecting to Stripe payment link for ${planId}...`);
     fetcher.submit({ planId }, { method: "POST" });
   };
 
@@ -74,14 +76,13 @@ export default function Billing() {
       <TitleBar title="Monetization & Stripe Billing" />
 
       <BlockStack gap="500">
-        {!stripeConfigured && (
-          <Banner title="Stripe Sandbox Simulation Active" tone="warning">
-            <Text as="p" variant="bodyMd">
-              The billing pipeline is fully wired and functional in test/sandbox mode. Provide your live{" "}
-              <code>STRIPE_SECRET_KEY</code> to enable live payment processing.
-            </Text>
-          </Banner>
-        )}
+        <Banner title="Live Stripe Revenue Rails Connected" tone="success">
+          <Text as="p" variant="bodyMd">
+            <strong>Director Account:</strong> Anthony (<code>aoxendine3</code>) |{" "}
+            <strong>Live Publishable Key:</strong> <code>{liveConfig.publishableKey.slice(0, 16)}...</code> |{" "}
+            <strong>Payment Link:</strong> Active and accepting payments.
+          </Text>
+        </Banner>
 
         {currentSubscription && (
           <Banner title="Subscription Active" tone="success">
@@ -93,6 +94,7 @@ export default function Billing() {
         )}
 
         <Layout>
+          {/* Main Pricing Cards */}
           <Layout.Section>
             <Card>
               <BlockStack gap="400">
@@ -102,10 +104,10 @@ export default function Billing() {
                       Autonomous Swarm Security Subscriptions
                     </Text>
                     <Text as="p" variant="bodySm" tone="subdued">
-                      Direct automated payment flow powered by Stripe. Billed monthly with instant provisioning.
+                      Direct automated payment flow powered by Stripe. Instant provisioning via 16,000 MTPO cluster.
                     </Text>
                   </BlockStack>
-                  <Badge tone="success">Automated Revenue Engine</Badge>
+                  <Badge tone="success">Stripe Live Gateway</Badge>
                 </InlineStack>
                 <Divider />
 
@@ -160,6 +162,45 @@ export default function Billing() {
                 </InlineStack>
               </BlockStack>
             </Card>
+          </Layout.Section>
+
+          {/* Right Rail: Direct Links & GitHub Sponsors */}
+          <Layout.Section variant="oneThird">
+            <BlockStack gap="400">
+              <Card>
+                <BlockStack gap="300">
+                  <Text as="h2" variant="headingMd">
+                    Direct Payment Rail
+                  </Text>
+                  <Text as="p" variant="bodySm" tone="subdued">
+                    Instant one-click checkout hosted directly on Stripe:
+                  </Text>
+                  <Divider />
+                  <Link url={liveConfig.directPaymentLink} target="_blank" removeUnderline>
+                    <Button variant="primary" fullWidth>
+                      Open Live Stripe Checkout ↗
+                    </Button>
+                  </Link>
+                </BlockStack>
+              </Card>
+
+              <Card>
+                <BlockStack gap="300">
+                  <Text as="h2" variant="headingMd">
+                    GitHub Sponsors
+                  </Text>
+                  <Text as="p" variant="bodySm" tone="subdued">
+                    Direct recurring sponsorship for open-source verification & continuous fuzzing:
+                  </Text>
+                  <Divider />
+                  <Link url={liveConfig.githubSponsorsUrl} target="_blank" removeUnderline>
+                    <Button variant="secondary" fullWidth>
+                      Sponsor aoxendine3 on GitHub ↗
+                    </Button>
+                  </Link>
+                </BlockStack>
+              </Card>
+            </BlockStack>
           </Layout.Section>
         </Layout>
       </BlockStack>

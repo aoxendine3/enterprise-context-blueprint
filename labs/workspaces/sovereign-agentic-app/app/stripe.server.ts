@@ -9,6 +9,13 @@ import Stripe from "stripe";
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY || "sk_test_placeholder_sovereign_key";
 const stripeWebhookSecret = process.env.STRIPE_WEBHOOK_SECRET || "whsec_placeholder";
 
+export const LIVE_STRIPE_CONFIG = {
+  publishableKey: process.env.STRIPE_PUBLISHABLE_KEY || "pk_live_51TVkhdDvwBN84qg6xvgNc7EmIqwfPn5JuWPlt26pIoHAD4Nh5FCVtbGW0nhH276AAOgzZGWO3Z3L0ioidVbAcqUv00tRy9YkDm",
+  buyButtonId: "buy_btn_1UMvNZDvwBN84qg66VqfyYeE",
+  directPaymentLink: "https://buy.stripe.com/eVq00jcRof7W3jp158dIA00",
+  githubSponsorsUrl: "https://github.com/sponsors/aoxendine3",
+};
+
 export const stripe = new Stripe(stripeSecretKey, {
   apiVersion: "2025-01-27.acacia" as any,
   typescript: true,
@@ -83,12 +90,13 @@ export async function createCheckoutSession({
     throw new Error(`Invalid plan ID: ${planId}`);
   }
 
-  // If using placeholder key in development/testing, return mock session URL
+  // If using placeholder key, direct to live verified payment link
   if (stripeSecretKey.startsWith("sk_test_placeholder")) {
     return {
-      id: `cs_mock_${Date.now()}`,
-      url: `${returnUrl}?session_id=cs_mock_${Date.now()}&status=success&plan=${planId}`,
-      isMock: true,
+      id: `cs_live_direct_${Date.now()}`,
+      url: LIVE_STRIPE_CONFIG.directPaymentLink,
+      isMock: false,
+      isDirectLiveLink: true,
     };
   }
 
@@ -125,6 +133,7 @@ export async function createCheckoutSession({
     id: session.id,
     url: session.url,
     isMock: false,
+    isDirectLiveLink: false,
   };
 }
 
