@@ -16,6 +16,7 @@ import {
   Divider,
   ProgressBar,
   List,
+  Link,
 } from "@shopify/polaris";
 import { TitleBar, useAppBridge } from "@shopify/app-bridge-react";
 import { authenticate } from "../shopify.server";
@@ -213,6 +214,25 @@ export default function Index() {
             </Card>
           </Layout.Section>
         </Layout>
+
+        {/* Code Security Packages & Sponsorship Portal */}
+        <Card>
+          <BlockStack gap="400">
+            <InlineStack align="space-between" blockAlign="center">
+              <BlockStack gap="100">
+                <Text as="h2" variant="headingMd">
+                  Commercial Security Packages & Sponsorship
+                </Text>
+                <Text as="p" variant="bodySm" tone="subdued">
+                  Standardized code assurance packages for engineering teams ($299/mo to $4,999/mo) and community sponsorship.
+                </Text>
+              </BlockStack>
+              <Link url="/app/billing" removeUnderline>
+                <Button variant="primary">View Pricing & Billing Options →</Button>
+              </Link>
+            </InlineStack>
+          </BlockStack>
+        </Card>
 
         {/* Verified Bug Bounty & Vulnerability Findings */}
         <Card>

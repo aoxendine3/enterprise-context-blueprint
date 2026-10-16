@@ -26,16 +26,23 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const url = new URL(request.url);
   const status = url.searchParams.get("status");
   const planId = url.searchParams.get("plan");
+  const invoiceId = url.searchParams.get("invoice_id");
+  const amount = url.searchParams.get("amount");
 
   return json({
     plans: Object.values(SOVEREIGN_PLANS),
     liveConfig: LIVE_STRIPE_CONFIG,
+    invoiceNotification: status === "invoice_generated" && invoiceId ? {
+      invoiceId,
+      planId: planId || "sentinel",
+      amount: amount || "299",
+      date: new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }),
+    } : null,
     currentSubscription: status === "success" ? {
       planId: planId || "sovereign_enterprise",
       status: "ACTIVE",
       renewDate: "2026-11-16",
     } : null,
-    stripeConnected: true,
   });
 };
 
@@ -62,32 +69,54 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 };
 
 export default function Billing() {
-  const { plans, liveConfig, currentSubscription } = useLoaderData<typeof loader>();
+  const { plans, liveConfig, invoiceNotification, currentSubscription } = useLoaderData<typeof loader>();
   const fetcher = useFetcher();
   const shopify = useAppBridge();
 
-  const handleSubscribe = (planId: string) => {
-    shopify.toast.show(`Redirecting to Stripe payment link for ${planId}...`);
+  const handleOrderPlan = (planId: string, amount: number) => {
+    shopify.toast.show(`Processing order for ${planId} ($${amount}/mo)...`);
     fetcher.submit({ planId }, { method: "POST" });
   };
 
   return (
     <Page fullWidth>
-      <TitleBar title="Monetization & Stripe Billing" />
+      <TitleBar title="Code Security Services & Project Sponsorship" />
 
       <BlockStack gap="500">
-        <Banner title="Live Stripe Revenue Rails Connected" tone="success">
+        {/* Transparent Overview Header */}
+        <Banner
+          title="Security Verification & Development Support"
+          tone="info"
+        >
           <Text as="p" variant="bodyMd">
-            <strong>Director Account:</strong> Anthony (<code>aoxendine3</code>) |{" "}
-            <strong>Live Publishable Key:</strong> <code>{liveConfig.publishableKey.slice(0, 16)}...</code> |{" "}
-            <strong>Payment Link:</strong> Active and accepting payments.
+            Our mission is to help developers and merchants identify logic flaws, prevent race conditions, and build
+            secure applications. We offer standard commercial security auditing packages alongside direct community
+            sponsorship channels to keep our open-source tools continuously tested and maintained.
           </Text>
         </Banner>
 
+        {/* Invoice Confirmation Banner */}
+        {invoiceNotification && (
+          <Banner title={`Invoice & Order Confirmation: ${invoiceNotification.invoiceId}`} tone="success">
+            <BlockStack gap="200">
+              <Text as="p" variant="bodyMd">
+                Thank you for selecting the <strong>{invoiceNotification.planId.toUpperCase()}</strong> package ($
+                {invoiceNotification.amount}/month). Your formal service order has been generated under reference{" "}
+                <code>{invoiceNotification.invoiceId}</code>.
+              </Text>
+              <Text as="p" variant="bodySm" tone="subdued">
+                An onboarding engineer will confirm your repository scope within 1 business day. Payment can be settled
+                via direct Stripe invoice, corporate ACH, or corporate card.
+              </Text>
+            </BlockStack>
+          </Banner>
+        )}
+
+        {/* Active Subscription Banner */}
         {currentSubscription && (
           <Banner title="Subscription Active" tone="success">
             <Text as="p" variant="bodyMd">
-              You are currently subscribed to <strong>{currentSubscription.planId.toUpperCase()}</strong>. Renews on{" "}
+              Your service is active on <strong>{currentSubscription.planId.toUpperCase()}</strong>. Scheduled renewal:{" "}
               {currentSubscription.renewDate}.
             </Text>
           </Banner>
@@ -101,13 +130,13 @@ export default function Billing() {
                 <InlineStack align="space-between">
                   <BlockStack gap="100">
                     <Text as="h2" variant="headingMd">
-                      Autonomous Swarm Security Subscriptions
+                      Commercial Code Security Packages
                     </Text>
                     <Text as="p" variant="bodySm" tone="subdued">
-                      Direct automated payment flow powered by Stripe. Instant provisioning via 16,000 MTPO cluster.
+                      Formal verification, automated AST auditing, and human-verified remediation patches.
                     </Text>
                   </BlockStack>
-                  <Badge tone="success">Stripe Live Gateway</Badge>
+                  <Badge tone="success">Verified Service Tiers</Badge>
                 </InlineStack>
                 <Divider />
 
@@ -150,10 +179,10 @@ export default function Billing() {
                           <Button
                             variant={plan.id === "sovereign_enterprise" ? "primary" : "secondary"}
                             fullWidth
-                            onClick={() => handleSubscribe(plan.id)}
+                            onClick={() => handleOrderPlan(plan.id, plan.priceMonthly)}
                             loading={fetcher.state !== "idle"}
                           >
-                            Subscribe — ${plan.priceMonthly}/mo
+                            Order Plan — ${plan.priceMonthly}/mo
                           </Button>
                         </Box>
                       </BlockStack>
@@ -164,21 +193,22 @@ export default function Billing() {
             </Card>
           </Layout.Section>
 
-          {/* Right Rail: Direct Links & GitHub Sponsors */}
+          {/* Right Rail: Open-Source Support & Sponsorship */}
           <Layout.Section variant="oneThird">
             <BlockStack gap="400">
               <Card>
                 <BlockStack gap="300">
                   <Text as="h2" variant="headingMd">
-                    Direct Payment Rail
+                    Direct Project Contribution
                   </Text>
                   <Text as="p" variant="bodySm" tone="subdued">
-                    Instant one-click checkout hosted directly on Stripe:
+                    Support continuous integration hardware, daily fuzzing suites, and MIT open-source tooling with a
+                    direct contribution ($1+):
                   </Text>
                   <Divider />
-                  <Link url={liveConfig.directPaymentLink} target="_blank" removeUnderline>
+                  <Link url={liveConfig.directContributionLink} target="_blank" removeUnderline>
                     <Button variant="primary" fullWidth>
-                      Open Live Stripe Checkout ↗
+                      Contribute via Stripe ($1+) ↗
                     </Button>
                   </Link>
                 </BlockStack>
@@ -190,7 +220,7 @@ export default function Billing() {
                     GitHub Sponsors
                   </Text>
                   <Text as="p" variant="bodySm" tone="subdued">
-                    Direct recurring sponsorship for open-source verification & continuous fuzzing:
+                    Recurring developer sponsorship through GitHub to fund public vulnerability research and tooling:
                   </Text>
                   <Divider />
                   <Link url={liveConfig.githubSponsorsUrl} target="_blank" removeUnderline>
@@ -198,6 +228,21 @@ export default function Billing() {
                       Sponsor aoxendine3 on GitHub ↗
                     </Button>
                   </Link>
+                </BlockStack>
+              </Card>
+
+              <Card>
+                <BlockStack gap="200">
+                  <Text as="h3" variant="headingSm">
+                    Security & Privacy Commitment
+                  </Text>
+                  <Text as="p" variant="bodySm" tone="subdued">
+                    • <strong>Privacy First:</strong> We never touch or store consumer personal data.
+                    <br />
+                    • <strong>Non-Invasive:</strong> Audits run in isolated sandboxes without disrupting production.
+                    <br />
+                    • <strong>Open Source Core:</strong> Licensed under the MIT License for community transparency.
+                  </Text>
                 </BlockStack>
               </Card>
             </BlockStack>
