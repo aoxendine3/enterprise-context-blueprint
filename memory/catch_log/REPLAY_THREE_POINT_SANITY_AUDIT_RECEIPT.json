@@ -1,0 +1,34 @@
+{
+  "receipt_id": "rcpt_replay_three_sanity_checks_001",
+  "timestamp_utc": "2026-10-16T07:16:30Z",
+  "overall_status": "ALL_SANITY_CHECKS_VERIFIED",
+  "results": {
+    "check_1_baseline_verification": {
+      "status": "PASS",
+      "ssot_freeze_commit": "01128fc",
+      "ssot_head": "352252a",
+      "proving_ground_commit": "bded3b0",
+      "canonical_mass": 18432.0,
+      "memory_slot": "0x3000",
+      "state_root": "a7d16584d668d9a1ed4f579228c551a86d66d89a4d29eef3ecea616564be2652",
+      "protection": "PAGE_READONLY / PROT_READ"
+    },
+    "check_2_merkle_recomputation": {
+      "status": "PASS",
+      "node_id": "ee4dec750a077db221f073b02df2de5fb66d2b04c4898924920455c98cb0beb7",
+      "payload_hash": "9422eaafca073e434f661478d64c8f125d79a6e954d24bda7bc5cf38e793fa6c",
+      "session_merkle_root": "ee4dec750a077db221f073b02df2de5fb66d2b04c4898924920455c98cb0beb7",
+      "global_merkle_root": "50b12fc3e366e6b982213a2a7d82a1648c0e53c19404bbde5da05bae9f5ecb0a",
+      "all_roots_match_sealed_record": true
+    },
+    "check_3_mismatched_lineage_quarantine": {
+      "status": "PASS",
+      "injected_parent": "FORGED_PARENT_DEADBEEF_00000000",
+      "expected_parent": "ee4dec750a077db221f073b02df2de5fb66d2b04c4898924920455c98cb0beb7",
+      "quarantine_triggered": true,
+      "evidence_id": "ev_a79d4cd488c9cef5",
+      "canonical_mass_retained": 18432.0,
+      "state_pollution": 0.0
+    }
+  }
+}
