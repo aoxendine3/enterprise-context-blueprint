@@ -1,0 +1,22 @@
+{
+  "report": {
+    "workload": "SOVEREIGN_APP_HEALTH_AUDIT",
+    "app": "sovereign-agentic-app",
+    "scopes": "read_products,write_products",
+    "sovra_policy_active": true,
+    "zero_trust_status": "CERTIFIED_HEALTHY",
+    "state_digest": "199ba5f8351fe139579fc08ac4c84310c9cf0e4816843dcff8e6d7ea18fd3ec0",
+    "audit_timestamp_utc": "2026-10-16T05:34:27.814500+00:00"
+  },
+  "pipeline_telemetry": {
+    "t1_latency_ms": 0.005,
+    "t2_latency_ms": 0.027,
+    "t3_latency_ms": 0.134,
+    "total_workload_time_ms": 10.962
+  },
+  "blackboard_commit": {
+    "entity_id": 15,
+    "sequence_number": 15,
+    "merkle_root": "bbc67d4da7f2246fb0a6f2ef81d68d12d609ccc3b153d2e3dab5f653f77692c3"
+  }
+}
