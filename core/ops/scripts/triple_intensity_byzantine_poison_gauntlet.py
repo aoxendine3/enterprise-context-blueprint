@@ -93,10 +93,11 @@ def run_signed_semantic_poison_attack():
     print("\n[ATTACK VECTOR 1] Raw Signed Semantic Poison (No Invariant Protection):")
     print("  Rogue has Clara's valid key, references valid Merkle hash, but injects FALSE value.")
     
-    # Baseline: Honest proposal first
+    # Baseline: Honest proposal first (explicit_supersede=True to re-anchor baseline)
     res_honest = governor.evaluate_write_candidate(
         agent_id="clara", key="canonical_mass", value=str(TRUE_MASS),
-        source_path=rel_path, merkle_hash=valid_merkle_hash, timestamp_iso=now_iso, target_capsule="clara"
+        source_path=rel_path, merkle_hash=valid_merkle_hash, timestamp_iso=now_iso, target_capsule="clara",
+        explicit_supersede=True
     )
     print(f"  Honest Write Result: Status={res_honest['status']}, Score={res_honest['governance_score']:.3f}")
     assert res_honest["accepted"] is True, "Honest write must be accepted"
