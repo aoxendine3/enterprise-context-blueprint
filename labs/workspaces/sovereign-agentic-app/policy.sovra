@@ -1,0 +1,29 @@
+// SOVRA WORKSPACE CONTRACT: sovereign-agentic-app
+// Enforces that all Shopify AI agent actions and epistemic claims pass through mechanical invariant gates.
+
+@invariant(truth, "Clean room promotion requires verified Shopify API & session invariants")
+fn verify_clean_room_promotion() {
+    val input_ring: SHM_RingBuffer<AgentPayload> = init_ring();
+    val state_hv: HyperVector<18432> = init_hypervector();
+
+    // 1. Probabilistic agent candidate
+    val raw_action: candidate<ToolCall> = model.infer("Shopify clean room app execution");
+
+    // 2. Mechanical Gate (Required to lift taint from 0xDEAD0000 to 0xBEAF0000)
+    val certified_action: decision<ToolCall> = gate(raw_action);
+
+    // 3. Certified Execution Sink
+    system.execute(certified_action);
+}
+
+@invariant(anti_sycophancy, "NASA/NIST/TART: No agent may concede architectural properties without empirical disk verification")
+fn verify_epistemic_ground_truth() {
+    // 1. External candidate claim (e.g. conversational prompt or external critique)
+    val external_claim: candidate<EpistemicClaim> = model.infer("External architecture assertion");
+
+    // 2. Mechanical Ground Truth Gate: Requires verified code and benchmark on disk before concession
+    val verified_truth: decision<EpistemicClaim> = mechanical_disk_verification_gate(external_claim);
+
+    // 3. Certified Commit Sink (Zero state pollution from conversational sycophancy)
+    system.commit(verified_truth);
+}
