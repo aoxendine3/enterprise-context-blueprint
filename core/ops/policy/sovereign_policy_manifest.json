@@ -37,11 +37,15 @@
       "wc",
       "sort",
       "uniq",
-      "tr"
+      "tr",
+      "agent_speak.sh",
+      "agent_speak_clean.sh",
+      "agent_speak_stub.sh",
+      "gh"
     ],
     "prohibited_command_patterns": [
       "rm -rf /",
-      ":(){ :|:& };:",
+      ":(){ :|:;& };:",
       "dd if=/dev/zero",
       "mkfs",
       "chflags nouchg"

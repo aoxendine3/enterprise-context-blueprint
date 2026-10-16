@@ -36,12 +36,12 @@ def check_doc_sync():
         with open(doc, "r", encoding="utf-8") as f:
             content = f.read()
 
-        # Check for active version header
-        if "v4.0" not in content and "v4.0 Ultra" not in content and "UPGP v4.0" not in content:
-            print(f"  ❌ DOC SYNC FAIL: {os.path.basename(doc)} does not reference UPGP v4.0 Ultra!")
+        # Check for active version header (Single Canonical UPGP v5.0 Ultra)
+        if "v5.0" not in content and "v5.0 Ultra" not in content and "UPGP v5.0" not in content:
+            print(f"  ❌ DOC SYNC FAIL: {os.path.basename(doc)} does not reference UPGP v5.0 Ultra!")
             outdated_count += 1
         else:
-            print(f"  ✓ DOC SYNC PASS: {os.path.basename(doc)} matches UPGP v4.0 Ultra release.")
+            print(f"  ✓ DOC SYNC PASS: {os.path.basename(doc)} matches UPGP v5.0 Ultra release.")
 
     print("--------------------------------------------------------------------------")
     if outdated_count > 0:

@@ -1,12 +1,13 @@
 # Enterprise Context Blueprint: The Sovereign Triad (MTPO, MARS & REASONS)
 
-[![Outside CI Gauntlet](https://img.shields.io/badge/Outside_CI-Run_%2338708977957_(Azure_%2B_macOS--14)-10b981.svg)](https://github.com/aoxendine3/enterprise-context-blueprint/actions/runs/38708977957)
+[![Outside CI Gauntlet](https://img.shields.io/badge/Outside_CI-Run_%2338708977957_(Ubuntu_24.04_%2B_macOS--14)-10b981.svg)](https://github.com/aoxendine3/enterprise-context-blueprint/actions/runs/38708977957)
+[![UPGP v5.0 Ultra](https://img.shields.io/badge/UPGP-v5.0_Ultra-00f2fe.svg)](https://aoxendine3.github.io/upgp-proving-ground/)
 [![Lean 4 Verified](https://img.shields.io/badge/Lean_4-0_sorryAx_(v4.35.0)-8b5cf6.svg)](dist/sovereign_falsification_suite/lean/MtpoMonotonicity/Basic.lean)
 [![Z3 Differential](https://img.shields.io/badge/Z3_SMT2-Differential_UNSAT-38bdf8.svg)](dist/sovereign_falsification_suite/agm_mtpo_monotonicity.smt2)
 [![Target Venue](https://img.shields.io/badge/Target_Venue-USENIX_SAIS_'27-f59e0b.svg)](docs/papers/USENIX_SAIS_2027_SOVEREIGN_TRIAD_FULL_PAPER.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-> **The Sovereign Triad** is the formal, evidence-governed operating runtime for autonomous multi-agent systems, providing machine-checked concurrency, anti-hallucination context layers, and deterministic physical silicon execution.
+> **The Sovereign Triad** is the formal, evidence-governed operating runtime for autonomous multi-agent systems, integrating **UPGP v5.0 Ultra** kernel sandboxing, machine-checked MTPO concurrency, anti-hallucination context layers, and deterministic physical silicon execution.
 
 ---
 

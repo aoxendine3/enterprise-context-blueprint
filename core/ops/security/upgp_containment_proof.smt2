@@ -1,4 +1,4 @@
-; UPGP v4.0 Ultra Formal Containment Proof in SMT-LIB v2 Standard
+; UPGP v5.0 Ultra Formal Containment Proof in SMT-LIB v2 Standard
 ; SMT-LIB standard v2.6 - Verifiable by Z3, CVC5, MathSAT, Yices2
 ; Satisfiability: UNSAT (Mathematically Proves Zero Escape Paths Exist)
 

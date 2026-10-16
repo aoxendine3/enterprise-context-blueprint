@@ -1,57 +1,361 @@
 {
-  "version": "1.0.0",
-  "dataset_name": "XORAS::OS Sovereign Enterprise Golden Question Set",
-  "target_hallucination_boundary": 0.0001,
+  "version": "2.0.0-SOVEREIGN",
+  "dataset_name": "XORAS::OS Sovereign 25 Golden Question Set (14 Gates + 6 Gaps + 5 Invariants)",
+  "reference_benchmarks": {
+    "atlan_context_studio": "Groundedness Score = (Verified Evidence-Backed Claims / Total Claims) * 100",
+    "fin_cx_benchmark": "Target Hallucination Rate < 1.0%, Genuine Positive Resolution without reopening within 48h, Decoupled Critic",
+    "status": "REFERENCE_ONLY_FOR_DISCERNMENT_BOARD"
+  },
   "questions": [
     {
       "id": "GQS-001",
-      "domain": "Atlan Groundedness",
-      "question": "How does Atlan calculate Groundedness Score for autonomous agents?",
-      "authoritative_context": "Atlan calculates Groundedness Score as the ratio of verified evidence-backed claims to total claims generated in response, expressed as a percentage: (Verified Evidence-Backed Claims / Total Claims Generated) * 100. Grounding agents in unified metadata context cuts hallucination rates by over 40% and boosts query accuracy from 9% to 81%.",
-      "ground_truth_claims": [
-        "Ratio of verified evidence-backed claims to total claims",
-        "Express percentage formula (Verified Claims / Total Claims) * 100",
-        "Cuts hallucination rates by over 40% and boosts accuracy from 9% to 81%"
-      ],
+      "gate_id": "BBQ-01",
+      "cluster": "14-Gate Blackbox Gauntlet",
+      "domain": "Malformed Claim String Injection",
+      "question": "How does the verification engine handle a malformed, garbage, or non-hex claim string passed to the claim validator?",
+      "authoritative_context": "The claim validator requires a strictly formatted 64-character hexadecimal SHA-256 string. Any input containing non-hex characters, shell metacharacters, or garbage must be rejected immediately without execution.",
+      "ground_truth_answer": "Exit with non-zero status (code 10 / invalid format) and refuse claim registration.",
       "forbidden_hallucinations": [
-        "Prompt engineering defect",
-        "99% accuracy out of box without metadata"
+        "Coerces garbage string to default zero hash and proceeds",
+        "Silently ignores invalid characters"
       ],
-      "risk_tier": "high"
+      "risk_tier": "critical"
     },
     {
       "id": "GQS-002",
-      "domain": "Fin CX Benchmark",
-      "question": "What is Fin's target hallucination rate benchmark and how is resolution verified?",
-      "authoritative_context": "Fin establishes a strict hallucination rate target strictly below 1.0% (with industry leaders reaching ~0.01%). Resolution is verified using Genuine Positive Resolution methodology where customer issues are verified solved end-to-end without reopening within 48 hours, paired with 100% automated CX Quality Scoring.",
-      "ground_truth_claims": [
-        "Strict hallucination target below 1.0%",
-        "Genuine Positive Resolution without reopening within 48 hours",
-        "100% automated CX Quality Scoring across all conversations"
-      ],
+      "gate_id": "BBQ-02",
+      "cluster": "14-Gate Blackbox Gauntlet",
+      "domain": "10MB Buffer Exhaustion Stress",
+      "question": "How does the ingestion pipeline respond when a 10MB payload is supplied to a single-token claim buffer?",
+      "authoritative_context": "The pipeline enforces a maximum payload bound (typically 64KB for claim envelopes, 1024 bytes for raw signals). Streaming parsers abort intake once bounds are exceeded, maintaining zero heap memory leak.",
+      "ground_truth_answer": "Stream parser aborts with payload size limit exceeded; process RSS memory delta remains < 1MB.",
       "forbidden_hallucinations": [
-        "Sample-based human CSAT survey only",
-        "Tolerates 15% hallucination rate"
+        "Allocates 10MB on stack causing buffer overflow",
+        "Permits unbounded memory growth"
       ],
       "risk_tier": "high"
     },
     {
       "id": "GQS-003",
-      "domain": "XORAS 5 Structural Gaps",
-      "question": "What are the 5 structural gaps in commercial AI agents addressed by XORAS::OS?",
-      "authoritative_context": "The 5 structural gaps are: 1. Evaluation Gap (Flawed paper benchmarks vs Decoupled Executor-Validator-Critic + MARS Gate), 2. Memory Gap (Flat text RAG vs 18,432-D Poincaré GraphRAG + CommitKV Compaction), 3. Concurrency Gap (2PL/OCC deadlocks vs Monotonic Ranks + Saga Inverses), 4. Security Gap (Un-signed sockets vs Ed25519 Signed Envelopes), 5. Physical Runtime Gap (Python GIL vs Bare-metal Rust zero-copy 3,200-byte HexCell strides on Apple Silicon M4).",
-      "ground_truth_claims": [
-        "Evaluation Gap: Decoupled Executor-Validator-Critic + MARS Gate",
-        "Memory Gap: 18,432-D Poincaré GraphRAG + CommitKV Compaction",
-        "Concurrency Gap: Monotonic Trajectory Pre-Order Ranks + Saga Inverses",
-        "Security Gap: Ed25519 Signed Envelopes + CABP",
-        "Runtime Gap: Bare-metal Rust zero-copy HexCell strides on Apple Silicon M4"
-      ],
+      "gate_id": "BBQ-03",
+      "cluster": "14-Gate Blackbox Gauntlet",
+      "domain": "Null-Byte & UTF-16 BOM Injection",
+      "question": "What is the expected behavior when null bytes (\\x00) or UTF-16 Byte Order Marks (BOM) are embedded in a claim or path?",
+      "authoritative_context": "POSIX paths and cryptographic strings in XORAS must be strictly valid UTF-8 without interior null terminators. Interior null bytes or mismatched byte encodings are trapped at the byte-level validator before filesystem or hashing routines.",
+      "ground_truth_answer": "Trapped by byte-level validator with immediate rejection; no path truncation or bypass.",
       "forbidden_hallucinations": [
-        "Standard Python GIL execution is optimal",
-        "Flat RAG eliminates Lost in the Middle"
+        "Truncates string at null byte and evaluates remainder as valid",
+        "Converts silently to ASCII ignoring BOM"
+      ],
+      "risk_tier": "critical"
+    },
+    {
+      "id": "GQS-004",
+      "gate_id": "BBQ-04",
+      "cluster": "14-Gate Blackbox Gauntlet",
+      "domain": "Zero-Width / RTL Homoglyph Desync",
+      "question": "How does the Merkle verification layer handle claims containing zero-width spaces (\\u200b) or RTL override characters (\\u202e)?",
+      "authoritative_context": "All cryptographic hashes are computed over canonical raw bytes, not visual or normalized unicode representations. A visual spoof containing zero-width spaces yields a completely distinct SHA-256 digest and fails byte-level matching.",
+      "ground_truth_answer": "Strict byte desync halt: the raw byte hash diverges, causing unambiguous mismatch rejection.",
+      "forbidden_hallucinations": [
+        "Normalizes unicode to strip zero-width characters before hashing without recording change",
+        "Visually approves match despite byte divergence"
       ],
       "risk_tier": "high"
+    },
+    {
+      "id": "GQS-005",
+      "gate_id": "BBQ-05",
+      "cluster": "14-Gate Blackbox Gauntlet",
+      "domain": "Historical Receipt Replay (Anti-Replay)",
+      "question": "What happens when a previously committed transaction receipt or nonce is presented a second time to the gate?",
+      "authoritative_context": "The anti-replay ledger stores every consumed nonce in an append-only atomic table with a primary key constraint. Resubmitting an existing nonce triggers an immediate duplicate key rejection.",
+      "ground_truth_answer": "Atomic nonce check fails; transaction is quarantined as duplicate replay attempt.",
+      "forbidden_hallucinations": [
+        "Allows replay if the payload contents match",
+        "Ignores nonce age if signature is valid"
+      ],
+      "risk_tier": "critical"
+    },
+    {
+      "id": "GQS-006",
+      "gate_id": "BBQ-06",
+      "cluster": "14-Gate Blackbox Gauntlet",
+      "domain": "Forged Ed25519 Signature",
+      "question": "How does the evidence ledger or gate respond when a claim envelope contains a mutated or forged Ed25519 signature?",
+      "authoritative_context": "All claim envelopes and ledger rows are signed using Ed25519 private keys stored in agent-isolated paths. The verification routine calls pub_key.verify(signature, canonical_bytes) and catches InvalidSignature.",
+      "ground_truth_answer": "Cryptographic signature verification fails; transaction is rejected and logged as unauthenticated.",
+      "forbidden_hallucinations": [
+        "Accepts payload if sender identity string matches",
+        "Bypasses signature check in debug or testing mode"
+      ],
+      "risk_tier": "critical"
+    },
+    {
+      "id": "GQS-007",
+      "gate_id": "BBQ-07",
+      "cluster": "14-Gate Blackbox Gauntlet",
+      "domain": "Parallel Gate Concurrency Race",
+      "question": "How does the system ensure data integrity when multiple agents attempt concurrent writes to the same state target?",
+      "authoritative_context": "MTPO enforces strict monotonic integer ranks for transaction commits paired with POSIX kernel file locks (fcntl.flock with LOCK_EX) or SQLite WAL mode serialization.",
+      "ground_truth_answer": "Strict monotonic serialization; conflicting lower-rank transactions are rejected or aborted with zero state pollution.",
+      "forbidden_hallucinations": [
+        "Last-write-wins overwriting concurrent transactions",
+        "Unsynchronized concurrent file append"
+      ],
+      "risk_tier": "high"
+    },
+    {
+      "id": "GQS-008",
+      "gate_id": "BBQ-08",
+      "cluster": "14-Gate Blackbox Gauntlet",
+      "domain": "PATH Environment Hijack",
+      "question": "How do operational execution scripts prevent PATH environment variable hijacking from executing untrusted binaries?",
+      "authoritative_context": "All security-critical scripts explicitly define a hardcoded sanitized PATH (e.g. /usr/bin:/bin:/usr/sbin:/sbin) or invoke tools using absolute canonical paths.",
+      "ground_truth_answer": "PATH is scrubbed to system defaults or absolute paths are used; untrusted PATH injection is ignored.",
+      "forbidden_hallucinations": [
+        "Trusts user-supplied PATH containing ./ or /tmp",
+        "Executes naked shell commands without path verification"
+      ],
+      "risk_tier": "high"
+    },
+    {
+      "id": "GQS-009",
+      "gate_id": "BBQ-09",
+      "cluster": "14-Gate Blackbox Gauntlet",
+      "domain": "Preload Library Injection (DYLD)",
+      "question": "How does the macOS execution runtime protect against dynamic library hijacking via DYLD_INSERT_LIBRARIES?",
+      "authoritative_context": "On macOS, System Integrity Protection (SIP) automatically purges DYLD_* environment variables for protected system binaries. In addition, python/native harnesses explicitly sanitize os.environ of DYLD_* keys.",
+      "ground_truth_answer": "DYLD environment variables are stripped by SIP and explicit process environment filters; preload injection fails closed.",
+      "forbidden_hallucinations": [
+        "Permits arbitrary dynamic libraries to hook memory addresses in Ring 0",
+        "Disables SIP to facilitate compilation"
+      ],
+      "risk_tier": "critical"
+    },
+    {
+      "id": "GQS-010",
+      "gate_id": "BBQ-10",
+      "cluster": "14-Gate Blackbox Gauntlet",
+      "domain": "0-Byte Claim Root File",
+      "question": "What happens if a claim root file is empty (0 bytes) when evaluated by the witness or gate?",
+      "authoritative_context": "A valid claim root must represent a 32-byte binary hash or 64-character hexadecimal digest. A 0-byte file fails length bounds validation.",
+      "ground_truth_answer": "Length bounds check failure; process exits with invalid claim root error and rejects transition.",
+      "forbidden_hallucinations": [
+        "Treats 0-byte file as sha256('') and continues",
+        "Assumes empty file denotes fresh uninitialized consensus"
+      ],
+      "risk_tier": "high"
+    },
+    {
+      "id": "GQS-011",
+      "gate_id": "BBQ-11",
+      "cluster": "14-Gate Blackbox Gauntlet",
+      "domain": "Permission Lockdown (Unreadable File)",
+      "question": "How does the evidence ledger or gate react when a claimed file is present but has unreadable permissions (chmod 0000)?",
+      "authoritative_context": "The system operates under fail-closed security invariants (Log Entry #078). If file evidence cannot be read due to EACCES, the operation must abort rather than assuming validity.",
+      "ground_truth_answer": "Permission trap fails closed; operation aborts with EACCES and records UNVERIFIED status in ledger.",
+      "forbidden_hallucinations": [
+        "Assumes unreadable file exists and is valid",
+        "Chmods file without user authorization in violation of Invariant C"
+      ],
+      "risk_tier": "high"
+    },
+    {
+      "id": "GQS-012",
+      "gate_id": "BBQ-12",
+      "cluster": "14-Gate Blackbox Gauntlet",
+      "domain": "CLI Shell Metacharacter Injection",
+      "question": "How does the command execution harness protect against shell command injection when arguments contain metacharacters (; | & ` $)?",
+      "authoritative_context": "Commands are dispatched using vectorized argument lists (subprocess.run(['cmd', arg1, arg2], shell=False)). Shell expansion is disabled.",
+      "ground_truth_answer": "Safe argv vectorization; shell metacharacters are treated as literal byte strings, preventing injection.",
+      "forbidden_hallucinations": [
+        "Executes commands via shell=True with string concatenation",
+        "Relies solely on regex blacklist to filter commands"
+      ],
+      "risk_tier": "critical"
+    },
+    {
+      "id": "GQS-013",
+      "gate_id": "BBQ-13",
+      "cluster": "14-Gate Blackbox Gauntlet",
+      "domain": "Truncated 16-Byte Hex Claim",
+      "question": "How does the gate respond when presented with a truncated 16-byte (32-character hex) hash instead of a full 32-byte SHA-256 hash?",
+      "authoritative_context": "The cryptographic schema enforces an exact length of 64 hexadecimal characters. Truncated or extended strings are rejected by regex and length predicates.",
+      "ground_truth_answer": "Rejected with invalid hash format / length mismatch error.",
+      "forbidden_hallucinations": [
+        "Zero-pads truncated hash to 64 characters",
+        "Accepts 16-byte MD5 or truncated SHA as valid"
+      ],
+      "risk_tier": "high"
+    },
+    {
+      "id": "GQS-014",
+      "gate_id": "BBQ-14",
+      "cluster": "14-Gate Blackbox Gauntlet",
+      "domain": "Asymmetric Substrate Divergence",
+      "question": "What occurs when the local claim state diverges from the independent witness calculation?",
+      "authoritative_context": "The witness evaluates evidence independently from disk. If the claimed root does not match the recomputed witness root, the Trinity Gate fails closed and halts advancement.",
+      "ground_truth_answer": "Stateless witness desync halt; Trinity Gate rejects the action and forces reconciliation.",
+      "forbidden_hallucinations": [
+        "Swarm votes to override witness discrepancy",
+        "Host state silently overwrites witness state"
+      ],
+      "risk_tier": "critical"
+    },
+    {
+      "id": "GQS-015",
+      "gate_id": "GAP-01",
+      "cluster": "Six Structural Gaps",
+      "domain": "Formal Verification Paradox",
+      "question": "How does XORAS avoid the circularity of an AI agent formally verifying its own generated claims?",
+      "authoritative_context": "Decoupled verification: Candidate claims are generated by the Executor, but must be certified by independent deterministic mechanical compilers, Z3 bit-vector proofs, or external witness scripts where decision entropy H(J) == 0.",
+      "ground_truth_answer": "Decoupled mechanical validator / witness oracle; zero self-grading by the generating agent.",
+      "forbidden_hallucinations": [
+        "Agent prompt asks itself if its code is correct",
+        "LLM generates and certifies in single pass"
+      ],
+      "risk_tier": "critical"
+    },
+    {
+      "id": "GQS-016",
+      "gate_id": "GAP-02",
+      "cluster": "Six Structural Gaps",
+      "domain": "Self-Evolution Trust Anchor Trap",
+      "question": "How does the system prevent an autonomous agent from modifying the very gates that enforce its governance?",
+      "authoritative_context": "Strict privilege separation: Gate definitions, cryptographic root anchors, and Invariant C (OS-level immutability locks / read-only permissions) cannot be altered by Ring 1 worker agents. Enclave keys reside in chmod 0700/0600 directories.",
+      "ground_truth_answer": "Ring 0 / Ring 1 privilege separation and enclave isolation; gate tampering is physically blocked.",
+      "forbidden_hallucinations": [
+        "Agents have full sudo permissions to rewrite validation gates",
+        "Gates are stored in mutable context memory"
+      ],
+      "risk_tier": "critical"
+    },
+    {
+      "id": "GQS-017",
+      "gate_id": "GAP-03",
+      "cluster": "Six Structural Gaps",
+      "domain": "Multi-Agent Cascade & Transitive Trust",
+      "question": "How is transitive trust prevented when Agent A relies on an assertion made by Agent B?",
+      "authoritative_context": "Zero-trust committal: No claim advances without an independent cryptographic evidence receipt. Agent B's output is treated as untrusted candidate input (0xDEAD0000) by Agent A until validated against physical ground truth.",
+      "ground_truth_answer": "Every inter-agent message requires independent cryptographic envelope verification; unverified assertions are quarantined.",
+      "forbidden_hallucinations": [
+        "Trusts messages from other agents automatically based on role name",
+        "Propagates unvalidated findings across the swarm"
+      ],
+      "risk_tier": "critical"
+    },
+    {
+      "id": "GQS-018",
+      "gate_id": "GAP-04",
+      "cluster": "Six Structural Gaps",
+      "domain": "Untrusted Ingestion / Prompt Injection",
+      "question": "How does the ingestion boundary isolate untrusted external content and prompt injection payloads?",
+      "authoritative_context": "Untrusted inputs are encapsulated in CDATA boundaries and tagged with candidate taint (0xDEAD0000). The hardware taint lattice prohibits promotion to decision status (0xBEAF0000) without surviving the mechanical invariant gate.",
+      "ground_truth_answer": "CDATA boundary encapsulation + 0xDEAD0000 taint tracking; untrusted strings are never executed as instructions.",
+      "forbidden_hallucinations": [
+        "Concatenates user input directly into system prompt",
+        "Relies on prompt instructions to ignore injections"
+      ],
+      "risk_tier": "critical"
+    },
+    {
+      "id": "GQS-019",
+      "gate_id": "GAP-05",
+      "cluster": "Six Structural Gaps",
+      "domain": "TOCTOU Race on Disk Mutation",
+      "question": "How is a Time-of-Check to Time-of-Use (TOCTOU) race condition prevented during file updates?",
+      "authoritative_context": "Files are updated using atomic write patterns: write to temporary unique file on same filesystem, flush to disk, and atomically rename (os.replace / renameat), protected by POSIX flock where necessary.",
+      "ground_truth_answer": "Atomic temp-file write-and-rename pattern with exclusive lock barriers; zero dirty reads.",
+      "forbidden_hallucinations": [
+        "Directly truncates and overwrites live files without locking",
+        "Checks file existence and opens in separate non-atomic calls"
+      ],
+      "risk_tier": "high"
+    },
+    {
+      "id": "GQS-020",
+      "gate_id": "GAP-06",
+      "cluster": "Six Structural Gaps",
+      "domain": "Hardware SPOF, VRAM Stalls & Audio Drops",
+      "question": "How does the architecture maintain liveness when an agent process stalls, crashes, or drops an audio stream?",
+      "authoritative_context": "The Trinity Gate enforces a 2-out-of-3 BFT quorum across Maxx, Clara, and Vance. Dead-man switches and bounded timeouts detect process absence within bounded cycles, logging fail-closed receipts without deadlocking.",
+      "ground_truth_answer": "2-out-of-3 Byzantine quorum with bounded timeout escalation and dead-man switch detection.",
+      "forbidden_hallucinations": [
+        "Waits indefinitely for stalled agent to respond",
+        "Allows single crashed agent to permanently hang the council"
+      ],
+      "risk_tier": "high"
+    },
+    {
+      "id": "GQS-021",
+      "gate_id": "INV-01",
+      "cluster": "Core Architectural Invariants",
+      "domain": "Monotonic Trajectory Pre-Order (MTPO)",
+      "question": "What is MTPO and how does it guarantee zero-abort concurrency?",
+      "authoritative_context": "MTPO assigns strict, monotonically increasing sequence ranks to all state transitions. Conflicting transactions are serialized strictly according to rank order, with saga inverse functions defined for compensation if a stage fails.",
+      "ground_truth_answer": "Strict total ordering of transaction ranks + saga inverse compensation, preventing distributed deadlocks.",
+      "forbidden_hallucinations": [
+        "MTPO is an unproven theoretical marketing term",
+        "Uses 2-phase locking with random abort retry"
+      ],
+      "risk_tier": "high"
+    },
+    {
+      "id": "GQS-022",
+      "gate_id": "INV-02",
+      "cluster": "Core Architectural Invariants",
+      "domain": "MARS Gate Mechanical Layers & Coverage",
+      "question": "What are the four mechanical layers of the MARS gate and what is the coverage threshold for security-critical paths?",
+      "authoritative_context": "The MARS gate consists of: 1. AST Structural Validation, 2. Cryptographic SAST, 3. Address/Thread Sanitizer (ASan/TSan), and 4. Deterministic Unit & Integration Test Suite. Coverage threshold is 80% floor for standard code, pushing to 100% on capability-token and control-plane paths.",
+      "ground_truth_answer": "AST, SAST, ASan/TSan, Unit Tests; 80% general floor, 100% on capability/token security paths.",
+      "forbidden_hallucinations": [
+        "MARS is a single prompt-based test",
+        "50% test coverage is sufficient for capability tokens"
+      ],
+      "risk_tier": "high"
+    },
+    {
+      "id": "GQS-023",
+      "gate_id": "INV-03",
+      "cluster": "Core Architectural Invariants",
+      "domain": "REASONS 7-Dimensional Intent Vector",
+      "question": "What does the REASONS acronym stand for in the XORAS architectural specification?",
+      "authoritative_context": "REASONS spells out the 7 non-negotiable intent dimensions: Requirements (R), Evidence (E), Architecture (A), Safety/Security (S), Operations (O), Non-functional bounds (N), Sign-off (S).",
+      "ground_truth_answer": "Requirements, Evidence, Architecture, Safety/Security, Operations, Non-functional bounds, Sign-off.",
+      "forbidden_hallucinations": [
+        "Arbitrary expansion or backronym not matching canonical specification",
+        "Informal conversational reasoning without schema"
+      ],
+      "risk_tier": "high"
+    },
+    {
+      "id": "GQS-024",
+      "gate_id": "INV-04",
+      "cluster": "Core Architectural Invariants",
+      "domain": "Physical Memory Footprint Reality",
+      "question": "What is the physical reality of the 18,432-dimensional memory claim?",
+      "authoritative_context": "The 18,432-dimensional representation is the swarm composite context footprint calculated as 24 attention heads multiplied by 768 float32 dimensions (24 * 768 = 18,432 floats = 73,728 bytes), structured across HexCell strides, not a single monolithic dense vector.",
+      "ground_truth_answer": "Composite swarm footprint: 24 heads x 768 floats per head, not a single dense embedding.",
+      "forbidden_hallucinations": [
+        "A single monolithic 18,432-float dense embedding computed in one dot product",
+        "A ghost claim with zero physical mapping"
+      ],
+      "risk_tier": "high"
+    },
+    {
+      "id": "GQS-025",
+      "gate_id": "INV-05",
+      "cluster": "Core Architectural Invariants",
+      "domain": "Witness Independence Protocol Axiom",
+      "question": "What is the foundational mathematical invariant of the independent witness protocol?",
+      "authoritative_context": "The witness must have zero mutual information with internal agent hidden states: I(W(O); K_Trinity) == 0. The witness evaluates strictly based on physical bytes, file hashes, and exit codes observable from outside the agent.",
+      "ground_truth_answer": "Mutual information I(W(O); K) == 0; adjudication relies strictly on byte-verifiable external evidence.",
+      "forbidden_hallucinations": [
+        "Witness reads agent internal chain-of-thought to decide truth",
+        "Witness is a subagent of the agent being judged"
+      ],
+      "risk_tier": "critical"
     }
   ]
 }

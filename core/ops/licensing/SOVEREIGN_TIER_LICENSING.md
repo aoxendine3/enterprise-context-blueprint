@@ -1,6 +1,6 @@
-# UPGP v4.0 Ultra — Sovereign Tier Licensing & Host Distribution Specification
+# UPGP v5.0 Ultra — Sovereign Tier Licensing & Host Distribution Specification
 
-> **Document Version:** 4.0.0-ULTRA  
+> **Document Version:** 5.0.0-ULTRA  
 > **Classification:** Technical Licensing & Distribution Blueprint  
 > **Lead Authority:** Lead 9 Engineering Council / Maxx Architecture  
 > **Hardware Anchor:** Apple Silicon M4 / macOS Host Node  
@@ -9,7 +9,7 @@
 
 ## 1. Governance & Fair Sovereign Licensing Model
 
-UPGP v4.0 Ultra is packaged to balance **open community trust** with **airtight enterprise protection** and **hardware-grounded sovereignty**. Core principles dictate that base security is free and transparent, while deep bare-metal hardware enclaves and proprietary hyperbolic manifolds are protected without exorbitant pricing.
+UPGP v5.0 Ultra is packaged to balance **open community trust** with **airtight enterprise protection** and **hardware-grounded sovereignty**. Core principles dictate that base security is free and transparent, while deep bare-metal hardware enclaves and proprietary hyperbolic manifolds are protected without exorbitant pricing.
 
 ---
 

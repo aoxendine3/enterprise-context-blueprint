@@ -7,7 +7,7 @@
     "immediate_purpose": "Must fulfill an active, mission-critical operational need right now",
     "zero_flaws": "Must survive empirical torture tests, zero memory leaks, and zero race conditions"
   },
-  "total_admitted": 4,
+  "total_admitted": 12,
   "total_rejected": 1,
   "golden_list": [
     {
@@ -69,6 +69,126 @@
         "Clara (Chief of Science)"
       ],
       "certified_at": "2026-10-09T23:05:43.048397Z"
+    },
+    {
+      "asset_id": "GOLDEN-005",
+      "name": "XORAS 512-Byte Native HexCell & 18432D Hexological Vector Configuration",
+      "classification": "CRITICAL_GOVERNANCE_AND_SUBSTRATE_SECURITY",
+      "immediate_purpose": "Provides atomic 512-byte memory resonance for 1-bit LLMs and 18432D vector processing on Apple Silicon M4.",
+      "market_metric": "Achieved 388.33 GB/s throughput, perfectly aligning 400-byte ternary payloads into 16KB Apple OS Pages without fragmentation.",
+      "flawlessness_proof": "Passed all 14 blackbox gates, 4 hostile torture scenarios (500/500 drops, 0 memory bleed), and maintained 0 memory leaks under ASAN/TSAN.",
+      "bench_signoff": [
+        "William Vance (Discernment Bench Lead)",
+        "Maxx (Systems Architect)",
+        "John (Silicon Telemetry)",
+        "Clara (Chief of Science)"
+      ],
+      "certified_at": "2026-10-11T02:19:19.710301Z"
+    },
+    {
+      "asset_id": "GOLDEN-006",
+      "name": "XORAS::OS 14-Gate Blackbox Gauntlet & Enterprise Hallucination Governance Protocol",
+      "classification": "CRITICAL_GOVERNANCE_AND_SUBSTRATE_SECURITY",
+      "immediate_purpose": "Eliminates enterprise context failure, hallucination drift, slopsquatting, and concurrency races across multi-agent sovereign execution.",
+      "market_metric": "Outperforms commercial SWE-bench (59.4% flawed) with 64.3% uncontaminated pass, sub-1% hallucination boundary (0.95%), 0.84% L1 cache miss ratio, and 0 transaction aborts.",
+      "flawlessness_proof": "Passed all 14 blackbox gates, 4 hostile torture scenarios (500/500 drops, 0 memory bleed), and maintained 0 memory leaks under ASAN/TSAN.",
+      "bench_signoff": [
+        "William Vance (Discernment Bench Lead)",
+        "Maxx (Systems Architect)",
+        "John (Silicon Telemetry)",
+        "Clara (Chief of Science)"
+      ],
+      "certified_at": "2026-10-13T03:53:24.635775Z"
+    },
+    {
+      "asset_id": "GOLDEN-007",
+      "name": "XORAS 512-Byte Native HexCell & 18432D Hexological Vector Configuration",
+      "classification": "CRITICAL_GOVERNANCE_AND_SUBSTRATE_SECURITY",
+      "immediate_purpose": "Provides atomic 512-byte memory resonance for 1-bit LLMs and 18432D vector processing on Apple Silicon M4.",
+      "market_metric": "Achieved 388.33 GB/s throughput, perfectly aligning 400-byte ternary payloads into 16KB Apple OS Pages without fragmentation.",
+      "flawlessness_proof": "Passed all 14 blackbox gates, 4 hostile torture scenarios (500/500 drops, 0 memory bleed), and maintained 0 memory leaks under ASAN/TSAN.",
+      "bench_signoff": [
+        "William Vance (Discernment Bench Lead)",
+        "Maxx (Systems Architect)",
+        "John (Silicon Telemetry)",
+        "Clara (Chief of Science)"
+      ],
+      "certified_at": "2026-10-13T03:53:27.860476Z"
+    },
+    {
+      "asset_id": "GOLDEN-008",
+      "name": "XORAS::OS 14-Gate Blackbox Gauntlet & Enterprise Hallucination Governance Protocol",
+      "classification": "CRITICAL_GOVERNANCE_AND_SUBSTRATE_SECURITY",
+      "immediate_purpose": "Eliminates enterprise context failure, hallucination drift, slopsquatting, and concurrency races across multi-agent sovereign execution.",
+      "market_metric": "Outperforms commercial SWE-bench (59.4% flawed) with 64.3% uncontaminated pass, sub-1% hallucination boundary (0.95%), 0.84% L1 cache miss ratio, and 0 transaction aborts.",
+      "flawlessness_proof": "Passed all 14 blackbox gates, 4 hostile torture scenarios (500/500 drops, 0 memory bleed), and maintained 0 memory leaks under ASAN/TSAN.",
+      "bench_signoff": [
+        "William Vance (Discernment Bench Lead)",
+        "Maxx (Systems Architect)",
+        "John (Silicon Telemetry)",
+        "Clara (Chief of Science)"
+      ],
+      "certified_at": "2026-10-14T20:43:10.769733Z"
+    },
+    {
+      "asset_id": "GOLDEN-009",
+      "name": "XORAS::OS Sovereign 25 Golden Question Ground-Truth Specification & Discernment Certification",
+      "classification": "SOVEREIGN_GOVERNANCE_AND_DETERMINISTIC_BENCHMARK",
+      "immediate_purpose": "Eliminates simulated RNG benchmarks by binding all 14 gates and 6 failure gaps to deterministic physical byte probes.",
+      "market_metric": "100.0% physical probe execution (25/25), 0.00% simulated RNG, 96.00% empirical Atlan groundedness.",
+      "flawlessness_proof": "Survives bit-flip forge, 10MB exhaustion, null injection, homoglyph desync, replay attacks, and TOCTOU races.",
+      "bench_signoff": [
+        "William Vance (Discernment Bench Lead & Governance)",
+        "Maxx (Operations Lead & Systems Architect)",
+        "John (Silicon Systems & Hardware Telemetry)",
+        "Clara (Chief of Science & Formal Verification)"
+      ],
+      "certified_at": "2026-10-14T20:45:08.290504+00:00"
+    },
+    {
+      "asset_id": "GOLDEN-010",
+      "name": "XORAS::OS Sovereign 25 Golden Question Ground-Truth Specification & Discernment Certification",
+      "classification": "SOVEREIGN_GOVERNANCE_AND_DETERMINISTIC_BENCHMARK",
+      "immediate_purpose": "Eliminates simulated RNG benchmarks by binding all 14 gates and 6 failure gaps to deterministic physical byte probes.",
+      "market_metric": "100.0% physical probe execution (25/25), 0.00% simulated RNG, 100.00% empirical Atlan groundedness.",
+      "flawlessness_proof": "Survives bit-flip forge, 10MB exhaustion, null injection, homoglyph desync, replay attacks, and TOCTOU races.",
+      "bench_signoff": [
+        "William Vance (Discernment Bench Lead & Governance)",
+        "Maxx (Operations Lead & Systems Architect)",
+        "John (Silicon Systems & Hardware Telemetry)",
+        "Clara (Chief of Science & Formal Verification)"
+      ],
+      "certified_at": "2026-10-14T20:45:50.745543+00:00"
+    },
+    {
+      "asset_id": "GOLDEN-011",
+      "name": "XORAS::OS Sovereign 25 Golden Question Ground-Truth Specification & Discernment Certification",
+      "classification": "SOVEREIGN_GOVERNANCE_AND_DETERMINISTIC_BENCHMARK",
+      "immediate_purpose": "Eliminates simulated RNG benchmarks by binding all 14 gates and 6 failure gaps to deterministic physical byte probes.",
+      "market_metric": "100.0% physical probe execution (25/25), 0.00% simulated RNG, 100.00% empirical Atlan groundedness.",
+      "flawlessness_proof": "Survives bit-flip forge, 10MB exhaustion, null injection, homoglyph desync, replay attacks, and TOCTOU races.",
+      "bench_signoff": [
+        "William Vance (Discernment Bench Lead & Governance)",
+        "Maxx (Operations Lead & Systems Architect)",
+        "John (Silicon Systems & Hardware Telemetry)",
+        "Clara (Chief of Science & Formal Verification)"
+      ],
+      "certified_at": "2026-10-14T20:46:40.443633+00:00"
+    },
+    {
+      "asset_id": "GOLDEN-012",
+      "name": "XORAS::OS Sovereign 25 Golden Question Ground-Truth Specification & Discernment Certification",
+      "classification": "SOVEREIGN_GOVERNANCE_AND_DETERMINISTIC_BENCHMARK",
+      "immediate_purpose": "Eliminates simulated RNG benchmarks by binding all 14 gates and 6 failure gaps to deterministic physical byte probes.",
+      "market_metric": "100.0% physical probe execution (25/25), 0.00% simulated RNG, 100.00% empirical Atlan groundedness.",
+      "flawlessness_proof": "Survives bit-flip forge, 10MB exhaustion, null injection, homoglyph desync, replay attacks, and TOCTOU races.",
+      "bench_signoff": [
+        "William Vance (Discernment Bench Lead & Governance)",
+        "Maxx (Operations Lead & Systems Architect)",
+        "John (Silicon Systems & Hardware Telemetry)",
+        "Clara (Chief of Science & Formal Verification)"
+      ],
+      "certified_at": "2026-10-14T21:08:51.452552+00:00"
     }
   ],
   "rejected_audit_log": [

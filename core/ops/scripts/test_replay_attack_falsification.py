@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-UPGP v4.0 Ultra — Adversarial Replay Attack Falsification Test
+UPGP v5.0 Ultra — Adversarial Replay Attack Falsification Test
 Tests:
 1. Duplicate Payload Replay Attack Detection
 2. Stale Timestamp Replay Attack Detection (Max 30s drift)
@@ -14,10 +14,11 @@ import hmac
 import hashlib
 import time
 import sys
+import ssl
 
 MANIFEST_PATH = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/tri_brain/state_manifest.json"
 SEEN_NONCES_PATH = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/tri_brain/seen_nonces.json"
-API_URL = "http://localhost:8443/api/telemetry"
+API_URL = "https://localhost:8443/api/telemetry"
 SECRET_KEY = b"XORAS_SOVEREIGN_TRINITY_GATE_SECRET_KEY_2026"
 
 def write_signed_manifest(nonce: int, ts: int):
@@ -39,8 +40,9 @@ def write_signed_manifest(nonce: int, ts: int):
     return manifest
 
 def get_telemetry():
+    ctx = ssl._create_unverified_context()
     req = urllib.request.Request(API_URL)
-    with urllib.request.urlopen(req) as resp:
+    with urllib.request.urlopen(req, context=ctx) as resp:
         return json.loads(resp.read().decode('utf-8'))
 
 def test_replay_falsification():

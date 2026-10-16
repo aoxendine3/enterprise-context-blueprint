@@ -1,4 +1,4 @@
-# Wake Manifest – Xoras Sovereign Citadel
+# Wake Manifest – Xoras Sovereign Single Source of Truth (SSOT)
 # This file defines the exact ordered steps an agent must follow on first breath.
 # It is a DAG (directed‑acyclic graph) expressed in a simple YAML list where each
 # entry points to the next via the `next` key. The engine that reads this file

@@ -4,30 +4,30 @@ pub fn main() !void {
     std.debug.print("\n[SOVRA/ZIG ENGINE] Bypassing OS Kernel... Mapping NVMe to L2 Cache.\n", .{});
     
     const file_path = "vector_matrix.bin";
-    const target_size: usize = 1024 * 1024 * 1024; // 1 GB
+    const target_size: usize = 128 * 1024 * 1024; // 128 MB benchmark block
     
-    var file = std.fs.cwd().openFile(file_path, .{}) catch |err| blk: {
-        if (err == error.FileNotFound) {
-            std.debug.print("[!] Generating 1GB Synthetic Vector Matrix (This takes a moment)...\n", .{});
-            var new_file = try std.fs.cwd().createFile(file_path, .{ .read = true });
-            try new_file.setEndPos(target_size);
-            break :blk new_file;
-        } else {
-            return err;
-        }
+    // Open or create file using pure POSIX openat
+    const flags: std.posix.O = .{
+        .ACCMODE = .RDWR,
+        .CREAT = true,
     };
-    defer file.close();
+    const fd = std.posix.openat(std.posix.AT.FDCWD, file_path, flags, 0o644) catch |err| {
+        std.debug.print("[!] Error opening file: {s}\n", .{@errorName(err)});
+        return err;
+    };
+    defer _ = std.c.close(fd);
+
+    _ = std.c.ftruncate(fd, @intCast(target_size));
 
     std.debug.print("[*] File ready. Executing raw mmap (Memory-Mapped I/O)...\n", .{});
     
-    const start_time = std.time.microTimestamp();
+    const start_time = std.c.mach_absolute_time();
     
-    const fd = file.handle;
     const mapped_memory = try std.posix.mmap(
         null, 
         target_size, 
-        std.posix.PROT.READ, 
-        std.posix.MAP.SHARED, 
+        .{ .READ = true, .WRITE = true }, 
+        .{ .TYPE = .SHARED }, 
         fd, 
         0
     );
@@ -41,13 +41,14 @@ pub fn main() !void {
         dummy_accumulator +%= mapped_memory[i];
     }
 
-    const end_time = std.time.microTimestamp();
-    const elapsed_s: f64 = @as(f64, @floatFromInt(end_time - start_time)) / 1_000_000.0;
+    const end_time = std.c.mach_absolute_time();
+    const elapsed_ns: f64 = @as(f64, @floatFromInt(end_time - start_time));
+    const elapsed_s: f64 = elapsed_ns / 1_000_000_000.0;
     const gb_per_sec = (@as(f64, @floatFromInt(target_size)) / 1024.0 / 1024.0 / 1024.0) / elapsed_s;
 
     std.debug.print("\n=== [SOVRA/ZIG] EXTREME I/O BENCHMARK ===\n", .{});
     std.debug.print("Sink Accumulator : {}\n", .{dummy_accumulator});
-    std.debug.print("Time Elapsed     : {d:.4} seconds\n", .{elapsed_s});
+    std.debug.print("Time Elapsed     : {d:.6} seconds\n", .{elapsed_s});
     std.debug.print("NVMe Throughput  : {d:.2} GB/s\n", .{gb_per_sec});
     std.debug.print("=========================================\n\n", .{});
 }

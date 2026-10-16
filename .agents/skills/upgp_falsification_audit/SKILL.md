@@ -1,12 +1,12 @@
 ---
 name: upgp_falsification_audit
-description: Zero-Trust Anti-Replay Falsification, Bit-Flip Verification, and Digit-by-Digit Audit Protocol for UPGP v4.0 Ultra.
+description: Zero-Trust Anti-Replay Falsification, Bit-Flip Verification, and Digit-by-Digit Audit Protocol for UPGP v5.0 Ultra.
 ---
 
 # UPGP Zero-Trust Falsification & Anti-Replay Auditing Skill
 
 ## Operational Mandate
-This skill provides the mandatory operational procedures, automated testing harnesses, and verification gauntlets required to falsify attestation claims, test cryptographic freshness, and audit every numerical parameter digit-by-digit across UPGP v4.0 Ultra deliverables.
+This skill provides the mandatory operational procedures, automated testing harnesses, and verification gauntlets required to falsify attestation claims, test cryptographic freshness, and audit every numerical parameter digit-by-digit across UPGP v5.0 Ultra deliverables.
 
 ---
 

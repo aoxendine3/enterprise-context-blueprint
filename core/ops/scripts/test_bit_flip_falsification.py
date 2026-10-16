@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-UPGP v4.0 Ultra — Adversarial Bit-Flip Signature Falsification Test
+UPGP v5.0 Ultra — Adversarial Bit-Flip Signature Falsification Test
 Demonstrates un-mocked telemetry verification by intentionally mutating 1 bit in state signature.
 """
 
@@ -11,10 +11,11 @@ import hmac
 import hashlib
 import time
 import sys
+import ssl
 
 MANIFEST_PATH = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/tri_brain/state_manifest.json"
 SEEN_NONCES_PATH = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/tri_brain/seen_nonces.json"
-API_URL = "http://localhost:8443/api/telemetry"
+API_URL = "https://localhost:8443/api/telemetry"
 SECRET_KEY = b"XORAS_SOVEREIGN_TRINITY_GATE_SECRET_KEY_2026"
 
 def write_fresh_manifest():
@@ -40,8 +41,9 @@ def write_fresh_manifest():
     return manifest
 
 def get_telemetry():
+    ctx = ssl._create_unverified_context()
     req = urllib.request.Request(API_URL)
-    with urllib.request.urlopen(req) as resp:
+    with urllib.request.urlopen(req, context=ctx) as resp:
         return json.loads(resp.read().decode('utf-8'))
 
 def test_falsification():
@@ -72,15 +74,19 @@ def test_falsification():
     corrupted_sig = flipped_char + orig_sig[1:]
     manifest["signature"] = corrupted_sig
 
+    # Write corrupted manifest with explicit flush and fsync to ensure durability
     with open(MANIFEST_PATH, "w", encoding="utf-8") as f:
         json.dump(manifest, f, indent=2)
+        f.flush()
+        import os
+        os.fsync(f.fileno())
 
     print(f"  * Original Signature : {orig_sig[:16]}...")
     print(f"  * Bit-Flipped Sig    : {corrupted_sig[:16]}...")
 
     # 3. Query telemetry dashboard again
     print("\n[STEP 3] Querying Telemetry Dashboard with Bit-Flipped Signature...")
-    time.sleep(0.5)
+    time.sleep(2.0)
     t2 = get_telemetry()
     print(f"  * signatureValid: {t2.get('signatureValid')}")
     print(f"  * enclaveState  : {t2.get('enclaveState')}")

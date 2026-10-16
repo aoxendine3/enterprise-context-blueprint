@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 UPGP Physical Breaking Point Discovery & Architectural Remediation Engine
-Pushes UPGP v4.0 Ultra to its physical OS kernel & memory resource limits,
+Pushes UPGP v5.0 Ultra to its physical OS kernel & memory resource limits,
 identifies exact failure vectors, applies architectural remediations, and re-verifies.
 """
 import subprocess
@@ -12,7 +12,7 @@ import sys
 import resource
 
 BREAKING_POINT_SPEECHES = [
-    ("maxx", "We are Maxx. Executing physical breaking point stress discovery against UPGP v4.0 Ultra. We are deliberately overloading POSIX shared memory allocations, file descriptor table capacity, and Seccomp BPF bytecode limits to find where the system physically breaks under extreme stress."),
+    ("maxx", "We are Maxx. Executing physical breaking point stress discovery against UPGP v5.0 Ultra. We are deliberately overloading POSIX shared memory allocations, file descriptor table capacity, and Seccomp BPF bytecode limits to find where the system physically breaks under extreme stress."),
     ("vance", "We are Vance. Three physical breaking points identified under extreme load: file descriptor exhaustion EMFILE at 1024 open sockets, POSIX SHM heap saturation ENOMEM at 512 megabytes, and Seccomp BPF instruction bloat at 4096 instructions. Falsification data logged."),
     ("clara", "We are Clara. Remediation protocol deployed. We deploy lock-free atomic circular ring buffer recycling to eliminate SHM memory growth, dynamic prlimit socket pooling to prevent handle exhaustion, and a 64-bit architecture bitmask filter to reduce Seccomp BPF bytecode by 90 percent."),
     ("jarvis", "We are Jarvis. Post remediation verification complete. Re-executed 15-vector TS escape gauntlet and 5-vector Red-Team C exploit harness. All boundaries sealed with zero escapes and 100 percent pass rate across 10 continuous cycles.")
@@ -20,7 +20,7 @@ BREAKING_POINT_SPEECHES = [
 
 def test_breaking_points():
     print("==========================================================================")
-    print("  UPGP v4.0 ULTRA PHYSICAL BREAKING POINT DISCOVERY GAUNTLET")
+    print("  UPGP v5.0 ULTRA PHYSICAL BREAKING POINT DISCOVERY GAUNTLET")
     print("==========================================================================")
     
     findings = []

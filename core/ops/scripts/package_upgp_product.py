@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-UPGP v4.0 Ultra — Automated Product Packaging & Sovereign Bundle Generator
+UPGP v5.0 Ultra — Automated Product Packaging & Sovereign Bundle Generator
 Builds a verified, self-contained distribution tarball with SHA-256 checksum.
 """
 
@@ -13,7 +13,7 @@ import sys
 
 REPO_ROOT = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain"
 DIST_DIR = os.path.join(REPO_ROOT, "dist")
-BUNDLE_NAME = "upgp-v4.0-ultra-sovereign-bundle.tar.gz"
+BUNDLE_NAME = "upgp-v5.0-ultra-sovereign-bundle.tar.gz"
 BUNDLE_PATH = os.path.join(DIST_DIR, BUNDLE_NAME)
 
 FILES_TO_PACKAGE = [
@@ -32,8 +32,8 @@ FILES_TO_PACKAGE = [
     "ops/scripts/test_bit_flip_falsification.py",
     "ops/scripts/test_replay_attack_falsification.py",
     "ops/scripts/run_upgp_full_test_gauntlet.py",
-    "docs/assets/images/upgp_v4_ultra_telemetry_dashboard.jpg",
-    "docs/assets/images/upgp_v4_ultra_kernel_isolation_flow.jpg",
+    "docs/assets/images/upgp_v5_ultra_telemetry_dashboard.jpg",
+    "docs/assets/images/upgp_v5_ultra_kernel_isolation_flow.jpg",
     "docs/audits/XORAS_029_SECCOMP_RUNTIME_ENFORCEMENT_HOOKS_V_AND_V.md",
     "docs/audits/UPGP_BREAKING_POINT_AND_REMEDIATION_AUDIT.md",
     "docs/research/GLOBAL_SANDBOX_LANDSCAPE_AND_UPGP_FUTURE_SPECIFICATION.md",

@@ -190,6 +190,21 @@ def cmd_repl(args):
             print("\nSession terminated.")
             break
 
+def cmd_push(args):
+    """Invokes the clean-room xoras-push promotion engine."""
+    push_script = REPO_ROOT / "ops" / "scripts" / "xoras_push.py"
+    import subprocess
+    cmd = [sys.executable, str(push_script), "-m", args.message]
+    if args.workspace:
+        cmd.append(args.workspace)
+    if args.dry_run:
+        cmd.append("--dry-run")
+    if args.skip_tests:
+        cmd.append("--skip-tests")
+    if args.agent:
+        cmd.extend(["--agent", args.agent])
+    sys.exit(subprocess.run(cmd).returncode)
+
 def main():
     parser = argparse.ArgumentParser(
         description="XORAS Sovereign Swarm CLI & Interactive Task Runner",
@@ -205,6 +220,13 @@ def main():
     p_run.add_argument("task", type=str, help="The task prompt to evaluate")
     p_run.add_argument("-v", "--verbose", action="store_true", help="Print detailed council deliberations")
     
+    p_push = subparsers.add_parser("push", help="Clean-room workspace promotion gate (xoras-push)")
+    p_push.add_argument("workspace", nargs="?", default=None, help="Target workspace path")
+    p_push.add_argument("-m", "--message", type=str, required=True, help="Promotion / commit message")
+    p_push.add_argument("--agent", type=str, default="maxx", help="Authorizing agent identity")
+    p_push.add_argument("--dry-run", action="store_true", help="Simulate promotion without committing")
+    p_push.add_argument("--skip-tests", action="store_true", help="Skip workspace tests")
+    
     p_repl = subparsers.add_parser("repl", help="Launch interactive prompt REPL session")
     
     args = parser.parse_args()
@@ -215,6 +237,8 @@ def main():
         cmd_status(args)
     elif args.command == "run":
         cmd_run(args)
+    elif args.command == "push":
+        cmd_push(args)
     elif args.command == "repl" or args.command is None:
         cmd_repl(args)
     else:

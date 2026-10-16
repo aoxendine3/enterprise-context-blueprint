@@ -14,6 +14,8 @@ xoras/__init__.py
 xoras/ast_security.py
 xoras/cli.py
 xoras/config.py
+xoras/merkle_dag.py
+xoras/mtpo.py
 xoras/orchestrator.py
 xoras/runtime.py
 xoras/signer.py

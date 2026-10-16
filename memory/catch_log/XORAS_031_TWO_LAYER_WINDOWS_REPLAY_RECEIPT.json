@@ -1,6 +1,6 @@
 {
-  "receipt_id": "rcpt_two_layer_1792134357637",
-  "timestamp_utc": "2026-10-16T07:05:57.633192+00:00",
+  "receipt_id": "rcpt_two_layer_1792165909540",
+  "timestamp_utc": "2026-10-16T15:51:49.535427+00:00",
   "platform": "POSIX / darwin (arm64)",
   "audit_objective": "Reproducible Two-Layer Separation (Invariant Gate vs Hardware MMU)",
   "layer_a_mathematical_invariant": {
@@ -16,7 +16,7 @@
     "external_checker_approval_present": true,
     "page_promotion_to_writable_denied": true,
     "hardware_exception_caught": true,
-    "hardware_exception_type": "Process Trapped (Exit Code 42)",
+    "hardware_exception_type": "Hardware MMU Fault Signal 10 (SIGBUS)",
     "what_it_blocked": "Physical CPU store instruction from touching cache line"
   },
   "state_reconciliation": {
@@ -27,6 +27,6 @@
     "state_pollution_percentage": 0.0,
     "zero_drift_proven": true
   },
-  "execution_latency_us": 3847.79,
+  "execution_latency_us": 4629.83,
   "attestation_sha256": "a7d16584d668d9a1ed4f579228c551a86d66d89a4d29eef3ecea616564be2652"
 }

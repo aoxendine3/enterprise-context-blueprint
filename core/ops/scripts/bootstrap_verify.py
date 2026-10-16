@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 ==============================================================================
-UPGP v4.0 ULTRA: ZERO-HANG ZERO-DEPENDENCY BOOTSTRAP VERIFIER
+UPGP v5.0 ULTRA: ZERO-HANG ZERO-DEPENDENCY BOOTSTRAP VERIFIER
 ==============================================================================
 Engineered for the "Midnight Fresh Clone" standard:
   1. Zero hanging prompts (no interactive npm/npx prompts, strict timeouts).

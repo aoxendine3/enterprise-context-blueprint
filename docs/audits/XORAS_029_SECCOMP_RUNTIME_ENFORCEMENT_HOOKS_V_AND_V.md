@@ -1,8 +1,8 @@
-# NASA-STYLE TECHNICAL MEMORANDUM: UPGP v4.0 ULTRA SECCOMP ACTIVE RUNTIME ENFORCEMENT HOOKS V&V
+# NASA-STYLE TECHNICAL MEMORANDUM: UPGP v5.0 ULTRA SECCOMP ACTIVE RUNTIME ENFORCEMENT HOOKS V&V
 
 **Document ID**: XORAS-V&V-029  
 **Date**: October 2026  
-**System**: UPGP v4.0 Ultra  
+**System**: UPGP v5.0 Ultra  
 **Author**: Lead 9 Council (Maxx, Vance, Clara, Jarvis)  
 **Status**: VERIFIED & ENFORCED  
 **Target File**: `core/products/upgp/SeccompProfile.ts` / `src/native/upgp_seccomp_native.c`  
@@ -11,7 +11,7 @@
 
 ## 1. EXECUTIVE SUMMARY & RESOLUTION DISPOSITION
 
-In response to the architectural critique identifying the distance between declarative JSON policy generation and active runtime kernel enforcement, the Lead 9 Council has implemented **Active Runtime Enforcement Hooks** in `SeccompProfile.ts` ([core/products/upgp/SeccompProfile.ts](file:///Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/products/upgp/SeccompProfile.ts)).
+In response to the architectural critique identifying the distance between declarative JSON policy generation and active runtime kernel enforcement, the Lead 9 Council has implemented **Active Runtime Enforcement Hooks** in `SeccompProfile.ts` ([core/products/upgp/SeccompProfile.ts](file:///workspace/upgp-proving-ground/core/products/upgp/SeccompProfile.ts)).
 
 This implementation converts declarative configuration into active, un-bypassable kernel sandbox guards.
 

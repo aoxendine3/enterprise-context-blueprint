@@ -2,7 +2,7 @@
 """
 core/ops/security/test_upgp_k2_dual_interlocks.py
 =============================================================================
-UPGP v4.0 ULTRA: EMPIRICAL k>=2 DUAL-LAYER INTERLOCK VERIFICATION
+UPGP v5.0 ULTRA: EMPIRICAL k>=2 DUAL-LAYER INTERLOCK VERIFICATION
 -----------------------------------------------------------------------------
 Substrate: Apple Silicon M4 Bare Metal
 Proves that every one of the 10 previously k=1 Single Points of Failure (SPOFs)

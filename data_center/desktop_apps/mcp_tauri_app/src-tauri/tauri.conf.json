@@ -1,45 +1,9 @@
 {
-  "build": {
-    "beforeDevCommand": "npm run dev",
-    "beforeBuildCommand": "npm run build",
-    "devPath": "http://localhost:1420",
-    "distDir": "../dist"
-  },
-  "package": {
-    "productName": "mcp_tauri_app",
-    "version": "1.0.0"
-  },
+  "$schema": "https://tauri.studio/schemas/tauri-conf.json",
+  "build": {"devPath": "../dist", "distDir": "../dist"},
   "tauri": {
-    "allowlist": {
-      "all": false,
-      "shell": {
-        "all": false,
-        "execute": true
-      }
-    },
-    "bundle": {
-      "active": true,
-      "targets": "all",
-      "identifier": "io.xoras.desktop",
-      "icon": [
-        "icons/32x32.png",
-        "icons/128x128.png",
-        "icons/128x128@2x.png",
-        "icons/icon.icns",
-        "icons/icon.ico"
-      ]
-    },
-    "security": {
-      "csp": null
-    },
-    "windows": [
-      {
-        "title": "mcp_tauri_app",
-        "width": 1280,
-        "height": 800,
-        "resizable": true,
-        "fullscreen": false
-      }
-    ]
+    "bundle": {"identifier": "com.xoras.sovereign", "icon": ["icons/32x32.png", "icons/128x128.png"]},
+    "security": {"csp": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https:; font-src 'self';"},
+    "allowlist": {"all": false, "shell": {"open": true}}
   }
 }

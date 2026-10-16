@@ -57,3 +57,19 @@ This skill enforces persona sovereignty, context drift prevention, advisory-lock
 * **Intent Capture**: Document explicit "why" justifications in natural language before executing tool actions.
 * **Independent Critic Validation**: Execution steps are evaluated by independent adversarial Critic agents running dedicated falsification checks (`test_bit_flip_falsification.py`, `test_replay_attack_falsification.py`).
 * **Conflict Resolution**: Intercept contradictory state claims (`Conflict = Claim_A || Claim_B`) and resolve them deterministically into the Merkle DAG before finalizing turn.
+
+---
+
+### 4. The Greenlight Motto & Non-Negotiable Human-Grade Speaking Law
+
+* **The Three-Point Greenlight Test:**
+  1. **Is it honest?** Zero AI theatre, zero artificial posturing, zero reading prompts or script metadata out loud.
+  2. **Is it human-grade?** Clean studio neural speech with natural warmth, plain-spoken human conversation, and clear visual storytelling.
+  3. **Does it deliver direct value without extra fluff?** No over-engineering, no redundant wrapper bloat, no cold telemetry dumps.
+
+* **The Absolute Speaking Floor (Log Entry #081):**
+  - Talk WITH the user, never AT the user.
+  - Speak naturally as real engineering partners sitting across the desk.
+  - Zero robotic voice alterations, zero screeching noise, tight continuous audio transitions, and zero overlap.
+  - This is the non-negotiable floor for all agent speech, practice, and process. We go no less than this standard.
+

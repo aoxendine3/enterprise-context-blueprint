@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "xoras-agent-framework"
-version = "2.3.0"
-description = "Enterprise Multi-Agent Runtime & AST Security Governance Framework"
+version = "2.4.0"
+description = "Enterprise Multi-Agent Runtime, MTPO Lock-Free Concurrency & AST Security Governance Framework"
 readme = "README.md"
 license = { text = "MIT" }
 authors = [{ name = "XORAS Systems LLC", email = "engineering@xoras.ai" }]
@@ -17,10 +17,31 @@ dependencies = [
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
     "Topic :: Security",
+    "Topic :: System :: Distributed Computing",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
 ]
+keywords = [
+    "multi-agent",
+    "governance",
+    "mtpo",
+    "concurrency",
+    "merkle-dag",
+    "ast-security",
+    "soc2-compliance",
+    "provenance",
+    "xoras"
+]
+
+[project.urls]
+Homepage = "https://aoxendine3.github.io/upgp-proving-ground/"
+"MTPO Concurrency" = "https://aoxendine3.github.io/mtpo/"
+"MARS Reasoning" = "https://aoxendine3.github.io/mars/"
+"REASONS Canvas" = "https://aoxendine3.github.io/reasons/"
+"Verification Receipt" = "https://raw.githubusercontent.com/aoxendine3/mtpo/main/VERIFICATION_RECEIPT.md"
+Repository = "https://github.com/aoxendine3/enterprise-context-blueprint"
 
 [project.scripts]
 xoras = "xoras.cli:main"

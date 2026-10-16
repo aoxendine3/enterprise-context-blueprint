@@ -2,7 +2,7 @@
 """
 core/ops/security/z3_upgp_containment_oracle.py
 =============================================================================
-UPGP v4.0 ULTRA: FORMAL ORTHOGONAL CONTAINMENT LATTICE & Z3 SMT ORACLE
+UPGP v5.0 ULTRA: FORMAL ORTHOGONAL CONTAINMENT LATTICE & Z3 SMT ORACLE
 -----------------------------------------------------------------------------
 Substrate: Apple Silicon M4 Bare Metal
 Proves:

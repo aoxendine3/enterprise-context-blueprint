@@ -1,4 +1,6 @@
 artifacts
+build
+dist
 docs
 examples
 logs

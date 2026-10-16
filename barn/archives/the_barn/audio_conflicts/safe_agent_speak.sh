@@ -9,4 +9,6 @@ while ! mkdir "$LOCKDIR" 2>/dev/null; do
 done
 trap 'rm -rf "$LOCKDIR"' EXIT
 
-python3 /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/fullscreen_ui/sync_stage_engine_kokoro.py "$AGENT" "$TEXT"
+# QUARANTINE STUB: Legacy script disabled. Use core/ops/scripts/agent_speak.sh instead.
+echo "[ERROR] safe_agent_speak.sh is deprecated and quarantined. Please use the canonical agent_speak.sh script."
+exit 1

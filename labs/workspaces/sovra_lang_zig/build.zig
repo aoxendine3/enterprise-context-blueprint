@@ -1,17 +1,17 @@
 const std = @import("std");
-const Build = std.Build;
 
-pub fn build(b: *Build) void {
-    const mode = b.standardReleaseOptions();
-    const lib = b.addSharedLibrary(.{
-        .name = "context_bridge",
-        .target = b.standardTargetOptions(.{}),
-        .optimize = mode,
+pub fn build(b: *std.Build) void {
+    const target = b.standardTargetOptions(.{});
+    const optimize = b.standardOptimizeOption(.{});
+
+    const lib = b.addLibrary(.{
+        .name = "sovra_zig",
+        .linkage = .dynamic,
+        .root_module = b.createModule(.{
+            .root_source_file = b.path("sovra_zig.zig"),
+            .target = target,
+            .optimize = optimize,
+        }),
     });
-    // Add the original C source
-    lib.addCSourceFile(.{ .file = b.path("../labs/workspaces/sovra_lang/context_bridge_engine.c"), .flags = &.{"-O3", "-fPIC"} });
-    // Add the Zig source
-    lib.addCSourceFile(.{ .file = b.path("sovra_zig.zig"), .flags = &.{"-O3"} });
-    lib.linkLibC();
-    lib.install();
+    b.installArtifact(lib);
 }

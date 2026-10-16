@@ -9,7 +9,7 @@ AGENT="${1:-maxx}"
 RAW_TEXT="${2:-}"
 
 # 1. Enforce strict Agent identity allowlist
-if [[ ! "$AGENT" =~ ^(maxx|clara|jarvis|vance)$ ]]; then
+if [[ ! "$AGENT" =~ ^(maxx|clara|jarvis|vance|daxx|john|eden|selene|sophia|xoras|aurelius)$ ]]; then
   echo "[agent_speak] FATAL: Forged or unauthorized agent identity '$AGENT'. Execution denied." >&2
   exit 3
 fi
@@ -46,7 +46,12 @@ KOKORO_SCRIPT="/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/fullsc
 echo "$AGENT" > /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/fullscreen_ui/current_image.txt 2>/dev/null || true
 echo "$CLEAN_TEXT" > /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/fullscreen_ui/current_transcript.txt 2>/dev/null || true
 
-if ! python3 "$KOKORO_SCRIPT" "$AGENT" "$CLEAN_TEXT"; then
+PYTHON_EXEC="python3"
+if [[ -x "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/.venv/bin/python" ]]; then
+  PYTHON_EXEC="/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/.venv/bin/python"
+fi
+
+if ! "$PYTHON_EXEC" "$KOKORO_SCRIPT" "$AGENT" "$CLEAN_TEXT"; then
   echo "[agent_speak ERROR] Kokoro neural synthesis failed for agent '$AGENT'. Fallbacks forbidden." >&2
   exit 1
 fi

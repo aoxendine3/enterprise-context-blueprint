@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-UPGP v4.0 Ultra — Telemetry Dashboard Launcher with Cryptographic Signature & Anti-Replay Engine
+UPGP v5.0 Ultra — Telemetry Dashboard Launcher with Cryptographic Signature & Anti-Replay Engine
 Includes:
 - HMAC-SHA256 signature verification (Correctness)
 - Monotonic Nonce & Seen-Signature Ledger (Anti-Replay / Freshness)

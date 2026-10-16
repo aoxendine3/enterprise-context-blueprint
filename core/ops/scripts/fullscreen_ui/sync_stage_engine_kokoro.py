@@ -1,5 +1,10 @@
 import os, sys, json, time, threading, urllib.request, subprocess
-import soundfile as sf
+# Optional import for local audio file writing; safe‑guard against missing dependency
+try:
+    import soundfile as sf
+except ImportError:
+    sf = None  # Fallback: audio file will not be written locally
+# import soundfile as sf  # Deprecated, handled by guarded import
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 STAGE_DIR = SCRIPT_DIR
@@ -120,11 +125,12 @@ def speak_via_elevenlabs(agent_name, text):
     return False
 
 def speak_agent(agent_name, text):
-    # 1. Primary: Try ElevenLabs with Key Rotation
-    if speak_via_elevenlabs(agent_name, text):
-        return
+    # 1. Optional Cloud: ElevenLabs only if explicitly enabled
+    if os.environ.get("USE_ELEVENLABS") == "1":
+        if speak_via_elevenlabs(agent_name, text):
+            return
 
-    # 2. Fallback: Local Kokoro ONNX Engine
+    # 2. Canonical Hardware Lock: Local Kokoro ONNX Engine (Instant, Zero Network Latency)
     global VOICE_MAP
     VOICE_MAP = load_voice_map_from_manifest()
     
@@ -134,7 +140,16 @@ def speak_agent(agent_name, text):
     engine = get_kokoro_engine()
     samples, sample_rate = engine.create(text, voice=voice_id, speed=1.0, lang="en-us")
     
-    sf.write(WAV_FILE, samples, sample_rate)
+    # Apply gentle organic acoustic envelope (soft 30ms cosine fade-in and fade-out to prevent clicks/pops)
+    if sf and len(samples) > 0:
+        import numpy as np
+        fade_len = min(int(sample_rate * 0.03), len(samples) // 4)
+        if fade_len > 0:
+            fade_in = np.sin(np.linspace(0, np.pi / 2, fade_len)) ** 2
+            fade_out = np.sin(np.linspace(np.pi / 2, 0, fade_len)) ** 2
+            samples[:fade_len] = samples[:fade_len] * fade_in
+            samples[-fade_len:] = samples[-fade_len:] * fade_out
+        sf.write(WAV_FILE, samples, sample_rate)
     os.system(f"afplay '{WAV_FILE}'")
 
 if __name__ == "__main__":
