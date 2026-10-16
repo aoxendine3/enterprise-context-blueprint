@@ -1,0 +1,26 @@
+// =============================================================================
+// SOVRA NATIVE SOURCE CONTRACT: mtpo_context_memory.sovra
+// Substrate: Apple Silicon M4 Bare Metal & ARM64 Linux Container
+// Invariants: Log Entry #078 & Sovereign Master Unified Specification
+// =============================================================================
+
+@invariant(truth, "Zero unverified citations or surface placeholders")
+fn main_mtpo_loop() {
+    val input_ring: SHM_RingBuffer<AgentPayload> = init_ring();
+    val state_hv: HyperVector<10000> = init_hypervector();
+
+    // 1. Ingest turn-by-turn candidate context
+    val raw_turn: candidate<ToolCall> = model.infer("Turn-by-turn context memory transition");
+
+    // 2. Mechanical Gate Sanitizer Promotion (0xDEAD0000 -> 0xBEAF0000)
+    val verified_turn: decision<ToolCall> = gate(raw_turn);
+
+    // 3. Monotonic Trajectory Pre-Order (MTPO) Loop Lowering
+    val a: i64 = 1000000;
+    val b: i64 = 1;
+    val total_ops: i64 = a + b;
+
+    while (total_ops > 0) {
+        system.execute(verified_turn);
+    }
+}

@@ -155,7 +155,7 @@ export default function Billing() {
                             {plan.name}
                           </Text>
                           <Badge tone={plan.badgeTone || "info"}>
-                            ${plan.priceMonthly}/mo
+                            {`$${plan.priceMonthly}/mo`}
                           </Badge>
                         </InlineStack>
 
@@ -182,7 +182,7 @@ export default function Billing() {
                             onClick={() => handleOrderPlan(plan.id, plan.priceMonthly)}
                             loading={fetcher.state !== "idle"}
                           >
-                            Order Plan — ${plan.priceMonthly}/mo
+                            {`Order Plan — $${plan.priceMonthly}/mo`}
                           </Button>
                         </Box>
                       </BlockStack>

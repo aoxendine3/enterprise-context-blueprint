@@ -71,7 +71,8 @@ export default function SkillsPage() {
     shopify.toast.show("Dispatching inference test to Windows Cluster (192.168.1.211)...");
   };
 
-  const offloadTestResult = fetcher.data?.result;
+  const offloadTestResult =
+    fetcher.data && "result" in fetcher.data ? (fetcher.data as any).result : undefined;
 
   return (
     <Page fullWidth>

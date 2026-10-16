@@ -119,7 +119,6 @@ export async function createCheckoutSession({
   // If live Stripe secret key is present in environment, generate real dynamic Checkout Session
   if (!stripeSecretKey.startsWith("sk_test_placeholder")) {
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
       mode: "subscription",
       customer_email: customerEmail,
       line_items: [

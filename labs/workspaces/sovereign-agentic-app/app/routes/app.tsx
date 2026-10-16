@@ -25,6 +25,7 @@ export default function App() {
           Home
         </Link>
         <Link to="/app/skills">Sovereign Skills & Cluster</Link>
+        <Link to="/app/memory">Contextual Memory & LSTM</Link>
         <Link to="/app/billing">Monetization & Billing</Link>
         <Link to="/app/additional">Additional page</Link>
       </NavMenu>

@@ -248,7 +248,7 @@ export default function Index() {
                           <Text as="h3" variant="headingSm">
                             Slot {def.index}: {def.name}
                           </Text>
-                          <Badge tone={isActive ? "success" : "subdued"}>
+                          <Badge tone={isActive ? "success" : undefined}>
                             {isActive ? "COMMITTED" : "IDLE"}
                           </Badge>
                         </InlineStack>
@@ -331,7 +331,7 @@ export default function Index() {
                   <Text as="h2" variant="headingMd">
                     Lead 9 Council
                   </Text>
-                  <Badge tone="info">{data.swarmStatus.leadCouncilCount} Agents</Badge>
+                  <Badge tone="info">{`${data.swarmStatus.leadCouncilCount} Agents`}</Badge>
                 </InlineStack>
                 <Divider />
                 <List type="bullet">
@@ -420,9 +420,9 @@ export default function Index() {
                         <InlineStack gap="300" blockAlign="center">
                           <Badge tone="info">{finding.platform}</Badge>
                           <Badge tone={finding.severity === "CRITICAL" ? "critical" : "warning"}>
-                            {finding.severity} ({finding.cvss})
+                            {`${finding.severity} (${finding.cvss})`}
                           </Badge>
-                          <Badge tone="subdued">{`HexCell Slot ${finding.slot}`}</Badge>
+                          <Badge>{`HexCell Slot ${finding.slot}`}</Badge>
                           <Text as="h3" variant="headingSm">
                             {finding.title}
                           </Text>
@@ -443,7 +443,7 @@ export default function Index() {
 
                       <InlineStack align="end" gap="300">
                         {isApproved ? (
-                          <Badge tone="success">Committed to MTPO Slot {finding.slot}</Badge>
+                          <Badge tone="success">{`Committed to MTPO Slot ${finding.slot}`}</Badge>
                         ) : (
                           <Button
                             variant="primary"
