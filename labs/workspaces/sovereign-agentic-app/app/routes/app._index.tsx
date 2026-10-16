@@ -346,6 +346,29 @@ export default function Index() {
           </Layout.Section>
         </Layout>
 
+        {/* Sovereign Skills & Windows GPU Cluster Offload */}
+        <Card>
+          <BlockStack gap="400">
+            <InlineStack align="space-between" blockAlign="center">
+              <BlockStack gap="100">
+                <InlineStack gap="300" blockAlign="center">
+                  <Text as="h2" variant="headingMd">
+                    Sovereign Swarm Skills & Remote Compute Cluster
+                  </Text>
+                  <Badge tone="success">13 Active Skills</Badge>
+                  <Badge tone="info">Windows Node: 192.168.1.211</Badge>
+                </InlineStack>
+                <Text as="p" variant="bodySm" tone="subdued">
+                  All 13 swarm skills mapped in <code>.agents/skills/</code>. Compute-intensive AI distillation and vector embeddings offloaded to the Windows host to preserve local Mac M4 resources.
+                </Text>
+              </BlockStack>
+              <Link url="/app/skills" removeUnderline>
+                <Button variant="primary">Manage Skills & Cluster →</Button>
+              </Link>
+            </InlineStack>
+          </BlockStack>
+        </Card>
+
         {/* Code Security Packages & Sponsorship Portal */}
         <Card>
           <BlockStack gap="400">
