@@ -1,0 +1,22 @@
+{
+  "operation": "WINDOWS_OFFLOAD_AND_IMMUTABLE_VAULT_BACKUP",
+  "timestamp_utc": "2026-10-16T08:38:25Z",
+  "directive": "Use space on Windows, offload and backup, zero file disruption",
+  "windows_offload": {
+    "target_host": "192.168.1.211:11434",
+    "created_model_snapshot": "sovereign-ssot-backup:latest",
+    "model_size_bytes": 1117322951,
+    "model_digest": "53a7b08232a2b41f7bc676d19fd13cfd22c1da5321052074510509a673eaae03",
+    "system_layer_sha256": "78d7e4a5e52c02cbf5ffd4a634957fb37322563ce2d266fb11e9e65808c551f4",
+    "storage_location": "%USERPROFILE%\\.ollama\\models on Windows x86_64",
+    "offload_status": "SUCCESS_COMMITTED_TO_WINDOWS_DISK"
+  },
+  "local_immutable_vault": {
+    "vault_archive": "memory/vault/XORAS_IMMUTABLE_BACKUP_20261016_0438.tar.gz",
+    "archive_sha256": "65a204b8dc0ba22a691fb2dbeadd52ce13cadf61e685caa88dd7c4b3c35f526d",
+    "manifest_file": "memory/vault/XORAS_IMMUTABLE_BACKUP_20261016_0438_MANIFEST.txt",
+    "file_count": 15,
+    "file_permissions": "0444_READ_ONLY_LOCKED",
+    "integrity_guarantee": "ZERO_FILE_DISRUPTION_CONFIRMED"
+  }
+}
