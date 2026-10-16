@@ -1,6 +1,7 @@
 import type { ActionFunctionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { constructWebhookEvent } from "../stripe.server";
+import { mtpoEngine } from "../mtpo.server";
 import fs from "fs";
 import path from "path";
 
@@ -39,6 +40,13 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     fs.writeFileSync(receiptPath, JSON.stringify(receipt, null, 2), "utf-8");
   } catch (err) {
     // Non-blocking log write
+  }
+
+  // Atomic MTPO 3-Phase Saga commit into HexCell Slot 4 (Billing Channel)
+  try {
+    mtpoEngine.processVerifiedAction("STRIPE_WEBHOOK_EVENT", receipt, 4);
+  } catch (err) {
+    console.error("[MTPO] Failed to record Stripe event in HexCell slot 4:", err);
   }
 
   return json({ received: true, eventType: event.type });

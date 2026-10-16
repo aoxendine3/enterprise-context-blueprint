@@ -2,7 +2,8 @@
   "name": "sovereign-agentic-app",
   "private": true,
   "scripts": {
-    "build": "remix vite:build",
+    "build:native": "make -C native all",
+    "build": "npm run build:native && remix vite:build",
     "dev": "shopify app dev",
     "config:link": "shopify app config link",
     "generate": "shopify app generate",
@@ -11,7 +12,7 @@
     "env": "shopify app env",
     "start": "node -r dotenv/config ./node_modules/@remix-run/serve/dist/cli.js ./build/server/index.js",
     "docker-start": "npm run setup && npm run start",
-    "setup": "prisma generate && prisma migrate deploy",
+    "setup": "npm run build:native && prisma generate && prisma migrate deploy",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
     "shopify": "shopify",
     "prisma": "prisma",

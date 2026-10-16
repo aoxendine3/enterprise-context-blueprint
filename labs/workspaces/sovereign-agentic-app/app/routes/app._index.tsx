@@ -17,27 +17,44 @@ import {
   ProgressBar,
   List,
   Link,
+  Grid,
 } from "@shopify/polaris";
 import { TitleBar, useAppBridge } from "@shopify/app-bridge-react";
 import { authenticate } from "../shopify.server";
+import { mtpoEngine, type RingState, type PipelineExecutionReceipt } from "../mtpo.server";
+
+const SLOT_DEFINITIONS = [
+  { index: 0, name: "Swarm Orchestration", target: "16,000 MTPO Nodes Scan Engine" },
+  { index: 1, name: "HackerOne White-Box", target: "Z3 SMT Concurrency Race Verifier" },
+  { index: 2, name: "Immunefi Web3 / DeFi", target: "Re-entrancy & Flash Loan SAGA" },
+  { index: 3, name: "Bugcrowd API Audit", target: "Playwright Headless BOLA Gate" },
+  { index: 4, name: "Billing & Stripe SAGA", target: "Subscription & Webhook Commits" },
+  { index: 5, name: "Council Merkle Invariant", target: "Immutable Lineage Anti-Replay Root" },
+];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   await authenticate.admin(request);
 
+  const ringState: RingState = mtpoEngine.getRingState();
+
   return json({
     director: "Anthony",
     role: "Commander & Director",
+    ringState,
+    slotDefinitions: SLOT_DEFINITIONS,
     swarmStatus: {
       activeNodes: 16000,
       leadCouncilCount: 9,
-      concurrencyEngine: "MTPO Lock-Free 6-Slot HexCell",
+      concurrencyEngine: "MTPO Lock-Free 6-Slot HexCell (C11 bare-metal)",
       throughput: "14.8M ops/sec",
       audioEngine: "Kokoro ONNX @ Apple Silicon M4 (Zero-Gap)",
       substrate: "Apple Silicon M4 Unified RAM + Windows Node (192.168.1.211)",
+      memoryRingShm: "/mtpo_hexcell_ring",
     },
     activeFindings: [
       {
         id: "FINDING-H1-01",
+        slot: 1,
         platform: "HackerOne",
         program: "Target Enterprise",
         title: "State Confluence Race Condition Allows Concurrent Balance Overdraw",
@@ -51,6 +68,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
       },
       {
         id: "FINDING-IMM-02",
+        slot: 2,
         platform: "Immunefi",
         program: "Liquidity Vault V3",
         title: "Re-entrancy Invariant Violation in Flash Loan Repay Hook",
@@ -64,6 +82,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
       },
       {
         id: "FINDING-BC-03",
+        slot: 3,
         platform: "Bugcrowd",
         program: "Fintech Cloud Gateway",
         title: "Broken Object-Level Authorization (BOLA) in Invoice Audit Endpoint",
@@ -91,15 +110,31 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 export const action = async ({ request }: ActionFunctionArgs) => {
   await authenticate.admin(request);
   const formData = await request.formData();
-  const actionType = formData.get("actionType");
-  const findingId = formData.get("findingId");
+  const actionType = String(formData.get("actionType") || "");
+  const findingId = formData.get("findingId") ? String(formData.get("findingId")) : undefined;
+
+  let targetSlot = 0;
+  if (findingId === "FINDING-H1-01") targetSlot = 1;
+  else if (findingId === "FINDING-IMM-02") targetSlot = 2;
+  else if (findingId === "FINDING-BC-03") targetSlot = 3;
+
+  // Execute full 14-Gate BBQ Gauntlet + MTPO Atomic 3-Phase SAGA
+  const receipt: PipelineExecutionReceipt = mtpoEngine.processVerifiedAction(
+    actionType,
+    { findingId, director: "Anthony", timestamp: Date.now() },
+    targetSlot,
+  );
+
+  const updatedRingState = mtpoEngine.getRingState();
 
   return json({
-    success: true,
+    success: receipt.success,
     actionType,
     findingId,
+    receipt,
+    ringState: updatedRingState,
     timestamp: new Date().toISOString(),
-    receiptMessage: `Action '${actionType}' for ${findingId || "all targets"} acknowledged by Lead 9 Council.`,
+    receiptMessage: `Action '${actionType}' verified by 14-Gate Gauntlet & committed to MTPO Slot ${targetSlot}.`,
   });
 };
 
@@ -109,10 +144,14 @@ export default function Index() {
   const shopify = useAppBridge();
   const [approvedList, setApprovedList] = useState<string[]>([]);
 
+  // Use live ring state from fetcher if available, otherwise from loader
+  const activeRingState: RingState = fetcher.data?.ringState || data.ringState;
+  const latestReceipt: PipelineExecutionReceipt | undefined = fetcher.data?.receipt;
+
   const handleDirectorApprove = (id: string) => {
     setApprovedList((prev) => [...prev, id]);
     fetcher.submit({ actionType: "APPROVE_SUBMISSION", findingId: id }, { method: "POST" });
-    shopify.toast.show(`Director Approved: Dispatched payload for ${id}`);
+    shopify.toast.show(`Director Approved: Dispatched payload for ${id} into MTPO`);
   };
 
   const handleRunFullScan = () => {
@@ -140,6 +179,98 @@ export default function Index() {
             your final green light.
           </Text>
         </Banner>
+
+        {/* Live MARS 14-Gate Verification Attestation Banner */}
+        {latestReceipt && (
+          <Banner
+            title={`MARS 14-Gate BBQ Gauntlet: ${latestReceipt.mars.status} (${latestReceipt.mars.gatesPassed}/14 Gates Passed in ${latestReceipt.mars.latencyMs}ms)`}
+            tone={latestReceipt.success ? "success" : "critical"}
+          >
+            <BlockStack gap="200">
+              <Text as="p" variant="bodySm">
+                <strong>Action:</strong> {latestReceipt.action} | <strong>Target Slot:</strong> Slot {latestReceipt.slotIdx} |{" "}
+                <strong>Hardware Taint Register:</strong> <code>{latestReceipt.mars.taint}</code>
+              </Text>
+              <Text as="p" variant="bodySm">
+                <strong>Merkle State Root:</strong> <code>{latestReceipt.mars.merkleRoot}</code>
+              </Text>
+              {latestReceipt.mtpo && (
+                <Text as="p" variant="bodySm">
+                  <strong>MTPO SAGA:</strong> {latestReceipt.mtpo.status} | <strong>Active Register:</strong>{" "}
+                  <code>{latestReceipt.mtpo.active_val}</code> | <strong>Shadow:</strong>{" "}
+                  <code>{latestReceipt.mtpo.shadow_val}</code>
+                </Text>
+              )}
+            </BlockStack>
+          </Banner>
+        )}
+
+        {/* HexCell Lock-Free Concurrency Memory Lattice */}
+        <Card>
+          <BlockStack gap="400">
+            <InlineStack align="space-between" blockAlign="center">
+              <BlockStack gap="100">
+                <InlineStack gap="300" blockAlign="center">
+                  <Text as="h2" variant="headingMd">
+                    MTPO HexCell Lock-Free Concurrency Lattice (C11 Shared Memory)
+                  </Text>
+                  <Badge tone="success">14.8M ops/sec</Badge>
+                </InlineStack>
+                <Text as="p" variant="bodySm" tone="subdued">
+                  Lock-free 6-slot double-buffered atomic CAS registers linked via <code>{data.swarmStatus.memoryRingShm}</code>. Zero mutex overhead.
+                </Text>
+              </BlockStack>
+              <InlineStack gap="300">
+                <Badge tone="info">{`Total Commits: ${activeRingState.total_committed}`}</Badge>
+                <Badge tone={activeRingState.total_compensated > 0 ? "attention" : "success"}>
+                  {`Rollbacks: ${activeRingState.total_compensated}`}
+                </Badge>
+              </InlineStack>
+            </InlineStack>
+            <Divider />
+
+            <Grid>
+              {data.slotDefinitions.map((def) => {
+                const slotData = activeRingState.slots.find((s) => s.slot === def.index);
+                const isActive = slotData && slotData.active !== "0x0000000000000000";
+
+                return (
+                  <Grid.Cell key={def.index} columnSpan={{ xs: 6, sm: 4, md: 4, lg: 4, xl: 4 }}>
+                    <Box
+                      padding="300"
+                      background={isActive ? "bg-surface-selected" : "bg-surface-secondary"}
+                      borderRadius="200"
+                      borderWidth="025"
+                      borderColor={isActive ? "border-brand" : "border"}
+                    >
+                      <BlockStack gap="200">
+                        <InlineStack align="space-between" blockAlign="center">
+                          <Text as="h3" variant="headingSm">
+                            Slot {def.index}: {def.name}
+                          </Text>
+                          <Badge tone={isActive ? "success" : "subdued"}>
+                            {isActive ? "COMMITTED" : "IDLE"}
+                          </Badge>
+                        </InlineStack>
+                        <Text as="p" variant="bodyXs" tone="subdued">
+                          {def.target}
+                        </Text>
+                        <Box paddingBlockStart="100">
+                          <Text as="p" variant="bodyXs">
+                            <strong>Active:</strong> <code>{slotData?.active || "0x0000000000000000"}</code>
+                          </Text>
+                          <Text as="p" variant="bodyXs" tone="subdued">
+                            <strong>Shadow:</strong> <code>{slotData?.shadow || "0x0000000000000000"}</code>
+                          </Text>
+                        </Box>
+                      </BlockStack>
+                    </Box>
+                  </Grid.Cell>
+                );
+              })}
+            </Grid>
+          </BlockStack>
+        </Card>
 
         {/* System Substrate Telemetry */}
         <Layout>
@@ -243,7 +374,7 @@ export default function Index() {
                   Verified Vulnerabilities Staged for Submission
                 </Text>
                 <Text as="p" variant="bodySm" tone="subdued">
-                  Zero-noise, mathematically proven findings ready for HackerOne, Bugcrowd, and Immunefi APIs.
+                  Zero-noise, mathematically proven findings wired directly into MTPO SAGA slots.
                 </Text>
               </BlockStack>
               <Badge tone="attention">3 Ready for Approval</Badge>
@@ -268,6 +399,7 @@ export default function Index() {
                           <Badge tone={finding.severity === "CRITICAL" ? "critical" : "warning"}>
                             {finding.severity} ({finding.cvss})
                           </Badge>
+                          <Badge tone="subdued">{`HexCell Slot ${finding.slot}`}</Badge>
                           <Text as="h3" variant="headingSm">
                             {finding.title}
                           </Text>
@@ -288,7 +420,7 @@ export default function Index() {
 
                       <InlineStack align="end" gap="300">
                         {isApproved ? (
-                          <Badge tone="success">Dispatched to Platform API</Badge>
+                          <Badge tone="success">Committed to MTPO Slot {finding.slot}</Badge>
                         ) : (
                           <Button
                             variant="primary"
