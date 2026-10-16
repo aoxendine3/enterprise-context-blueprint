@@ -23,3 +23,10 @@ pnpm-lock.yaml
 # Ignore shopify files created during app dev
 .shopify/*
 .shopify.lock
+
+# Local binary assets & environment
+.venv
+capabilities/neural_models
+bin
+*.wav
+memory_lineage_turns.jsonl
