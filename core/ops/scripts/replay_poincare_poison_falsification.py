@@ -17,7 +17,15 @@ import hashlib
 from datetime import datetime, timezone
 from pathlib import Path
 
-ROOT = Path("/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain")
+def find_repo_root() -> Path:
+    cur = Path(__file__).resolve().parent
+    for _ in range(5):
+        if (cur / ".git").exists() or (cur / "docs").exists():
+            return cur
+        cur = cur.parent
+    return Path.cwd()
+
+ROOT = find_repo_root()
 RECEIPT_FILE = ROOT / "docs/audits/POINCARE_SEMANTIC_POISON_FALSIFICATION_RECEIPT.json"
 
 TRUE_MASS = 18432.00
