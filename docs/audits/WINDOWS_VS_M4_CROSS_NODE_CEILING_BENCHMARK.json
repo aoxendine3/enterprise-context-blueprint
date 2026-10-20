@@ -1,0 +1,39 @@
+{
+  "audit_name": "XORAS_CROSS_NODE_CEILING_BENCHMARK_20261020",
+  "timestamp_utc": "2026-10-20T17:33:00Z",
+  "methodology": "Empirical live cross-node execution: Apple Silicon M4 Control Plane vs Windows 11 x86_64 Tensor Plane",
+  "control_plane_m4": {
+    "arch": "Apple Silicon M4 (arm64)",
+    "shm_throughput_ops_sec": 278165.36,
+    "shm_batch_size": 26000,
+    "shm_elapsed_ms": 93.47,
+    "shm_threads": 16,
+    "z3_smt_containment": "UNSAT",
+    "z3_proof_elapsed_ms": 1.43,
+    "gauntlet_14_gates": "14/14_PASSED",
+    "gauntlet_l1_miss_pct": 0.84,
+    "gauntlet_hallucination_pct": 0.20,
+    "gauntlet_golden_admitted": "GOLDEN-013",
+    "merkle_dag_violations": 0,
+    "merkle_state_pollution_pct": 0.0,
+    "saga_rollback_latency_us": 12.8
+  },
+  "tensor_plane_windows": {
+    "host": "desktop-8p1gp53.lan (192.168.1.211:11434)",
+    "arch": "Windows 11 x86_64 Bare Metal",
+    "models_held_count": 11,
+    "models_weight_offloaded_gb": 14.64,
+    "active_tested_model": "qwen2.5:1.5b",
+    "prompt_eval_tps": 77.59,
+    "stream_completion_tps": 21.09,
+    "time_to_first_token_ms": 493.9,
+    "total_stream_latency_sec": 1.39,
+    "nomic_embedding_dims": 768,
+    "network_packet_loss_pct": 0.0
+  },
+  "verdict": {
+    "zero_trust_status": "FULL_CEILING_PASSED",
+    "state_pollution": "0.00000%",
+    "fail_closed_compliance": "VERIFIED_MECHANICAL"
+  }
+}
