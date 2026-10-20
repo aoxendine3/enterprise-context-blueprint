@@ -1,0 +1,84 @@
+{
+  "mission_id": "MIS_RECURSIVE_1792451696",
+  "conductor": "DAXX-2",
+  "recursive_delegation_proven": true,
+  "max_depth_reached": 2,
+  "process_peak_rss_mb": 27.47,
+  "process_cpu_time_sec": 0.0008,
+  "tasks_executed": [
+    {
+      "task_id": "MIS_RECURSIVE_1792451696_TASK_01_REASONS",
+      "parent_id": null,
+      "role": "DAXX-2-H01",
+      "depth": 1,
+      "time_ms": 0.614,
+      "evidence_sha256": "586e7c97b6dc8fc73fcc08a8f255a707551f0b3e976a1440de07496f02e39435",
+      "output": {
+        "inspected_file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/reasons/tests/test_reasons_invariants.py",
+        "exists": true,
+        "invariant_sample": [
+          "\"\"\"",
+          "REASONS: Epistemic Invariants & Merkle DAG Test Suite",
+          "====================================================="
+        ],
+        "finding": "REASONS invariants verified present on disk"
+      },
+      "children": []
+    },
+    {
+      "task_id": "MIS_RECURSIVE_1792451696_TASK_02_CARDS",
+      "parent_id": null,
+      "role": "DAXX-2-H11",
+      "depth": 1,
+      "time_ms": 2.169,
+      "evidence_sha256": "0a9fa758a507aec3639551d1303bd050ee93e702dd724615ba050e489f0c15c4",
+      "output": {
+        "total_agent_cards_found": 22,
+        "inspected_sample": [
+          {
+            "agent_id": "sia_core",
+            "voice": null,
+            "kokoro_voice_id": "af_river"
+          },
+          {
+            "agent_id": "evan",
+            "voice": null,
+            "kokoro_voice_id": "am_liam"
+          },
+          {
+            "agent_id": "orion",
+            "voice": null,
+            "kokoro_voice_id": "am_puck"
+          },
+          {
+            "agent_id": "jeremy",
+            "voice": null,
+            "kokoro_voice_id": "am_michael"
+          },
+          {
+            "agent_id": "aurelius",
+            "voice": null,
+            "kokoro_voice_id": "am_onyx"
+          }
+        ]
+      },
+      "children": [
+        {
+          "task_id": "MIS_RECURSIVE_1792451696_TASK_02_CARDS_CHILD_VOICE_VERIFIER",
+          "parent_id": "MIS_RECURSIVE_1792451696_TASK_02_CARDS",
+          "role": "DAXX-2-H11-SUB1",
+          "depth": 2,
+          "time_ms": 0.712,
+          "evidence_sha256": "1a3f76da1dd1d03dcedeef279c3a17db9b8bfc1e9acd0411b7164eb491940167",
+          "output": {
+            "child_verification": "Voice Decoupling Proof",
+            "daxx_kokoro": "am_michael",
+            "maxx_kokoro": "bm_lewis",
+            "voice_collision_detected": false,
+            "status": "PROVEN_DISTINCT_VOICES"
+          }
+        }
+      ]
+    }
+  ]
+}

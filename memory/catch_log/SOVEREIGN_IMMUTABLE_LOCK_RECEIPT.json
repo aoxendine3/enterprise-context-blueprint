@@ -1,0 +1,66 @@
+{
+  "receipt_id": "rcpt_lock_1792473952318",
+  "timestamp_utc": "2026-10-20T05:25:52Z",
+  "session_id": "session_lock_1792473952",
+  "global_merkle_root": "746cca0e35b78c2c1c6cedb5c4854be74a706e3020ba0ebaf1dff4344a107a1d",
+  "locked_artifacts_count": 9,
+  "locked_manifest": [
+    {
+      "path": "docs/audits/XMARS_OS_UNBIASED_ARCHITECTURAL_AUDIT.md",
+      "sha256": "d85252b3fb030f2900a782f45400bca532e93e28e090f985a288177d82bbbac2",
+      "size_bytes": 11434
+    },
+    {
+      "path": "docs/audits/WINDOWS_VS_M4_EMPIRICAL_TELEMETRY_RECEIPT.json",
+      "sha256": "4195a0daf218412a6374b8c8340000cae95ecfc6ca4bd47e5ae0193050c2d98e",
+      "size_bytes": 3810
+    },
+    {
+      "path": "docs/audits/SOVRA_DEEP_LOCK_GAUNTLET_RECEIPT.json",
+      "sha256": "746a33106311791e5febd9c1b6f3513ee53b5c6008d3887f9363b24b3824548a",
+      "size_bytes": 695
+    },
+    {
+      "path": "docs/audits/DAXX_RECURSIVE_MISSION_EMPIRICAL_RECEIPT.json",
+      "sha256": "c1c1efca60adabed888982dde284152793c21541135a1978026f469caee8ac91",
+      "size_bytes": 2592
+    },
+    {
+      "path": "docs/audits/SOVEREIGN_TRIAD_EMPIRICAL_AUDIT.json",
+      "sha256": "7615170204c2162ed480cd1c119cbcc0c96f71e583b649e96d95a3f61b65b00f",
+      "size_bytes": 3060
+    },
+    {
+      "path": "ops/scripts/sovra_deep_lock.py",
+      "sha256": "22ab00a80f1fb212db5159fc925143335a77e9e8487b3ef624fdbbc1867d7687",
+      "size_bytes": 3819
+    },
+    {
+      "path": "ops/scripts/council_audio_dispatch.py",
+      "sha256": "c50a40844865a8a1738c62a01d2c516858482dbd8a9b5c216f2139289a7e83d0",
+      "size_bytes": 8913
+    },
+    {
+      "path": "ops/scripts/daxx_recursive_bounded_mission.py",
+      "sha256": "e2296fb6f1c0da518195db84fddaec8ea93a9855c5eea627ae05faa70a552a92",
+      "size_bytes": 8947
+    },
+    {
+      "path": "core/ops/native/shm_ring_buffer.c",
+      "sha256": "bb6fa706f0f5aba4c1859fcf823354c322c95d4368e733417963bbaa86f135e3",
+      "size_bytes": 2432
+    }
+  ],
+  "validation_result": {
+    "valid": true,
+    "session_id": "session_lock_1792473952",
+    "node_count": 9,
+    "merkle_root": "82ddc72ab680614f7562d329e9c4143ea11b6c7c923d09075ad9ed818200a6d6",
+    "violations": []
+  },
+  "governance": {
+    "status": "LOCKED_IMMUTABLE",
+    "fail_closed_compliance": "PASS",
+    "zero_loss_zero_corruption": "PROVEN"
+  }
+}

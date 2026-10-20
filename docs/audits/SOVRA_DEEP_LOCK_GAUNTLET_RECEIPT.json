@@ -1,0 +1,27 @@
+{
+  "test_01_valid_token": {
+    "passed": true,
+    "reason": "DEEP_LOCK_VALIDATED_ACCESS_GRANTED"
+  },
+  "test_02_stale_replay_blocked": {
+    "passed": true,
+    "reason": "TIMESTAMP_STALE_DRIFT_EXCEEDED (0.01s > 0.005s)"
+  },
+  "test_03_tamper_signature_blocked": {
+    "passed": true,
+    "reason": "SIGNATURE_MISMATCH_ATTACK_BLOCKED"
+  },
+  "test_04_corrupt_payload_blocked": {
+    "passed": true,
+    "reason": "SIGNATURE_MISMATCH_ATTACK_BLOCKED"
+  },
+  "test_05_stress_burst": {
+    "iterations": 10000,
+    "valid_count": 10000,
+    "generation_time_sec": 0.0796,
+    "validation_time_sec": 0.0507,
+    "validations_per_sec": 197286.16,
+    "peak_rss_mb": 23.2,
+    "passed": true
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "receipt_id": "rcpt_win_vs_m4_telemetry_1792453412",
+  "timestamp_utc": "2026-10-20T05:23:32Z",
+  "classification": "Empirical Dual-Plane Cross-Node Benchmark",
+  "rehydration_status": {
+    "post_power_loss_recovery": "VERIFIED_CLEAN",
+    "merkle_dag_integrity": "INTACT",
+    "world_db_integrity": "INTACT",
+    "orphaned_processes_purged": 0,
+    "lock_state": "CLEAR"
+  },
+  "nodes": {
+    "control_plane_m4": {
+      "host_arch": "Apple Silicon M4 (arm64)",
+      "operating_system": "macOS 15.x",
+      "ip_address": "127.0.0.1 (Localhost)",
+      "assigned_roles": [
+        "Control Plane (P_ctrl)",
+        "Formal SMT Verification & Invariant Gating",
+        "Kokoro ONNX Neural TTS Audio Engine",
+        "Lock-Free C Shared-Memory Ring Buffer",
+        "Merkle DAG Root Ledger & Governance"
+      ],
+      "available_disk_storage_gb": 3.0,
+      "local_gguf_weight_footprint_gb": 0.0,
+      "audio_tts_latency_sec": 0.22,
+      "memory_architecture": "Unified RAM (Zero-Copy L1/SIMD)"
+    },
+    "tensor_plane_windows": {
+      "host_arch": "x86_64 Bare Metal (desktop-8p1gp53.lan)",
+      "operating_system": "Windows 11",
+      "ip_address": "192.168.1.211",
+      "port": 11434,
+      "assigned_roles": [
+        "Tensor Plane (P_tensor)",
+        "Heavy Model Weight Repository",
+        "Off-Grid Vector Embedding Pipeline",
+        "Probabilistic Streaming Inference"
+      ],
+      "network_link": {
+        "packet_loss_pct": 0.0,
+        "ping_rtt_min_ms": 13.56,
+        "ping_rtt_avg_ms": 87.68,
+        "ping_rtt_max_ms": 329.84,
+        "http_tags_rtt_ms": 52.42
+      },
+      "model_inventory": {
+        "total_models": 11,
+        "total_weight_size_gb": 14.64,
+        "catalog": [
+          {"name": "sovereign-ssot-backup:latest", "params": "1.8B", "size_mb": 1065.56},
+          {"name": "sovereign-r1:latest", "params": "1.8B", "size_mb": 1065.56},
+          {"name": "deepseek-r1:1.5b", "params": "1.8B", "size_mb": 1065.56},
+          {"name": "sovereign-hermes:latest", "params": "8.0B", "size_mb": 4445.29},
+          {"name": "hermes3:8b", "params": "8.0B", "size_mb": 4445.29},
+          {"name": "qwen2.5:1.5b", "params": "1.5B", "size_mb": 940.38},
+          {"name": "nomic-embed-text:latest", "params": "137M", "size_mb": 261.60},
+          {"name": "llama3.2:latest", "params": "3.2B", "size_mb": 1925.84}
+        ]
+      },
+      "active_in_ram_profile": [
+        {
+          "model": "qwen2.5:1.5b",
+          "ram_size_bytes": 2122621910,
+          "vram_size_bytes": 0,
+          "execution_target": "Host CPU / System RAM"
+        },
+        {
+          "model": "nomic-embed-text:latest",
+          "ram_size_bytes": 376449269,
+          "vram_size_bytes": 0,
+          "execution_target": "Host CPU / System RAM"
+        }
+      ],
+      "live_measured_benchmarks": {
+        "benchmark_model": "qwen2.5:1.5b",
+        "prompt_tokens": 44,
+        "prompt_eval_duration_ms": 279.58,
+        "prompt_eval_tokens_per_sec": 157.38,
+        "completion_tokens": 47,
+        "completion_eval_duration_ms": 2333.30,
+        "completion_tokens_per_sec": 20.14,
+        "hot_load_duration_ms": 6.82,
+        "vector_embedding_dims": 768,
+        "vector_embedding_latency_cold_ms": 4042.74,
+        "vector_embedding_latency_hot_ms": 261.34
+      }
+    }
+  },
+  "comparative_analysis": {
+    "architectural_efficiency": "By offloading 14.64 GB of model weights to Windows, M4 avoids disk storage saturation and paging stalls.",
+    "latency_tradeoff": "LAN latency adds ~52ms per HTTP request, compensated by 157 tokens/sec prompt pre-fill on Windows and sub-millisecond local C control plane on M4.",
+    "fail_closed_guarantee": "If Windows node disconnects, M4 control plane rejects tainted candidate promotions and triggers Saga inverse rollbacks."
+  }
+}

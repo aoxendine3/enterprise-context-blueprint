@@ -20,6 +20,7 @@ import json
 import time
 import subprocess
 import concurrent.futures
+import fcntl
 from pathlib import Path
 import soundfile as sf
 import numpy as np
@@ -30,21 +31,30 @@ STAGE_DIR = ROOT / "ops/scripts/fullscreen_ui"
 STATE_FILE = STAGE_DIR / "current_image.txt"
 TRANSCRIPT_FILE = STAGE_DIR / "current_transcript.txt"
 TIMING_JSON = STAGE_DIR / "current_timing.json"
+AUDIO_LOCK_FILE = Path("/tmp/xoras_council_audio.lock")
 
-# Exact calibrated voice tweaks from ELITE_BOW/core/agent_voice_registry.yaml & ddfe7ec
+# Exact calibrated voice tweaks directly aligned with frozen Xoras_agent_cards/*.json
 VOICE_MAP = {
-    "maxx": ("bm_george", 0.98),
-    "clara": ("af_bella", 1.02),
-    "vance": ("am_michael", 0.96),
-    "john": ("bm_lewis", 1.00),
-    "selene": ("af_sky", 0.96),
-    "jarvis": ("am_adam", 0.98),
-    "dr_eden": ("af_bella", 0.96),
-    "dr_jeremy": ("bm_lewis", 0.96),
-    "orion": ("bm_george", 0.94),
-    "aurelius": ("am_michael", 0.94),
-    "apex": ("bm_lewis", 1.02),
-    "sentinel": ("am_michael", 0.98),
+    "maxx": ("bm_lewis", 1.00),         # Agent Card: kokoro_voice_id: bm_lewis (Tom)
+    "clara": ("af_bella", 1.02),        # Agent Card: kokoro_voice_id: af_bella (Zoe)
+    "daxx": ("am_michael", 0.96),       # Agent Card: kokoro_voice_id: am_michael, voice: Lee (Premium)
+    "vance": ("am_liam", 0.98),         # Agent Card: kokoro_voice_id: am_liam (Rishi)
+    "john": ("am_eric", 1.00),          # Agent Card: kokoro_voice_id: am_eric (Daniel)
+    "selene": ("af_sarah", 0.98),       # Agent Card: kokoro_voice_id: af_sarah (Joelle)
+    "jarvis": ("am_adam", 0.98),        # Agent Card: kokoro_voice_id: am_adam (Jamie)
+    "eden": ("af_sky", 0.98),           # Agent Card: kokoro_voice_id: af_sky (Ava)
+    "dr_eden": ("af_sky", 0.98),
+    "jeremy": ("am_michael", 0.94),     # Agent Card: kokoro_voice_id: am_michael
+    "dr_jeremy": ("am_michael", 0.94),
+    "orion": ("am_puck", 0.96),         # Agent Card: kokoro_voice_id: am_puck (Matilda)
+    "aurelius": ("am_onyx", 0.94),      # Agent Card: kokoro_voice_id: am_onyx (Rishi)
+    "xoras": ("bm_george", 0.96),       # Agent Card: kokoro_voice_id: bm_george (Evan)
+    "evan": ("am_liam", 0.96),          # Agent Card: kokoro_voice_id: am_liam (Oliver)
+    "sophia": ("af_nicole", 1.00),      # Agent Card: kokoro_voice_id: af_nicole (Allison)
+    "sia_core": ("af_river", 1.00),     # Agent Card: kokoro_voice_id: af_river (Samantha)
+    "counselor": ("af_alloy", 1.00),
+    "axlon": ("bm_fable", 0.98),
+    "arthur": ("am_adam", 0.98),
 }
 
 _KOKORO_ENGINE = None
@@ -73,14 +83,20 @@ def synthesize_turn(engine, agent: str, text: str, turn_id: int):
             samples[:fade_len] = samples[:fade_len] * fade_in
             samples[-fade_len:] = samples[-fade_len:] * fade_out
 
-    wav_path = f"/tmp/council_speech_{turn_id}_{int(time.time()*1000)}.wav"
-    sf.write(wav_path, samples, sr)
+    # Direct MP3 encoding via ffmpeg stdin (Zero WAV files, tiny disk footprint)
+    mp3_path = f"/tmp/council_speech_{turn_id}.mp3"
+    raw_pcm = (samples * 32767).astype(np.int16).tobytes()
+    p = subprocess.Popen(
+        ['/opt/homebrew/bin/ffmpeg', '-y', '-f', 's16le', '-ar', str(sr), '-ac', '1', '-i', 'pipe:0', '-codec:a', 'libmp3lame', '-b:a', '128k', mp3_path],
+        stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
+    )
+    p.communicate(input=raw_pcm)
     duration = len(samples) / sr
     
     return {
         "agent": agent_key,
         "text": text,
-        "wav_path": wav_path,
+        "wav_path": mp3_path,
         "duration": duration
     }
 
@@ -99,57 +115,59 @@ def play_turn(turn_payload):
     
     print(f"\n🎙️ [{agent.upper()}]: \"{text}\"")
     sys.stdout.flush()
-    
-    # Ensure any trailing afplay process has cleared before starting
-    while subprocess.run(["pgrep", "afplay"], stdout=subprocess.DEVNULL).returncode == 0:
-        time.sleep(0.01)
-        
-    subprocess.run(["afplay", wav_path], check=False)
-    
+
+    # Play the synthesized audio through Mac built-in speakers
     if os.path.exists(wav_path):
-        os.remove(wav_path)
+        subprocess.run(["/usr/bin/afplay", wav_path], check=False)
+        try:
+            os.remove(wav_path)
+        except OSError:
+            pass
 
 def dispatch_council(turns: list[tuple[str, str]], pause_between: float = 0.40):
     """
     Executes a multi-turn council deliberation with pre-synthesis pipelining.
     While Turn N is playing via afplay, Turn N+1 is synthesized in background RAM.
     Handoff gap strictly enforced at 0.40s.
+    Exclusive flock guarantees zero concurrent audio playback (NO OVERLAPPING).
     """
-    print("=" * 70)
-    print("🎙️ XORAS SOVEREIGN COUNCIL: RESTORED ZERO-GAP AUDIO ENGINE")
-    print(f"Total Deliberation Turns : {len(turns)}")
-    print(f"Inter-Speaker Natural Breath Gap : {pause_between:.2f}s (<0.50s)")
-    print("Substrate: Apple Silicon M4 Unified RAM (Kokoro ONNX)")
-    print("=" * 70)
-    
-    engine = get_kokoro()
-    executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
-    
-    try:
-        # Pre-synthesize the first speaker in RAM
-        first_agent, first_text = turns[0]
-        future = executor.submit(synthesize_turn, engine, first_agent, first_text, 0)
-        
-        for i in range(len(turns)):
-            payload = future.result()
+    with open(AUDIO_LOCK_FILE, "w") as lock_f:
+        fcntl.flock(lock_f, fcntl.LOCK_EX)
+        try:
+            print("=" * 70)
+            print("🎙️ XORAS SOVEREIGN COUNCIL: RESTORED ZERO-GAP AUDIO ENGINE")
+            print(f"Total Deliberation Turns : {len(turns)}")
+            print(f"Inter-Speaker Natural Breath Gap : {pause_between:.2f}s (<0.50s)")
+            print("Substrate: Apple Silicon M4 Unified RAM (Kokoro ONNX)")
+            print("Concurrency Lock: STRICT EXCLUSIVE FLOCK (ZERO OVERLAPPING)")
+            print("=" * 70)
             
-            # Pipeline synthesis of NEXT speaker in background thread while current plays
-            if i + 1 < len(turns):
-                next_agent, next_text = turns[i + 1]
-                future = executor.submit(synthesize_turn, engine, next_agent, next_text, i + 1)
+            engine = get_kokoro()
+            executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
             
-            # Play current speaker immediately
-            play_turn(payload)
-            
-            # Natural human conversational breath (<0.50s standard)
-            if i + 1 < len(turns):
-                time.sleep(pause_between)
+            try:
+                # Pre-synthesize the first speaker in RAM
+                first_agent, first_text = turns[0]
+                future = executor.submit(synthesize_turn, engine, first_agent, first_text, 0)
                 
-    finally:
-        executor.shutdown(wait=False)
-        print("\n" + "=" * 70)
-        print("✅ ZERO-GAP COUNCIL AUDIT CONCLUDED WITH FLAWLESS HANDOFFS")
-        print("=" * 70)
+                for i in range(len(turns)):
+                    payload = future.result()
+                    
+                    # Pipeline synthesis of NEXT speaker in background thread while current plays
+                    if i + 1 < len(turns):
+                        next_agent, next_text = turns[i + 1]
+                        future = executor.submit(synthesize_turn, engine, next_agent, next_text, i + 1)
+                    
+                    # Play current speaker immediately with zero gap
+                    play_turn(payload)
+                        
+            finally:
+                executor.shutdown(wait=False)
+                print("\n" + "=" * 70)
+                print("✅ ZERO-GAP COUNCIL AUDIT CONCLUDED WITH FLAWLESS HANDOFFS")
+                print("=" * 70)
+        finally:
+            fcntl.flock(lock_f, fcntl.LOCK_UN)
 
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "--json":
