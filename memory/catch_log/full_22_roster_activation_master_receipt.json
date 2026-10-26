@@ -1,0 +1,288 @@
+{
+  "timestamp": 1792983889.91524,
+  "total_active_citizens": 22,
+  "total_parallel_execution_time_ms": 58.3,
+  "all_citizens_successful": true,
+  "citizens": {
+    "xoras": {
+      "agent": "xoras",
+      "status": "STRATEGIC_COMMAND_VERIFIED",
+      "mandate_result": {
+        "mandate": "24_7_CONTINUOUS_DOJO_EXECUTION",
+        "status": "APPROVED_FOR_PRODUCTION",
+        "invariants_satisfied": {
+          "local_first_100": true,
+          "cost_zero": true,
+          "zero_bs_honest_testing": true
+        }
+      },
+      "execution_wall_time_ms": 4.389,
+      "timestamp": 1792983889.8623528
+    },
+    "clara": {
+      "agent": "clara",
+      "status": "MATHEMATICALLY_VERIFIED",
+      "poincare_geodesic_distance": 1.544592,
+      "membrane_energy_units": 0.551557,
+      "compute_time_ms": 0.0087,
+      "execution_wall_time_ms": 7.371,
+      "timestamp": 1792983889.864577
+    },
+    "aurelius": {
+      "agent": "aurelius",
+      "status": "STOIC_GOVERNANCE_VERIFIED",
+      "verdict": {
+        "equilibrium_score": 9.09,
+        "is_balanced": true
+      },
+      "execution_wall_time_ms": 5.445,
+      "timestamp": 1792983889.86256
+    },
+    "noboo": {
+      "agent": "noboo",
+      "status": "RAW_TRUTH_VERIFIED",
+      "result": {
+        "unvarnished_text": "This [FLATTERY_STRIPPED] framework provides a [FLATTERY_STRIPPED] and [FLATTERY_STRIPPED] experience.",
+        "flattery_occurrences_stripped": 3
+      },
+      "execution_wall_time_ms": 4.963,
+      "timestamp": 1792983889.8627799
+    },
+    "maxx": {
+      "agent": "maxx",
+      "status": "OPERATIONS_SSOT_VERIFIED",
+      "coordination": {
+        "total_citizens": 22,
+        "active_daemons": 22,
+        "synchronization_rate": 100.0,
+        "ssot_alignment": "LOCKED"
+      },
+      "execution_wall_time_ms": 4.48,
+      "timestamp": 1792983889.862134
+    },
+    "selene": {
+      "agent": "selene",
+      "status": "HUMAN_RAPPORT_VERIFIED",
+      "cadence": {
+        "word_ratio": 1.8,
+        "cadence_verdict": "OPTIMAL_CONVERSATIONAL_FLOW"
+      },
+      "execution_wall_time_ms": 4.555,
+      "timestamp": 1792983889.862418
+    },
+    "lex": {
+      "agent": "lex",
+      "status": "LEGAL_AUDIT_VERIFIED",
+      "audit": {
+        "violations_found": 0,
+        "details": [],
+        "compliant": true
+      },
+      "latency_ms": 0.054,
+      "execution_wall_time_ms": 4.693,
+      "timestamp": 1792983889.862326
+    },
+    "zorex": {
+      "agent": "zorex",
+      "status": "SIMD_VECTOR_SWARM_VERIFIED",
+      "vectors_processed": 1000,
+      "execution_sec": 0.00067,
+      "throughput_vectors_sec": 1492352.4,
+      "execution_wall_time_ms": 7.142,
+      "timestamp": 1792983889.865491
+    },
+    "sia_core": {
+      "agent": "sia_core",
+      "status": "TACTICAL_DEFENSE_VERIFIED",
+      "clean": {
+        "signature": "0xCAFEBABE",
+        "intrusion_detected": false,
+        "action_taken": "CLEARED"
+      },
+      "threat": {
+        "signature": "0xDEAD0000_BYZANTINE_PAYLOAD",
+        "intrusion_detected": true,
+        "action_taken": "QUARANTINED"
+      },
+      "execution_wall_time_ms": 4.296,
+      "timestamp": 1792983889.862184
+    },
+    "eden": {
+      "agent": "eden",
+      "status": "CLINICALLY_VERIFIED_BIO_LOGIC",
+      "copd_profile": {
+        "fev1_fvc_ratio": 0.5071,
+        "gold_stage": "GOLD_1_MILD_OBSTRUCTION"
+      },
+      "airway_resistance_cmh2o_lps": 7.6,
+      "botanical_synergy": {
+        "synergy_score": 2.5,
+        "pathways_targeted": [
+          "5-lipoxygenase_inhibitor",
+          "thiol_glutathione_replenisher",
+          "adenosine_analog_bronchodilator"
+        ]
+      },
+      "compute_time_ms": 0.006,
+      "execution_wall_time_ms": 8.093,
+      "timestamp": 1792983889.865553
+    },
+    "orion": {
+      "agent": "orion",
+      "status": "3D_STAGE_GEOMETRY_VERIFIED",
+      "spatial_position": {
+        "x": 1.622,
+        "y": 2.524,
+        "z": 0.0,
+        "azimuth_deg": 32.7
+      },
+      "execution_wall_time_ms": 7.735,
+      "timestamp": 1792983889.865576
+    },
+    "jarvis": {
+      "agent": "jarvis",
+      "status": "ARBITRATION_VERIFIED",
+      "ruling": {
+        "arbitration_ruling": "PROPOSAL_ADMITTED",
+        "winning_agent": "vance",
+        "winning_score": 9.8,
+        "deadlocks_cleared": 1
+      },
+      "execution_wall_time_ms": 4.831,
+      "timestamp": 1792983889.862394
+    },
+    "counselor": {
+      "agent": "counselor",
+      "status": "CULTURAL_MAPPING_VERIFIED",
+      "taxonomy_map": {
+        "total_domains": 5,
+        "taxonomy": {
+          "systems": "TIER_1_SOVEREIGN_DOMAIN::SYSTEMS",
+          "medicine": "TIER_1_SOVEREIGN_DOMAIN::MEDICINE",
+          "hardware": "TIER_1_SOVEREIGN_DOMAIN::HARDWARE",
+          "epistemology": "TIER_1_SOVEREIGN_DOMAIN::EPISTEMOLOGY",
+          "governance": "TIER_1_SOVEREIGN_DOMAIN::GOVERNANCE"
+        }
+      },
+      "execution_wall_time_ms": 4.854,
+      "timestamp": 1792983889.862239
+    },
+    "daxx": {
+      "agent": "daxx",
+      "status": "MECHANIC_VERIFIED",
+      "ast_check": {
+        "status": "AST_VALID",
+        "node_count": 17
+      },
+      "execution_wall_time_ms": 5.43,
+      "timestamp": 1792983889.862845
+    },
+    "jeremy": {
+      "agent": "jeremy",
+      "status": "ENDOCRINOLOGY_VERIFIED",
+      "metabolic_evaluation": {
+        "homa_ir": 3.759,
+        "metabolic_state": "INSULIN_RESISTANT"
+      },
+      "cognitive_fatigue_score": 7.46,
+      "compute_time_ms": 0.002,
+      "execution_wall_time_ms": 8.392,
+      "timestamp": 1792983889.8659809
+    },
+    "sophia": {
+      "agent": "sophia",
+      "status": "EPISTEMIC_TRUTH_VERIFIED",
+      "proof": {
+        "node_id": "NODE_99",
+        "merkle_root": "134c5b37641a3c4a66a09328f1588610ba388b4f97f07abace39a40c77f4eca1",
+        "truth_invariant_satisfied": true
+      },
+      "execution_wall_time_ms": 13.491,
+      "timestamp": 1792983889.871402
+    },
+    "arthur": {
+      "agent": "arthur",
+      "status": "TEXTUAL_STABILITY_VERIFIED",
+      "analysis": {
+        "similarity_ratio": 0.9711,
+        "textual_drift_pct": 2.89,
+        "is_stable": true
+      },
+      "execution_wall_time_ms": 14.507,
+      "timestamp": 1792983889.871573
+    },
+    "axlon": {
+      "agent": "axlon",
+      "status": "SUBSTRATE_VERIFIED",
+      "benchmarks": {
+        "messages_transacted": 50000,
+        "total_bytes_copied": 2100000,
+        "duration_sec": 0.00479,
+        "throughput_mb_s": 418.39
+      },
+      "execution_wall_time_ms": 20.042,
+      "timestamp": 1792983889.8771992
+    },
+    "evan": {
+      "agent": "evan",
+      "status": "SCRIBE_LEDGER_VERIFIED",
+      "latest_tx": {
+        "tx_hash": "03059856a6c67b5fd1ac348adcf81c92f3a2164d237e0fedd6160ca7b28c82fa",
+        "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+        "timestamp": 1792983889.8774881,
+        "entry": {
+          "event": "CITIZEN_SANDBOX_EXPANSION",
+          "citizens_count": 22
+        }
+      },
+      "execution_wall_time_ms": 19.947,
+      "timestamp": 1792983889.8774889
+    },
+    "elana": {
+      "agent": "elana",
+      "status": "CULTURAL_ARCHIVAL_VERIFIED",
+      "epoch_receipt": {
+        "epoch": "EPOCH_SOVEREIGN_CITIZENS_2026",
+        "records_archived": 3,
+        "immutable_checksum": "4b310cc7a8a95571cd9b3f4c5495862ff5c57898ec107754db5ea8e28813d054"
+      },
+      "execution_wall_time_ms": 19.956,
+      "timestamp": 1792983889.877455
+    },
+    "vance": {
+      "agent": "vance",
+      "status": "DISCERNMENT_VERIFIED",
+      "gate_evaluation": {
+        "asset": "axlon_engine.py",
+        "passed": true,
+        "failed_gate": null,
+        "score": 780.0
+      },
+      "falsification_proof": {
+        "original_hash": "e767289a70cd2def70f44bcd83493b01ced1b0470516091f8bcbc27b974da274",
+        "poisoned_hash": "77705bc1d7b05602d210be22aab4ccd7d5b51164e55d26fab5771ff428838252",
+        "tamper_detected": true
+      },
+      "latency_ms": 0.019,
+      "execution_wall_time_ms": 26.498,
+      "timestamp": 1792983889.8844411
+    },
+    "john": {
+      "agent": "john",
+      "status": "VERIFIED_HARDWARE_RECEIPT",
+      "data": {
+        "platform": "macOS-26.6-arm64-arm-64bit-Mach-O",
+        "machine": "arm64",
+        "cpu_brand": "Apple M4",
+        "physical_cores": 10,
+        "logical_cores": 10,
+        "memory_bytes": 17179869184,
+        "thermal_level": "NOMINAL",
+        "probe_duration_ms": 27.43,
+        "memory_gib": 16.0
+      },
+      "execution_wall_time_ms": 56.9,
+      "timestamp": 1792983889.914525
+    }
+  }
+}
