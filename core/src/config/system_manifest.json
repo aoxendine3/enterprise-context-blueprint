@@ -1,0 +1,21 @@
+{
+  "manifest_version": "1.0.0-SOVEREIGN",
+  "approved_hardware": "APPLE_SILICON_M4",
+  "audio": {
+    "output_format": "WAV",
+    "required_samplerate": 24000,
+    "codec": "PCM_16",
+    "canonical_script_path": "ops/scripts/council_audio_dispatch.py",
+    "atomic_lock_path": "/tmp/coreaudio_single_speaker.lockdir"
+  },
+  "memory": {
+    "backend": "POSIX_SHARED_MEMORY",
+    "columnar_engine": "DUCKDB",
+    "vector_store": "LANCED_DB",
+    "shm_allocation_bytes": 67108864
+  },
+  "task_governance": {
+    "max_recursion_depth": 3,
+    "max_worker_rss_mb": 128
+  }
+}

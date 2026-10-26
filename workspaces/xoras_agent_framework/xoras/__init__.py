@@ -4,7 +4,7 @@ Enterprise-grade multi-agent runtime, AST static security gating, MTPO lock-free
 Context Lineage Merkle DAG provenance receipts, SIEM exporters, and SOC2 compliance auditing.
 """
 
-__version__ = "2.4.0"
+__version__ = "2.4.3"
 __author__ = "XORAS Systems LLC"
 
 from .config import XORASConfig
@@ -18,6 +18,16 @@ from .compliance.soc2_auditor import SOC2ComplianceAuditor
 from .tools.serpapi_client import XORASSerpAPIClient
 from .mtpo import HexCellRing, HEXCELL_SLOTS, SagaState
 from .merkle_dag import MerkleDAGNode, ContextLineageDAGEngine
+from .agents import AgentCard, AgentRoster
+from .council import CouncilOrchestrator, CouncilStep
+
+def test() -> int:
+    """Run bundled test suite directly from Python code."""
+    import os
+    import pytest
+    tests_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tests")
+    return pytest.main([tests_dir, "-v"])
+
 
 __all__ = [
     "XORASConfig",
@@ -35,5 +45,10 @@ __all__ = [
     "HEXCELL_SLOTS",
     "SagaState",
     "MerkleDAGNode",
-    "ContextLineageDAGEngine"
+    "ContextLineageDAGEngine",
+    "AgentCard",
+    "AgentRoster",
+    "CouncilOrchestrator",
+    "CouncilStep",
+    "test",
 ]

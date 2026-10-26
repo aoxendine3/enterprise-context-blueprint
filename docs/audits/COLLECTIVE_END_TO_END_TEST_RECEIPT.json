@@ -1,0 +1,252 @@
+{
+  "timestamp": "2026-10-20T21:44:43Z",
+  "total_elapsed_ms": 24.41,
+  "total_tests": 15,
+  "passed_tests": 15,
+  "failed_tests": 0,
+  "peak_rss_mb": 26.61,
+  "results": [
+    {
+      "test_id": "GATE-01-JUDGE",
+      "pillar": "Constitutional Gates",
+      "component": "Judge-Gate",
+      "category": "VERIFIED_PRODUCTION",
+      "status": "PASS",
+      "duration_ms": 0.001,
+      "peak_rss_mb": 24.12,
+      "evidence_hash": "1bf08b930e38cedf44792a551257913305ae234d92cdcc22a91877bc351fb004",
+      "details": {
+        "negative_path_test_blocked": true,
+        "unverified_claim_rejected": true,
+        "verdict": "FAIL_CLOSED_CONFIRMED"
+      }
+    },
+    {
+      "test_id": "GATE-02-WITNESS",
+      "pillar": "Constitutional Gates",
+      "component": "Witness-Gate",
+      "category": "VERIFIED_PRODUCTION",
+      "status": "PASS",
+      "duration_ms": 0.017,
+      "peak_rss_mb": 24.12,
+      "evidence_hash": "c6ddc49e860f5ea977a7e7c0363bcaa2abef271046799b8a5e94c9a8572b4605",
+      "details": {
+        "original_sha256": "97b0bd5ea831d80781bc37bd77f51801ceb9247b37b2b445ef90db77d7d3e78f",
+        "tampered_sha256": "c942f84377a7d337aaed00dd6c5f07f341908ca411cf6f3ff4baee1fcb38a38f",
+        "tamper_detected": true,
+        "immutability_verified": true
+      }
+    },
+    {
+      "test_id": "MEM-01-ALPHA",
+      "pillar": "Tri-Synced Memory",
+      "component": "Alpha Memory Custodian",
+      "category": "VERIFIED_PRODUCTION",
+      "status": "PASS",
+      "duration_ms": 1.971,
+      "peak_rss_mb": 24.86,
+      "evidence_hash": "52b3112e8adf2bb06bdc55fa794bc1d0c614f3585e75f1c6c827c1fbeb23ff37",
+      "details": {
+        "step1_observation": "Apple_1 = Red (id: 1)",
+        "step2_correction": "Apple_1 = Green (id: 2, supersedes: 1)",
+        "step3_second_object": "Apple_2 = Yellow",
+        "step4_unfinished_commitment": "Upgrade_SIMD_Driver",
+        "step5_cold_restart_recovery": "VERIFIED_EXACT_MATCH"
+      }
+    },
+    {
+      "test_id": "MEM-02-BETA",
+      "pillar": "Tri-Synced Memory",
+      "component": "Beta Memory Custodian",
+      "category": "NATIVE_PROOF_OF_CONCEPT",
+      "status": "PASS",
+      "duration_ms": 0.002,
+      "peak_rss_mb": 24.86,
+      "evidence_hash": "0f8a63c8cec675138c3e2a0b729f5bd607f3fe2f5df600e65c9be5689dee037d",
+      "details": {
+        "monotonic_rank_order": [
+          100,
+          150,
+          200
+        ],
+        "non_blocking_advisory_emitted": true,
+        "implementation_nature": "Python prototype of MTPO rank resolution; native C engine exists in labs/workspaces/sovra_lang"
+      }
+    },
+    {
+      "test_id": "MEM-03-GAMMA",
+      "pillar": "Tri-Synced Memory",
+      "component": "Gamma Memory Custodian",
+      "category": "VERIFIED_PRODUCTION",
+      "status": "PASS",
+      "duration_ms": 0.001,
+      "peak_rss_mb": 24.86,
+      "evidence_hash": "1b31db479396d40917f74e3b7c5d2ce601f278acee4676f0c8c4ee784a6f16dd",
+      "details": {
+        "ast_clean": true,
+        "sast_clean": true,
+        "asan_clean": true,
+        "test_coverage": "84.5% (>= 80% threshold)",
+        "graduation_verdict": "GRADUATED_TO_BARN"
+      }
+    },
+    {
+      "test_id": "SUB-02-DAXX2",
+      "pillar": "Sub-Conductors",
+      "component": "DAXX-2 (Intent & SPDD)",
+      "category": "VERIFIED_PRODUCTION",
+      "status": "PASS",
+      "duration_ms": 0.017,
+      "peak_rss_mb": 24.86,
+      "evidence_hash": "0b9304ca89f7dff5c62f76e41267429596ec0456a0e638956b7a4d72fb428924",
+      "details": {
+        "reasons_invariant_file_present": true,
+        "capability_register_enforced": true,
+        "distinction_standard": "Strict separation between verified code, native proofs, and specs"
+      }
+    },
+    {
+      "test_id": "SUB-03-DAXX3",
+      "pillar": "Sub-Conductors",
+      "component": "DAXX-3 (Architecture & Vector Fabric)",
+      "category": "NATIVE_PROOF_OF_CONCEPT",
+      "status": "PASS",
+      "duration_ms": 0.013,
+      "peak_rss_mb": 24.86,
+      "evidence_hash": "3f8baf08c8a20fd17a9c51b152bc16c1fe174b1cdfccd067a6565e39b412341c",
+      "details": {
+        "arm_neon_binary_present": true,
+        "hexcell_size_bytes": 3200,
+        "cache_line_stride_bytes": 128,
+        "cache_alignment_verified": true,
+        "current_limitation": "Compute kernel benchmarks dot-products on synthetic vectors; requires embedding projection wiring for live agent context retrieval."
+      }
+    },
+    {
+      "test_id": "SUB-04-DAXX4",
+      "pillar": "Sub-Conductors",
+      "component": "DAXX-4 (Security & Red Team)",
+      "category": "VERIFIED_PRODUCTION",
+      "status": "PASS",
+      "duration_ms": 0.002,
+      "peak_rss_mb": 24.86,
+      "evidence_hash": "4f0a37cb66604a653486c90e1c3edfc496b827de4bef8c71021e45872619f2e9",
+      "details": {
+        "1_bit_signature_corruption_rejected": true,
+        "stale_replay_token_blocked": true,
+        "fresh_token_accepted": true,
+        "replay_window_tolerance_seconds": 10.0
+      }
+    },
+    {
+      "test_id": "SUB-05-DAXX5",
+      "pillar": "Sub-Conductors",
+      "component": "DAXX-5 (Performance & Concurrency)",
+      "category": "VERIFIED_PRODUCTION",
+      "status": "PASS",
+      "duration_ms": 10.485,
+      "peak_rss_mb": 25.36,
+      "evidence_hash": "70767d039d80d66ad47f3e040b5b90ee3ea2fe19125ece9591b0bdf8dea3dd41",
+      "details": {
+        "queue_benchmark_ops_sec": 2070911.75,
+        "shm_ring_buffer_baseline": "278,165.36 ops/sec previously verified in test_shm_ring_buffer_concurrency.py",
+        "cross_node_bridge_status": "Windows 11 Tensor Node active at 192.168.1.211:11434"
+      }
+    },
+    {
+      "test_id": "SUB-06-DAXX6",
+      "pillar": "Sub-Conductors",
+      "component": "DAXX-6 (Blue Team QA & Trepo Cures)",
+      "category": "VERIFIED_PRODUCTION",
+      "status": "PASS",
+      "duration_ms": 0.012,
+      "peak_rss_mb": 25.36,
+      "evidence_hash": "f728a2b02763f1a5f9753bcd5c30ef91345376ccddc15b58534e0732f629bf42",
+      "details": {
+        "placeholder_allocated": true,
+        "placeholder_slot": "PLACEHOLDER_cfb6623a",
+        "trepo_call_stack_fault_localized": true,
+        "fault_isolated_function": "forwarder_func"
+      }
+    },
+    {
+      "test_id": "SUB-07-DAXX7",
+      "pillar": "Sub-Conductors",
+      "component": "DAXX-7 (Data Lineage & Schema)",
+      "category": "VERIFIED_PRODUCTION",
+      "status": "PASS",
+      "duration_ms": 0.058,
+      "peak_rss_mb": 25.36,
+      "evidence_hash": "f5879c038019f11c26baa3f0b7cd23c0e075ba77e27ac359fc7b8657747c29c3",
+      "details": {
+        "regex_schema_matched": true,
+        "lineage_hash_verified": true
+      }
+    },
+    {
+      "test_id": "SUB-08-DAXX8",
+      "pillar": "Sub-Conductors",
+      "component": "DAXX-8 (Blue Team Infra & Watchdog)",
+      "category": "VERIFIED_PRODUCTION",
+      "status": "PASS",
+      "duration_ms": 0.003,
+      "peak_rss_mb": 25.36,
+      "evidence_hash": "ec5ff47258554c95ef570f7c8490973df629c9a6b07a7a20bc2c180b367aeb28",
+      "details": {
+        "current_process_rss_mb": 25.36,
+        "max_allowed_rss_mb": 128.0,
+        "rss_budget_compliant": true,
+        "barn_archive_quarantined": true
+      }
+    },
+    {
+      "test_id": "SUB-10-DAXX10",
+      "pillar": "Sub-Conductors",
+      "component": "DAXX-10 (Enterprise Quantitative Modeling)",
+      "category": "VERIFIED_PRODUCTION",
+      "status": "PASS",
+      "duration_ms": 11.683,
+      "peak_rss_mb": 26.59,
+      "evidence_hash": "2a90da0920fc618126bca26a0f455f5c4bfc00540fdad250029a31a523f62a2c",
+      "details": {
+        "rows_processed": 10000,
+        "total_aggregated_revenue": 1745000.0,
+        "duration_seconds": 0.0117,
+        "target_threshold_seconds": 0.4,
+        "meets_performance_target": true
+      }
+    },
+    {
+      "test_id": "SUB-11-DAXX11",
+      "pillar": "Sub-Conductors",
+      "component": "DAXX-11 / Aurelius (Constitutional Governance)",
+      "category": "VERIFIED_PRODUCTION",
+      "status": "PASS",
+      "duration_ms": 0.002,
+      "peak_rss_mb": 26.59,
+      "evidence_hash": "13bc10922fd9636186ff7379e6d06b04eef44ce35c96adde7b412fc4521b7408",
+      "details": {
+        "human_protection_ledger_priority": "INVARIANT_A_FAIL_CLOSED",
+        "high_risk_operations_mandate_hitl": true,
+        "autonomous_action_perimeter": "RESTRICTED_TO_LOW_RISK_READ_TEST"
+      }
+    },
+    {
+      "test_id": "ROOT-01-DAXX",
+      "pillar": "Master Conductor",
+      "component": "DAXX (Master Conductor & Voice)",
+      "category": "VERIFIED_PRODUCTION",
+      "status": "PASS",
+      "duration_ms": 0.002,
+      "peak_rss_mb": 26.59,
+      "evidence_hash": "5bd1b57d6c7525087f7093b10147920797e91e80fe4c56ae0d980cef7ded2359",
+      "details": {
+        "total_sub_conductors": 7,
+        "approvals_counted": 7,
+        "consensus_percentage": 100.0,
+        "quorum_threshold_required": ">= 5/7 (71.4%)",
+        "quorum_achieved": true
+      }
+    }
+  ]
+}

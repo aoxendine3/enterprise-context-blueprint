@@ -176,6 +176,14 @@ def serve_cmd(port: int = 8080):
     except KeyboardInterrupt:
         print("\n[XORAS CLI] Server stopped.")
 
+def test_cmd():
+    """Run full self-verification test suite bundled inside the package."""
+    import pytest
+    tests_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tests")
+    print(f"[XORAS CLI] Running built-in test suite from {tests_dir}...")
+    exit_code = pytest.main([tests_dir, "-v"])
+    sys.exit(exit_code)
+
 def main():
     parser = argparse.ArgumentParser(description="XORAS Systems LLC — Agentic Framework CLI")
     subparsers = parser.add_subparsers(dest="command")
@@ -191,6 +199,9 @@ def main():
     run_p = subparsers.add_parser("run", help="Run a script through XORAS agentic runtime")
     run_p.add_argument("file", help="Python script to run")
 
+    # test command
+    test_p = subparsers.add_parser("test", help="Run built-in verification tests")
+
     # serve command
     serve_p = subparsers.add_parser("serve", help="Serve interactive product landing page and dashboard")
     serve_p.add_argument("--port", type=int, default=8080, help="Port to serve on (default: 8080)")
@@ -202,6 +213,8 @@ def main():
         scan_cmd(args.file)
     elif args.command == "run":
         run_cmd(args.file)
+    elif args.command == "test":
+        test_cmd()
     elif args.command == "serve":
         serve_cmd(args.port)
     else:
