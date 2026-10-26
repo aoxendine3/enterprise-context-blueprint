@@ -1,0 +1,14 @@
+{
+  "agent": "counselor",
+  "status": "CULTURAL_MAPPING_VERIFIED",
+  "taxonomy_map": {
+    "total_domains": 5,
+    "taxonomy": {
+      "systems": "TIER_1_SOVEREIGN_DOMAIN::SYSTEMS",
+      "medicine": "TIER_1_SOVEREIGN_DOMAIN::MEDICINE",
+      "hardware": "TIER_1_SOVEREIGN_DOMAIN::HARDWARE",
+      "epistemology": "TIER_1_SOVEREIGN_DOMAIN::EPISTEMOLOGY",
+      "governance": "TIER_1_SOVEREIGN_DOMAIN::GOVERNANCE"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "agent": "clara",
+  "status": "MATHEMATICALLY_VERIFIED",
+  "poincare_geodesic_distance": 1.544592,
+  "membrane_energy_units": 0.551557,
+  "compute_time_ms": 0.0103
+}

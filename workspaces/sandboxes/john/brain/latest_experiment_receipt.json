@@ -1,0 +1,15 @@
+{
+  "agent": "john",
+  "status": "VERIFIED_HARDWARE_RECEIPT",
+  "data": {
+    "platform": "macOS-26.6-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "cpu_brand": "Apple M4",
+    "physical_cores": 10,
+    "logical_cores": 10,
+    "memory_bytes": 17179869184,
+    "thermal_level": "NOMINAL",
+    "probe_duration_ms": 21.431,
+    "memory_gib": 16.0
+  }
+}

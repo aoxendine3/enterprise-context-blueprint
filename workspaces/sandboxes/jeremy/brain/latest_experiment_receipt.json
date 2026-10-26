@@ -1,0 +1,10 @@
+{
+  "agent": "jeremy",
+  "status": "ENDOCRINOLOGY_VERIFIED",
+  "metabolic_evaluation": {
+    "homa_ir": 3.759,
+    "metabolic_state": "INSULIN_RESISTANT"
+  },
+  "cognitive_fatigue_score": 7.46,
+  "compute_time_ms": 0.005
+}

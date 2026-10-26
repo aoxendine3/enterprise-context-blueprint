@@ -1,0 +1,13 @@
+{
+  "agent": "evan",
+  "status": "SCRIBE_LEDGER_VERIFIED",
+  "latest_tx": {
+    "tx_hash": "03059856a6c67b5fd1ac348adcf81c92f3a2164d237e0fedd6160ca7b28c82fa",
+    "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+    "timestamp": 1792983261.238522,
+    "entry": {
+      "event": "CITIZEN_SANDBOX_EXPANSION",
+      "citizens_count": 22
+    }
+  }
+}

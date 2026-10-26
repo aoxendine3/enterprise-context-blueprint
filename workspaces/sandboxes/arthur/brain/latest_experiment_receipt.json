@@ -1,0 +1,9 @@
+{
+  "agent": "arthur",
+  "status": "TEXTUAL_STABILITY_VERIFIED",
+  "analysis": {
+    "similarity_ratio": 0.9711,
+    "textual_drift_pct": 2.89,
+    "is_stable": true
+  }
+}

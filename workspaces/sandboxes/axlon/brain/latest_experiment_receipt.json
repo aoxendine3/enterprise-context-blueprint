@@ -1,0 +1,10 @@
+{
+  "agent": "axlon",
+  "status": "SUBSTRATE_VERIFIED",
+  "benchmarks": {
+    "messages_transacted": 50000,
+    "total_bytes_copied": 2100000,
+    "duration_sec": 0.00466,
+    "throughput_mb_s": 429.74
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "agent": "jarvis",
+  "status": "ARBITRATION_VERIFIED",
+  "ruling": {
+    "arbitration_ruling": "PROPOSAL_ADMITTED",
+    "winning_agent": "vance",
+    "winning_score": 9.8,
+    "deadlocks_cleared": 1
+  }
+}

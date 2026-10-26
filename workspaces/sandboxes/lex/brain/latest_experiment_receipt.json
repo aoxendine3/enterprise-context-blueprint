@@ -1,0 +1,10 @@
+{
+  "agent": "lex",
+  "status": "LEGAL_AUDIT_VERIFIED",
+  "audit": {
+    "violations_found": 0,
+    "details": [],
+    "compliant": true
+  },
+  "latency_ms": 0.033
+}

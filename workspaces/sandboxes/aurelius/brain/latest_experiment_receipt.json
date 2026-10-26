@@ -1,0 +1,8 @@
+{
+  "agent": "aurelius",
+  "status": "STOIC_GOVERNANCE_VERIFIED",
+  "verdict": {
+    "equilibrium_score": 9.09,
+    "is_balanced": true
+  }
+}
