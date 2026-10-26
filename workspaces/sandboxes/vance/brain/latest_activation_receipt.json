@@ -1,0 +1,18 @@
+{
+  "agent": "vance",
+  "status": "DISCERNMENT_VERIFIED",
+  "gate_evaluation": {
+    "asset": "axlon_engine.py",
+    "passed": true,
+    "failed_gate": null,
+    "score": 780.0
+  },
+  "falsification_proof": {
+    "original_hash": "e767289a70cd2def70f44bcd83493b01ced1b0470516091f8bcbc27b974da274",
+    "poisoned_hash": "77705bc1d7b05602d210be22aab4ccd7d5b51164e55d26fab5771ff428838252",
+    "tamper_detected": true
+  },
+  "latency_ms": 0.019,
+  "execution_wall_time_ms": 26.498,
+  "timestamp": 1792983889.8844411
+}

@@ -1,0 +1,11 @@
+{
+  "agent": "sophia",
+  "status": "EPISTEMIC_TRUTH_VERIFIED",
+  "proof": {
+    "node_id": "NODE_99",
+    "merkle_root": "134c5b37641a3c4a66a09328f1588610ba388b4f97f07abace39a40c77f4eca1",
+    "truth_invariant_satisfied": true
+  },
+  "execution_wall_time_ms": 13.491,
+  "timestamp": 1792983889.871402
+}

@@ -1,0 +1,10 @@
+{
+  "agent": "selene",
+  "status": "HUMAN_RAPPORT_VERIFIED",
+  "cadence": {
+    "word_ratio": 1.8,
+    "cadence_verdict": "OPTIMAL_CONVERSATIONAL_FLOW"
+  },
+  "execution_wall_time_ms": 4.555,
+  "timestamp": 1792983889.862418
+}

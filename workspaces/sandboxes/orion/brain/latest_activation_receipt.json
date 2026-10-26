@@ -1,0 +1,12 @@
+{
+  "agent": "orion",
+  "status": "3D_STAGE_GEOMETRY_VERIFIED",
+  "spatial_position": {
+    "x": 1.622,
+    "y": 2.524,
+    "z": 0.0,
+    "azimuth_deg": 32.7
+  },
+  "execution_wall_time_ms": 7.735,
+  "timestamp": 1792983889.865576
+}

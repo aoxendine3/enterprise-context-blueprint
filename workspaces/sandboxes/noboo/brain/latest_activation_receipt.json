@@ -1,0 +1,10 @@
+{
+  "agent": "noboo",
+  "status": "RAW_TRUTH_VERIFIED",
+  "result": {
+    "unvarnished_text": "This [FLATTERY_STRIPPED] framework provides a [FLATTERY_STRIPPED] and [FLATTERY_STRIPPED] experience.",
+    "flattery_occurrences_stripped": 3
+  },
+  "execution_wall_time_ms": 4.963,
+  "timestamp": 1792983889.8627799
+}

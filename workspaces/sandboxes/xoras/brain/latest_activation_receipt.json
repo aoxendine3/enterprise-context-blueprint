@@ -1,0 +1,15 @@
+{
+  "agent": "xoras",
+  "status": "STRATEGIC_COMMAND_VERIFIED",
+  "mandate_result": {
+    "mandate": "24_7_CONTINUOUS_DOJO_EXECUTION",
+    "status": "APPROVED_FOR_PRODUCTION",
+    "invariants_satisfied": {
+      "local_first_100": true,
+      "cost_zero": true,
+      "zero_bs_honest_testing": true
+    }
+  },
+  "execution_wall_time_ms": 4.389,
+  "timestamp": 1792983889.8623528
+}

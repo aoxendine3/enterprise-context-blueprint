@@ -1,0 +1,10 @@
+{
+  "agent": "aurelius",
+  "status": "STOIC_GOVERNANCE_VERIFIED",
+  "verdict": {
+    "equilibrium_score": 9.09,
+    "is_balanced": true
+  },
+  "execution_wall_time_ms": 5.445,
+  "timestamp": 1792983889.86256
+}

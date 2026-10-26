@@ -1,0 +1,16 @@
+{
+  "agent": "sia_core",
+  "status": "TACTICAL_DEFENSE_VERIFIED",
+  "clean": {
+    "signature": "0xCAFEBABE",
+    "intrusion_detected": false,
+    "action_taken": "CLEARED"
+  },
+  "threat": {
+    "signature": "0xDEAD0000_BYZANTINE_PAYLOAD",
+    "intrusion_detected": true,
+    "action_taken": "QUARANTINED"
+  },
+  "execution_wall_time_ms": 4.296,
+  "timestamp": 1792983889.862184
+}

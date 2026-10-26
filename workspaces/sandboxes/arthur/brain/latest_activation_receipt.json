@@ -1,0 +1,11 @@
+{
+  "agent": "arthur",
+  "status": "TEXTUAL_STABILITY_VERIFIED",
+  "analysis": {
+    "similarity_ratio": 0.9711,
+    "textual_drift_pct": 2.89,
+    "is_stable": true
+  },
+  "execution_wall_time_ms": 14.507,
+  "timestamp": 1792983889.871573
+}
