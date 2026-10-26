@@ -75,9 +75,16 @@ def run_single_swarm_cycle(cycle_id: int):
 
 if __name__ == "__main__":
     print("=== STARTING 22-CITIZEN AUTONOMOUS SWARM DAEMON ===")
-    cycle = 0
-    # Run 5 fast cycles for validation
-    for i in range(1, 6):
-        wf, r = run_single_swarm_cycle(i)
-        time.sleep(0.5)
-    print("\n[SUCCESS] Continuous Swarm Daemon verified across 5 cycles with durable event-sourced replay.")
+    is_daemon = "--daemon" in sys.argv or "--continuous" in sys.argv
+    cycle = 1
+    try:
+        while True:
+            wf, r = run_single_swarm_cycle(cycle)
+            successes = sum(1 for res in r.values() if res.get("status") != "ERROR")
+            if not is_daemon and cycle >= 5:
+                break
+            cycle += 1
+            time.sleep(2.0)
+    except KeyboardInterrupt:
+        print("\n[!] Swarm daemon stopped cleanly.")
+    print(f"\n[SUCCESS] Continuous Swarm Daemon executed {cycle} cycles with durable event-sourced replay.")

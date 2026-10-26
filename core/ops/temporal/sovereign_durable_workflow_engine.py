@@ -11,6 +11,7 @@ import time
 import json
 import sqlite3
 import hashlib
+import threading
 from typing import Dict, Any, List, Callable
 from pathlib import Path
 
@@ -21,6 +22,7 @@ DB_PATH.parent.mkdir(parents=True, exist_ok=True)
 class SovereignDurableWorkflowEngine:
     def __init__(self, db_path: Path = DB_PATH):
         self.db_path = str(db_path)
+        self._lock = threading.Lock()
         self._init_db()
 
     def _get_connection(self):
@@ -59,58 +61,60 @@ class SovereignDurableWorkflowEngine:
             conn.commit()
 
     def start_workflow(self, workflow_id: str, workflow_type: str, initial_input: Dict[str, Any]) -> Dict[str, Any]:
-        now = time.time()
-        initial_state = {"input": initial_input, "completed_activities": {}, "status": "RUNNING"}
-        leaf_hash = hashlib.sha256(f"{workflow_id}:0:WORKFLOW_STARTED:{json.dumps(initial_input)}".encode()).hexdigest()
+        with self._lock:
+            now = time.time()
+            initial_state = {"input": initial_input, "completed_activities": {}, "status": "RUNNING"}
+            leaf_hash = hashlib.sha256(f"{workflow_id}:0:WORKFLOW_STARTED:{json.dumps(initial_input)}".encode()).hexdigest()
 
-        with self._get_connection() as conn:
-            conn.execute(
-                "INSERT INTO workflows (workflow_id, workflow_type, status, created_at, updated_at, current_state_json) VALUES (?, ?, ?, ?, ?, ?)",
-                (workflow_id, workflow_type, "RUNNING", now, now, json.dumps(initial_state))
-            )
-            conn.execute(
-                "INSERT INTO event_history (workflow_id, sequence_num, event_type, payload_json, timestamp, merkle_leaf_hash) VALUES (?, ?, ?, ?, ?, ?)",
-                (workflow_id, 0, "WORKFLOW_STARTED", json.dumps(initial_input), now, leaf_hash)
-            )
-            conn.commit()
+            with self._get_connection() as conn:
+                conn.execute(
+                    "INSERT INTO workflows (workflow_id, workflow_type, status, created_at, updated_at, current_state_json) VALUES (?, ?, ?, ?, ?, ?)",
+                    (workflow_id, workflow_type, "RUNNING", now, now, json.dumps(initial_state))
+                )
+                conn.execute(
+                    "INSERT INTO event_history (workflow_id, sequence_num, event_type, payload_json, timestamp, merkle_leaf_hash) VALUES (?, ?, ?, ?, ?, ?)",
+                    (workflow_id, 0, "WORKFLOW_STARTED", json.dumps(initial_input), now, leaf_hash)
+                )
+                conn.commit()
 
-        return {"workflow_id": workflow_id, "status": "RUNNING", "genesis_hash": leaf_hash}
+            return {"workflow_id": workflow_id, "status": "RUNNING", "genesis_hash": leaf_hash}
 
     def record_activity_completion(self, workflow_id: str, activity_name: str, citizen_agent: str, output: Any) -> Dict[str, Any]:
-        with self._get_connection() as conn:
-            cur = conn.cursor()
-            cur.execute("SELECT MAX(sequence_num) FROM event_history WHERE workflow_id = ?", (workflow_id,))
-            row = cur.fetchone()
-            next_seq = (row[0] + 1) if row and row[0] is not None else 1
+        with self._lock:
+            with self._get_connection() as conn:
+                cur = conn.cursor()
+                cur.execute("SELECT MAX(sequence_num) FROM event_history WHERE workflow_id = ?", (workflow_id,))
+                row = cur.fetchone()
+                next_seq = (row[0] + 1) if row and row[0] is not None else 1
 
-            now = time.time()
-            event_payload = {
-                "activity": activity_name,
-                "citizen": citizen_agent,
-                "output": output,
-                "timestamp": now
-            }
-            leaf_hash = hashlib.sha256(f"{workflow_id}:{next_seq}:ACTIVITY_COMPLETED:{json.dumps(event_payload)}".encode()).hexdigest()
+                now = time.time()
+                event_payload = {
+                    "activity": activity_name,
+                    "citizen": citizen_agent,
+                    "output": output,
+                    "timestamp": now
+                }
+                leaf_hash = hashlib.sha256(f"{workflow_id}:{next_seq}:ACTIVITY_COMPLETED:{json.dumps(event_payload)}".encode()).hexdigest()
 
-            conn.execute(
-                "INSERT INTO event_history (workflow_id, sequence_num, event_type, payload_json, timestamp, merkle_leaf_hash) VALUES (?, ?, ?, ?, ?, ?)",
-                (workflow_id, next_seq, "ACTIVITY_COMPLETED", json.dumps(event_payload), now, leaf_hash)
-            )
+                conn.execute(
+                    "INSERT INTO event_history (workflow_id, sequence_num, event_type, payload_json, timestamp, merkle_leaf_hash) VALUES (?, ?, ?, ?, ?, ?)",
+                    (workflow_id, next_seq, "ACTIVITY_COMPLETED", json.dumps(event_payload), now, leaf_hash)
+                )
 
-            # Update working state
-            cur.execute("SELECT current_state_json FROM workflows WHERE workflow_id = ?", (workflow_id,))
-            state_row = cur.fetchone()
-            current_state = json.loads(state_row[0]) if state_row else {}
-            current_state.setdefault("completed_activities", {})[activity_name] = output
-            current_state["last_active_citizen"] = citizen_agent
+                # Update working state
+                cur.execute("SELECT current_state_json FROM workflows WHERE workflow_id = ?", (workflow_id,))
+                state_row = cur.fetchone()
+                current_state = json.loads(state_row[0]) if state_row else {}
+                current_state.setdefault("completed_activities", {})[activity_name] = output
+                current_state["last_active_citizen"] = citizen_agent
 
-            conn.execute(
-                "UPDATE workflows SET updated_at = ?, current_state_json = ? WHERE workflow_id = ?",
-                (now, json.dumps(current_state), workflow_id)
-            )
-            conn.commit()
+                conn.execute(
+                    "UPDATE workflows SET updated_at = ?, current_state_json = ? WHERE workflow_id = ?",
+                    (now, json.dumps(current_state), workflow_id)
+                )
+                conn.commit()
 
-        return {"workflow_id": workflow_id, "sequence": next_seq, "leaf_hash": leaf_hash}
+            return {"workflow_id": workflow_id, "sequence": next_seq, "leaf_hash": leaf_hash}
 
     def replay_workflow(self, workflow_id: str) -> Dict[str, Any]:
         """Performs Temporal-style deterministic state replay from the immutable event log."""
