@@ -1,0 +1,65 @@
+# ==============================================================================
+# XORAS CITADEL: HARDENED LOCAL TEMPORAL PERSISTENT SSOT CLUSTER
+# Physical Verification Note:
+# 'temporalio/auto-setup' rejects 'DB=sqlite' (valid drivers: postgres12, mysql8, cassandra).
+# Solution: Lightweight Alpine Postgres (150MB RAM) with Persistent Host Volume
+# Air-Gapped Loopback Binding (127.0.0.1 only)
+# ==============================================================================
+
+services:
+  postgresql:
+    image: postgres:15-alpine
+    container_name: temporal-citadel-postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=temporal
+      - POSTGRES_PASSWORD=temporal
+      - POSTGRES_DB=temporal
+    volumes:
+      # Persistent Host Mount (The Linchpin: State Survives Container Recreations)
+      - ./data/postgres:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:5432:5432"
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U temporal -d temporal"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  temporal:
+    image: temporalio/auto-setup:latest
+    container_name: temporal-citadel-ssot
+    restart: unless-stopped
+    depends_on:
+      postgresql:
+        condition: service_healthy
+    ports:
+      # Air-gapped: Bind strictly to loopback 127.0.0.1
+      - "127.0.0.1:7233:7233"
+    environment:
+      - DB=postgres12
+      - DB_PORT=5432
+      - POSTGRES_USER=temporal
+      - POSTGRES_PWD=temporal
+      - POSTGRES_SEEDS=postgresql
+      - TEMPORAL_BROADCAST_ADDRESS=127.0.0.1
+      - LOG_LEVEL=warn
+    security_opt:
+      - no-new-privileges:true
+
+  temporal-ui:
+    image: temporalio/ui:latest
+    container_name: temporal-citadel-ui
+    restart: unless-stopped
+    ports:
+      # Air-gapped Web UI on localhost:8233
+      - "127.0.0.1:8233:8080"
+    environment:
+      - TEMPORAL_ADDRESS=temporal:7233
+      - TEMPORAL_CORS_ORIGINS=http://127.0.0.1:8233,http://localhost:8233
+    depends_on:
+      - temporal
+    security_opt:
+      - no-new-privileges:true
