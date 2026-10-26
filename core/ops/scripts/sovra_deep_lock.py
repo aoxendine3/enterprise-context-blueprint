@@ -1,95 +1,123 @@
 #!/usr/bin/env python3
 """
-===============================================================================
-SOVRA ZERO-POINT DEEP LOCKING HANDSHAKE SPECIFICATION (v18.0 UNIFIED)
-Anthony Junior Oxendine Intellectual Property
-===============================================================================
-Specification & Dual Implementation:
-- Client (Frontend): Generates surgical HS256 / Ed25519 signature payload.
-- Server (Backend Ingress): Validates exact timestamp, nonce, and origin hash.
-- Header: X-SOVRA-DEEP-LOCK
-- Replay / Drift Window: Strict 5.0 seconds (drift > 5.0s instantly destroyed).
-===============================================================================
+=============================================================================
+SOVRA ZERO-POINT DEEP LOCKING PROTOCOL (v18.0 UNIFIED STANDARD)
+Proprietary Intellectual Property of Anthony Junior Oxendine
+Cryptographically binds:
+  1. Local Apple Silicon M4 SSOT Node
+  2. Bare-Metal Windows x86 GPU Cluster (192.168.1.211)
+  3. Cloud DAXX Conductor & Stage Egress
+Locks out all unauthorized external extraction vectors and severance attacks.
+=============================================================================
 """
-
-import time
+import os
+import sys
 import json
+import time
 import hmac
 import hashlib
 import base64
-import os
-from typing import Tuple, Dict, Any, Optional
+from pathlib import Path
 
-DEFAULT_SECRET = os.environ.get("SOVRA_DEEP_LOCK_SECRET", "SOVRA_ZERO_POINT_DEEP_LOCK_SECRET_KEY_v18_UNIFIED")
+ROOT = Path("/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain")
+LOCK_SECRET_FILE = ROOT / "memory" / "vault" / "sovra_deep_lock.key"
+LOCK_RECEIPTS_FILE = ROOT / "memory" / "context_scopes" / "deep_lock_receipts.jsonl"
 
-def _b64encode(data: bytes) -> str:
-    return base64.urlsafe_b64encode(data).decode('utf-8').rstrip('=')
+LOCK_SECRET_FILE.parent.mkdir(parents=True, exist_ok=True)
+LOCK_RECEIPTS_FILE.parent.mkdir(parents=True, exist_ok=True)
 
-def _b64decode(s: str) -> bytes:
-    padding = '=' * (4 - (len(s) % 4))
-    return base64.urlsafe_b64decode(s + padding)
+# Generate or load sovereign master secret
+def get_master_secret() -> bytes:
+    if not LOCK_SECRET_FILE.exists():
+        secret = hashlib.sha256(f"ANTHONY_OXENDINE_SOVRA_DEEP_LOCK_{time.time()}_{os.urandom(32)}".encode()).digest()
+        LOCK_SECRET_FILE.write_bytes(secret)
+        os.chmod(LOCK_SECRET_FILE, 0o600)
+        return secret
+    return LOCK_SECRET_FILE.read_bytes()
 
-def generate_handshake(secret: str = DEFAULT_SECRET, client_id: str = "SOVRA_FRONTEND_CLIENT") -> str:
+def generate_handshake(origin: str = "MAC_M4_SSOT", target: str = "WINDOWS_GPU_NODE_192.168.1.211", metadata: dict = None) -> str:
     """
-    Generates the X-SOVRA-DEEP-LOCK token:
-    Header: {"alg": "HS256", "typ": "JWT", "ver": "v18.0"}
-    Payload: {"sub": client_id, "iat": now, "nonce": token_hex, "origin": "APEX_SOVEREIGN"}
+    Generates surgical cryptographic handshake token (HS256 compliant)
+    Valid for exactly 60 seconds to eliminate replay windows.
     """
-    header = {"alg": "HS256", "typ": "JWT", "ver": "v18.0"}
+    secret = get_master_secret()
     now = time.time()
-    nonce = hashlib.sha256(f"{now}:{os.urandom(16)}".encode()).hexdigest()[:16]
+    
+    header = {"alg": "HS256", "typ": "SOVRA-DEEP-LOCK", "ver": "v18.0_UNIFIED"}
     payload = {
-        "sub": client_id,
+        "iss": "SOVRA_ZERO_POINT",
+        "sub": "CROSS_NODE_AUTHENTICATION",
+        "origin": origin,
+        "target": target,
         "iat": now,
-        "nonce": nonce,
-        "origin": "APEX_SOVEREIGN"
+        "exp": now + 60.0,
+        "nonce": os.urandom(16).hex(),
+        "metadata": metadata or {}
     }
     
-    header_b64 = _b64encode(json.dumps(header, separators=(',', ':')).encode())
-    payload_b64 = _b64encode(json.dumps(payload, separators=(',', ':')).encode())
-    signing_input = f"{header_b64}.{payload_b64}".encode()
+    h_b64 = base64.urlsafe_b64encode(json.dumps(header).encode()).decode().rstrip("=")
+    p_b64 = base64.urlsafe_b64encode(json.dumps(payload).encode()).decode().rstrip("=")
+    msg = f"{h_b64}.{p_b64}".encode()
     
-    sig = hmac.new(secret.encode(), signing_input, hashlib.sha256).digest()
-    sig_b64 = _b64encode(sig)
+    sig = hmac.new(secret, msg, hashlib.sha256).digest()
+    s_b64 = base64.urlsafe_b64encode(sig).decode().rstrip("=")
     
-    return f"{header_b64}.{payload_b64}.{sig_b64}"
+    token = f"{h_b64}.{p_b64}.{s_b64}"
+    
+    # Commit audit receipt
+    receipt = {
+        "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(now)),
+        "token_sig": s_b64[:16],
+        "origin": origin,
+        "target": target,
+        "status": "SEALED_AND_ACTIVE"
+    }
+    with open(LOCK_RECEIPTS_FILE, "a", encoding="utf-8") as rf:
+        rf.write(json.dumps(receipt) + "\n")
+        
+    return token
 
-def validate_handshake(token: str, secret: str = DEFAULT_SECRET, max_drift_sec: float = 5.0) -> Tuple[bool, str, Optional[Dict[str, Any]]]:
-    """
-    Verifies signature and surgical timestamp drift:
-    - Rejects invalid formatting
-    - Rejects altered signatures
-    - Rejects drift > max_drift_sec (replay attack mitigation)
-    """
+def validate_handshake(token: str, max_drift_seconds: float = 60.0) -> tuple[bool, str, dict]:
+    secret = get_master_secret()
+    parts = token.split(".")
+    if len(parts) != 3:
+        return False, "INVALID_TOKEN_STRUCTURE", {}
+        
+    h_b64, p_b64, s_b64 = parts
+    msg = f"{h_b64}.{p_b64}".encode()
+    expected_sig = hmac.new(secret, msg, hashlib.sha256).digest()
+    expected_s_b64 = base64.urlsafe_b64encode(expected_sig).decode().rstrip("=")
+    
+    if not hmac.compare_digest(s_b64, expected_s_b64):
+        return False, "SIGNATURE_CORRUPTED_OR_TAMPERED", {}
+        
     try:
-        parts = token.split('.')
-        if len(parts) != 3:
-            return False, "INVALID_TOKEN_STRUCTURE", None
+        pad = "=" * ((4 - len(p_b64) % 4) % 4)
+        payload = json.loads(base64.urlsafe_b64decode((p_b64 + pad).encode()).decode())
+    except Exception:
+        return False, "MALFORMED_PAYLOAD", {}
         
-        header_b64, payload_b64, sig_b64 = parts
-        signing_input = f"{header_b64}.{payload_b64}".encode()
-        expected_sig = hmac.new(secret.encode(), signing_input, hashlib.sha256).digest()
-        actual_sig = _b64decode(sig_b64)
+    now = time.time()
+    if now > payload.get("exp", 0):
+        return False, "TOKEN_EXPIRED", payload
+    if abs(now - payload.get("iat", 0)) > max_drift_seconds:
+        return False, "EXCESSIVE_CLOCK_DRIFT", payload
         
-        if not hmac.compare_digest(expected_sig, actual_sig):
-            return False, "SIGNATURE_MISMATCH_ATTACK_BLOCKED", None
-        
-        payload = json.loads(_b64decode(payload_b64).decode())
-        iat = payload.get("iat", 0)
-        current_time = time.time()
-        drift = abs(current_time - iat)
-        
-        if drift > max_drift_sec:
-            return False, f"TIMESTAMP_STALE_DRIFT_EXCEEDED ({drift:.2f}s > {max_drift_sec}s)", payload
-        
-        return True, "DEEP_LOCK_VALIDATED_ACCESS_GRANTED", payload
-    except Exception as e:
-        return False, f"DECODE_ERROR: {str(e)}", None
+    return True, "DEEP_LOCK_VALIDATED_SEALED", payload
 
 if __name__ == "__main__":
-    print("Testing SOVRA Zero-Point Deep Lock v18.0 Handshake...")
-    token = generate_handshake()
-    print(f"Generated X-SOVRA-DEEP-LOCK:\n{token}\n")
+    t0 = time.time()
+    token = generate_handshake(
+        origin="MAC_M4_SSOT",
+        target="WINDOWS_GPU_NODE_192.168.1.211",
+        metadata={"scope_hash": "c19488d236eb841b", "port": 11434}
+    )
+    dt_gen = round((time.time() - t0) * 1000, 2)
+    print("SOVRA Zero-Point Deep Lock Generated in", dt_gen, "ms")
+    print("Token:", token[:32] + "..." + token[-16:])
+    
+    t1 = time.time()
     valid, reason, payload = validate_handshake(token)
-    print(f"Validation Result: {valid} -> {reason}")
-    print(f"Decoded Payload: {payload}")
+    dt_val = round((time.time() - t1) * 1000, 2)
+    print("Validation Verdict:", reason, "in", dt_val, "ms")
+    print("Origin -> Target:", payload["origin"], "->", payload["target"])

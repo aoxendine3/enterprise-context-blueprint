@@ -53,7 +53,7 @@ class SovereignAuthGatewayHandler(http.server.BaseHTTPRequestHandler):
             }).encode())
             return False
 
-        nonce = payload.get("nonce")
+        nonce = payload.get("nonce") or f"{payload.get('iat')}_{auth_header[-16:]}"
         if nonce in SEEN_NONCES:
             self.send_response(403)
             self.send_header("Content-Type", "application/json")
@@ -123,7 +123,7 @@ class ThreadedAuthGateway(socketserver.ThreadingMixIn, socketserver.TCPServer):
 
 def main():
     print(f"🔒 [SOVRA Gateway] Starting Zero-Point Authenticated Proxy on port {AUTH_PORT} -> {WINDOWS_NODE_URL}...")
-    with ThreadedAuthGateway(("0.0.0.0", AUTH_PORT), SovereignAuthGatewayHandler) as server:
+    with ThreadedAuthGateway(("127.0.0.1", AUTH_PORT), SovereignAuthGatewayHandler) as server:
         server.serve_forever()
 
 if __name__ == "__main__":
