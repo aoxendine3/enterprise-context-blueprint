@@ -1,0 +1,15 @@
+{
+  "receipt_id": "rcpt_18432d_deep_1793063429824",
+  "timestamp_utc": "2026-10-27T01:10:29.824248+00:00",
+  "total_dimensions": 18432,
+  "num_heads": 24,
+  "dims_per_head": 768,
+  "stress_cycles_executed": 150,
+  "total_head_contractions": 3600,
+  "mean_contraction_latency_us": 303.63,
+  "p95_contraction_latency_us": 328.79,
+  "total_warp_penalties": 1330,
+  "bulk_state_sha256": "eae938df97f36e1326e396390a77b2b8fa8e59423390fc83da30d1e608910cd5",
+  "wall_clock_seconds": 0.0463,
+  "governance_status": "18432D_HOLOGRAPHIC_BULK_STABLE"
+}

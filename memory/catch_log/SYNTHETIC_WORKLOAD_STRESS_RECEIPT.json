@@ -1,0 +1,10 @@
+{
+  "timestamp": "2026-10-27T01:01:16.394636+00:00",
+  "total_tasks_run": 60,
+  "total_receipts_minted": 60,
+  "mean_latency_us": 1323468.77,
+  "p95_latency_us": 5398422.25,
+  "throughput_tasks_per_sec": 2.83,
+  "drift_violations": 0,
+  "governance_status": "HIGH_ASSURANCE_CERTIFIED"
+}

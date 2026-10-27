@@ -1,0 +1,23 @@
+{
+  "receipt_id": "rcpt_usb_barn_1793061773284",
+  "authority": "Node-20 Vesta (Barn Custodian) & Node-04 William Vance",
+  "governance": "Invariant E (Zero Data Destruction) & Log Entry #078",
+  "items": [
+    {
+      "source_original": "/Users/ajoxendine68/Desktop/Screen Recording 2026-10-26 at 2.02.40\u202fPM.mov",
+      "destination_usb": "/Volumes/Untitled/xoras_archives_the_barn/desktop_media_migration/Screen Recording 2026-10-26 at 2.02.40 PM.mov",
+      "bytes": 832861485,
+      "sha256": "a9ecdbbe7ad13172ee5d69616864e6cc4b452f199e0a6a0e0b20e323d74c9aab",
+      "verified_at": "2026-10-27T00:41:57.121735+00:00",
+      "status": "SAFELY_MIGRATED_AND_UNLINKED"
+    },
+    {
+      "source_original": "/Users/ajoxendine68/Desktop/Screen Recording 2026-10-26 at 2.33.30\u202fPM.mov",
+      "destination_usb": "/Volumes/Untitled/xoras_archives_the_barn/desktop_media_migration/Screen Recording 2026-10-26 at 2.33.30 PM.mov",
+      "bytes": 755477147,
+      "sha256": "068fa87910efbd29d7dae0fb6bd4474b285fbfaf232340a885e19111b12eadf3",
+      "verified_at": "2026-10-27T00:42:53.278941+00:00",
+      "status": "SAFELY_MIGRATED_AND_UNLINKED"
+    }
+  ]
+}

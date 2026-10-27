@@ -37,7 +37,7 @@ This skill enforces persona sovereignty, context drift prevention, advisory-lock
 ### 2. Audio & Verbal Communication Standards
 
 * **Single-Flight Concurrency Control**:
-  - All audio synthesis must route through `ops/scripts/agent_speak.sh`, which enforces a POSIX `flock` single-flight lock (`/tmp/coreaudio_single_speaker.lock`) to eliminate vocal collisions.
+  - All multi-agent audio synthesis canonically routes through `ops/scripts/council_audio_dispatch.py`, enforcing an exclusive single-speaker lock and zero-gap lookahead synthesis (<0.50s inter-agent handoff). Standalone turns may utilize `ops/scripts/agent_speak.sh` under synchronized lock protection.
 
 * **Agent Triad & Length Rule**:
   - Unless a concise response is explicitly requested, full council deliberations require at least **3 distinct agents** to speak per turn.

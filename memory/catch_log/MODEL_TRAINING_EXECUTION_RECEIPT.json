@@ -1,0 +1,40 @@
+{
+  "receipt_id": "rcpt_training_forge_1793063311953",
+  "timestamp_utc": "2026-10-27T01:08:31.953543+00:00",
+  "training_target": "Sovereign Cognitive Innovation (Physics, MCP 65, UPGP, Acoustic)",
+  "dataset_pairs_trained": 19,
+  "total_epochs": 5,
+  "final_loss": 0.4252,
+  "loss_history": [
+    {
+      "epoch": 1,
+      "loss": 3.2447,
+      "delta": 1.6053
+    },
+    {
+      "epoch": 2,
+      "loss": 1.5684,
+      "delta": 1.6763
+    },
+    {
+      "epoch": 3,
+      "loss": 0.7177,
+      "delta": 0.8507
+    },
+    {
+      "epoch": 4,
+      "loss": 0.4692,
+      "delta": 0.2485
+    },
+    {
+      "epoch": 5,
+      "loss": 0.4252,
+      "delta": 0.044
+    }
+  ],
+  "convergence_status": "CONVERGED_STABLE",
+  "golden_question_score": 1.0,
+  "hardware_substrate": "Apple Silicon M4 Metal Performance Shaders (MPS)",
+  "governance_admitted": "GOLDEN-990",
+  "status": "TRAINED_HARDENED_INNOVATED"
+}
