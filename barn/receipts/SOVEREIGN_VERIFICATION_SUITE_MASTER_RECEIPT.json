@@ -1,5 +1,5 @@
 {
-  "timestamp_utc": "2026-10-04T23:21:16Z",
+  "timestamp_utc": "2026-10-18T18:33:15Z",
   "specification": "SOVEREIGN_VERIFICATION_SUITE_RECEIPT_AS_NODE_v2",
   "hermetic_lockfile": {
     "specification": "HERMETIC_WITNESS_BUILD_MANIFEST_v3_EXACT",
@@ -223,97 +223,160 @@
       "timestamp": "2026-10-04T23:20:47Z",
       "status": "STATE_REMEDIATED_AND_AUTHORIZED",
       "canonical_merkle_root": "3aae8baba8e1bfe9e951ba656c6a0de634432b8490e664d012eeb0838a3a1d5d"
+    },
+    {
+      "stage": "Auto-Remediation Execution",
+      "file": "remediation_receipt_20261004-232116_UTC.json",
+      "timestamp": "2026-10-04T23:21:16Z",
+      "status": "STATE_REMEDIATED_AND_AUTHORIZED",
+      "canonical_merkle_root": "d98b7421e7879fc613c6fa5f1855dd919ba9c04eab9ef611ea7d43b9cfbe1285"
+    },
+    {
+      "stage": "Auto-Remediation Execution",
+      "file": "remediation_receipt_20261008-213344_UTC.json",
+      "timestamp": "2026-10-08T21:33:44Z",
+      "status": "STATE_REMEDIATED_AND_AUTHORIZED",
+      "canonical_merkle_root": "5fef8c5c665995fcce2f932fc618e7f26ce99bd981d404ded690747daaccb7f0"
+    },
+    {
+      "stage": "Auto-Remediation Execution",
+      "file": "remediation_receipt_20261008-215328_UTC.json",
+      "timestamp": "2026-10-08T21:53:28Z",
+      "status": "STATE_REMEDIATED_AND_AUTHORIZED",
+      "canonical_merkle_root": "fc43ee29acfd517024f7008101b97666bd98ce1bf1947307574c216089829eda"
+    },
+    {
+      "stage": "Auto-Remediation Execution",
+      "file": "remediation_receipt_20261008-215329_UTC.json",
+      "timestamp": "2026-10-08T21:53:29Z",
+      "status": "STATE_REMEDIATED_AND_AUTHORIZED",
+      "canonical_merkle_root": "fc43ee29acfd517024f7008101b97666bd98ce1bf1947307574c216089829eda"
+    },
+    {
+      "stage": "Auto-Remediation Execution",
+      "file": "remediation_receipt_20261018-153827_UTC.json",
+      "timestamp": "2026-10-18T15:38:27Z",
+      "status": "STATE_REMEDIATED_AND_AUTHORIZED",
+      "canonical_merkle_root": "6bf45baa8906f55f1f98c04df406b4230cf4befa84956b6523286cef8f677749"
+    },
+    {
+      "stage": "Auto-Remediation Execution",
+      "file": "remediation_receipt_20261018-154100_UTC.json",
+      "timestamp": "2026-10-18T15:41:00Z",
+      "status": "WITNESS_REJECTION: ===========================================================================\n  STATELESS AIRBLOCKED WITNESS ENGINE (EXTERNAL NON-CORRUPT ADJUDICATION)\n  Scope: Textual Output Inspection ONLY (Zero Source/Reasoning Access)\n===========================================================================\n\u274c STATELESS WITNESS FAIL CLOSED: Payload corruption in node 'NODE_HOST_SNAPSHOT_ec9319ce36bd'. Expected hash ec9319ce36bdfd59a1f2c55205f1b50d21e39ab1cedbae7ba7f4f6e164172ab5, got 7d26d8f29378836ba29a25a74e442574917e50d51db16c238b27e40106a6b237",
+      "canonical_merkle_root": "dc41d715701878491fd037c84f604430f682c059321235d7502de75f308ad1ff"
+    },
+    {
+      "stage": "Auto-Remediation Execution",
+      "file": "remediation_receipt_20261018-154917_UTC.json",
+      "timestamp": "2026-10-18T15:49:17Z",
+      "status": "WITNESS_REJECTION: ===========================================================================\n  STATELESS AIRBLOCKED WITNESS ENGINE (EXTERNAL NON-CORRUPT ADJUDICATION)\n  Scope: Textual Output Inspection ONLY (Zero Source/Reasoning Access)\n===========================================================================\n\u274c STATELESS WITNESS FAIL CLOSED: Payload corruption in node 'NODE_HOST_SNAPSHOT_ec9319ce36bd'. Expected hash ec9319ce36bdfd59a1f2c55205f1b50d21e39ab1cedbae7ba7f4f6e164172ab5, got 7d26d8f29378836ba29a25a74e442574917e50d51db16c238b27e40106a6b237",
+      "canonical_merkle_root": "255430bdce318c7e17859d5575c79d662e2305018f2535f8f81922866d9074de"
+    },
+    {
+      "stage": "Auto-Remediation Execution",
+      "file": "remediation_receipt_20261018-154942_UTC.json",
+      "timestamp": "2026-10-18T15:49:42Z",
+      "status": "WITNESS_REJECTION: ===========================================================================\n  STATELESS AIRBLOCKED WITNESS ENGINE (EXTERNAL NON-CORRUPT ADJUDICATION)\n  Scope: Textual Output Inspection ONLY (Zero Source/Reasoning Access)\n===========================================================================\n\u274c STATELESS WITNESS FAIL CLOSED: Payload corruption in node 'NODE_HOST_SNAPSHOT_ec9319ce36bd'. Expected hash ec9319ce36bdfd59a1f2c55205f1b50d21e39ab1cedbae7ba7f4f6e164172ab5, got 7d26d8f29378836ba29a25a74e442574917e50d51db16c238b27e40106a6b237",
+      "canonical_merkle_root": "fcb811b528bda7e2f42a8ac15b5d3fcf927deb402a8059abf01779b83308580c"
+    },
+    {
+      "stage": "Auto-Remediation Execution",
+      "file": "remediation_receipt_20261018-170435_UTC.json",
+      "timestamp": "2026-10-18T17:04:35Z",
+      "status": "WITNESS_REJECTION: ===========================================================================\n  STATELESS AIRBLOCKED WITNESS ENGINE (EXTERNAL NON-CORRUPT ADJUDICATION)\n  Scope: Textual Output Inspection ONLY (Zero Source/Reasoning Access)\n===========================================================================\n\u274c STATELESS WITNESS FAIL CLOSED: Payload corruption in node 'NODE_HOST_SNAPSHOT_ec9319ce36bd'. Expected hash ec9319ce36bdfd59a1f2c55205f1b50d21e39ab1cedbae7ba7f4f6e164172ab5, got 7d26d8f29378836ba29a25a74e442574917e50d51db16c238b27e40106a6b237",
+      "canonical_merkle_root": "1d30bc8e387ad9062eef3ba029e90f9e89d11c60e338d8c206bc7fb484db1ff1"
     }
   ],
-  "all_steps_passed": true,
-  "total_duration_sec": 1.142,
+  "all_steps_passed": false,
+  "total_duration_sec": 0.5347,
   "step_receipts": [
     {
       "step_name": "Stage 1 Declarative Policy Engine Check",
       "command": "/Library/Developer/CommandLineTools/usr/bin/python3 ops/scripts/sovereign_policy_engine.py python3 ops/scripts/hardware_hsm_signing_bridge.py",
       "success": true,
       "exit_code": 0,
-      "duration_sec": 0.0218,
-      "stdout": "[2026-10-04T23:21:15Z] ================================================================================\n[2026-10-04T23:21:15Z]   STAGE 1: SOVEREIGN POLICY ENGINE (INTENT FILTER)\n[2026-10-04T23:21:15Z] ==========================================================================\n[2026-10-04T23:21:15Z] \u2705 STAGE 1 PASSED: STAGE_1_POLICY_AUTHORIZED: Command 'python3' permitted\n",
+      "duration_sec": 0.0319,
+      "stdout": "[2026-10-18T18:33:14Z] ================================================================================\n[2026-10-18T18:33:14Z]   STAGE 1: SOVEREIGN POLICY ENGINE (INTENT FILTER)\n[2026-10-18T18:33:14Z] ==========================================================================\n[2026-10-18T18:33:14Z] \u2705 STAGE 1 PASSED: STAGE_1_POLICY_AUTHORIZED: Command 'python3' permitted\n",
       "stderr": ""
     },
     {
       "step_name": "Pre-Flight Native Witness Integrity Check",
       "command": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/ops/bin/stateless_airblocked_witness /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/.sovereign/provenance/lineage_dag.db /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/tri_brain/merkle_root.hash",
-      "success": true,
-      "exit_code": 0,
-      "duration_sec": 0.0058,
+      "success": false,
+      "exit_code": 1,
+      "duration_sec": 0.0841,
       "stdout": "",
-      "stderr": "===========================================================================\n  STATELESS AIRBLOCKED WITNESS ENGINE (FRONT-GATE STRUCTURAL CONTROL)\n  Scope: Textual Output Inspection ONLY (Zero Source/Reasoning Access)\n===========================================================================\n\u2705 Witness Scope: 3162 raw output nodes inspected.\n\u2705 Monotonic Sequence Verification: 100% Monotonic (0 Sequence Violations).\n\u2705 Witness Recomputed Merkle Root: d98b7421e7879fc613c6fa5f1855dd919ba9c04eab9ef611"
+      "stderr": "===========================================================================\n  STATELESS AIRBLOCKED WITNESS ENGINE (EXTERNAL NON-CORRUPT ADJUDICATION)\n  Scope: Textual Output Inspection ONLY (Zero Source/Reasoning Access)\n===========================================================================\n\u274c STATELESS WITNESS FAIL CLOSED: Payload corruption in node 'NODE_HOST_SNAPSHOT_ec9319ce36bd'. Expected hash ec9319ce36bdfd59a1f2c55205f1b50d21e39ab1cedbae7ba7f4f6e164172ab5, got 7d26d8f29378836ba29a25a7"
     },
     {
       "step_name": "Red-Team 7-Vector Adversarial Gauntlet",
       "command": "/Library/Developer/CommandLineTools/usr/bin/python3 core/ops/scripts/blackbox_bbq_gauntlet.py",
-      "success": true,
-      "exit_code": 0,
-      "duration_sec": 0.4094,
-      "stdout": "================================================================================\n  14-GATE BLACK-BOX BBQ FALSIFICATION GAUNTLET (SPDD-BBQ-BLACKBOX-14GATE)\n  Public Surface Boundary Red-Teaming & NASA-Style V&V Verification\n================================================================================\n\n[BBQ-01] Malformed & Garbage String Claim Injection\n   \u274c CRITICAL FAIL-OPEN BREACH (Exit Code: 10)\n\n[BBQ-02] 10MB Oversized Claim Payload Stress\n   \u274c CRITICAL FAIL-OPEN BREACH (Exit Code: 10)\n\n[B",
-      "stderr": ""
+      "success": false,
+      "exit_code": 1,
+      "duration_sec": 0.0511,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/ops/scripts/blackbox_bbq_gauntlet.py\", line 27, in <module>\n    from cryptography.hazmat.primitives.asymmetric import ed25519\nImportError: cannot import name 'ed25519' from 'cryptography.hazmat.primitives.asymmetric' (unknown location)\n"
     },
     {
       "step_name": "Purple-Team Continuous Loop Engine",
       "command": "/Library/Developer/CommandLineTools/usr/bin/python3 ops/scripts/purple_team_continuous_loop.py",
-      "success": true,
-      "exit_code": 0,
-      "duration_sec": 0.4573,
-      "stdout": "[2026-10-04T23:21:16Z] ==========================================================================\n[2026-10-04T23:21:16Z]   PURPLE TEAM CONTINUOUS FEEDBACK LOOP ENGINE (RED/BLUE REAL-TIME PROOF)\n[2026-10-04T23:21:16Z] ==========================================================================\n[2026-10-04T23:21:16Z] \n--- [PURPLE LOOP] Executing PURPLE-01: Dynamic Fuzzed Claim Mutation ---\n[2026-10-04T23:21:16Z]   \ud83d\udd34 [RED ATTACK]: Launching adversarial vector...\n[2026-10-04T23:21:16Z]   \ud83d\udd35 [BLUE OBSER",
-      "stderr": ""
+      "success": false,
+      "exit_code": 1,
+      "duration_sec": 0.0447,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/purple_team_continuous_loop.py\", line 23, in <module>\n    from cryptography.hazmat.primitives.asymmetric import ed25519\nImportError: cannot import name 'ed25519' from 'cryptography.hazmat.primitives.asymmetric' (unknown location)\n"
     },
     {
       "step_name": "Emergency Recovery & Remediation Protocol",
       "command": "/bin/bash ops/scripts/trinity_gate_emergency_recovery.sh",
-      "success": true,
-      "exit_code": 0,
-      "duration_sec": 0.0583,
-      "stdout": "==========================================================================\n  TRINITY GATE EMERGENCY RECOVERY PROTOCOL\n==========================================================================\n[2026-10-04T23:21:16Z] ======================================================================\n[2026-10-04T23:21:16Z]   STARTING FAIL-CLOSED EMERGENCY STATE REMEDIATION\n[2026-10-04T23:21:16Z] ======================================================================\n[2026-10-04T23:21:16Z] \u2705 DB Lineage Verified:",
+      "success": false,
+      "exit_code": 1,
+      "duration_sec": 0.1152,
+      "stdout": "==========================================================================\n  TRINITY GATE EMERGENCY RECOVERY PROTOCOL\n==========================================================================\n[2026-10-18T18:33:14Z] ======================================================================\n[2026-10-18T18:33:14Z]   STARTING FAIL-CLOSED EMERGENCY STATE REMEDIATION\n[2026-10-18T18:33:14Z] ======================================================================\n[2026-10-18T18:33:14Z] \u2705 DB Lineage Verified:",
       "stderr": ""
     },
     {
       "step_name": "Hardware Signing Bridge & HSM Isolation Audit",
       "command": "/Library/Developer/CommandLineTools/usr/bin/python3 ops/scripts/hardware_hsm_signing_bridge.py",
-      "success": true,
-      "exit_code": 0,
-      "duration_sec": 0.0437,
-      "stdout": "=== HSM & KEY ISOLATION AUDIT ===\n{\n  \"isolation_level\": \"EMULATED_LOCAL_EPHEMERAL_KEY\",\n  \"is_hardware_backed\": false,\n  \"key_source\": \"Local File: /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/.sovereign/crypto_keys/ed25519_hardware_priv.pem (Requires HSM Migration for Production)\",\n  \"nist_sp800_53_compliance\": \"DEV_EMULATION_WARNING\"\n}\n\nSignature (Ed25519): 2ee37218494e62e05c8ecc2376cb33a7...\n",
-      "stderr": ""
+      "success": false,
+      "exit_code": 1,
+      "duration_sec": 0.0347,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/hardware_hsm_signing_bridge.py\", line 19, in <module>\n    from cryptography.hazmat.primitives.asymmetric import ed25519\nImportError: cannot import name 'ed25519' from 'cryptography.hazmat.primitives.asymmetric' (unknown location)\n"
     },
     {
       "step_name": "Monotonic CLOCK_MONOTONIC_RAW TSA Time Attestation",
       "command": "/Library/Developer/CommandLineTools/usr/bin/python3 core/ops/scripts/monotonic_tsa_time_verifier.py",
       "success": true,
       "exit_code": 0,
-      "duration_sec": 0.0219,
-      "stdout": "=== MONOTONIC TSA TIMESTAMP ATTESTATION ===\n{\n  \"timestamp_iso_utc\": \"2026-10-04T23:21:16Z\",\n  \"monotonic_clock_ns\": 69244762836333,\n  \"tsa_sha384_digest\": \"2ded85387450353f5c10fcc977f659e96283c34e6b7ff2ca37846c34ef8c7f76238b4f5aa23939ec87b1ae70697319d9\",\n  \"clock_source\": \"CLOCK_MONOTONIC_RAW (POSIX.1-2008)\",\n  \"rfc3161_compliant\": true\n}\n",
+      "duration_sec": 0.0334,
+      "stdout": "=== MONOTONIC TSA TIMESTAMP ATTESTATION ===\n{\n  \"timestamp_iso_utc\": \"2026-10-18T18:33:15Z\",\n  \"monotonic_clock_ns\": 186047648073166,\n  \"tsa_sha384_digest\": \"16b3afe6cfb95facdb83a72e81344d5151e7e56e77a48e44918404faa147bcc1c653c63cba925d3a50950eceff6d5305\",\n  \"clock_source\": \"CLOCK_MONOTONIC_RAW (POSIX.1-2008)\",\n  \"rfc3161_compliant\": true\n}\n",
       "stderr": ""
     },
     {
       "step_name": "Post-Execution Audit & Artifact Drift Verification",
       "command": "/Library/Developer/CommandLineTools/usr/bin/python3 ops/scripts/post_execution_audit.py",
-      "success": true,
-      "exit_code": 0,
-      "duration_sec": 0.0613,
-      "stdout": "[2026-10-04T23:21:16Z] ================================================================================\n[2026-10-04T23:21:16Z]   POST-EXECUTION AUDIT ENGINE: ARTIFACT & PROVENANCE DRIFT VERIFIER\n[2026-10-04T23:21:16Z] ================================================================================\n[2026-10-04T23:21:16Z] \u2705 Vault Alignment: 'SPDD-PURPLE-LOOP_20261004-231156_UTC.json' matches barn copy byte-for-byte.\n[2026-10-04T23:21:16Z] \ud83d\udd0f Signature Verified: 'SPDD-PURPLE-LOOP_20261004-231156_UTC",
-      "stderr": ""
+      "success": false,
+      "exit_code": 1,
+      "duration_sec": 0.0369,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/post_execution_audit.py\", line 26, in <module>\n    from cryptography.hazmat.primitives.asymmetric import ed25519\nImportError: cannot import name 'ed25519' from 'cryptography.hazmat.primitives.asymmetric' (unknown location)\n"
     },
     {
       "step_name": "Host Posture Baseline-then-Diff Audit (NIST SP 800-128)",
       "command": "/Library/Developer/CommandLineTools/usr/bin/python3 ops/scripts/host_posture_baseline_diff.py",
       "success": true,
       "exit_code": 0,
-      "duration_sec": 0.0571,
-      "stdout": "[2026-10-04T23:21:16Z] ================================================================================\n[2026-10-04T23:21:16Z]   HOST POSTURE BASELINE-THEN-DIFF ENGINE (NIST SP 800-128)\n[2026-10-04T23:21:16Z] ================================================================================\n[2026-10-04T23:21:16Z] \u26a0\ufe0f [HOST DRIFT FINDING]: Unallowed listening ports detected: [25, 587, 3000, 6379, 6443, 11434, 12434, 18789, 27017, 49152, 49153, 49167, 49370, 49371, 49408, 51073, 53064, 62988]\n[2026-1",
+      "duration_sec": 0.0953,
+      "stdout": "[2026-10-18T18:33:15Z] ================================================================================\n[2026-10-18T18:33:15Z]   HOST POSTURE BASELINE-THEN-DIFF ENGINE (NIST SP 800-128)\n[2026-10-18T18:33:15Z] ================================================================================\n[2026-10-18T18:33:15Z] \u26a0\ufe0f [HOST DRIFT FINDING]: Unallowed listening ports detected: [25, 587, 7000, 9222, 49446, 49447, 49462, 51319, 51533, 51624, 51625, 51646, 51647, 51760, 51761, 51762, 51763, 52157, 52158,",
       "stderr": ""
     }
   ],
   "dag_commit_info": {
     "committed": true,
-    "node_id": "NODE_RECEIPT_7d5f413e163b",
-    "seq_num": 21,
-    "merkle_root": "f6a84797a29e7684872f32a4f0b5aa4890963b7630556be6f7d7fb11675dbe86"
+    "node_id": "NODE_RECEIPT_8f0269c7fbce",
+    "seq_num": 37,
+    "merkle_root": "4de409a1dd2cd0518fda8a9f28a7ce056daa79677095885d560d196856195d71"
   }
 }
