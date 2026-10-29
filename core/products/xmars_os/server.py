@@ -51,7 +51,9 @@ PORT = 8085
 HOST = "0.0.0.0"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_DIR = os.path.join(BASE_DIR, "static")
-SSOT_ROOT = os.path.abspath(os.path.join(BASE_DIR, "..", ".."))
+WORKSPACE_ROOT = os.path.abspath(os.path.join(BASE_DIR, "workspace"))
+os.makedirs(WORKSPACE_ROOT, exist_ok=True)
+SSOT_ROOT = WORKSPACE_ROOT  # Cleanroom boundary isolation: sandboxed strictly to xmars_os/workspace
 
 XMARS_COUNCIL = {
     "maxx": {

@@ -1,0 +1,49 @@
+{
+  "timestamp": "2026-10-29T23:25:00Z",
+  "test_target": "core/products/xmars_os",
+  "gauntlet_suite": "core/products/xmars_os/tests/test_end_to_end_gauntlet.py",
+  "results": {
+    "total_tests": 5,
+    "passed": 5,
+    "failed": 0,
+    "skipped": 0,
+    "details": [
+      {
+        "test": "test_01_all_web_routes_deliver_200_ok",
+        "description": "Verify all 5 tabs (command, landing, store, portal, connect) and JSON APIs respond 200 OK",
+        "status": "PASS"
+      },
+      {
+        "test": "test_02_workspace_tree_isolation",
+        "description": "Verify file tree returns only isolated workspace files and zero parent brain leakage",
+        "status": "PASS"
+      },
+      {
+        "test": "test_03_sandbox_read_and_hostile_jail_rejection",
+        "description": "Verify workspace reading works and parent directory traversal attempts fail closed (404/403)",
+        "status": "PASS"
+      },
+      {
+        "test": "test_04_hardware_governor_pinned_limits",
+        "description": "Verify hardware governor enforces 4096 context window and 512MB KV cache ceiling",
+        "status": "PASS"
+      },
+      {
+        "test": "test_05_terminal_execution_isolation",
+        "description": "Verify interactive terminal execution is physically pinned to workspace directory",
+        "status": "PASS"
+      }
+    ]
+  },
+  "cleanroom_verification": {
+    "suite": "core/products/xmars_os/tests/test_cleanroom_boundary.py",
+    "total_tests": 3,
+    "passed": 3,
+    "status": "PASS"
+  },
+  "lead9_signoff": {
+    "maxx": "VERIFIED - Workspace strictly isolated, cleanroom validated.",
+    "vance": "CERTIFIED - Gate 3 dynamic sandbox execution passed with zero leaks.",
+    "clara": "RATIFIED - All 5 web tabs and runtime APIs operational."
+  }
+}
