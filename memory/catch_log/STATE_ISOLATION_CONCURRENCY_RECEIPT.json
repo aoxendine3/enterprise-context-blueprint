@@ -1,0 +1,12 @@
+{
+  "timestamp": 20261029,
+  "test_name": "Judge-Gate & Witness-Gate State Isolation",
+  "key": "system.telemetry.active_buffer_size",
+  "owner": "maxx",
+  "total_ledger_events": 42,
+  "judge_gate_unauthorized_rejections": 1,
+  "witness_gate_stale_rejections": 19,
+  "successful_commits": 21,
+  "lost_updates": 0,
+  "verdict": "VERIFIED_ZERO_LOST_UPDATES"
+}
