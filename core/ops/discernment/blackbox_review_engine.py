@@ -109,7 +109,59 @@ class BlackboxReviewEngine:
             self.save_ledger()
             return False, reason
 
-        # Gate 3: Flawlessness & Torture Verification
+        # Gate 3: Flawlessness & Torture Verification (Mechanical Execution Enforced)
+        # Invariant (Validate-the-Validator): Self-reported 'torture_passed: True' is NOT trusted.
+        # If artifact_source, test_source, or test_command is provided, it MUST execute cleanly.
+        if candidate.get("test_command"):
+            try:
+                cmd_res = subprocess.run(
+                    candidate["test_command"],
+                    shell=True,
+                    capture_output=True,
+                    text=True,
+                    timeout=15
+                )
+                if cmd_res.returncode != 0:
+                    reason = f"REJECTED: Empirical test command failed (exit {cmd_res.returncode}): {cmd_res.stderr.strip()[:200]}"
+                    print(f"[-] {reason}")
+                    self.ledger["rejected_audit_log"].append({"name": candidate["name"], "rejection_reason": reason, "timestamp": time.time()})
+                    self.ledger["total_rejected"] += 1
+                    self.save_ledger()
+                    return False, reason
+            except subprocess.TimeoutExpired:
+                reason = "REJECTED: Empirical test command timed out (>15s)."
+                print(f"[-] {reason}")
+                self.ledger["rejected_audit_log"].append({"name": candidate["name"], "rejection_reason": reason, "timestamp": time.time()})
+                self.ledger["total_rejected"] += 1
+                self.save_ledger()
+                return False, reason
+
+        if candidate.get("artifact_source") and candidate.get("test_source"):
+            full_test_harness = f"{candidate['artifact_source']}\n\n# --- INDEPENDENT VALIDATOR TEST SUITE ---\n{candidate['test_source']}\n"
+            import tempfile
+            with tempfile.NamedTemporaryFile("w", suffix=".py", delete=False) as tmp_exec:
+                tmp_exec.write(full_test_harness)
+                tmp_exec_path = tmp_exec.name
+            try:
+                run_res = subprocess.run(["python3", tmp_exec_path], capture_output=True, text=True, timeout=10)
+                if run_res.returncode != 0:
+                    reason = f"REJECTED: Mechanical test execution failed (exit {run_res.returncode}): {run_res.stderr.strip()[:200]}"
+                    print(f"[-] {reason}")
+                    self.ledger["rejected_audit_log"].append({"name": candidate["name"], "rejection_reason": reason, "timestamp": time.time()})
+                    self.ledger["total_rejected"] += 1
+                    self.save_ledger()
+                    return False, reason
+            except subprocess.TimeoutExpired:
+                reason = "REJECTED: Mechanical test execution timed out (>10s)."
+                print(f"[-] {reason}")
+                self.ledger["rejected_audit_log"].append({"name": candidate["name"], "rejection_reason": reason, "timestamp": time.time()})
+                self.ledger["total_rejected"] += 1
+                self.save_ledger()
+                return False, reason
+            finally:
+                if os.path.exists(tmp_exec_path):
+                    os.remove(tmp_exec_path)
+
         if not candidate.get("torture_passed", False):
             reason = "REJECTED: Unproven under stress. Failed or missing empirical torture audit."
             print(f"[-] {reason}")

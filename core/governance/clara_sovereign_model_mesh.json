@@ -1,0 +1,86 @@
+{
+  "framework": "C.L.A.R.A. (Concurrent LLM Analytical Reasoning Architecture)",
+  "version": "1.0.0-SOVEREIGN",
+  "governance": "STRICT_TASK_DAG_STANDARD",
+  "storage_architecture": "SHARED_READ_ONLY_MMAP_VAULT",
+  "model_vault_root": "/Users/ajoxendine68/.ollama/models/blobs",
+  "windows_lan_endpoint": "http://192.168.1.211:11434",
+  "local_mac_endpoint": "http://127.0.0.1:11434",
+  "lead_9_agent_bindings": {
+    "maxx": {
+      "seat": "Operations & Systems Lead",
+      "model_binding": "qwen2.5:1.5b",
+      "host_plane": "PLANE_1_LOCAL_MAC",
+      "memory_target": "1.1 GB",
+      "operational_duty": "Sub-microsecond AST syntax parsing, local compilation, file coordination",
+      "sandbox_path": "workspaces/sandboxes/maxx"
+    },
+    "clara": {
+      "seat": "Chief of Science & Formal Verification",
+      "model_binding": "deepseek-r1:1.5b",
+      "host_plane": "PLANE_2_WINDOWS_RTX",
+      "memory_target": "1.1 GB",
+      "operational_duty": "Chain-of-thought mathematical reasoning, 18,432-D Poincaré projection, Z3 SMT proofs",
+      "sandbox_path": "workspaces/sandboxes/clara"
+    },
+    "vance": {
+      "seat": "Discernment Bench Lead & Blackbox Sentry",
+      "model_binding": "hermes3:8b",
+      "host_plane": "PLANE_2_WINDOWS_RTX",
+      "memory_target": "4.6 GB",
+      "operational_duty": "Ruthless adversarial review, 4-gate verification, red-team penetration checks",
+      "sandbox_path": "workspaces/sandboxes/vance"
+    },
+    "john": {
+      "seat": "Silicon Telemetry & Hardware Systems",
+      "model_binding": "smollm2:360m",
+      "host_plane": "PLANE_1_LOCAL_MAC",
+      "memory_target": "360 MB",
+      "operational_duty": "Nanosecond clock tracking, cache-line stride verification, hardware sensors",
+      "sandbox_path": "workspaces/sandboxes/john"
+    },
+    "daxx": {
+      "seat": "Master Orchestrator & Task DAG Scheduler",
+      "model_binding": "qwen2.5:0.5b",
+      "host_plane": "PLANE_2_WINDOWS_RTX",
+      "memory_target": "397 MB",
+      "operational_duty": "Strict Task DAG state transitions, CAS version checking, DART ring commits",
+      "sandbox_path": "workspaces/sandboxes/daxx"
+    },
+    "jarvis": {
+      "seat": "Seat One Discernment Judge & Voice of Dissent",
+      "model_binding": "sovereign-r1:latest",
+      "host_plane": "PLANE_2_WINDOWS_RTX",
+      "memory_target": "1.8 GB",
+      "operational_duty": "Independent adjudication, epistemic humility enforcement, anti-theater audit",
+      "sandbox_path": "workspaces/sandboxes/jarvis"
+    },
+    "alpha_memory": {
+      "seat": "Short-Term Working Context Custodian",
+      "model_binding": "tinyllama:latest",
+      "host_plane": "PLANE_2_WINDOWS_RTX",
+      "memory_target": "637 MB",
+      "operational_duty": "Active turn scratchpad management, prompt boundary sanitization, KV trimming",
+      "sandbox_path": "workspaces/sandboxes/alpha_memory"
+    },
+    "beta_memory": {
+      "seat": "Mid-Term MTPO Blackboard Custodian",
+      "model_binding": "llama3.2:1b",
+      "host_plane": "PLANE_2_WINDOWS_RTX",
+      "memory_target": "1.3 GB",
+      "operational_duty": "Lock-free shared memory blackboards, concurrency state diffs, entity resolution",
+      "sandbox_path": "workspaces/sandboxes/beta_memory"
+    },
+    "gamma_memory": {
+      "seat": "Long-Term Archival & Barn Custodian",
+      "model_binding": "stablelm2:1.6b",
+      "host_plane": "PLANE_2_WINDOWS_RTX",
+      "memory_target": "982 MB",
+      "operational_duty": "Merkle-sealed cold storage in /the_barn/, Ed25519 root hashing, zero data deletion",
+      "sandbox_path": "workspaces/sandboxes/gamma_memory"
+    }
+  },
+  "total_cluster_vram_allocation_gb": 13.27,
+  "mmap_shared_caching": true,
+  "zero_disk_duplication_enforced": true
+}

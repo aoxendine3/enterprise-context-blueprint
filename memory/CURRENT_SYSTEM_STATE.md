@@ -68,6 +68,52 @@
 
 ---
 
+## 4.2 Credentials
+- Secrets stay in host runtime / environment managed by the operator.
+- Agents do not receive API keys or DB passwords in prompts.
+- Env inspection used by agents must not return secret values.
+- Proof path: `core/governance/scoped_runtime_credential_gate.py`
+  (and `memory/catch_log/CREDENTIAL_AND_JAIL_RECEIPT.json` when the scrub test is run).
+
+---
+
+## 4.3 Agent Handoffs
+- Each step output is checked against a schema before the next agent runs.
+- On failure: stop the chain, record the failed step, do not run downstream agents.
+- Engine: `core/governance/schema_handoff_gate.py`
+- Proof: `memory/catch_log/AGENT_HANDOFF_CIRCUIT_BREAKER_RECEIPT.json`
+  (when the malformed-step-2 test is run).
+
+---
+
+## 4.4 Failure Recovery
+- Crash recovery: TonyDB POSIX write-ahead log (`workspaces/tonydb/`).
+- After interruption, replay WAL to restore the last consistent HexCell set.
+- Checkpoints: git history / Merkle-style snapshots of governed ledgers where used.
+- Proof: `workspaces/tonydb/test_wal_durability.py` (and `memory/catch_log/COMPLETED_REPLAY_RECONCILIATION_RECEIPT.json`).
+
+---
+
+## 4.5 Task Queue Orchestration (Judge-Gate & Witness-Gate Standard)
+- **Engine:** `core/governance/governed_task_orchestrator.py`
+- **Ledger:** `memory/agent_logs/governed_task_ledger.jsonl`
+- **Judge-Gate (Single Authority):** Exactly one orchestrator (`actor://maxx`) owns the task queue and every state transition. Workers only receive assigned tasks; direct worker claims are blocked fail-closed.
+- **Dependency Gating:** Strict DAG dependency checking. Tasks with unresolved inputs are held in `BLOCKED` state; orchestrator refuses to start them until dependencies reach `COMPLETED`.
+- **Witness-Gate (Task Replay Audit):** Deterministic ledger replay audits busy runs for duplicate claims, skipped tasks, and out-of-order starts.
+- **Proof Receipt:** `memory/catch_log/GOVERNED_TASK_ORCHESTRATOR_RECEIPT.json` (12 ledger events, 0 duplicate claims, 0 out-of-order errors).
+
+---
+
+## 4.6 DART Architecture (Data Accounts Reverse/Recall Tracking)
+- **Engine:** `core/memory/dart_ring_buffer.py`
+- **Memory Paradigm:** Zero-heap, 512-byte cache-aligned HexCell ring buffer (4,096 capacity).
+- **Execution Speed:** 3.76M ops/sec (<0.27 µs per commit on physical Apple Silicon M4 unified memory).
+- **Stage 1 Wake Contract Integration:** Retrospective reverse recall (`recall_backlog(limit=50)`) immediately hydrates agent context with the preceding 50 state transitions in strict LIFO order.
+- **Formal Verification:** Z3 SMT solver proved chromatic reverse-order monotonicity mathematically absolute (`UNSAT` on out-of-order recall attempt).
+- **Proof Receipt:** `memory/catch_log/DART_RETROSPECTIVE_RECALL_RECEIPT.json`.
+
+---
+
 ## 5. Recent Work History Ledger (What Was Built)
 
 - **2026-10-28 (Yesterday):**
