@@ -130,3 +130,9 @@
   - Codified and mounted 3D Tri-Brain Cluster, 7th Layer Guard, and 24-12-7-3-1 Pyramid (Commit `6a212dc`).
 - **2026-04-05 – 2026-05-15 (6 Months Ago):**
   - Multi-container critlogs and memory buffer message passing established on disk.
+
+## Canonical Web Infrastructure Pointer
+- **Live Enterprise Web Interface**: [XORAS SYSTEMS LLC](https://aoxendine3.github.io/xoras/)
+  - URL: `https://aoxendine3.github.io/xoras/`
+  - Host: GitHub Pages (`aoxendine3/xoras`)
+  - Stack: Obsidian Gold / Cyber Green / Houston Blue theme engine, haptic sound effects, global edge telemetry.

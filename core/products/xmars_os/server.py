@@ -241,6 +241,29 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
         except Exception as e:
             self._send_json(500, {"status": "error", "message": str(e)})
 
+    def _handle_workspace_upload(self, payload: dict):
+        filename = payload.get("filename", "").strip()
+        content = payload.get("content", "")
+        if not filename:
+            self._send_json(400, {"status": "error", "message": "Filename required for upload."})
+            return
+        
+        # Clean path, prevent traversal
+        safe_name = os.path.basename(filename)
+        dest_path = os.path.join(SSOT_ROOT, safe_name)
+        
+        try:
+            with open(dest_path, "w", encoding="utf-8") as f:
+                f.write(content)
+            self._send_json(200, {
+                "status": "success",
+                "message": f"Uploaded {safe_name} successfully.",
+                "path": safe_name,
+                "bytes": len(content.encode("utf-8"))
+            })
+        except Exception as e:
+            self._send_json(500, {"status": "error", "message": str(e)})
+
     def _handle_terminal_exec(self, payload: dict):
         cmd = payload.get("command", "").strip()
         if not cmd:
@@ -472,6 +495,8 @@ class XmarsRequestHandler(SimpleHTTPRequestHandler):
                 self._send_json(200, {"status": "success", "receipt": "logged_to_stt_route_events"})
             elif path == "/api/workspace/write":
                 self._handle_workspace_write(payload)
+            elif path == "/api/workspace/upload":
+                self._handle_workspace_upload(payload)
             elif path == "/api/terminal/exec":
                 self._handle_terminal_exec(payload)
             elif path == "/api/preview/render":
