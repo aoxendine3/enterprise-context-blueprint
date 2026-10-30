@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Path of the Wandering Lantern // A Sequential Manga Coloring Experience</title>
+  <style>
+    :root {
+      --bg: #030712;
+      --card-bg: rgba(15, 23, 42, 0.7);
+      --gold: #d4af37;
+      --gold-glow: rgba(212, 175, 55, 0.25);
+      --cyan: #00f0ff;
+      --text: #f9fafb;
+      --text-dim: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+    
+    /* Top Bar */
+    .top-bar {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 16px 0;
+      font-family: ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: var(--text-dim);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .badge {
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 90px 0 60px;
+      text-align: center;
+      position: relative;
+    }
+    .hero-tag {
+      font-family: ui-monospace, monospace;
+      font-size: 12px;
+      color: var(--cyan);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+    .hero h1 {
+      font-size: 52px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 18px;
+      color: var(--text-dim);
+      max-width: 680px;
+      margin: 0 auto 36px;
+      font-weight: 400;
+    }
+    .cta-group {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+    .btn {
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: #050505;
+      box-shadow: 0 0 25px var(--gold-glow);
+    }
+    .btn-gold:hover {
+      background: #e6c250;
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+    }
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* Specs Grid */
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin: 60px 0 80px;
+    }
+    .spec-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: left;
+    }
+    .spec-card h4 {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gold);
+      margin-bottom: 8px;
+      font-family: ui-monospace, monospace;
+    }
+    .spec-card .val {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .spec-card .sub {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+
+    /* Narrative Spread Showcase */
+    .showcase-section {
+      padding: 60px 0 100px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .section-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .section-sub {
+      font-size: 14px;
+      color: var(--text-dim);
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .spread-preview {
+      background: #0f172a;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 16px;
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+    .page-sheet {
+      background: #ffffff;
+      color: #0f172a;
+      border-radius: 8px;
+      padding: 36px 32px;
+      min-height: 480px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .page-sheet h3 {
+      font-size: 16px;
+      font-weight: 700;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }
+    .page-sheet p {
+      font-family: Georgia, serif;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #334155;
+      font-style: italic;
+    }
+    .art-plate-placeholder {
+      border: 2px dashed #94a3b8;
+      border-radius: 8px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      font-family: ui-monospace, monospace;
+      font-size: 12px;
+      text-align: center;
+      padding: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <div>XORAS SYSTEMS PRESS // SOVEREIGN PUBLISHING DIVISION</div>
+      <div class="badge">AMAZON KDP CERTIFIED &bull; 52-PAGE PRINT MASTER</div>
+    </div>
+
+    <section class="hero">
+      <div class="hero-tag">A Sequential Manga Adult Coloring Odyssey</div>
+      <h1>Path of the Wandering Lantern</h1>
+      <p>Follow Ren and the twin-tailed spirit fox Kiri across 24 single-sided narrative spreads. From rain-swept mountain waystations to the celestial eclipse summit.</p>
+      <div class="cta-group">
+        <a href="/dist/path_of_the_wandering_lantern_interior_52p.pdf" class="btn btn-gold" download>
+          <span>📥 Download 52-Page Press Interior</span>
+        </a>
+        <a href="#showcase" class="btn btn-outline">
+          <span>📖 Inspect 24 Narrative Spreads</span>
+        </a>
+      </div>
+    </section>
+
+    <div class="specs-grid">
+      <div class="spec-card">
+        <h4>Trim Geometry</h4>
+        <div class="val">8.5" &times; 11.0"</div>
+        <div class="sub">Standard Letter Paperback</div>
+      </div>
+      <div class="spec-card">
+        <h4>Gutter Tolerance</h4>
+        <div class="val">0.500"</div>
+        <div class="sub">Spine Loss Safe Zone</div>
+      </div>
+      <div class="spec-card">
+        <h4>Line Art Density</h4>
+        <div class="val">2.0 pt Vector</div>
+        <div class="sub">Zero Muddy Screentones</div>
+      </div>
+      <div class="spec-card">
+        <h4>Interior Structure</h4>
+        <div class="val">Single-Sided Right</div>
+        <div class="sub">Facing Prose &amp; Palette Guides</div>
+      </div>
+    </div>
+
+    <section class="showcase-section" id="showcase">
+      <h2 class="section-title">Narrative Facing Architecture</h2>
+      <p class="section-sub">Left pages guide your mood with rich folklore lore and color suggestions. Right pages preserve clean vector lines for pure artistic expression.</p>
+
+      <div class="spread-preview">
+        <!-- Facing Left Page -->
+        <div class="page-sheet">
+          <div>
+            <div style="font-size: 10px; font-family: ui-monospace, monospace; color: #64748b; margin-bottom: 4px;">ACT I: THE FALLING MIST</div>
+            <h3>Chapter 1: Where the Rain Remembers</h3>
+            <p>"The storm had washed away the road hours ago, but the mountain path still knew his name. Under the dripping eaves of an abandoned roadside tea stall, Ren struck flint to wick. A single pale flame answered—not to warm the cold night air, but to pierce the veil between flesh and ghost."</p>
+          </div>
+          <div style="border-top: 1px solid #e2e8f0; padding-top: 12px; font-size: 11px; color: #64748b; font-family: ui-monospace, monospace;">
+            <strong>PALETTE INSPIRATION:</strong> Slate rain blue, weathered cedar, amber flame.<br>
+            <strong>NOTE:</strong> Place blotter sheet behind facing plate before coloring.
+          </div>
+        </div>
+
+        <!-- Right Hero Art Plate -->
+        <div class="page-sheet">
+          <div class="art-plate-placeholder">
+            <div style="font-size: 28px; margin-bottom: 12px;">🏮</div>
+            <strong>SCENE 01: THE RUINED WAYSTATION</strong>
+            <p style="font-style: normal; font-size: 11px; margin-top: 8px;">Pure K-Black 2.0pt Vector Contour<br>Alcohol Marker &amp; Colored Pencil Ready</p>
+            <div style="margin-top: 16px; font-size: 10px; color: #94a3b8;">MIDJOURNEY V6.1 // 17:22 RATIO // RAW</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
