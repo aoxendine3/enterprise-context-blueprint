@@ -12,10 +12,11 @@ import time
 import json
 from z3 import *
 
-sys.path.insert(0, "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain")
+REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, REPO_ROOT)
 from core.memory.dart_ring_buffer import DartMemoryManager
 
-RECEIPT_PATH = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/catch_log/DART_RETROSPECTIVE_RECALL_RECEIPT.json"
+RECEIPT_PATH = os.path.join(REPO_ROOT, "memory/catch_log/DART_RETROSPECTIVE_RECALL_RECEIPT.json")
 
 def main():
     print("======================================================================")

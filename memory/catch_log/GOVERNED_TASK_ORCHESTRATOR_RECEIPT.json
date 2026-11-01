@@ -1,5 +1,5 @@
 {
-  "timestamp_utc": "2026-10-29T22:16:13Z",
+  "timestamp_utc": "2026-11-01T01:49:53Z",
   "orchestrator_authority": "actor://maxx",
   "judge_gate_single_authority": true,
   "worker_claim_rejections": 1,
@@ -9,5 +9,5 @@
   "duplicate_claims": 0,
   "out_of_order_errors": 0,
   "verdict": "VERIFIED_GOVERNED_TASK_ORCHESTRATION",
-  "ledger_file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/agent_logs/test_governed_task_ledger.jsonl"
+  "ledger_file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/scratch/enterprise-context-blueprint/memory/agent_logs/test_governed_task_ledger.jsonl"
 }
