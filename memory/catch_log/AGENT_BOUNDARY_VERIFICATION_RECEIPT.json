@@ -1,19 +1,16 @@
 {
-  "finding_4_shared_memory_ownership_2x20": {
-    "memory_key": "shared_state_alpha",
-    "registered_owner": "DAXX-5-H01",
-    "competing_agent": "DAXX-5-H02",
-    "updates_per_agent": 20,
-    "owner_committed_updates": 20,
-    "non_owner_conflicting_writes_rejected": 20,
-    "stale_version_writes_rejected": 10,
-    "lost_or_silent_overwrites": 0,
-    "initial_version": 1,
-    "final_version": 21,
-    "final_value": {
-      "counter": 20,
-      "step": 19
-    }
+  "finding_5_handoff_schema_gate": {
+    "chain_status": "HALTED_ON_SCHEMA_FAILURE",
+    "halted_at_step_index": 2,
+    "failed_step_id": "STEP_2_HEXCELL_PROJECTION",
+    "failed_agent_id": "DAXX-3-H02",
+    "validation_error": "Field 'payload' must be a non-empty dict, got str",
+    "completed_steps_before_halt": [
+      "STEP_1_INTENT"
+    ],
+    "downstream_steps_skipped": [
+      "STEP_3_MERKLE_COMMIT"
+    ]
   },
   "passed": true
 }
