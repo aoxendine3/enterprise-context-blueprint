@@ -1,0 +1,31 @@
+{
+  "gate": "xoras_app_scope_down_remediation",
+  "remediated_by": "Daxx/Daxxco program-repair posture (greenlight authorized)",
+  "workspace": "workspaces/xoras-app (Xoras OS 2.0 Tauri 2 + Rust + React 19 Command Center)",
+  "problem": "xoras-app was 'doing too much' — a monolithic 1425-line lib.rs god file exposed dangerous arbitrary-execution commands (run_shell /bin/zsh -c, write_file arbitrary FS write, read_file/list_dir unscoped traversal) plus no-op stubs (monitor_start/stop, get_dojo_errors referencing a nonexistent dojo DB), Tauri CSP disabled (csp: null), and bloated 84-Helper BFT Swarm / 7/7 Sub-Conductor marketing claims fabricated in every reply.",
+  "fix_applied": [
+    "src/lib/api.js: removed runShell, writeFile, listDir (kept readFile), getDojoErrors, monitorStart, monitorStop.",
+    "src-tauri/src/lib.rs: removed run_shell command (arbitrary /bin/zsh -c execution), removed write_file command (arbitrary FS write), removed get_dojo_errors (nonexistent dojo DB), removed monitor_start/monitor_stop no-op stubs.",
+    "src-tauri/src/lib.rs: read_file and list_dir now scope to SSOT_ROOT via canonicalize + starts_with guard (path-traversal block).",
+    "src-tauri/src/lib.rs: removed tauri_plugin_shell and its registration; removed ShellResult/DirEntryInfo now-unused import surface.",
+    "src-tauri/tauri.conf.json: replaced disabled CSP (csp: null) with a restrictive default-src 'self', script-src 'self', style-src 'self' 'unsafe-inline', img-src 'self' data:, connect-src scoped to localhost and LAN Ollama endpoints only.",
+    "src-tauri/src/lib.rs: replaced fabricated swarm telemetry (84 helpers, 7/7 sub-conductors, 3/3 UPGP gates) with honest probe-only status ('status reflects endpoint probe only; no model names/counts/quorum claims fabricated').",
+    "src/context/AppContext.jsx: removed boot call to sys.getDojoErrors(); runTerminalCommand now reports 'removed in scoped build' instead of executing.",
+    "src/components/SystemPanel.jsx: handlePull/handleDelete now report removed instead of running ollama pull/rm via shell.",
+    "src/components/FileExplorer.jsx: saveFile now reports removed (File Explorer read-only).",
+    "src/components/DojoPanel.jsx: refreshErrors now returns empty (no dojo DB).",
+    "src/components/Dashboard.jsx: self_healing/health_test now dispatch read-only messages instead of shell.",
+    "src/components/RightDrawer.jsx: quick-command dispatch now reports removed instead of executing shell.",
+    "src/components/SovereignDaxxPanel.jsx: handleRunInTerminal now opens the script file read-only instead of executing via shell."
+  ],
+  "verification_performed": [
+    "grep across src/ for runShell/writeFile/run_shell/write_file/getDojoErrors/monitor*: zero remaining references (EXIT=1 = none found).",
+    "Rust lib.rs structurally reviewed: invoke_handler no longer lists removed commands; removed commands' implementations deleted.",
+    "No Rust/Node toolchain available on this machine (cargo/rustc/node/npm not found) — could not compile. Edits are textual and conservative; recommend `cargo check --release` and `npm run build` in workspaces/xoras-app when toolchain is available."
+  ],
+  "evidence_layer_note": "The underlying evidence-layer gaps (disconnected world_file.db vs lineage_dag.db, duplicated seq_nums, fabricated known-good digest) documented in prior receipts remain open and were NOT silently repaired, per fail-closed invariant.",
+  "receipts_written": [
+    "memory/catch_log/XORAS_APP_SCOPE_DOWN_REMEDIATION_RECEIPT.json (this file)"
+  ],
+  "iso_timestamp": "2026-11-12T20:55:00Z"
+}

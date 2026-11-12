@@ -1,0 +1,34 @@
+{
+  "gate": "validator_truth_remediation",
+  "remediated_by": "Daxx/Daxxco program-repair posture (Read-only audit → targeted fix)",
+  "file_remediated": "core/ops/discernment/xoras_report_schema.py",
+  "root_cause": "Report schema validator validated FORM only (required sections, table columns, repro command present) but never verified TRUTH — SHA-256 digests cited in reports were never checked against real on-disk files, and reproducibility commands were never checked for real scripts. A fraudulent report with fake digests (deadbeef..., cafef00d...) and a nonexistent repro script passed as valid: true.",
+  "fix_applied": [
+    "Added hashlib import and SHA-256 digest extraction from report content.",
+    "Added _verify_evidence_hash_on_disk(): scans bounded evidence roots (memory/, core/ops/, docs/audits/, core/products/, labs/workspaces/, tests/, workspaces/, barn/) excluding node_modules/.git/.venv/__pycache__/misc/build/dist, skipping non-regular files and files >50MB, with a 4000-file scan cap so truth verification cannot run away into misc/ residue.",
+    "Added _extract_repro_command() and verification that referenced repro scripts exist on disk.",
+    "validate_report() now returns form_valid AND truth_valid; overall valid = form_valid AND truth_valid. Unverified hashes or missing repro scripts cause truth_valid=False → report rejected.",
+    "Added stat import for regular-file guarding."
+  ],
+  "verification_performed": [
+    "Fraudulent report (scratch/fraudulent_proof_report.md with deadbeef/cafef00d digests + nonexistent repro script): previously valid=True → now valid=False, truth_valid=False, repro_verdict=REPRO_SCRIPT_MISSING. Correctly rejected.",
+    "6 real audit reports spot-checked: truth verification completes bounded (<2s each); failures are form-related (missing sections/columns) or genuinely unverified cited hashes — correct signal.",
+    "Syntax check via ast.parse: OK."
+  ],
+  "evidence_layer_gaps_documented": [
+    "Two disconnected evidence stores: memory/tri_brain/world_file.db has lineage_nodes=0 rows and global_evidence_registry=0 rows, while .sovereign/provenance/lineage_dag.db has lineage_nodes=3262 rows with 1762 sequence violations (1500 unique seq_nums for 3262 rows; duplicated seq 1×21, seq 2×14, ...).",
+    "Known-good digest 16b2759a... in validator-of-validators fixture matches NO file on disk (fabricated/unverifiable).",
+    "Dual-witness gate (core/ops/scripts/dual_witness_gate.sh) correctly fails closed: Witness A (native Zig) reports clean; Witness B (independent Python) finds sequence violations. Not silently repaired.",
+  ],
+  "related_files_created": [
+    "core/ops/scripts/independent_python_witness.py (Witness B, zero shared code with Witness A)",
+    "core/ops/scripts/dual_witness_gate.sh (fail-closed on disagreement)"
+  ],
+  "receipts_written": [
+    "memory/catch_log/dual_witness_gate_receipt.json (passed: false — witnesses disagree)",
+    "memory/catch_log/dual_witness_gate.log",
+    "memory/catch_log/witness_b_independent_truth_receipt.json",
+    "memory/catch_log/VALIDATOR_TRUTH_REMEDIATION_RECEIPT.json (this file)"
+  ],
+  "iso_timestamp": "2026-11-12T20:00:00Z"
+}

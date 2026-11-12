@@ -1,0 +1,12 @@
+{
+  "gate": "dual_witness_gate",
+  "witness_a": "stateless_airblocked_witness (native Zig)",
+  "witness_b": "independent_python_witness (CPython stdlib)",
+  "shared_code": "ZERO",
+  "passed": false,
+  "reason": "Witness B (independent Python) failed closed (exit 1)",
+  "detail": "",
+  "db_path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/tri_brain/world_file.db",
+  "merkle_file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/tri_brain/merkle_root.hash",
+  "iso_timestamp": "2026-11-12T20:18:20ZZ"
+}

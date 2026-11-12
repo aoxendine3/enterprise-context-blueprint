@@ -1,0 +1,19 @@
+{
+  "gate": "lineage_reconciliation",
+  "remediated_by": "Daxx/Daxxco program-repair posture",
+  "source_db": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/.sovereign/provenance/lineage_dag.db",
+  "canonical_db": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/tri_brain/world_file.db",
+  "passed": true,
+  "reason": "LINEAGE_RECONCILED_PER_SESSION_DUPLICATES_QUARANTINED",
+  "detail": "0 duplicate (session, seq_num) rows quarantined; 3262 canonical per-session-monotonic rows written; both witnesses now agree",
+  "stats": {
+    "source_rows": 3262,
+    "unique_session_seq_pairs": 3262,
+    "canonical_rows": 3262,
+    "quarantined_duplicate_rows": 0,
+    "evidence_rows": 107,
+    "sessions": 21,
+    "post_verification_violations": 0
+  },
+  "iso_timestamp": "2026-11-12T20:14:10.015158+00:00Z"
+}

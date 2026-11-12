@@ -1,0 +1,35 @@
+{
+  "gate": "xoras_sentry_infrastructure_gate_remediation",
+  "remediated_by": "Daxx/Daxxco program-repair posture (greenlight authorized)",
+  "workspace": "workspaces/xoras-sentry",
+  "problem": "tests/infrastructure_gate.test.cjs (L4 Transport Protocol validation) failed with PROTOCOL_FAILURE: Non-standard exit code detected. Root cause: bin/env-integrity-sentry.cjs did not exist — the test spawns `node bin/env-integrity-sentry.cjs --verify` and expects exit code 0 or 1, but the entry point was missing entirely, so spawnSync could not launch it (status null).",
+  "fix_applied": [
+    "Created bin/env-integrity-sentry.cjs — standalone --verify entry point for the sentry's L4 transport protocol gate.",
+    "The script verifies four infrastructure integrity pillars and exits 0 (pass) or 1 (fail):",
+    "  1. rules/default.json present and valid JSON with non-empty profiles array (SHA-256 logged)",
+    "  2. action/src/lib/signer.cjs loads and HMAC-SHA256 sign/verify round-trip succeeds",
+    "  3. packages/core/src/scanner.cjs loads cleanly",
+    "  4. action/boundary_gate.cjs loads cleanly",
+    "On success: prints INTEGRITY VERIFIED, exits 0. On any failure: lists failures, exits 1."
+  ],
+  "verification_performed": [
+    "Direct run: node bin/env-integrity-sentry.cjs --verify → INTEGRITY VERIFIED, exit 0.",
+    "Full xoras-sentry test suite (10 tests): ALL PASS:",
+    "  sandbox.test.cjs — OPERATIONAL (5 physical AST scan checks)",
+    "  audit.test.cjs — 3 passed (env-integrity audit logic)",
+    "  infrastructure_gate.test.cjs — INFRASTRUCTURE_GATING_PASSED (exit 0)",
+    "  revenue.test.cjs — REVENUE INTEGRITY VERIFIED (deterministic)",
+    "  spectrum.test.cjs — SPECTRUM AUDIT COMPLETE (3 adversarial vectors blocked)",
+    "  fuzz.cjs — FUZZING COMPLETE (survived pathological payloads)",
+    "  innovation.test.cjs — INTEGRITY PROOF COMPLETE (all claims verified)",
+    "  pathological_coverage.test.cjs — 5 passed (baseline, symlink, AST shadowing, binary, deep nesting)",
+    "  stress.test.cjs — PASS (findings cap enforced, under time limit)",
+    "  stripe_live_fire.test.cjs — SIGNATURE_VERIFIED, license issued",
+    "Note: the test spawns `node` via PATH; ensure /opt/homebrew/bin (or node location) is on PATH when running.",
+  ],
+  "evidence_layer_note": "No evidence-layer data was modified or destroyed. The fix restores a missing entry point; the sentry's own integrity_registry.json and audit-results.json remain untouched.",
+  "receipts_written": [
+    "memory/catch_log/XORAS_SENTRY_INFRASTRUCTURE_GATE_REMEDIATION_RECEIPT.json (this file)"
+  ],
+  "iso_timestamp": "2026-11-12T21:45:00Z"
+}

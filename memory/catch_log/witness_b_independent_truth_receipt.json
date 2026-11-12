@@ -1,0 +1,10 @@
+{
+  "witness": "B_independent_python_truth",
+  "substrate": "CPython stdlib + SQLite",
+  "passed": false,
+  "reason": "Orphaned evidence claims in registry",
+  "detail": "6 digests not present as lineage node payload hashes",
+  "db_path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/tri_brain/world_file.db",
+  "claim_file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/tri_brain/merkle_root.hash",
+  "iso_timestamp": "2026-11-12T20:18:20.500147+00:00Z"
+}

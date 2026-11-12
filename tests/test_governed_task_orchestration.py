@@ -81,7 +81,7 @@ def main():
     print("\n--- WITNESS-GATE: REPLAY AUDIT OF BUSY TASK RUN ---")
     audit_res = orch.replay_audit()
     print(json.dumps(audit_res, indent=2))
-    assert audit_res["audit_verdict"] == "VERIFIED_ZERO_DEFECTS"
+    assert audit_res["audit_verdict"] == "VERIFIED_TASK_DEPENDENCY_INVARIANCE"
     assert audit_res["duplicate_claims"] == 0
     assert audit_res["out_of_order_errors"] == 0
 

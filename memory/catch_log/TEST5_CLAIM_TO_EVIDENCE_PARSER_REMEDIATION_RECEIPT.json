@@ -1,0 +1,17 @@
+{
+  "gate": "test5_claim_to_evidence_parser_remediation",
+  "remediated_by": "Daxx/Daxxco program-repair posture",
+  "file_remediated": "tests/test_xoras_info_adversarial_gauntlet.py",
+  "root_cause": "Test 5 claim-to-evidence parser split the artifact column on '&' only, but CLAIM_TO_EVIDENCE_REGISTER.md separates paths with BOTH commas and ampersands (e.g. 'tests/a.py, tests/b.py, & tests/c.py'). A comma-joined token such as 'tests/test_m1_adversarial_stress_gauntlet.py, tests/test_m1_it2_challenger2_orion_lock_falsification.py' was treated as a single nonexistent path, producing false 'missing artifact' failures for CLM-017 through CLM-024. All artifacts actually exist on disk.",
+  "fix_applied": [
+    "Added 'import re'.",
+    "Changed artifact-column tokenization from artifact_col.split('&') to re.split(r'[,&]', artifact_col), then strip whitespace and skip empty/http/Replaced tokens.",
+    "Each resulting token is now resolved individually against the workspace root."
+  ],
+  "verification_performed": [
+    "Full adversarial gauntlet re-run: ALL 5 TESTS PASS.",
+    "Test 5: Verified 49 physical on-disk artifacts with ZERO unbacked claims (previously reported 8 missing artifacts CLM-017..CLM-024 due to parser bug).",
+    "Receipt written: memory/catch_log/XORAS_INFO_PURPLE_TEAM_ACCEPTANCE_RECEIPT.json (verdict: ALL_5_ACCEPTANCE_TESTS_VERIFIED)."
+  ],
+  "iso_timestamp": "2026-11-12T20:15:00Z"
+}

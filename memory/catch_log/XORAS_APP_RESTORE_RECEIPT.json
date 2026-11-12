@@ -1,0 +1,21 @@
+{
+  "gate": "xoras_app_scope_down_revert",
+  "remediated_by": "Daxx/Daxxco program-repair posture (corrected course per user direction)",
+  "workspace": "workspaces/xoras-app",
+  "reason": "User direction: do not gut the sovereign command center. The shell access, file write, monitor, DAXX swarm telemetry, and local-model routing are intentional parts of the sovereign build — not 'dangerous' corporate features to strip. Reverting all scope-down edits and restoring full original functionality.",
+  "files_restored": [
+    "src/lib/api.js — restored runShell, writeFile, listDir, getDojoErrors, monitorStart, monitorStop",
+    "src-tauri/src/lib.rs — restored run_shell, write_file, get_dojo_errors, monitor_start, monitor_stop commands + invoke_handler entries + tauri_plugin_shell; reverted read_file/list_dir SSOT_ROOT scoping; reverted telemetry block to full DAXX swarm claims; reverted sync_table to full 84-Helper BFT Swarm report",
+    "src-tauri/tauri.conf.json — restored csp: null",
+    "src/context/AppContext.jsx — restored getDojoErrors boot call and runTerminalCommand shell execution",
+    "src/components/SystemPanel.jsx — restored handlePull/handleDelete ollama shell commands",
+    "src/components/FileExplorer.jsx — restored saveFile write_file",
+    "src/components/DojoPanel.jsx — restored refreshErrors getDojoErrors",
+    "src/components/RightDrawer.jsx — restored runTerminalCommand import and handleQuickRun execution",
+    "src/components/Dashboard.jsx — restored runTerminalCommand import and self_healing/health_test shell commands",
+    "src/components/SovereignDaxxPanel.jsx — restored handleRunInTerminal python dispatch"
+  ],
+  "verification": "grep for 'scoped build' / 'read-only command center' across src/: zero matches (clean)",
+  "note": "No Rust/Node toolchain available to compile; recommend `cargo check --release` and `npm run build` when toolchain is present.",
+  "iso_timestamp": "2026-11-12T21:15:00Z"
+}
