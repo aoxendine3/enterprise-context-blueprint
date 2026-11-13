@@ -1,0 +1,16 @@
+{
+  "receipt": "DAXX_SETTINGS_SAVE_TRUTH_VERIFICATION",
+  "utc": "2026-11-13T12:30:00Z",
+  "report": "settings save appeared disconnected from the backend",
+  "diagnosis": [
+    "SQL path verified sound: save_settings performs a real UPSERT into the 'app' settings row; row exists, seeded by init_app at first launch",
+    "actual UI defect (ours): save_settings returns Ok(()) which reaches JS as null, and the note logic treated null as 'backend unreachable' - a SUCCESSFUL save displayed 'Save failed', making a working backend look disconnected",
+    "onboarding save had no verification either"
+  ],
+  "fix": [
+    "save now VERIFIES BY READ-BACK: after the write, get_settings re-reads the ledger and the UI compares persisted values against what was requested; the note reports read-back truth ('Saved and verified in the local ledger (read-back match)'), never the null-return artifact",
+    "onboarding does the same read-back check before declaring success"
+  ],
+  "verification": "rebuilt + relaunched (app stable); settings row present; final confirmation is user save -> read-back note -> visible row change",
+  "status": "SAVE PATH TRUTH-VERIFIED"
+}
