@@ -115,6 +115,17 @@ def _verify_dir_against(dirpath: Path, entries: list[dict]) -> list[str]:
     return failures
 
 
+def _snapshot_relative(src: Path) -> Path:
+    """Snapshot path: project files keep their layout; external deployment
+    files (e.g. DaxxCo_Tech, Project_Clara) are stored under external/
+    with a stable path-hash prefix — never lost, never colliding."""
+    try:
+        return src.relative_to(ROOT)
+    except ValueError:
+        stable = hashlib.sha256(str(src.parent).encode()).hexdigest()[:10]
+        return Path("external") / stable / src.name
+
+
 def snapshot(label: str, files: list[str]) -> str:
     if not files:
         print("FAIL CLOSED: no files provided for snapshot")
@@ -132,11 +143,11 @@ def snapshot(label: str, files: list[str]) -> str:
         if not src.exists():
             print(f"FAIL CLOSED: snapshot source missing: {src}")
             sys.exit(1)
-        dest = snap_dir / src.relative_to(ROOT)
+        dest = snap_dir / _snapshot_relative(src)
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(src, dest)
         entries.append({
-            "file": str(src.relative_to(ROOT)),
+            "file": str(_snapshot_relative(src)),
             "sha256": sha256_file(src),
             "bytes": src.stat().st_size,
         })
