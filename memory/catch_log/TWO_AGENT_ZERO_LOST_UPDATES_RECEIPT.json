@@ -12,5 +12,5 @@
   "final_state_value": 20,
   "final_version": 21,
   "verdict": "ZERO_LOST_UPDATES_PROVEN",
-  "ledger_file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/agent_logs/two_agent_concurrency_ledger.jsonl"
+  "ledger_file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/scratch/enterprise-context-blueprint/memory/agent_logs/two_agent_concurrency_ledger.jsonl"
 }

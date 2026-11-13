@@ -175,5 +175,5 @@ class GovernedTaskOrchestrator:
             "unique_tasks": len(task_history),
             "duplicate_claims": len(duplicate_claim_errors),
             "out_of_order_errors": len(out_of_order_errors),
-            "audit_verdict": "VERIFIED_ZERO_DEFECTS" if not (duplicate_claim_errors or out_of_order_errors) else "FAILED"
+            "audit_verdict": "VERIFIED_TASK_DEPENDENCY_INVARIANCE" if not (duplicate_claim_errors or out_of_order_errors) else "FAILED"
         }

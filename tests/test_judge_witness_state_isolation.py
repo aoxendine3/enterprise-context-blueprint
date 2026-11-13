@@ -13,12 +13,13 @@ import os
 import concurrent.futures
 import json
 
-sys.path.append("/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain")
+REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, REPO_ROOT)
 from core.memory.governed_state_ledger import StateIsolationEngine, LEDGER_PATH
 
 def run_concurrency_test():
     # Clear test ledger
-    test_ledger = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/agent_logs/test_concurrency_ledger.jsonl"
+    test_ledger = os.path.join(REPO_ROOT, "memory/agent_logs/test_concurrency_ledger.jsonl")
     if os.path.exists(test_ledger):
         os.remove(test_ledger)
 
@@ -123,7 +124,7 @@ def run_concurrency_test():
         "verdict": "VERIFIED_ZERO_LOST_UPDATES"
     }
 
-    receipt_path = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/catch_log/STATE_ISOLATION_CONCURRENCY_RECEIPT.json"
+    receipt_path = os.path.join(REPO_ROOT, "memory/catch_log/STATE_ISOLATION_CONCURRENCY_RECEIPT.json")
     with open(receipt_path, "w") as f:
         json.dump(receipt, f, indent=2)
 

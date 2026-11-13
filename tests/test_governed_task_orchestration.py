@@ -12,11 +12,12 @@ import sys
 import json
 import time
 
-sys.path.insert(0, "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain")
+REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, REPO_ROOT)
 from core.governance.governed_task_orchestrator import GovernedTaskOrchestrator, TaskState
 
-LEDGER_TEST_PATH = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/agent_logs/test_governed_task_ledger.jsonl"
-RECEIPT_PATH = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/catch_log/GOVERNED_TASK_ORCHESTRATOR_RECEIPT.json"
+LEDGER_TEST_PATH = os.path.join(REPO_ROOT, "memory/agent_logs/test_governed_task_ledger.jsonl")
+RECEIPT_PATH = os.path.join(REPO_ROOT, "memory/catch_log/GOVERNED_TASK_ORCHESTRATOR_RECEIPT.json")
 
 def main():
     if os.path.exists(LEDGER_TEST_PATH):

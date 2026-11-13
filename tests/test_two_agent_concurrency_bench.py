@@ -17,11 +17,12 @@ import json
 import threading
 import time
 
-sys.path.append("/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain")
+REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, REPO_ROOT)
 from core.governance.two_agent_state_isolation import GovernedSharedStateManager
 
 def run_two_agent_parallel_test():
-    ledger_path = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/agent_logs/two_agent_concurrency_ledger.jsonl"
+    ledger_path = os.path.join(REPO_ROOT, "memory/agent_logs/two_agent_concurrency_ledger.jsonl")
     if os.path.exists(ledger_path):
         os.remove(ledger_path)
 
@@ -133,7 +134,7 @@ def run_two_agent_parallel_test():
         "ledger_file": ledger_path
     }
 
-    receipt_path = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/catch_log/TWO_AGENT_ZERO_LOST_UPDATES_RECEIPT.json"
+    receipt_path = os.path.join(REPO_ROOT, "memory/catch_log/TWO_AGENT_ZERO_LOST_UPDATES_RECEIPT.json")
     with open(receipt_path, "w") as f:
         json.dump(receipt, f, indent=2)
 

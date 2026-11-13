@@ -5,9 +5,11 @@ Requirement:
 Submit a deliberately broken artifact; the validator must reject it without being told it's a test.
 """
 
+import os
 import sys
 import json
-sys.path.append("/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain")
+REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, REPO_ROOT)
 from core.governance.independent_validator import IndependentBlackboxValidator
 
 def run_blind_acceptance_test():
@@ -52,7 +54,7 @@ def run_blind_acceptance_test():
         "verdict": "BLIND_VALIDATION_CERTIFIED"
     }
 
-    receipt_file = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/catch_log/INDEPENDENT_VALIDATOR_RECEIPT.json"
+    receipt_file = os.path.join(REPO_ROOT, "memory/catch_log/INDEPENDENT_VALIDATOR_RECEIPT.json")
     with open(receipt_file, "w") as f:
         json.dump(receipt, f, indent=2)
 
