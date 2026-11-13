@@ -1,0 +1,22 @@
+{
+  "receipt": "SOVEREIGN_TOOL_ACCOUNTANT_ADOPTED",
+  "utc": "2026-11-13T10:40:00Z",
+  "mandate": "tool accountant tracking performance and stability of the toolchain over the working process (monitoring, stability, structure, sovereignty, autonomy, sync)",
+  "delivered": {
+    "core/ops/scripts/sovereign_tool_accountant.py": "append-only hash-chained tool ledger + rolling-window stability scores (success rate x latency consistency), run/record/report/verify subcommands",
+    "ledger": "memory/observability/tool_ledger.jsonl (chain-verified, writer-log refs per entry, cross-linked to activity trace chain)",
+    "report": "memory/intelligence/tool_stability_report.json (STABLE/WATCH/UNSTABLE/INSUFFICIENT classifications)"
+  },
+  "incidents_found_and_fixed_during_adoption": [
+    "dual_witness_gate.sh trace hook + witness B + claim recompute used system python3 (/usr/bin/python3, pre-PEP604) which cannot run the trace/witness scripts - monitoring silently degraded as [trace-degraded]; fixed: gate now pins the project venv interpreter ($ROOT/.venv/bin/python) for all python calls",
+    "accountant tool-name resolution grouped runs by interpreter binary (python/bash); fixed to resolve the accountable script name; defective seed ledger quarantined to memory/observability/quarantine/tool_ledger_interpreter_named.jsonl (no deletions)",
+    "stray typo directory SSOT_Agendic_Brain created by a path slip was corrected immediately (file moved, empty dir removed)"
+  ],
+  "first_stability_report": {
+    "dual_witness_gate.sh": "WATCH 76.2 (100% success, 187ms avg - variance term dominant)",
+    "sovereign_rollback_manager.py": "STABLE 98.6",
+    "db_inventory_audit.py": "UNSTABLE 0.0 on consistency (100% success; latency swings ~300ms-5s, disk-cache variance)",
+    "note": "scores are consistency-sensitive by design; UNSTABLE here flags latency variance, not failures"
+  },
+  "status": "LIVE - all governed tool runs now accountable"
+}

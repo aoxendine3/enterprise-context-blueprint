@@ -19,6 +19,10 @@ unset LD_LIBRARY_PATH
 export PATH="/usr/bin:/bin:/usr/local/bin:$PATH"
 
 ROOT="/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain"
+# Sovereign interpreter: always the project's own venv Python. System
+# python3 (/usr/bin/python3) predates PEP 604 and cannot run the trace
+# or witness scripts — using it silently degrades monitoring.
+PY="$ROOT/.venv/bin/python"
 WITNESS_A_BIN="$ROOT/core/ops/bin/stateless_airblocked_witness"
 WITNESS_B_PY="$ROOT/core/ops/scripts/independent_python_witness.py"
 DB_PATH="$ROOT/memory/tri_brain/world_file.db"
@@ -90,7 +94,7 @@ fi
 # Self-healing: the claim file is recomputed INDEPENDENTLY (pairwise sha256
 # over canonical nodes, timestamp ASC, rowid ASC) so it always describes the
 # on-disk canonical truth the witness verifies. Written only if it differs.
-CLAIM_RECOMPUTED=$(python3 - <<PYEOF
+CLAIM_RECOMPUTED=$("$PY" - <<PYEOF
 import sqlite3, hashlib
 db = "$ROOT/memory/tri_brain/world_file.db"
 conn = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
@@ -135,7 +139,7 @@ log "[WITNESS A] Receipt written: $WA_RECEIPT"
 # --- Run Witness B (independent Python) ---
 log "[WITNESS B] Executing independent Python truth witness..."
 WITNESS_B_OUT=""; WITNESS_B_RC=0
-WITNESS_B_OUT=$(python3 "$WITNESS_B_PY" 2>&1) || WITNESS_B_RC=$?
+WITNESS_B_OUT=$("$PY" "$WITNESS_B_PY" 2>&1) || WITNESS_B_RC=$?
 log "$WITNESS_B_OUT"
 if [ "$WITNESS_B_RC" -ne 0 ]; then
   fail_closed "Witness B (independent Python) failed closed (exit $WITNESS_B_RC)"
@@ -146,5 +150,5 @@ log "[WITNESS B] PASSED: independent Python verified on-disk truth."
 log "[CONSENSUS] Witness A and Witness B independently verified identical on-disk truth."
 write_receipt "true" "DUAL_WITNESS_CONSENSUS" "Both witnesses passed; zero shared code; fail-closed on disagreement."
 log "✅ DUAL-WITNESS GATE PASSED: Dual-substrate consensus achieved. Pipeline authorized."
-python3 "$ROOT/core/ops/scripts/sovereign_activity_trace.py" span --trace dual_witness_gate --action "gate PASSED dual-substrate consensus" --actor dual_witness_gate.sh >/dev/null 2>&1 || log "[trace-degraded] activity trace unavailable"
+"$PY" "$ROOT/core/ops/scripts/sovereign_activity_trace.py" span --trace dual_witness_gate --action "gate PASSED dual-substrate consensus" --actor dual_witness_gate.sh >/dev/null 2>&1 || log "[trace-degraded] activity trace unavailable"
 exit 0
