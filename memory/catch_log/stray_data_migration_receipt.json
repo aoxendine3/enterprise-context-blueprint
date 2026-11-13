@@ -1,0 +1,14 @@
+{
+  "receipt": "STRAY_DATA_MIGRATION_TO_PROJECT_INTERNAL",
+  "utc": "2026-11-13T09:12:00Z",
+  "mandate": "all data and records remain in proper project location; no separate opencode/tmp stores",
+  "migrated_copies": {
+    "/tmp/ag_conv_copy/*.db": "memory/imported/gemini_conversation_dbs/",
+    "/tmp/pptx_extract/": "memory/imported/pptx_extract/",
+    "/tmp/xoras_last_speech_timestamp.txt": "memory/imported/tmp_strays/",
+    "/tmp/xoras_merkle_seed.tensor": "memory/imported/tmp_strays/",
+    "/tmp/xoras_media_director/": "memory/imported/tmp_strays/"
+  },
+  "policy": "originals in /tmp left untouched (no-deletion law); all governed tools write ONLY inside SSOT_Agentic_Brain going forward: trace ledger, rollback snapshots, safe points, catalogs, receipts all project-internal",
+  "status": "complete"
+}

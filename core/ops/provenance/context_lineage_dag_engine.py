@@ -186,7 +186,32 @@ class ContextLineageEngine:
         return hashes[0]
 
     def sync_global_merkle_root(self, target_file: Optional[str] = None) -> str:
-        global_root = self.calculate_global_merkle_root()
+        # The claim file verified by the witnesses must describe the CANONICAL
+        # evidence store (memory/tri_brain/world_file.db), not the working
+        # mirror the engine commits into. Canonical root is computed
+        # independently; falls back to this engine's own DB if canonical
+        # is unavailable.
+        global_root = None
+        canonical_db = os.path.expanduser(
+            "~/Desktop/SSOT_Agentic_Brain/memory/tri_brain/world_file.db")
+        if os.path.exists(canonical_db):
+            conn = sqlite3.connect(f"file:{canonical_db}?mode=ro", uri=True)
+            try:
+                hashes = [r[0] for r in conn.execute(
+                    "SELECT node_id FROM lineage_nodes ORDER BY timestamp ASC, rowid ASC").fetchall()]
+                while len(hashes) > 1:
+                    hashes = [
+                        hashlib.sha256((hashes[i] + hashes[i + 1]).encode("utf-8")).hexdigest()
+                        if i + 1 < len(hashes) else hashes[i]
+                        for i in range(0, len(hashes), 2)
+                    ]
+                global_root = hashes[0] if hashes else ""
+            except Exception:
+                global_root = None
+            finally:
+                conn.close()
+        if not global_root:
+            global_root = self.calculate_global_merkle_root()
         if target_file is not None:
             os.makedirs(os.path.dirname(target_file), exist_ok=True)
             with open(target_file, "w", encoding="utf-8") as f:

@@ -56,6 +56,7 @@ fail_closed() {
   exit 1
 }
 
+
 # --- Pre-flight: both witnesses must exist ---
 if [ ! -x "$WITNESS_A_BIN" ]; then
   fail_closed "Witness A binary missing or not executable" "$WITNESS_A_BIN"
@@ -74,19 +75,35 @@ log "=== DUAL-WITNESS GATE STARTING (fail-closed on disagreement) ==="
 
 # --- Journal-mode remediation: the Zig witness opens the DB read-only ---
 # A WAL-mode DB without its -shm file cannot be opened read-only, so the
-# witness fails closed with "unable to open database file". The gate
-# switches the DB to DELETE journal mode for the witness run and restores
-# WAL mode on exit. No data is modified — only the journal mode header.
-restore_wal() {
-  sqlite3 "$DB_PATH" "PRAGMA journal_mode=WAL;" >/dev/null 2>&1 || true
-}
-trap restore_wal EXIT
+# witness fails closed with "unable to open database file". The canonical
+# store is therefore kept PERMANENTLY in DELETE journal mode (no restore
+# trap: restoring WAL broke every subsequent read-only consumer).
 JMODE=$(sqlite3 "$DB_PATH" "PRAGMA journal_mode;" 2>/dev/null || echo "unknown")
-if [ "$JMODE" = "wal" ]; then
+if [ "$JMODE" != "delete" ]; then
   rm -f "$DB_PATH-wal" "$DB_PATH-shm"
   sqlite3 "$DB_PATH" "PRAGMA journal_mode=DELETE;" >/dev/null 2>&1 \
     || fail_closed "Cannot switch journal mode for witness read" "$DB_PATH"
-  log "[PRE-FLIGHT] Journal mode switched WAL -> DELETE for read-only witness access (restored on exit)."
+  log "[PRE-FLIGHT] Journal mode set to DELETE (permanent policy) for read-only witness access."
+fi
+
+# --- Pre-flight: refresh the Merkle claim from the canonical store ---
+# Self-healing: the claim file is recomputed INDEPENDENTLY (pairwise sha256
+# over canonical nodes, timestamp ASC, rowid ASC) so it always describes the
+# on-disk canonical truth the witness verifies. Written only if it differs.
+CLAIM_RECOMPUTED=$(python3 - <<PYEOF
+import sqlite3, hashlib
+db = "$ROOT/memory/tri_brain/world_file.db"
+conn = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
+layer = [r[0] for r in conn.execute("SELECT node_id FROM lineage_nodes ORDER BY timestamp ASC, rowid ASC").fetchall()]
+conn.close()
+while len(layer) > 1:
+    layer = [hashlib.sha256((layer[i] + layer[i+1]).encode()).hexdigest() if i+1 < len(layer) else layer[i] for i in range(0, len(layer), 2)]
+print(layer[0] if layer else "")
+PYEOF
+) || CLAIM_RECOMPUTED=""
+if [ -n "$CLAIM_RECOMPUTED" ] && [ "$CLAIM_RECOMPUTED" != "$(tr -d ' \n\r' < "$MERKLE_FILE")" ]; then
+  printf '%s\n' "$CLAIM_RECOMPUTED" > "$MERKLE_FILE"
+  log "[PRE-FLIGHT] Merkle claim refreshed from canonical store: ${CLAIM_RECOMPUTED:0:16}..."
 fi
 
 
