@@ -1,0 +1,3821 @@
+{
+  "elapsed_s": 65.7,
+  "run_utc": "2026-11-13T09:15:36Z",
+  "sources": [
+    {
+      "dbs": [
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-09T16:02:44Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/xoras_brain.db",
+          "sha_head": "7995af6919417ec7",
+          "status": "OK",
+          "tables": {
+            "global_evidence_registry": {
+              "rows": 0
+            },
+            "lineage_nodes": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 3391488,
+          "content_earliest": "2026-09-30T05:07:32Z",
+          "content_latest": "2026-11-09T17:24:19Z",
+          "mtime_utc": "2026-11-11T16:58:15Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/catch_log/backups/lineage_dag_pre_repair_20261111-115815.db",
+          "sha_head": "7e91d8eb68f09aa3",
+          "status": "OK",
+          "tables": {
+            "global_evidence_registry": {
+              "rows": 107
+            },
+            "lineage_nodes": {
+              "range": [
+                "1790744852.2624278",
+                "1794245059.943947"
+              ],
+              "rows": 3262
+            }
+          }
+        },
+        {
+          "bytes": 2973696,
+          "content_earliest": "2026-09-30T05:07:32Z",
+          "content_latest": "2026-11-13T08:57:16Z",
+          "mtime_utc": "2026-11-13T09:09:58Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/tri_brain/world_file.db",
+          "sha_head": "3740bbcf51b77581",
+          "status": "OK",
+          "tables": {
+            "blackboard_registers": {
+              "rows": 0
+            },
+            "daxx_mission_events": {
+              "rows": 0
+            },
+            "daxx_worker_receipts": {
+              "rows": 0
+            },
+            "entities": {
+              "rows": 0
+            },
+            "error_placeholders": {
+              "rows": 0
+            },
+            "global_evidence_registry": {
+              "rows": 133
+            },
+            "knowledge_objects": {
+              "rows": 0
+            },
+            "lineage_nodes": {
+              "range": [
+                "1790744852.2624278",
+                "1794560236.8527339"
+              ],
+              "rows": 3288
+            },
+            "task_checkpoints": {
+              "rows": 0
+            },
+            "typed_links": {
+              "rows": 0
+            },
+            "world_file_manifest_pointers": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": "2026-10-06T21:35:07Z",
+          "content_latest": "2026-10-06T21:35:12Z",
+          "mtime_utc": "2026-10-06T21:35:12Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/tri_brain/merkle_db.sqlite",
+          "sha_head": "b6d3c7cd5b2e5ef8",
+          "status": "OK",
+          "tables": {
+            "global_evidence_registry": {
+              "rows": 1
+            },
+            "lineage_nodes": {
+              "range": [
+                "1791322507.572437",
+                "1791322512.014936"
+              ],
+              "rows": 2
+            }
+          }
+        },
+        {
+          "bytes": 282624,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-12T19:16:35Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/tri_brain/governed_sqlite_state.db",
+          "sha_head": "846eabb6abfd2dc1",
+          "status": "OK",
+          "tables": {
+            "governed_keys": {
+              "rows": 1
+            },
+            "witness_write_ledger": {
+              "rows": 1149
+            }
+          }
+        },
+        {
+          "bytes": 4292608,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-12T20:01:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/imported/gemini_conversation_dbs/fb1d3738-bf09-43ae-a94b-77a2ec8991a0.db",
+          "sha_head": "3bae7419a7b2f3c3",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 34
+            },
+            "gen_metadata": {
+              "rows": 141
+            },
+            "parent_references": {
+              "rows": 2
+            },
+            "steps": {
+              "rows": 292
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 1540096,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-12T20:01:58Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/imported/gemini_conversation_dbs/5388d88d-a429-465b-879e-6724d6087220.db",
+          "sha_head": "99b71dc5a61fbc09",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 4
+            },
+            "gen_metadata": {
+              "rows": 56
+            },
+            "parent_references": {
+              "rows": 0
+            },
+            "steps": {
+              "rows": 113
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 425984,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-12T20:01:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/imported/gemini_conversation_dbs/f469383d-9835-4987-989e-575612b82499.db",
+          "sha_head": "50780905a9057c15",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 1
+            },
+            "gen_metadata": {
+              "rows": 3
+            },
+            "parent_references": {
+              "rows": 0
+            },
+            "steps": {
+              "rows": 6
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 1507328,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-12T20:01:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/imported/gemini_conversation_dbs/d4d6809a-c40a-48ff-90f6-7c3561313ea9.db",
+          "sha_head": "c2d88d06223a5a3b",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 2
+            },
+            "gen_metadata": {
+              "rows": 22
+            },
+            "parent_references": {
+              "rows": 0
+            },
+            "steps": {
+              "rows": 47
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 5898240,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-12T20:01:58Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/imported/gemini_conversation_dbs/6a348671-d6e2-4fec-8959-5a5cc979a1b0.db",
+          "sha_head": "9e78ca24718a069e",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 21
+            },
+            "gen_metadata": {
+              "rows": 164
+            },
+            "parent_references": {
+              "rows": 0
+            },
+            "steps": {
+              "rows": 333
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 1081344,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-12T20:01:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/imported/gemini_conversation_dbs/d0aedd61-2bf3-45c8-9e94-7607ffbc6241.db",
+          "sha_head": "8990373f2f667a37",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 3
+            },
+            "gen_metadata": {
+              "rows": 35
+            },
+            "parent_references": {
+              "rows": 0
+            },
+            "steps": {
+              "rows": 77
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 884736,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-12T20:01:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/imported/gemini_conversation_dbs/c2da0262-d1fb-4a72-81d0-0aeb8dfe2f79.db",
+          "sha_head": "16be5b0fbffd2f55",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 2
+            },
+            "gen_metadata": {
+              "rows": 7
+            },
+            "parent_references": {
+              "rows": 0
+            },
+            "steps": {
+              "rows": 30
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 7536640,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-12T20:01:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/imported/gemini_conversation_dbs/85a2fad6-54e6-4d93-a8b0-2105ca19fe85.db",
+          "sha_head": "77e6295e2082294c",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 113
+            },
+            "gen_metadata": {
+              "rows": 307
+            },
+            "parent_references": {
+              "rows": 0
+            },
+            "steps": {
+              "rows": 628
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 4980736,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-12T20:01:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/imported/gemini_conversation_dbs/b360b0bd-c3ab-4128-9d10-be43a0e9200f.db",
+          "sha_head": "821984356895fca3",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 4
+            },
+            "gen_metadata": {
+              "rows": 29
+            },
+            "parent_references": {
+              "rows": 0
+            },
+            "steps": {
+              "rows": 62
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 1867776,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-12T20:01:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/imported/gemini_conversation_dbs/c565417a-cabf-46f4-9f37-0c46a73e2e8d.db",
+          "sha_head": "1ff2243554d902cc",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 4
+            },
+            "gen_metadata": {
+              "rows": 46
+            },
+            "parent_references": {
+              "rows": 0
+            },
+            "steps": {
+              "rows": 96
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 1081344,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-12T20:01:58Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/imported/gemini_conversation_dbs/3cb91238-18be-4724-891e-3ba2855acd41.db",
+          "sha_head": "bb95f1f49e3ed2c4",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 1
+            },
+            "gen_metadata": {
+              "rows": 24
+            },
+            "parent_references": {
+              "rows": 0
+            },
+            "steps": {
+              "rows": 48
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 851968,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-12T20:01:58Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/imported/gemini_conversation_dbs/75111e3c-de59-4df0-984d-311311d85495.db",
+          "sha_head": "c9c5554607af9f4d",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 7
+            },
+            "gen_metadata": {
+              "rows": 7
+            },
+            "parent_references": {
+              "rows": 1
+            },
+            "steps": {
+              "rows": 14
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 103895040,
+          "content_earliest": "2026-10-26T03:19:03Z",
+          "content_latest": "2026-10-26T16:48:37Z",
+          "mtime_utc": "2026-11-09T16:02:44Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/vault/sovereign_durable_workflows.db",
+          "sha_head": "ef5b6555aa0a2500",
+          "status": "OK",
+          "tables": {
+            "event_history": {
+              "range": [
+                "1792984743.187331",
+                "1793033317.094938"
+              ],
+              "rows": 116207
+            },
+            "global_evidence_registry": {
+              "rows": 0
+            },
+            "lineage_nodes": {
+              "rows": 0
+            },
+            "workflows": {
+              "range": [
+                "1792984743.187331",
+                "1793033317.070805"
+              ],
+              "rows": 5058
+            }
+          }
+        }
+      ],
+      "dirs": [],
+      "exists": true,
+      "files_indexed": 2490,
+      "root": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory",
+      "source": "SSOT_MEMORY",
+      "total_bytes": 686225052
+    },
+    {
+      "dbs": [
+        {
+          "bytes": 20480,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-10-03T04:34:49Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/xoras_brain.db",
+          "sha_head": "9a5018134856b9f3",
+          "status": "OK",
+          "tables": {
+            "memory_edges": {
+              "rows": 2
+            },
+            "memory_nodes": {
+              "range": [
+                "2026-10-03 04:33:31",
+                "2026-10-03 04:34:49"
+              ],
+              "rows": 3
+            }
+          }
+        },
+        {
+          "bytes": 2973696,
+          "content_earliest": "2026-09-30T05:07:32Z",
+          "content_latest": "2026-11-13T08:57:16Z",
+          "mtime_utc": "2026-11-13T09:09:58Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/tri_brain/world_file.db",
+          "sha_head": "3740bbcf51b77581",
+          "status": "OK",
+          "tables": {
+            "blackboard_registers": {
+              "rows": 0
+            },
+            "daxx_mission_events": {
+              "rows": 0
+            },
+            "daxx_worker_receipts": {
+              "rows": 0
+            },
+            "entities": {
+              "rows": 0
+            },
+            "error_placeholders": {
+              "rows": 0
+            },
+            "global_evidence_registry": {
+              "rows": 133
+            },
+            "knowledge_objects": {
+              "rows": 0
+            },
+            "lineage_nodes": {
+              "range": [
+                "1790744852.2624278",
+                "1794560236.8527339"
+              ],
+              "rows": 3288
+            },
+            "task_checkpoints": {
+              "rows": 0
+            },
+            "typed_links": {
+              "rows": 0
+            },
+            "world_file_manifest_pointers": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/omicron/brain/sovereign_cache.db",
+          "sha_head": "26dd9ef8ed091db5",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.291982+00:00",
+                "2026-09-16T06:23:44.291982+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/beta/brain/sovereign_cache.db",
+          "sha_head": "7f9c2bded3f07201",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.293897+00:00",
+                "2026-09-16T06:23:44.293897+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/delta/brain/sovereign_cache.db",
+          "sha_head": "7195fe85e2640660",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.295630+00:00",
+                "2026-09-16T06:23:44.295630+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/gamma/brain/sovereign_cache.db",
+          "sha_head": "2c251f318c947740",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.297168+00:00",
+                "2026-09-16T06:23:44.297168+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/zeta/brain/sovereign_cache.db",
+          "sha_head": "7a8ce2c77191cd31",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.298415+00:00",
+                "2026-09-16T06:23:44.298415+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/eden/brain/sovereign_cache.db",
+          "sha_head": "aaeff1206769cb73",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.299591+00:00",
+                "2026-09-16T06:23:44.299591+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/kael/brain/sovereign_cache.db",
+          "sha_head": "8255341e5999b8e2",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.300822+00:00",
+                "2026-09-16T06:23:44.300822+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/vera/brain/sovereign_cache.db",
+          "sha_head": "f7c625283f58b192",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.302195+00:00",
+                "2026-09-16T06:23:44.302195+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/gideon/brain/sovereign_cache.db",
+          "sha_head": "d4b046c82124d649",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.303699+00:00",
+                "2026-09-16T06:23:44.303699+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/apex/brain/sovereign_cache.db",
+          "sha_head": "2083afd9d3f62874",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.305460+00:00",
+                "2026-09-16T06:23:44.305460+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/selene/brain/sovereign_cache.db",
+          "sha_head": "82fa9256a6644905",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.306844+00:00",
+                "2026-09-16T06:23:44.306844+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/sia_core/brain/sovereign_cache.db",
+          "sha_head": "750210512ba545ac",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.308369+00:00",
+                "2026-09-16T06:23:44.308369+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/nu/brain/sovereign_cache.db",
+          "sha_head": "9e33ec27e6e53252",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.310105+00:00",
+                "2026-09-16T06:23:44.310105+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/axlon/brain/sovereign_cache.db",
+          "sha_head": "b1f30b661a8c6a1c",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.311828+00:00",
+                "2026-09-16T06:23:44.311828+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/lex/brain/sovereign_cache.db",
+          "sha_head": "f8055c5c1d14f4d9",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.313260+00:00",
+                "2026-09-16T06:23:44.313260+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/mu/brain/sovereign_cache.db",
+          "sha_head": "51eb6f1a73eb8497",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.314992+00:00",
+                "2026-09-16T06:23:44.314992+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/dr_jeremy/brain/sovereign_cache.db",
+          "sha_head": "92f97108086a6340",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:24:53.391887+00:00",
+                "2026-09-16T06:24:53.391887+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/clara/brain/sovereign_cache.db",
+          "sha_head": "41cc734402ded238",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.317857+00:00",
+                "2026-09-16T06:23:44.317857+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/zane/brain/sovereign_cache.db",
+          "sha_head": "cd71071348d62d28",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.318981+00:00",
+                "2026-09-16T06:23:44.318981+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/evan/brain/sovereign_cache.db",
+          "sha_head": "f2cc0f7e47c93b99",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.325304+00:00",
+                "2026-09-16T06:23:44.325304+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/rylan/brain/sovereign_cache.db",
+          "sha_head": "87a34c572674c20a",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.326669+00:00",
+                "2026-09-16T06:23:44.326669+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/epsilon/brain/sovereign_cache.db",
+          "sha_head": "f62cb6ed2c647400",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.328510+00:00",
+                "2026-09-16T06:23:44.328510+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/orion/brain/sovereign_cache.db",
+          "sha_head": "392decdad4f3515c",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.330523+00:00",
+                "2026-09-16T06:23:44.330523+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/xi/brain/sovereign_cache.db",
+          "sha_head": "bc89ec932371bac6",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.332370+00:00",
+                "2026-09-16T06:23:44.332370+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/nova/brain/sovereign_cache.db",
+          "sha_head": "1c1608b5f16121a2",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.333920+00:00",
+                "2026-09-16T06:23:44.333920+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/iota/brain/sovereign_cache.db",
+          "sha_head": "a0b9b483c8d1916b",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.335751+00:00",
+                "2026-09-16T06:23:44.335751+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/xoras/brain/sovereign_cache.db",
+          "sha_head": "c7d48704b536fdbb",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.337017+00:00",
+                "2026-09-16T06:23:44.337017+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 57344,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/maxx/brain/sovereign_cache.db",
+          "sha_head": "a77b3130b685abef",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:53:53.668633+00:00",
+                "2026-09-16T06:53:53.668633+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 1
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 2
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/koda/brain/sovereign_cache.db",
+          "sha_head": "73697719228bbdc2",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.339896+00:00",
+                "2026-09-16T06:23:44.339896+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/titus/brain/sovereign_cache.db",
+          "sha_head": "23cd7a1141ca28d3",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.341195+00:00",
+                "2026-09-16T06:23:44.341195+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/zorex/brain/sovereign_cache.db",
+          "sha_head": "e235b1310f648c67",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.342749+00:00",
+                "2026-09-16T06:23:44.342749+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/sentinel/brain/sovereign_cache.db",
+          "sha_head": "2972e68ec2afbc03",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.343975+00:00",
+                "2026-09-16T06:23:44.343975+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/arelius/brain/sovereign_cache.db",
+          "sha_head": "3807f16df5337e57",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.345281+00:00",
+                "2026-09-16T06:23:44.345281+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/veridex/brain/sovereign_cache.db",
+          "sha_head": "e3b462bfb9f9c95f",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.346936+00:00",
+                "2026-09-16T06:23:44.346936+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/vance/brain/sovereign_cache.db",
+          "sha_head": "e56175ba7bf0174d",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.348320+00:00",
+                "2026-09-16T06:23:44.348320+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/aria/brain/sovereign_cache.db",
+          "sha_head": "6a6f3af956e83d8a",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.349667+00:00",
+                "2026-09-16T06:23:44.349667+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/lambda/brain/sovereign_cache.db",
+          "sha_head": "09ef2dfd78004b2d",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.351251+00:00",
+                "2026-09-16T06:23:44.351251+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/kappa/brain/sovereign_cache.db",
+          "sha_head": "17ffb0e7a4e887d8",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.352612+00:00",
+                "2026-09-16T06:23:44.352612+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/john/brain/sovereign_cache.db",
+          "sha_head": "5d744a57465d9c37",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.354087+00:00",
+                "2026-09-16T06:23:44.354087+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/eta/brain/sovereign_cache.db",
+          "sha_head": "e11ca9078db2a2c3",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.355504+00:00",
+                "2026-09-16T06:23:44.355504+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/jarvis/brain/sovereign_cache.db",
+          "sha_head": "b9b0fc959600cf15",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.357041+00:00",
+                "2026-09-16T06:23:44.357041+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/atlas/brain/sovereign_cache.db",
+          "sha_head": "0cff5c6b2c7c5c2f",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.358535+00:00",
+                "2026-09-16T06:23:44.358535+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/daxx/brain/sovereign_cache.db",
+          "sha_head": "f91d123122933166",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:53:53.797378+00:00",
+                "2026-09-16T06:53:53.797378+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 1
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/silas/brain/sovereign_cache.db",
+          "sha_head": "87ab0bb529e64af2",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.361160+00:00",
+                "2026-09-16T06:23:44.361160+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/theta/brain/sovereign_cache.db",
+          "sha_head": "a301cc4dec8f55f7",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.362753+00:00",
+                "2026-09-16T06:23:44.362753+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/seraph/brain/sovereign_cache.db",
+          "sha_head": "f32bcdf7a0e6fb1e",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.364154+00:00",
+                "2026-09-16T06:23:44.364154+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/alpha/brain/sovereign_cache.db",
+          "sha_head": "fdf848bfdff53343",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.365483+00:00",
+                "2026-09-16T06:23:44.365483+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/aurelius/brain/sovereign_cache.db",
+          "sha_head": "fb1ea50172bc37af",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.367133+00:00",
+                "2026-09-16T06:23:44.367133+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-09-17T08:03:59Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory/citizens/lyra/brain/sovereign_cache.db",
+          "sha_head": "61267152f752004a",
+          "status": "OK",
+          "tables": {
+            "agent_state": {
+              "range": [
+                "2026-09-16T06:23:44.368851+00:00",
+                "2026-09-16T06:23:44.368851+00:00"
+              ],
+              "rows": 1
+            },
+            "episodic_memory": {
+              "rows": 0
+            },
+            "read_back_log": {
+              "rows": 0
+            },
+            "semantic_fragments": {
+              "rows": 0
+            },
+            "task_queue": {
+              "rows": 0
+            },
+            "vram_freeze_states": {
+              "rows": 0
+            }
+          }
+        }
+      ],
+      "dirs": [],
+      "exists": true,
+      "files_indexed": 3512,
+      "root": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/memory",
+      "source": "SSOT_CORE_MEMORY",
+      "total_bytes": 201568113
+    },
+    {
+      "dbs": [
+        {
+          "bytes": 1642496,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-09T17:23:36Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/.sovereign/world_file.db",
+          "sha_head": "a8945c4e4abb3181",
+          "status": "OK",
+          "tables": {
+            "anti_replay_ledger": {
+              "rows": 30
+            },
+            "capability_token_registry": {
+              "rows": 31
+            },
+            "ghrr_hypervectors": {
+              "range": [
+                "2026-10-02 12:06:02",
+                "2026-10-02 12:06:02"
+              ],
+              "rows": 1
+            },
+            "global_evidence_registry": {
+              "rows": 0
+            },
+            "hardened_anti_replay_ledger": {
+              "rows": 0
+            },
+            "hardened_capability_tokens": {
+              "rows": 2
+            },
+            "knowledge_objects": {
+              "rows": 3277
+            },
+            "lineage_nodes": {
+              "rows": 0
+            },
+            "master_merkle_checkpoints": {
+              "rows": 28
+            },
+            "mtpo_concurrency_ledger": {
+              "rows": 56
+            },
+            "secure_broker_audit_log": {
+              "rows": 4
+            },
+            "slopsquatting_intercept_log": {
+              "rows": 28
+            }
+          }
+        },
+        {
+          "bytes": 557056,
+          "content_earliest": "2026-10-13T03:48:56Z",
+          "content_latest": "2026-10-13T03:48:58Z",
+          "mtime_utc": "2026-10-13T03:48:58Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/.sovereign/gauntlets/concurrent_dual_substrate/live_lineage.db",
+          "sha_head": "9d2204d1d75c6b2b",
+          "status": "OK",
+          "tables": {
+            "global_evidence_registry": {
+              "rows": 391
+            },
+            "lineage_nodes": {
+              "range": [
+                "1791863336.725916",
+                "1791863338.086955"
+              ],
+              "rows": 391
+            }
+          }
+        },
+        {
+          "bytes": 61440,
+          "content_earliest": "2026-10-13T03:48:14Z",
+          "content_latest": "2026-10-13T03:48:14Z",
+          "mtime_utc": "2026-10-13T03:48:14Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/.sovereign/gauntlets/concurrent_dual_substrate/test_debug2.db",
+          "sha_head": "c7ecc71716f45080",
+          "status": "OK",
+          "tables": {
+            "global_evidence_registry": {
+              "rows": 32
+            },
+            "lineage_nodes": {
+              "range": [
+                "1791863294.2450361",
+                "1791863294.4898481"
+              ],
+              "rows": 32
+            }
+          }
+        },
+        {
+          "bytes": 57344,
+          "content_earliest": "2026-10-13T03:48:05Z",
+          "content_latest": "2026-10-13T03:48:05Z",
+          "mtime_utc": "2026-10-13T03:48:05Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/.sovereign/gauntlets/concurrent_dual_substrate/test_debug.db",
+          "sha_head": "ec344fe60a1e5f17",
+          "status": "OK",
+          "tables": {
+            "global_evidence_registry": {
+              "rows": 29
+            },
+            "lineage_nodes": {
+              "range": [
+                "1791863285.244542",
+                "1791863285.499653"
+              ],
+              "rows": 29
+            }
+          }
+        },
+        {
+          "bytes": 52539392,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-09T16:02:44Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/.sovereign/hippocampus/governed_memory.db",
+          "sha_head": "fa525feedcaa5bd8",
+          "status": "OK",
+          "tables": {
+            "global_evidence_registry": {
+              "rows": 0
+            },
+            "lineage_nodes": {
+              "rows": 0
+            },
+            "memory_records": {
+              "range": [
+                "2026-09-30T03:35:59.706528+00:00",
+                "2026-10-16T05:59:25.414875+00:00"
+              ],
+              "rows": 47
+            }
+          }
+        },
+        {
+          "bytes": 3489792,
+          "content_earliest": "2026-09-30T05:07:32Z",
+          "content_latest": "2026-11-13T09:13:05Z",
+          "mtime_utc": "2026-11-13T09:13:05Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/.sovereign/provenance/lineage_dag.db",
+          "sha_head": "b745240f93528ec9",
+          "status": "OK",
+          "tables": {
+            "blackboard_registers": {
+              "rows": 0
+            },
+            "daxx_mission_events": {
+              "rows": 0
+            },
+            "daxx_worker_receipts": {
+              "rows": 0
+            },
+            "entities": {
+              "rows": 0
+            },
+            "error_placeholders": {
+              "rows": 0
+            },
+            "global_evidence_registry": {
+              "rows": 139
+            },
+            "knowledge_objects": {
+              "rows": 0
+            },
+            "lineage_nodes": {
+              "range": [
+                "1790744852.2624278",
+                "1794561185.596402"
+              ],
+              "rows": 3294
+            },
+            "task_checkpoints": {
+              "rows": 0
+            },
+            "typed_links": {
+              "rows": 0
+            },
+            "world_file_manifest_pointers": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 774144,
+          "content_earliest": "2026-10-01T00:55:27Z",
+          "content_latest": "2026-10-01T00:55:29Z",
+          "mtime_utc": "2026-10-17T21:33:41Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/.sovereign/provenance/test_lineage_breaker.db",
+          "sha_head": "c82e50db5a3f1821",
+          "status": "OK",
+          "tables": {
+            "global_evidence_registry": {
+              "rows": 667
+            },
+            "lineage_nodes": {
+              "range": [
+                "1790816127.32393",
+                "1790816129.389932"
+              ],
+              "rows": 704
+            }
+          }
+        },
+        {
+          "bytes": 36864,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-09T16:02:44Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/.sovereign/provenance/lineage_nodes.db",
+          "sha_head": "7995af6919417ec7",
+          "status": "OK",
+          "tables": {
+            "global_evidence_registry": {
+              "rows": 0
+            },
+            "lineage_nodes": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 1138688,
+          "content_earliest": "2026-11-09T16:16:06Z",
+          "content_latest": "2026-11-09T16:16:07Z",
+          "mtime_utc": "2026-11-09T16:16:07Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/.sovereign/provenance/benchmark_lineage.db",
+          "sha_head": "fe3bc90d4beb56d6",
+          "status": "OK",
+          "tables": {
+            "global_evidence_registry": {
+              "rows": 200
+            },
+            "lineage_nodes": {
+              "range": [
+                "1794240966.560375",
+                "1794240967.377569"
+              ],
+              "rows": 600
+            }
+          }
+        },
+        {
+          "bytes": 69632,
+          "content_earliest": "2026-10-15T08:13:24Z",
+          "content_latest": "2026-10-15T09:00:41Z",
+          "mtime_utc": "2026-11-09T16:02:44Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/.sovereign/provenance/artifact_lineage_dag.db",
+          "sha_head": "0a01a6b1f0ed4383",
+          "status": "OK",
+          "tables": {
+            "artifact_lineage": {
+              "range": [
+                "1792052004.462506",
+                "1792054841.881781"
+              ],
+              "rows": 14
+            },
+            "global_evidence_registry": {
+              "rows": 0
+            },
+            "lineage_nodes": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 69632,
+          "content_earliest": "2026-09-30T06:53:58Z",
+          "content_latest": "2026-09-30T06:53:58Z",
+          "mtime_utc": "2026-09-30T06:53:58Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/.sovereign/provenance/test_corruption_replay.db",
+          "sha_head": "ac9209640173d39e",
+          "status": "OK",
+          "tables": {
+            "global_evidence_registry": {
+              "rows": 13
+            },
+            "lineage_nodes": {
+              "range": [
+                "1790751238.722294",
+                "1790751238.7374568"
+              ],
+              "rows": 17
+            }
+          }
+        }
+      ],
+      "dirs": [],
+      "exists": true,
+      "files_indexed": 57,
+      "root": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/.sovereign",
+      "source": "SSOT_SOVEREIGN",
+      "total_bytes": 64616791
+    },
+    {
+      "dbs": [
+        {
+          "bytes": 3391488,
+          "content_earliest": "2026-09-30T05:07:32Z",
+          "content_latest": "2026-11-09T17:24:19Z",
+          "mtime_utc": "2026-11-11T16:58:15Z",
+          "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/catch_log/backups/lineage_dag_pre_repair_20261111-115815.db",
+          "sha_head": "7e91d8eb68f09aa3",
+          "status": "OK",
+          "tables": {
+            "global_evidence_registry": {
+              "rows": 107
+            },
+            "lineage_nodes": {
+              "range": [
+                "1790744852.2624278",
+                "1794245059.943947"
+              ],
+              "rows": 3262
+            }
+          }
+        }
+      ],
+      "dirs": [],
+      "exists": true,
+      "files_indexed": 338,
+      "root": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/catch_log",
+      "source": "SSOT_CATCH_LOG",
+      "total_bytes": 14875586
+    },
+    {
+      "dbs": [],
+      "dirs": [],
+      "exists": true,
+      "files_indexed": 10006,
+      "root": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/docs",
+      "source": "SSOT_DOCS",
+      "total_bytes": 100964125
+    },
+    {
+      "dbs": [],
+      "dirs": [],
+      "exists": true,
+      "files_indexed": 613,
+      "root": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/barn",
+      "source": "SSOT_BARN_META_ONLY",
+      "total_bytes": 94219826
+    },
+    {
+      "dbs": [
+        {
+          "bytes": 9633792,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-13T08:47:53Z",
+          "path": "/Users/ajoxendine68/.gemini/antigravity/conversation_summaries.db",
+          "sha_head": "6f3a84d068baef75",
+          "status": "OK",
+          "tables": {
+            "conversation_summaries": {
+              "rows": 90
+            },
+            "conversations_fts": {
+              "rows": 226
+            },
+            "conversations_fts_config": {
+              "rows": 1
+            },
+            "conversations_fts_content": {
+              "rows": 226
+            },
+            "conversations_fts_data": {
+              "rows": 1106
+            },
+            "conversations_fts_docsize": {
+              "rows": 226
+            },
+            "conversations_fts_idx": {
+              "rows": 904
+            },
+            "search_schema_version": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 4292608,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-12T14:52:22Z",
+          "path": "/Users/ajoxendine68/.gemini/antigravity/conversations/fb1d3738-bf09-43ae-a94b-77a2ec8991a0.db",
+          "sha_head": "3bae7419a7b2f3c3",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 34
+            },
+            "gen_metadata": {
+              "rows": 141
+            },
+            "parent_references": {
+              "rows": 2
+            },
+            "steps": {
+              "rows": 292
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 1540096,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-12T14:33:22Z",
+          "path": "/Users/ajoxendine68/.gemini/antigravity/conversations/5388d88d-a429-465b-879e-6724d6087220.db",
+          "sha_head": "99b71dc5a61fbc09",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 4
+            },
+            "gen_metadata": {
+              "rows": 56
+            },
+            "parent_references": {
+              "rows": 0
+            },
+            "steps": {
+              "rows": 113
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 425984,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-11T22:38:55Z",
+          "path": "/Users/ajoxendine68/.gemini/antigravity/conversations/f469383d-9835-4987-989e-575612b82499.db",
+          "sha_head": "50780905a9057c15",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 1
+            },
+            "gen_metadata": {
+              "rows": 3
+            },
+            "parent_references": {
+              "rows": 0
+            },
+            "steps": {
+              "rows": 6
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 1507328,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-12T04:55:33Z",
+          "path": "/Users/ajoxendine68/.gemini/antigravity/conversations/d4d6809a-c40a-48ff-90f6-7c3561313ea9.db",
+          "sha_head": "c2d88d06223a5a3b",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 2
+            },
+            "gen_metadata": {
+              "rows": 22
+            },
+            "parent_references": {
+              "rows": 0
+            },
+            "steps": {
+              "rows": 47
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 5898240,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-12T02:15:10Z",
+          "path": "/Users/ajoxendine68/.gemini/antigravity/conversations/6a348671-d6e2-4fec-8959-5a5cc979a1b0.db",
+          "sha_head": "9e78ca24718a069e",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 21
+            },
+            "gen_metadata": {
+              "rows": 164
+            },
+            "parent_references": {
+              "rows": 0
+            },
+            "steps": {
+              "rows": 333
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 1081344,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-12T13:44:23Z",
+          "path": "/Users/ajoxendine68/.gemini/antigravity/conversations/d0aedd61-2bf3-45c8-9e94-7607ffbc6241.db",
+          "sha_head": "8990373f2f667a37",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 3
+            },
+            "gen_metadata": {
+              "rows": 35
+            },
+            "parent_references": {
+              "rows": 0
+            },
+            "steps": {
+              "rows": 77
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 884736,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-12T14:36:44Z",
+          "path": "/Users/ajoxendine68/.gemini/antigravity/conversations/c2da0262-d1fb-4a72-81d0-0aeb8dfe2f79.db",
+          "sha_head": "16be5b0fbffd2f55",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 2
+            },
+            "gen_metadata": {
+              "rows": 7
+            },
+            "parent_references": {
+              "rows": 0
+            },
+            "steps": {
+              "rows": 30
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 7536640,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-12T14:34:13Z",
+          "path": "/Users/ajoxendine68/.gemini/antigravity/conversations/85a2fad6-54e6-4d93-a8b0-2105ca19fe85.db",
+          "sha_head": "77e6295e2082294c",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 113
+            },
+            "gen_metadata": {
+              "rows": 307
+            },
+            "parent_references": {
+              "rows": 0
+            },
+            "steps": {
+              "rows": 628
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 4980736,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-11T22:38:29Z",
+          "path": "/Users/ajoxendine68/.gemini/antigravity/conversations/b360b0bd-c3ab-4128-9d10-be43a0e9200f.db",
+          "sha_head": "821984356895fca3",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 4
+            },
+            "gen_metadata": {
+              "rows": 29
+            },
+            "parent_references": {
+              "rows": 0
+            },
+            "steps": {
+              "rows": 62
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 1867776,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-12T04:58:57Z",
+          "path": "/Users/ajoxendine68/.gemini/antigravity/conversations/c565417a-cabf-46f4-9f37-0c46a73e2e8d.db",
+          "sha_head": "1ff2243554d902cc",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 4
+            },
+            "gen_metadata": {
+              "rows": 46
+            },
+            "parent_references": {
+              "rows": 0
+            },
+            "steps": {
+              "rows": 96
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 1081344,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-12T05:07:02Z",
+          "path": "/Users/ajoxendine68/.gemini/antigravity/conversations/3cb91238-18be-4724-891e-3ba2855acd41.db",
+          "sha_head": "bb95f1f49e3ed2c4",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 1
+            },
+            "gen_metadata": {
+              "rows": 24
+            },
+            "parent_references": {
+              "rows": 0
+            },
+            "steps": {
+              "rows": 48
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 851968,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-12T15:27:31Z",
+          "path": "/Users/ajoxendine68/.gemini/antigravity/conversations/75111e3c-de59-4df0-984d-311311d85495.db",
+          "sha_head": "c9c5554607af9f4d",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 7
+            },
+            "gen_metadata": {
+              "rows": 7
+            },
+            "parent_references": {
+              "rows": 1
+            },
+            "steps": {
+              "rows": 14
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        }
+      ],
+      "dirs": [],
+      "exists": true,
+      "files_indexed": 113,
+      "root": "/Users/ajoxendine68/.gemini",
+      "source": "GEMINI_HOME",
+      "total_bytes": 55430746
+    },
+    {
+      "dbs": [
+        {
+          "bytes": 32768,
+          "error": "database is locked",
+          "mtime_utc": "2026-10-12T12:52:03Z",
+          "path": "/Users/ajoxendine68/Library/Application Support/Antigravity/declarative_performance_observer.db",
+          "sha_head": "6b77b54313df8d75",
+          "status": "LOCKED_OR_UNREADABLE"
+        },
+        {
+          "bytes": 32768,
+          "error": "database is locked",
+          "mtime_utc": "2026-11-11T22:09:57Z",
+          "path": "/Users/ajoxendine68/Library/Application Support/Antigravity/Partitions/hub-browser-db28c807/declarative_performance_observer.db",
+          "sha_head": "6b77b54313df8d75",
+          "status": "LOCKED_OR_UNREADABLE"
+        },
+        {
+          "bytes": 32768,
+          "error": "database is locked",
+          "mtime_utc": "2026-10-25T16:31:01Z",
+          "path": "/Users/ajoxendine68/Library/Application Support/Antigravity/Partitions/hub-browser-anonymous/declarative_performance_observer.db",
+          "sha_head": "6b77b54313df8d75",
+          "status": "LOCKED_OR_UNREADABLE"
+        },
+        {
+          "bytes": 32768,
+          "error": "database is locked",
+          "mtime_utc": "2026-10-28T00:03:32Z",
+          "path": "/Users/ajoxendine68/Library/Application Support/Antigravity/Partitions/hub-browser-2793c883/declarative_performance_observer.db",
+          "sha_head": "6b77b54313df8d75",
+          "status": "LOCKED_OR_UNREADABLE"
+        }
+      ],
+      "dirs": [],
+      "exists": true,
+      "files_indexed": 366,
+      "root": "/Users/ajoxendine68/Library/Application Support/Antigravity",
+      "source": "ANTIGRAVITY_AS",
+      "total_bytes": 91949609
+    },
+    {
+      "dbs": [],
+      "dirs": [],
+      "exists": true,
+      "files_indexed": 1,
+      "root": "/Users/ajoxendine68/Library/Application Support/Antigravity IDE",
+      "source": "ANTIGRAVITY_IDE_AS",
+      "total_bytes": 10244
+    },
+    {
+      "dbs": [],
+      "dirs": [],
+      "exists": true,
+      "files_indexed": 1,
+      "root": "/Users/ajoxendine68/Library/Application Support/Claude",
+      "source": "CLAUDE_AS",
+      "total_bytes": 14340
+    },
+    {
+      "dbs": [
+        {
+          "bytes": 32768,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-11T20:48:54Z",
+          "path": "/Users/ajoxendine68/Library/Application Support/Cursor/snapshots/state/state.db",
+          "sha_head": "9b8719e6c942e485",
+          "status": "OK",
+          "tables": {
+            "h_checkpoint": {
+              "rows": 0
+            },
+            "h_commit": {
+              "rows": 0
+            },
+            "h_ref": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 323584,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-11T21:07:20Z",
+          "path": "/Users/ajoxendine68/Library/Application Support/Cursor/User/globalStorage/conversation-search.db",
+          "sha_head": "fad65a7c436a8b7c",
+          "status": "OK",
+          "tables": {
+            "conversation_fts": {
+              "rows": 9
+            },
+            "conversation_fts_config": {
+              "rows": 1
+            },
+            "conversation_fts_content": {
+              "rows": 9
+            },
+            "conversation_fts_data": {
+              "rows": 23
+            },
+            "conversation_fts_docsize": {
+              "rows": 9
+            },
+            "conversation_fts_idx": {
+              "rows": 21
+            },
+            "conversation_search_candidates": {
+              "range": [
+                "1791939524894",
+                "1794431126289"
+              ],
+              "rows": 9
+            },
+            "conversation_search_reconciliation": {
+              "rows": 1
+            },
+            "conversation_search_settings": {
+              "rows": 1
+            },
+            "conversations": {
+              "range": [
+                "1791939524894",
+                "1794431126289"
+              ],
+              "rows": 9
+            }
+          }
+        }
+      ],
+      "dirs": [],
+      "exists": true,
+      "files_indexed": 114,
+      "root": "/Users/ajoxendine68/Library/Application Support/Cursor",
+      "source": "CURSOR_AS",
+      "total_bytes": 20018492
+    },
+    {
+      "dbs": [],
+      "dirs": [],
+      "exists": true,
+      "files_indexed": 23,
+      "root": "/Users/ajoxendine68/Library/Application Support/com.google.GeminiMacOS",
+      "source": "GEMINI_MACOS_AS",
+      "total_bytes": 1094689
+    },
+    {
+      "dbs": [
+        {
+          "bytes": 1449984,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-13T09:04:56Z",
+          "path": "/Users/ajoxendine68/Library/Application Support/ai.opencode.desktop/drafts.sqlite",
+          "sha_head": "0d8ee6e28654d185",
+          "status": "OK",
+          "tables": {
+            "blob": {
+              "rows": 2
+            },
+            "document": {
+              "rows": 2
+            },
+            "migration": {
+              "rows": 6
+            },
+            "plugin": {
+              "rows": 0
+            },
+            "state": {
+              "range": [
+                "1794507357107",
+                "1794560856040"
+              ],
+              "rows": 16
+            }
+          }
+        },
+        {
+          "bytes": 32768,
+          "error": "database is locked",
+          "mtime_utc": "2026-11-12T18:15:51Z",
+          "path": "/Users/ajoxendine68/Library/Application Support/ai.opencode.desktop/declarative_performance_observer.db",
+          "sha_head": "6b77b54313df8d75",
+          "status": "LOCKED_OR_UNREADABLE"
+        }
+      ],
+      "dirs": [],
+      "exists": true,
+      "files_indexed": 129,
+      "root": "/Users/ajoxendine68/Library/Application Support/ai.opencode.desktop",
+      "source": "OPENCODE_DESKTOP_AS",
+      "total_bytes": 244920277
+    },
+    {
+      "dbs": [],
+      "dirs": [],
+      "exists": true,
+      "files_indexed": 0,
+      "root": "/Users/ajoxendine68/.local/share/claude",
+      "source": "CLAUDE_SHARE",
+      "total_bytes": 0
+    },
+    {
+      "dbs": [
+        {
+          "bytes": 28147712,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-13T09:13:15Z",
+          "path": "/Users/ajoxendine68/.local/share/opencode/opencode.db",
+          "sha_head": "456e87b1e98b2bd3",
+          "status": "OK",
+          "tables": {
+            "account": {
+              "rows": 0
+            },
+            "account_state": {
+              "rows": 0
+            },
+            "blob": {
+              "rows": 0
+            },
+            "blob_ref": {
+              "rows": 0
+            },
+            "control_account": {
+              "rows": 0
+            },
+            "credential": {
+              "rows": 0
+            },
+            "event": {
+              "rows": 0
+            },
+            "event_sequence": {
+              "rows": 1
+            },
+            "instruction_blob": {
+              "rows": 7
+            },
+            "instruction_entry": {
+              "rows": 0
+            },
+            "instruction_state": {
+              "rows": 1
+            },
+            "job": {
+              "rows": 0
+            },
+            "kv": {
+              "rows": 2
+            },
+            "migration": {
+              "rows": 59
+            },
+            "permission": {
+              "rows": 0
+            },
+            "project": {
+              "rows": 1
+            },
+            "project_directory": {
+              "rows": 0
+            },
+            "schedule": {
+              "rows": 0
+            },
+            "session_inbox": {
+              "rows": 0
+            },
+            "session_message": {
+              "rows": 760
+            },
+            "session_part": {
+              "rows": 0
+            },
+            "session_v2": {
+              "rows": 1
+            },
+            "workspace": {
+              "rows": 0
+            },
+            "worktree": {
+              "rows": 0
+            }
+          }
+        }
+      ],
+      "dirs": [],
+      "exists": true,
+      "files_indexed": 55,
+      "root": "/Users/ajoxendine68/.local/share/opencode",
+      "source": "OPENCODE_SHARE",
+      "total_bytes": 29798068
+    },
+    {
+      "dbs": [],
+      "dirs": [],
+      "exists": true,
+      "files_indexed": 0,
+      "root": "/Users/ajoxendine68/.local/share/graphite",
+      "source": "GRAPHITE_SHARE",
+      "total_bytes": 0
+    },
+    {
+      "dbs": [],
+      "dirs": [],
+      "exists": true,
+      "files_indexed": 0,
+      "root": "/Users/ajoxendine68/.local/share/tirith",
+      "source": "TIRITH_SHARE",
+      "total_bytes": 0
+    },
+    {
+      "dbs": [
+        {
+          "bytes": 12288,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-10-17T15:13:48Z",
+          "path": "/Users/ajoxendine68/.config/gcloud/default_configs.db",
+          "sha_head": "b8846a052fe76f3d",
+          "status": "OK",
+          "tables": {
+            "config": {
+              "rows": 2
+            }
+          }
+        },
+        {
+          "bytes": 12288,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-11-07T12:30:23Z",
+          "path": "/Users/ajoxendine68/.config/gcloud/access_tokens.db",
+          "sha_head": "77ba7bb1689f42e9",
+          "status": "OK",
+          "tables": {
+            "access_tokens": {
+              "rows": 3
+            }
+          }
+        },
+        {
+          "bytes": 12288,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-10-17T15:13:48Z",
+          "path": "/Users/ajoxendine68/.config/gcloud/credentials.db",
+          "sha_head": "cb2959902f751300",
+          "status": "OK",
+          "tables": {
+            "credentials": {
+              "rows": 0
+            }
+          }
+        }
+      ],
+      "dirs": [],
+      "exists": true,
+      "files_indexed": 39,
+      "root": "/Users/ajoxendine68/.config",
+      "source": "CONFIG_HOME",
+      "total_bytes": 107129
+    },
+    {
+      "dbs": [],
+      "dirs": [],
+      "exists": true,
+      "files_indexed": 45,
+      "root": "/Users/ajoxendine68/Desktop/DaxxCo_Tech",
+      "source": "DESKTOP_DAXXCO",
+      "total_bytes": 1477761
+    },
+    {
+      "dbs": [],
+      "dirs": [],
+      "exists": true,
+      "files_indexed": 3,
+      "root": "/Users/ajoxendine68/Desktop/Theories",
+      "source": "DESKTOP_THEORIES",
+      "total_bytes": 167326
+    },
+    {
+      "dbs": [],
+      "dirs": [],
+      "exists": true,
+      "files_indexed": 11,
+      "root": "/Volumes/OpenCode",
+      "source": "VOLUME_OPENCODE",
+      "total_bytes": 475020659
+    },
+    {
+      "dbs": [
+        {
+          "bytes": 13914112,
+          "content_earliest": "2026-09-20T15:41:53Z",
+          "content_latest": "2026-09-20T15:41:53Z",
+          "mtime_utc": "2026-09-28T02:19:30Z",
+          "path": "/Volumes/Untitled/SSOT_Agentic_Brain_v1.0.0_GA_Backup/brain/short_term.sqlite",
+          "sha_head": "5c5e6447996ac7ce",
+          "status": "OK",
+          "tables": {
+            "agent_executions": {
+              "range": [
+                "2026-09-20T14:28:35.504146+00:00",
+                "2026-09-28T02:23:00.229290+00:00"
+              ],
+              "rows": 21499
+            },
+            "stress_decisions": {
+              "range": [
+                "1789918913.963612",
+                "2026-09-22T01:08:49.149213+00:00"
+              ],
+              "rows": 46374
+            },
+            "system_telemetry": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 2920448,
+          "content_earliest": "2026-09-20T15:41:53Z",
+          "content_latest": "2026-09-20T15:41:53Z",
+          "mtime_utc": "2026-09-22T01:30:42Z",
+          "path": "/Volumes/Untitled/SSOT_Agentic_Brain_v1.0.0_GA_Backup/brain/world_file.db",
+          "sha_head": "25ed48fd243a25c0",
+          "status": "OK",
+          "tables": {
+            "stress_decisions": {
+              "range": [
+                "1789918913.963612",
+                "2026-09-22T01:08:49.154224+00:00"
+              ],
+              "rows": 46862
+            }
+          }
+        },
+        {
+          "bytes": 14548992,
+          "content_earliest": "2026-09-20T15:41:53Z",
+          "content_latest": "2026-09-20T15:41:53Z",
+          "mtime_utc": "2026-09-28T21:50:55Z",
+          "path": "/Volumes/Untitled/SSOT_Agentic_Brain_v1.1.0_ENGINEERING_RELEASE/brain/short_term.sqlite",
+          "sha_head": "4461eff784b844e9",
+          "status": "OK",
+          "tables": {
+            "agent_executions": {
+              "range": [
+                "2026-09-20T14:28:35.504146+00:00",
+                "2026-09-28T03:08:46.401005+00:00"
+              ],
+              "rows": 21590
+            },
+            "stress_decisions": {
+              "range": [
+                "1789918913.963612",
+                "2026-09-28T21:48:40.407811+00:00"
+              ],
+              "rows": 56336
+            },
+            "system_telemetry": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 3502080,
+          "content_earliest": "2026-09-20T15:41:53Z",
+          "content_latest": "2026-09-20T15:41:53Z",
+          "mtime_utc": "2026-09-28T21:51:01Z",
+          "path": "/Volumes/Untitled/SSOT_Agentic_Brain_v1.1.0_ENGINEERING_RELEASE/brain/world_file.db",
+          "sha_head": "386a59a0d68a50d1",
+          "status": "OK",
+          "tables": {
+            "stress_decisions": {
+              "range": [
+                "1789918913.963612",
+                "2026-09-28T21:48:40.408249+00:00"
+              ],
+              "rows": 56866
+            }
+          }
+        },
+        {
+          "bytes": 20480,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-10-03T04:30:28Z",
+          "path": "/Volumes/Untitled/SSOT_Agentic_Brain_v1.1.0_ENGINEERING_RELEASE/memory/xoras_brain.db",
+          "sha_head": "ae87d08c4a720caa",
+          "status": "OK",
+          "tables": {
+            "memory_edges": {
+              "rows": 1
+            },
+            "memory_nodes": {
+              "rows": 2
+            }
+          }
+        },
+        {
+          "bytes": 13914112,
+          "content_earliest": "2026-09-20T15:41:53Z",
+          "content_latest": "2026-09-20T15:41:53Z",
+          "mtime_utc": "2026-09-28T02:19:30Z",
+          "path": "/Volumes/Untitled/SSOT_Agentic_Brain_v1.0.0_GA_Backup copy/brain/short_term.sqlite",
+          "sha_head": "5c5e6447996ac7ce",
+          "status": "OK",
+          "tables": {
+            "agent_executions": {
+              "range": [
+                "2026-09-20T14:28:35.504146+00:00",
+                "2026-09-28T02:23:00.229290+00:00"
+              ],
+              "rows": 21499
+            },
+            "stress_decisions": {
+              "range": [
+                "1789918913.963612",
+                "2026-09-22T01:08:49.149213+00:00"
+              ],
+              "rows": 46374
+            },
+            "system_telemetry": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 2920448,
+          "content_earliest": "2026-09-20T15:41:53Z",
+          "content_latest": "2026-09-20T15:41:53Z",
+          "mtime_utc": "2026-09-22T01:30:42Z",
+          "path": "/Volumes/Untitled/SSOT_Agentic_Brain_v1.0.0_GA_Backup copy/brain/world_file.db",
+          "sha_head": "25ed48fd243a25c0",
+          "status": "OK",
+          "tables": {
+            "stress_decisions": {
+              "range": [
+                "1789918913.963612",
+                "2026-09-22T01:08:49.154224+00:00"
+              ],
+              "rows": 46862
+            }
+          }
+        },
+        {
+          "bytes": 14548992,
+          "content_earliest": "2026-09-20T15:41:53Z",
+          "content_latest": "2026-09-20T15:41:53Z",
+          "mtime_utc": "2026-09-28T21:50:55Z",
+          "path": "/Volumes/Untitled/SSOT_Agentic_Brain_v1.1.0_ENGINEERING_RELEASE copy/brain/short_term.sqlite",
+          "sha_head": "4461eff784b844e9",
+          "status": "OK",
+          "tables": {
+            "agent_executions": {
+              "range": [
+                "2026-09-20T14:28:35.504146+00:00",
+                "2026-09-28T03:08:46.401005+00:00"
+              ],
+              "rows": 21590
+            },
+            "stress_decisions": {
+              "range": [
+                "1789918913.963612",
+                "2026-09-28T21:48:40.407811+00:00"
+              ],
+              "rows": 56336
+            },
+            "system_telemetry": {
+              "rows": 0
+            }
+          }
+        },
+        {
+          "bytes": 3502080,
+          "content_earliest": "2026-09-20T15:41:53Z",
+          "content_latest": "2026-09-20T15:41:53Z",
+          "mtime_utc": "2026-09-28T21:51:01Z",
+          "path": "/Volumes/Untitled/SSOT_Agentic_Brain_v1.1.0_ENGINEERING_RELEASE copy/brain/world_file.db",
+          "sha_head": "386a59a0d68a50d1",
+          "status": "OK",
+          "tables": {
+            "stress_decisions": {
+              "range": [
+                "1789918913.963612",
+                "2026-09-28T21:48:40.408249+00:00"
+              ],
+              "rows": 56866
+            }
+          }
+        },
+        {
+          "bytes": 20480,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-10-03T04:30:28Z",
+          "path": "/Volumes/Untitled/SSOT_Agentic_Brain_v1.1.0_ENGINEERING_RELEASE copy/memory/xoras_brain.db",
+          "sha_head": "ae87d08c4a720caa",
+          "status": "OK",
+          "tables": {
+            "memory_edges": {
+              "rows": 1
+            },
+            "memory_nodes": {
+              "rows": 2
+            }
+          }
+        },
+        {
+          "bytes": 1184194560,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-10-27T02:38:41Z",
+          "path": "/Volumes/Untitled/xoras_archives_the_barn/databases_and_ledgers/87123640-5672-4c03-9b97-d3ded8ca58cf.db",
+          "sha_head": "3d06f4753c225ca4",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 1533
+            },
+            "gen_metadata": {
+              "rows": 12066
+            },
+            "parent_references": {
+              "rows": 29
+            },
+            "steps": {
+              "rows": 25720
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 1090723840,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-10-27T02:40:04Z",
+          "path": "/Volumes/Untitled/xoras_archives_the_barn/databases_and_ledgers/bd892285-cca1-43cd-bb8b-d1c3128f05ca.db",
+          "sha_head": "a56c5247ecdde08c",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 1213
+            },
+            "gen_metadata": {
+              "rows": 7171
+            },
+            "parent_references": {
+              "rows": 21
+            },
+            "steps": {
+              "rows": 16212
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 918147072,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-10-27T02:41:08Z",
+          "path": "/Volumes/Untitled/xoras_archives_the_barn/databases_and_ledgers/89cba405-b724-4f62-98b7-e7b85e201c7a.db",
+          "sha_head": "15921e62c90e90ed",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 937
+            },
+            "gen_metadata": {
+              "rows": 6343
+            },
+            "parent_references": {
+              "rows": 19
+            },
+            "steps": {
+              "rows": 13807
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 915750912,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-10-27T02:42:03Z",
+          "path": "/Volumes/Untitled/xoras_archives_the_barn/databases_and_ledgers/bb55edf8-621d-4b8f-a15b-f564afaa37bd.db",
+          "sha_head": "dab89ae1c414a10e",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 956
+            },
+            "gen_metadata": {
+              "rows": 6296
+            },
+            "parent_references": {
+              "rows": 13
+            },
+            "steps": {
+              "rows": 13412
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        },
+        {
+          "bytes": 727973888,
+          "content_earliest": null,
+          "content_latest": null,
+          "mtime_utc": "2026-10-27T02:44:51Z",
+          "path": "/Volumes/Untitled/xoras_archives_the_barn/databases_and_ledgers/6aaa97d7-2b60-42c5-8165-b78876245b17.db",
+          "sha_head": "95ea5d32c609e1e2",
+          "status": "OK",
+          "tables": {
+            "battle_mode_infos": {
+              "rows": 0
+            },
+            "executor_metadata": {
+              "rows": 91
+            },
+            "gen_metadata": {
+              "rows": 398
+            },
+            "parent_references": {
+              "rows": 0
+            },
+            "steps": {
+              "rows": 849
+            },
+            "trajectory_meta": {
+              "rows": 1
+            },
+            "trajectory_metadata_blob": {
+              "rows": 1
+            }
+          }
+        }
+      ],
+      "dirs": [],
+      "exists": true,
+      "files_indexed": 2943,
+      "root": "/Volumes/Untitled",
+      "source": "VOLUME_UNTITLED",
+      "total_bytes": 15992417615
+    },
+    {
+      "dbs": [],
+      "dirs": [],
+      "exists": true,
+      "files_indexed": 38,
+      "root": "/Users/ajoxendine68/Downloads",
+      "source": "DOWNLOADS_RECOVERY",
+      "total_bytes": 1360157462
+    }
+  ]
+}

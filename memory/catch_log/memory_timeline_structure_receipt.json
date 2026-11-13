@@ -1,0 +1,21 @@
+{
+  "receipt": "MEMORY_TIMELINE_STRUCTURE_ADOPTED",
+  "utc": "2026-11-13T09:25:00Z",
+  "mandates_honored": [
+    "no tool branding in memory structure",
+    "no legacy/lost/recovered/imported labels — memory is memory, in sequence through time",
+    "all records project-internal",
+    "no deletions (mislabeled ingests quarantined to timeline/raw/duplicate_ingest)"
+  ],
+  "canonical_structure": {
+    "memory/timeline/index.jsonl": "append-only chronological index (seq, utc, kind, sha256)",
+    "memory/timeline/<YYYY-MM>/": "readable extracted memory records, neutral dated filenames",
+    "memory/timeline/raw/": "original source stores with neutral names (conversation_stores, presentation_extract, media_and_seeds)"
+  },
+  "ingested": "12 agent conversations (~1,700 steps), 226 conversation summaries, 760 session-history records — 14 unique timeline records",
+  "superseded_paths": {
+    "memory/imported/*": "moved to memory/timeline/raw/* with neutral names",
+    "memory/recovery/*": "moved to memory/observability/source_sweep_* (operational evidence, not memory labeling)"
+  },
+  "status": "ADOPTED — all future memory writes go to memory/timeline"
+}
