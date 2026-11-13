@@ -1,0 +1,13 @@
+{
+  "receipt": "BRANDING_POLICY_SOVEREIGN_IDENTITY_ONLY",
+  "utc": "2026-11-13T09:14:00Z",
+  "mandate": "no other branding but the user's own and the names given by the user",
+  "scan_scope": "all scripts, receipts, plans, trace and rollback artifacts authored 2026-11-13",
+  "finding": "zero third-party brand marks in authored artifacts; house identity only (Maxx / Lead 9 Council / XORAS / SSOT_Agentic_Brain / DAXX)",
+  "policy": [
+    "every record, receipt, tool header, and log line carries house naming only",
+    "no vendor, harness, or model names in any artifact; references to substrates are technical terms only (e.g., SQLite, CPython stdlib)",
+    "spoken updates are read by the system voice; the voice name is never written into records"
+  ],
+  "status": "enforced"
+}
