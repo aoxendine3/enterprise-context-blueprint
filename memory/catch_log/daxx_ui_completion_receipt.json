@@ -1,0 +1,15 @@
+{
+  "receipt": "DAXX_UI_COMPLETION_AND_INVOKE_ROOT_CAUSE",
+  "utc": "2026-11-13T12:10:00Z",
+  "root_cause_of_dead_app": "frontend called window.__TAURI__ (Tauri v1 global) which never exists in Tauri v2 packages and never imported @tauri-apps/api; withGlobalTauri disabled - EVERY invoke silently returned null: init_app never ran (no DB ever created), settings never loaded, chat always hit fail-safe text, tabs were unwired decoration",
+  "fixes": [
+    "frontend now imports invoke from @tauri-apps/api/core (SDK), global fallback retained",
+    "tauri.conf.json: withGlobalTauri enabled (belt-and-braces)",
+    "Chat view: quick-action chips, honest fail-closed wording, gateway-first routing (previous turn's work)",
+    "Telemetry view: gateway posture card, gate-receipts card (seq + merkle), host hardware card, searchable 28-agent roster, live collective session ledger from /api/history",
+    "GovOps view: sovereign invariants from the constitution, compliance posture (constitution grounding, receipt chain, exec judge-gate, fail-closed policy)",
+    "Settings view: owner name, ollama endpoint, default model selector (live model list), save-to-ledger, Check Gateway button, sovereign wiring panel"
+  ],
+  "verification": "rebuilt + relaunched: DaxxStudio/daxx_studio.db CREATED for the first time (init_app ran), app process stable, gateway ONLINE",
+  "status": "FOUR LIVE VIEWS, BACKEND CONNECTED"
+}
