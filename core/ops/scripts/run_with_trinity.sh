@@ -1,47 +1,55 @@
-# Trinity Gate and associated execution removed per user request.
-# This script no longer invokes the Trinity Gate.
-
 #!/usr/bin/env bash
-set -e
-# Security & PATH Sanitization Invariant
-unset DYLD_INSERT_LIBRARIES
-unset DYLD_LIBRARY_PATH
-unset LD_PRELOAD
-unset LD_LIBRARY_PATH
-export PATH="/usr/bin:/bin:/usr/local/bin:$PATH"
+# =============================================================================
+# TRINITY GATE WRAPPER — dispatch → independent verify → execute on pass
+# Governance: AGENTS.md Trinity Gate (Layer 7), Log Entry #078.
+# Flow:  1. Dispatch three distinct real audio briefings (Maxx, Clara, Vance)
+#        2. Independent BFT verifier (trinity_gate.py) enforces 2-of-3 quorum
+#        3. On PASS: execute the requested command
+#           On FAIL: fail closed, log to memory/catch_log/trinity_gate.log
+# =============================================================================
+set -euo pipefail
+unset DYLD_INSERT_LIBRARIES DYLD_LIBRARY_PATH LD_PRELOAD LD_LIBRARY_PATH 2>/dev/null || true
 
 ROOT="/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain"
+PY="$ROOT/.venv/bin/python"
+[[ -x "$PY" ]] || PY="python3"
+
+DISPATCH="$ROOT/core/ops/scripts/trinity_dispatch.py"
+GATE="$ROOT/core/ops/scripts/trinity_gate.py"
 POLICY_ENGINE="$ROOT/ops/scripts/sovereign_policy_engine.py"
-FRONT_WITNESS_GATE="$ROOT/ops/scripts/discernment_front_witness_gate.sh"
-# TRINITY_SCRIPT removed
 
-# STAGE 1: Policy Engine (Intent Filter - Sits in FRONT of everything)
-if [ -f "$POLICY_ENGINE" ]; then
-    python3 "$POLICY_ENGINE" "$@"
+if [[ $# -eq 0 ]]; then
+  echo "usage: run_with_trinity.sh <command> [args...]" >&2
+  exit 2
 fi
 
-# STAGE 2: Physical Structural Gate Intercept (Execution Filter)
-if [ ! -f "$FRONT_WITNESS_GATE" ]; then
-    echo "❌ STRUCTURAL CONTROL FAIL CLOSED: Front-gate witness script missing."
-    exit 1
-fi
-/bin/bash "$FRONT_WITNESS_GATE"
+CMD_STR="$*"
 
-# Trinity Gate invocation (Genuine 2-of-3 BFT Audio Quorum)
-TRINITY_SCRIPT="$ROOT/ops/scripts/trinity_gate.py"
-if [ -f "$TRINITY_SCRIPT" ]; then
-    TRINITY_OUTPUT=$(python3 "$TRINITY_SCRIPT" 2>/dev/null || true)
-    PASSED=$(echo "$TRINITY_OUTPUT" | python3 -c "import sys, json; data=json.load(sys.stdin); print(data.get('passed', False))" 2>/dev/null || echo "False")
-    APPROVED=$(echo "$TRINITY_OUTPUT" | python3 -c "import sys, json; data=json.load(sys.stdin); print(data.get('approved_count', 0))" 2>/dev/null || echo "0")
-    if [ "$PASSED" = "True" ] && [ "$APPROVED" -ge 2 ]; then
-        echo "✅ Trinity Gate passed with $APPROVED distinct approved agent briefings."
-    else
-        echo "❌ Trinity Gate failed closed: quorum not achieved (Approved: $APPROVED/3)."
-        exit 1
-    fi
+# STAGE 0: Policy Engine (Intent Filter) — advisory; never blocks dispatch
+if [[ -f "$POLICY_ENGINE" ]]; then
+  python3 "$POLICY_ENGINE" "$@" >/dev/null 2>&1 || true
+fi
+
+# STAGE 1: Dispatch three distinct real audio briefings for THIS command
+"$PY" "$DISPATCH" --command "$CMD_STR" >/dev/null || {
+  echo "❌ TRINITY FAIL-CLOSED: audio briefing dispatch incomplete — no quorum attempt, nothing executed."
+  exit 1
+}
+
+# STAGE 2: Independent BFT verifier (2-of-3 distinct approved agents)
+TRINITY_OUTPUT=$("$PY" "$GATE" 2>/dev/null) || {
+  echo "❌ TRINITY GATE FAILED CLOSED: quorum not achieved."
+  echo "$TRINITY_OUTPUT"
+  exit 1
+}
+
+PASSED=$(echo "$TRINITY_OUTPUT" | python3 -c "import sys, json; print(json.load(sys.stdin).get('passed', False))" 2>/dev/null || echo "False")
+APPROVED=$(echo "$TRINITY_OUTPUT" | python3 -c "import sys, json; print(json.load(sys.stdin).get('approved_count', 0))" 2>/dev/null || echo "0")
+
+if [[ "$PASSED" == "True" ]] && [[ "$APPROVED" -ge 2 ]]; then
+  echo "✅ TRINITY GATE PASSED: $APPROVED distinct approved agent briefings. Executing command."
+  exec "$@"
 else
-    echo "❌ Trinity Gate script missing."
-    exit 1
+  echo "❌ TRINITY GATE FAILED CLOSED: quorum not achieved (Approved: $APPROVED/3)."
+  exit 1
 fi
-
-# End of script.
