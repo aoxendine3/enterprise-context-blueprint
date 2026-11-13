@@ -1,0 +1,21 @@
+{
+  "receipt": "WIRE_REPOINT_REPAIR",
+  "utc": "2026-11-13T19:10:00Z",
+  "finding": "sync wires existed all along; three pointed at addresses that no longer exist",
+  "dead_addresses": [
+    {"wire": "cron watchdog (every 5m)", "target": "~/Desktop/Xoras_Workspace/ops/scripts/cycle_watchdog.sh", "state": "source missing; 13MB of cron mail", "repair": "quarantined in place as a commented crontab line with dated note"},
+    {"wire": "launchd com.xoras.archivist", "target": "~/Desktop/Xoras_Sovereign_AI_Stack/source_code/xoras_memory_core.py", "state": "root missing AND target is a library with no __main__", "repair": "plist re-pointed to real path, annotated, deliberately NOT loaded (KeepAlive would crash-loop)"},
+    {"wire": "cron sentinel heartbeat", "target": "Desktop memory log", "state": "PermissionError: macOS TCC denies /usr/sbin/cron write access to Desktop; heartbeats stopped 2026-11-09", "repair": "sentinel now falls back to ~/.sovereign/state/sentinel_heartbeat.jsonl on PermissionError; wire stays live"},
+    {"wire": "xoras_memory_core compressor", "target": "http://192.168.1.133:11434", "state": "unreachable (DHCP moved)", "repair": "re-pointed to live Windows plane 192.168.1.211:11434 (verified live, 17 models)"},
+    {"wire": "XORAS_ROOT defaults", "target": "~/Desktop/Xoras_Workspace", "state": "missing root", "repair": "exported XORAS_ROOT=$HOME/Desktop/SSOT_Agentic_Brain in ~/.zshrc"}
+  ],
+  "live_wires_confirmed": [
+    "Windows tensor plane 192.168.1.211:11434 (17 models incl hermes3:8b)",
+    "git remote enterprise-context-blueprint (28 commits ahead before push)",
+    "git remote daxx-sovereign-studio (pushed 776cd85)",
+    "self-hosted runner xoras-m4-runner bound to sovra-core-lighthouse (PID 1069)",
+    "out-of-band witness ~/.sovereign_witness/out_of_band_merkle_witness.jsonl"
+  ],
+  "no_new_surface": true,
+  "deletions": 0
+}

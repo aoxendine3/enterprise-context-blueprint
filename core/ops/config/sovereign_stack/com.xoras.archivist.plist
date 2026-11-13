@@ -4,10 +4,14 @@
 <dict>
     <key>Label</key>
     <string>com.xoras.archivist</string>
+    <!-- 2026-11-13: re-pointed from the vanished Xoras_Sovereign_AI_Stack root.
+         NOT installed: xoras_memory_core.py is a library (no __main__), so a
+         KeepAlive launchd job would restart-loop without archiving anything.
+         Load only after a real host process exists. -->
     <key>ProgramArguments</key>
     <array>
         <string>/usr/bin/python3</string>
-        <string>/Users/ajoxendine68/Desktop/Xoras_Sovereign_AI_Stack/source_code/xoras_memory_core.py</string>
+        <string>/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/AI_Core/Xoras_Project/xoras-core/Source/xoras_memory_core.py</string>
     </array>
     <key>RunAtLoad</key>
     <true/>

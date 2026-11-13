@@ -11,7 +11,9 @@ class TrajectoryCompressor:
     def __init__(self, target_max=1000, model="llama3.2"):
         self.target_max = target_max
         self.model = model
-        self.endpoint = "http://192.168.1.133:11434/api/generate"
+        # Windows LAN tensor plane. Re-pointed 2026-11-13: the previous
+        # 192.168.1.133 address no longer answers; the live node is .211.
+        self.endpoint = "http://192.168.1.211:11434/api/generate"
 
     async def compress(self, records):
         """
