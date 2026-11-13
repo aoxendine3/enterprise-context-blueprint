@@ -1,0 +1,18 @@
+{
+  "receipt": "DEEP_MEMORY_INGEST_FINDINGS",
+  "utc": "2026-11-13T12:05:00Z",
+  "findings": [
+    {
+      "source": "Cursor agent conversation stores",
+      "verdict": "GONE_FROM_MACHINE",
+      "detail": "conversation-search.db (9 conversations in prior sweep) no longer exists; AgentStores .sync/index.sqlite files are sync indexes with empty files/; workspaceStorage state.vscdb tables hold no composer/bubble data (only trivial anysphere keys). Nothing recoverable — recorded honestly, no fabricated ingest."
+    },
+    {
+      "source": "OpenCode desktop drafts.sqlite",
+      "verdict": "INGESTED",
+      "detail": "prompt-history + readable blob documents extracted into memory/timeline/2026-11/20261113_00015_f8eb6426.md (22,771 bytes), neutral dated record, content-hashed, writer-log-linked per timeline convention."
+    }
+  ],
+  "ledger_note": "memory/timeline/index.jsonl grew by 1 (15 records total); no source files modified; no deletions",
+  "status": "CLOSED for Cursor; drafts ingested"
+}
