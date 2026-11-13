@@ -1,0 +1,14 @@
+{
+  "receipt": "XORAS_APP_REPAIR_SESSION",
+  "utc": "2026-11-13T10:55:00Z",
+  "findings": [
+    "Rust/npm toolchain WAS NEVER MISSING: cargo 1.95.0, rustc 1.95.0, npm 11.17.0 live in /opt/homebrew/bin (PATH issue only)",
+    "frontend (vite + React 19) builds clean: dist regenerated in 422ms",
+    "app backend integrity verified: daxx_xmars_orchestration_engine.py --verify-boundaries runs GREEN under the project venv from terminal",
+    "app python spawn path resolves: {SSOT_ROOT}/ops/scripts/daxx_xmars_orchestration_engine.py exists (repo-root ops/ mirror)",
+    "prior session note of missing cargo/npm was incorrect - no external installs needed"
+  ],
+  "pyvenv_cfg_permissionerror_hypothesis": "app-spawned python reading .venv/pyvenv.cfg under ~/Desktop gets EPERM from macOS TCC when the GUI app (com.xoras.app) lacks Desktop-folder access; terminal context provably works. To be confirmed against the freshly built bundle and mitigated at launch test.",
+  "in_flight": "npm run tauri:build (background, first full Rust compile of the sovereign command center)",
+  "status": "BUILD_IN_PROGRESS"
+}
