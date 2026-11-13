@@ -1,0 +1,1485 @@
+{
+  "crosschecks": {
+    "canonical_vs_mirror_nodes": {
+      "in_sync": false,
+      "lineage_dag.db": 3286,
+      "world_file.db": 3262
+    }
+  },
+  "databases": [
+    {
+      "bytes": 557056,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-10-13T03:48:58Z",
+      "path": ".sovereign/gauntlets/concurrent_dual_substrate/live_lineage.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sessions": 1,
+      "sha256_head": "9d2204d1d75c6b2b",
+      "status": "OK",
+      "tables": {
+        "global_evidence_registry": 391,
+        "lineage_nodes": 391
+      },
+      "timeline": {
+        "earliest": "1791863336.725916",
+        "latest": "1791863338.086955",
+        "rows": 391,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 782
+    },
+    {
+      "bytes": 57344,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-10-13T03:48:05Z",
+      "path": ".sovereign/gauntlets/concurrent_dual_substrate/test_debug.db",
+      "role": "TEST_OR_ADVERSARIAL_FIXTURE",
+      "sessions": 1,
+      "sha256_head": "ec344fe60a1e5f17",
+      "status": "OK",
+      "tables": {
+        "global_evidence_registry": 29,
+        "lineage_nodes": 29
+      },
+      "timeline": {
+        "earliest": "1791863285.244542",
+        "latest": "1791863285.499653",
+        "rows": 29,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 58
+    },
+    {
+      "bytes": 61440,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-10-13T03:48:14Z",
+      "path": ".sovereign/gauntlets/concurrent_dual_substrate/test_debug2.db",
+      "role": "TEST_OR_ADVERSARIAL_FIXTURE",
+      "sessions": 1,
+      "sha256_head": "c7ecc71716f45080",
+      "status": "OK",
+      "tables": {
+        "global_evidence_registry": 32,
+        "lineage_nodes": 32
+      },
+      "timeline": {
+        "earliest": "1791863294.2450361",
+        "latest": "1791863294.4898481",
+        "rows": 32,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 64
+    },
+    {
+      "bytes": 52539392,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-09T16:02:44Z",
+      "path": ".sovereign/hippocampus/governed_memory.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sessions": 0,
+      "sha256_head": "fa525feedcaa5bd8",
+      "status": "OK",
+      "tables": {
+        "global_evidence_registry": 0,
+        "lineage_nodes": 0,
+        "memory_records": 47
+      },
+      "timeline": null,
+      "total_rows": 47
+    },
+    {
+      "bytes": 69632,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-09T16:02:44Z",
+      "path": ".sovereign/provenance/artifact_lineage_dag.db",
+      "role": "PROVENANCE_ZONE",
+      "sessions": 0,
+      "sha256_head": "0a01a6b1f0ed4383",
+      "status": "OK",
+      "tables": {
+        "artifact_lineage": 14,
+        "global_evidence_registry": 0,
+        "lineage_nodes": 0
+      },
+      "timeline": {
+        "earliest": "1792052004.462506",
+        "latest": "1792054841.881781",
+        "rows": 14,
+        "table": "artifact_lineage"
+      },
+      "total_rows": 14
+    },
+    {
+      "bytes": 1138688,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-09T16:16:07Z",
+      "path": ".sovereign/provenance/benchmark_lineage.db",
+      "role": "BENCHMARK_EVIDENCE",
+      "sessions": 1,
+      "sha256_head": "fe3bc90d4beb56d6",
+      "status": "OK",
+      "tables": {
+        "global_evidence_registry": 200,
+        "lineage_nodes": 600
+      },
+      "timeline": {
+        "earliest": "1794240966.560375",
+        "latest": "1794240967.377569",
+        "rows": 600,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 800
+    },
+    {
+      "bytes": 2985984,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-13T08:49:46Z",
+      "path": ".sovereign/provenance/lineage_dag.db",
+      "role": "LINEAGE_MIRROR",
+      "sessions": 21,
+      "sha256_head": "d10379e65d541bfb",
+      "status": "OK",
+      "tables": {
+        "blackboard_registers": 0,
+        "daxx_mission_events": 0,
+        "daxx_worker_receipts": 0,
+        "entities": 0,
+        "error_placeholders": 0,
+        "global_evidence_registry": 131,
+        "knowledge_objects": 0,
+        "lineage_nodes": 3286,
+        "task_checkpoints": 0,
+        "typed_links": 0,
+        "world_file_manifest_pointers": 0
+      },
+      "timeline": {
+        "earliest": "1790744852.2624278",
+        "latest": "1794559786.090065",
+        "rows": 3286,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 3417
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-09T16:02:44Z",
+      "path": ".sovereign/provenance/lineage_nodes.db",
+      "role": "PROVENANCE_ZONE",
+      "sessions": 0,
+      "sha256_head": "7995af6919417ec7",
+      "status": "OK",
+      "tables": {
+        "global_evidence_registry": 0,
+        "lineage_nodes": 0
+      },
+      "timeline": null,
+      "total_rows": 0
+    },
+    {
+      "bytes": 69632,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-30T06:53:58Z",
+      "path": ".sovereign/provenance/test_corruption_replay.db",
+      "role": "TEST_OR_ADVERSARIAL_FIXTURE",
+      "sessions": 2,
+      "sha256_head": "ac9209640173d39e",
+      "status": "OK",
+      "tables": {
+        "global_evidence_registry": 13,
+        "lineage_nodes": 17
+      },
+      "timeline": {
+        "earliest": "1790751238.722294",
+        "latest": "1790751238.7374568",
+        "rows": 17,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 30
+    },
+    {
+      "bytes": 774144,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-10-17T21:33:41Z",
+      "path": ".sovereign/provenance/test_lineage_breaker.db",
+      "role": "TEST_OR_ADVERSARIAL_FIXTURE",
+      "sessions": 2,
+      "sha256_head": "c82e50db5a3f1821",
+      "status": "OK",
+      "tables": {
+        "global_evidence_registry": 667,
+        "lineage_nodes": 704
+      },
+      "timeline": {
+        "earliest": "1790816127.32393",
+        "latest": "1790816129.389932",
+        "rows": 704,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 1371
+    },
+    {
+      "bytes": 1642496,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-09T17:23:36Z",
+      "path": ".sovereign/world_file.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sessions": 0,
+      "sha256_head": "a8945c4e4abb3181",
+      "status": "OK",
+      "tables": {
+        "anti_replay_ledger": 30,
+        "capability_token_registry": 31,
+        "ghrr_hypervectors": 1,
+        "global_evidence_registry": 0,
+        "hardened_anti_replay_ledger": 0,
+        "hardened_capability_tokens": 2,
+        "knowledge_objects": 3277,
+        "lineage_nodes": 0,
+        "master_merkle_checkpoints": 28,
+        "mtpo_concurrency_ledger": 56,
+        "secure_broker_audit_log": 4,
+        "slopsquatting_intercept_log": 28
+      },
+      "timeline": null,
+      "total_rows": 3457
+    },
+    {
+      "bytes": 28672,
+      "integrity": "ok",
+      "journal_mode": "delete",
+      "mtime_utc": "2026-10-08T17:40:40Z",
+      "path": "core/.agents/dojo_remediation.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "5427933e03a36dff",
+      "status": "OK",
+      "tables": {
+        "consumed_tokens": 1,
+        "ledger_metadata": 1,
+        "processed_nonces": 1
+      },
+      "timeline": null,
+      "total_rows": 3
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/alpha/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "fdf848bfdff53343",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/apex/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "2083afd9d3f62874",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/arelius/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "3807f16df5337e57",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/aria/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "6a6f3af956e83d8a",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/atlas/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "0cff5c6b2c7c5c2f",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/aurelius/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "fb1ea50172bc37af",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/axlon/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "b1f30b661a8c6a1c",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/beta/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "7f9c2bded3f07201",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/clara/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "41cc734402ded238",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/daxx/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "f91d123122933166",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 1,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 2
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/delta/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "7195fe85e2640660",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/dr_jeremy/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "92f97108086a6340",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/eden/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "aaeff1206769cb73",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/epsilon/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "f62cb6ed2c647400",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/eta/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "e11ca9078db2a2c3",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/evan/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "f2cc0f7e47c93b99",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/gamma/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "2c251f318c947740",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/gideon/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "d4b046c82124d649",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/iota/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "a0b9b483c8d1916b",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/jarvis/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "b9b0fc959600cf15",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/john/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "5d744a57465d9c37",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/kael/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "8255341e5999b8e2",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/kappa/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "17ffb0e7a4e887d8",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/koda/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "73697719228bbdc2",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/lambda/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "09ef2dfd78004b2d",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/lex/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "f8055c5c1d14f4d9",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/lyra/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "61267152f752004a",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 57344,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/maxx/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "a77b3130b685abef",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 1,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 2
+      },
+      "timeline": null,
+      "total_rows": 4
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/mu/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "51eb6f1a73eb8497",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/nova/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "1c1608b5f16121a2",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/nu/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "9e33ec27e6e53252",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/omicron/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "26dd9ef8ed091db5",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/orion/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "392decdad4f3515c",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/rylan/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "87a34c572674c20a",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/selene/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "82fa9256a6644905",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/sentinel/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "2972e68ec2afbc03",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/seraph/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "f32bcdf7a0e6fb1e",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/sia_core/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "750210512ba545ac",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/silas/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "87ab0bb529e64af2",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/theta/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "a301cc4dec8f55f7",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/titus/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "23cd7a1141ca28d3",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/vance/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "e56175ba7bf0174d",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/vera/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "f7c625283f58b192",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/veridex/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "e3b462bfb9f9c95f",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/xi/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "bc89ec932371bac6",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/xoras/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "c7d48704b536fdbb",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/zane/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "cd71071348d62d28",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/zeta/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "7a8ce2c77191cd31",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-09-17T08:03:59Z",
+      "path": "core/memory/citizens/zorex/brain/sovereign_cache.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "e235b1310f648c67",
+      "status": "OK",
+      "tables": {
+        "agent_state": 1,
+        "episodic_memory": 0,
+        "read_back_log": 0,
+        "semantic_fragments": 0,
+        "task_queue": 0,
+        "vram_freeze_states": 0
+      },
+      "timeline": null,
+      "total_rows": 1
+    },
+    {
+      "bytes": 27537408,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-13T08:27:17Z",
+      "path": "core/memory/tri_brain/world_file.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sessions": 21,
+      "sha256_head": "119a964710f32d52",
+      "status": "OK",
+      "tables": {
+        "blackboard_registers": 0,
+        "daxx_mission_events": 0,
+        "daxx_worker_receipts": 0,
+        "entities": 0,
+        "error_placeholders": 0,
+        "global_evidence_registry": 107,
+        "knowledge_objects": 20927,
+        "lineage_nodes": 3262,
+        "task_checkpoints": 0,
+        "typed_links": 0,
+        "world_file_manifest_pointers": 0
+      },
+      "timeline": {
+        "earliest": "1790744852.2624278",
+        "latest": "1794245059.9439471",
+        "rows": 3262,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 24296
+    },
+    {
+      "bytes": 20480,
+      "integrity": "ok",
+      "journal_mode": "delete",
+      "mtime_utc": "2026-10-03T04:34:49Z",
+      "path": "core/memory/xoras_brain.db",
+      "role": "UNCORROBORATED_ROLE",
+      "sha256_head": "9a5018134856b9f3",
+      "status": "OK",
+      "tables": {
+        "memory_edges": 2,
+        "memory_nodes": 3
+      },
+      "timeline": {
+        "earliest": "2026-10-03 04:33:31",
+        "latest": "2026-10-03 04:34:49",
+        "rows": 3,
+        "table": "memory_nodes"
+      },
+      "total_rows": 5
+    },
+    {
+      "bytes": 20480,
+      "integrity": "ok",
+      "journal_mode": "delete",
+      "mtime_utc": "2026-10-05T00:17:26Z",
+      "path": "core/ops/fixtures/kat_known_answer_fixture.db",
+      "role": "TEST_OR_ADVERSARIAL_FIXTURE",
+      "sessions": 1,
+      "sha256_head": "668e66ad83fece84",
+      "status": "OK",
+      "tables": {
+        "lineage_nodes": 10
+      },
+      "timeline": {
+        "earliest": "1700000001.0",
+        "latest": "1700000010.0",
+        "rows": 10,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 10
+    },
+    {
+      "bytes": 3391488,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-11T16:58:15Z",
+      "path": "memory/catch_log/backups/lineage_dag_pre_repair_20261111-115815.db",
+      "role": "BACKUP",
+      "sessions": 21,
+      "sha256_head": "7e91d8eb68f09aa3",
+      "status": "OK",
+      "tables": {
+        "global_evidence_registry": 107,
+        "lineage_nodes": 3262
+      },
+      "timeline": {
+        "earliest": "1790744852.2624278",
+        "latest": "1794245059.943947",
+        "rows": 3262,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 3369
+    },
+    {
+      "bytes": 282624,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-12T19:16:35Z",
+      "path": "memory/tri_brain/governed_sqlite_state.db",
+      "role": "TRI_BRAIN_GOVERNANCE",
+      "sha256_head": "846eabb6abfd2dc1",
+      "status": "OK",
+      "tables": {
+        "governed_keys": 1,
+        "witness_write_ledger": 1149
+      },
+      "timeline": null,
+      "total_rows": 1150
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-10-06T21:35:12Z",
+      "path": "memory/tri_brain/merkle_db.sqlite",
+      "role": "TRI_BRAIN_GOVERNANCE",
+      "sessions": 1,
+      "sha256_head": "b6d3c7cd5b2e5ef8",
+      "status": "OK",
+      "tables": {
+        "global_evidence_registry": 1,
+        "lineage_nodes": 2
+      },
+      "timeline": {
+        "earliest": "1791322507.572437",
+        "latest": "1791322512.014936",
+        "rows": 2,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 3
+    },
+    {
+      "bytes": 27537408,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-13T08:27:17Z",
+      "path": "memory/tri_brain/world_file.db",
+      "role": "CANONICAL_EVIDENCE_STORE",
+      "sessions": 21,
+      "sha256_head": "119a964710f32d52",
+      "status": "OK",
+      "tables": {
+        "blackboard_registers": 0,
+        "daxx_mission_events": 0,
+        "daxx_worker_receipts": 0,
+        "entities": 0,
+        "error_placeholders": 0,
+        "global_evidence_registry": 107,
+        "knowledge_objects": 20927,
+        "lineage_nodes": 3262,
+        "task_checkpoints": 0,
+        "typed_links": 0,
+        "world_file_manifest_pointers": 0
+      },
+      "timeline": {
+        "earliest": "1790744852.2624278",
+        "latest": "1794245059.9439471",
+        "rows": 3262,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 24296
+    },
+    {
+      "bytes": 103895040,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-09T16:02:44Z",
+      "path": "memory/vault/sovereign_durable_workflows.db",
+      "role": "MEMORY_ZONE",
+      "sessions": 0,
+      "sha256_head": "ef5b6555aa0a2500",
+      "status": "OK",
+      "tables": {
+        "event_history": 116207,
+        "global_evidence_registry": 0,
+        "lineage_nodes": 0,
+        "workflows": 5058
+      },
+      "timeline": {
+        "earliest": "1792984743.187331",
+        "latest": "1793033317.094938",
+        "rows": 116207,
+        "table": "event_history"
+      },
+      "total_rows": 121265
+    },
+    {
+      "bytes": 36864,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-09T16:02:44Z",
+      "path": "memory/xoras_brain.db",
+      "role": "MEMORY_ZONE",
+      "sessions": 0,
+      "sha256_head": "7995af6919417ec7",
+      "status": "OK",
+      "tables": {
+        "global_evidence_registry": 0,
+        "lineage_nodes": 0
+      },
+      "timeline": null,
+      "total_rows": 0
+    },
+    {
+      "bytes": 20480,
+      "integrity": "ok",
+      "journal_mode": "delete",
+      "mtime_utc": "2026-10-05T00:17:26Z",
+      "path": "ops/fixtures/kat_known_answer_fixture.db",
+      "role": "TEST_OR_ADVERSARIAL_FIXTURE",
+      "sessions": 1,
+      "sha256_head": "668e66ad83fece84",
+      "status": "OK",
+      "tables": {
+        "lineage_nodes": 10
+      },
+      "timeline": {
+        "earliest": "1700000001.0",
+        "latest": "1700000010.0",
+        "rows": 10,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 10
+    }
+  ],
+  "db_count": 71,
+  "run_utc": "2026-11-13T08:55:28Z",
+  "unreadable": 0
+}

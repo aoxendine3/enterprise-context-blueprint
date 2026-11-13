@@ -50,7 +50,7 @@ RECEIPT_FILE = os.path.join(RECEIPT_DIR, "lineage_reconciliation_receipt.json")
 COLUMNS = [
     "node_id", "seq_num", "parent_hash", "session_id", "timestamp",
     "agent_id", "step_type", "payload_hash", "payload_raw", "payload_summary",
-    "signature", "merkle_root"
+    "signature", "merkle_root", "writer_log_ref"
 ]
 
 
@@ -124,15 +124,22 @@ def main() -> int:
     print("=========================================================================")
 
     # Find the most recent backup of the original (pre-dedup) source DB
+    # REMEDIATED: reconcile from the CURRENT source DB. The engine commits to
+    # the mirror continuously; using a stale pre-dedup backup as the source
+    # would resurrect quarantined duplicates and discard repairs. Backups are
+    # a last-resort fallback only, and WAL/SHM leftovers are never sources.
     import glob
-    backups = sorted(glob.glob(SOURCE_DB + ".reconcile_backup.*"), reverse=True)
-    if backups:
-        SOURCE_DB_ORIGINAL = backups[0]
-        print(f"[*] Found original backup: {SOURCE_DB_ORIGINAL}")
-    elif os.path.exists(SOURCE_DB):
+    SOURCE_DB_ORIGINAL = None
+    if os.path.exists(SOURCE_DB):
         SOURCE_DB_ORIGINAL = SOURCE_DB
-        print(f"[*] No backup found; using current source DB (may already be deduped)")
+        print("[*] Using current source DB (engine-committed, includes repairs)")
     else:
+        backups = [b for b in sorted(glob.glob(SOURCE_DB + ".reconcile_backup.*"), reverse=True)
+                   if not b.endswith(("-wal", "-shm"))]
+        if backups:
+            SOURCE_DB_ORIGINAL = backups[0]
+            print(f"[*] Found original backup: {SOURCE_DB_ORIGINAL}")
+    if SOURCE_DB_ORIGINAL is None:
         return fail_closed("Source lineage database missing", SOURCE_DB)
 
     if not os.path.exists(SOURCE_DB_ORIGINAL):
@@ -149,7 +156,10 @@ def main() -> int:
         return fail_closed("Cannot open source lineage database", str(e))
 
     try:
-        cur.execute(f"SELECT {', '.join(COLUMNS)}, rowid FROM lineage_nodes ORDER BY session_id, seq_num, rowid ASC")
+        # Read dynamically: tolerate source schemas that predate writer_log_ref.
+        src_cols = [r[1] for r in cur.execute("PRAGMA table_info(lineage_nodes)").fetchall()]
+        sel_cols = [c for c in COLUMNS if c in src_cols]
+        cur.execute(f"SELECT {', '.join(sel_cols)}, rowid FROM lineage_nodes ORDER BY session_id, seq_num, rowid ASC")
         all_rows = cur.fetchall()
     except Exception as e:
         src.close()
@@ -183,7 +193,7 @@ def main() -> int:
             })
         else:
             seen_session_seq.add(key)
-            canonical_rows.append({k: row[k] for k in COLUMNS})
+            canonical_rows.append({k: row[k] for k in sel_cols})
 
     unique_session_seqs = len(seen_session_seq)
     dup_rows = total_rows - len(canonical_rows)
@@ -241,7 +251,8 @@ def main() -> int:
         CREATE TABLE IF NOT EXISTS lineage_nodes (
             node_id TEXT, seq_num INTEGER, parent_hash TEXT, session_id TEXT,
             timestamp TEXT, agent_id TEXT, step_type TEXT, payload_hash TEXT,
-            payload_raw TEXT, payload_summary TEXT, signature TEXT, merkle_root TEXT
+            payload_raw TEXT, payload_summary TEXT, signature TEXT, merkle_root TEXT,
+            writer_log_ref TEXT
         );
         CREATE TABLE IF NOT EXISTS global_evidence_registry (
             evidence_digest TEXT, first_session_id TEXT, first_node_id TEXT,
@@ -283,9 +294,10 @@ def main() -> int:
         );
         """)
 
+        canon_cols = [c for c in COLUMNS if c in sel_cols]
         ccur.executemany(
-            f"INSERT INTO lineage_nodes ({', '.join(COLUMNS)}) VALUES ({', '.join(['?']*len(COLUMNS))})",
-            [[r[c] for c in COLUMNS] for r in canonical_rows]
+            f"INSERT INTO lineage_nodes ({', '.join(canon_cols)}) VALUES ({', '.join(['?']*len(canon_cols))})",
+            [[r[c] for c in canon_cols] for r in canonical_rows]
         )
 
         # Copy evidence registry from source

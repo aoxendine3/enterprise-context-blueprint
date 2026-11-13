@@ -1,0 +1,2 @@
+{"catalog_sha256": "e5053f0a0241644a2aaf444d2b3b35a578ce81934e52ccedd0d33254e5188439", "crosschecks": {"canonical_vs_mirror_nodes": {"in_sync": false, "lineage_dag.db": 3286, "world_file.db": 3262}}, "db_count": 120, "run_utc": "2026-11-13T08:55:20Z", "unreadable": 49}
+{"catalog_sha256": "2eea26e050c05fcdaaf62c966c003edb2955981fd3aabf91dfca451391aa7611", "crosschecks": {"canonical_vs_mirror_nodes": {"in_sync": false, "lineage_dag.db": 3286, "world_file.db": 3262}}, "db_count": 71, "run_utc": "2026-11-13T08:55:28Z", "unreadable": 0}

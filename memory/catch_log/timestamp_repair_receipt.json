@@ -1,0 +1,31 @@
+{
+  "authorizations": [
+    "user mandate: rollback stages + gated proofs + consensus"
+  ],
+  "db": ".sovereign/provenance/lineage_dag.db",
+  "plan": "docs/plans/REMEDIATION_TIMESTAMP_PRECISION_REPAIR_PLAN.md",
+  "proofs": [
+    {
+      "node_id": "a423f62caac916b22abc12e16251a55ac8c5d1a6cdb3b7ae6850196245aacf34",
+      "node_id_reproduced": true,
+      "old_ts": "1794523906.6737",
+      "restored_ts": "1794523906.673698"
+    },
+    {
+      "node_id": "384e1b7573b223c8a2797aab240c5fdc943869ecfe5050b9e0a24d586b9bffc9",
+      "node_id_reproduced": true,
+      "old_ts": "1794523979.32239",
+      "restored_ts": "1794523979.322391"
+    },
+    {
+      "node_id": "37f3317d04efbbfe67ccf52d9ec4396f3f0df9954649e6fc115bcdea58f37b72",
+      "node_id_reproduced": true,
+      "old_ts": "1794523979.35527",
+      "restored_ts": "1794523979.355271"
+    }
+  ],
+  "receipt_type": "TIMESTAMP_PRECISION_REPAIR",
+  "root_cause": "UNKNOWN (open investigation; nodes appended post-reconcile)",
+  "snapshot_id": "20261113T035606_pre_timestamp_repair_and_writer_ref",
+  "utc": "2026-11-13T08:57:14Z"
+}

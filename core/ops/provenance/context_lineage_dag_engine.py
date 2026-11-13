@@ -22,6 +22,7 @@ import time
 import hmac
 import sqlite3
 import hashlib
+import contextlib
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple, Any
 
@@ -46,10 +47,34 @@ class ContextLineageEngine:
         os.makedirs(os.path.dirname(self.db_path), exist_ok=True)
         self._init_db()
 
-    def _get_conn(self) -> sqlite3.Connection:
+    @contextlib.contextmanager
+    def _get_conn(self):
         conn = sqlite3.connect(self.db_path, timeout=30.0)
         conn.row_factory = sqlite3.Row
-        return conn
+        try:
+            yield conn
+            conn.commit()
+        finally:
+            conn.close()
+
+    WRITER_LOG_PATH = os.path.expanduser(
+        "~/Desktop/SSOT_Agentic_Brain/memory/catch_log/writer_log.jsonl")
+
+    def _append_writer_log(self, writer_line: str, writer_log_ref: str) -> None:
+        """Append the writer-provenance entry to the immutable writer log.
+
+        Fail-closed: if the log cannot be written, the commit is aborted —
+        no timestamp may exist without a writer-log reference.
+        """
+        log_path = Path(self.WRITER_LOG_PATH)
+        try:
+            log_path.parent.mkdir(parents=True, exist_ok=True)
+            with open(log_path, "a", encoding="utf-8") as fh:
+                fh.write(writer_line + "\n")
+        except Exception as exc:
+            raise RuntimeError(
+                f"FAIL CLOSED: writer log unavailable ({exc}); commit aborted"
+            ) from exc
 
     def _init_db(self):
         with self._get_conn() as conn:
@@ -160,12 +185,17 @@ class ContextLineageEngine:
         
         return hashes[0]
 
-    def sync_global_merkle_root(self) -> str:
+    def sync_global_merkle_root(self, target_file: Optional[str] = None) -> str:
         global_root = self.calculate_global_merkle_root()
-        merkle_file = os.path.expanduser("~/Desktop/SSOT_Agentic_Brain/memory/tri_brain/merkle_root.hash")
-        os.makedirs(os.path.dirname(merkle_file), exist_ok=True)
-        with open(merkle_file, "w", encoding="utf-8") as f:
-            f.write(f"{global_root}\n")
+        if target_file is not None:
+            os.makedirs(os.path.dirname(target_file), exist_ok=True)
+            with open(target_file, "w", encoding="utf-8") as f:
+                f.write(f"{global_root}\n")
+        elif os.path.abspath(self.db_path) == os.path.abspath(DB_PATH):
+            merkle_file = os.path.expanduser("~/Desktop/SSOT_Agentic_Brain/memory/tri_brain/merkle_root.hash")
+            os.makedirs(os.path.dirname(merkle_file), exist_ok=True)
+            with open(merkle_file, "w", encoding="utf-8") as f:
+                f.write(f"{global_root}\n")
         return global_root
 
     def commit_step(self, 
@@ -179,6 +209,7 @@ class ContextLineageEngine:
         Commits a new execution step with anti-corruption and anti-replay validation.
         """
         ts = time.time() if timestamp is None else timestamp
+        ts = float(ts)
         payload_str = json.dumps(payload, sort_keys=True)
         payload_hash = self.compute_hash(payload_str)
         payload_summary = payload_str[:120]
@@ -186,7 +217,8 @@ class ContextLineageEngine:
         latest = self.get_latest_node(session_id)
         if latest is not None:
             # 1. Anti-Replay: Monotonic Timestamp & Sequence Enforcement
-            if ts < latest["timestamp"]:
+            latest_ts = float(latest["timestamp"]) if latest["timestamp"] is not None else 0.0
+            if ts < latest_ts:
                 raise ValueError(f"REPLAY_ATTACK_REJECTED: Non-monotonic backdated timestamp {ts} < {latest['timestamp']}")
             seq_num = latest["seq_num"] + 1
             if parent_hash is None:
@@ -211,12 +243,29 @@ class ContextLineageEngine:
         signature = self.compute_hmac(node_id, payload_hash)
         merkle_root = self.compute_hash(f"{parent_hash}:{node_id}")
 
+        # Writer-provenance linkage: every timestamp is anchored to a writer-log
+        # entry (fail-closed bidirectional reference). The node stores the
+        # SHA-256 of the writer-log line; the log stores the node_id.
+        writer_entry = {
+            "ts": f"{ts:.6f}",
+            "node_id": node_id,
+            "session_id": session_id,
+            "agent_id": agent_id,
+            "step_type": step_type,
+            "writer_script": str(Path(__file__).name),
+            "pid": os.getpid(),
+            "merkle_root_at_commit": merkle_root,
+        }
+        writer_line = json.dumps(writer_entry, sort_keys=True)
+        writer_log_ref = hashlib.sha256(writer_line.encode('utf-8')).hexdigest()
+        self._append_writer_log(writer_line, writer_log_ref)
+
         with self._get_conn() as conn:
             conn.execute("""
                 INSERT INTO lineage_nodes 
-                (node_id, seq_num, parent_hash, session_id, timestamp, agent_id, step_type, payload_hash, payload_raw, payload_summary, signature, merkle_root)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """, (node_id, seq_num, parent_hash, session_id, ts, agent_id, step_type, payload_hash, payload_str, payload_summary, signature, merkle_root))
+                (node_id, seq_num, parent_hash, session_id, timestamp, agent_id, step_type, payload_hash, payload_raw, payload_summary, signature, merkle_root, writer_log_ref)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, (node_id, seq_num, parent_hash, session_id, ts, agent_id, step_type, payload_hash, payload_str, payload_summary, signature, merkle_root, writer_log_ref))
             conn.commit()
 
         # Update actual session Merkle root across all nodes
@@ -352,9 +401,8 @@ class ContextLineageEngine:
                 ORDER BY seq_num ASC, timestamp ASC
             """, (session_id,))
             rows = [dict(r) for r in cur.fetchall()]
-
-        if not rows:
-            return {"valid": True, "node_count": 0, "status": "EMPTY_SESSION"}
+            if not rows:
+                return {"valid": True, "node_count": 0, "status": "EMPTY_SESSION"}
 
         known_nodes = {node["node_id"] for node in rows}
         known_nodes.add("GENESIS_NODE_0000000000000000")
@@ -392,7 +440,7 @@ class ContextLineageEngine:
             prev_node_id = node["node_id"]
 
             # 2. Node ID Metadata Re-computation Check
-            expected_node_id = self.compute_hash(f"{node['parent_hash']}:{session_id}:{node['seq_num']}:{node['timestamp']:.6f}:{node['agent_id']}:{node['step_type']}:{node['payload_hash']}")
+            expected_node_id = self.compute_hash(f"{node['parent_hash']}:{node['session_id']}:{node['seq_num']}:{float(node['timestamp']):.6f}:{node['agent_id']}:{node['step_type']}:{node['payload_hash']}")
             if node["node_id"] != expected_node_id:
                 violations.append({
                     "node_id": node["node_id"],
@@ -429,7 +477,7 @@ class ContextLineageEngine:
                     "seq_num": node["seq_num"],
                     "last_seq": last_seq
                 })
-            if node["timestamp"] < last_ts:
+            if float(node["timestamp"]) < last_ts:
                 violations.append({
                     "node_id": node["node_id"],
                     "error": "REPLAY_ATTACK_BACKDATED_TIMESTAMP",
@@ -438,7 +486,7 @@ class ContextLineageEngine:
                 })
 
             last_seq = node["seq_num"]
-            last_ts = node["timestamp"]
+            last_ts = float(node["timestamp"])
 
         # 5. Merkle Root Consistency Check
         computed_root = self.calculate_merkle_root(session_id)

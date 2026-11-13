@@ -72,6 +72,24 @@ fi
 
 log "=== DUAL-WITNESS GATE STARTING (fail-closed on disagreement) ==="
 
+# --- Journal-mode remediation: the Zig witness opens the DB read-only ---
+# A WAL-mode DB without its -shm file cannot be opened read-only, so the
+# witness fails closed with "unable to open database file". The gate
+# switches the DB to DELETE journal mode for the witness run and restores
+# WAL mode on exit. No data is modified — only the journal mode header.
+restore_wal() {
+  sqlite3 "$DB_PATH" "PRAGMA journal_mode=WAL;" >/dev/null 2>&1 || true
+}
+trap restore_wal EXIT
+JMODE=$(sqlite3 "$DB_PATH" "PRAGMA journal_mode;" 2>/dev/null || echo "unknown")
+if [ "$JMODE" = "wal" ]; then
+  rm -f "$DB_PATH-wal" "$DB_PATH-shm"
+  sqlite3 "$DB_PATH" "PRAGMA journal_mode=DELETE;" >/dev/null 2>&1 \
+    || fail_closed "Cannot switch journal mode for witness read" "$DB_PATH"
+  log "[PRE-FLIGHT] Journal mode switched WAL -> DELETE for read-only witness access (restored on exit)."
+fi
+
+
 # --- Run Witness A (native Zig) ---
 log "[WITNESS A] Executing native Zig stateless_airblocked_witness..."
 WITNESS_A_OUT=""; WITNESS_A_RC=0
