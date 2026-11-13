@@ -286,11 +286,18 @@ class ContextLineageEngine:
         self._append_writer_log(writer_line, writer_log_ref)
 
         with self._get_conn() as conn:
+            # Store the timestamp as its CANONICAL TEXT form (the exact string
+            # that is hashed into node_id). Inserting a raw REAL into a
+            # TEXT-affinity column makes SQLite's REAL->TEXT conversion drop
+            # precision (~15 significant digits), which desyncs node_id
+            # recomputation — the root cause of the 2026-11-13 timestamp
+            # truncation incident. Canonical text storage is affinity-proof.
+            ts_canonical = f"{ts:.6f}"
             conn.execute("""
                 INSERT INTO lineage_nodes 
                 (node_id, seq_num, parent_hash, session_id, timestamp, agent_id, step_type, payload_hash, payload_raw, payload_summary, signature, merkle_root, writer_log_ref)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """, (node_id, seq_num, parent_hash, session_id, ts, agent_id, step_type, payload_hash, payload_str, payload_summary, signature, merkle_root, writer_log_ref))
+            """, (node_id, seq_num, parent_hash, session_id, ts_canonical, agent_id, step_type, payload_hash, payload_str, payload_summary, signature, merkle_root, writer_log_ref))
             conn.commit()
 
         # Update actual session Merkle root across all nodes
@@ -309,7 +316,7 @@ class ContextLineageEngine:
                     INSERT OR IGNORE INTO global_evidence_registry 
                     (evidence_digest, first_session_id, first_node_id, first_timestamp, agent_id, step_type)
                     VALUES (?, ?, ?, ?, ?, ?)
-                """, (payload_hash, session_id, node_id, ts, agent_id, step_type))
+                """, (payload_hash, session_id, node_id, f"{ts:.6f}", agent_id, step_type))
 
                 if isinstance(payload, dict) and "signal" in payload and isinstance(payload["signal"], dict):
                     sig = payload["signal"]

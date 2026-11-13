@@ -1,0 +1,15 @@
+{
+  "receipt": "TIMESTAMP_TRUNCATION_ROOT_CAUSE_IDENTIFIED",
+  "utc": "2026-11-13T09:17:00Z",
+  "incident": "3 lineage nodes flagged NODE_METADATA_TAMPERING (seq 10-12, anti_corruption_test_session)",
+  "root_cause": "schema affinity mismatch: reconcile rebuilt lineage_nodes.timestamp as TEXT; engine committed raw REAL floats; SQLite REAL->TEXT conversion (~15 significant digits) dropped precision at INSERT for values with >15 significant digits, desynchronizing node_id recomputation",
+  "not_the_cause": ["no external tamperer", "no reconcile mutation of these rows (absent from pre-reconcile backup)", "node_ids/HMACs authentic throughout"],
+  "durable_fix": [
+    "commit_step now stores timestamp as canonical TEXT f'{ts:.6f}' (exactly the hashed string) — affinity-proof",
+    "evidence registry first_timestamp normalized identically",
+    "3 affected nodes restored to hash-proven originals (receipt: timestamp_repair_receipt.json)",
+    "writer_log_ref provenance linkage live on all new nodes"
+  ],
+  "verification": "verifier valid with zero violations post-fix; new nodes store full-precision canonical strings",
+  "status": "CLOSED"
+}
