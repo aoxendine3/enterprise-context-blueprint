@@ -1,8 +1,53 @@
 {
   "ledger": "memory/observability/tool_ledger.jsonl",
   "ledger_chain_verified": true,
-  "ledger_entries": 14,
+  "ledger_entries": 18,
   "tools": {
+    "clara_dmg": {
+      "classification": "INSUFFICIENT",
+      "last_run_utc": "2026-11-13T09:34:20Z",
+      "last_writer_log_ref": "406cc5765905c546f30f6e84a8cec0d468dfee4b48c2f43709ac59bb3789ba5d",
+      "latency_cv": null,
+      "latency_ms": {
+        "avg": 20000,
+        "max": 20000,
+        "p95": 20000
+      },
+      "runs_total": 1,
+      "runs_window": 1,
+      "stability_score": null,
+      "success_rate": 1.0
+    },
+    "clara_standalone_build": {
+      "classification": "INSUFFICIENT",
+      "last_run_utc": "2026-11-13T09:34:20Z",
+      "last_writer_log_ref": "f99764b37fc6e79a0ec8ad8d5ac31e476825c927e98798cd77719a5431f7fa90",
+      "latency_cv": null,
+      "latency_ms": {
+        "avg": 60000,
+        "max": 60000,
+        "p95": 60000
+      },
+      "runs_total": 1,
+      "runs_window": 1,
+      "stability_score": null,
+      "success_rate": 1.0
+    },
+    "daxx_tauri_build": {
+      "classification": "INSUFFICIENT",
+      "last_run_utc": "2026-11-13T09:36:40Z",
+      "last_writer_log_ref": "4ff8819a4304fa68f6b2cab86c3190d64ed9145039228f502549a46cc2bf669a",
+      "latency_cv": null,
+      "latency_ms": {
+        "avg": 110000,
+        "max": 120000,
+        "p95": 100000
+      },
+      "runs_total": 2,
+      "runs_window": 2,
+      "stability_score": null,
+      "success_rate": 0.5
+    },
     "db_inventory_audit.py": {
       "classification": "UNSTABLE",
       "last_run_utc": "2026-11-13T09:25:33Z",
@@ -94,6 +139,6 @@
       "success_rate": 1.0
     }
   },
-  "utc": "2026-11-13T09:32:32Z",
-  "window": 5
+  "utc": "2026-11-13T09:36:40Z",
+  "window": 6
 }
