@@ -1,7 +1,7 @@
 {
   "ledger": "memory/observability/tool_ledger.jsonl",
   "ledger_chain_verified": true,
-  "ledger_entries": 11,
+  "ledger_entries": 14,
   "tools": {
     "db_inventory_audit.py": {
       "classification": "UNSTABLE",
@@ -62,8 +62,38 @@
       "runs_window": 1,
       "stability_score": null,
       "success_rate": 1.0
+    },
+    "tauri_build": {
+      "classification": "INSUFFICIENT",
+      "last_run_utc": "2026-11-13T09:32:32Z",
+      "last_writer_log_ref": "efa024c7e83181628b50ed7dc3b9f6b1ca33f60837798bd41613f104203caae1",
+      "latency_cv": null,
+      "latency_ms": {
+        "avg": 60000,
+        "max": 90000,
+        "p95": 30000
+      },
+      "runs_total": 2,
+      "runs_window": 2,
+      "stability_score": null,
+      "success_rate": 0.5
+    },
+    "vite_build": {
+      "classification": "INSUFFICIENT",
+      "last_run_utc": "2026-11-13T09:28:59Z",
+      "last_writer_log_ref": "c7a942200e00b6be360f3f9fb72ba0c9c5982fc40522d76624ae45cc0c9f0151",
+      "latency_cv": null,
+      "latency_ms": {
+        "avg": 422,
+        "max": 422,
+        "p95": 422
+      },
+      "runs_total": 1,
+      "runs_window": 1,
+      "stability_score": null,
+      "success_rate": 1.0
     }
   },
-  "utc": "2026-11-13T09:26:06Z",
-  "window": 20
+  "utc": "2026-11-13T09:32:32Z",
+  "window": 5
 }

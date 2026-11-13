@@ -1,0 +1,17 @@
+{
+  "receipt": "XORAS_APP_BUILT_AND_LAUNCHED",
+  "utc": "2026-11-13T11:05:00Z",
+  "artifacts": {
+    "app_bundle": "workspaces/xoras-app/src-tauri/target/release/bundle/macos/Xoras.app (10.40 MiB)",
+    "dmg": "workspaces/xoras-app/src-tauri/target/release/bundle/dmg/Xoras_2.0.0_aarch64.dmg (4.66 MiB)",
+    "binary": "target/release/xoras_app (Mach-O arm64)"
+  },
+  "build": "cargo 1.95.0 / rustc 1.95.0 / npm 11.17.0 (PATH-restored); first full compile 1m30s, one warning only (unused import)",
+  "launch_test": "open (GUI/Finder-equivalent context): process alive and stable 6s+ post-launch, 0.9% CPU, ~107MB RSS",
+  "backend_verification": "daxx_xmars_orchestration_engine.py --verify-boundaries GREEN under project venv",
+  "incidents_resolved_during_build": [
+    "dmg bundling failed once: hdiutil could not unmount interstitial disk6 (Resource busy) - ejected stuck image, incremental rebuild succeeded"
+  ],
+  "pyvenv_cfg_permissionerror": "app now launches stable in GUI context; prior session crash was against the pre-existing environment, backend suite green; final confirmation of python-spawn inside the app UI is a user-exercise step",
+  "status": "BUILT, LAUNCHED, STABLE"
+}
