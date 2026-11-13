@@ -1,0 +1,26 @@
+{
+  "receipt": "PPTX_DECK_FULLY_READ",
+  "utc": "2026-11-13T10:05:00Z",
+  "source": "~/Downloads/Sovereign_Agentic_OS_Architecture.pptx (untouched)",
+  "extraction": "memory/timeline/raw/presentation_extract_full/ (ditto -x -k; 15 slides + ppt/media/image1..15.png)",
+  "finding": "slides are IMAGE-based (Words: 0 in docProps; zero <a:t> text runs); all 15 slide images read visually",
+  "slides": [
+    "S1 SSOT: The Sovereign Agentic OS - bare-metal sovereign brain on M4, air-gapped, zero-cloud",
+    "S2 static AI wrapper vulnerabilities (empty-string SHA-256 injection, PROVENANCE_CORRUPTION, no Ed25519 binding, >15% L1 miss)",
+    "S3 SQLite 8-agent wall (CWE-362 LWW, 224/256 lost updates, 87.50% destruction)",
+    "S4 M4 hardware symbiosis (unified memory, 100% air-gapped)",
+    "S5 HexCell lock-free IPC (CAS, POSIX shm ring, 0 lost updates, 290k+ ops/sec)",
+    "S6 3D Tri-Brain (Alpha <0.05ms / Beta-MTPO <1.5ms / Gamma <3.0ms)",
+    "S7 Roman numeral bounding (non-positional add/subtractive bounds, wake/hydration security)",
+    "S8 Swarm 9 Council + 84 helpers (Byzantine >=71% quorum)",
+    "S9 Zero-trust telemetry (Ed25519 witness-gate signing, SHA-256 client verifier)",
+    "S10 Ed25519-signed Merkle DAGs (zero-drift, monotonic, replay isolation)",
+    "S11 Human Protection & fail-closed (Log #078, fail-closed UI)",
+    "S12 UPGP v5.0 Ultra (seccomp-BPF ring 1, syscall filters ring 2, 15 isolation vectors ring 3)",
+    "S13 Project Clara porting, 14-gate execution, 48 roster members (GATE_02/04/13/14 verified)",
+    "S14 Sovereign vs standard comparison (sovereign wins all 4 dimensions)",
+    "S15 The Ultimate Source of Truth (mathematically locked, ethically aligned, Log #078)"
+  ],
+  "watermark_note": "deck carries 'Gemini Notebook' watermark - user's own artifact, untouched per house policy",
+  "status": "REPORTED to user (text + spoken)"
+}
