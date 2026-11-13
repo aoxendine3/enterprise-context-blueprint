@@ -53,6 +53,18 @@ def _utcstamp() -> str:
     return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
 
 
+def _trace_span(action: str, detail: str = "", target: str = "", status: str = "ok") -> None:
+    """Emit a span into the Sovereign Activity Trace (best-effort; never blocks
+    the operation, but a broken tracer is itself surfaced in output)."""
+    try:
+        sys.path.insert(0, str(ROOT / "core" / "ops" / "scripts"))
+        from sovereign_activity_trace import span as _sp  # noqa: E402
+        _sp(trace_id="rollback_manager", action=f"{action} {detail}".strip(),
+            actor="sovereign_rollback_manager", target=target, status=status)
+    except Exception as exc:  # tracer must never take down the safety tool
+        print(f"[trace-degraded] {exc}")
+
+
 def sha256_file(path: Path) -> str:
     h = hashlib.sha256()
     with open(path, "rb") as f:
@@ -108,6 +120,7 @@ def snapshot(label: str, files: list[str]) -> str:
         print("FAIL CLOSED: no files provided for snapshot")
         sys.exit(1)
     snap_id = f"{time.strftime('%Y%m%dT%H%M%S')}_{label}"
+    _trace_span("rollback.snapshot", f"snapshot:{label}", target=str(snap_id))
     snap_dir = SNAP_ROOT / snap_id
     snap_dir.mkdir(parents=True, exist_ok=False)
 
@@ -197,6 +210,7 @@ def promote(snapshot_id: str, proof_receipt: str = "", name: str = "") -> None:
     })
     registry.sort(key=lambda s: s["promoted_epoch"])
     save_safe_points(registry)
+    _trace_span("rollback.promote", f"safe_point:{snapshot_id}")
     print(f"SAFE POINT PROMOTED (double-guarded): {snapshot_id}")
     print(f"  name: {name or snapshot_id}")
     print(f"  primary: {SNAP_ROOT / snapshot_id}  (guard 1 PASS)")
@@ -299,6 +313,7 @@ def rollback(snapshot_id: str, only: list[str] | None = None,
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(src, dest)
         print(f"RESTORED: {e['file']} <- {snapshot_id} ({e['sha256'][:16]}...)")
+    _trace_span("rollback.restore", f"snapshot:{snapshot_id}", status="ok" if ok else "fail")
     print("ROLLBACK:", "COMPLETE (double-guard verified, both copies matched)" if ok else "FAILED")
     return ok
 

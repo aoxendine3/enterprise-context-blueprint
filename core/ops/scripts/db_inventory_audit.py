@@ -178,10 +178,19 @@ def crosscheck(records):
     wf = by_path.get("memory/tri_brain/world_file.db")
     ld = by_path.get(".sovereign/provenance/lineage_dag.db")
     if wf and ld and isinstance(wf["tables"].get("lineage_nodes"), int) and isinstance(ld["tables"].get("lineage_nodes"), int):
+        w, l = wf["tables"]["lineage_nodes"], ld["tables"]["lineage_nodes"]
+        delta = l - w
         cc["canonical_vs_mirror_nodes"] = {
-            "world_file.db": wf["tables"]["lineage_nodes"],
-            "lineage_dag.db": ld["tables"]["lineage_nodes"],
-            "in_sync": wf["tables"]["lineage_nodes"] == ld["tables"]["lineage_nodes"],
+            "world_file.db": w,
+            "lineage_dag.db": l,
+            "in_sync": delta == 0,
+            # Expected flow: the engine commits new nodes to the mirror, and
+            # reconcile folds them into canonical. Mirror-ahead is by design;
+            # canonical-ahead would be dangerous (evidence missing from mirror).
+            "state": ("in_sync" if delta == 0
+                      else "mirror_ahead_by_design_pending_reconcile" if delta > 0
+                      else "CANONICAL_AHEAD_UNEXPECTED"),
+            "delta": delta,
         }
     return cc
 
@@ -224,6 +233,14 @@ def main():
     OUT_LOG.parent.mkdir(parents=True, exist_ok=True)
     with open(OUT_LOG, "a", encoding="utf-8") as fh:
         fh.write("\n".join(lines) + "\n")
+    # Full-stage tracing: the audit itself is monitored (no unmonitored work).
+    try:
+        sys.path.insert(0, str(Path(__file__).parent))
+        from sovereign_activity_trace import span as _trace_span
+        _trace_span(trace_id="db_inventory_audit", action=f"audited {len(records)} DBs, synced catalog",
+                    actor="db_inventory_audit.py", status="ok")
+    except Exception as exc:
+        print(f"[trace-degraded] {exc}")
     print("\n".join(lines))
     print(f"OK: catalog synced ({len(records)} DBs)")
 

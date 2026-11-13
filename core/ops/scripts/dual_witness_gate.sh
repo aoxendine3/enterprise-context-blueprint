@@ -129,4 +129,5 @@ log "[WITNESS B] PASSED: independent Python verified on-disk truth."
 log "[CONSENSUS] Witness A and Witness B independently verified identical on-disk truth."
 write_receipt "true" "DUAL_WITNESS_CONSENSUS" "Both witnesses passed; zero shared code; fail-closed on disagreement."
 log "✅ DUAL-WITNESS GATE PASSED: Dual-substrate consensus achieved. Pipeline authorized."
+python3 "$ROOT/core/ops/scripts/sovereign_activity_trace.py" span --trace dual_witness_gate --action "gate PASSED dual-substrate consensus" --actor dual_witness_gate.sh >/dev/null 2>&1 || log "[trace-degraded] activity trace unavailable"
 exit 0

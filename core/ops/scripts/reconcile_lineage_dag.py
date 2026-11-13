@@ -39,6 +39,9 @@ import shutil
 from datetime import datetime, timezone
 from pathlib import Path
 
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__))))
+from sovereign_activity_trace import span as _trace_span  # noqa: E402
+
 WORKSPACE_ROOT = os.path.expanduser("~/Desktop/SSOT_Agentic_Brain")
 SOURCE_DB = os.path.join(WORKSPACE_ROOT, ".sovereign", "provenance", "lineage_dag.db")
 SOURCE_BACKUP = None  # set below if backup exists
@@ -384,6 +387,7 @@ def main() -> int:
 
     print("=========================================================================")
     print("  RECONCILIATION COMPLETE — evidence preserved, duplicates quarantined,")
+    _trace_span("reconcile.complete", "canonical+mirror synced, zero violations")
     print("  per-session sequence integrity restored, both witnesses agree.")
     print("=========================================================================")
     return 0
