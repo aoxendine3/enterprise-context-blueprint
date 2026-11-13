@@ -1,0 +1,22 @@
+{
+  "receipt": "DAXX_APP_PLACEHOLDER_ERADICATION_REAL_GATEWAY_WIRING",
+  "utc": "2026-11-13T11:55:00Z",
+  "mandate": "Daxx app was placeholder and did not speak to the real DaxxCo collective",
+  "fabrications_eradicated": [
+    "app send_message fallback invented 'Consensus: 28/28 Nodes Verified' canned text - REMOVED (fail-closed honest error instead)",
+    "gateway _query_ollama invented 'All 28 specialist nodes registered and state verified' when Ollama offline - REMOVED (honest fail-closed text naming the real cause)",
+    "gateway stream path invented 'BFT CONCURRENCY COMMIT' fallback speech - REMOVED (honest error event)",
+    "configured models did not exist on this M4 (sovereign-hermes:latest / llama3.2:latest) - gateway now resolves REAL installed models dynamically (sovereign-m4:latest live-verified)"
+  ],
+  "wiring_delivered": {
+    "rust_backend": "send_message now routes gateway-first (127.0.0.1:8085 /api/chat, constitution-grounded, session-ledgered) with resolved direct-Ollama fallback; new ensure_gateway command auto-starts daxx_server.py if the gateway is not answering",
+    "frontend": "live roster from /api/roster (static file only as labeled offline fallback), live agent count in header, gateway status pill, gate-receipts panel showing sequence_number + merkle root; fake consensus fallback removed",
+    "gateway_fixes": "dynamic model resolution (resolve_model), honest fail-closed errors everywhere, no fabricated telemetry"
+  },
+  "verification": {
+    "gateway_chat": "POST /api/chat returned REAL inference from sovereign-m4:latest, grounded in SOVEREIGN_CONSTITUTION.md",
+    "session_ledger": "/api/history recording real conversations",
+    "branding_note": "SOVEREIGN_CONSTITUTION.md names Anthony Oxendine (Architect & Founder) - the user's own name; references retained, NOT a violation"
+  },
+  "status": "REAL COLLECTIVE WIRED - placeholder era closed"
+}
