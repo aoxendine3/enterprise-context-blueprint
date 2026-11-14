@@ -54,3 +54,8 @@
 - `docs/papers/COGNEN_NEURO_MIMETIC_SPEC.md` — user-provided synthesis of Ororbia & Kelly's CogNGen (arXiv:2204.00619; arXiv:2310.15177 / AAAI-SS). Provenance header states it is not original research; verify via `memory/catch_log/cogngen_camel_contextecho_verification.json`.
 - `docs/papers/DECONSTRUCTING_REALITY_AGENTIC_CODING_FRAMEWORK.md` — user-provided synthesis of CogNGen + CaMeL (arXiv:2503.18813, SaTML 2026) + ContextEcho (arXiv:2605.24279, NeurIPS 2026 E&D submission). One overstatement corrected in the provenance header (CaMeL is not "absolute protection preserving utility" — benign utility 63.9% vs 90.7%; AgentDojo is the authors' own benchmark; ContextEcho is a 2-week-old preprint with judge-dependent scores).
 - Both documents are filed verbatim for traceability and are not primary sources.
+
+## [2.0.4] — 2026-11-14 — MERIDIAN proposed
+
+### Added
+- `docs/research/MERIDIAN_SPEC.md` — witnessed continuum design: cryptographic cage (DART-stamped capability lattice + Z3 containment theorem), physical dual-chamber LLM split (Mac P-LLM / Windows RTX Q-LLM), register-attested sessions enforced by MARS circuit breaker, reconsolidation-by-retrieval learning mode (no weight updates), Session Certificates productized through Agent Notary. Synthesis of verified pillars (CogNGen/CaMeL/ContextEcho) with XORAS substrates; nothing externally validated yet; falsification gate precedes any marketing claim.
