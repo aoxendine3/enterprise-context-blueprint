@@ -1,0 +1,28 @@
+{
+  "date_utc": "2026-11-14",
+  "subject": "COGNGEN engine synthesis document — council audit vs. certified tree",
+  "seats": {
+    "Clara (chief science, qwen2.5:7b-instruct local)": {
+      "mode": "commands_proposed_without_running",
+      "verdict": "non-verified — proposed verification commands but never ran them; the path asked about (ls /workspace/scratch/cogngen_engine.py) returns no such file on this machine"
+    },
+    "DAXX (master orchestrator, sovereign-hermes:latest — repo-trained)": {
+      "mode": "full_assessment_with_detail",
+      "verdict": "IMPOSSIBLE — the claimed engine does not exist anywhere in the certified tree; 3.2 KB HexCell stride and NGC f_e/f_g and basal-ganglia gating are not implemented; the closest real artifact is world_file.db; Hopfield-style slots only appear in vendored dependencies, not our verified math; the document's 'zero errors on bare metal' claim is fiction dressed as telemetry",
+      "recommendation": "reject the document; the DART cage lattice + reality_gate.sh already carry the spirit of what it aspires to"
+    },
+    "Jarvis (judge/router)": {
+      "mode": "qualitative verdict",
+      "verdict": "not deployable as evidenced; treats the six claims as unverified artifacts; no sign-off without receipts"
+    },
+    "Vance": { "verdict": "no response (Windows plane, model returned non-JSON payload)" },
+    "Maxx": { "verdict": "no response (Windows plane, model returned non-JSON payload)" }
+  },
+  "filesystem_probe": {
+    "ls_workspace": "No such file or directory (exit 2)",
+    "find_cogngen_engine": "0 results across the certified tree",
+    "hopfield_like_symbols": "resolves only to vendored venv packages and Sovrac runtime files — nothing resembling the document's engine"
+  },
+  "conclusion": "The synthesis document is not implementable as written; the closest existing component is our DART cage + 6/6 production gates. The document must not be merged, quoted, or used to justify future claims of CogNGen execution.",
+  "receipt": "cogngen_engine_audit_receipt\n"
+}

@@ -1,0 +1,68 @@
+To address the seat assignment for Clara, Chief Science Officer, we need to devise a set of commands that can verify each of the claims (C1 through C6). Here are the commands and expected outcomes:
+
+### Command 1: Verify `cogNGen` Engine Existence and Integrity
+**Command:** 
+```bash
+ls -l /workspace/scratch/cogngen_engine.py
+```
+**Expected Outcome:**
+- The file should exist, and its permissions and size should be as expected.
+
+### Command 2: Run Perceptual Circuits on Bare Metal
+**Command:** 
+```bash
+python3 /path/to/cogNGen/engine/cogngen_engine.py --test-bare-metal
+```
+**Expected Outcome:**
+- The command should execute without errors, and the output should indicate successful execution of perceptual circuits.
+
+### Command 3: Verify Hopfield/MINERVA-2 Slot Buffers
+**Command:** 
+```bash
+python3 /path/to/cogNGen/engine/cogngen_engine.py --verify-slot-buffers
+```
+**Expected Outcome:**
+- The command should output the number of slot buffers and their sizes, confirming 6 self-recurrent Hopfield/MINERVA-2 slot buffers with a stride of 3,200 bytes each.
+
+### Command 4: Verify Basal-Ganglia Dual-Control Routing
+**Command:** 
+```bash
+python3 /path/to/cogNGen/engine/cogngen_engine.py --verify-dual-control-routing
+```
+**Expected Outcome:**
+- The command should output the current state of dual-control routing, showing that it is configured with `a_int` and `a_ext`, and the gating mechanism M is correctly updated.
+
+### Command 5: Verify SWR Sleep-Cycle Hebbian Replay
+**Command:** 
+```bash
+python3 /path/to/cogNGen/engine/cogngen_engine.py --verify-swr-replay
+```
+**Expected Outcome:**
+- The command should output evidence of the SWR sleep-cycle Hebbian replay mechanism, such as logs or metrics indicating successful elimination of catastrophic forgetting.
+
+### Command 6: Handover Artifacts to OpenCode Execution Substrate
+**Command:** 
+```bash
+python3 /path/to/cogNGen/engine/cogngen_engine.py --handover-to-opencode
+```
+**Expected Outcome:**
+- The command should output a confirmation that the artifacts have been successfully handed over to OpenCode as an execution substrate, with appropriate logs or metadata.
+
+### Summary of Commands and Expected Outcomes:
+1. **Verify `cogNGen` Engine Existence and Integrity:**
+   ```bash
+   ls -l /workspace/scratch/cogngen_engine.py
+   ```
+2. **Run Perceptual Circuits on Bare Metal:**
+   ```bash
+   python3 /path/to/cogNGen/engine/cogngen_engine.py --test-bare-metal
+   ```
+3. **Verify Hopfield/MINERVA-2 Slot Buffers:**
+   ```bash
+   python3 /path/to/cogNGen/engine/cogngen_engine.py --verify-slot-buffers
+   ```
+4. **Verify Basal-Ganglia Dual-Control Routing:**
+   ```bash
+   python3 /path/to/cogNGen/engine/cogngen_engine.py --verify-dual-control-routing
+   ```
+5. **Verify

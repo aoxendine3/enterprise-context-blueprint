@@ -1,0 +1,37 @@
+### Analysis and Audit of the Synthesis
+
+#### 1. **CogNGen Engine Artifact**
+- **Artifact:** /workspace/scratch/cogngen_engine.py
+- **Status:** Compiled and zero-error
+- **Claim:** The cogNGen engine exists and is zero-error compiled.
+
+#### 2. **NGC Perceptual Circuits Artifact**
+- **Artifact:** NGC perceptual circuits with f_e: o_t -> z_t, f_g: z_t -> o_t
+- **Status:** Running on bare metal
+- **Claim:** The NGC perceptual circuits are running on bare metal.
+
+#### 3. **Buffer Configuration Artifact**
+- **Artifact:** 6 self-recurrent Hopfield/MINERVA-2 slot buffers, 3,200-byte HexCell strides
+- **Status:** Not explicitly stated
+- **Claim:** The buffer configuration is correct and meets the requirements.
+
+#### 4. **Dual-Control Routing Artifact**
+- **Artifact:** Basal-ganglia dual-control routing (a_int / a_ext) with slot gating M <- 0.85 M + 0.15 z
+- **Status:** Not explicitly stated
+- **Claim:** The dual-control routing is correctly implemented and meets the specifications.
+
+#### 5. **SWR Sleep-Cycle Artifact**
+- **Artifact:** SWR sleep-cycle Hebbian replay eliminating catastrophic forgetting
+- **Status:** Not explicitly stated
+- **Claim:** The SWR sleep-cycle is correctly implemented and eliminates catastrophic forgetting.
+
+#### 6. **Execution Substrate Artifact**
+- **Artifact:** The artifacts can be handed to OpenCode as an execution substrate
+- **Status:** Not explicitly stated
+- **Claim:** The artifacts are ready to be handed over to OpenCode for execution.
+
+#### 7. **Root Cause of Previous Failure**
+- **Root Cause:** Seats returned hedging. Do not hedge.
+
+#### 8. **Seat Assignment**
+-
