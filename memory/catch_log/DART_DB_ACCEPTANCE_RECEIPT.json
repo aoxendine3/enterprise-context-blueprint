@@ -1,5 +1,5 @@
 {
-  "tmp": "/var/folders/5f/z86t8vfs6b96sq0wmbnnb4hw0000gn/T/dart_db_test_o4gron4y",
+  "tmp": "/var/folders/5f/z86t8vfs6b96sq0wmbnnb4hw0000gn/T/dart_db_test_6nuyjy8h",
   "checks": {
     "lifo_hot": true,
     "wal_durable": true,
@@ -10,12 +10,12 @@
     "live_bootstrap": null
   },
   "cold_rows_sample": 11,
-  "merkle_root": "13c44d27db7b53edf8140219c8131df368fd972e1bcec4f8ac627ff4a280cd8a",
-  "root_before_flush_note": "82a9f3b3e453044278d64b9e56e82216dfb6c9d5f967340a3e124d12857f541b",
-  "checkpoint_id": "20261114T132113_pre_mutation",
+  "merkle_root": "b541394d15883e6c95e0a306c78c1a65aa7020b98f9d4ebf3722157797c08e30",
+  "root_before_flush_note": "50fc90d3fd61900978420109431ceba15665e0e71963a162513742368b874c72",
+  "checkpoint_id": "20261114T134504_pre_mutation",
   "notes": [
     "live_bootstrap skipped by default \u2014 pass DART_LIVE_BOOTSTRAP=1 to seed the live store"
   ],
   "verdict": "VERIFIED_DART_DB_ACCEPTANCE",
-  "timestamp_utc": "2026-11-14T18:21:13Z"
+  "timestamp_utc": "2026-11-14T18:45:04Z"
 }

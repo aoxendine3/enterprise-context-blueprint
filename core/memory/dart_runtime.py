@@ -52,10 +52,11 @@ def record_transition(
     action_hash: int,
     state_flags: int,
     payload_data: bytes,
+    lattice: str = "PUBLIC",
 ) -> int:
     """Canonical write path for every agent transition."""
     db = get_dart_db()
-    seq = db.record(agent_id, action_hash, state_flags, payload_data)
+    seq = db.record(agent_id, action_hash, state_flags, payload_data, lattice=lattice)
     _journal(
         {
             "event": "dart_record",
@@ -67,13 +68,15 @@ def record_transition(
     return seq
 
 
-def stage1_wake_hydrate(limit: int = 50) -> Dict[str, Any]:
+def stage1_wake_hydrate(limit: int = 50, clearance: str = "INTERNAL") -> Dict[str, Any]:
     """
     Stage 1 Wake Contract — LIFO hydrate preceding transitions.
     Writes DART_STAGE1_WAKE_RECEIPT.json for process audit.
+    clearance defaults to INTERNAL: the collective hydrates its own context,
+    never SEALED untrusted ingress.
     """
     db = get_dart_db()
-    backlog = db.recall_backlog(limit=limit)
+    backlog = db.recall_backlog(limit=limit, clearance=clearance)
     receipt = {
         "timestamp_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "contract": "STAGE_1_WAKE",

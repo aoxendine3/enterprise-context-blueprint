@@ -59,3 +59,18 @@
 
 ### Added
 - `docs/research/MERIDIAN_SPEC.md` — witnessed continuum design: cryptographic cage (DART-stamped capability lattice + Z3 containment theorem), physical dual-chamber LLM split (Mac P-LLM / Windows RTX Q-LLM), register-attested sessions enforced by MARS circuit breaker, reconsolidation-by-retrieval learning mode (no weight updates), Session Certificates productized through Agent Notary. Synthesis of verified pillars (CogNGen/CaMeL/ContextEcho) with XORAS substrates; nothing externally validated yet; falsification gate precedes any marketing claim.
+
+## [2.0.5] — 2026-11-14 — MERIDIAN Layer 1: the cage is real
+
+### Added
+- **DART capability lattice** — every cell in the ring and the durable substrate now carries PUBLIC < INTERNAL < RESTRICTED < SEALED (written at record time; validated). `recall_backlog` and `recall_sequence_range` enforce caller clearance; higher-tainted cells never surface to lower callers. Stage 1 Wake defaults to INTERNAL (never hydrates SEALED untrusted ingress into the council).
+- **`core/ops/security/cage_containment.smt2`** — Z3 proof that no path through the cell graph carries SEALED (level 3) data into an egress-capable cell (≤ INTERNAL = 1) without a verified downgrade. Verified UNSAT on this host; also wired into the MARS SMT gate (`.github/workflows/mars_gatekeeper_maven.yml`) so CI re-proves it on every push.
+- **`tests/test_dart_cage_lattice.py`** — 7-check acceptance suite (SEALED invisible below SEALED clearance, WAL replay fidelity, legacy rows fail-closed to RESTRICTED, cold-spill enforcement, rollback lattice preservation, invalid-label rejection). All pass; receipt at `memory/catch_log/DART_CAGE_LATTICE_RECEIPT.json`.
+- **Crash recovery fails closed** — pre-cage (pre-lattice) WAL rows replay as RESTRICTED, never silently PUBLIC; legacy SQLite cold store auto-migrates to lattice columns.
+
+### Changed
+- Hexcell format unchanged (Zig/dual-witness unaffected); lattice lives on the durable path (WAL + cold SQLite + in-memory entry), additive and backwards compatible.
+- DART runtime: `record_transition` / `stage1_wake_hydrate` accept `lattice`/`clearance`.
+
+### Notes
+- This is Layer 1 only. Layers 2–4 (physical dual-chamber, register attestation, reconsolidation-by-retrieval) and the Session Certificate remain proposed in `docs/research/MERIDIAN_SPEC.md`.

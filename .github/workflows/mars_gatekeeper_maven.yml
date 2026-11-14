@@ -35,6 +35,7 @@ jobs:
           files = [
             "core/ops/security/mtpo_preorder_invariant.smt2",
             "core/ops/security/agm_mtpo_monotonicity.smt2",
+            "core/ops/security/cage_containment.smt2",
           ]
           for f in files:
             try:

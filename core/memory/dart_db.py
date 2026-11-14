@@ -22,7 +22,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
-from core.memory.dart_ring_buffer import DART_CAPACITY, DartMemoryManager
+from core.memory.dart_ring_buffer import DART_CAPACITY, LATTICE_LEVEL, DartMemoryManager
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_ROOT = REPO_ROOT / "memory" / "tri_brain" / "dart_db"
@@ -110,10 +110,17 @@ class DartDb:
                     action_hash INTEGER NOT NULL,
                     state_flags INTEGER NOT NULL,
                     payload BLOB NOT NULL,
-                    cell_hash TEXT NOT NULL
+                    cell_hash TEXT NOT NULL,
+                    lattice TEXT NOT NULL DEFAULT 'PUBLIC',
+                    lattice_level INTEGER NOT NULL DEFAULT 0
                 )
                 """
             )
+            # Legacy upgrade path: add lattice columns to an existing cold store.
+            cols = {row[1] for row in conn.execute("PRAGMA table_info(cells)")}
+            if "lattice" not in cols:
+                conn.execute("ALTER TABLE cells ADD COLUMN lattice TEXT NOT NULL DEFAULT 'RESTRICTED'")
+                conn.execute("ALTER TABLE cells ADD COLUMN lattice_level INTEGER NOT NULL DEFAULT 2")
             conn.commit()
         finally:
             conn.close()
@@ -172,6 +179,8 @@ class DartDb:
             entry.action_hash = int(row["action_hash"])
             entry.state_flags = int(row["state_flags"])
             entry.payload = payload[:488]
+            # Fail-closed: legacy rows without a lattice are treated as RESTRICTED
+            entry.lattice = row.get("lattice", "RESTRICTED")
 
         if rows:
             self._hot._write_ptr = int(rows[-1]["sequence"]) + 1
@@ -185,7 +194,10 @@ class DartDb:
         action_hash: int,
         state_flags: int,
         payload_data: bytes,
+        lattice: str = "PUBLIC",
     ) -> int:
+        if lattice not in LATTICE_LEVEL:
+            raise ValueError(f"unknown lattice {lattice!r} — expected one of {sorted(LATTICE_LEVEL)}")
         with self._lock:
             payload = payload_data[:488] if len(payload_data) > 488 else payload_data
 
@@ -201,9 +213,10 @@ class DartDb:
                         doomed.action_hash,
                         doomed.state_flags,
                         doomed.payload,
+                        getattr(doomed, "lattice", "PUBLIC"),
                     )
 
-            seq = self._hot.record(agent_id, action_hash, state_flags, payload)
+            seq = self._hot.record(agent_id, action_hash, state_flags, payload, lattice=lattice)
             # Hot.record assigns its own sequence from write_ptr; re-read entry
             index = seq % self.capacity
             entry = self._hot._history[index]
@@ -224,6 +237,7 @@ class DartDb:
                 "state_flags": entry.state_flags,
                 "payload_hex": entry.payload.hex(),
                 "cell_hash": cell_hash,
+                "lattice": entry.lattice,
                 "recorded_utc": _utcstamp(),
             }
             with open(self.wal_path, "a", encoding="utf-8") as fh:
@@ -247,24 +261,28 @@ class DartDb:
 
             return entry.sequence
 
-    def recall_backlog(self, limit: int = 50) -> List[Dict[str, Any]]:
+    def recall_backlog(self, limit: int = 50, clearance: str = "INTERNAL") -> List[Dict[str, Any]]:
         with self._lock:
-            return self._hot.recall_backlog(limit=limit)
+            return self._hot.recall_backlog(limit=limit, clearance=clearance)
 
-    def recall_sequence_range(self, start: int, end: int) -> List[Dict[str, Any]]:
+    def recall_sequence_range(self, start: int, end: int, clearance: str = "INTERNAL") -> List[Dict[str, Any]]:
         """Deep wake: pull from cold SQLite by inclusive sequence range."""
+        if clearance not in LATTICE_LEVEL:
+            raise ValueError(f"unknown clearance {clearance!r}")
+        ceiling = LATTICE_LEVEL[clearance]
         with self._lock:
             conn = sqlite3.connect(self.cold_path)
             try:
                 cur = conn.execute(
                     """
                     SELECT sequence, timestamp_ns, agent_id, action_hash,
-                           state_flags, payload
+                           state_flags, payload, lattice
                     FROM cells
                     WHERE sequence >= ? AND sequence <= ?
+                      AND lattice_level <= ?
                     ORDER BY sequence ASC
                     """,
-                    (start, end),
+                    (start, end, ceiling),
                 )
                 out = []
                 for row in cur.fetchall():
@@ -276,6 +294,7 @@ class DartDb:
                             "action_hash": row[3],
                             "state_flags": row[4],
                             "payload": bytes(row[5]),
+                            "lattice": row[6],
                         }
                     )
                 return out
@@ -328,6 +347,7 @@ class DartDb:
         action_hash: int,
         state_flags: int,
         payload: bytes,
+        lattice: str = "PUBLIC",
     ) -> None:
         cell_hash = _cell_hash(
             sequence, timestamp_ns, agent_id, action_hash, state_flags, payload
@@ -337,8 +357,8 @@ class DartDb:
             conn.execute(
                 """
                 INSERT OR REPLACE INTO cells
-                (sequence, timestamp_ns, agent_id, action_hash, state_flags, payload, cell_hash)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
+                (sequence, timestamp_ns, agent_id, action_hash, state_flags, payload, cell_hash, lattice, lattice_level)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     sequence,
@@ -348,6 +368,8 @@ class DartDb:
                     state_flags,
                     payload,
                     cell_hash,
+                    lattice,
+                    LATTICE_LEVEL[lattice],
                 ),
             )
             conn.commit()
