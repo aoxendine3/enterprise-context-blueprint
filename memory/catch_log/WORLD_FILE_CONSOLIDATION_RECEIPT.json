@@ -1,0 +1,49 @@
+{
+  "receipt": "WORLD_FILE_EVIDENCE_CONSOLIDATED",
+  "utc": "2026-11-14T06:04:15Z",
+  "canonical": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/tri_brain/world_file.db",
+  "mirror_rewritten": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/.sovereign/provenance/lineage_dag.db",
+  "quarantine": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/tri_brain/quarantine_consolidation_20261114_010413",
+  "base_source": "lineage_dag.db",
+  "final_counts": {
+    "lineage_nodes": 3303,
+    "knowledge_objects": 25341,
+    "blackboard_registers": 2028,
+    "global_evidence_registry": 148
+  },
+  "evidence_merge": {},
+  "sources": [
+    {
+      "file": "world_file.db.reconcile_backup.1794514181",
+      "lineage_nodes": 0,
+      "size": 6836224
+    },
+    {
+      "file": "world_file.db.reconcile_backup.1794514449",
+      "lineage_nodes": 1500,
+      "size": 1097728
+    },
+    {
+      "file": "world_file.db.reconcile_backup.1794560559",
+      "lineage_nodes": 3262,
+      "size": 28057600
+    },
+    {
+      "file": "world_file.db.reconcile_backup.1794560624",
+      "lineage_nodes": 3288,
+      "size": 2445312
+    },
+    {
+      "file": "world_file.db",
+      "lineage_nodes": 3288,
+      "size": 2990080
+    },
+    {
+      "file": "lineage_dag.db",
+      "lineage_nodes": 3303,
+      "size": 3518464
+    }
+  ],
+  "deletions": 0,
+  "note": "evidence unioned via INSERT OR IGNORE on primary key; pre-consolidation canonical file preserved"
+}

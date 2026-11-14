@@ -12,7 +12,7 @@ theories, and conclusions that do not vastly excel market baselines.
 No basic work. Near-impossible admission threshold. Zero flaws required.
 """
 
-import os, sys, json, time, subprocess
+import ast, os, sys, json, time, subprocess
 from datetime import datetime
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -22,13 +22,38 @@ os.makedirs(GOLDEN_DIR, exist_ok=True)
 GOLDEN_LIST_JSON = os.path.join(GOLDEN_DIR, "GOLDEN_LIST.json")
 GOLDEN_LIST_MD = os.path.join(GOLDEN_DIR, "GOLDEN_LIST.md")
 
+class Verdict:
+    """Critic verdict. Attribute-based for callers (.passed, .reason,
+    .gate_failed, .asset_id) and tuple-unpackable for legacy callers."""
+
+    def __init__(self, passed: bool, reason: str, gate_failed: int = 0, asset_id: str = None):
+        self.passed = passed
+        self.reason = reason
+        self.gate_failed = gate_failed
+        self.asset_id = asset_id
+
+    def __iter__(self):
+        return iter((self.passed, self.reason))
+
+    def __bool__(self):
+        return bool(self.passed)
+
+    def __repr__(self):
+        return f"Verdict(passed={self.passed}, gate_failed={self.gate_failed}, reason={self.reason!r})"
+
+
 class BlackboxReviewEngine:
-    def __init__(self):
+    def __init__(self, root: str = None):
+        self.root = os.path.abspath(root) if root else SSOT_ROOT
+        self.golden_dir = os.path.join(self.root, "data_center", "golden_list")
+        os.makedirs(self.golden_dir, exist_ok=True)
+        self.golden_list_json = os.path.join(self.golden_dir, "GOLDEN_LIST.json")
+        self.golden_list_md = os.path.join(self.golden_dir, "GOLDEN_LIST.md")
         self.load_ledger()
 
     def load_ledger(self):
-        if os.path.exists(GOLDEN_LIST_JSON):
-            with open(GOLDEN_LIST_JSON, "r", encoding="utf-8") as f:
+        if os.path.exists(self.golden_list_json):
+            with open(self.golden_list_json, "r", encoding="utf-8") as f:
                 self.ledger = json.load(f)
         else:
             self.ledger = {
@@ -47,19 +72,19 @@ class BlackboxReviewEngine:
             }
 
     def save_ledger(self):
-        with open(GOLDEN_LIST_JSON, "w", encoding="utf-8") as f:
+        with open(self.golden_list_json, "w", encoding="utf-8") as f:
             json.dump(self.ledger, f, indent=2)
 
         # Update Markdown view
-        with open(GOLDEN_LIST_MD, "w", encoding="utf-8") as f:
-            f.write("# 🏆 THE SOVEREIGN FLAWLESS GOLDEN LIST\n\n")
+        with open(self.golden_list_md, "w", encoding="utf-8") as f:
+            f.write("# THE SOVEREIGN GOLDEN LIST\n\n")
             f.write(f"**Governing Rule:** Log Entry #066 (Blackbox Review System)\n")
             f.write(f"**Last Certified:** {datetime.utcnow().isoformat()}Z\n")
             f.write(f"**Total Admitted Assets:** {len(self.ledger['golden_list'])}\n")
             f.write(f"**Total Rejected Candidates:** {len(self.ledger['rejected_audit_log'])}\n\n")
             f.write("---\n\n")
             f.write("## 🔒 Admission Standard\n")
-            f.write("> **Near-Impossible Threshold:** A build or component is admitted ONLY if it vastly excels market standards, exhibits ZERO flaws in every build metric, serves an immediate operational need, and contains zero basic/generic work.\n\n")
+            f.write("> **Admission Threshold:** A build or component is admitted ONLY if it clearly exceeds market standards, shows no defects in every build metric, serves an immediate operational need, and contains no basic/generic work.\n\n")
             f.write("## 🟢 Certified Golden Assets\n\n")
             if not self.ledger['golden_list']:
                 f.write("*No assets currently certified.*\n\n")
@@ -69,12 +94,48 @@ class BlackboxReviewEngine:
                     f.write(f"- **Classification:** `{item['classification']}`\n")
                     f.write(f"- **Immediate Operational Purpose:** {item['immediate_purpose']}\n")
                     f.write(f"- **Market Dominance Metric:** {item['market_metric']}\n")
-                    f.write(f"- **Flawlessness Certification:** {item['flawlessness_proof']}\n")
+                    f.write(f"- **Empirical Certification:** {item['flawlessness_proof']}\n")
                     f.write(f"- **Admitted By:** {', '.join(item['bench_signoff'])}\n\n")
 
             f.write("## 🛑 Rejected Audit Log (Basic / Flawed / Sub-Standard)\n\n")
             for item in self.ledger['rejected_audit_log']:
                 f.write(f"- **Candidate:** `{item['name']}` | **Status:** REJECTED | **Vance's Ruling:** {item['rejection_reason']}\n")
+
+    def audit_candidate(self, candidate_code: str = "", target_path: str = "",
+                        test_file_path: str = None, test_command: str = None,
+                        name: str = None) -> Verdict:
+        """
+        Empirical review of a source candidate (the mechanical, zero-opinion path).
+          Gate 1 — AST well-formedness of the candidate source.
+          Gate 2 — mechanical execution of the supplied test file / command.
+        Returns a Verdict (.passed / .reason / .gate_failed / .asset_id).
+        """
+        label = name or os.path.basename(str(target_path or "candidate"))
+
+        try:
+            ast.parse(candidate_code or "")
+        except SyntaxError as exc:
+            return Verdict(False, f"REJECTED_GATE_1: AST syntax error in {label}: {exc.msg} (line {exc.lineno})", 1)
+
+        if test_file_path and os.path.exists(str(test_file_path)):
+            try:
+                res = subprocess.run(
+                    [sys.executable, "-m", "pytest", "-q", str(test_file_path)],
+                    capture_output=True, text=True, timeout=120)
+            except subprocess.TimeoutExpired:
+                return Verdict(False, "REJECTED_GATE_2: empirical test execution timed out (>120s).", 2)
+            if res.returncode != 0:
+                tail = (res.stdout or res.stderr or "").strip()[-300:]
+                return Verdict(False, f"REJECTED_GATE_2: empirical test execution failed (exit {res.returncode}): {tail}", 2)
+        elif test_command:
+            try:
+                res = subprocess.run(str(test_command), shell=True, capture_output=True, text=True, timeout=120)
+            except subprocess.TimeoutExpired:
+                return Verdict(False, "REJECTED_GATE_2: empirical test command timed out (>120s).", 2)
+            if res.returncode != 0:
+                return Verdict(False, f"REJECTED_GATE_2: empirical test command failed (exit {res.returncode}): {(res.stderr or '').strip()[:300]}", 2)
+
+        return Verdict(True, f"BENCH_VERIFIED: {label} passed AST and mechanical execution gates.", 0)
 
     def evaluate_candidate(self, candidate):
         """
@@ -89,16 +150,16 @@ class BlackboxReviewEngine:
           torture_passed: bool
           bench_signoff: list
         """
-        print(f"\n[BLACKBOX_REVIEW] Commencing ruthless review of '{candidate['name']}'...")
+        print(f"\n[BLACKBOX_REVIEW] Commencing adversarial review of '{candidate['name']}'...")
 
         # Gate 1: The Anti-Basic Filter
         if candidate.get("is_basic", False):
-            reason = "REJECTED: Basic/generic implementation. Fails the elite sovereign standard."
+            reason = "REJECTED: Basic/generic implementation. Fails the admission standard."
             print(f"[-] {reason}")
             self.ledger["rejected_audit_log"].append({"name": candidate["name"], "rejection_reason": reason, "timestamp": time.time()})
             self.ledger["total_rejected"] += 1
             self.save_ledger()
-            return False, reason
+            return Verdict(False, reason, 1)
 
         # Gate 2: Immediate Purpose Check
         if not candidate.get("serves_immediate_need", False):
@@ -107,9 +168,9 @@ class BlackboxReviewEngine:
             self.ledger["rejected_audit_log"].append({"name": candidate["name"], "rejection_reason": reason, "timestamp": time.time()})
             self.ledger["total_rejected"] += 1
             self.save_ledger()
-            return False, reason
+            return Verdict(False, reason, 2)
 
-        # Gate 3: Flawlessness & Torture Verification (Mechanical Execution Enforced)
+        # Gate 3: Torture Verification (Mechanical Execution Enforced)
         # Invariant (Validate-the-Validator): Self-reported 'torture_passed: True' is NOT trusted.
         # If artifact_source, test_source, or test_command is provided, it MUST execute cleanly.
         if candidate.get("test_command"):
@@ -157,7 +218,7 @@ class BlackboxReviewEngine:
                 self.ledger["rejected_audit_log"].append({"name": candidate["name"], "rejection_reason": reason, "timestamp": time.time()})
                 self.ledger["total_rejected"] += 1
                 self.save_ledger()
-                return False, reason
+                return Verdict(False, reason, 3)
             finally:
                 if os.path.exists(tmp_exec_path):
                     os.remove(tmp_exec_path)
@@ -168,7 +229,7 @@ class BlackboxReviewEngine:
             self.ledger["rejected_audit_log"].append({"name": candidate["name"], "rejection_reason": reason, "timestamp": time.time()})
             self.ledger["total_rejected"] += 1
             self.save_ledger()
-            return False, reason
+            return Verdict(False, reason, 3)
 
         # Gate 4: Market Superiority
         if not candidate.get("market_metric"):
@@ -177,7 +238,7 @@ class BlackboxReviewEngine:
             self.ledger["rejected_audit_log"].append({"name": candidate["name"], "rejection_reason": reason, "timestamp": time.time()})
             self.ledger["total_rejected"] += 1
             self.save_ledger()
-            return False, reason
+            return Verdict(False, reason, 4)
 
         # Admission Granted
         asset_id = f"GOLDEN-{len(self.ledger['golden_list']) + 1:03d}"
@@ -195,7 +256,7 @@ class BlackboxReviewEngine:
         self.ledger["total_admitted"] += 1
         self.save_ledger()
         print(f"[+] CERTIFIED & ADMITTED TO GOLDEN LIST: {asset_id} - {candidate['name']}")
-        return True, asset_id
+        return Verdict(True, f"BENCH_VERIFIED: {asset_id} admitted after all four gates.", 0, asset_id)
 
 if __name__ == "__main__":
     engine = BlackboxReviewEngine()

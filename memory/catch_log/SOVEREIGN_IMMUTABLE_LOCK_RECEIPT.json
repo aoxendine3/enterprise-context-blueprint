@@ -1,8 +1,8 @@
 {
-  "receipt_id": "rcpt_lock_1792473952318",
-  "timestamp_utc": "2026-10-20T05:25:52Z",
-  "session_id": "session_lock_1792473952",
-  "global_merkle_root": "746cca0e35b78c2c1c6cedb5c4854be74a706e3020ba0ebaf1dff4344a107a1d",
+  "receipt_id": "rcpt_lock_1794636259982",
+  "timestamp_utc": "2026-11-14T06:04:19Z",
+  "session_id": "session_lock_1794636259",
+  "global_merkle_root": "e77d52d19ce751e0ea2db729289feb7201f3a4be1ca1204398d459904868486d",
   "locked_artifacts_count": 9,
   "locked_manifest": [
     {
@@ -32,13 +32,13 @@
     },
     {
       "path": "ops/scripts/sovra_deep_lock.py",
-      "sha256": "22ab00a80f1fb212db5159fc925143335a77e9e8487b3ef624fdbbc1867d7687",
-      "size_bytes": 3819
+      "sha256": "8d43a62570776116f14b4e5a2f7792de6d91c30a73752ccf591efe5aa7915303",
+      "size_bytes": 5501
     },
     {
       "path": "ops/scripts/council_audio_dispatch.py",
-      "sha256": "c50a40844865a8a1738c62a01d2c516858482dbd8a9b5c216f2139289a7e83d0",
-      "size_bytes": 8913
+      "sha256": "b96ffb54942b1bc7b1d57eb03e51f80c0c701a805c12949d6b5dc951492921ab",
+      "size_bytes": 17674
     },
     {
       "path": "ops/scripts/daxx_recursive_bounded_mission.py",
@@ -53,9 +53,9 @@
   ],
   "validation_result": {
     "valid": true,
-    "session_id": "session_lock_1792473952",
+    "session_id": "session_lock_1794636259",
     "node_count": 9,
-    "merkle_root": "82ddc72ab680614f7562d329e9c4143ea11b6c7c923d09075ad9ed818200a6d6",
+    "merkle_root": "def7613c9fc18c821e491b8d73acd2bf1e493ab0701179dca14614872c6d67dd",
     "violations": []
   },
   "governance": {

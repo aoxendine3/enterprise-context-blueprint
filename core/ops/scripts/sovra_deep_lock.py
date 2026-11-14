@@ -44,10 +44,14 @@ def reset_nonce_cache() -> None:
     _NONCE_CACHE.clear()
     _USED_NONCES.clear()
 
-def generate_handshake(origin: str = "MAC_M4_SSOT", target: str = "WINDOWS_GPU_NODE_192.168.1.211", metadata: dict = None) -> str:
+def generate_handshake(origin: str = "MAC_M4_SSOT", target: str = "WINDOWS_GPU_NODE_192.168.1.211", metadata: dict = None, subject: str = "FRONTEND_BACKEND_DEEP_LOCK") -> str:
     """
     Generates surgical cryptographic handshake token (HS256 compliant)
     Valid for exactly 60 seconds to eliminate replay windows.
+
+    `subject` defaults to the canonical deep-lock subject used by the
+    cross-language verifier (workspaces/xmars-app/src/lib/auth/Handshake.ts),
+    so a token minted in Python validates byte-identically in TypeScript.
     """
     secret = get_master_secret()
     now = time.time()
@@ -55,7 +59,7 @@ def generate_handshake(origin: str = "MAC_M4_SSOT", target: str = "WINDOWS_GPU_N
     header = {"alg": "HS256", "typ": "SOVRA-DEEP-LOCK", "ver": "v18.0_UNIFIED"}
     payload = {
         "iss": "SOVRA_ZERO_POINT",
-        "sub": "CROSS_NODE_AUTHENTICATION",
+        "sub": subject,
         "origin": origin,
         "target": target,
         "iat": now,

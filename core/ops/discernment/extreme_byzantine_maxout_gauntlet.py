@@ -30,10 +30,17 @@ from pathlib import Path
 # Add project root to sys.path
 SCRIPT_DIR = Path(__file__).resolve().parent
 ROOT = SCRIPT_DIR.parent.parent
+# core/ops/discernment -> core -> repo root. The root is the repo, not core.
+if ROOT.name == "core":
+    ROOT = ROOT.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 if str(ROOT / "workspaces" / "sovra_nexus") not in sys.path:
     sys.path.insert(0, str(ROOT / "workspaces" / "sovra_nexus"))
+# sovra_core actually ships under labs/workspaces/sovra_nexus — the canonical
+# location moved and this import path was never re-wired.
+if str(ROOT / "labs" / "workspaces" / "sovra_nexus") not in sys.path:
+    sys.path.insert(0, str(ROOT / "labs" / "workspaces" / "sovra_nexus"))
 
 from sovra_core.poincare_hypergraph import PoincareManifold
 from sovra_core.hexcell_memory import HexCell, HexCellEngine, HEXCELL_SIZE

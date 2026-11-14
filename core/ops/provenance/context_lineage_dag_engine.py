@@ -29,6 +29,9 @@ from typing import Dict, List, Optional, Tuple, Any
 # Canonical DB Path
 DB_DIR = os.path.expanduser("~/Desktop/SSOT_Agentic_Brain/.sovereign/provenance")
 DB_PATH = os.path.join(DB_DIR, "lineage_dag.db")
+# Canonical evidence store — the root claim and the blackboard live here.
+CANONICAL_DB_PATH = os.path.expanduser(
+    "~/Desktop/SSOT_Agentic_Brain/memory/tri_brain/world_file.db")
 
 def get_hmac_key() -> bytes:
     env_key = os.environ.get("XORAS_HARDWARE_HMAC_KEY")
@@ -105,6 +108,11 @@ class ContextLineageEngine:
                 conn.execute("ALTER TABLE lineage_nodes ADD COLUMN seq_num INTEGER NOT NULL DEFAULT 0;")
             if cols and "payload_raw" not in cols:
                 conn.execute("ALTER TABLE lineage_nodes ADD COLUMN payload_raw TEXT NOT NULL DEFAULT '';")
+            # writer_log_ref was added after the table first shipped. The read
+            # path (reconcile_lineage_dag.py) already tolerates schemas that
+            # predate it; the write path must not fail closed on that drift.
+            if cols and "writer_log_ref" not in cols:
+                conn.execute("ALTER TABLE lineage_nodes ADD COLUMN writer_log_ref TEXT;")
             conn.execute("CREATE INDEX IF NOT EXISTS idx_seq ON lineage_nodes(session_id, seq_num);")
             conn.execute("""
                 CREATE TABLE IF NOT EXISTS global_evidence_registry (
@@ -299,6 +307,29 @@ class ContextLineageEngine:
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, (node_id, seq_num, parent_hash, session_id, ts_canonical, agent_id, step_type, payload_hash, payload_str, payload_summary, signature, merkle_root, writer_log_ref))
             conn.commit()
+
+        # Dual-write the node into the canonical evidence store so the two
+        # witnesses agree by construction. The engine writes to the mirror
+        # (DB_PATH) while the root claim is computed from the canonical store
+        # (memory/tri_brain/world_file.db) and the native Zig verifier reads
+        # the mirror — without this copy the witnesses diverge on every commit.
+        if os.path.abspath(self.db_path) != os.path.abspath(CANONICAL_DB_PATH) and os.path.exists(CANONICAL_DB_PATH):
+            try:
+                canon = sqlite3.connect(CANONICAL_DB_PATH, timeout=30.0)
+                try:
+                    canon.execute("PRAGMA journal_mode=WAL;")
+                    canon.execute("""
+                        INSERT OR IGNORE INTO lineage_nodes
+                        (node_id, seq_num, parent_hash, session_id, timestamp, agent_id, step_type, payload_hash, payload_raw, payload_summary, signature, merkle_root, writer_log_ref)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    """, (node_id, seq_num, parent_hash, session_id, ts_canonical, agent_id, step_type, payload_hash, payload_str, payload_summary, signature, merkle_root, writer_log_ref))
+                    canon.commit()
+                finally:
+                    canon.close()
+            except Exception as exc:
+                # Fail closed: a commit that cannot reach the canonical store
+                # cannot be witnessed, so it must not be reported as committed.
+                raise RuntimeError(f"FAIL CLOSED: canonical evidence store unreachable ({exc}); commit aborted") from exc
 
         # Update actual session Merkle root across all nodes
         full_merkle_root = self.calculate_merkle_root(session_id)
