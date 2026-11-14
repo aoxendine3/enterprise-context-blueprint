@@ -88,6 +88,17 @@ To protect our local IP and prevent state pollution:
 
 ---
 
+
+## 6.4 Reality Gate (mandatory before declaring done)
+
+Words do not ship. Before declaring any task complete, the executing agent must run the real gates and attach their receipts. No invented commands, no simulate-and-claim:
+
+- **Repo integrity:** `bash ops/scripts/verify_all_production_gates.sh` → must end `PRODUCTION GATES SUMMARY: 6/6 PASSED` (exit 0). Receipt at `memory/catch_log/`.
+- **DART cage lattice:** `python3 tests/test_dart_cage_lattice.py` → 7/7 green. Receipt at `memory/catch_log/DART_CAGE_LATTICE_RECEIPT.json`.
+- **Side-channel:** `node --expose-gc tests/test_side_channel_verification.cjs` → 4/4 axes PASS.
+- **Behavioral claims about agents:** score against the golden question set via `python3 scratch/golden_groundedness_harness.py` — rule-based, floor metric, no LLM judge. Receipts at `memory/catch_log/GOLDEN_GROUNDEDNESS_RECEIPT.json`.
+- Anything the agent cannot verify does not exist. Fail closed.
+
 ## 7. Natural Speech Synthesis & Numerical Verbalization
 
 To guarantee Kokoro M4 neural speech synthesis sounds natural and remains suitable for proper corporate presentation:
