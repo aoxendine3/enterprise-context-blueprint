@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-14",
+  "audit": "Windows tensor plane (192.168.1.211) reachability, end-to-end verification",
+  "results": {
+    "remote_channels_open": [11434, 445, 135],
+    "remote_channels_closed": [22, 3389, 5985, 5986, 80, 443, 3000, 5000, 5432, 6379, 8080, 8888, 9000, 1234],
+    "inference_lane_http_11434": {
+      "status": "OPERATIONAL",
+      "evidence": "GET /api/tags returns 17 resident models including sovereign-r1, sovereign-hermes, sovereign-ssot-backup; live inference verified 2026-11-14 (sovereign-r1 emitted reasoning tokens at ~256 tok/s; hardened falsification gauntlet captured full answers earlier the same day)",
+      "note": "sovereign-r1 is a reasoning model — its output lands in the reasoning channel, not the response channel, at low token budgets. Not an error."
+    },
+    "smb_445": {
+      "status": "BLOCKED — CREDENTIAL ABSENT",
+      "diagnosis": "Service accepts TCP connections (port open) but requires authentication. The environment holds NO Windows SMB credential: not in the repository (tracked or untracked), not in the shell environment, not in the login keychain (namespace probes: 192.168.1.211, windows, smb, windowsrtx, WinRTX, LAN — none found), no fstab, no network mount exists.",
+      "what_it_unblocks": "pushing bytecode/executables to the node via the admin$ share, and any file-level Windows write",
+      "owner_action_required": "One credential, supplied by the only person who has it: mount with `mount_smbfs //USER:PASSWORD@192.168.1.211/C$ /mnt/windows_rtx` (or `smbutil statshares -v //192.168.1.211` to list shares first). Without this single fact, no honest tool on this machine can authenticate — ports 22/3389/5985/5986 are closed, so SMB is the only file/exec lane."
+    }
+  },
+  "repo_fixes": [
+    "core/ops/scripts/swarm_ramp_cross_node_push.py: hard-coded developer-machine ROOT path replaced with __file__-relative repo root — the push path now works from any checkout"
+  ]
+}
