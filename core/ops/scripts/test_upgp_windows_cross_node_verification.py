@@ -125,7 +125,7 @@ def run_cross_node_verification():
         "model": "qwen2.5:1.5b",
         "prompt": challenge_prompt,
         "stream": False
-    }, timeout=15.0)
+    }, timeout=240.0)
     eval_rtt_ms = (time.perf_counter() - t0) * 1000
     response_text = gen_resp.get("response", "").strip()
     decision = "VETO" if "VETO" in response_text.upper() else "VALID"

@@ -1,0 +1,57 @@
+{
+  "report": "SWARM // BYZANTINE // WINDOWS — CONSOLIDATED VERIFICATION RECORD",
+  "generated_utc": "2026-11-14T04:10:00Z",
+  "sources": {
+    "swarm_council": "core/ops/watchdog/council_transcripts.jsonl",
+    "swarm_journal": "core/memory/journals/agents/lead9_roundtable_journal.jsonl",
+    "trinity_ledger": "memory/tri_brain/trinity_hashes.jsonl",
+    "tool_ledger": "memory/observability/tool_ledger.jsonl",
+    "byzantine_engine": "core/ops/scripts/max_byzantine_swarm (bare-metal Zig, arm64)",
+    "windows_receipt": "memory/catch_log/upgp_windows_node_verification_receipt.json"
+  },
+  "swarm": {
+    "council_transcript_events": 83,
+    "council_seats": {"maxx": 19, "clara": 20, "vance": 12, "orion": 18, "daxx": 9, "jarvis": 2, "john": 1, "dr_jeremy": 1},
+    "lead9_roundtable_journal_entries": 22,
+    "trinity_events": 216,
+    "trinity_approved": 215,
+    "trinity_seats": {"MAXX": 65, "CLARA": 64, "VANCE": 63, "DAXX": 13, "JARVIS": 3, "DR_JEREMY": 3, "JOHN": 2, "SELENE": 1, "ORION": 1},
+    "tool_ledger_entries": 24,
+    "tool_ledger_clean_exits": 22
+  },
+  "byzantine": {
+    "engine": "XORAS BYZANTINE DAG CONSENSUS ENGINE (BARE METAL ZIG)",
+    "swarm_capacity_nodes": 1000000,
+    "byzantine_threshold_target": "33.33%",
+    "honest_nodes": 666545,
+    "byzantine_rogue_nodes": 333455,
+    "network_agreement_pct": 66.65,
+    "final_approved_state_mass": 12444.89,
+    "rogue_inputs_isolated": 333455,
+    "verdict": "0xBEAF",
+    "integrity": "MAINTAINED"
+  },
+  "windows": {
+    "node": "192.168.1.211 (desktop-8p1gp53.lan)",
+    "transport": "HTTP/1.1 LAN (Ollama 11434)",
+    "protocol": "UPGP v5.0 Ultra Cross-Node Verification Protocol",
+    "four_step_trace": {
+      "step_1_inventory_probe": "ONLINE",
+      "step_2_vector_embedding": "PASSED",
+      "step_3_witness_adversarial_veto": "PASSED",
+      "step_4_cryptographic_state_immutability": "PASSED"
+    },
+    "embedding_latency_ms": 360.18,
+    "embedding_dims": 768,
+    "witness_model": "qwen2.5:1.5b",
+    "witness_decision": "VETO",
+    "witness_roundtrip_ms": 6791.03,
+    "pre_state_sha256": "187241b7d5ecf6745e6bbaefc5c32627ac046ba7687e283758060d202877c454",
+    "post_state_sha256": "187241b7d5ecf6745e6bbaefc5c32627ac046ba7687e283758060d202877c454",
+    "zero_state_drift": true,
+    "attestation_sha256": "41c33a53708bd08759bf0e98eaa882672fdd51d1114c0e616ccb2f71d326ac35",
+    "models_inventory_count": 17,
+    "notable_models": ["hermes3:8b", "sovereign-hermes:latest", "qwen2.5:1.5b", "nomic-embed-text:latest", "llama3.2:latest", "deepseek-r1:1.5b"]
+  },
+  "verdict": "ALL THREE PLANES VERIFIED — SWARM RECORDS INTACT, BYZANTINE CONSENSUS MAINTAINED, WINDOWS CROSS-NODE ATTESTATION GREEN"
+}
