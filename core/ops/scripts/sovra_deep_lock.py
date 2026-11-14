@@ -35,6 +35,15 @@ def get_master_secret() -> bytes:
         return secret
     return LOCK_SECRET_FILE.read_bytes()
 
+# Nonce replay cache: nonce -> expiry timestamp. Cleared via reset_nonce_cache().
+_NONCE_CACHE: dict = {}
+_USED_NONCES: set = set()
+
+def reset_nonce_cache() -> None:
+    """Clears the sovereign deep-lock nonce replay cache."""
+    _NONCE_CACHE.clear()
+    _USED_NONCES.clear()
+
 def generate_handshake(origin: str = "MAC_M4_SSOT", target: str = "WINDOWS_GPU_NODE_192.168.1.211", metadata: dict = None) -> str:
     """
     Generates surgical cryptographic handshake token (HS256 compliant)
@@ -75,9 +84,10 @@ def generate_handshake(origin: str = "MAC_M4_SSOT", target: str = "WINDOWS_GPU_N
     with open(LOCK_RECEIPTS_FILE, "a", encoding="utf-8") as rf:
         rf.write(json.dumps(receipt) + "\n")
         
+    _NONCE_CACHE[payload.get("nonce")] = now + 60.0
     return token
 
-def validate_handshake(token: str, max_drift_seconds: float = 60.0) -> tuple[bool, str, dict]:
+def validate_handshake(token: str, max_drift_seconds: float = 60.0, check_replay: bool = True) -> tuple[bool, str, dict]:
     secret = get_master_secret()
     parts = token.split(".")
     if len(parts) != 3:
@@ -102,6 +112,13 @@ def validate_handshake(token: str, max_drift_seconds: float = 60.0) -> tuple[boo
         return False, "TOKEN_EXPIRED", payload
     if abs(now - payload.get("iat", 0)) > max_drift_seconds:
         return False, "EXCESSIVE_CLOCK_DRIFT", payload
+        
+    if check_replay:
+        nonce = payload.get("nonce")
+        if nonce in _USED_NONCES:
+            return False, "NONCE_REPLAY_DETECTED", payload
+        _USED_NONCES.add(nonce)
+    _NONCE_CACHE[nonce] = now + 60.0 if nonce else _NONCE_CACHE.get(nonce, now + 60.0)
         
     return True, "DEEP_LOCK_VALIDATED_SEALED", payload
 

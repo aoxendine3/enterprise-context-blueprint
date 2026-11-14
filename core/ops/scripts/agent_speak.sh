@@ -14,12 +14,6 @@ if [[ ! "$AGENT" =~ ^(maxx|clara|jarvis|vance|daxx|john|eden|selene|sophia|xoras
   exit 3
 fi
 
-# 2. Reject empty payload
-if [[ -z "${RAW_TEXT//[[:space:]]/}" ]]; then
-  echo "[agent_speak] Refused empty speech payload" >&2
-  exit 2
-fi
-
 # 3. Length-cap the message text (Max 1000 chars)
 if [[ ${#RAW_TEXT} -gt 1000 ]]; then
   echo "[agent_speak] FATAL: Payload exceeds 1000 character limit. Execution denied." >&2
@@ -39,6 +33,18 @@ CLEAN_TEXT="$(echo "$RAW_TEXT" | tr -d '"')"
 NORMALIZER="/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/bin/speech_normalizer"
 if [[ -x "$NORMALIZER" ]]; then
   CLEAN_TEXT="$("$NORMALIZER" "$CLEAN_TEXT")"
+fi
+
+# 2. Reject empty payload after sanitization
+if [[ -z "${CLEAN_TEXT//[[:space:]]/}" ]]; then
+  echo "[agent_speak] Refused empty speech payload after sanitization" >&2
+  exit 0
+fi
+
+# 4. Length-cap the message text (Max 1000 chars)
+if [[ ${#CLEAN_TEXT} -gt 1000 ]]; then
+  echo "[agent_speak] FATAL: Payload exceeds 1000 character limit. Execution denied." >&2
+  exit 4
 fi
 
 KOKORO_SCRIPT="/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/fullscreen_ui/sync_stage_engine_kokoro.py"

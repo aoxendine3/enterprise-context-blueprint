@@ -18,6 +18,7 @@ Guarantees 0.00000% state pollution by failing closed prior to execution.
 
 import ast
 import json
+import math
 import time
 import hashlib
 from typing import Dict, Any, Tuple, Optional
@@ -35,6 +36,22 @@ class MTPOStateMonitor:
         self.verified_transactions = 0
         self.intercepted_violations = 0
         self.intercept_log = []
+        self.circuit_breaker_tripped = False
+
+    def handle_channel_fault(self, peer: str, reason: str) -> None:
+        """Trips the quarantine circuit breaker on channel severance."""
+        self.circuit_breaker_tripped = True
+        self.intercepted_violations += 1
+        self.intercept_log.append({
+            "timestamp": time.time(),
+            "agent_id": peer,
+            "violation": f"CIRCUIT_BREAKER_ACTIVE: channel fault on {peer} ({reason})",
+            "action": "CHANNEL_SEVERANCE",
+        })
+
+    def reset_circuit_breaker(self) -> None:
+        """Recovers the quarantine circuit breaker after channel restoration."""
+        self.circuit_breaker_tripped = False
 
     def inspect_and_filter(self, proposed_action: Dict[str, Any]) -> Tuple[bool, str, Dict[str, Any]]:
         """
@@ -52,19 +69,34 @@ class MTPOStateMonitor:
 
         violations = []
 
+        # Invariant 0: Quarantine circuit breaker (channel severance => fail closed)
+        if self.circuit_breaker_tripped:
+            violations.append("CIRCUIT_BREAKER_ACTIVE: channel fault tripped quarantine")
+
         # Invariant 1: Monotonic Sequence Invariant
         if seq <= parent_seq:
             violations.append(f"ANTI_CAUSAL_SEQUENCE: proposed seq {seq} <= parent seq {parent_seq}")
 
         # Invariant 2: Rank-Ordered Non-Destructive Contraction Invariant
         if action_type == "CONTRACTION" or action_type == "REVISE":
-            # If attempting to mutate or retract an action from an equal or higher rank,
-            # it MUST provide an explicit append-only inverse delta
-            if agent_rank <= target_rank and not inverse_delta:
+            if inverse_delta is None:
+                if agent_rank <= target_rank:
+                    violations.append(
+                        f"DESTRUCTIVE_CONTRACTION_ATTEMPT: agent rank {agent_rank} <= target rank {target_rank} "
+                        f"without pre-registered algebraic inverse Delta^-1"
+                    )
+            elif not isinstance(inverse_delta, dict):
                 violations.append(
-                    f"DESTRUCTIVE_CONTRACTION_ATTEMPT: agent rank {agent_rank} <= target rank {target_rank} "
-                    f"without pre-registered algebraic inverse Delta^-1"
+                    f"MALFORMED_INVERSE_DELTA: inverse_delta must be a dict for agent {agent_id}, got {type(inverse_delta).__name__}"
                 )
+            elif "target_entry" not in inverse_delta:
+                violations.append(f"missing target entry key in inverse delta for agent {agent_id}")
+            elif not isinstance(inverse_delta.get("delta"), (int, float)) or isinstance(inverse_delta.get("delta"), bool) or not math.isfinite(float(inverse_delta.get("delta"))):
+                violations.append(f"non-invertible or NaN delta for agent {agent_id}: {inverse_delta.get('delta')}")
+            elif float(inverse_delta.get("delta")) == 0:
+                violations.append(f"zero delta provides no algebraic inversion for agent {agent_id}: {inverse_delta.get('delta')}")
+            if agent_rank <= target_rank and isinstance(inverse_delta, dict) and isinstance(inverse_delta.get("delta"), (int, float)) and not isinstance(inverse_delta.get("delta"), bool) and math.isfinite(float(inverse_delta.get("delta"))) and float(inverse_delta.get("delta")) != 0 and "target_entry" in inverse_delta:
+                pass  # well-formed algebraic inverse; no violation
 
         # Invariant 3: AST Syntax Well-Formedness
         if code_payload:
