@@ -74,3 +74,9 @@
 
 ### Notes
 - This is Layer 1 only. Layers 2–4 (physical dual-chamber, register attestation, reconsolidation-by-retrieval) and the Session Certificate remain proposed in `docs/research/MERIDIAN_SPEC.md`.
+
+## [2.0.6] — 2026-11-14 — COGNEN/SSOT marketing synthesis audited and marked COMPROMISED
+
+### Added
+- `docs/papers/COGNGEN_SSOT_MARKETING_AUDIT.md` — claim-by-claim audit of the user-pasted "COGNEN / SSOT" synthesis: Atlan figures = vendor-published (atlan.com), Fin figures = vendor-published (fin.ai, 12k+ customers, $3.6B Salesforce acquisition pending), CogNGen section misstates arXiv:2310.15177 (drops Σ-precision factor and z̄; ∂F/∂z garbled; sleep-replay update is not the published rule), the code block was executed verbatim on this host and is a random-weight NumPy demo with zero DART/MARS/world_file.db integration ("verified bare-metal" is false), XORAS::OS section invents TCP 8787 and misstates the MARS gate. Verdict: do not cite, do not show externally, fix before any reuse.
+- `memory/catch_log/cogngen_ssot_marketing_audit_receipt.json` — verification of record.

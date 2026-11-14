@@ -1,0 +1,15 @@
+{
+  "date_utc": "2026-11-14",
+  "subject": "COGNEN / SSOT synthesis document (user-pasted 2026-11-14) — full-claim audit",
+  "verdict": "COMPROMISED_VENDOR_MARKETING_AND_MISSTATED_CITATION_AND_THEATRICAL_CODE",
+  "checks": {
+    "atlan_metrics": "vendor-published atlan.com (June 2026): +38% SQL accuracy (174 queries), 9%→81% media-customer anecdote, 40%+ graph-retrieval claim traces to MEGA-RAG (peer-reviewed-track, PMC). NOT independently replicated.",
+    "fin_claims": "fin.ai / intercom.com/help FAQ: <1% hallucination, 76% resolution across 12k+ customers, 2M weekly resolutions, $0.99/outcome, Salesforce ~$3.6B acquisition (announced June 2026). Vendor-reported only; third-party measurements show 38–73% spread (helpin review Sept 2026).",
+    "cogngen_math": "Section 3 misstates arXiv:2310.15177: drops 1/Σ precision factor and z̄ mean from error-neuron definition; ∂F/∂z sign/order garbled; 'sleep replay' update (outer product) is not Eqs. (5–6); paper's core content (joint distribution, clamping, MINERVA-2 b=100, Hopfield evolution) absent.",
+    "code_block": "executed verbatim on this host: random 768-dim NumPy demo; VFE=344.87; db_path '/core/.agents/world_file.db' never opened; zero DART/MARS/world_file.db/Notary integration; outer-product weight update ≠ published NGC; 'verified bare-metal' claim is false.",
+    "xoras_section": "real: world_file.db, HexCell 3,200B (init_hexcell_topology(25)=3200), MTPO, MARS, dual-witness, Reality-SSOT. invented: TCP 8787, 'ANE/SIMD-aligned repr(C,align(128))', MARS as 'cargo fmt + Ed25519 + coverage ≥80%' (actual: AST/SAST/ASAN-TSAN/Z3, 6/6 gates), 'UDP 11434 as kernel socket'",
+    "branding": "presents Atlan and Fin product marketing as fact inside XORAS-branded synthesis — branding law violation",
+    "fitness": "market signal only; unusable as engineering reference"
+  },
+  "action": "filed as docs/papers/COGNGEN_SSOT_MARKETING_AUDIT.md with COMPROMISED verdict; not for citation or external display; changelog 2.0.6 records it"
+}
