@@ -36,13 +36,17 @@ def test_outside_assistant_voice_refused():
 def test_outside_attribution_is_refused_without_naming_anyone():
     """Outside attribution is caught STRUCTURALLY — no third-party name is
     carried anywhere in this project, including in the rule that forbids them."""
-    attributed = check("[BREAKDOWN] This was powered by another product and it worked. Next we continue.")
+    attributed = check("[BREAKDOWN] This was powered by OutsiderPlatform and it worked. Next we continue.")
     assert attributed["ok"] is False
     assert any("outside entity" in v for v in attributed["violations"]), attributed["violations"]
 
-    imported = check("[NEXT] This design was imported from a system outside our collective. Next we wire it.")
+    imported = check("[NEXT] This design was imported from OutsiderSystem. Next we wire it.")
     assert imported["ok"] is False
     assert any("outside entity" in v for v in imported["violations"]), imported["violations"]
+
+    # Credit to our own machinery must not fire — it is not an outside party.
+    ours = check("[BREAKDOWN] We fixed the mirror thanks to the git repack and it is green now. Next we pull the model.")
+    assert ours["ok"] is True, ours
 
 
 def test_narration_phases_recognized():

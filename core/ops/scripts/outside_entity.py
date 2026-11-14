@@ -97,19 +97,19 @@ def scan_text(text: str) -> list:
     """Return structural violations found in a block of text."""
     violations = []
     for line_no, line in enumerate((text or "").splitlines(), start=1):
-        low = line.lower()
         for pat in ATTRIBUTION_PHRASES:
-            m = re.search(pat, low)
+            m = re.search(pat, line, re.IGNORECASE)
             if m:
                 # An attribution only means an outside party when what follows
                 # looks like a proper noun (X-prefixed, capitalized or digits).
                 # "thanks to the git repack" is credit to our own machinery,
                 # not to a third party — it must not fire.
-                rest = low[m.end():].lstrip(" \t")
+                rest = line[m.end():].lstrip(" \t")
                 if rest and (rest[0].isupper() or rest[0].isdigit()):
                     violations.append({"line": line_no, "kind": "attribution_phrase",
                                        "detail": f"credits another party ({pat.strip(chr(92)+'b')})"})
                     break
+        low = line.lower()
         for pat in OUTSIDE_CATEGORY:
             if re.search(pat, low):
                 violations.append({"line": line_no, "kind": "outside_category",
