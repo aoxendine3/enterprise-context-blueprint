@@ -59,15 +59,15 @@ ATTRIBUTION_PHRASES = [
     r"\bimported from\b",
 ]
 
-# Outside category self-reference — categories, not brands.
+# Outside category self-reference — only when the speaker claims the identity,
+# not when a market, product or other third party is described.
 OUTSIDE_CATEGORY = [
-    r"\bas an ai\b",
-    r"\bas a language model\b",
-    r"\bai[ _-]?assistant\b",
-    r"\blarge language model\b",
-    r"\bas an ai agent\b",
-    r"\bchatbot\b",
-    r"\bvirtual assistant\b",
+    r"\b(?:I|i)(?:'?m| am)\s+(?:a|an)\s+(?:large )?language model\b",
+    r"\b(?:I|i)(?:'?m| am)\s+(?:a|an)\s+ai\s+assistant\b",
+    r"\b(?:I|i)(?:'?m| am)\s+(?:a|an)\s+chatbot\b",
+    r"\b(?:I|i)(?:'?m| am)\s+(?:a|an)\s+ai\s+agent\b",
+    r"\b(?:I|i)(?:'?m| am)\s+(?:a|an)\s+virtual assistant\b",
+    r"\b(?:I|i)(?:'?m| am)\s+(?:a|an)\s+ai\b",
 ]
 
 # Receipt/JSON fields that are attribution slots.
