@@ -1,3 +1,5 @@
+> **Status update 2026-11-14 (post-ship):** Layer 1 is BUILT and MERGED — DART cage lattice enforced on the hot ring and durable WAL/SQLite path (7/7 acceptance checks, `memory/catch_log/DART_CAGE_LATTICE_RECEIPT.json`), `cage_containment.smt2` verified UNSAT (Z3) and wired into the MARS CI gate, production gates 6/6 PASS with the cage in place. Layers 2–5 remain proposed/unbuilt. A subagent audit drafting the OpenCode §7 reality contract against this file repeated the stale 'Layer 1 unbuilt' line — corrected here so no future reader inherits it.
+
 # MERIDIAN — Witnessed Continuum: DART-Caged Dual-Chamber Agent Architecture
 
 > **Provenance & status (2026-11-14 by the collective; proposed, not built).**
