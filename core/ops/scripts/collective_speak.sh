@@ -62,4 +62,7 @@ if ! perl -e 'use Fcntl qw(:flock); $SIG{ALRM}=sub{exit 1}; alarm(300); flock(ST
   exit 6
 fi
 
-say -v "Zoe (Premium)" "$PAYLOAD"
+if ! "$PY" "$ROOT/ops/scripts/collective_kokoro.py" "$PAYLOAD"; then
+  echo "[collective_speak] Kokoro failed — falling back to Lee (Premium)" >&2
+  say -v "Lee (Premium)" "$PAYLOAD"
+fi

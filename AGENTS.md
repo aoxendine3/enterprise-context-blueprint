@@ -91,6 +91,8 @@ To protect our local IP and prevent state pollution:
 
 ## 6.4 Reality Gate (mandatory before declaring done)
 
+One command, fail-closed: `bash ops/scripts/reality_gate.sh` — runs gates in order, stops at the first failure, writes `memory/catch_log/REALITY_GATE_RECEIPT.json`, exits non-zero unless everything passes. Prefer it over narrating individual gates.
+
 Words do not ship. Before declaring any task complete, the executing agent must run the real gates and attach their receipts. No invented commands, no simulate-and-claim:
 
 - **Repo integrity:** `bash ops/scripts/verify_all_production_gates.sh` → must end `PRODUCTION GATES SUMMARY: 6/6 PASSED` (exit 0). Receipt at `memory/catch_log/`.

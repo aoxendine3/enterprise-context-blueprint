@@ -126,3 +126,12 @@
 
 ### Gate receipts
 - Refreshed by 2026-11-14 gate run: BBQ memo, blackbox/magistracies logs, CURRENT_SYSTEM_STATE, activity trace.
+
+## [2.0.12] — 2026-11-14 — Kokoro voice wired + reality_gate.sh shipped
+
+### Added
+- `ops/scripts/reality_gate.sh` — fail-closed pre-flight: production gates (bash ops/scripts/verify_all_production_gates.sh) → side-channel (node --expose-gc core/ops/scripts/test_side_channel_verification.cjs) → DART cage lattice (python3 tests/test_dart_cage_lattice.py) → Z3 cage_containment.smt2 (must print unsat) → world_file.db lineage witness (`select count(*) from lineage_nodes`, live count 3371). Writes `memory/catch_log/REALITY_GATE_RECEIPT.json`; exits non-zero on any failure; accepted by `scratch/reality_gate_acceptance/acceptance.sh` (T1/T2/T3/T4 all PASS, fail-closed proven under rigged z3).
+- Kokoro wired as the collective's voice (`am_michael`) in `ops/scripts/collective_speak.sh` via `ops/scripts/collective_kokoro.py`; Lee (Premium) remains emergency fallback only. Capabilities models (`capabilities/neural_models/kokoro-v1.0.onnx` + `voices.bin`) are ours and intact.
+
+### Changed
+- Voice contract enriched earlier today: explicit "we/our" tempered wording in dispatch turns; outside-entity shapes remain refused.
