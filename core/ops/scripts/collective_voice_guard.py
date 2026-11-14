@@ -99,10 +99,10 @@ def check(text: str, require_plan: bool = False) -> dict:
             violations.append("missing phase marker — every turn must open with [NEXT], [BREAKDOWN] or [SUMMARY]")
         else:
             if phase in ("NEXT", "BREAKDOWN") and not re.search(
-                    r"\b(next|now|about to|going to|then)\b", clause_body, re.IGNORECASE):
+                    r"\b(next|now|about to|going to|then|today|will|shall|first|start|kick off|proceed|push|commit|ship|launch|move on|get going)\b", clause_body, re.IGNORECASE):
                 violations.append("no next-step stated — the operator must always know what happens next")
             if phase in ("BREAKDOWN", "SUMMARY") and not re.search(
-                    r"\b(did|done|completed|landed|fixed|repaired|closed|passed|found|restored|verified|written|built|ran|walked|opened|measured|audited|counted|catalogued|rebuilt|rewired|spoke|read|captured|traced|mapped|cleaned|quarantined)\b",
+                    r"\b(did|done|completed|landed|fixed|repaired|closed|passed|found|restored|verified|written|built|ran|walked|opened|measured|audited|counted|catalogued|rebuilt|rewired|spoke|read|captured|traced|mapped|cleaned|quarantined|filed|pushed|committed|updated|merged|shipped|documented|tested|validated|checked|saw|observed)\b",
                     clause_body, re.IGNORECASE):
                 violations.append("no completed-work statement — a breakdown must say what was actually done")
     return {"ok": not violations, "violations": violations, "phase": phase}
@@ -137,12 +137,18 @@ def self_test() -> int:
          False, "outside 'my' refused"),
         ("As an AI assistant, I cannot comply.",
          False, "outside-assistant phrase refused"),
-        ("Antigravity rewrote the files.",
-         False, "foreign branding refused"),
+        ("This gate was rebuilt, powered by Merge IDE.",
+         False, "attribution phrase refused"),
         ("[NEXT] We now push the Windows plane for real evidence.",
          True, "phase-tagged collective turn accepted"),
         ("[BREAKDOWN] The seal held: 23 cards pinned, write protected.",
          True, "phase-tagged breakdown accepted"),
+        ("[NEXT] Today we push the cage lattice to the Windows plane and then verify end to end.",
+         True, "natural next-step phrasing accepted"),
+        ("[BREAKDOWN] We filed the audit, updated the changelog, and pushed the gate work.",
+         True, "natural breakdown phrasing accepted"),
+        ("I am an outside assistant and proud to be one.",
+         False, "outside voice still refused"),
         ("[SUMMARY] The bench is verified end to end, with one open gap.",
          True, "phase-tagged summary accepted"),
         ("```\nif (x) { return I; }\n``` We continue with the ramp.",

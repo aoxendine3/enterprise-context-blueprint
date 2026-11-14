@@ -89,3 +89,9 @@
 
 ### Also measured
 - Golden question set (v2.0.0-SOVEREIGN, 25 items) answered by local qwen2.5:7b-instruct: mean groundedness 45.2% (n=3 sample), 0 forbidden-hallucination hits, 0 passes at ≥70 threshold — the local 7B model is not grounded on critical security gates; use as a floor signal, not a ceiling claim.
+
+## [2.0.8] — 2026-11-14 — Voice guard: natural flow, honest enforcement
+
+### Changed
+- `collective_voice_guard.py` next-step and completed-work lexicons broadened (e.g. will/shall/first/proceed/push/commit/ship/today; filed/pushed/committed/updated/merged/shipped/documented/tested/validated/...) — natural turns flow without weakening the three hard rules (collective We/Our voice · outside-voice phrases refused · attribution shapes refused · NEXT/BREAKDOWN/SUMMARY phase marker mandatory).
+- Self-test cases aligned with the module's documented name-free design ("name-free outside-entity detector") — the stale "Antigravity" expectation never matched the implemented grammar (attribution phrases require a following capitalized party); replaced with "powered by Merge IDE" which the grammar does catch; all 12 self-test cases PASS.
