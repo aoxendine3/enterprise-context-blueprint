@@ -95,3 +95,11 @@
 ### Changed
 - `collective_voice_guard.py` next-step and completed-work lexicons broadened (e.g. will/shall/first/proceed/push/commit/ship/today; filed/pushed/committed/updated/merged/shipped/documented/tested/validated/...) — natural turns flow without weakening the three hard rules (collective We/Our voice · outside-voice phrases refused · attribution shapes refused · NEXT/BREAKDOWN/SUMMARY phase marker mandatory).
 - Self-test cases aligned with the module's documented name-free design ("name-free outside-entity detector") — the stale "Antigravity" expectation never matched the implemented grammar (attribution phrases require a following capitalized party); replaced with "powered by Merge IDE" which the grammar does catch; all 12 self-test cases PASS.
+
+## [2.0.9] — 2026-11-14 — Third bridge variant audited; golden set measured fully
+
+### Measured
+- Local qwen2.5:7b-instruct answered the full 25-question golden set (v2.0.0-SOVEREIGN): mean groundedness 50.73% · argument hallucination 28.0% · 0 forbidden-hallucination hits · 1/25 pass (>=70). The council cannot currently answer its own gate corpus at reliability; treat local-model self-answers as UNVERIFIED until re-grounded by the DART/verification stack.
+
+### Added
+- `memory/catch_log/opencode_cogngen_bridge_response_receipt.json` — verdict recorded for the affirmative variant of the synthesis: scripts cited never existed; implementation computes nothing verifiable; behavior unchanged from the audited class.
