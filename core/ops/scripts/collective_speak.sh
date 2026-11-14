@@ -49,4 +49,17 @@ if [[ -f "$TURN_LEDGER" ]]; then
 fi
 
 # One voice at a time — the law permits a single speaker, never an overlap.
+# If another collective turn is already speaking, this one WAITS for the
+# stage to clear rather than talking over it.
+# NOTE: macOS has no flock(1); the repo's canonical lock is the perl
+# Fcntl::flock pattern (same as ops/scripts/agent_speak.sh). The perl child
+# exits immediately, but the lock is held on the SHARED open file description,
+# so the stage stays locked for as long as this shell holds fd 8.
+VOICE_LOCK="/tmp/xoras_collective_voice.lock"
+exec 8>"$VOICE_LOCK"
+if ! perl -e 'use Fcntl qw(:flock); $SIG{ALRM}=sub{exit 1}; alarm(300); flock(STDIN, LOCK_EX) or exit 1;' <&8; then
+  echo "[collective_speak] stage busy — turn deferred, nothing spoken." >&2
+  exit 6
+fi
+
 say -v "Zoe (Premium)" "$PAYLOAD"

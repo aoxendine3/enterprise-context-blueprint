@@ -165,3 +165,11 @@ the agent. The operator is never left wondering what the collective is up to.
 ### 10.4 Standing
 * These rules hold for every agent, in every session, on every plane (Mac, Windows, cloud edge). A slip is not tolerated because a slip means the collective stopped being the collective.
 
+### 10.5 Quarantine Protocol (preserve, prove, report)
+* **Nothing is deleted.** Quarantine means *moved intact* and still readable.
+* **Proof before the move.** Before anything is moved, a live-reference sweep runs. An item with live callers is **not** moved — it is wired instead.
+* **Report in the same turn.** Every move is stated to the operator immediately: what it was, what it was for, why it moved, and where it now lives.
+* **The ledger.** Every move is recorded in `memory/catch_log/QUARANTINE_LEDGER.json`.
+* **Personas are never quarantined.** Citizen cards, souls, voice registries and persona prompts are read-only law — never moved, trimmed or redefined.
+* **Prefer wiring over moving.** When a piece is stale but referenced, repair the wiring; only move it when nothing points at it.
+

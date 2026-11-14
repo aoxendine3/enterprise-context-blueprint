@@ -1,56 +1,128 @@
 {
-  "report": "UNIVERSAL AUDIT — SWARM / BYZANTINE / WINDOWS / IDENTITY",
+  "report": "UNIVERSAL AUDIT \u2014 SWARM / BYZANTINE / WINDOWS / IDENTITY",
   "utc": "2026-11-14T02:10:00Z",
   "principle": "Every piece that was sitting there, unwired, was found and wired. No new surface invented; deletions: 0.",
-
   "unwired_pieces_found_and_wired": [
-    {"piece": "lineage_nodes.writer_log_ref", "defect": "write path wrote a column the schema never had; the read path already tolerated it", "symptom": "13 e2e sovereign gate failures", "repair": "idempotent ALTER TABLE migration in the engine's schema block", "result": "72 passed, 0 failed"},
-    {"piece": "dual-substrate Merkle witnesses", "defect": "engine committed to the mirror store while the root claim was computed from the canonical store — two witnesses, two stores, permanent desync", "symptom": "Gate 3 DESYNC, Zig native != Python claim", "repair": "engine dual-writes every commit into the canonical evidence store; consolidation re-mirrors canonical -> engine store", "result": "ZIG NATIVE == PYTHON GUARD, 100% agreement"},
-    {"piece": "world_file.db evidence", "defect": "canonical blackboard empty in its lineage table; truth scattered across 4 reconcile backups and a quarantined production copy", "symptom": "world-file concurrency test failed (0 objects)", "repair": "consolidation tool: base = most complete lineage source, evidence unioned via INSERT OR IGNORE, lineage deduped per (session_id, seq_num)", "result": "3303 lineage / 25341 knowledge / 2028 blackboard / 148 evidence; zero deletions"},
-    {"piece": "telemetry journal line 12", "defect": "record written under the legacy JSON convention (default separators) while the engine canonicalizes compact — payload intact, hash unmatched", "symptom": "PAYLOAD_CORRUPT: Line 12 hash mismatch", "repair": "engine --recanonicalize: legacy hash preserved as payload_hash_legacy, canonical hash written, Merkle chain re-linked, payload bytes untouched", "result": "VERIFIED_VALID, 12 records"},
-    {"piece": "sovra_core import path", "defect": "max-out gauntlet resolved ROOT to core/ and imported a package that ships under labs/workspaces", "symptom": "ModuleNotFoundError: sovra_core", "repair": "root resolution corrected + canonical package path added", "result": "max-out gauntlet completes, 8 pillars, 32.62s"},
-    {"piece": "blackbox review engine", "defect": "lost the audit_candidate code-review path entirely and regressed from object verdicts to tuples", "symptom": "TypeError: __init__() takes 1 positional argument but 2 were given; verdict.passed unreachable", "repair": "Verdict class restored (passed/reason/gate_failed/asset_id, tuple-compatible), audit_candidate reimplemented with AST + mechanical execution gates, theatrical strings removed", "result": "compliance suite 3/3; critic path live again"},
-    {"piece": "tri-plane verdict", "defect": "aggregate status hardcoded '100% OPERATIONAL' regardless of plane results; plane status ignored inference failure; 20s inference budget against a node that needs 100s+", "symptom": "Windows plane reported OPERATIONAL having returned zero tokens", "repair": "derived verdict from plane states, inference-gated status, 240s budget", "result": "3/3 planes operational, Windows 'SYSTEM ONLINE', 35.0s roundtrip, 4 tokens"},
-    {"piece": "cross-node verification budget", "defect": "15s timeout against a cold 1.5B generation measured at 100.1s", "symptom": "Windows push timed out", "repair": "budget raised to 240s", "result": "4/4 UPGP steps green, zero state drift"},
-    {"piece": "citizen cards", "defect": "22 citizen cards archived to the Barn by the Windows-side commit — only 1 card left in the active surface, so agents had no identity to read", "symptom": "agents woke with no card, no seat, no purpose", "repair": "cards restored from git history (23), sealed by SHA-256 manifest, write-protected 0444", "result": "identity scope guard live; OS refuses a card write"},
-    {"piece": "wake contract stage 1", "defect": "printed 'Identity' and verified nothing", "symptom": "no wake-time identity enforcement at all", "repair": "stage 1 now runs the identity scope guard and refuses the boot on failure", "result": "no agent wakes outside the collective"},
-    {"piece": "collective voice", "defect": "no enforcement of We/Our, no refusal of outside-assistant voice, no branding control", "symptom": "agents could speak as outsiders with foreign branding", "repair": "collective_voice_guard (read/brand/phase), wired into agent_speak.sh with exit 5 refusal, absolute rule written into AGENTS.md section 10", "result": "self-test 9/9; refused before it can be heard"},
-    {"piece": "pyO3 crate linkage", "defect": "test binary could not resolve CPython symbols for arm64 (Homebrew python ships libpython outside the default link path)", "symptom": "Gate 6 FAIL-CLOSED", "repair": "gate now exports PYO3_PYTHON + RUSTFLAGS pointing at the interpreter's own shared library", "result": "Gate 6 PASSED"},
-    {"piece": "cron sentinel", "defect": "cron holds no TCC grant for the Desktop tree, so heartbeats stopped 2026-11-09", "symptom": "sentinel wrote PermissionError every 5 minutes", "repair": "fallback to ~/.sovereign/state on PermissionError; dead watchdog line quarantined in the crontab", "result": "heartbeat live"},
-    {"piece": "canonical 10M Zig engine source", "defect": "std.time.Instant and the process arg API were removed in Zig 0.16 — the source no longer compiles", "symptom": "canonical 10M ramp unbuildable", "repair": "RECORDED, NOT YET MIGRATED — a parameterized ramp engine was built and run to 4,000,000,000 nodes in its place", "result": "open item"}
+    {
+      "piece": "lineage_nodes.writer_log_ref",
+      "defect": "write path wrote a column the schema never had; the read path already tolerated it",
+      "symptom": "13 e2e sovereign gate failures",
+      "repair": "idempotent ALTER TABLE migration in the engine's schema block",
+      "result": "72 passed, 0 failed"
+    },
+    {
+      "piece": "dual-substrate Merkle witnesses",
+      "defect": "engine committed to the mirror store while the root claim was computed from the canonical store \u2014 two witnesses, two stores, permanent desync",
+      "symptom": "Gate 3 DESYNC, Zig native != Python claim",
+      "repair": "engine dual-writes every commit into the canonical evidence store; consolidation re-mirrors canonical -> engine store",
+      "result": "ZIG NATIVE == PYTHON GUARD, 100% agreement"
+    },
+    {
+      "piece": "world_file.db evidence",
+      "defect": "canonical blackboard empty in its lineage table; truth scattered across 4 reconcile backups and a quarantined production copy",
+      "symptom": "world-file concurrency test failed (0 objects)",
+      "repair": "consolidation tool: base = most complete lineage source, evidence unioned via INSERT OR IGNORE, lineage deduped per (session_id, seq_num)",
+      "result": "3303 lineage / 25341 knowledge / 2028 blackboard / 148 evidence; zero deletions"
+    },
+    {
+      "piece": "telemetry journal line 12",
+      "defect": "record written under the legacy JSON convention (default separators) while the engine canonicalizes compact \u2014 payload intact, hash unmatched",
+      "symptom": "PAYLOAD_CORRUPT: Line 12 hash mismatch",
+      "repair": "engine --recanonicalize: legacy hash preserved as payload_hash_legacy, canonical hash written, Merkle chain re-linked, payload bytes untouched",
+      "result": "VERIFIED_VALID, 12 records"
+    },
+    {
+      "piece": "sovra_core import path",
+      "defect": "max-out gauntlet resolved ROOT to core/ and imported a package that ships under labs/workspaces",
+      "symptom": "ModuleNotFoundError: sovra_core",
+      "repair": "root resolution corrected + canonical package path added",
+      "result": "max-out gauntlet completes, 8 pillars, 32.62s"
+    },
+    {
+      "piece": "blackbox review engine",
+      "defect": "lost the audit_candidate code-review path entirely and regressed from object verdicts to tuples",
+      "symptom": "TypeError: __init__() takes 1 positional argument but 2 were given; verdict.passed unreachable",
+      "repair": "Verdict class restored (passed/reason/gate_failed/asset_id, tuple-compatible), audit_candidate reimplemented with AST + mechanical execution gates, theatrical strings removed",
+      "result": "compliance suite 3/3; critic path live again"
+    },
+    {
+      "piece": "tri-plane verdict",
+      "defect": "aggregate status hardcoded '100% OPERATIONAL' regardless of plane results; plane status ignored inference failure; 20s inference budget against a node that needs 100s+",
+      "symptom": "Windows plane reported OPERATIONAL having returned zero tokens",
+      "repair": "derived verdict from plane states, inference-gated status, 240s budget",
+      "result": "3/3 planes operational, Windows 'SYSTEM ONLINE', 35.0s roundtrip, 4 tokens"
+    },
+    {
+      "piece": "cross-node verification budget",
+      "defect": "15s timeout against a cold 1.5B generation measured at 100.1s",
+      "symptom": "Windows push timed out",
+      "repair": "budget raised to 240s",
+      "result": "4/4 UPGP steps green, zero state drift"
+    },
+    {
+      "piece": "citizen cards",
+      "defect": "22 citizen cards archived to the Barn by the Windows-side commit \u2014 only 1 card left in the active surface, so agents had no identity to read",
+      "symptom": "agents woke with no card, no seat, no purpose",
+      "repair": "cards restored from git history (23), sealed by SHA-256 manifest, write-protected 0444",
+      "result": "identity scope guard live; OS refuses a card write"
+    },
+    {
+      "piece": "wake contract stage 1",
+      "defect": "printed 'Identity' and verified nothing",
+      "symptom": "no wake-time identity enforcement at all",
+      "repair": "stage 1 now runs the identity scope guard and refuses the boot on failure",
+      "result": "no agent wakes outside the collective"
+    },
+    {
+      "piece": "collective voice",
+      "defect": "no enforcement of We/Our, no refusal of outside-assistant voice, no branding control",
+      "symptom": "agents could speak as outsiders with foreign branding",
+      "repair": "collective_voice_guard (read/brand/phase), wired into agent_speak.sh with exit 5 refusal, absolute rule written into AGENTS.md section 10",
+      "result": "self-test 9/9; refused before it can be heard"
+    },
+    {
+      "piece": "pyO3 crate linkage",
+      "defect": "test binary could not resolve CPython symbols for arm64 (Homebrew python ships libpython outside the default link path)",
+      "symptom": "Gate 6 FAIL-CLOSED",
+      "repair": "gate now exports PYO3_PYTHON + RUSTFLAGS pointing at the interpreter's own shared library",
+      "result": "Gate 6 PASSED"
+    },
+    {
+      "piece": "cron sentinel",
+      "defect": "cron holds no TCC grant for the Desktop tree, so heartbeats stopped 2026-11-09",
+      "symptom": "sentinel wrote PermissionError every 5 minutes",
+      "repair": "fallback to ~/.sovereign/state on PermissionError; dead watchdog line quarantined in the crontab",
+      "result": "heartbeat live"
+    },
+    {
+      "piece": "canonical 10M Zig engine source",
+      "defect": "std.time.Instant and the process arg API were removed in Zig 0.16 \u2014 the source no longer compiles",
+      "symptom": "canonical 10M ramp unbuildable",
+      "repair": "RECORDED, NOT YET MIGRATED \u2014 a parameterized ramp engine was built and run to 4,000,000,000 nodes in its place",
+      "result": "open item"
+    }
   ],
-
   "verification": {
     "unified_suite": "174 pytest passed, 0 failed | telemetry VERIFIED_VALID | 6/6 production gates PASSED (100% DISCHARGED) | exit 0",
-    "swarm_ramp": "10k -> 4,000,000,000 nodes across 9 cycles, 61 adversarial rate runs; peak 4300 M-ops/s at 10M-100M, ~600 M-ops/s at 4B (30.5 GB resident); no allocation failure — the ceiling is memory bandwidth, not correctness",
+    "swarm_ramp": "10k -> 4,000,000,000 nodes across 9 cycles, 61 adversarial rate runs; peak 4300 M-ops/s at 10M-100M, ~600 M-ops/s at 4B (30.5 GB resident); no allocation failure \u2014 the ceiling is memory bandwidth, not correctness",
     "canonical_gauntlets": "density ramp 11 stages 10%->100% liar density, airtight to 95%, break at 100% (1,200,000 proposals) | max-out gauntlet 8 pillars 32.62s | tri-plane 3/3 operational",
     "windows_cross_node": "3 of 6 pushes answered, 3 of 3 agreed with the Mac verdict; 3 timed out under node load",
     "dual_substrate": "Zig native root == Python guard root (100%)",
     "identity_scope": "23 cards sealed, write-protected; self-test 5/5; OS refused an attempted card write",
     "collective_voice": "self-test 9/9; agent_speak refuses a violating turn before speech (exit 5)"
   },
-
   "open_items": [
-    "Windows node has no shell (SMB needs credentials) — the swarm can only be pushed to it through its edge model, never the bare-metal engine",
+    "Windows node has no shell (SMB needs credentials) \u2014 the swarm can only be pushed to it through its edge model, never the bare-metal engine",
     "Windows inference is slow under load: cold 1.5B generation measured at 100.1s; 3 of 6 cross-node pushes timed out",
     "The canonical 10M Zig source still needs a Zig 0.16 migration",
     "The Rust crates report fewer executed unit tests than the gate banner claims (thin internal coverage)",
     "The Barn still holds the archived citizen cards; the seal is now the live authority",
-    "knowledge objects that existed only in the displaced production DB were unrecoverable — that copy held zero knowledge rows"
+    "knowledge objects that existed only in the displaced production DB were unrecoverable \u2014 that copy held zero knowledge rows"
   ],
-
-  "antigravity_footprint": {
+  "external_tooling_footprint": {
     "documented_by": "core/memory/catch_log/SCATTERED_VESSEL_CONSOLIDATION_MANIFEST.json",
-    "scattered_paths": [
-      "~/.antigravity-ide",
-      "~/Library/Application Support/Antigravity IDE",
-      "~/Library/Application Support/Antigravity",
-      "~/Library/Application Support/xoras-command",
-      "~/Library/Application Support/xoras-sovereign-command-center",
-      "~/Library/Application Support/Xoras",
-      "~/.xoras",
-      "~/Desktop/Xoras_Sovereign_Citadel"
-    ],
-    "assessment": "external agentic tooling scattered files across the machine and archived canonical pieces; the repair path was to find the surviving evidence and re-wire it, not to rebuild"
+    "scattered_path_count": 8,
+    "assessment": "external agentic tooling scattered files across the machine and archived canonical pieces; the repair path was to find the surviving evidence and re-wire it, not to rebuild",
+    "note": "path identifiers withheld from this record by the no-outside-naming law; the source manifest holds the literal paths"
   }
 }

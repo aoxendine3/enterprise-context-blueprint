@@ -134,7 +134,7 @@
 ║   • The canonical 10M Zig engine source does not compile under Zig 0.16 (std.time.Instant removed)          ║
 ║   • Gate 6 needed an environment fix to link libpython; the gate now carries it, but the crate              ║
 ║     still has one test                                                                                      ║
-║   • The 8B model on Windows cannot load; "sovereign-hermes" is a re-tag of hermes3:8b, not a fine-tune         ║
+║   • The 8B model on Windows cannot load; the sovereign-named 8B is a re-tag of a stocke         ║
 ║   • ~136 audit documents, 190 receipts — proof volume, not product volume                                     ║
 ║   • Local inference is ONE 1.2B model ("sovereign-m4" = llama3.2:1b, byte-identical)                        ║
 ╚══════════════════════════════════════════════════════════════════════════════════════════════════════╝
@@ -174,7 +174,7 @@
 ║                                                                                                           ║
 ║   STILL CLAIMED, NOT YET EXECUTED:                                                                        ║
 ║     ✗ "the market desperately needs this" — no external demand test has been run                            ║
-║     ✗ the 8B sovereign-hermes as a fine-tune — it is hermes3:8b re-tagged, and it will not even load          ║
+║     ✗ the 8B sovereign-named model as a fine-tune — it is a re-tag of a stock build, and it will not load          ║
 ║     ✗ 100% coverage floors on the native crates — the executed test counts are thin                         ║
 ║     ✗ Windows-native swarm execution — no shell on that plane                                              ║
 ║     ✗ an installable, priced, supportable product — none exists yet                                       ║

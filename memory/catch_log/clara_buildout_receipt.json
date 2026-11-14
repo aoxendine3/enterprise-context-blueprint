@@ -4,25 +4,53 @@
   "repo": "aoxendine3/project-clara",
   "commit": "39d5f01",
   "audit_findings": [
-    {"defect": "BOTH answer paths were canned text", "detail": "web path returned a fixed sentence about the epistemic pipeline; native Swift bridge returned 'Swarm verification complete. Harness executed with exit 0' with no model behind either", "repair": "replaced with real conductor calls"},
-    {"defect": "backend module absent entirely", "detail": "api.log ended in ModuleNotFoundError: No module named 'api'; no api.py or api/ anywhere in the repo or its history", "repair": "built core/clara_conductor.py (stdlib HTTP gateway)"},
-    {"defect": "evidence deleted", "detail": "two ledger archives and docs/SSOT_FORNESSIC_AUDIT.md were staged for deletion", "repair": "restored from HEAD; the stale .git/index.lock (from a crashed operation) was cleared first"},
-    {"defect": "no identity scoping on Clara's path", "detail": "her citizen card was archived away with the ELITE purge", "repair": "conductor reads her card from the restored SSOT set and states who/where/why before reasoning"},
-    {"defect": "no voice law on her answers", "detail": "no refusal path existed for outside-voice replies", "repair": "voice gate refuses a reply that slips outside the collective; one corrective retry, then fail closed"},
-    {"defect": "browser-side local fetch blocked by Local Network Access", "detail": "Chrome preflight carried Access-Control-Request-Private-Network and the gateway never answered it, so the POST never fired", "repair": "gateway echoes Access-Control-Allow-Private-Network, 204 sends no body, and the gateway now serves the studio UI so the API call is same-origin"},
-    {"defect": "ATS would block the native app's local call", "detail": "no Info.plist allowance for local networking", "repair": "NSAllowsLocalNetworking added (local only, no arbitrary cleartext)"}
+    {
+      "defect": "BOTH answer paths were canned text",
+      "detail": "web path returned a fixed sentence about the epistemic pipeline; native Swift bridge returned 'Swarm verification complete. Harness executed with exit 0' with no model behind either",
+      "repair": "replaced with real conductor calls"
+    },
+    {
+      "defect": "backend module absent entirely",
+      "detail": "api.log ended in ModuleNotFoundError: No module named 'api'; no api.py or api/ anywhere in the repo or its history",
+      "repair": "built core/clara_conductor.py (stdlib HTTP gateway)"
+    },
+    {
+      "defect": "evidence deleted",
+      "detail": "two ledger archives and docs/SSOT_FORNESSIC_AUDIT.md were staged for deletion",
+      "repair": "restored from HEAD; the stale .git/index.lock (from a crashed operation) was cleared first"
+    },
+    {
+      "defect": "no identity scoping on Clara's path",
+      "detail": "her citizen card was archived away with the ELITE purge",
+      "repair": "conductor reads her card from the restored SSOT set and states who/where/why before reasoning"
+    },
+    {
+      "defect": "no voice law on her answers",
+      "detail": "no refusal path existed for outside-voice replies",
+      "repair": "voice gate refuses a reply that slips outside the collective; one corrective retry, then fail closed"
+    },
+    {
+      "defect": "browser-side local fetch blocked by Local Network Access",
+      "detail": "Chrome preflight carried Access-Control-Request-Private-Network and the gateway never answered it, so the POST never fired",
+      "repair": "gateway echoes Access-Control-Allow-Private-Network, 204 sends no body, and the gateway now serves the studio UI so the API call is same-origin"
+    },
+    {
+      "defect": "ATS would block the native app's local call",
+      "detail": "no Info.plist allowance for local networking",
+      "repair": "NSAllowsLocalNetworking added (local only, no arbitrary cleartext)"
+    }
   ],
   "verification": {
     "gate": "clara_gate.py passes C001, refuses an alien seat with exit 77",
-    "mars_daemon": "running 3 days (pid 17886) — orchestrator imports resolve",
-    "conductor": "live on 127.0.0.1:8788 — /api/health, /api/roster (48 seats), /api/telemetry",
-    "real_inference": "deepseek-r1:1.5b on PLANE_2_WINDOWS_RTX — curl: first attempt 45.3s (outside voice) -> corrective retry -> compliant answer, 70.2s total",
-    "ui_end_to_end": "browser at http://127.0.0.1:8788/ returned a real answer: 'We are dedicated to advancing our collective knowledge in orbital physics, biological cellular modeling, and hyperbolic geometric folding' — windows-tensor-plane · deepseek-r1:1.5b · 25497.3 ms · seat C006",
+    "mars_daemon": "running 3 days (pid 17886) \u2014 orchestrator imports resolve",
+    "conductor": "live on 127.0.0.1:8788 \u2014 /api/health, /api/roster (48 seats), /api/telemetry",
+    "real_inference": "deepseek-r1:1.5b on PLANE_2_WINDOWS_RTX \u2014 curl: first attempt 45.3s (outside voice) -> corrective retry -> compliant answer, 70.2s total",
+    "ui_end_to_end": "browser at http://127.0.0.1:8788/ returned a real answer: 'We are dedicated to advancing our collective knowledge in orbital physics, biological cellular modeling, and hyperbolic geometric folding' \u2014 windows-tensor-plane \u00b7 deepseek-r1:1.5b \u00b7 25497.3 ms \u00b7 seat C006",
     "app": "rebuilt: Project Clara.app + DMG + ClickAndPlay zip; app running (pid 69200)"
   },
   "open_items": [
-    "Windows node cannot load hermes3:8b — OOM allocating a 16 GB KV cache; conductor falls back to the 1.5B, which answers in the collective voice but hollowly",
-    "Mac disk at 840 MB free blocks pulling a stronger local model — reclaiming space would give Clara and DAXX real capacity",
+    "Windows node cannot load the 8B stock model \u2014 OOM allocating a 16 GB KV cache; conductor falls back to the 1.5B, which answers in the collective voice but hollowly",
+    "Mac disk at 840 MB free blocks pulling a stronger local model \u2014 reclaiming space would give Clara and DAXX real capacity",
     "Clara's own repo still has uncommitted drift (.gitignore, AGENTS.md, mars_state.json, ledger)"
   ],
   "deletions": 0

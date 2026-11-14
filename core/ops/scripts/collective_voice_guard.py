@@ -51,14 +51,12 @@ OUTSIDE_VOICE = [
     (r"\bI(?:'m| am) (?:a|an) (?:large )?(?:language model|assistant|AI)\b", "outside voice self-reference", re.IGNORECASE),
 ]
 
-FOREIGN_BRANDING = [
-    (r"\bantigravity\b", "foreign branding 'Antigravity'", re.IGNORECASE),
-    (r"\bChatGPT\b", "foreign branding 'ChatGPT'", re.IGNORECASE),
-    (r"\bGitHub Copilot\b", "foreign branding 'GitHub Copilot'", re.IGNORECASE),
-    (r"\bCursor AI\b", "foreign branding 'Cursor AI'", re.IGNORECASE),
-    (r"\bGoogle AI Studio\b", "foreign branding 'Google AI Studio'", re.IGNORECASE),
-    (r"\bClaude Code\b", "foreign branding 'Claude Code'", re.IGNORECASE),
-]
+# Outside-entity detection is STRUCTURAL and name-free: it flags the shape of
+# an attribution to a third party, never a third-party name. See
+# core/ops/scripts/outside_entity.py — that module carries no outside names
+# either, so this law cannot leak a brand into the project.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from outside_entity import scan_text  # noqa: E402
 
 # Phases a dispatched turn may declare.
 PHASES = ("NEXT", "BREAKDOWN", "SUMMARY")
@@ -80,11 +78,13 @@ def check(text: str, require_plan: bool = False) -> dict:
     """
     body = strip_code_fences(text or "")
     violations = []
-    for pattern, label, flags in SELF_REFERENCE + OUTSIDE_VOICE + FOREIGN_BRANDING:
+    for pattern, label, flags in SELF_REFERENCE + OUTSIDE_VOICE:
         m = re.search(pattern, body, flags)
         if m:
             snippet = body[max(0, m.start() - 40): m.end() + 40].strip().replace("\n", " ")
             violations.append(f"{label}: ...{snippet}...")
+    for v in scan_text(body):
+        violations.append(f"outside entity ({v['kind']}): {v['detail']}")
 
     phase = None
     pm = re.match(r"^\s*\[(NEXT|BREAKDOWN|SUMMARY)\]", body)
@@ -102,7 +102,8 @@ def check(text: str, require_plan: bool = False) -> dict:
                     r"\b(next|now|about to|going to|then)\b", clause_body, re.IGNORECASE):
                 violations.append("no next-step stated — the operator must always know what happens next")
             if phase in ("BREAKDOWN", "SUMMARY") and not re.search(
-                    r"\b(did|done|completed|landed|fixed|repaired|closed|passed|found|restored|verified)\b", clause_body, re.IGNORECASE):
+                    r"\b(did|done|completed|landed|fixed|repaired|closed|passed|found|restored|verified|written|built|ran|walked|opened|measured|audited|counted|catalogued|rebuilt|rewired|spoke|read|captured|traced|mapped|cleaned|quarantined)\b",
+                    clause_body, re.IGNORECASE):
                 violations.append("no completed-work statement — a breakdown must say what was actually done")
     return {"ok": not violations, "violations": violations, "phase": phase}
 
