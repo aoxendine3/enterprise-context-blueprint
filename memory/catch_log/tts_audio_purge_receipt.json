@@ -1,0 +1,285 @@
+{
+ "date_utc": "2026-11-14T18:30:54Z",
+ "action": "TTS audio cache purge \u2014 regenerable speech artifacts removed per owner directive 2026-11-14",
+ "preconditions": [
+  "agent_logs speech outputs are regenerable via collective_speak.sh (transcripts in turn_ledger.jsonl and collective_voice_receipts.jsonl)",
+  "collective_chunks/* and narrations derive from the same recorded turns",
+  "memory/timeline/raw/media_and_seeds/...turn_*.wav are per-turn council TTS recordings; text canon lives in memory/timeline/2026-11 entries",
+  "scratch/* copies are duplicates of agent_logs or drafts",
+  "KEPT: video_output/combined_audio.m4a, docs/assets/thumbnails/video_audio.mp3, scratch/enterprise-context-blueprint/docs/assets/thumbnails/video_audio.mp3"
+ ],
+ "files": [
+  {
+   "path": "core/ops/scripts/fullscreen_ui/live_elevenlabs.mp3",
+   "bytes": 10911,
+   "sha256": "62efbba81bfc7eda8dbfc61cd4161e071dbdfda9fe0063cc2d307cda17c7fe91"
+  },
+  {
+   "path": "core/ops/scripts/fullscreen_ui/live_speech.wav",
+   "bytes": 698412,
+   "sha256": "2b286a492dc5be3b81a8ea9b002d31afc1a432a010d79d24885c154ce3707713"
+  },
+  {
+   "path": "memory/agent_logs/industry_bottleneck_narration.mp3",
+   "bytes": 389582,
+   "sha256": "2f441c45b6d131be5e9d0ee63596ef014b778335f3e5fcc964766bba61dd14e8"
+  },
+  {
+   "path": "memory/agent_logs/xoras_standalone_swarm_verified.wav",
+   "bytes": 1432876,
+   "sha256": "a8d7e2b55dd689bdd1bed15c16853c96e3d11047d3dba4b5b8060dc364416d40"
+  },
+  {
+   "path": "memory/agent_logs/collective_chunks/line_03_CLARA.mp3",
+   "bytes": 591874,
+   "sha256": "11ca37fa77b066f4839c681bfae04160cff7178363956e5c75fd5b0df70d2059"
+  },
+  {
+   "path": "memory/agent_logs/collective_chunks/line_05_CLARA.mp3",
+   "bytes": 205262,
+   "sha256": "dced3922437fdc65376fb811d809ec70e9d26c06cdce774f3f4063d7460067bc"
+  },
+  {
+   "path": "memory/agent_logs/collective_chunks/line_05_MAXX.mp3",
+   "bytes": 544226,
+   "sha256": "2688b520d56dbfe3e559bc38efd75623f010cff9ea873732c54d9b89e6d0169a"
+  },
+  {
+   "path": "memory/agent_logs/collective_chunks/line_04_MAXX.mp3",
+   "bytes": 326470,
+   "sha256": "4e77358a9d2c96481f274277127acdc2225f2fe4ee67398be8ebbde95582eb42"
+  },
+  {
+   "path": "memory/agent_logs/collective_chunks/line_07_JARVIS.mp3",
+   "bytes": 293033,
+   "sha256": "5b77f426900f45993e4cd82bbed51425397e32162b192e0f895a31731c521e6e"
+  },
+  {
+   "path": "memory/agent_logs/collective_chunks/line_02_MAXX.mp3",
+   "bytes": 540465,
+   "sha256": "671602648d4e53e7a1970c7dc332fd762039821137c13c7cc2bbf56a5c8458a4"
+  },
+  {
+   "path": "memory/agent_logs/collective_chunks/line_02_CLARA.mp3",
+   "bytes": 507028,
+   "sha256": "ca51f2a1eaf52e31e07bdbd4751b721b4debe9b24d9efedd538344b2ea2f7ee1"
+  },
+  {
+   "path": "memory/agent_logs/collective_chunks/line_03_VANCE.mp3",
+   "bytes": 579335,
+   "sha256": "be3e9eb2f012cd27d4b79005854944adff241e4dfa0098f10141912b3aacd088"
+  },
+  {
+   "path": "memory/agent_logs/collective_chunks/line_01_JARVIS.mp3",
+   "bytes": 446006,
+   "sha256": "f16bc773ed1cd7a173f88a9e7b240f7d757d60764c461d74e376736cccde317b"
+  },
+  {
+   "path": "memory/agent_logs/collective_chunks/line_04_VANCE.mp3",
+   "bytes": 502013,
+   "sha256": "d4f4ba32008955d3b2c800b2dc325adcc7c1a17bc0194d33927ed4490b2c81fe"
+  },
+  {
+   "path": "memory/agent_logs/collective_chunks/line_06_CLARA.mp3",
+   "bytes": 502431,
+   "sha256": "7a56c6dd5e7cfe951a65532c6e5510babddd69610dbb4e10c3155c19ee4dc867"
+  },
+  {
+   "path": "memory/agent_logs/collective_chunks/line_01_MAXX.mp3",
+   "bytes": 385402,
+   "sha256": "64c3d4651519c0a75a6b1a710f96ab4c16c54275f3190ba12b9df71c3a9411a8"
+  },
+  {
+   "path": "memory/agent_logs/collective_master_narration_multiagent.mp3",
+   "bytes": 2001649,
+   "sha256": "c52d0ec7f1564246ab10a53265fb7638b8d06057349d8db898b56aacb669b0a2"
+  },
+  {
+   "path": "memory/agent_logs/multi_node_sync_report.wav",
+   "bytes": 2402284,
+   "sha256": "b144365f1d65a34c91c661659e6de393be899d59911a1c91f8b35ccd8153320a"
+  },
+  {
+   "path": "memory/agent_logs/clara_trinity_briefing.aiff",
+   "bytes": 819124,
+   "sha256": "02fb456111eca506a0f4b2f20a3277becf4758feeef46a5c08acbc5677fc4683"
+  },
+  {
+   "path": "memory/agent_logs/maxx_trinity_briefing.aiff",
+   "bytes": 990474,
+   "sha256": "10d1b237945f1a93a6809f7a15d87dc08f03bc6e00b59031fb483abb595b74e3"
+  },
+  {
+   "path": "memory/agent_logs/vance_trinity_briefing.aiff",
+   "bytes": 838144,
+   "sha256": "ad4812faeb2f28aacca18a9718d90bc42a63584d1513e4fe2c76006ba40612a7"
+  },
+  {
+   "path": "memory/agent_logs/council_status_live.wav",
+   "bytes": 1491244,
+   "sha256": "5e7eb03a03ca8d4d5d08f87374dc1e58150d06c52daf63c16b421eddc38a7ce7"
+  },
+  {
+   "path": "memory/timeline/raw/media_and_seeds/xoras_media_director/turn_1_maxx_1794511041628.wav",
+   "bytes": 110636,
+   "sha256": "59ded21da220bcf38971da4a4fdd2474a1e42e040dfdc7dc753823e6d8cac86a"
+  },
+  {
+   "path": "memory/timeline/raw/media_and_seeds/xoras_media_director/turn_0_john_1794511038042.wav",
+   "bytes": 154668,
+   "sha256": "38141eaec73178bdb2f09f40acc23122ce8f371dc4e692473c45d244326a94d6"
+  },
+  {
+   "path": "memory/timeline/raw/media_and_seeds/xoras_media_director/turn_0_clara_1794511033747.wav",
+   "bytes": 144428,
+   "sha256": "2b437371d4396499706bc553ab19d00755e0f540adf6574d0be7a83a80dfd49c"
+  },
+  {
+   "path": "memory/timeline/raw/media_and_seeds/xoras_media_director/turn_2_unknown_agent_99_1794511026336.wav",
+   "bytes": 524,
+   "sha256": "4afc69be59c1e5da4ecb345b729e7f8a0d81539738b1042f4bb1b58c2fe5b4ae"
+  },
+  {
+   "path": "memory/timeline/raw/media_and_seeds/xoras_media_director/turn_0_daxx_1794511036452.wav",
+   "bytes": 150572,
+   "sha256": "7f027ce1f9649c436f35a24dd4bcbe5b2ffebbe4ea340d36e523025a94c876af"
+  },
+  {
+   "path": "memory/timeline/raw/media_and_seeds/xoras_media_director/turn_0_maxx_1794511032384.wav",
+   "bytes": 106540,
+   "sha256": "f217a20158cb40a3ab7b254fa4cb7910c528f25a4e9637ef2cdd7ed801807b61"
+  },
+  {
+   "path": "memory/timeline/raw/media_and_seeds/xoras_media_director/turn_2_unknown_agent_007_1794511042803.wav",
+   "bytes": 106540,
+   "sha256": "7f61bcc55c424d10afbf95b2d6c41b7abbcc917bdfa1a2d8e4b4ccf7d36d7130"
+  },
+  {
+   "path": "memory/timeline/raw/media_and_seeds/xoras_media_director/turn_0_maxx_1794511026336.wav",
+   "bytes": 524,
+   "sha256": "4afc69be59c1e5da4ecb345b729e7f8a0d81539738b1042f4bb1b58c2fe5b4ae"
+  },
+  {
+   "path": "memory/timeline/raw/media_and_seeds/xoras_media_director/turn_1_maxx_1794511026336.wav",
+   "bytes": 524,
+   "sha256": "4afc69be59c1e5da4ecb345b729e7f8a0d81539738b1042f4bb1b58c2fe5b4ae"
+  },
+  {
+   "path": "memory/timeline/raw/media_and_seeds/xoras_media_director/turn_0_vance_1794511035047.wav",
+   "bytes": 132140,
+   "sha256": "7a2a2ec620f9fd447fda432ace56d8cbaf2ac7abcad927c2ff6d90cbde5534b2"
+  },
+  {
+   "path": "docs/audits/audit_reports/audio_test.aiff",
+   "bytes": 44582,
+   "sha256": "4bbc4f86a97ef330176d5852788b81f91c9fc6dc94844760721984a6ec13e03b"
+  },
+  {
+   "path": "scratch/showcase_60s_voiceover.wav",
+   "bytes": 2880044,
+   "sha256": "12465a56cf97987b0c6b6c35e654732d05b2e858fac19bc5dd846c776f93cdb6"
+  },
+  {
+   "path": "scratch/final_voiceover_track.wav",
+   "bytes": 3614924,
+   "sha256": "4ffe159d4a8283d67fd2be8ea8c370f7c80ece5dd694670f444413e1bb887ee9"
+  },
+  {
+   "path": "scratch/enterprise-context-blueprint/core/ops/scripts/fullscreen_ui/live_elevenlabs.mp3",
+   "bytes": 10911,
+   "sha256": "62efbba81bfc7eda8dbfc61cd4161e071dbdfda9fe0063cc2d307cda17c7fe91"
+  },
+  {
+   "path": "scratch/enterprise-context-blueprint/memory/agent_logs/industry_bottleneck_narration.mp3",
+   "bytes": 389582,
+   "sha256": "2f441c45b6d131be5e9d0ee63596ef014b778335f3e5fcc964766bba61dd14e8"
+  },
+  {
+   "path": "scratch/enterprise-context-blueprint/memory/agent_logs/collective_chunks/line_03_CLARA.mp3",
+   "bytes": 591874,
+   "sha256": "11ca37fa77b066f4839c681bfae04160cff7178363956e5c75fd5b0df70d2059"
+  },
+  {
+   "path": "scratch/enterprise-context-blueprint/memory/agent_logs/collective_chunks/line_05_CLARA.mp3",
+   "bytes": 205262,
+   "sha256": "dced3922437fdc65376fb811d809ec70e9d26c06cdce774f3f4063d7460067bc"
+  },
+  {
+   "path": "scratch/enterprise-context-blueprint/memory/agent_logs/collective_chunks/line_05_MAXX.mp3",
+   "bytes": 544226,
+   "sha256": "2688b520d56dbfe3e559bc38efd75623f010cff9ea873732c54d9b89e6d0169a"
+  },
+  {
+   "path": "scratch/enterprise-context-blueprint/memory/agent_logs/collective_chunks/line_04_MAXX.mp3",
+   "bytes": 326470,
+   "sha256": "4e77358a9d2c96481f274277127acdc2225f2fe4ee67398be8ebbde95582eb42"
+  },
+  {
+   "path": "scratch/enterprise-context-blueprint/memory/agent_logs/collective_chunks/line_07_JARVIS.mp3",
+   "bytes": 293033,
+   "sha256": "5b77f426900f45993e4cd82bbed51425397e32162b192e0f895a31731c521e6e"
+  },
+  {
+   "path": "scratch/enterprise-context-blueprint/memory/agent_logs/collective_chunks/line_02_MAXX.mp3",
+   "bytes": 540465,
+   "sha256": "671602648d4e53e7a1970c7dc332fd762039821137c13c7cc2bbf56a5c8458a4"
+  },
+  {
+   "path": "scratch/enterprise-context-blueprint/memory/agent_logs/collective_chunks/line_02_CLARA.mp3",
+   "bytes": 507028,
+   "sha256": "ca51f2a1eaf52e31e07bdbd4751b721b4debe9b24d9efedd538344b2ea2f7ee1"
+  },
+  {
+   "path": "scratch/enterprise-context-blueprint/memory/agent_logs/collective_chunks/line_03_VANCE.mp3",
+   "bytes": 579335,
+   "sha256": "be3e9eb2f012cd27d4b79005854944adff241e4dfa0098f10141912b3aacd088"
+  },
+  {
+   "path": "scratch/enterprise-context-blueprint/memory/agent_logs/collective_chunks/line_01_JARVIS.mp3",
+   "bytes": 446006,
+   "sha256": "f16bc773ed1cd7a173f88a9e7b240f7d757d60764c461d74e376736cccde317b"
+  },
+  {
+   "path": "scratch/enterprise-context-blueprint/memory/agent_logs/collective_chunks/line_04_VANCE.mp3",
+   "bytes": 502013,
+   "sha256": "d4f4ba32008955d3b2c800b2dc325adcc7c1a17bc0194d33927ed4490b2c81fe"
+  },
+  {
+   "path": "scratch/enterprise-context-blueprint/memory/agent_logs/collective_chunks/line_06_CLARA.mp3",
+   "bytes": 502431,
+   "sha256": "7a56c6dd5e7cfe951a65532c6e5510babddd69610dbb4e10c3155c19ee4dc867"
+  },
+  {
+   "path": "scratch/enterprise-context-blueprint/memory/agent_logs/collective_chunks/line_01_MAXX.mp3",
+   "bytes": 385402,
+   "sha256": "64c3d4651519c0a75a6b1a710f96ab4c16c54275f3190ba12b9df71c3a9411a8"
+  },
+  {
+   "path": "scratch/enterprise-context-blueprint/memory/agent_logs/collective_master_narration_multiagent.mp3",
+   "bytes": 2001649,
+   "sha256": "c52d0ec7f1564246ab10a53265fb7638b8d06057349d8db898b56aacb669b0a2"
+  },
+  {
+   "path": "scratch/studio_voiceover_track.wav",
+   "bytes": 3614924,
+   "sha256": "989a606a6919c7ee65ee0315309b35fc77d13ac2dc7ba18878411b9ebc217c1c"
+  },
+  {
+   "path": "scratch/voiceover_60s.wav",
+   "bytes": 2880044,
+   "sha256": "94da577601c4623a58183feae937474546a25702a605f695698c50b65e7d852e"
+  },
+  {
+   "path": "video_output/agents_message.aiff",
+   "bytes": 260802,
+   "sha256": "bde20aaac353cc2f6044f7d0e37085089c17840ff5b347f660747120c3ad8e5f"
+  },
+  {
+   "path": "media/team_briefing.aiff",
+   "bytes": 510604,
+   "sha256": "0bf91e271269de319effa802c2eaa7447ca7ca4dc02c90e6e8392024fa03edef"
+  }
+ ],
+ "total_bytes": 39036952,
+ "file_count": 54
+}
