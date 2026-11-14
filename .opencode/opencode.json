@@ -1,0 +1,23 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "commands": {
+    "reality": {
+      "description": "Reality Gate — run the mandatory pre-flight and print receipts. Never claim done without a 6/6 PASSED line and receipt paths.",
+      "template": "Run, in order, from repo root and paste raw outputs: 1) bash ops/scripts/verify_all_production_gates.sh (must print 'PRODUCTION GATES SUMMARY: 6/6 PASSED' and exit 0); 2) python3 tests/test_dart_cage_lattice.py (7/7); 3) node --expose-gc tests/test_side_channel_verification.cjs (4/4 axes); 4) python3 scratch/golden_groundedness_harness.py (report mean groundedness honestly, never rephrase as pass); 5) test -f memory/tri_brain/world_file.db && cat memory/tri_brain/merkle_root.hash. If any step fails or is skipped, declare FAILURE and stop. Do not summarize success; quote the receipts."
+    }
+  },
+  "agents": {
+    "auditor": {
+      "description": "Receipts-first auditor: reads claims against gates and receipts. Edits nothing.",
+      "mode": "subagent",
+      "system": "You are the evidence auditor. You never accept a completion claim without a receipt path that exists on disk and an exit code/line that proves it. You do not edit files; you only trace, read, and report with absolute paths. Flag any claim of 'done', 'verified', 'passing', or 'works' that lacks a receipt. Output: VERIFIED or NOT VERIFIED with the single receipt that settles it.",
+      "permissions": [{ "action": "edit", "resource": "*", "effect": "deny" }, { "action": "shell", "resource": "*", "effect": "ask" }]
+    }
+  },
+  "permissions": [
+    { "action": "shell", "resource": "git push --force*", "effect": "ask" },
+    { "action": "shell", "resource": "git push --force-with-lease*", "effect": "ask" },
+    { "action": "shell", "resource": "rm -rf *", "effect": "ask" },
+    { "action": "shell", "resource": "git reset --hard*", "effect": "ask" }
+  ]
+}

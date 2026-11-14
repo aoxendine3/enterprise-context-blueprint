@@ -103,3 +103,12 @@
 
 ### Added
 - `memory/catch_log/opencode_cogngen_bridge_response_receipt.json` — verdict recorded for the affirmative variant of the synthesis: scripts cited never existed; implementation computes nothing verifiable; behavior unchanged from the audited class.
+
+## [2.0.10] — 2026-11-14 — OpenCode project wiring landed (no theater)
+
+### Added
+- `.opencode/opencode.json` — the repo is now a configured OpenCode project: `/reality` command runs the mandatory pre-flight (gates, cage lattice, side-channel, golden harness, world_file witness) and demands quoted receipts; `auditor` subagent (edits denied, receipts-only verdicts); permissions gate force-pushes, hard resets, and `rm -rf` behind explicit ask.
+- AGENTS.md §6.4 (Reality Gate) + this config are the OpenCode contract: run gates, paste receipts, never claim done on narrative.
+
+### Stopped
+- Council role-play toy jobs (8-model swarm; 5-seat persona convene) — killed; answers were theater-grade signals, not evidence. Removed from scope.
