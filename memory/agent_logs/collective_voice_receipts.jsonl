@@ -1,0 +1,2 @@
+{"agent": "collective", "chars": 79, "phase": "NEXT", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T06:27:04Z", "verdict": "COMPLIANT", "violations": []}
+{"agent": "collective", "chars": 1987, "phase": "BREAKDOWN", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T06:27:19Z", "verdict": "COMPLIANT", "violations": []}
