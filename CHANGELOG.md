@@ -47,3 +47,10 @@
 
 ### Added
 - `docs/research/AGENTIC_OPPORTUNITY_MAP_2026-11-14.md` — outside-the-box strategy: Proof-of-Action insurance, Agent Black Box (EU AI Act Art. 12), Verify-Before-You-Buy interactive red-team, Stripe-webhook Notary minting, Perpetual Verification Pass, Multi-Witness Federation, public Transparency Log, drift warranty (A_COMBINED/ContextEcho), Proof-Carrying OSS releases, incident forensics retainer, receipt escrow, hardware dead-man's countersign. Non-negotiable caveats documented: no customer validation, three pillar papers not re-measured on our hardware.
+
+## [2.0.3] — 2026-11-14 — Source syntheses filed with verification
+
+### Added
+- `docs/papers/COGNEN_NEURO_MIMETIC_SPEC.md` — user-provided synthesis of Ororbia & Kelly's CogNGen (arXiv:2204.00619; arXiv:2310.15177 / AAAI-SS). Provenance header states it is not original research; verify via `memory/catch_log/cogngen_camel_contextecho_verification.json`.
+- `docs/papers/DECONSTRUCTING_REALITY_AGENTIC_CODING_FRAMEWORK.md` — user-provided synthesis of CogNGen + CaMeL (arXiv:2503.18813, SaTML 2026) + ContextEcho (arXiv:2605.24279, NeurIPS 2026 E&D submission). One overstatement corrected in the provenance header (CaMeL is not "absolute protection preserving utility" — benign utility 63.9% vs 90.7%; AgentDojo is the authors' own benchmark; ContextEcho is a 2-week-old preprint with judge-dependent scores).
+- Both documents are filed verbatim for traceability and are not primary sources.
