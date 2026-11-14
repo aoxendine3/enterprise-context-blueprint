@@ -42,3 +42,8 @@
 
 ### Notes
 - Disk reached 100% (130 MB free at the low point) driven primarily by `AI_Core/` (~3.3 GB embedded clone) plus pre-existing `workspaces/` (~2.2 GB), `labs/` (~2.7 GB), `scratch/` (~1.3 GB). No owner data was deleted; the TTS purge reclaimed ~39 MB. Free space must still be addressed by the owner (move `misc/` ~37 GB or `AI_Core/` to external media).
+
+## [2.0.2] — 2026-11-14 — Opportunity map filed
+
+### Added
+- `docs/research/AGENTIC_OPPORTUNITY_MAP_2026-11-14.md` — outside-the-box strategy: Proof-of-Action insurance, Agent Black Box (EU AI Act Art. 12), Verify-Before-You-Buy interactive red-team, Stripe-webhook Notary minting, Perpetual Verification Pass, Multi-Witness Federation, public Transparency Log, drift warranty (A_COMBINED/ContextEcho), Proof-Carrying OSS releases, incident forensics retainer, receipt escrow, hardware dead-man's countersign. Non-negotiable caveats documented: no customer validation, three pillar papers not re-measured on our hardware.
