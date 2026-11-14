@@ -69,3 +69,5 @@ mars/
 
 # Nested third-party tool vendored inside the working tree — not our code
 xoras_sentry_backup/xoras-sentry/node_modules/
+.antigravitycli/
+.geminiignore

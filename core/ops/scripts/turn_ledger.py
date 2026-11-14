@@ -27,7 +27,7 @@ from pathlib import Path
 ROOT = Path("/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain")
 LEDGER = ROOT / "memory" / "agent_logs" / "turn_ledger.jsonl"
 
-DID_RE = re.compile(r"\b(did|done|completed|landed|fixed|repaired|closed|passed|found|restored|verified)\b", re.IGNORECASE)
+DID_RE = re.compile(r"\b(did|done|completed|landed|fixed|repaired|closed|passed|found|restored|verified|written|built|ran|walked|opened|measured|audited|counted|catalogued|rebuilt|rewired|spoke|read|captured|traced|mapped|cleaned|quarantined)\b", re.IGNORECASE)
 NEXT_RE = re.compile(r"\bnext\b", re.IGNORECASE)
 
 

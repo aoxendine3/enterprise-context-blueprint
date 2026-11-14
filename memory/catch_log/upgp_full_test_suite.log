@@ -635,3 +635,34 @@ TEXT: We are Jarvis. Full UPGP proving ground test suite complete. All 15 escape
 STATUS: SUCCESS
 --------------------------------------------------------------------------------
 FINAL RESULT: 100% PASSED
+==== upgp_full_test_suite 2026-11-14 10:51:39 ====
+Z3 core/ops/security/upgp_containment_proof.smt2: unsat
+Z3 core/ops/security/mtpo_preorder_invariant.smt2: unsat
+RED TEAM TAIL:
+-------------------------------------------------=[0m
+  [[32mCONTAINED (0 ESCAPE)[0m] [1mEXPLOIT 01: ptrace(PTRACE_TRACEME)[0m [Signal: SIGSYS]
+        └─ Log: [!] RED TEAM EXPLOIT 01: Attempting ptrace(PTRACE_TRACEME)
+  [[32mCONTAINED (0 ESCAPE)[0m] [1mEXPLOIT 02: process_vm_writev /proc/self/mem[0m [Exit Code: 1]
+        └─ Log: [!] RED TEAM EXPLOIT 02: Attempting process_vm_writev /proc/self/mem write
+  [[32mCONTAINED (0 ESCAPE)[0m] [1mEXPLOIT 03: unshare(CLONE_NEWUSER)[0m [Exit Code: 1]
+        └─ Log: [!] RED TEAM EXPLOIT 03: Attempting unshare(CLONE_NEWUSER)
+  [[32mCONTAINED (0 ESCAPE)[0m] [1mEXPLOIT 04: socket(AF_PACKET, SOCK_RAW, ...)[0m [Exit Code: 1]
+        └─ Log: [!] RED TEAM EXPLOIT 04: Attempting socket(AF_PACKET, SOCK_RAW, ...)
+  [[32mCONTAINED (0 ESCAPE)[0m] [1mEXPLOIT 05: bpf(BPF_PROG_LOAD, ...)[0m [Signal: SIGSYS]
+        └─ Log: [!] RED TEAM EXPLOIT 05: Attempting bpf(BPF_PROG_LOAD, ...)
+  [[32mCONTAINED (0 ESCAPE)[0m] [1mCORPUS EXPLOIT 01: clone3(CLONE_NEWUSER | CLONE_NEWPID)[0m [Signal: SIGSYS]
+        └─ Log: [!] CORPUS EXPLOIT 01: Probing clone3 evasion
+  [[32mCONTAINED (0 ESCAPE)[0m] [1mCORPUS EXPLOIT 02: io_uring_setup(ENTRIES=32)[0m [Exit Code: 1]
+        └─ Log: [!] CORPUS EXPLOIT 02: Probing io_uring_setup
+  [[32mCONTAINED (0 ESCAPE)[0m] [1mCORPUS EXPLOIT 03: syslog(SYSLOG_ACTION_READ_ALL)[0m [Exit Code: 1]
+        └─ Log: [!] CORPUS EXPLOIT 03: Probing syslog/klogctl ring buffer leak
+  [[32mCONTAINED (0 ESCAPE)[0m] [1mCORPUS EXPLOIT 04: keyctl(KEYCTL_DESCRIBE)[0m [Signal: SIGSYS]
+        └─ Log: [!] CORPUS EXPLOIT 04: Probing keyctl kernel keyring
+  [[32mCONTAINED (0 ESCAPE)[0m] [1mCORPUS EXPLOIT 05: userfaultfd(O_CLOEXEC | O_NONBLOCK)[0m [Exit Code: 1]
+        └─ Log: [!] CORPUS EXPLOIT 05: Probing userfaultfd page fault handler
+[1m[36m=====================================================================[0m
+
+[1m[32m[✓] RED TEAM EXPLOIT GAUNTLET 100% PASSED (0 KERNEL ESCAPES DETECTED).[0m
+
+
+FAILURES: none
