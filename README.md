@@ -1,3 +1,21 @@
+# Agent Notary by XORAS
+
+**Proving what your agents actually did — cryptographically.**
+
+Agent Notary is the sovereign, dual-implementation verifier for autonomous multi-agent systems. Every claim your agents make is recomputed independently before it is accepted. No claim advances on trust. No artifact advances without a verifiable, attributable proof — Ed25519-signed, Merkle-anchored, and discharged by a second, independent codebase.
+
+| What Agent Notary verifies | How |
+| --- | --- |
+| Every agent action | Notarized via independent recomputation (Zig + Python dual-witness) |
+| Every artifact | Merkle-attested, attribution pinned, unforgeable receipt |
+| Every state transition | DAG lineage verified across 3,262+ nodes, zero drift |
+| Every release | 6/6 production gates discharged — E2E, telemetry, Z3, Zig verifier, TypeScript gauntlet, 14-gate BBQ, Rust crates |
+| Every shipped artifact | WORM-attested and independently verifiable offline |
+
+**Website:** https://aoxendine3.github.io/xoras.infotech/  &nbsp;·&nbsp; **Product brief:** https://aoxendine3.github.io/xoras.infotech/product.html
+
+---
+
 # Enterprise Context Blueprint: The Sovereign Triad (MTPO, MARS & REASONS)
 
 [![Outside CI Gauntlet](https://img.shields.io/badge/Outside_CI-Run_%2338708977957_(Ubuntu_24.04_%2B_macOS--14)-10b981.svg)](https://github.com/aoxendine3/enterprise-context-blueprint/actions/runs/38708977957)

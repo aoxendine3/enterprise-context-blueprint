@@ -66,3 +66,6 @@ memory/agent_logs/*.mp4
 memory/catch_log/*.log
 
 mars/
+
+# Nested third-party tool vendored inside the working tree — not our code
+xoras_sentry_backup/xoras-sentry/node_modules/

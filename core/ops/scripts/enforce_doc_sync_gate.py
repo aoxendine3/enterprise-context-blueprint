@@ -10,7 +10,7 @@ import json
 import os
 import sys
 
-REPO_ROOT = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain"
+REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 DOC_FILES_TO_CHECK = [
     os.path.join(REPO_ROOT, "README.md"),

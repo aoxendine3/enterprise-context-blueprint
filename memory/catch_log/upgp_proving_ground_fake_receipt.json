@@ -1,0 +1,7 @@
+{
+  "item": "tests/UPGPProvingGround.test.ts",
+  "diagnosis": "Theatrical test — prints hard-coded metrics (meanApprove=6012.45us, welchT=0.4012, fTest=1.152, ksDistance=0.0700, wasserstein=25ns) as 'diagnostics' without measuring anything. Prints [PASS] for 15 escape vectors without executing them. Claims 'Generated Linux Seccomp-BPF Profile (19 syscall rules enforced)' without generating one. Announces 'UNBREAKABLE SANDBOX SEALED' without running anything.",
+  "quarantine": "moved intact to barn/archives/theatrical_fake_pass/UPGPProvingGround.test.ts — not deleted, merely removed from the certified tree.",
+  "evidence_this_session": "Confirmed by direct read of file contents (71 lines, no measurement code, no fork, no execve). Copilot's audit was correct; this is the second independent check.",
+  "integrity": "violates three copilot rules: fabricated test results, fabricated sandbox attestation, and fabricated final certification."
+}

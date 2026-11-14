@@ -4,7 +4,7 @@ import os
 import sys
 
 def test_wasm_binary():
-    wasm_path = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/docs/assets/wasm/upgp_simulator.wasm"
+    wasm_path = os.path.join(os.path.dirname(__file__), "..", "..", "docs", "assets", "wasm", "upgp_simulator.wasm")
     if not os.path.exists(wasm_path):
         print(f"❌ WASM Binary not found at {wasm_path}")
         sys.exit(1)

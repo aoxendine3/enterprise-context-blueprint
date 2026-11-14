@@ -1,0 +1,18 @@
+[submodule "barn/gemma_paper_sub"]
+	path = barn/gemma_paper_sub
+	url = https://github.com/aoxendine3/gemma_developer_agent_paper_submission.git
+[submodule "barn/telecom_churn_challenge"]
+	path = barn/telecom_churn_challenge
+	url = https://github.com/aoxendine3/telecom_churn_data_quality_solution.git
+[submodule "labs/workspaces/hyperforge_autoresearch"]
+	path = labs/workspaces/hyperforge_autoresearch
+	url = https://github.com/aoxendine3/hyperforge_autoresearch.git
+[submodule "workspaces/OS_Build/limine"]
+	path = workspaces/OS_Build/limine
+	url = https://github.com/limine-bootloader/limine.git
+[submodule "workspaces/integrity_sentry_core"]
+	path = workspaces/integrity_sentry_core
+	url = https://github.com/aoxendine3/integrity-sentry-core.git
+[submodule "workspaces/telecom_churn_challenge"]
+	path = workspaces/telecom_churn_challenge
+	url = https://github.com/aoxendine3/telecom_churn_data_quality_solution.git
