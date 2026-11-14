@@ -37,6 +37,7 @@ SOURCES = {
     "tools": ROOT / "memory" / "observability" / "tool_ledger.jsonl",
     "telemetry": ROOT / ".agents" / "journals" / "daxx_telemetry.jsonl",
     "trinity": ROOT / "memory" / "tri_brain" / "trinity_hashes.jsonl",
+    "turns": ROOT / "memory" / "agent_logs" / "turn_ledger.jsonl",
     "activity": ROOT / "memory" / "agent_logs" / "activity_trace.jsonl",
 }
 
@@ -157,6 +158,22 @@ def main() -> int:
     if not tel:
         body.append("  (telemetry journal empty)")
     lines += box("[4] TELEMETRY CHAIN", "the hashed event chain — every event, its payload digest and its Merkle root", body)
+    lines.append("")
+
+    # ---- BOX 4b: turn ledger (what each agent is doing right now)
+    turns = data["turns"]
+    body = [f"turns recorded: {len(turns)}"]
+    seen = {}
+    for r in turns:
+        a = r.get("agent", "collective")
+        seen[a] = r
+    for a, r in sorted(seen.items()):
+        body.append(f"  • {a} | {r.get('phase')} | {r.get('timestamp_utc')}")
+        if r.get("did"):
+            body.append(f"      did  : {r['did'][:120]}")
+        if r.get("next"):
+            body.append(f"      next : {r['next'][:120]}")
+    lines += box("[4b] TURN LEDGER", "what each agent said it was doing, what it did, and what it declared next", body)
     lines.append("")
 
     # ---- BOX 5: trinity gate

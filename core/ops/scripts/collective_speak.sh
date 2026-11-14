@@ -32,10 +32,20 @@ PY="$ROOT/.venv/bin/python"
 PAYLOAD="[$PHASE] $TEXT"
 
 if [[ -f "$GUARD" ]]; then
-  if ! "$PY" "$GUARD" --text "$PAYLOAD" --agent collective >/dev/null 2>&1; then
-    echo "[collective_speak] REFUSED: collective voice violation — nothing spoken." >&2
+  # --require-plan enforces the TURN NARRATION CONTRACT: the turn must open
+  # with its phase, and must state what happens next (and, for a breakdown,
+  # what was actually done). A turn that cannot say those is not permitted
+  # to be heard — the operator is never left guessing.
+  if ! "$PY" "$GUARD" --text "$PAYLOAD" --agent collective --require-plan >/dev/null 2>&1; then
+    echo "[collective_speak] REFUSED: collective voice or narration contract violation — nothing spoken." >&2
     exit 5
   fi
+fi
+
+# Record the turn so the operator can always ask what any agent is doing.
+TURN_LEDGER="/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/ops/scripts/turn_ledger.py"
+if [[ -f "$TURN_LEDGER" ]]; then
+  "$PY" "$TURN_LEDGER" --agent "${COLLECTIVE_SPEAKER:-collective}" --phase "$PHASE" --text "$TEXT" >/dev/null 2>&1 || true
 fi
 
 # One voice at a time — the law permits a single speaker, never an overlap.

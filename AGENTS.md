@@ -152,6 +152,16 @@ Our agents are **one collective**, not separate assistants, and they are **not o
 * **At the end:** sum it all up with the details and the nuances, including what remains open (`[SUMMARY]`).
 * One voice at a time — **never overlap**. Sequencing is serialized through the audio dispatcher lock.
 
+**This cadence is enforced, not aspirational.** `ops/scripts/collective_voice_guard.py --require-plan`
+refuses any turn that opens without its phase marker, that does not state what happens next, or that
+reports no completed work — the refusal happens **before the turn is heard** (exit 5, wired into
+`ops/scripts/agent_speak.sh` and `ops/scripts/collective_speak.sh`).
+
+Every turn that passes is appended to the **turn ledger** (`memory/agent_logs/turn_ledger.jsonl`) with
+its phase, the work it reported as done, and the next step it declared. `ops/scripts/turn_ledger.py --status`
+answers the standing question — *what is each agent doing right now* — from the record, not by asking
+the agent. The operator is never left wondering what the collective is up to.
+
 ### 10.4 Standing
 * These rules hold for every agent, in every session, on every plane (Mac, Windows, cloud edge). A slip is not tolerated because a slip means the collective stopped being the collective.
 
