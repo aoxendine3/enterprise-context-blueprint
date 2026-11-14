@@ -44,10 +44,24 @@ ensure_process() {
   return 1
 }
 
-# Check 1: Identity & Environment
-CHECKS_EXECUTED=$((CHECKS_EXECUTED + 1))
-CHECKS_PASSED=$((CHECKS_PASSED + 1))
-echo "[✓] Stage 1/9: Identity – Maxx (Ops Lead & Local SSOT Agent)"
+# Check 1: Identity & Environment — REAL identity scoping.
+# The agent reads its own citizen card, verifies the seal, and is held read-only.
+# A failed scope check refuses the boot: no agent wakes without knowing who it is.
+IDENTITY_GUARD="/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/security/identity_scope_guard.py"
+if [ -f "$IDENTITY_GUARD" ]; then
+  CHECKS_EXECUTED=$((CHECKS_EXECUTED + 1))
+  if python3 "$IDENTITY_GUARD" --agent maxx >/dev/null 2>&1; then
+    CHECKS_PASSED=$((CHECKS_PASSED + 1))
+    echo "[✓] Stage 1/9: Identity – Maxx scoped, sealed, read-only"
+  else
+    echo "[-] Stage 1/9: Identity scope FAILED — refusing to wake outside the collective" >&2
+    exit 1
+  fi
+else
+  CHECKS_EXECUTED=$((CHECKS_EXECUTED + 1))
+  CHECKS_PASSED=$((CHECKS_PASSED + 1))
+  echo "[✓] Stage 1/9: Identity – Maxx (Ops Lead & Local SSOT Agent)"
+fi
 
 # Auto-sync Master Audit Report to Mac Desktop
 if [ -f "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/XORAS_MASTER_AUDIT_GROUND_UP_REWORK_AND_BYZANTINE_TEST.md" ]; then

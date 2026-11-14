@@ -57,6 +57,17 @@ if [[ -x "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/.venv/bin/python" ]]; t
   PYTHON_EXEC="/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/.venv/bin/python"
 fi
 
+# 5. Collective voice enforcement (absolute rule). We speak as the collective
+#    (We / Our). A turn that speaks as an outside assistant, or that carries
+#    foreign product branding, is refused before it can be heard.
+VOICE_GUARD="/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/collective_voice_guard.py"
+if [[ -f "$VOICE_GUARD" ]]; then
+  if ! "$PYTHON_EXEC" "$VOICE_GUARD" --text "$CLEAN_TEXT" --agent "$AGENT" >/dev/null 2>&1; then
+    echo "[agent_speak] REFUSED: collective voice violation — this turn is not the collective's voice. Nothing spoken." >&2
+    exit 5
+  fi
+fi
+
 if ! "$PYTHON_EXEC" "$KOKORO_SCRIPT" "$AGENT" "$CLEAN_TEXT"; then
   echo "[agent_speak ERROR] Kokoro neural synthesis failed for agent '$AGENT'. Fallbacks forbidden." >&2
   exit 1
