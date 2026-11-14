@@ -90,3 +90,22 @@
 ║    drift of -80 nodes — now repaired to delta 0 and re-verified.                              ║
 ╚════════════════════════════════════════════════════════════════════════════════════════════════╝
 
+
+---
+
+## CORRECTION (2026-11-14 09:30): the 322 GB figure was apparent, not resident
+
+`misc/` sums to **300.57 GB of apparent bytes across 203,645 files**, but the two giant
+sparse files are only partially resident on disk:
+
+| File | Apparent | Resident |
+|---|---|---|
+| `misc/Docker.raw` | 245.1 GB | **4.9 GB** |
+| `misc/disk` | 21.5 GB | **1.2 GB** |
+| **`misc/` total** | 300.57 GB | **39.43 GB** |
+
+The 322 GB number was a sum of apparent file sizes, not the disk footprint. The true
+weight of `misc/` is **~39 GB**, of which **4.9 GB is a Docker disk image**.
+
+**Also recorded:** `logs/` carries **3,880 zero-byte files** (the largest empty-artifact cluster);
+`core/` and `ops/` carry 572 and 348; `scratch/` 252.

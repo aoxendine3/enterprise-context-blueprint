@@ -1,8 +1,10 @@
 {
   "crosschecks": {
     "canonical_vs_mirror_nodes": {
-      "in_sync": false,
-      "lineage_dag.db": 3286,
+      "delta": 0,
+      "in_sync": true,
+      "lineage_dag.db": 3262,
+      "state": "in_sync",
       "world_file.db": 3262
     }
   },
@@ -77,19 +79,19 @@
       "bytes": 52539392,
       "integrity": "ok",
       "journal_mode": "wal",
-      "mtime_utc": "2026-11-09T16:02:44Z",
+      "mtime_utc": "2026-11-14T05:19:48Z",
       "path": ".sovereign/hippocampus/governed_memory.db",
       "role": "UNCORROBORATED_ROLE",
       "sessions": 0,
-      "sha256_head": "fa525feedcaa5bd8",
+      "sha256_head": "aba9bc26ca7d8ef6",
       "status": "OK",
       "tables": {
         "global_evidence_registry": 0,
         "lineage_nodes": 0,
-        "memory_records": 47
+        "memory_records": 48
       },
       "timeline": null,
-      "total_rows": 47
+      "total_rows": 48
     },
     {
       "bytes": 69632,
@@ -137,14 +139,14 @@
       "total_rows": 800
     },
     {
-      "bytes": 2985984,
+      "bytes": 2428928,
       "integrity": "ok",
-      "journal_mode": "wal",
-      "mtime_utc": "2026-11-13T08:49:46Z",
+      "journal_mode": "delete",
+      "mtime_utc": "2026-11-14T14:01:01Z",
       "path": ".sovereign/provenance/lineage_dag.db",
       "role": "LINEAGE_MIRROR",
       "sessions": 21,
-      "sha256_head": "d10379e65d541bfb",
+      "sha256_head": "d79ba560c1f72fdb",
       "status": "OK",
       "tables": {
         "blackboard_registers": 0,
@@ -152,20 +154,20 @@
         "daxx_worker_receipts": 0,
         "entities": 0,
         "error_placeholders": 0,
-        "global_evidence_registry": 131,
+        "global_evidence_registry": 107,
         "knowledge_objects": 0,
-        "lineage_nodes": 3286,
+        "lineage_nodes": 3262,
         "task_checkpoints": 0,
         "typed_links": 0,
         "world_file_manifest_pointers": 0
       },
       "timeline": {
         "earliest": "1790744852.2624278",
-        "latest": "1794559786.090065",
-        "rows": 3286,
+        "latest": "1794245059.9439471",
+        "rows": 3262,
         "table": "lineage_nodes"
       },
-      "total_rows": 3417
+      "total_rows": 3369
     },
     {
       "bytes": 36864,
@@ -229,31 +231,35 @@
       "total_rows": 1371
     },
     {
-      "bytes": 1642496,
+      "bytes": 2428928,
       "integrity": "ok",
-      "journal_mode": "wal",
-      "mtime_utc": "2026-11-09T17:23:36Z",
+      "journal_mode": "delete",
+      "mtime_utc": "2026-11-14T14:01:01Z",
       "path": ".sovereign/world_file.db",
       "role": "UNCORROBORATED_ROLE",
-      "sessions": 0,
-      "sha256_head": "a8945c4e4abb3181",
+      "sessions": 21,
+      "sha256_head": "d79ba560c1f72fdb",
       "status": "OK",
       "tables": {
-        "anti_replay_ledger": 30,
-        "capability_token_registry": 31,
-        "ghrr_hypervectors": 1,
-        "global_evidence_registry": 0,
-        "hardened_anti_replay_ledger": 0,
-        "hardened_capability_tokens": 2,
-        "knowledge_objects": 3277,
-        "lineage_nodes": 0,
-        "master_merkle_checkpoints": 28,
-        "mtpo_concurrency_ledger": 56,
-        "secure_broker_audit_log": 4,
-        "slopsquatting_intercept_log": 28
+        "blackboard_registers": 0,
+        "daxx_mission_events": 0,
+        "daxx_worker_receipts": 0,
+        "entities": 0,
+        "error_placeholders": 0,
+        "global_evidence_registry": 107,
+        "knowledge_objects": 0,
+        "lineage_nodes": 3262,
+        "task_checkpoints": 0,
+        "typed_links": 0,
+        "world_file_manifest_pointers": 0
       },
-      "timeline": null,
-      "total_rows": 3457
+      "timeline": {
+        "earliest": "1790744852.2624278",
+        "latest": "1794245059.9439471",
+        "rows": 3262,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 3369
     },
     {
       "bytes": 28672,
@@ -1253,14 +1259,14 @@
       "total_rows": 1
     },
     {
-      "bytes": 27537408,
+      "bytes": 2428928,
       "integrity": "ok",
-      "journal_mode": "wal",
-      "mtime_utc": "2026-11-13T08:27:17Z",
+      "journal_mode": "delete",
+      "mtime_utc": "2026-11-14T14:01:01Z",
       "path": "core/memory/tri_brain/world_file.db",
       "role": "UNCORROBORATED_ROLE",
       "sessions": 21,
-      "sha256_head": "119a964710f32d52",
+      "sha256_head": "d79ba560c1f72fdb",
       "status": "OK",
       "tables": {
         "blackboard_registers": 0,
@@ -1269,7 +1275,7 @@
         "entities": 0,
         "error_placeholders": 0,
         "global_evidence_registry": 107,
-        "knowledge_objects": 20927,
+        "knowledge_objects": 0,
         "lineage_nodes": 3262,
         "task_checkpoints": 0,
         "typed_links": 0,
@@ -1281,7 +1287,7 @@
         "rows": 3262,
         "table": "lineage_nodes"
       },
-      "total_rows": 24296
+      "total_rows": 3369
     },
     {
       "bytes": 20480,
@@ -1348,6 +1354,754 @@
       "total_rows": 3369
     },
     {
+      "bytes": 3481600,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-13T09:04:12Z",
+      "path": "memory/rollback/safe_point_backups/20261113T040512_post_reconciliation_verified/.sovereign/provenance/lineage_dag.db",
+      "role": "BACKUP",
+      "sessions": 21,
+      "sha256_head": "46773a6acf683f84",
+      "status": "OK",
+      "tables": {
+        "blackboard_registers": 0,
+        "daxx_mission_events": 0,
+        "daxx_worker_receipts": 0,
+        "entities": 0,
+        "error_placeholders": 0,
+        "global_evidence_registry": 135,
+        "knowledge_objects": 0,
+        "lineage_nodes": 3290,
+        "task_checkpoints": 0,
+        "typed_links": 0,
+        "world_file_manifest_pointers": 0
+      },
+      "timeline": {
+        "earliest": "1790744852.2624278",
+        "latest": "1794560627.997211",
+        "rows": 3290,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 3425
+    },
+    {
+      "bytes": 2973696,
+      "integrity": "ok",
+      "journal_mode": "delete",
+      "mtime_utc": "2026-11-13T09:04:12Z",
+      "path": "memory/rollback/safe_point_backups/20261113T040512_post_reconciliation_verified/memory/tri_brain/world_file.db",
+      "role": "BACKUP",
+      "sessions": 21,
+      "sha256_head": "ba4fb0533808a3cd",
+      "status": "OK",
+      "tables": {
+        "blackboard_registers": 0,
+        "daxx_mission_events": 0,
+        "daxx_worker_receipts": 0,
+        "entities": 0,
+        "error_placeholders": 0,
+        "global_evidence_registry": 133,
+        "knowledge_objects": 0,
+        "lineage_nodes": 3288,
+        "task_checkpoints": 0,
+        "typed_links": 0,
+        "world_file_manifest_pointers": 0
+      },
+      "timeline": {
+        "earliest": "1790744852.2624278",
+        "latest": "1794560236.8527339",
+        "rows": 3288,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 3421
+    },
+    {
+      "bytes": 3481600,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-13T09:04:12Z",
+      "path": "memory/rollback/safe_point_backups/20261113T041026_self_healing_gate_verified/.sovereign/provenance/lineage_dag.db",
+      "role": "BACKUP",
+      "sessions": 21,
+      "sha256_head": "46773a6acf683f84",
+      "status": "OK",
+      "tables": {
+        "blackboard_registers": 0,
+        "daxx_mission_events": 0,
+        "daxx_worker_receipts": 0,
+        "entities": 0,
+        "error_placeholders": 0,
+        "global_evidence_registry": 135,
+        "knowledge_objects": 0,
+        "lineage_nodes": 3290,
+        "task_checkpoints": 0,
+        "typed_links": 0,
+        "world_file_manifest_pointers": 0
+      },
+      "timeline": {
+        "earliest": "1790744852.2624278",
+        "latest": "1794560627.997211",
+        "rows": 3290,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 3425
+    },
+    {
+      "bytes": 2973696,
+      "integrity": "ok",
+      "journal_mode": "delete",
+      "mtime_utc": "2026-11-13T09:09:58Z",
+      "path": "memory/rollback/safe_point_backups/20261113T041026_self_healing_gate_verified/memory/tri_brain/world_file.db",
+      "role": "BACKUP",
+      "sessions": 21,
+      "sha256_head": "3740bbcf51b77581",
+      "status": "OK",
+      "tables": {
+        "blackboard_registers": 0,
+        "daxx_mission_events": 0,
+        "daxx_worker_receipts": 0,
+        "entities": 0,
+        "error_placeholders": 0,
+        "global_evidence_registry": 133,
+        "knowledge_objects": 0,
+        "lineage_nodes": 3288,
+        "task_checkpoints": 0,
+        "typed_links": 0,
+        "world_file_manifest_pointers": 0
+      },
+      "timeline": {
+        "earliest": "1790744852.2624278",
+        "latest": "1794560236.8527339",
+        "rows": 3288,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 3421
+    },
+    {
+      "bytes": 3489792,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-13T09:13:05Z",
+      "path": "memory/rollback/safe_point_backups/20261113T041320_root_cause_closed_full_chain_green/.sovereign/provenance/lineage_dag.db",
+      "role": "BACKUP",
+      "sessions": 21,
+      "sha256_head": "b745240f93528ec9",
+      "status": "OK",
+      "tables": {
+        "blackboard_registers": 0,
+        "daxx_mission_events": 0,
+        "daxx_worker_receipts": 0,
+        "entities": 0,
+        "error_placeholders": 0,
+        "global_evidence_registry": 139,
+        "knowledge_objects": 0,
+        "lineage_nodes": 3294,
+        "task_checkpoints": 0,
+        "typed_links": 0,
+        "world_file_manifest_pointers": 0
+      },
+      "timeline": {
+        "earliest": "1790744852.2624278",
+        "latest": "1794561185.596402",
+        "rows": 3294,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 3433
+    },
+    {
+      "bytes": 2973696,
+      "integrity": "ok",
+      "journal_mode": "delete",
+      "mtime_utc": "2026-11-13T09:09:58Z",
+      "path": "memory/rollback/safe_point_backups/20261113T041320_root_cause_closed_full_chain_green/memory/tri_brain/world_file.db",
+      "role": "BACKUP",
+      "sessions": 21,
+      "sha256_head": "3740bbcf51b77581",
+      "status": "OK",
+      "tables": {
+        "blackboard_registers": 0,
+        "daxx_mission_events": 0,
+        "daxx_worker_receipts": 0,
+        "entities": 0,
+        "error_placeholders": 0,
+        "global_evidence_registry": 133,
+        "knowledge_objects": 0,
+        "lineage_nodes": 3288,
+        "task_checkpoints": 0,
+        "typed_links": 0,
+        "world_file_manifest_pointers": 0
+      },
+      "timeline": {
+        "earliest": "1790744852.2624278",
+        "latest": "1794560236.8527339",
+        "rows": 3288,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 3421
+    },
+    {
+      "bytes": 2985984,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-13T08:49:46Z",
+      "path": "memory/rollback/snapshots/20261113T035606_pre_timestamp_repair_and_writer_ref/.sovereign/provenance/lineage_dag.db",
+      "role": "BACKUP",
+      "sessions": 21,
+      "sha256_head": "d10379e65d541bfb",
+      "status": "OK",
+      "tables": {
+        "blackboard_registers": 0,
+        "daxx_mission_events": 0,
+        "daxx_worker_receipts": 0,
+        "entities": 0,
+        "error_placeholders": 0,
+        "global_evidence_registry": 131,
+        "knowledge_objects": 0,
+        "lineage_nodes": 3286,
+        "task_checkpoints": 0,
+        "typed_links": 0,
+        "world_file_manifest_pointers": 0
+      },
+      "timeline": {
+        "earliest": "1790744852.2624278",
+        "latest": "1794559786.090065",
+        "rows": 3286,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 3417
+    },
+    {
+      "bytes": 27537408,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-13T08:27:17Z",
+      "path": "memory/rollback/snapshots/20261113T035606_pre_timestamp_repair_and_writer_ref/memory/tri_brain/world_file.db",
+      "role": "BACKUP",
+      "sessions": 21,
+      "sha256_head": "119a964710f32d52",
+      "status": "OK",
+      "tables": {
+        "blackboard_registers": 0,
+        "daxx_mission_events": 0,
+        "daxx_worker_receipts": 0,
+        "entities": 0,
+        "error_placeholders": 0,
+        "global_evidence_registry": 107,
+        "knowledge_objects": 20927,
+        "lineage_nodes": 3262,
+        "task_checkpoints": 0,
+        "typed_links": 0,
+        "world_file_manifest_pointers": 0
+      },
+      "timeline": {
+        "earliest": "1790744852.2624278",
+        "latest": "1794245059.9439471",
+        "rows": 3262,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 24296
+    },
+    {
+      "bytes": 3514368,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-13T08:57:16Z",
+      "path": "memory/rollback/snapshots/20261113T040124_pre_reconcile_resync_20261113/.sovereign/provenance/lineage_dag.db",
+      "role": "BACKUP",
+      "sessions": 21,
+      "sha256_head": "c07a4f62cea8eeba",
+      "status": "OK",
+      "tables": {
+        "blackboard_registers": 0,
+        "daxx_mission_events": 0,
+        "daxx_worker_receipts": 0,
+        "entities": 0,
+        "error_placeholders": 0,
+        "global_evidence_registry": 133,
+        "knowledge_objects": 0,
+        "lineage_nodes": 3288,
+        "task_checkpoints": 0,
+        "typed_links": 0,
+        "world_file_manifest_pointers": 0
+      },
+      "timeline": {
+        "earliest": "1790744852.2624278",
+        "latest": "1794560236.8527339",
+        "rows": 3288,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 3421
+    },
+    {
+      "bytes": 28057600,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-13T09:00:48Z",
+      "path": "memory/rollback/snapshots/20261113T040124_pre_reconcile_resync_20261113/memory/tri_brain/world_file.db",
+      "role": "BACKUP",
+      "sessions": 21,
+      "sha256_head": "31880ec6215c6f52",
+      "status": "OK",
+      "tables": {
+        "blackboard_registers": 0,
+        "daxx_mission_events": 0,
+        "daxx_worker_receipts": 0,
+        "entities": 0,
+        "error_placeholders": 0,
+        "global_evidence_registry": 107,
+        "knowledge_objects": 20927,
+        "lineage_nodes": 3262,
+        "task_checkpoints": 0,
+        "typed_links": 0,
+        "world_file_manifest_pointers": 0
+      },
+      "timeline": {
+        "earliest": "1790744852.2624278",
+        "latest": "1794245059.9439471",
+        "rows": 3262,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 24296
+    },
+    {
+      "bytes": 3481600,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-13T09:04:12Z",
+      "path": "memory/rollback/snapshots/20261113T040512_post_reconciliation_verified/.sovereign/provenance/lineage_dag.db",
+      "role": "BACKUP",
+      "sessions": 21,
+      "sha256_head": "46773a6acf683f84",
+      "status": "OK",
+      "tables": {
+        "blackboard_registers": 0,
+        "daxx_mission_events": 0,
+        "daxx_worker_receipts": 0,
+        "entities": 0,
+        "error_placeholders": 0,
+        "global_evidence_registry": 135,
+        "knowledge_objects": 0,
+        "lineage_nodes": 3290,
+        "task_checkpoints": 0,
+        "typed_links": 0,
+        "world_file_manifest_pointers": 0
+      },
+      "timeline": {
+        "earliest": "1790744852.2624278",
+        "latest": "1794560627.997211",
+        "rows": 3290,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 3425
+    },
+    {
+      "bytes": 2973696,
+      "integrity": "ok",
+      "journal_mode": "delete",
+      "mtime_utc": "2026-11-13T09:04:12Z",
+      "path": "memory/rollback/snapshots/20261113T040512_post_reconciliation_verified/memory/tri_brain/world_file.db",
+      "role": "BACKUP",
+      "sessions": 21,
+      "sha256_head": "ba4fb0533808a3cd",
+      "status": "OK",
+      "tables": {
+        "blackboard_registers": 0,
+        "daxx_mission_events": 0,
+        "daxx_worker_receipts": 0,
+        "entities": 0,
+        "error_placeholders": 0,
+        "global_evidence_registry": 133,
+        "knowledge_objects": 0,
+        "lineage_nodes": 3288,
+        "task_checkpoints": 0,
+        "typed_links": 0,
+        "world_file_manifest_pointers": 0
+      },
+      "timeline": {
+        "earliest": "1790744852.2624278",
+        "latest": "1794560236.8527339",
+        "rows": 3288,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 3421
+    },
+    {
+      "bytes": 3481600,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-13T09:04:12Z",
+      "path": "memory/rollback/snapshots/20261113T041026_self_healing_gate_verified/.sovereign/provenance/lineage_dag.db",
+      "role": "BACKUP",
+      "sessions": 21,
+      "sha256_head": "46773a6acf683f84",
+      "status": "OK",
+      "tables": {
+        "blackboard_registers": 0,
+        "daxx_mission_events": 0,
+        "daxx_worker_receipts": 0,
+        "entities": 0,
+        "error_placeholders": 0,
+        "global_evidence_registry": 135,
+        "knowledge_objects": 0,
+        "lineage_nodes": 3290,
+        "task_checkpoints": 0,
+        "typed_links": 0,
+        "world_file_manifest_pointers": 0
+      },
+      "timeline": {
+        "earliest": "1790744852.2624278",
+        "latest": "1794560627.997211",
+        "rows": 3290,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 3425
+    },
+    {
+      "bytes": 2973696,
+      "integrity": "ok",
+      "journal_mode": "delete",
+      "mtime_utc": "2026-11-13T09:09:58Z",
+      "path": "memory/rollback/snapshots/20261113T041026_self_healing_gate_verified/memory/tri_brain/world_file.db",
+      "role": "BACKUP",
+      "sessions": 21,
+      "sha256_head": "3740bbcf51b77581",
+      "status": "OK",
+      "tables": {
+        "blackboard_registers": 0,
+        "daxx_mission_events": 0,
+        "daxx_worker_receipts": 0,
+        "entities": 0,
+        "error_placeholders": 0,
+        "global_evidence_registry": 133,
+        "knowledge_objects": 0,
+        "lineage_nodes": 3288,
+        "task_checkpoints": 0,
+        "typed_links": 0,
+        "world_file_manifest_pointers": 0
+      },
+      "timeline": {
+        "earliest": "1790744852.2624278",
+        "latest": "1794560236.8527339",
+        "rows": 3288,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 3421
+    },
+    {
+      "bytes": 3489792,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-13T09:13:05Z",
+      "path": "memory/rollback/snapshots/20261113T041320_root_cause_closed_full_chain_green/.sovereign/provenance/lineage_dag.db",
+      "role": "BACKUP",
+      "sessions": 21,
+      "sha256_head": "b745240f93528ec9",
+      "status": "OK",
+      "tables": {
+        "blackboard_registers": 0,
+        "daxx_mission_events": 0,
+        "daxx_worker_receipts": 0,
+        "entities": 0,
+        "error_placeholders": 0,
+        "global_evidence_registry": 139,
+        "knowledge_objects": 0,
+        "lineage_nodes": 3294,
+        "task_checkpoints": 0,
+        "typed_links": 0,
+        "world_file_manifest_pointers": 0
+      },
+      "timeline": {
+        "earliest": "1790744852.2624278",
+        "latest": "1794561185.596402",
+        "rows": 3294,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 3433
+    },
+    {
+      "bytes": 2973696,
+      "integrity": "ok",
+      "journal_mode": "delete",
+      "mtime_utc": "2026-11-13T09:09:58Z",
+      "path": "memory/rollback/snapshots/20261113T041320_root_cause_closed_full_chain_green/memory/tri_brain/world_file.db",
+      "role": "BACKUP",
+      "sessions": 21,
+      "sha256_head": "3740bbcf51b77581",
+      "status": "OK",
+      "tables": {
+        "blackboard_registers": 0,
+        "daxx_mission_events": 0,
+        "daxx_worker_receipts": 0,
+        "entities": 0,
+        "error_placeholders": 0,
+        "global_evidence_registry": 133,
+        "knowledge_objects": 0,
+        "lineage_nodes": 3288,
+        "task_checkpoints": 0,
+        "typed_links": 0,
+        "world_file_manifest_pointers": 0
+      },
+      "timeline": {
+        "earliest": "1790744852.2624278",
+        "latest": "1794560236.8527339",
+        "rows": 3288,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 3421
+    },
+    {
+      "bytes": 1081344,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-12T20:01:58Z",
+      "path": "memory/timeline/raw/conversation_stores/3cb91238-18be-4724-891e-3ba2855acd41.db",
+      "role": "MEMORY_ZONE",
+      "sha256_head": "bb95f1f49e3ed2c4",
+      "status": "OK",
+      "tables": {
+        "battle_mode_infos": 0,
+        "executor_metadata": 1,
+        "gen_metadata": 24,
+        "parent_references": 0,
+        "steps": 48,
+        "trajectory_meta": 1,
+        "trajectory_metadata_blob": 1
+      },
+      "timeline": null,
+      "total_rows": 75
+    },
+    {
+      "bytes": 1540096,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-12T20:01:58Z",
+      "path": "memory/timeline/raw/conversation_stores/5388d88d-a429-465b-879e-6724d6087220.db",
+      "role": "MEMORY_ZONE",
+      "sha256_head": "99b71dc5a61fbc09",
+      "status": "OK",
+      "tables": {
+        "battle_mode_infos": 0,
+        "executor_metadata": 4,
+        "gen_metadata": 56,
+        "parent_references": 0,
+        "steps": 113,
+        "trajectory_meta": 1,
+        "trajectory_metadata_blob": 1
+      },
+      "timeline": null,
+      "total_rows": 175
+    },
+    {
+      "bytes": 5898240,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-12T20:01:58Z",
+      "path": "memory/timeline/raw/conversation_stores/6a348671-d6e2-4fec-8959-5a5cc979a1b0.db",
+      "role": "MEMORY_ZONE",
+      "sha256_head": "9e78ca24718a069e",
+      "status": "OK",
+      "tables": {
+        "battle_mode_infos": 0,
+        "executor_metadata": 21,
+        "gen_metadata": 164,
+        "parent_references": 0,
+        "steps": 333,
+        "trajectory_meta": 1,
+        "trajectory_metadata_blob": 1
+      },
+      "timeline": null,
+      "total_rows": 520
+    },
+    {
+      "bytes": 851968,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-12T20:01:58Z",
+      "path": "memory/timeline/raw/conversation_stores/75111e3c-de59-4df0-984d-311311d85495.db",
+      "role": "MEMORY_ZONE",
+      "sha256_head": "c9c5554607af9f4d",
+      "status": "OK",
+      "tables": {
+        "battle_mode_infos": 0,
+        "executor_metadata": 7,
+        "gen_metadata": 7,
+        "parent_references": 1,
+        "steps": 14,
+        "trajectory_meta": 1,
+        "trajectory_metadata_blob": 1
+      },
+      "timeline": null,
+      "total_rows": 31
+    },
+    {
+      "bytes": 7536640,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-12T20:01:59Z",
+      "path": "memory/timeline/raw/conversation_stores/85a2fad6-54e6-4d93-a8b0-2105ca19fe85.db",
+      "role": "MEMORY_ZONE",
+      "sha256_head": "77e6295e2082294c",
+      "status": "OK",
+      "tables": {
+        "battle_mode_infos": 0,
+        "executor_metadata": 113,
+        "gen_metadata": 307,
+        "parent_references": 0,
+        "steps": 628,
+        "trajectory_meta": 1,
+        "trajectory_metadata_blob": 1
+      },
+      "timeline": null,
+      "total_rows": 1050
+    },
+    {
+      "bytes": 4980736,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-12T20:01:59Z",
+      "path": "memory/timeline/raw/conversation_stores/b360b0bd-c3ab-4128-9d10-be43a0e9200f.db",
+      "role": "MEMORY_ZONE",
+      "sha256_head": "821984356895fca3",
+      "status": "OK",
+      "tables": {
+        "battle_mode_infos": 0,
+        "executor_metadata": 4,
+        "gen_metadata": 29,
+        "parent_references": 0,
+        "steps": 62,
+        "trajectory_meta": 1,
+        "trajectory_metadata_blob": 1
+      },
+      "timeline": null,
+      "total_rows": 97
+    },
+    {
+      "bytes": 884736,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-12T20:01:59Z",
+      "path": "memory/timeline/raw/conversation_stores/c2da0262-d1fb-4a72-81d0-0aeb8dfe2f79.db",
+      "role": "MEMORY_ZONE",
+      "sha256_head": "16be5b0fbffd2f55",
+      "status": "OK",
+      "tables": {
+        "battle_mode_infos": 0,
+        "executor_metadata": 2,
+        "gen_metadata": 7,
+        "parent_references": 0,
+        "steps": 30,
+        "trajectory_meta": 1,
+        "trajectory_metadata_blob": 1
+      },
+      "timeline": null,
+      "total_rows": 41
+    },
+    {
+      "bytes": 1867776,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-12T20:01:59Z",
+      "path": "memory/timeline/raw/conversation_stores/c565417a-cabf-46f4-9f37-0c46a73e2e8d.db",
+      "role": "MEMORY_ZONE",
+      "sha256_head": "1ff2243554d902cc",
+      "status": "OK",
+      "tables": {
+        "battle_mode_infos": 0,
+        "executor_metadata": 4,
+        "gen_metadata": 46,
+        "parent_references": 0,
+        "steps": 96,
+        "trajectory_meta": 1,
+        "trajectory_metadata_blob": 1
+      },
+      "timeline": null,
+      "total_rows": 148
+    },
+    {
+      "bytes": 1081344,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-12T20:01:59Z",
+      "path": "memory/timeline/raw/conversation_stores/d0aedd61-2bf3-45c8-9e94-7607ffbc6241.db",
+      "role": "MEMORY_ZONE",
+      "sha256_head": "8990373f2f667a37",
+      "status": "OK",
+      "tables": {
+        "battle_mode_infos": 0,
+        "executor_metadata": 3,
+        "gen_metadata": 35,
+        "parent_references": 0,
+        "steps": 77,
+        "trajectory_meta": 1,
+        "trajectory_metadata_blob": 1
+      },
+      "timeline": null,
+      "total_rows": 117
+    },
+    {
+      "bytes": 1507328,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-12T20:01:59Z",
+      "path": "memory/timeline/raw/conversation_stores/d4d6809a-c40a-48ff-90f6-7c3561313ea9.db",
+      "role": "MEMORY_ZONE",
+      "sha256_head": "c2d88d06223a5a3b",
+      "status": "OK",
+      "tables": {
+        "battle_mode_infos": 0,
+        "executor_metadata": 2,
+        "gen_metadata": 22,
+        "parent_references": 0,
+        "steps": 47,
+        "trajectory_meta": 1,
+        "trajectory_metadata_blob": 1
+      },
+      "timeline": null,
+      "total_rows": 73
+    },
+    {
+      "bytes": 425984,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-12T20:01:59Z",
+      "path": "memory/timeline/raw/conversation_stores/f469383d-9835-4987-989e-575612b82499.db",
+      "role": "MEMORY_ZONE",
+      "sha256_head": "50780905a9057c15",
+      "status": "OK",
+      "tables": {
+        "battle_mode_infos": 0,
+        "executor_metadata": 1,
+        "gen_metadata": 3,
+        "parent_references": 0,
+        "steps": 6,
+        "trajectory_meta": 1,
+        "trajectory_metadata_blob": 1
+      },
+      "timeline": null,
+      "total_rows": 12
+    },
+    {
+      "bytes": 4292608,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-12T20:01:59Z",
+      "path": "memory/timeline/raw/conversation_stores/fb1d3738-bf09-43ae-a94b-77a2ec8991a0.db",
+      "role": "MEMORY_ZONE",
+      "sha256_head": "3bae7419a7b2f3c3",
+      "status": "OK",
+      "tables": {
+        "battle_mode_infos": 0,
+        "executor_metadata": 34,
+        "gen_metadata": 141,
+        "parent_references": 2,
+        "steps": 292,
+        "trajectory_meta": 1,
+        "trajectory_metadata_blob": 1
+      },
+      "timeline": null,
+      "total_rows": 471
+    },
+    {
       "bytes": 282624,
       "integrity": "ok",
       "journal_mode": "wal",
@@ -1386,14 +2140,143 @@
       "total_rows": 3
     },
     {
-      "bytes": 27537408,
+      "bytes": 13520896,
       "integrity": "ok",
       "journal_mode": "wal",
-      "mtime_utc": "2026-11-13T08:27:17Z",
+      "mtime_utc": "2026-11-14T06:01:24Z",
+      "path": "memory/tri_brain/quarantine_consolidation_20261114_010123/consolidated_working.db",
+      "role": "TRI_BRAIN_GOVERNANCE",
+      "sessions": 21,
+      "sha256_head": "bd0fecd8e3b5a8fa",
+      "status": "OK",
+      "tables": {
+        "blackboard_registers": 2028,
+        "daxx_mission_events": 0,
+        "daxx_worker_receipts": 0,
+        "entities": 0,
+        "error_placeholders": 0,
+        "global_evidence_registry": 133,
+        "knowledge_objects": 25341,
+        "lineage_nodes": 3288,
+        "task_checkpoints": 0,
+        "typed_links": 0,
+        "world_file_manifest_pointers": 0
+      },
+      "timeline": {
+        "earliest": "1790744852.2624278",
+        "latest": "1794560236.8527339",
+        "rows": 3288,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 30790
+    },
+    {
+      "bytes": 14594048,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-14T06:04:14Z",
+      "path": "memory/tri_brain/quarantine_consolidation_20261114_010413/consolidated_working.db",
+      "role": "TRI_BRAIN_GOVERNANCE",
+      "sessions": 22,
+      "sha256_head": "8349d37c854f32f0",
+      "status": "OK",
+      "tables": {
+        "blackboard_registers": 2028,
+        "daxx_mission_events": 0,
+        "daxx_worker_receipts": 0,
+        "entities": 0,
+        "error_placeholders": 0,
+        "global_evidence_registry": 148,
+        "knowledge_objects": 25341,
+        "lineage_nodes": 3303,
+        "task_checkpoints": 0,
+        "typed_links": 0,
+        "world_file_manifest_pointers": 0
+      },
+      "timeline": {
+        "earliest": "1790744852.2624278",
+        "latest": "1794636101.873351",
+        "rows": 3303,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 30820
+    },
+    {
+      "bytes": 14733312,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-14T14:01:01Z",
+      "path": "memory/tri_brain/quarantine_pre_dedupe_20261114_090101/world_file.db",
+      "role": "TRI_BRAIN_GOVERNANCE",
+      "sessions": 37,
+      "sha256_head": "fb9fe93c2b61f541",
+      "status": "OK",
+      "tables": {
+        "anti_replay_ledger": 2,
+        "blackboard_registers": 2028,
+        "capability_token_registry": 2,
+        "daxx_mission_events": 0,
+        "daxx_worker_receipts": 0,
+        "entities": 0,
+        "error_placeholders": 0,
+        "global_evidence_registry": 148,
+        "knowledge_objects": 25341,
+        "lineage_nodes": 3392,
+        "master_merkle_checkpoints": 2,
+        "mtpo_concurrency_ledger": 4,
+        "slopsquatting_intercept_log": 2,
+        "task_checkpoints": 0,
+        "typed_links": 0,
+        "world_file_manifest_pointers": 0
+      },
+      "timeline": {
+        "earliest": "1790744852.2624278",
+        "latest": "1794636527.946923",
+        "rows": 3392,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 30921
+    },
+    {
+      "bytes": 2990080,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "mtime_utc": "2026-11-13T11:34:51Z",
+      "path": "memory/tri_brain/quarantine_world_file_20261114_003648/world_file.db",
+      "role": "TRI_BRAIN_GOVERNANCE",
+      "sessions": 21,
+      "sha256_head": "396e03022901ed90",
+      "status": "OK",
+      "tables": {
+        "blackboard_registers": 0,
+        "daxx_mission_events": 44,
+        "daxx_worker_receipts": 0,
+        "entities": 0,
+        "error_placeholders": 0,
+        "global_evidence_registry": 133,
+        "knowledge_objects": 0,
+        "lineage_nodes": 3288,
+        "task_checkpoints": 0,
+        "typed_links": 0,
+        "world_file_manifest_pointers": 0
+      },
+      "timeline": {
+        "earliest": "1790744852.2624278",
+        "latest": "1794560236.8527339",
+        "rows": 3288,
+        "table": "lineage_nodes"
+      },
+      "total_rows": 3465
+    },
+    {
+      "bytes": 2428928,
+      "integrity": "ok",
+      "journal_mode": "delete",
+      "mtime_utc": "2026-11-14T14:01:01Z",
       "path": "memory/tri_brain/world_file.db",
       "role": "CANONICAL_EVIDENCE_STORE",
       "sessions": 21,
-      "sha256_head": "119a964710f32d52",
+      "sha256_head": "d79ba560c1f72fdb",
       "status": "OK",
       "tables": {
         "blackboard_registers": 0,
@@ -1402,7 +2285,7 @@
         "entities": 0,
         "error_placeholders": 0,
         "global_evidence_registry": 107,
-        "knowledge_objects": 20927,
+        "knowledge_objects": 0,
         "lineage_nodes": 3262,
         "task_checkpoints": 0,
         "typed_links": 0,
@@ -1414,7 +2297,7 @@
         "rows": 3262,
         "table": "lineage_nodes"
       },
-      "total_rows": 24296
+      "total_rows": 3369
     },
     {
       "bytes": 103895040,
@@ -1479,7 +2362,7 @@
       "total_rows": 10
     }
   ],
-  "db_count": 71,
-  "run_utc": "2026-11-13T08:55:28Z",
+  "db_count": 103,
+  "run_utc": "2026-11-14T14:01:18Z",
   "unreadable": 0
 }

@@ -1,8 +1,8 @@
 {
-  "receipt_id": "rcpt_lock_1794636259982",
-  "timestamp_utc": "2026-11-14T06:04:19Z",
-  "session_id": "session_lock_1794636259",
-  "global_merkle_root": "e77d52d19ce751e0ea2db729289feb7201f3a4be1ca1204398d459904868486d",
+  "receipt_id": "rcpt_lock_1794664890410",
+  "timestamp_utc": "2026-11-14T14:01:30Z",
+  "session_id": "session_lock_1794664890",
+  "global_merkle_root": "c26b3d7301cc0fd9ecb12985f6f929fac7601c212d709a60e6f5d4d42d18a8b1",
   "locked_artifacts_count": 9,
   "locked_manifest": [
     {
@@ -53,9 +53,9 @@
   ],
   "validation_result": {
     "valid": true,
-    "session_id": "session_lock_1794636259",
+    "session_id": "session_lock_1794664890",
     "node_count": 9,
-    "merkle_root": "def7613c9fc18c821e491b8d73acd2bf1e493ab0701179dca14614872c6d67dd",
+    "merkle_root": "ccd4449591e39b342ed73ec52c534c090107f02af6056041e7435fd9f9e88db9",
     "violations": []
   },
   "governance": {

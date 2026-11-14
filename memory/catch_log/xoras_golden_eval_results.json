@@ -1,0 +1,35 @@
+{
+  "mean_groundedness_pct": 50.0,
+  "hallucination_rate_pct": 50.0,
+  "target_hallucination_rate_pct": 1.0,
+  "total_claims_evaluated": 6,
+  "total_hallucinations": 3,
+  "execution_time_ms": 0.39,
+  "scenarios": [
+    {
+      "scenario_id": "GOLDEN_001",
+      "domain": "SECURITY_ARCHITECTURE",
+      "groundedness_score_pct": 50.0,
+      "verified_claims_count": 1,
+      "unverified_claims_count": 1,
+      "status": "FAIL"
+    },
+    {
+      "scenario_id": "GOLDEN_002",
+      "domain": "CONCURRENCY_MTPO",
+      "groundedness_score_pct": 50.0,
+      "verified_claims_count": 1,
+      "unverified_claims_count": 1,
+      "status": "FAIL"
+    },
+    {
+      "scenario_id": "GOLDEN_003",
+      "domain": "MEMORY_GEOMETRY_HHV",
+      "groundedness_score_pct": 50.0,
+      "verified_claims_count": 1,
+      "unverified_claims_count": 1,
+      "status": "FAIL"
+    }
+  ],
+  "verdict": "EVALUATION FAILED"
+}
