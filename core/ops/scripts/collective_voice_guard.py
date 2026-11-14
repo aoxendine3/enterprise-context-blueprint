@@ -98,7 +98,8 @@ def check(text: str, require_plan: bool = False) -> dict:
         if phase is None:
             violations.append("missing phase marker — every turn must open with [NEXT], [BREAKDOWN] or [SUMMARY]")
         else:
-            if phase in ("NEXT", "BREAKDOWN") and not re.search(r"\bnext\b", clause_body, re.IGNORECASE):
+            if phase in ("NEXT", "BREAKDOWN") and not re.search(
+                    r"\b(next|now|about to|going to|then)\b", clause_body, re.IGNORECASE):
                 violations.append("no next-step stated — the operator must always know what happens next")
             if phase in ("BREAKDOWN", "SUMMARY") and not re.search(
                     r"\b(did|done|completed|landed|fixed|repaired|closed|passed|found|restored|verified)\b", clause_body, re.IGNORECASE):

@@ -69,8 +69,8 @@ def test_turn_narration_contract_is_enforced():
     assert guard_check("We are pushing the ramp now and next we open the Windows plane.",
                        require_plan=True)["ok"] is False
 
-    # Phase present but no next stated.
-    assert guard_check("[NEXT] We are pushing the ramp now.", require_plan=True)["ok"] is False
+    # Phase present but nothing about what happens next.
+    assert guard_check("[NEXT] We are pushing the ramp.", require_plan=True)["ok"] is False
 
     # Breakdown without a completed-work statement.
     assert guard_check("[BREAKDOWN] The ramp is running and the numbers look good.",
