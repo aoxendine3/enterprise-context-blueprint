@@ -1,0 +1,9 @@
+{
+  "gate": "dart_db_checkpoint",
+  "label": "dart_db_dart_db_bootstrap",
+  "snapshot_id": "20261114T131633_dart_db_dart_db_bootstrap",
+  "merkle_root": "5f037eb2a4e4bd4408fdc7af86b22c26df92fb4fb726a9fead69e71bd72d446a",
+  "write_ptr": 16,
+  "created_utc": "2026-11-14T18:16:33Z",
+  "verdict": "DART_DB_CHECKPOINT_CAPTURED"
+}

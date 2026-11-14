@@ -1,11 +1,15 @@
 """
 XORAS DART (Data Accounts Reverse/Recall Tracking) Architecture
 ==============================================================
-Zero-heap, cache-aligned, lock-free ring buffer for retrospective memory recall.
+Hot-path HexCell ring for retrospective memory recall.
 - Capacity: 4096 entries (statically allocated, 0 GC stalls)
 - Stride: 512-byte cache-aligned HexCell DART entry
 - LIFO Chronological Reverse Recall (recall_backlog) for Stage 1 Wake Contract
 - Formally verified via Z3 SMT Theorem Prover (UNSAT on out-of-order replay)
+
+Durable substrate: ``core.memory.dart_db.DartDb`` (WAL + Merkle epochs +
+SQLite cold spill + rollback checkpoints). Prefer DartDb for production
+orchestration; this module remains the in-RAM hot ring.
 """
 
 import time

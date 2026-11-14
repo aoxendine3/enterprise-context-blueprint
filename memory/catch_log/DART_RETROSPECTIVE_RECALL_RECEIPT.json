@@ -1,9 +1,9 @@
 {
-  "timestamp_utc": "2026-11-01T01:49:54Z",
+  "timestamp_utc": "2026-11-14T18:20:55Z",
   "architecture": "DART (Data Accounts Reverse/Recall Tracking)",
   "capacity_cells": 4096,
   "total_commits_tested": 5000,
-  "commits_per_second": 3417226.66,
+  "commits_per_second": 3722975.32,
   "ring_wrapping_verified": true,
   "lifo_backlog_recall_verified": true,
   "z3_smt_formal_proof": "UNSAT (Zero retro-replay bypass possible)",

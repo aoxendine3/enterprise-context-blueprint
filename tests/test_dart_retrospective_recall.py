@@ -10,6 +10,7 @@ Test DART Retrospective Recall & Invariant Suite
 import sys
 import time
 import json
+import os
 from z3 import *
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
