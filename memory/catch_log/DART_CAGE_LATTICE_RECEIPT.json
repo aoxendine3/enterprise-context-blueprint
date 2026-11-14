@@ -1,5 +1,5 @@
 {
-  "tmp": "/var/folders/5f/z86t8vfs6b96sq0wmbnnb4hw0000gn/T/dart_cage_3oujarhh",
+  "tmp": "/var/folders/5f/z86t8vfs6b96sq0wmbnnb4hw0000gn/T/dart_cage_pn54ocn6",
   "checks": {
     "sealed_invisible_to_lower_clearance": true,
     "sealed_visible_to_sealed_clearance": true,
@@ -9,7 +9,7 @@
     "cold_spill_lattice_enforced": true,
     "checkpoint_rollback_lattice_preserved": true
   },
-  "checkpoint_id": "20261114T134501_cage_ckpt",
+  "checkpoint_id": "20261114T141750_cage_ckpt",
   "verdict": "VERIFIED_CAGE_LATTICE",
-  "timestamp_utc": "2026-11-14T18:45:01Z"
+  "timestamp_utc": "2026-11-14T19:17:50Z"
 }

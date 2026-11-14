@@ -16,6 +16,8 @@ Agent Notary is the sovereign, dual-implementation verifier for autonomous multi
 
 ---
 
+> Hallucination/context-grounding material is tracked with provenance in `docs/papers/` — nothing there is presented as verified unless receipted in `memory/catch_log/`.
+
 # Enterprise Context Blueprint: The Sovereign Triad (MTPO, MARS & REASONS)
 
 [![Outside CI Gauntlet](https://img.shields.io/badge/Outside_CI-Run_%2338708977957_(Ubuntu_24.04_%2B_macOS--14)-10b981.svg)](https://github.com/aoxendine3/enterprise-context-blueprint/actions/runs/38708977957)
@@ -66,50 +68,6 @@ Classical database isolation models—specifically **Two-Phase Locking (2PL)** a
 4. **Non-Blocking Advisory Notifications ($\nu_{i \to j}$)**: When a lower-rank write invalidates a premise read by a higher-rank agent, the runtime pushes a non-blocking advisory signal ($\nu$) directly into the higher-rank agent's prompt context. The agent evaluates the notification and performs a surgical **in-situ self-healing repair** on its active plan without restarting the session or discarding compute.
 
 ---
-
-### 1. How Atlan Measures Hallucination
-
-Atlan treats hallucination not as a model reasoning flaw or prompt engineering defect, but as an **enterprise context failure**. When autonomous agents operate in an informational vacuum—lacking certified metadata, clear data lineage, or unified business definitions—statistical language models attempt to bridge the gap by generating plausible but ungrounded guesses pulled from pre-training weights. Grounding agents in a unified metadata context layer with graph-based retrieval (GraphRAG) eliminates this context vacuum, cutting agent hallucination rates by **over 40%** and boosting query accuracy from **9% to 81%** in production enterprise deployments.
-
-To measure, govern, and eliminate this risk across production pipelines, performance is evaluated across **five core structural metrics**:
-
-* **Groundedness Score**: The exact percentage of claims, variables, and assertions in an agent's response that are directly traceable to retrieved, authoritative source context—separating evidence-based execution from statistical guesses pulled from pre-training weights:
-  $$\text{Groundedness Score (\%)} = \left( \frac{\text{Verified Evidence-Backed Claims}}{\text{Total Claims Generated in Response}} \right) \times 100$$
-* **Retrieval Quality (Precision & Recall)**: Evaluates information retrieval performance by measuring **Precision** (the fraction of retrieved context that is genuinely relevant) and **Recall** (the fraction of relevant organizational context actually retrieved). High retrieval quality directly predicts downstream hallucination prevention.
-* **Use-Case Risk-Tiered Hallucination Rate**: Tracks incorrect or unsupported outputs per use case, benchmarked against specific organizational risk tolerances:
-  * **High-Risk (Finance / Compliance / Core Infrastructure)**: Demands **< 5%** hallucination rate with mandatory human-in-the-loop (HITL) validation prior to action execution.
-  * **Medium-Risk (Analytics Q&A)**: Requires **< 10%**.
-  * **Low-Risk (Drafting Internal Docs)**: Tolerates **20%–30%** when paired with human review.
-* **User Trust Signals**: Acts as a real-world operational proxy for output reliability by tracking operational behaviors—specifically **suggestion acceptance rate**, **manual override frequency**, and **escalation volume**. Below an **80% accuracy threshold**, user trust collapses non-linearly and business teams reject the system entirely.
-* **Decision Tracing & Provenance Auditing**: Logs column-level data lineage, operational state, and decision traces into an Enterprise Context Graph (`world_file.db`), making behavior 100% explainable and allowing engineering teams to identify why an agent acted incorrectly.
-* **Context Studio Pre-Deployment Runs**: Automated simulation runs that execute golden question sets against the metadata lakehouse inside Context Studio to evaluate groundedness before any agent or prompt is promoted to production.
-
----
-
-### 2. The 1% Target for Fin
-
-In high-volume customer service and enterprise operations, hallucination control is non-negotiable because accuracy directly impacts brand trust, financial liability, and regulatory compliance. Fin establishes a strict benchmark capping the **hallucination rate strictly below 1.0%** (with top-tier industry leaders achieving **~0.01%**).
-
-Fin achieves and maintains this sub-1% hallucination boundary through a **six-layer proprietary AI Engine architecture**:
-
-* **Purpose-Built Retrieval (`fin-cx-retrieval`)**: Custom-trained dense and sparse retrieval models designed specifically for customer support context retrieval.
-* **Precision Reranking (`fin-cx-reranker`)**: Filters out noisy or irrelevant knowledge chunks using cross-encoders before passing context to the reasoning layer.
-* **Multi-Model Resilience**: Routes execution dynamically across OpenAI, Anthropic, Google, and Fin’s custom foundation models (such as `Fin Apex 1.0`) to eliminate single-model blind spots.
-* **100% Automated Quality Scoring (CX Score)**: Evaluates **100% of conversations** across sentiment, resolution quality, and service quality—providing **5x more coverage** than sample-based human CSAT surveys and eliminating human survey response bias.
-* **Genuine Positive Resolution Methodology**: Only counts conversations where the customer's issue is verified as solved end-to-end without requiring reopening within 48 hours, pairing the `< 1%` hallucination rate with an average **76% genuine resolution rate** across 12,000 customer deployment environments.
-* **Unified Context Integration**: Operates over a native helpdesk without measurement gaps, blind spots, or fragmented reporting across disconnected tools.
-
----
-
-### 3. Golden Question Sets Explained
-
-**Golden Question Sets** (or Golden Datasets) are curated, standardized evaluation datasets consisting of hundreds of representative, real-world test scenarios paired with verified, human-annotated ground-truth answers. 
-
-They serve as the foundational benchmark for pre-deployment testing and continuous integration in agentic engineering:
-
-* **Automated Pre-Deployment Simulation**: Before any prompt modification, tool schema edit, or context repository update is released to production, the system runs proposed changes against the golden dataset inside an automated testing environment (such as Atlan's Context Studio or Fin's Simulation Engine).
-* **Objective Metric Verification**: The simulator scores the agent's generated outputs against the ground-truth answers to calculate exact **Groundedness Scores**, **Retrieval Precision/Recall**, and **Hallucination Rates**.
-* **Elimination of Regression Risk**: By running golden question sets in simulation, engineering teams prevent "prompt drift" and catch edge-case failures in seconds, avoiding months of manual testing and ensuring agents stay below mandated risk thresholds prior to live deployment.
 
 ---
 

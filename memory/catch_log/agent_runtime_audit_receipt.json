@@ -1,0 +1,15 @@
+{
+  "date_utc": "2026-11-14",
+  "subject": "the terminal agent runtime + CogNGen 'Reality SSOT' bridge synthesis — audit",
+  "verdict": "COMPROMISED_THEATER_MISLABELED_AS_VERIFICATION",
+  "checks": {
+    "kernel": "we executed cogngen_kernel.py 2026-11-14: random 768-dim tensors, vfe=344.87, outer-product W update on random init; zero DART/MARS/world_file.db integration",
+    "verify_integrity_v2.py": "does not exist anywhere on disk",
+    "trace.json": "does not exist",
+    "hexcell_3200B": "WASM exists (3,011 B; init_hexcell_topology(25)=3200 confirmed) but the cited bridge never imports it; our constant-work signing fix (5 consecutive 4/4-axis runs) is the real verified asset",
+    "mars_gate": "documented as cargo fmt + ≥80% coverage — our actual MARS is AST/SAST/ASAN-TSAN/Z3; invented gates are not ours",
+    "ane_simd": "no code maps HexCell to ANE/SIMD with align(128); fabricated",
+    "agents_md": "AGENTS.md §1-§9 exists and binds this workspace; new §6.4 Reality Gate added to reference real commands"
+  },
+  "action": "audit filed; AGENTS.md updated with truthful Reality Gate; changelog 2.0.7 records it; not for citation or external display"
+}

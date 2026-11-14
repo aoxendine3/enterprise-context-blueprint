@@ -3,7 +3,7 @@
 > Provenance: brainstorm produced by the collective on 2026-11-14 in response to the owner's directive for outside-the-box, exceptionally innovative thinking. All three pillar papers referenced are verified against primary sources in `memory/catch_log/cogngen_camel_contextecho_verification.json`. Claims herein are theses, not validated results; no customer has paid yet. Distribution: internal.
 
 ## Verified assets (baseline)
-Agent Notary v0.1.0 shipped (HMAC WORM chains) · dual-substrate Zig/Python witnesses · 6/6 production gates · Z3 UNSAT proofs · ~3,293 lineage nodes · canonical memory with native witness · Windows RTX plane answering live · Stripe link active.
+Agent Notary v0.1.0 shipped (HMAC WORM chains) · dual-substrate Zig/Python witnesses · 6/6 production gates · Z3 UNSAT proofs · ~3,293 lineage nodes · canonical memory with native witness · Windows RTX plane answering live · payment rails link active.
 
 ## The reframe
 We are not selling a receipt tool. We are selling the primitive that makes the agentic economy legible to liability.
@@ -12,7 +12,7 @@ We are not selling a receipt tool. We are selling the primitive that makes the a
 1. **Proof-of-Action Insurance** — notarized receipts as underwriting files; license evidence infra to insurers; per-premium-class or per-file fee.
 2. **Agent Black Box (EU AI Act Article 12 as product)** — XORAS runtime + WORM ledger + signed attestation letter + auditor portal. $8–15k/yr per high-risk system.
 3. **Verify Before You Buy** — paste-a-repo interactive red-team → signed mini-receipt → PDF → warm enterprise leads.
-4. **Notary-by-default Stripe checkout** — webhook mints receipt for every paid agent action; agents carry proof inside the payment rail.
+4. **Notary-by-default payment rails checkout** — webhook mints receipt for every paid agent action; agents carry proof inside the payment rail.
 5. **Perpetual Verification Pass** — one-time purchase; evidence survives the vendor; $500–2,000 per release.
 
 ## Tier 2 — structural this year
@@ -35,7 +35,7 @@ We are not selling a receipt tool. We are selling the primitive that makes the a
 - CogNGen as training roadmap → treat as inspiration; if the RTX plane trains, output must be *more verifiable behavior* (e.g., drift-classifier with notarized verdicts), feeding Tier 2 #8.
 
 ## Next 14 days (single bet)
-#4 (Stripe webhook receipts) + browser WebCrypto verifier + homepage drop-zone + three insurer emails. Everything else compounds off that.
+#4 (payment webhook receipts) + browser WebCrypto verifier + homepage drop-zone + three insurer emails. Everything else compounds off that.
 
 ## Honest caveats
 Three pillar papers (CogNGen, CaMeL, ContextEcho) are verified as published work but not re-measured on our hardware; no customer validation exists yet; every tier is a thesis.

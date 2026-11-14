@@ -1,0 +1,1520 @@
+[
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/LOVABLE_INTEGRATION_GUIDE.md",
+    "line": 27,
+    "pattern": "Vertex AI",
+    "snippet": "\u2502 Vertex AI       \u2502     \u2502 Local TCP 8787 / Ollama / MLX   \u2502"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/LOVABLE_INTEGRATION_GUIDE.md",
+    "line": 39,
+    "pattern": "Vertex AI",
+    "snippet": "If routing DAXXCO through Vertex AI Reasoning Engine:"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/LOVABLE_INTEGRATION_GUIDE.md",
+    "line": 40,
+    "pattern": "262277406581",
+    "snippet": "1. Navigate to [Google Cloud Console - Service Accounts](https://console.cloud.google.com/iam-admin/serviceaccounts?project=262277406581)."
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/LOVABLE_INTEGRATION_GUIDE.md",
+    "line": 41,
+    "pattern": "262277406581",
+    "snippet": "2. Select or verify Project **`262277406581`**."
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/LOVABLE_INTEGRATION_GUIDE.md",
+    "line": 42,
+    "pattern": "262277406581",
+    "snippet": "3. Locate the designated service account (e.g. `sovereign-agent-engine-sa@262277406581.iam.gserviceaccount.com`)."
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/LOVABLE_INTEGRATION_GUIDE.md",
+    "line": 55,
+    "pattern": "aiplatform\\.googleapis\\.com",
+    "snippet": "- Value: `https://us-west1-aiplatform.googleapis.com/v1/projects/262277406581/locations/us-west1/reasoningEngines/520750697147269120:query`"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/LOVABLE_INTEGRATION_GUIDE.md",
+    "line": 152,
+    "pattern": "Vertex AI",
+    "snippet": "// Default Cloud Vertex AI Reasoning Engine route"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/LOVABLE_INTEGRATION_GUIDE.md",
+    "line": 161,
+    "pattern": "aiplatform\\.googleapis\\.com",
+    "snippet": "\"https://us-west1-aiplatform.googleapis.com/v1/projects/262277406581/locations/us-west1/reasoningEngines/520750697147269120:query\";"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/LOVABLE_INTEGRATION_GUIDE.md",
+    "line": 199,
+    "pattern": "Vertex AI",
+    "snippet": "> 3. *A Mode Switcher toggle between 'Cloud Vertex AI Reasoning Engine' and 'Sovereign Physical Mac (Local Port 8787)' sending `mode: 'local"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco.json",
+    "line": 1,
+    "pattern": "262277406581",
+    "snippet": "principal://agents.global.org-540290633718.system.id.goog/resources/aiplatform/projects/262277406581/locations/us-west1/reasoningEngines/520"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 3,
+    "pattern": "google-cloud",
+    "snippet": "#   pip install \"google-adk[a2a,agent-identity]\" google-cloud-storage"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 9,
+    "pattern": "google\\.genai",
+    "snippet": "from google.genai import Client"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 20,
+    "pattern": "google\\.genai",
+    "snippet": "from google.genai import types"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 27,
+    "pattern": "Vertex AI",
+    "snippet": "\"\"\"Pins the Vertex AI client to the global location or local model endpoint.\"\"\""
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 30,
+    "pattern": "vertexai",
+    "snippet": "return Client(vertexai=True, location=os.getenv(\"VERTEXAI_LOCATION\", \"global\"))"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 91,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 100,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 113,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 129,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 144,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 159,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 174,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 189,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 204,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 219,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 234,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 249,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 265,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 280,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 296,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 311,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 326,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 341,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 353,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 365,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 377,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 392,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 404,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 416,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 428,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 445,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 457,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/DaxxCo_Tech/daxxco_master_blueprint.py",
+    "line": 471,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_daxx_bug_hunt_challenge.py",
+    "line": 6,
+    "pattern": "Vertex AI",
+    "snippet": "on Vertex AI (Project 262277406581, Gemini 2.5 Pro) to hunt down all vulnerabilities,"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_daxx_bug_hunt_challenge.py",
+    "line": 30,
+    "pattern": "google\\.genai",
+    "snippet": "from google.genai import Client, types"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_daxx_bug_hunt_challenge.py",
+    "line": 35,
+    "pattern": "262277406581",
+    "snippet": "os.environ[\"GOOGLE_CLOUD_PROJECT\"] = \"262277406581\""
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_daxx_bug_hunt_challenge.py",
+    "line": 41,
+    "pattern": "vertexai",
+    "snippet": "return Client(vertexai=True, project=\"262277406581\", location=\"us-central1\")"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_daxx_bug_hunt_challenge.py",
+    "line": 45,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model=\"gemini-2.5-pro\"),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_daxx_bug_hunt_challenge.py",
+    "line": 112,
+    "pattern": "Vertex AI",
+    "snippet": "print(f\"[*] Transmitting 3-Part Bug Hunt Challenge to Cloud DAXX (Vertex AI us-central1)...\")"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_daxx_bug_hunt_challenge.py",
+    "line": 143,
+    "pattern": "262277406581",
+    "snippet": "\"project_id\": \"262277406581\","
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_daxx_bug_hunt_challenge.py",
+    "line": 145,
+    "pattern": "gemini-",
+    "snippet": "\"model\": \"gemini-2.5-pro\","
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_tri_node_collective_test.py",
+    "line": 8,
+    "pattern": "Vertex AI",
+    "snippet": "- Node 3 (Google Cloud DAXX Vertex AI): Silent Witness & Independent Merkle Verifier"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_tri_node_collective_test.py",
+    "line": 184,
+    "pattern": "Vertex AI",
+    "snippet": "# PART 3: GOOGLE CLOUD DAXX (Vertex AI / Project 262277406581)"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_tri_node_collective_test.py",
+    "line": 189,
+    "pattern": "Vertex AI",
+    "snippet": "print(\"\u2601\ufe0f  PART 3: GOOGLE CLOUD DAXX (Vertex AI Project 262277406581)\")"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_tri_node_collective_test.py",
+    "line": 213,
+    "pattern": "Vertex AI",
+    "snippet": "\"node_3_cloud_daxx\": \"Google Cloud Vertex AI (Silent Witness & Attestation)\""
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/test_quad_vector_concurrent_stress.py",
+    "line": 6,
+    "pattern": "Vertex AI",
+    "snippet": "1. Vector 1 (Cloud Master Brain): DAXX Google Cloud Vertex AI RPC"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/test_quad_vector_concurrent_stress.py",
+    "line": 114,
+    "pattern": "Vertex AI",
+    "snippet": "# Vector 1: Cloud Master Brain (DAXX Vertex AI Client Runner)"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/test_quad_vector_concurrent_stress.py",
+    "line": 123,
+    "pattern": "gemini-",
+    "snippet": "\"data_payload\": {\"model\": \"gemini-2.5-pro\", \"project\": \"262277406581\"}"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_direct_runner.py",
+    "line": 6,
+    "pattern": "Vertex AI",
+    "snippet": "and executes live queries directly to Gemini 2.5 Pro on Vertex AI."
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_direct_runner.py",
+    "line": 29,
+    "pattern": "google\\.genai",
+    "snippet": "from google.genai import Client, types"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_direct_runner.py",
+    "line": 37,
+    "pattern": "Vertex AI",
+    "snippet": "# Ensure project is set for Vertex AI Client"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_direct_runner.py",
+    "line": 38,
+    "pattern": "262277406581",
+    "snippet": "os.environ[\"GOOGLE_CLOUD_PROJECT\"] = \"262277406581\""
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_direct_runner.py",
+    "line": 44,
+    "pattern": "vertexai",
+    "snippet": "return Client(vertexai=True, project=\"262277406581\", location=\"us-central1\")"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_direct_runner.py",
+    "line": 49,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model=\"gemini-2.5-pro\"),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_direct_runner.py",
+    "line": 63,
+    "pattern": "vertexai",
+    "snippet": "return Client(vertexai=True, project=\"262277406581\", location=location)"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_direct_runner.py",
+    "line": 103,
+    "pattern": "gemini-",
+    "snippet": "(\"gemini-2.5-pro\", \"us-central1\"),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_direct_runner.py",
+    "line": 104,
+    "pattern": "gemini-",
+    "snippet": "(\"gemini-2.5-pro\", \"us-west1\"),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_direct_runner.py",
+    "line": 105,
+    "pattern": "gemini-",
+    "snippet": "(\"gemini-2.5-flash\", \"us-central1\"),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_direct_runner.py",
+    "line": 106,
+    "pattern": "gemini-",
+    "snippet": "(\"gemini-2.0-flash\", \"us-central1\"),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_direct_runner.py",
+    "line": 111,
+    "pattern": "Vertex AI",
+    "snippet": "print(f\"[*] Routing via Vertex AI ({loc} \u00b7 {model_name})...\")"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxxco_sovereign_client.py",
+    "line": 4,
+    "pattern": "Vertex AI",
+    "snippet": "1. Google Vertex AI / Cloud (Original ADK design)"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/gauntlet_phase1_autonomous_engineering.py",
+    "line": 5,
+    "pattern": "Vertex AI",
+    "snippet": "Orchestrated by Cloud Master Brain (DAXX on Vertex AI) + Local Lead Nine Council."
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/gauntlet_phase1_autonomous_engineering.py",
+    "line": 21,
+    "pattern": "google\\.genai",
+    "snippet": "from google.genai import Client, types"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/gauntlet_phase1_autonomous_engineering.py",
+    "line": 26,
+    "pattern": "Vertex AI",
+    "snippet": "# Set Vertex AI Environment"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/gauntlet_phase1_autonomous_engineering.py",
+    "line": 27,
+    "pattern": "262277406581",
+    "snippet": "os.environ[\"GOOGLE_CLOUD_PROJECT\"] = \"262277406581\""
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/gauntlet_phase1_autonomous_engineering.py",
+    "line": 33,
+    "pattern": "vertexai",
+    "snippet": "return Client(vertexai=True, project=\"262277406581\", location=\"us-central1\")"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/gauntlet_phase1_autonomous_engineering.py",
+    "line": 63,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model=\"gemini-2.5-pro\"),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/gauntlet_phase1_autonomous_engineering.py",
+    "line": 85,
+    "pattern": "Vertex AI",
+    "snippet": "print(\"   Cloud Orchestrator: DAXX (Google Cloud Vertex AI - Project: 262277406581)\")"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/gauntlet_phase1_autonomous_engineering.py",
+    "line": 102,
+    "pattern": "Vertex AI",
+    "snippet": "print(\"\\n[*] Transmitting mission parameters to Cloud DAXX on Vertex AI...\")"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/gauntlet_phase1_autonomous_engineering.py",
+    "line": 161,
+    "pattern": "Vertex AI",
+    "snippet": "\"cloud_orchestrator\": \"DAXX (Vertex AI / Gemini 2.5 Pro)\","
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/extended_candid_roundtable.py",
+    "line": 42,
+    "pattern": "Vertex AI",
+    "snippet": "(\"daxx\", \"Second, look at DaxxCo on Google Cloud Vertex AI. The infrastructure is sitting there in us-west-one with all ten knowledge ledger"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_quantum_item_thinking_debate.py",
+    "line": 11,
+    "pattern": "Vertex AI",
+    "snippet": "- Cloud DAXX Master Brain: gemini-2.5-pro (Vertex AI us-central1)"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_quantum_item_thinking_debate.py",
+    "line": 25,
+    "pattern": "google\\.genai",
+    "snippet": "from google.genai import Client, types"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_quantum_item_thinking_debate.py",
+    "line": 30,
+    "pattern": "262277406581",
+    "snippet": "os.environ[\"GOOGLE_CLOUD_PROJECT\"] = \"262277406581\""
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_quantum_item_thinking_debate.py",
+    "line": 36,
+    "pattern": "vertexai",
+    "snippet": "return Client(vertexai=True, project=\"262277406581\", location=\"us-central1\")"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_quantum_item_thinking_debate.py",
+    "line": 88,
+    "pattern": "Vertex AI",
+    "snippet": "print(\"\\n\u26a1 [CLOUD DAXX] Initializing Vertex AI Debate & Push Synthesis...\")"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_quantum_item_thinking_debate.py",
+    "line": 91,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model=\"gemini-2.5-pro\"),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_quantum_item_thinking_debate.py",
+    "line": 151,
+    "pattern": "gemini-",
+    "snippet": "\"model\": \"gemini-2.5-pro (Cloud DAXX)\","
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_quantum_item_thinking_debate.py",
+    "line": 227,
+    "pattern": "Vertex AI",
+    "snippet": "## 3. Cloud DAXX (`gemini-2.5-pro` on Vertex AI) Final Adjudication & Asset Push"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_cloud_bridge.py",
+    "line": 4,
+    "pattern": "Vertex AI",
+    "snippet": "XORAS SYSTEM: VERTEX AI REASONING ENGINE BRIDGE (DAXX CLOUD MASTER BRAIN)"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_cloud_bridge.py",
+    "line": 6,
+    "pattern": "262277406581",
+    "snippet": "Project: 262277406581"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_cloud_bridge.py",
+    "line": 25,
+    "pattern": "262277406581",
+    "snippet": "PROJECT_ID = \"262277406581\""
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_cloud_bridge.py",
+    "line": 41,
+    "pattern": "Vertex AI",
+    "snippet": "Direct REST API invocation to Vertex AI Reasoning Engine:"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_cloud_bridge.py",
+    "line": 42,
+    "pattern": "aiplatform\\.googleapis\\.com",
+    "snippet": "https://us-west1-aiplatform.googleapis.com/v1/projects/262277406581/locations/us-west1/reasoningEngines/520750697147269120:query"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_cloud_bridge.py",
+    "line": 44,
+    "pattern": "aiplatform\\.googleapis\\.com",
+    "snippet": "url = f\"https://{LOCATION}-aiplatform.googleapis.com/v1/{RESOURCE_NAME}:query\""
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_cloud_bridge.py",
+    "line": 111,
+    "pattern": "vertexai",
+    "snippet": "\"\"\"Attempts SDK query via vertexai library.\"\"\""
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_cloud_bridge.py",
+    "line": 113,
+    "pattern": "vertexai",
+    "snippet": "import vertexai"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_cloud_bridge.py",
+    "line": 114,
+    "pattern": "vertexai",
+    "snippet": "from vertexai.preview import reasoning_engines"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_cloud_bridge.py",
+    "line": 120,
+    "pattern": "vertexai",
+    "snippet": "vertexai.init(project=PROJECT_ID, location=LOCATION)"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_cloud_bridge.py",
+    "line": 122,
+    "pattern": "Vertex AI",
+    "snippet": "print(f\"[*] Querying Reasoning Engine via Vertex AI SDK...\")"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_cloud_bridge.py",
+    "line": 124,
+    "pattern": "Vertex AI",
+    "snippet": "print(f\"[\u2713] Vertex AI SDK Response: {res}\")"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_cloud_bridge.py",
+    "line": 133,
+    "pattern": "Vertex AI",
+    "snippet": "print(\"\\n[*] Attempting Vertex AI SDK fallback...\")"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 5,
+    "pattern": "google\\.genai",
+    "snippet": "from google.genai import Client"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 15,
+    "pattern": "google\\.genai",
+    "snippet": "from google.genai import types"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 25,
+    "pattern": "Vertex AI",
+    "snippet": "\"\"\"Pins the Vertex AI client to the `global` location."
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 27,
+    "pattern": "gemini-",
+    "snippet": "gemini-3 series models are only served from `global`; the default ADK"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 28,
+    "pattern": "google\\.genai",
+    "snippet": "`Gemini` integration constructs a `google.genai.Client` whose location"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 38,
+    "pattern": "vertexai",
+    "snippet": "return Client(vertexai=True, location=\"global\")"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 47,
+    "pattern": "262277406581",
+    "snippet": "{\"fileName\": 'HUMAN_PROTECTION_AND_PURPOSE_LEDGER.md', \"gcsUri\": 'gs://262277406581_us-west1_agent_studio_files/adk_artifacts/agent_17923496"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 48,
+    "pattern": "262277406581",
+    "snippet": "{\"fileName\": 'golden_question_set.json', \"gcsUri\": 'gs://262277406581_us-west1_agent_studio_files/adk_artifacts/agent_1792349608125/knowledg"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 49,
+    "pattern": "262277406581",
+    "snippet": "{\"fileName\": 'THE_SOVEREIGN_ENTERPRISE_MACHINE.md', \"gcsUri\": 'gs://262277406581_us-west1_agent_studio_files/adk_artifacts/agent_17923496081"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 50,
+    "pattern": "262277406581",
+    "snippet": "{\"fileName\": 'SOVRA_AUTONOMOUS_WORKFORCE_STANDARD.md', \"gcsUri\": 'gs://262277406581_us-west1_agent_studio_files/adk_artifacts/agent_17923496"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 51,
+    "pattern": "262277406581",
+    "snippet": "{\"fileName\": 'SOVRA_DSL_COMPREHENSIVE_GUIDE.md', \"gcsUri\": 'gs://262277406581_us-west1_agent_studio_files/adk_artifacts/agent_1792349608125/"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 52,
+    "pattern": "262277406581",
+    "snippet": "{\"fileName\": 'SOVEREIGN_ARCHITECTURAL_VISION.md', \"gcsUri\": 'gs://262277406581_us-west1_agent_studio_files/adk_artifacts/agent_1792349608125"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 53,
+    "pattern": "262277406581",
+    "snippet": "{\"fileName\": 'NUMERICAL_AND_MONETARY_VERBALIZATION_TRAINING_CURRICULUM.md', \"gcsUri\": 'gs://262277406581_us-west1_agent_studio_files/adk_art"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 54,
+    "pattern": "262277406581",
+    "snippet": "{\"fileName\": 'provisional_measurement_protocol.md', \"gcsUri\": 'gs://262277406581_us-west1_agent_studio_files/adk_artifacts/agent_17923496081"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 55,
+    "pattern": "262277406581",
+    "snippet": "{\"fileName\": 'RAW_IP_DISCLOSURE_NOTES.md', \"gcsUri\": 'gs://262277406581_us-west1_agent_studio_files/adk_artifacts/agent_1792349608125/knowle"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 56,
+    "pattern": "262277406581",
+    "snippet": "{\"fileName\": 'SOVEREIGN_OMEGA_PROTOCOL.md', \"gcsUri\": 'gs://262277406581_us-west1_agent_studio_files/adk_artifacts/agent_1792349608125/knowl"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 73,
+    "pattern": "262277406581",
+    "snippet": "quota_project_id=\"262277406581\","
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 76,
+    "pattern": "262277406581",
+    "snippet": "project=\"262277406581\","
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 132,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 134,
+    "pattern": "Google Search",
+    "snippet": "'Agent specialized in performing Google searches.'"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 145,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 158,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 172,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 174,
+    "pattern": "Google Search",
+    "snippet": "'Agent specialized in performing Google searches.'"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 185,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 198,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 212,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 214,
+    "pattern": "Google Search",
+    "snippet": "'Agent specialized in performing Google searches.'"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 225,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 238,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 252,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 254,
+    "pattern": "Google Search",
+    "snippet": "'Agent specialized in performing Google searches.'"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 265,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 278,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 292,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 294,
+    "pattern": "Google Search",
+    "snippet": "'Agent specialized in performing Google searches.'"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 305,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 318,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 332,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 334,
+    "pattern": "Google Search",
+    "snippet": "'Agent specialized in performing Google searches.'"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 345,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 358,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 378,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 380,
+    "pattern": "Google Search",
+    "snippet": "'Agent specialized in performing Google searches.'"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 391,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 404,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 418,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 420,
+    "pattern": "Google Search",
+    "snippet": "'Agent specialized in performing Google searches.'"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 431,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 444,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 458,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 460,
+    "pattern": "Google Search",
+    "snippet": "'Agent specialized in performing Google searches.'"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 471,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 484,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 498,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 500,
+    "pattern": "Google Search",
+    "snippet": "'Agent specialized in performing Google searches.'"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 511,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 524,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 538,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 540,
+    "pattern": "Google Search",
+    "snippet": "'Agent specialized in performing Google searches.'"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 551,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 564,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 578,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 580,
+    "pattern": "Google Search",
+    "snippet": "'Agent specialized in performing Google searches.'"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 591,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 604,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 618,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 620,
+    "pattern": "Google Search",
+    "snippet": "'Agent specialized in performing Google searches.'"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 631,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 644,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 658,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 660,
+    "pattern": "Google Search",
+    "snippet": "'Agent specialized in performing Google searches.'"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 671,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 684,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 698,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 700,
+    "pattern": "Google Search",
+    "snippet": "'Agent specialized in performing Google searches.'"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 711,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 724,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 738,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 740,
+    "pattern": "Google Search",
+    "snippet": "'Agent specialized in performing Google searches.'"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 751,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 764,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 778,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 780,
+    "pattern": "Google Search",
+    "snippet": "'Agent specialized in performing Google searches.'"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 791,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 804,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 818,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 820,
+    "pattern": "Google Search",
+    "snippet": "'Agent specialized in performing Google searches.'"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 831,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 844,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 858,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 860,
+    "pattern": "Google Search",
+    "snippet": "'Agent specialized in performing Google searches.'"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 871,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 884,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 898,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 900,
+    "pattern": "Google Search",
+    "snippet": "'Agent specialized in performing Google searches.'"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 911,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 924,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 938,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 940,
+    "pattern": "Google Search",
+    "snippet": "'Agent specialized in performing Google searches.'"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 951,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 964,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 978,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 980,
+    "pattern": "Google Search",
+    "snippet": "'Agent specialized in performing Google searches.'"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 991,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 1004,
+    "pattern": "gemini-",
+    "snippet": "model=GlobalGemini(model='gemini-3.5-flash'),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/daxx_adk_definition.py",
+    "line": 1009,
+    "pattern": "Google Search",
+    "snippet": "instruction='You are DAXX, the Master Systems Orchestrator and Technical Director for the High-Assurance Engineering Collective. Maintain an"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_multi_node_v2_1_deliberation.py",
+    "line": 12,
+    "pattern": "Vertex AI",
+    "snippet": "2. Cloud DAXX Master Brain (Vertex AI `us-central1` - `gemini-2.5-pro`)"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_multi_node_v2_1_deliberation.py",
+    "line": 23,
+    "pattern": "google\\.genai",
+    "snippet": "from google.genai import types"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_multi_node_v2_1_deliberation.py",
+    "line": 25,
+    "pattern": "262277406581",
+    "snippet": "os.environ[\"GOOGLE_CLOUD_PROJECT\"] = \"262277406581\""
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_multi_node_v2_1_deliberation.py",
+    "line": 103,
+    "pattern": "Vertex AI",
+    "snippet": "print(\"\\n[CLOUD DAXX - VERTEX AI us-central1] Querying `gemini-2.5-pro`...\")"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_multi_node_v2_1_deliberation.py",
+    "line": 104,
+    "pattern": "vertexai",
+    "snippet": "client = genai.Client(vertexai=True, project=\"262277406581\", location=\"us-central1\")"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_multi_node_v2_1_deliberation.py",
+    "line": 105,
+    "pattern": "gemini-",
+    "snippet": "prompt = f\"\"\"You are Cloud DAXX (`gemini-2.5-pro`), Master Architect in a 3-node deliberation with our Bare-Metal Windows Node (`192.168.1.2"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_multi_node_v2_1_deliberation.py",
+    "line": 125,
+    "pattern": "gemini-",
+    "snippet": "model=\"gemini-2.5-pro\","
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_multi_node_v2_1_deliberation.py",
+    "line": 134,
+    "pattern": "gemini-",
+    "snippet": "print(f\"[\u2713] Cloud DAXX `gemini-2.5-pro` responded in {elapsed}s ({len(text.split())} words):\")"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_multi_node_v2_1_deliberation.py",
+    "line": 139,
+    "pattern": "Vertex AI",
+    "snippet": "\"node\": \"Cloud DAXX (Vertex AI us-central1)\","
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_multi_node_v2_1_deliberation.py",
+    "line": 140,
+    "pattern": "gemini-",
+    "snippet": "\"model\": \"gemini-2.5-pro\","
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_multi_node_v2_1_deliberation.py",
+    "line": 172,
+    "pattern": "gemini-",
+    "snippet": "# 3. Query Cloud DAXX (gemini-2.5-pro) to synthesize and push hard on both Windows outputs"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/gcs_snapshot_wrapper.py",
+    "line": 68,
+    "pattern": "google-cloud",
+    "snippet": "\"google-cloud-storage is required to fetch GCS resources. \""
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_strict_replay_gauntlet.py",
+    "line": 106,
+    "pattern": "gemini-",
+    "snippet": "\"model\": \"gemini-2.5-pro\","
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/run_strict_replay_gauntlet.py",
+    "line": 107,
+    "pattern": "262277406581",
+    "snippet": "\"project\": \"262277406581\""
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/reports/reorg/HIDDEN_FILES_AUDIT.md",
+    "line": 13,
+    "pattern": "gemini-",
+    "snippet": "The big one is **`.agents` on your Desktop** \u2014 a hidden folder with ~21 AI \u201cskills\u201d (instructions and data that Antigravity/Gemini-style age"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/src/zero_copy_engine/tests/kaggle_benchmark_submission.py",
+    "line": 61,
+    "pattern": "gemini-",
+    "snippet": "# benchmark.run(models=[\"gemini-1.5-pro\", \"gemini-1.5-flash\", \"llama-3.1-70b\", \"deepseek-coder\"])"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras-app/README.md",
+    "line": 8,
+    "pattern": "Vertex AI",
+    "snippet": "- **Zero-404 Multi-Node Model Routing:** Automatic tag resolution and live failover across **Apple Silicon M4 Ollama (`127.0.0.1:11434`)**, "
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras-app/AGENTS.md",
+    "line": 4,
+    "pattern": "Vertex AI",
+    "snippet": "**Xoras OS** is a native **Tauri 2 + Rust + React 19** Sovereign Agent Command Center engineered exclusively for **Xoras Systems**. The fron"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras-app/dist/assets/index-DnlZJruG.js",
+    "line": 11,
+    "pattern": "gemini-",
+    "snippet": "`).forEach(x=>{x&&_({type:\"ADD_TERMINAL_LINE\",payload:{type:\"err\",text:x}})})}catch(H){_({type:\"ADD_TERMINAL_LINE\",payload:{type:\"err\",text:"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras-app/dist/assets/index-DnlZJruG.js",
+    "line": 20,
+    "pattern": "Vertex AI",
+    "snippet": "Path: ${L.path}`)}finally{R(!1)}},B=async()=>{try{const L=await tt.readFile(\"/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/docs/audits/MULT"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras-app/src/lib/constants.js",
+    "line": 28,
+    "pattern": "262277406581",
+    "snippet": "projectId: \"262277406581\","
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras-app/src/lib/constants.js",
+    "line": 32,
+    "pattern": "262277406581",
+    "snippet": "resourceName: \"projects/262277406581/locations/us-west1/reasoningEngines/520750697147269120\","
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras-app/src/lib/constants.js",
+    "line": 33,
+    "pattern": "gemini-",
+    "snippet": "primaryModel: \"gemini-2.5-pro\","
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras-app/src/lib/constants.js",
+    "line": 469,
+    "pattern": "262277406581",
+    "snippet": "gcsUri: \"gs://262277406581_us-west1_agent_studio_files/adk_artifacts/agent_1792349608125/knowledge_resources/user:HUMAN_PROTECTION_AND_PURPO"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras-app/src/lib/constants.js",
+    "line": 477,
+    "pattern": "262277406581",
+    "snippet": "gcsUri: \"gs://262277406581_us-west1_agent_studio_files/adk_artifacts/agent_1792349608125/knowledge_resources/user:golden_question_set.json/0"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras-app/src/lib/constants.js",
+    "line": 485,
+    "pattern": "262277406581",
+    "snippet": "gcsUri: \"gs://262277406581_us-west1_agent_studio_files/adk_artifacts/agent_1792349608125/knowledge_resources/user:THE_SOVEREIGN_ENTERPRISE_M"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras-app/src/lib/constants.js",
+    "line": 493,
+    "pattern": "262277406581",
+    "snippet": "gcsUri: \"gs://262277406581_us-west1_agent_studio_files/adk_artifacts/agent_1792349608125/knowledge_resources/user:SOVRA_AUTONOMOUS_WORKFORCE"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras-app/src/lib/constants.js",
+    "line": 501,
+    "pattern": "262277406581",
+    "snippet": "gcsUri: \"gs://262277406581_us-west1_agent_studio_files/adk_artifacts/agent_1792349608125/knowledge_resources/user:SOVRA_DSL_COMPREHENSIVE_GU"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras-app/src/lib/constants.js",
+    "line": 509,
+    "pattern": "262277406581",
+    "snippet": "gcsUri: \"gs://262277406581_us-west1_agent_studio_files/adk_artifacts/agent_1792349608125/knowledge_resources/user:SOVEREIGN_ARCHITECTURAL_VI"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras-app/src/lib/constants.js",
+    "line": 517,
+    "pattern": "262277406581",
+    "snippet": "gcsUri: \"gs://262277406581_us-west1_agent_studio_files/adk_artifacts/agent_1792349608125/knowledge_resources/user:NUMERICAL_AND_MONETARY_VER"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras-app/src/lib/constants.js",
+    "line": 525,
+    "pattern": "262277406581",
+    "snippet": "gcsUri: \"gs://262277406581_us-west1_agent_studio_files/adk_artifacts/agent_1792349608125/knowledge_resources/user:provisional_measurement_pr"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras-app/src/lib/constants.js",
+    "line": 533,
+    "pattern": "262277406581",
+    "snippet": "gcsUri: \"gs://262277406581_us-west1_agent_studio_files/adk_artifacts/agent_1792349608125/knowledge_resources/user:RAW_IP_DISCLOSURE_NOTES.md"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras-app/src/lib/constants.js",
+    "line": 541,
+    "pattern": "262277406581",
+    "snippet": "gcsUri: \"gs://262277406581_us-west1_agent_studio_files/adk_artifacts/agent_1792349608125/knowledge_resources/user:SOVEREIGN_OMEGA_PROTOCOL.m"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras_agent_framework/xoras.env.yaml",
+    "line": 23,
+    "pattern": "gemini-",
+    "snippet": "model: \"gemini-2.5-flash\""
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras_agent_framework/xoras/config.py",
+    "line": 34,
+    "pattern": "gemini-",
+    "snippet": "orchestrator_model: str = \"gemini-2.5-flash\""
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras_agent_framework/xoras/config.py",
+    "line": 86,
+    "pattern": "gemini-",
+    "snippet": "orchestrator_model=orch_raw.get(\"model\", \"gemini-2.5-flash\"),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras_agent_framework/xoras/cli.py",
+    "line": 53,
+    "pattern": "gemini-",
+    "snippet": "model: \"gemini-2.5-flash\""
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras_agent_framework/build/lib/xoras/config.py",
+    "line": 34,
+    "pattern": "gemini-",
+    "snippet": "orchestrator_model: str = \"gemini-2.5-flash\""
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras_agent_framework/build/lib/xoras/config.py",
+    "line": 86,
+    "pattern": "gemini-",
+    "snippet": "orchestrator_model=orch_raw.get(\"model\", \"gemini-2.5-flash\"),"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras_agent_framework/build/lib/xoras/cli.py",
+    "line": 53,
+    "pattern": "gemini-",
+    "snippet": "model: \"gemini-2.5-flash\""
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras_info_web/cloudflare_worker_daxx.js",
+    "line": 3,
+    "pattern": "262277406581",
+    "snippet": "* Target: projects/262277406581/locations/us-west1/reasoningEngines/520750697147269120"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras_info_web/cloudflare_worker_daxx.js",
+    "line": 6,
+    "pattern": "aiplatform\\.googleapis\\.com",
+    "snippet": "const REASONING_ENGINE_URL = \"https://us-west1-aiplatform.googleapis.com/v1/projects/262277406581/locations/us-west1/reasoningEngines/520750"
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras_info_web/assets/teams-B1RG1H3-.js",
+    "line": 2,
+    "pattern": "Google Search",
+    "snippet": "3 worker agents: researcher (has Google Search + URL fetch tools), coder (can write files and run shell), reporter."
+  },
+  {
+    "file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces/xoras_info_web/assets/xoras_overlay.js",
+    "line": 402,
+    "pattern": "Vertex AI",
+    "snippet": "return \"DAXX Master Conductor: Cloud DAXX operates as an uncorrupted witness. The cloud node (Vertex AI / us-west1) never mutates physical A"
+  }
+]

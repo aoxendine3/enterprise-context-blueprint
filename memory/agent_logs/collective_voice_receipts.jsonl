@@ -26,3 +26,16 @@
 {"agent": "collective", "chars": 651, "phase": "BREAKDOWN", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T15:35:11Z", "verdict": "COMPLIANT", "violations": []}
 {"agent": "collective", "chars": 509, "phase": null, "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T15:50:41Z", "verdict": "REFUSED_VOICE_VIOLATION", "violations": ["missing phase marker \u2014 every turn must open with [NEXT], [BREAKDOWN] or [SUMMARY]"]}
 {"agent": "collective", "chars": 536, "phase": "NEXT", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T15:50:48Z", "verdict": "COMPLIANT", "violations": []}
+{"agent": "collective", "chars": 883, "phase": "BREAKDOWN", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T16:12:15Z", "verdict": "COMPLIANT", "violations": []}
+{"agent": "collective", "chars": 313, "phase": "NEXT", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T17:42:48Z", "verdict": "COMPLIANT", "violations": []}
+{"agent": "collective", "chars": 728, "phase": "BREAKDOWN", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T17:53:18Z", "verdict": "COMPLIANT", "violations": []}
+{"agent": "collective", "chars": 621, "phase": "BREAKDOWN", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T18:23:56Z", "verdict": "COMPLIANT", "violations": []}
+{"agent": "collective", "chars": 725, "phase": "BREAKDOWN", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T18:32:12Z", "verdict": "REFUSED_VOICE_VIOLATION", "violations": ["no completed-work statement \u2014 a breakdown must say what was actually done"]}
+{"agent": "collective", "chars": 726, "phase": "BREAKDOWN", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T18:32:15Z", "verdict": "REFUSED_VOICE_VIOLATION", "violations": ["no completed-work statement \u2014 a breakdown must say what was actually done"]}
+{"agent": "collective", "chars": 139, "phase": "BREAKDOWN", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T18:32:17Z", "verdict": "REFUSED_VOICE_VIOLATION", "violations": ["no next-step stated \u2014 the operator must always know what happens next", "no completed-work statement \u2014 a breakdown must say what was actually done"]}
+{"agent": "collective", "chars": 706, "phase": "BREAKDOWN", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T18:32:22Z", "verdict": "COMPLIANT", "violations": []}
+{"agent": "collective", "chars": 611, "phase": "NEXT", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T18:40:34Z", "verdict": "COMPLIANT", "violations": []}
+{"agent": "collective", "chars": 792, "phase": "BREAKDOWN", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T19:05:14Z", "verdict": "COMPLIANT", "violations": []}
+{"agent": "collective", "chars": 703, "phase": "BREAKDOWN", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T19:09:34Z", "verdict": "COMPLIANT", "violations": []}
+{"agent": "collective", "chars": 698, "phase": "NEXT", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T19:12:37Z", "verdict": "COMPLIANT", "violations": []}
+{"agent": "collective", "chars": 793, "phase": "NEXT", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T19:28:10Z", "verdict": "COMPLIANT", "violations": []}

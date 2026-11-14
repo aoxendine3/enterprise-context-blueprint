@@ -105,12 +105,14 @@
 ---
 
 ## 4.6 DART Architecture (Data Accounts Reverse/Recall Tracking)
-- **Engine:** `core/memory/dart_ring_buffer.py`
-- **Memory Paradigm:** Zero-heap, 512-byte cache-aligned HexCell ring buffer (4,096 capacity).
-- **Execution Speed:** 3.76M ops/sec (<0.27 µs per commit on physical Apple Silicon M4 unified memory).
-- **Stage 1 Wake Contract Integration:** Retrospective reverse recall (`recall_backlog(limit=50)`) immediately hydrates agent context with the preceding 50 state transitions in strict LIFO order.
-- **Formal Verification:** Z3 SMT solver proved chromatic reverse-order monotonicity mathematically absolute (`UNSAT` on out-of-order recall attempt).
-- **Proof Receipt:** `memory/catch_log/DART_RETROSPECTIVE_RECALL_RECEIPT.json`.
+- **Hot engine:** `core/memory/dart_ring_buffer.py` (4096 × 512 HexCell LIFO ring).
+- **Durable engine (ACTIVE):** `core/memory/dart_db.py` → `memory/tri_brain/dart_db/`
+  - WAL (`wal.jsonl`), Merkle epochs (`merkle_epochs.jsonl`), SQLite cold spill (`cold.sqlite`).
+  - Local checkpoints under `dart_db/checkpoints/` + sovereign snapshot/promote (safe points stay current).
+- **Stage 1 Wake:** `recall_backlog(limit=50)` LIFO; deep wake via `recall_sequence_range`.
+- **Formal Verification:** Z3 UNSAT on reverse-order violation (`DART_RETROSPECTIVE_RECALL_RECEIPT.json`).
+- **Dart DB Acceptance:** `memory/catch_log/DART_DB_ACCEPTANCE_RECEIPT.json` (`VERIFIED_DART_DB_ACCEPTANCE`).
+- **Orchestrator:** `agents/orchestrator/model_orchestrator.py` records into Dart DB when online.
 
 ---
 
