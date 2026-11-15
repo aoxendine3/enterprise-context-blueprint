@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1180" viewBox="0 0 1600 1180">
+<rect width="1600" height="1180" fill="#0b0f14"/>
+<defs>
+<pattern id="hatch" width="8" height="8" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+<line x1="0" y1="0" x2="0" y2="8" stroke="#ff5c5c" stroke-width="2"/>
+</pattern>
+</defs>
+<text x="80.00" y="52.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="26" fill="#e6edf3" text-anchor="start" font-weight="bold" opacity="1.0">CANONICAL MASS 18432 — POINCARE SEMANTIC MAP</text>
+<text x="80.00" y="78.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#8b98a5" text-anchor="start" font-weight="normal" opacity="1.0">Every value below is computed by core/ops/memory/poincare_semantic_gate.py at render time.</text>
+<text x="80.00" y="130.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="15" fill="#35e0d0" text-anchor="start" font-weight="bold" opacity="1.0">A.  GEODESIC RADIAL CHART  (rho = artanh r, an isometric coordinate)</text>
+<text x="80.00" y="152.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#8b98a5" text-anchor="start" font-weight="normal" opacity="1.0">The Poincare ball cannot show this separation; rho can.</text>
+<rect x="714.38" y="300" width="139.29" height="92" fill="#57d68d" opacity="0.10"/>
+<line x1="714.38" y1="300.00" x2="714.38" y2="392.00" stroke="#57d68d" stroke-width="1" opacity="0.7" stroke-dasharray="4 4"/>
+<line x1="853.66" y1="300.00" x2="853.66" y2="392.00" stroke="#57d68d" stroke-width="1" opacity="0.7" stroke-dasharray="4 4"/>
+<text x="784.02" y="272.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#57d68d" text-anchor="middle" font-weight="normal" opacity="1.0">admissible in-place band  ±0.5</text>
+<line x1="100.00" y1="392.00" x2="880.00" y2="392.00" stroke="#8b98a5" stroke-width="1" opacity="1.0"/>
+<line x1="100.00" y1="392.00" x2="100.00" y2="399.00" stroke="#8b98a5" stroke-width="1" opacity="1.0"/>
+<text x="100.00" y="416.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#8b98a5" text-anchor="middle" font-weight="normal" opacity="1.0">0</text>
+<line x1="239.29" y1="392.00" x2="239.29" y2="399.00" stroke="#8b98a5" stroke-width="1" opacity="1.0"/>
+<text x="239.29" y="416.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#8b98a5" text-anchor="middle" font-weight="normal" opacity="1.0">1</text>
+<line x1="378.57" y1="392.00" x2="378.57" y2="399.00" stroke="#8b98a5" stroke-width="1" opacity="1.0"/>
+<text x="378.57" y="416.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#8b98a5" text-anchor="middle" font-weight="normal" opacity="1.0">2</text>
+<line x1="517.86" y1="392.00" x2="517.86" y2="399.00" stroke="#8b98a5" stroke-width="1" opacity="1.0"/>
+<text x="517.86" y="416.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#8b98a5" text-anchor="middle" font-weight="normal" opacity="1.0">3</text>
+<line x1="657.14" y1="392.00" x2="657.14" y2="399.00" stroke="#8b98a5" stroke-width="1" opacity="1.0"/>
+<text x="657.14" y="416.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#8b98a5" text-anchor="middle" font-weight="normal" opacity="1.0">4</text>
+<line x1="796.43" y1="392.00" x2="796.43" y2="399.00" stroke="#8b98a5" stroke-width="1" opacity="1.0"/>
+<text x="796.43" y="416.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#8b98a5" text-anchor="middle" font-weight="normal" opacity="1.0">5</text>
+<text x="880.00" y="436.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#8b98a5" text-anchor="end" font-weight="normal" opacity="1.0">rho  (geodesic distance from origin)</text>
+<line x1="552.84" y1="310.00" x2="552.84" y2="392.00" stroke="#ff5c5c" stroke-width="1" opacity="0.95"/>
+<text x="552.84" y="304.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#ff5c5c" text-anchor="middle" font-weight="normal" opacity="1.0">666.666</text>
+<circle cx="552.84" cy="392.0" r="3.2" fill="#ff5c5c"/>
+<line x1="420.72" y1="290.00" x2="420.72" y2="392.00" stroke="#8b98a5" stroke-width="1" opacity="0.95"/>
+<text x="420.72" y="284.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#8b98a5" text-anchor="middle" font-weight="normal" opacity="1.0">100</text>
+<circle cx="420.72" cy="392.0" r="3.2" fill="#8b98a5"/>
+<line x1="448.95" y1="330.00" x2="448.95" y2="392.00" stroke="#8b98a5" stroke-width="1" opacity="0.95"/>
+<text x="448.95" y="324.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#8b98a5" text-anchor="middle" font-weight="normal" opacity="1.0">150</text>
+<circle cx="448.95" cy="392.0" r="3.2" fill="#8b98a5"/>
+<line x1="749.20" y1="310.00" x2="749.20" y2="392.00" stroke="#57d68d" stroke-width="1" opacity="0.95"/>
+<text x="749.20" y="304.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#57d68d" text-anchor="middle" font-weight="normal" opacity="1.0">11178</text>
+<circle cx="749.20" cy="392.0" r="3.2" fill="#57d68d"/>
+<line x1="784.02" y1="330.00" x2="784.02" y2="392.00" stroke="#35e0d0" stroke-width="2" opacity="0.95"/>
+<text x="784.02" y="324.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#35e0d0" text-anchor="middle" font-weight="normal" opacity="1.0">18432</text>
+<circle cx="784.02" cy="392.0" r="3.2" fill="#35e0d0"/>
+<line x1="818.84" y1="310.00" x2="818.84" y2="392.00" stroke="#57d68d" stroke-width="1" opacity="0.95"/>
+<text x="818.84" y="304.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#57d68d" text-anchor="middle" font-weight="normal" opacity="1.0">30370</text>
+<circle cx="818.84" cy="392.0" r="3.2" fill="#57d68d"/>
+<text x="786.81" y="358.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#35e0d0" text-anchor="start" font-weight="normal" opacity="1.0">+1 -&gt; 18433 is 2.7e-5 further</text>
+<text x="80.00" y="440.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#8b98a5" text-anchor="start" font-weight="normal" opacity="1.0">d_H = |ln(a/b)| for same-sign values.</text>
+<text x="80.00" y="460.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#8b98a5" text-anchor="start" font-weight="normal" opacity="1.0">One unit of 18432 moves rho by 2.7e-5; the bound is a ratio, not an absolute tolerance.</text>
+<text x="1000.00" y="130.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="15" fill="#35e0d0" text-anchor="start" font-weight="bold" opacity="1.0">B.  THE BALL, DRAWN TRUE</text>
+<text x="1000.00" y="152.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#8b98a5" text-anchor="start" font-weight="normal" opacity="1.0">Same two states, at their actual radii.</text>
+<circle cx="1180.0" cy="315.0" r="140.0" fill="none" stroke="#8b98a5" stroke-width="1.2"/>
+<circle cx="1180.0" cy="315.0" r="106.62" fill="none" stroke="#1d2733" stroke-width="1"/>
+<circle cx="1180.0" cy="315.0" r="134.96" fill="none" stroke="#1d2733" stroke-width="1"/>
+<circle cx="1180.0" cy="315.0" r="139.31" fill="none" stroke="#1d2733" stroke-width="1"/>
+<circle cx="1180.0" cy="315.0" r="139.91" fill="none" stroke="#1d2733" stroke-width="1"/>
+<circle cx="1180.0" cy="315.0" r="139.99" fill="none" stroke="#1d2733" stroke-width="1"/>
+<circle cx="1180.0" cy="315.0" r="2.5" fill="#8b98a5"/>
+<text x="1186.00" y="309.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#8b98a5" text-anchor="start" font-weight="normal" opacity="1.0">0</text>
+<circle cx="1319.58" cy="315.0" r="4" fill="#ff5c5c"/>
+<circle cx="1319.98" cy="315.0" r="4" fill="#35e0d0"/>
+<line x1="1319.58" y1="325.00" x2="1370.00" y2="424.00" stroke="#ff5c5c" stroke-width="1" opacity="0.8" stroke-dasharray="3 3"/>
+<line x1="1319.98" y1="307.00" x2="1370.00" y2="404.00" stroke="#35e0d0" stroke-width="1" opacity="0.8" stroke-dasharray="3 3"/>
+<text x="1378.00" y="408.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#35e0d0" text-anchor="start" font-weight="normal" opacity="1.0">18432    r = 0.9998915</text>
+<text x="1378.00" y="426.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#ff5c5c" text-anchor="start" font-weight="normal" opacity="1.0">666.666  r = 0.9970045</text>
+<text x="1378.00" y="444.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#ffb347" text-anchor="start" font-weight="normal" opacity="1.0">dr = 0.0029 of 1.0</text>
+<text x="1000.00" y="486.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#8b98a5" text-anchor="start" font-weight="normal" opacity="1.0">Under one pixel apart. A drawing of the disk would</text>
+<text x="1000.00" y="504.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#8b98a5" text-anchor="start" font-weight="normal" opacity="1.0">suggest no drift, while the gate measures 3.3196.</text>
+<text x="80.00" y="560.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="15" fill="#35e0d0" text-anchor="start" font-weight="bold" opacity="1.0">C.  WHAT THE GATE DECIDES, MEASURED</text>
+<text x="80.00" y="582.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#8b98a5" text-anchor="start" font-weight="normal" opacity="1.0">Ceiling MAX_SCALAR_JUMP = 0.5.  Bars are d_H from the live module.</text>
+<line x1="330.00" y1="894.17" x2="1160.00" y2="894.17" stroke="#ffb347" stroke-width="1.4" opacity="0.95" stroke-dasharray="6 5"/>
+<text x="1170.00" y="898.17" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#ffb347" text-anchor="start" font-weight="normal" opacity="1.0">0.5 ceiling</text>
+<text x="314.00" y="934.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#e6edf3" text-anchor="end" font-weight="normal" opacity="1.0">18432  -&gt;  666.666</text>
+<rect x="330.0" y="902.00" width="765.34" height="38.0" fill="#ff5c5c" opacity="0.75"/>
+<text x="1103.34" y="928.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#ff5c5c" text-anchor="start" font-weight="normal" opacity="1.0">3.319554</text>
+<text x="1430.00" y="928.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#ff5c5c" text-anchor="start" font-weight="bold" opacity="1.0">VETO</text>
+<text x="314.00" y="874.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#e6edf3" text-anchor="end" font-weight="normal" opacity="1.0">100  -&gt;  200</text>
+<rect x="330.0" y="842.00" width="159.81" height="38.0" fill="#ff5c5c" opacity="0.75"/>
+<text x="497.81" y="868.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#ff5c5c" text-anchor="start" font-weight="normal" opacity="1.0">0.693147</text>
+<text x="1430.00" y="868.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#ff5c5c" text-anchor="start" font-weight="bold" opacity="1.0">VETO</text>
+<text x="314.00" y="814.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#e6edf3" text-anchor="end" font-weight="normal" opacity="1.0">100  -&gt;  150</text>
+<rect x="330.0" y="782.00" width="93.48" height="38.0" fill="#57d68d" opacity="0.75"/>
+<text x="431.48" y="808.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#57d68d" text-anchor="start" font-weight="normal" opacity="1.0">0.405465</text>
+<text x="1430.00" y="808.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#57d68d" text-anchor="start" font-weight="bold" opacity="1.0">PASS</text>
+<text x="314.00" y="754.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#e6edf3" text-anchor="end" font-weight="normal" opacity="1.0">18432  -&gt;  18433</text>
+<rect x="330.0" y="722.00" width="1.50" height="38.0" fill="#57d68d" opacity="0.75"/>
+<text x="339.50" y="748.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#57d68d" text-anchor="start" font-weight="normal" opacity="1.0">0.000054</text>
+<text x="1430.00" y="748.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#57d68d" text-anchor="start" font-weight="bold" opacity="1.0">PASS</text>
+<text x="314.00" y="694.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#e6edf3" text-anchor="end" font-weight="normal" opacity="1.0">18432  -&gt;  18432</text>
+<rect x="330.0" y="662.00" width="1.50" height="38.0" fill="#57d68d" opacity="0.75"/>
+<text x="339.50" y="688.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#57d68d" text-anchor="start" font-weight="normal" opacity="1.0">0.000000</text>
+<text x="1430.00" y="688.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#57d68d" text-anchor="start" font-weight="bold" opacity="1.0">PASS</text>
+<text x="314.00" y="634.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#e6edf3" text-anchor="end" font-weight="normal" opacity="1.0">18432  -&gt;  -18432</text>
+<rect x="330.0" y="602.00" width="830.00" height="38.0" fill="url(#hatch)" opacity="0.55"/>
+<text x="1170.00" y="628.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#ff5c5c" text-anchor="start" font-weight="normal" opacity="1.0">sign-class change = MAX</text>
+<text x="1430.00" y="628.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#ff5c5c" text-anchor="start" font-weight="bold" opacity="1.0">VETO</text>
+<line x1="330.00" y1="940.00" x2="1160.00" y2="940.00" stroke="#8b98a5" stroke-width="1" opacity="1.0"/>
+<text x="330.00" y="962.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#8b98a5" text-anchor="middle" font-weight="normal" opacity="1.0">0</text>
+<text x="1160.00" y="962.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#8b98a5" text-anchor="end" font-weight="normal" opacity="1.0">3.6   d_H</text>
+<line x1="80.00" y1="1040.00" x2="1520.00" y2="1040.00" stroke="#1d2733" stroke-width="1" opacity="1.0"/>
+<text x="80.00" y="1070.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#8b98a5" text-anchor="start" font-weight="normal" opacity="1.0">rendered 2026-11-15T08:36:54+00:00   ·   canonical_mass = 18432.0   ·   poison = 666.666</text>
+<text x="80.00" y="1092.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#8b98a5" text-anchor="start" font-weight="normal" opacity="1.0">rho = artanh r = |ln v| / 2.  Same-sign values: d_H = |ln(a/b)|.  A sign-class change is maximum drift.</text>
+<text x="80.00" y="1114.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#ffb347" text-anchor="start" font-weight="normal" opacity="1.0">The 18,432-dimensional fabric named in AGENTS.md is NOT depicted: no measurement of it exists.</text>
+<text x="80.00" y="1136.00" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#8b98a5" text-anchor="start" font-weight="normal" opacity="1.0">This maps the scalar 18432 that the gate actually writes, reads and vetoes.</text>
+</svg>
