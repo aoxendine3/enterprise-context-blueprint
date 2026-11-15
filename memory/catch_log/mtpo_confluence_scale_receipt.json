@@ -1,0 +1,74 @@
+{
+  "payload": {
+    "timestamp": 1794724225.0938802,
+    "standard": "SOVRA-MTPO-CONFLUENCE-v2.0",
+    "hardware_substrate": "Apple Silicon M-Series Bare Metal",
+    "scale_results": {
+      "16_agents_uniform": {
+        "num_agents": 16,
+        "txs_per_agent": 1000,
+        "total_transactions": 16000,
+        "skewed": false,
+        "elapsed_sec": 0.2518,
+        "throughput_ops_sec": 63531.27,
+        "mean_latency_ms": 0.0004,
+        "p99_latency_ms": 0.0007,
+        "final_state_sum": 287984,
+        "total_committed_deltas": 287984,
+        "total_aborts": 0,
+        "confluence_verified": true
+      },
+      "32_agents_uniform": {
+        "num_agents": 32,
+        "txs_per_agent": 500,
+        "total_transactions": 16000,
+        "skewed": false,
+        "elapsed_sec": 0.1291,
+        "throughput_ops_sec": 123912.62,
+        "mean_latency_ms": 0.0003,
+        "p99_latency_ms": 0.0007,
+        "final_state_sum": 543968,
+        "total_committed_deltas": 543968,
+        "total_aborts": 0,
+        "confluence_verified": true
+      },
+      "64_agents_uniform": {
+        "num_agents": 64,
+        "txs_per_agent": 250,
+        "total_transactions": 16000,
+        "skewed": false,
+        "elapsed_sec": 0.0796,
+        "throughput_ops_sec": 201117.35,
+        "mean_latency_ms": 0.0003,
+        "p99_latency_ms": 0.0016,
+        "final_state_sum": 1055936,
+        "total_committed_deltas": 1055936,
+        "total_aborts": 0,
+        "confluence_verified": true
+      },
+      "32_agents_skewed_90_10": {
+        "num_agents": 32,
+        "txs_per_agent": 500,
+        "total_transactions": 16000,
+        "skewed": true,
+        "elapsed_sec": 0.1284,
+        "throughput_ops_sec": 124570.13,
+        "mean_latency_ms": 0.0003,
+        "p99_latency_ms": 0.0007,
+        "final_state_sum": 543968,
+        "total_committed_deltas": 543968,
+        "total_aborts": 0,
+        "confluence_verified": true
+      }
+    },
+    "invariants": {
+      "zero_lost_updates": true,
+      "zero_transaction_aborts": true,
+      "p99_latency_under_5ms": true,
+      "church_rosser_quiescence_confluence": true
+    },
+    "verdict": "VERIFIED_AND_CERTIFIED"
+  },
+  "ed25519_signature_hex": "851d0109c2b85a587027e34def89aa49c4cf4321affc4b2aeaa89df1e057399b68e81445a6bc8aafad104c202e827e6d06f2248f2726bbcc89bc1f207d19ea05",
+  "public_key_hex": "ac6dfec30a258e33dff1e5955a50a40c61a211dad0ef443811680f15adeeb2ef"
+}
