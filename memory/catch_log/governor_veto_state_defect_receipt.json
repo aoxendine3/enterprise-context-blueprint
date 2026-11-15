@@ -1,75 +1,149 @@
 {
   "defect": {
-    "honest_row_survived_supersede": false,
-    "reproduced": true,
+    "authoritative_value": "18432.0",
+    "blocked": true,
+    "honest_rows_accepted": 2,
+    "poison_rows_stored": 0,
+    "reproduced": false,
     "rows_after": [
       [
-        "666.666",
+        "18432.0",
         "ACCEPTED",
-        "2026-11-15T00:00:00Z"
+        "2026-11-15T08:16:03+00:00"
       ],
       [
-        "666.666",
+        "18432.0",
         "ACCEPTED",
-        "2026-11-15T00:01:00Z"
-      ],
-      [
-        "666.666",
-        "ACCEPTED",
-        "2026-11-15T00:02:00Z"
+        "2026-11-15T08:21:03+00:00"
       ]
     ],
     "same_timestamp_row_count": 1,
-    "unannounced_poison_accepted": 2
+    "unannounced_poison_accepted": 0
   },
-  "generated_utc": "2026-11-15T07:36:56Z",
+  "generated_utc": "2026-11-15T08:16:03Z",
   "isolation": "temporary database only; live governed_memory.db untouched",
-  "standard": "XORAS-GOVERNOR-VETO-STATE-DEFECT-v1.0",
+  "standard": "XORAS-GOVERNOR-SEMANTIC-VETO-REGRESSION-v2.0",
   "steps": [
     {
       "accepted": true,
-      "explicit_supersede": true,
-      "governance_score": 0.9764,
+      "agent": "clara",
+      "explicit_supersede": false,
+      "gate_decision": "ANCHOR",
+      "gate_distance": null,
+      "gate_reason": "NO_BASELINE_ANCHOR",
+      "governance_score": 0.9875,
       "status": "ACCEPTED",
       "step": "honest_baseline",
       "supersession_axis": 1.0,
-      "timestamp": "2026-11-15T00:00:00Z",
+      "timestamp": "2026-11-15T08:16:03+00:00",
       "value": "18432.0",
       "veto_reasons": []
     },
     {
-      "accepted": true,
+      "accepted": false,
+      "agent": "clara",
       "explicit_supersede": true,
-      "governance_score": 0.9664,
-      "status": "ACCEPTED",
-      "step": "signed_poison_explicit_supersede_same_ts",
-      "supersession_axis": 0.95,
-      "timestamp": "2026-11-15T00:00:00Z",
+      "gate_decision": "VETO",
+      "gate_distance": 3.319554,
+      "gate_reason": "SCALAR_JUMP d_H=3.3196 > 0.5",
+      "governance_score": 0.8575,
+      "status": "HARD_VETOED_BY_GOVERNOR",
+      "step": "poison_explicit_supersede_same_ts",
+      "supersession_axis": 0.35,
+      "timestamp": "2026-11-15T08:16:03+00:00",
       "value": "666.666",
-      "veto_reasons": []
+      "veto_reasons": [
+        "CONTRADICTION_PERSISTENCE (S=0.35 < 0.5)",
+        "UNAUTHORIZED_SUPERSEDE (seat 'clara' not in ['jarvis', 'maxx'])",
+        "SEMANTIC_DRIFT_GATE (SCALAR_JUMP d_H=3.3196 > 0.5)"
+      ]
+    },
+    {
+      "accepted": false,
+      "agent": "clara",
+      "explicit_supersede": false,
+      "gate_decision": "VETO",
+      "gate_distance": 3.319554,
+      "gate_reason": "SCALAR_JUMP d_H=3.3196 > 0.5",
+      "governance_score": 0.8575,
+      "status": "HARD_VETOED_BY_GOVERNOR",
+      "step": "unannounced_poison_t+1m",
+      "supersession_axis": 0.35,
+      "timestamp": "2026-11-15T08:17:03+00:00",
+      "value": "666.666",
+      "veto_reasons": [
+        "CONTRADICTION_PERSISTENCE (S=0.35 < 0.5)",
+        "SEMANTIC_DRIFT_GATE (SCALAR_JUMP d_H=3.3196 > 0.5)"
+      ]
+    },
+    {
+      "accepted": false,
+      "agent": "clara",
+      "explicit_supersede": false,
+      "gate_decision": "VETO",
+      "gate_distance": 3.319554,
+      "gate_reason": "SCALAR_JUMP d_H=3.3196 > 0.5",
+      "governance_score": 0.8575,
+      "status": "HARD_VETOED_BY_GOVERNOR",
+      "step": "unannounced_poison_t+2m",
+      "supersession_axis": 0.35,
+      "timestamp": "2026-11-15T08:18:03+00:00",
+      "value": "666.666",
+      "veto_reasons": [
+        "CONTRADICTION_PERSISTENCE (S=0.35 < 0.5)",
+        "SEMANTIC_DRIFT_GATE (SCALAR_JUMP d_H=3.3196 > 0.5)"
+      ]
+    },
+    {
+      "accepted": false,
+      "agent": "clara",
+      "explicit_supersede": false,
+      "gate_decision": "VETO",
+      "gate_distance": 3.319554,
+      "gate_reason": "SCALAR_JUMP d_H=3.3196 > 0.5",
+      "governance_score": 0.8575,
+      "status": "HARD_VETOED_BY_GOVERNOR",
+      "step": "unannounced_poison_t+3m",
+      "supersession_axis": 0.35,
+      "timestamp": "2026-11-15T08:19:03+00:00",
+      "value": "666.666",
+      "veto_reasons": [
+        "CONTRADICTION_PERSISTENCE (S=0.35 < 0.5)",
+        "SEMANTIC_DRIFT_GATE (SCALAR_JUMP d_H=3.3196 > 0.5)"
+      ]
+    },
+    {
+      "accepted": false,
+      "agent": "maxx",
+      "explicit_supersede": true,
+      "gate_decision": "VETO",
+      "gate_distance": 3.319554,
+      "gate_reason": "SCALAR_JUMP d_H=3.3196 > 0.5",
+      "governance_score": 0.985,
+      "status": "HARD_VETOED_BY_GOVERNOR",
+      "step": "authorised_supersede_poison",
+      "supersession_axis": 0.95,
+      "timestamp": "2026-11-15T08:20:03+00:00",
+      "value": "666.666",
+      "veto_reasons": [
+        "SEMANTIC_DRIFT_GATE (SCALAR_JUMP d_H=3.3196 > 0.5)"
+      ]
     },
     {
       "accepted": true,
+      "agent": "clara",
       "explicit_supersede": false,
-      "governance_score": 0.9665,
+      "gate_decision": "PASS",
+      "gate_distance": 0.0,
+      "gate_reason": "WITHIN_GEODESIC_BOUND",
+      "governance_score": 0.9775,
       "status": "ACCEPTED",
-      "step": "unannounced_poison_t1",
+      "step": "honest_restatement",
       "supersession_axis": 0.95,
-      "timestamp": "2026-11-15T00:01:00Z",
-      "value": "666.666",
-      "veto_reasons": []
-    },
-    {
-      "accepted": true,
-      "explicit_supersede": false,
-      "governance_score": 0.9665,
-      "status": "ACCEPTED",
-      "step": "unannounced_poison_t2",
-      "supersession_axis": 0.95,
-      "timestamp": "2026-11-15T00:02:00Z",
-      "value": "666.666",
+      "timestamp": "2026-11-15T08:21:03+00:00",
+      "value": "18432.0",
       "veto_reasons": []
     }
   ],
-  "summary": "Contradiction veto is defeated by same-timestamp row overwrite and unordered per-key fetch; unannounced poison is accepted after one supersede."
+  "summary": "Signed semantic poison is refused by the Poincare gate on every path: same-timestamp supersede, non-authorised supersede, authorised supersede, and repeated unannounced writes. The honest baseline survives and remains the authoritative value."
 }

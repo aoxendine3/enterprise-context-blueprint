@@ -204,3 +204,40 @@
 
 ### Fixed
 - `triple_intensity_byzantine_poison_gauntlet.py` no longer prints a hard-coded "Hard Veto triggered" when the governor returned ACCEPTED; it prints the actual status.
+
+## [2.0.16] — 2026-11-15 — Poincaré gate wired into the governed-memory write path; UPGP harness made fail-closed
+
+**Who:** build seat, by execution on this host.
+**Why:** §2.0.15 established the defect — the governor scored and accepted signed semantic poison because nothing measured semantic distance and an `explicit_supersede` could overwrite the honest baseline. A second defect was found in the same turn: UPGP's own suites printed failures and exited `0`.
+**Reports:** `docs/audits/UPGP_RUN_2026-11-15.md`, `docs/audits/MONTHS_OF_TESTS_REASSESSMENT_2026-11-15.md`
+**Receipts:** `memory/catch_log/governor_veto_state_defect_receipt.json`, `memory/catch_log/triple_intensity_poison_gate_receipt.json`, `memory/catch_log/governed_memory_quarantine_receipt.json`, `memory/catch_log/QUARANTINE_LEDGER.json` (entry 5), `labs/workspaces/upgp-proving-ground/docs/audits/UPGP_GOVERNED_MEMORY_GATE_RECEIPT.json`, `docs/audits/UPGP_RUN_RECEIPT_2026-11-15.json`
+
+### Added
+- `core/ops/memory/poincare_semantic_gate.py` — dependency-free Poincaré metric and a fail-closed `evaluate_transition()`. Scalar values embed as a log-radial point, so two same-sign values satisfy `d_H == |ln(a/b)|` exactly and an in-place write admits at most `e^0.5 ≈ 1.65×` change. Text values are cosmetically normalised first; identical normal forms are admitted, anything else needs a new key version. A sign-class change is maximum drift. The module never raises: any error becomes a veto.
+- `tests/test_governor_poincare_gate.py` — 22 acceptance and property tests, including numeric parity with the existing canonical `PoincareManifold` in `labs/workspaces/sovra_nexus/sovra_core/poincare_hypergraph.py`.
+- `core/ops/scripts/quarantine_governed_memory_poison.py` — backup, copy, mark, ledger, receipt. Idempotent; deletes nothing.
+- `labs/workspaces/upgp-proving-ground/tests/test_governed_memory_gate.py` — UPGP harness that imports the canonical governor instead of reimplementing it; writes its own receipt.
+
+### Fixed
+- **The gate is now in the write path, not beside it.** `evaluate_write_candidate()` calls it before scoring and vetoes on any failure. `explicit_supersede` is never a bypass: supersession additionally requires an anchored baseline and a seat in `SUPERSEDE_AUTHORITY = {"jarvis", "maxx"}`.
+- **Row identity and read order.** Row ids are unique UUIDs (the old `sha256(agent:key:timestamp)` collided), writes are plain `INSERT` (no silent upsert), and `latest_accepted` orders by `created_at DESC, rowid DESC`. Same-timestamp overwrites are no longer possible.
+- **Axis contradiction.** `score_supersession` treated any changed value as a contradiction (S=0.35), which would have vetoed bounded refinements the gate admits. A gate-passing change now scores 0.85; the gate defines the bound and the axis follows it.
+- `score_freshness` vetoes timestamps more than 300 s in the future.
+- `triple_intensity_byzantine_poison_gauntlet.py` no longer colours a veto as success or an acceptance as failure; it prints the real status and asserts 4/4 vetos. Part 1 is labelled a plurality vote model, not PBFT.
+- **UPGP `tests/UPGPProvingGround.test.ts`** set no exit code after printing `[Axis 2] … FAIL`. It now tracks every axis and measured vector, prints `Measured | Not measured | Failures`, and sets `process.exitCode = 1` on failure.
+- **UPGP `ops/scripts/run_upgp_full_test_gauntlet.py`** computed failure, printed it, and exited `0`, while dispatching four pre-written speech lines claiming "100 percent perfection". It now builds speech from the measured result, writes `MEASURED VALUES: …` to the run log, requires a clean red-team report, and returns `0`/`1`. Verified with a `node` shim: forced TS failure → `EXIT=1`.
+
+### Quarantined (preserved, not deleted)
+- 11 `ACCEPTED` poison rows in `.sovereign/hippocampus/governed_memory.db` — 7 × `ramp_key_12 = stolen_key_corrupt_payload`, 4 × `canonical_mass = 666.666`. Copied intact into `memory_records_quarantine`, originals marked `QUARANTINED`, byte-identical backup at `memory/catch_log/backups/governed_memory_20261115T081220Z.db` (sha256 `8b062157…`, pre-state). Status counts after: 40 ACCEPTED, 11 QUARANTINED, 0 accepted poison. Re-run moves 0.
+
+### Established by execution
+- Governor regression: all poison vetoed (d_H = 3.3196 for `18432.0 → 666.666`), 0 poison rows stored, authoritative value `18432.0`, exit 0.
+- 22/22 gate tests pass; 4/4 poison attempts vetoed in the hermetic gauntlet; UPGP gate harness PASS.
+- UPGP replays: two-layer invariant VETO at d_H = 3.1324 with `SIGBUS` on the physical store and `0.000000%` corruption; Poincaré poison replay VETO at d_H = 3.132398.
+- UPGP vector audit: only 3 of 15 named containment vectors measure anything (`VECTOR-01`, `VECTOR-04`, `VECTOR-10`); the other 12 are constants and are now `NOT_MEASURED`. `VECTOR-01` duplicates Axis 1.
+
+### Not established
+- Axis 2 (F-test variance ratio) is not a usable measurement on this host: observed 201.8190, 17.2284, 23.9196, 5.9158 and 1.3966 against a `< 1.50` threshold in consecutive runs. A green run must not be quoted.
+- No 14-Gate Blackbox Gauntlet was run, so UPGP's own `AGENTS.md` standard for architectural proof is not met by this entry.
+- No independent challenger or third-party witness.
+- `canonical_mass` and `ramp_key_12` now have **no** `ACCEPTED` row. Re-anchoring them requires a governed, receipted write of a verified value; that is deliberately left open rather than back-filled by hand.

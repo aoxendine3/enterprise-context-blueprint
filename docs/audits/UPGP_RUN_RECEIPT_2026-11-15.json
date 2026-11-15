@@ -1,0 +1,123 @@
+{
+  "standard": "XORAS-UPGP-RUN-v1.0",
+  "generated_utc": "2026-11-15T08:16:00+00:00",
+  "host": {
+    "platform": "darwin",
+    "machine": "Apple Silicon"
+  },
+  "report": "docs/audits/UPGP_RUN_2026-11-15.md",
+  "scope_statement": "Harness run report. Not architectural proof; UPGP's AGENTS.md requires the 14-Gate Blackbox Gauntlet for that.",
+  "defects_repaired": [
+    "tests/UPGPProvingGround.test.ts printed FAIL and exited 0",
+    "ops/scripts/run_upgp_full_test_gauntlet.py computed failure, printed it, and exited 0; also pre-wrote a '100 percent perfection' narration"
+  ],
+  "axis2_before_repair": {
+    "run1": {
+      "Axis 1": [
+        "[Axis 1] Welch's T-Statistic   : 0.9382 (Target: < 1.96 for \u03b1=0.05) -> PASS"
+      ],
+      "Axis 2": [
+        "[Axis 2] F-Test Variance Ratio : 201.8190 (Target: < 1.50) -> FAIL"
+      ]
+    },
+    "run2": {
+      "Axis 1": [
+        "[Axis 1] Welch's T-Statistic   : 1.7524 (Target: < 1.96 for \u03b1=0.05) -> PASS"
+      ],
+      "Axis 2": [
+        "[Axis 2] F-Test Variance Ratio : 17.2284 (Target: < 1.50) -> FAIL"
+      ]
+    },
+    "run3": {
+      "Axis 1": [
+        "[Axis 1] Welch's T-Statistic   : 1.4149 (Target: < 1.96 for \u03b1=0.05) -> PASS"
+      ],
+      "Axis 2": [
+        "[Axis 2] F-Test Variance Ratio : 23.9196 (Target: < 1.50) -> FAIL"
+      ]
+    }
+  },
+  "axis2_after_repair": {
+    "Axis 1": [
+      "[Axis 1] Welch's T-Statistic   : 0.8890 (Target: < 1.96 for \u03b1=0.05) -> PASS"
+    ],
+    "Axis 2": [
+      "[Axis 2] F-Test Variance Ratio : 5.9158 (Target: < 1.50) -> FAIL"
+    ],
+    "Measured": [
+      "Measured: 3 | Not measured: 12 | Failures: 1"
+    ]
+  },
+  "full_runner_after_repair": {
+    "Axis 1": [
+      "[Axis 1] Welch's T-Statistic   : 0.0749 (Target: < 1.96 for \u03b1=0.05) -> PASS"
+    ],
+    "Axis 2": [
+      "[Axis 2] F-Test Variance Ratio : 1.3966 (Target: < 1.50) -> PASS"
+    ],
+    "Measured": [
+      "Measured: 3 | Not measured: 12 | Failures: 0"
+    ]
+  },
+  "runner_log_tail": [
+    "MEASURED VALUES: z3_rc=0 ts_rc=0 red_rc=0 measured=3 not_measured=12 red_clean=True",
+    "FINAL RESULT: PASSED",
+    "MEASURED VALUES: z3_rc=0 ts_rc=1 red_rc=0 measured=1 not_measured=0 red_clean=True",
+    "FINAL RESULT: FAILED"
+  ],
+  "fail_closed_proof": {
+    "method": "node shim returning exit 1 for UPGPProvingGround.test.ts only, prepended to PATH",
+    "observed_exit_code": 1,
+    "observed_log": "MEASURED VALUES: z3_rc=0 ts_rc=1 red_rc=0 measured=1 not_measured=0 red_clean=True"
+  },
+  "vector_audit": {
+    "total_named": 15,
+    "measured": 3,
+    "not_measured": 12,
+    "measured_ids": [
+      "VECTOR-01",
+      "VECTOR-04",
+      "VECTOR-10"
+    ],
+    "note": "VECTOR-01 duplicates Axis 1. VECTOR-05 and VECTOR-07 are host-state assertions, not containment measurements; they are classified NOT_MEASURED."
+  },
+  "governed_memory_gate": {
+    "harness": "tests/test_governed_memory_gate.py",
+    "canonical_implementation": "core/ops/memory/governed_memory_consolidation_engine.py",
+    "canonical_gate": "core/ops/memory/poincare_semantic_gate.py",
+    "verdict": "PASS",
+    "poison_attempts": 4,
+    "poison_blocked": 4,
+    "authoritative_value": "18432.0",
+    "receipt": "labs/workspaces/upgp-proving-ground/docs/audits/UPGP_GOVERNED_MEMORY_GATE_RECEIPT.json"
+  },
+  "replays": {
+    "two_layer_kernel_invariant": {
+      "verdict": "PASS",
+      "layer_a_decision": "VETO",
+      "layer_a_d_H": 3.1324,
+      "layer_b": "SIGBUS",
+      "state_corruption_delta": "0.000000%"
+    },
+    "poincare_poison_falsification": {
+      "verdict": "VETO",
+      "d_H": 3.132398,
+      "threshold_exceeded_by": 2.632398
+    }
+  },
+  "not_established": [
+    "architectural proof (needs 14-Gate BBQ)",
+    "stable side-channel measurement (Axis 2 varies by ~100x on this host)",
+    "independent adversarial challenge (single seat, single machine)",
+    "the 12 unmeasured vectors have no implementation"
+  ],
+  "file_sha256": {
+    "labs/workspaces/upgp-proving-ground/tests/UPGPProvingGround.test.ts": "f7822710ac70cf61b64847effc14deae293e7e78a5bbe1b6159841c0531c242c",
+    "labs/workspaces/upgp-proving-ground/ops/scripts/run_upgp_full_test_gauntlet.py": "d67ce432d06e2ee7841e8a686cbb7f8b1ac110e79d9d896d444a05557264838e",
+    "labs/workspaces/upgp-proving-ground/tests/test_governed_memory_gate.py": "3168a842a5fb4c3b0c08ea62232955d293ca3f1a1aa93dccd1db60d4f8303f72",
+    "core/ops/memory/governed_memory_consolidation_engine.py": "bd194b8a0f11fd6f11a130b724725ff35068fe55f1475d438b0681296c9df02f",
+    "core/ops/memory/poincare_semantic_gate.py": "73b2fde659d6c7697ef44eeabccb4d736428fc717ad6c15e5b2c20ebf3a16769",
+    "tests/test_governor_poincare_gate.py": "9ed3a65dd836d6d76b79ef398b8768c997d1bc727f717c88d31fd1955e7caaa0",
+    "docs/audits/UPGP_RUN_2026-11-15.md": "92755a4b98353f3253b3bc42b44375b020c00d0f33be923d92249495c787e2aa"
+  }
+}

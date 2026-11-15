@@ -1,9 +1,9 @@
 {
   "gate": "reality_gate.sh",
   "verdict": "REALITY_GATE_PASS",
-  "timestamp_utc": "2026-11-14T19:43:58Z",
+  "timestamp_utc": "2026-11-15T08:17:19Z",
   "gates_passed": 5,
   "gates_failed": 0,
   "first_failure": "",
-  "world_file_lineage_nodes": "3391"
+  "world_file_lineage_nodes": "3431"
 }

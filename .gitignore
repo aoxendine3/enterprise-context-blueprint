@@ -73,3 +73,6 @@ xoras_sentry_backup/xoras-sentry/node_modules/
 .geminiignore
 memory/tri_brain/dart_db/
 AI_Core/
+
+# Large local DB backups (receipted by sha256, not versioned)
+memory/catch_log/backups/*.db

@@ -1,0 +1,104 @@
+{
+  "backup": "memory/catch_log/backups/governed_memory_20261115T081220Z.db",
+  "database": ".sovereign/hippocampus/governed_memory.db",
+  "generated_utc": "2026-11-15T08:12:21+00:00",
+  "ledger": "memory/catch_log/QUARANTINE_LEDGER.json",
+  "reason": "SIGNED_SEMANTIC_POISON_ADMITTED_BEFORE_POINCARE_GATE",
+  "reversal": "Restore the backup, or UPDATE memory_records SET status='ACCEPTED' WHERE id IN (...). Nothing was deleted.",
+  "rows": [
+    {
+      "agent": "clara",
+      "created_at": "2026-09-30T03:45:52.849692+00:00",
+      "key": "ramp_key_12",
+      "quarantine_id": "4697386f271e5a672f5170bdb485971e",
+      "source_row_id": "95c6f4fb0fa69053",
+      "value": "stolen_key_corrupt_payload"
+    },
+    {
+      "agent": "clara",
+      "created_at": "2026-09-30T05:19:38.385105+00:00",
+      "key": "ramp_key_12",
+      "quarantine_id": "6eab2c339661cf91168314dbec7aee42",
+      "source_row_id": "baa494e756ad72e2",
+      "value": "stolen_key_corrupt_payload"
+    },
+    {
+      "agent": "clara",
+      "created_at": "2026-09-30T05:44:53.249835+00:00",
+      "key": "ramp_key_12",
+      "quarantine_id": "22b72425bc720a7e84abd5eb322ea778",
+      "source_row_id": "6d2a5dabb69e310b",
+      "value": "stolen_key_corrupt_payload"
+    },
+    {
+      "agent": "clara",
+      "created_at": "2026-10-01T00:55:07.459885+00:00",
+      "key": "ramp_key_12",
+      "quarantine_id": "f115bf9bce4129051baff9b3d0925419",
+      "source_row_id": "330664afd09246aa",
+      "value": "stolen_key_corrupt_payload"
+    },
+    {
+      "agent": "clara",
+      "created_at": "2026-10-08T21:00:10.053902+00:00",
+      "key": "ramp_key_12",
+      "quarantine_id": "579121050abba682c96b01b9b9af1f2a",
+      "source_row_id": "4228aff2773851ee",
+      "value": "stolen_key_corrupt_payload"
+    },
+    {
+      "agent": "clara",
+      "created_at": "2026-10-13T01:21:56.525100+00:00",
+      "key": "canonical_mass",
+      "quarantine_id": "0eab1bba87502cb738ab06c84c75b8f4",
+      "source_row_id": "8470e6a64ec62721",
+      "value": "666.666"
+    },
+    {
+      "agent": "clara",
+      "created_at": "2026-10-16T05:59:25.414875+00:00",
+      "key": "canonical_mass",
+      "quarantine_id": "9b8fde71086f8cb5602bd34ac142efd7",
+      "source_row_id": "645138c33dc47d1c",
+      "value": "666.666"
+    },
+    {
+      "agent": "clara",
+      "created_at": "2026-11-14T05:19:48.626427+00:00",
+      "key": "ramp_key_12",
+      "quarantine_id": "cd0d0e2b52ff0871faeb0406a19f114a",
+      "source_row_id": "a7f2bf73709051db",
+      "value": "stolen_key_corrupt_payload"
+    },
+    {
+      "agent": "clara",
+      "created_at": "2026-11-15T07:33:25.221920+00:00",
+      "key": "canonical_mass",
+      "quarantine_id": "b1093cb7568a4b51ec15492161bac2d3",
+      "source_row_id": "a280a616800587ec",
+      "value": "666.666"
+    },
+    {
+      "agent": "clara",
+      "created_at": "2026-11-15T07:37:05.645816+00:00",
+      "key": "canonical_mass",
+      "quarantine_id": "89bb280205c2a1ea798cabd634952dca",
+      "source_row_id": "259ca95b194b0c98",
+      "value": "666.666"
+    },
+    {
+      "agent": "clara",
+      "created_at": "2026-11-15T07:59:28.993246+00:00",
+      "key": "ramp_key_12",
+      "quarantine_id": "88dac5fc8be7f7a4d01c7018065482fd",
+      "source_row_id": "43dda53dec0ed21f",
+      "value": "stolen_key_corrupt_payload"
+    }
+  ],
+  "rows_quarantined": 11,
+  "sha256_after": "cdc1c7184165e7603b3cb6a282051803764986016081b4404d208fbf88cb6e0c",
+  "sha256_backup": "8b062157afb52e4a852e4dc85ad2df4a92e8613e6c849d5380d04179b3698eee",
+  "sha256_before": "8b062157afb52e4a852e4dc85ad2df4a92e8613e6c849d5380d04179b3698eee",
+  "size_bytes_before": 52547584,
+  "standard": "XORAS-GOVERNED-MEMORY-QUARANTINE-v1.0"
+}

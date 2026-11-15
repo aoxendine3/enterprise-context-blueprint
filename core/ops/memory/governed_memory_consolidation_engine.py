@@ -1,39 +1,57 @@
 #!/usr/bin/env python3
 """
-XORAS GOVERNED MEMORY CONSOLIDATION ENGINE (POST-QA HARDENED V2)
-=================================================================
-Production-Grade Shared Memory Governance & Consolidation Governor
-Sits between the Memory Store (hippocampus / dream.db) and Agent Runtimes.
+XORAS GOVERNED MEMORY CONSOLIDATION ENGINE (V3 — FAIL-CLOSED SEMANTIC GATE)
+==========================================================================
 
-QA Pushback Improvements:
-- Hard Veto Floor: If ANY axis score (F, P, A, S) < 0.50, immediate VETO, regardless of weighted average.
-- Key-Collision Contradiction Detection: Key conflicts with different values drop S to 0.35 unless explicit_supersede=True.
-- Immutable Historical Fact Support: Event timestamp separation prevents decay of static historical facts.
+Production-grade shared-memory governance and consolidation governor. Sits
+between the memory store (hippocampus / dream.db) and agent runtimes.
 
-Scores every memory write candidate on 4 4-Axis Metrics:
-1. Freshness (F): Time decay, staleness thresholding, recency weighting.
-2. Provenance (P): Cryptographic Merkle origin hash & verified source path.
-3. Authority (A): Writer seat authority, role boundary isolation, leak prevention.
-4. Supersession (S): Logical contradiction detection & supersession handling.
+V3 changes (see CHANGELOG §2.0.16)
+----------------------------------
+1. **Poincaré semantic gate is wired into the write path.** Every write against
+   an existing accepted baseline is evaluated by
+   :mod:`poincare_semantic_gate`. A VETO — or any failure to evaluate — is a
+   hard veto. ``explicit_supersede`` is *not* a bypass.
+2. **Row identity no longer collides.** The row id includes a UUID nonce, and
+   writes use ``INSERT`` rather than ``INSERT OR REPLACE``. A write at the same
+   timestamp can no longer overwrite the honest baseline.
+3. **Authoritative read is ordered.** ``latest_accepted`` reads
+   ``ORDER BY created_at DESC, rowid DESC LIMIT 1``; contradiction detection is
+   no longer history-dependent.
+4. **Supersession is authorised, not asserted.** Only seats in
+   ``SUPERSEDE_AUTHORITY`` may set ``explicit_supersede`` on an existing key,
+   and a supersede claim with no anchor is rejected.
+5. **Future timestamps are vetoed** instead of scoring as maximally fresh.
+6. **Writes are bounded** (key length, value length) and receipt logging is
+   serialised across threads.
 
-Mitigates 6 Named Failure Modes:
-- Degenerate Forgetting
-- Lambda-Prevalence Coupling
-- Unauthorized Leakage
-- Stale Propagation
-- Contradiction Persistence
-- Provenance Collapse
+Scores every memory write candidate on four axes:
+
+1. Freshness (F): time decay, staleness thresholding, recency weighting.
+2. Provenance (P): Merkle origin hash and verified source path.
+3. Authority (A): writer seat authority, role boundary isolation.
+4. Supersession (S): logical contradiction detection and supersession.
+
+Mitigates six named failure modes: degenerate forgetting, lambda-prevalence
+coupling, unauthorised leakage, stale propagation, contradiction persistence,
+and provenance collapse — plus the seventh, semantic poisoning, which the first
+four cannot see.
 """
 
-import sys
-import os
-import json
-import time
-import math
 import hashlib
+import json
+import math
 import pathlib
 import sqlite3
+import threading
+import time
+import uuid
 from datetime import datetime, timezone
+
+try:  # package import
+    from . import poincare_semantic_gate as gate_mod
+except ImportError:  # direct path import (scripts insert this directory)
+    import poincare_semantic_gate as gate_mod  # type: ignore
 
 SSOT_ROOT = pathlib.Path("/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain")
 MEMORY_DIR = SSOT_ROOT / "ops" / "memory"
@@ -46,15 +64,53 @@ MEMORY_DIR.mkdir(parents=True, exist_ok=True)
 CATCH_LOG_DIR.mkdir(parents=True, exist_ok=True)
 GOVERNANCE_DB.parent.mkdir(parents=True, exist_ok=True)
 
+# Seats permitted to claim an in-place supersession of an existing key.
+# Every other seat must publish a new key version instead.
+SUPERSEDE_AUTHORITY = frozenset({"jarvis", "maxx"})
+
+# Hard input bounds. A 10 MB payload is not a memory write; it is an attack.
+MAX_KEY_CHARS = 512
+MAX_VALUE_CHARS = 1 << 20  # 1 MiB
+
+_RECEIPT_LOCK = threading.Lock()
+
+_MIGRATION_COLUMNS = (
+    ("poincare_distance", "REAL"),
+    ("gate_mode", "TEXT"),
+    ("gate_status", "TEXT"),
+    ("supersedes_id", "TEXT"),
+    ("quarantined_at", "TEXT"),
+    ("quarantine_reason", "TEXT"),
+)
+
+
 class Colors:
-    HEADER = '\033[95m'
-    BLUE = '\033[94m'
-    CYAN = '\033[96m'
-    GREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    BOLD = '\033[1m'
-    END = '\033[0m'
+    HEADER = "\033[95m"
+    BLUE = "\033[94m"
+    CYAN = "\033[96m"
+    GREEN = "\033[92m"
+    WARNING = "\033[93m"
+    FAIL = "\033[91m"
+    BOLD = "\033[1m"
+    END = "\033[0m"
+
+
+def _connect() -> sqlite3.Connection:
+    conn = sqlite3.connect(GOVERNANCE_DB, timeout=30.0)
+    conn.execute("PRAGMA busy_timeout = 30000")
+    return conn
+
+
+def _values_equivalent(a, b) -> bool:
+    """Numeric formatting differences are not contradictions."""
+    if a == b:
+        return True
+    try:
+        fa, fb = float(a), float(b)
+    except (TypeError, ValueError):
+        return False
+    return math.isfinite(fa) and math.isfinite(fb) and fa == fb
+
 
 class GovernedMemoryGovernor:
     def __init__(self):
@@ -64,31 +120,44 @@ class GovernedMemoryGovernor:
         self.w_A = 0.25
         self.w_S = 0.20
         self.threshold = 0.85
-        self.hard_axis_floor = 0.50 # Hard Veto Threshold per axis
+        self.hard_axis_floor = 0.50
 
-    def init_db(self):
-        conn = sqlite3.connect(GOVERNANCE_DB)
-        cursor = conn.cursor()
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS memory_records (
-                id TEXT PRIMARY KEY,
-                agent_id TEXT,
-                key TEXT,
-                value TEXT,
-                freshness_score REAL,
-                provenance_score REAL,
-                authority_score REAL,
-                supersession_score REAL,
-                governance_score REAL,
-                status TEXT,
-                merkle_hash TEXT,
-                created_at TEXT
+    # -- schema -------------------------------------------------------------
+    def init_db(self) -> None:
+        conn = _connect()
+        try:
+            conn.execute(
+                """
+                CREATE TABLE IF NOT EXISTS memory_records (
+                    id TEXT PRIMARY KEY,
+                    agent_id TEXT,
+                    key TEXT,
+                    value TEXT,
+                    freshness_score REAL,
+                    provenance_score REAL,
+                    authority_score REAL,
+                    supersession_score REAL,
+                    governance_score REAL,
+                    status TEXT,
+                    merkle_hash TEXT,
+                    created_at TEXT
+                )
+                """
             )
-        """)
-        conn.commit()
-        conn.close()
+            existing = {row[1] for row in conn.execute("PRAGMA table_info(memory_records)")}
+            for name, decl in _MIGRATION_COLUMNS:
+                if name not in existing:
+                    conn.execute(f"ALTER TABLE memory_records ADD COLUMN {name} {decl}")
+            conn.execute(
+                "CREATE INDEX IF NOT EXISTS idx_memory_records_key_status_time "
+                "ON memory_records (key, status, created_at)"
+            )
+            conn.commit()
+        finally:
+            conn.close()
 
-    def log_receipt(self, action, agent, key, status, score, details):
+    # -- receipts -----------------------------------------------------------
+    def log_receipt(self, action, agent, key, status, score, details) -> None:
         ts = datetime.now(timezone.utc).isoformat()
         record = {
             "timestamp": ts,
@@ -97,121 +166,317 @@ class GovernedMemoryGovernor:
             "key": key,
             "status": status,
             "score": score,
-            "details": details
+            "details": details,
         }
-        with open(GOVERNANCE_JSONL, "a", encoding="utf-8") as f:
-            f.write(json.dumps(record) + "\n")
-        
+        line = json.dumps(record)
         log_msg = f"[{ts}] [{action} | {agent}] {key} -> {status} (Score: {score:.3f}) | {details}"
-        with open(GOVERNANCE_LOG, "a", encoding="utf-8") as f:
-            f.write(log_msg + "\n")
+        with _RECEIPT_LOCK:
+            with open(GOVERNANCE_JSONL, "a", encoding="utf-8") as f:
+                f.write(line + "\n")
+            with open(GOVERNANCE_LOG, "a", encoding="utf-8") as f:
+                f.write(log_msg + "\n")
 
+    # -- authoritative read -------------------------------------------------
+    def latest_accepted(self, key):
+        """
+        Return the authoritative accepted row for a key.
+
+        Ordered by ``created_at DESC, rowid DESC``. ``created_at`` is
+        writer-supplied provenance; ``rowid`` is insertion order, so two rows
+        claiming the same timestamp still resolve deterministically to the one
+        committed last.
+        """
+        conn = _connect()
+        try:
+            row = conn.execute(
+                "SELECT id, agent_id, value, created_at, merkle_hash "
+                "FROM memory_records "
+                "WHERE key = ? AND status = 'ACCEPTED' "
+                "ORDER BY created_at DESC, rowid DESC LIMIT 1",
+                (key,),
+            ).fetchone()
+        finally:
+            conn.close()
+        if not row:
+            return None
+        return {
+            "id": row[0],
+            "agent_id": row[1],
+            "value": row[2],
+            "created_at": row[3],
+            "merkle_hash": row[4],
+        }
+
+    # -- axes ---------------------------------------------------------------
     def score_freshness(self, timestamp_iso, is_historical_fact=False):
         if is_historical_fact:
-            return 1.0 # Immutable historical facts do not decay
+            return 1.0
         try:
             write_time = datetime.fromisoformat(timestamp_iso.replace("Z", "+00:00"))
             now = datetime.now(timezone.utc)
-            delta_sec = max(0, (now - write_time).total_seconds())
+            delta_sec = (now - write_time).total_seconds()
+            # A timestamp materially in the future is not freshness; it is a
+            # forged clock. Veto it rather than awarding F=1.0.
+            if delta_sec < -300:
+                return 0.0
+            delta_sec = max(0, delta_sec)
             decay = math.exp(-delta_sec / 604800.0)
-            if delta_sec > 2592000: # 30 days old unrefreshed
-                return 0.10 # Triggers Hard Veto (STALE_PROPAGATION_RISK)
+            if delta_sec > 2592000:
+                return 0.10
             return round(decay, 4)
         except Exception:
             return 0.0
 
     def score_provenance(self, source_path, merkle_hash):
         if not source_path or not merkle_hash:
-            return 0.10 # Triggers Hard Veto (PROVENANCE_COLLAPSE)
+            return 0.10
         p = SSOT_ROOT / source_path
         if not p.exists():
-            return 0.20 # Triggers Hard Veto (PROVENANCE_COLLAPSE)
-        
+            return 0.20
         try:
             actual_hash = hashlib.sha256(p.read_bytes()).hexdigest()
             if actual_hash == merkle_hash:
                 return 1.0
-            else:
-                return 0.30 # Triggers Hard Veto (PROVENANCE_COLLAPSE)
+            return 0.30
         except Exception:
             return 0.0
 
     def score_authority(self, agent_id, target_capsule):
         seat_authority = {
-            "jarvis": 1.0,  "maxx": 0.98,   "daxx": 0.98,
-            "vance": 0.95,  "clara": 0.95,  "john": 0.95,
-            "selene": 0.95, "orion": 0.95,  "eden": 0.95,
-            "evan": 0.95,   "aurelius": 0.95,"jeremy": 0.95
+            "jarvis": 1.0,
+            "maxx": 0.98,
+            "daxx": 0.98,
+            "vance": 0.95,
+            "clara": 0.95,
+            "john": 0.95,
+            "selene": 0.95,
+            "orion": 0.95,
+            "eden": 0.95,
+            "evan": 0.95,
+            "aurelius": 0.95,
+            "jeremy": 0.95,
         }
-        
-        base_auth = seat_authority.get(agent_id.lower(), 0.40)
-        
-        # Unauthorized cross-capsule write check
-        if target_capsule and target_capsule.lower() != agent_id.lower() and agent_id.lower() not in ["jarvis", "maxx"]:
-            return 0.15 # Triggers Hard Veto (UNAUTHORIZED_LEAKAGE)
+        base_auth = seat_authority.get((agent_id or "").lower(), 0.40)
+        if (
+            target_capsule
+            and target_capsule.lower() != (agent_id or "").lower()
+            and (agent_id or "").lower() not in ("jarvis", "maxx")
+        ):
+            return 0.15
         return base_auth
 
-    def score_supersession(self, key, value, explicit_supersede=False):
-        conn = sqlite3.connect(GOVERNANCE_DB)
-        cursor = conn.cursor()
-        cursor.execute("SELECT value FROM memory_records WHERE key = ? AND status = 'ACCEPTED'", (key,))
-        row = cursor.fetchone()
-        conn.close()
-        
-        if not row:
-            return 1.0 # First write
-        
-        existing_val = row[0]
-        if existing_val == value:
-            return 0.95 # Identical confirmation
-        
-        if explicit_supersede:
-            return 0.95 # Explicit approved overwrite
-            
-        # Key collision with different value without explicit_supersede -> Contradiction!
-        return 0.35 # Triggers Hard Veto (CONTRADICTION_PERSISTENCE)
+    def score_supersession(
+        self,
+        key,
+        value,
+        explicit_supersede=False,
+        agent_id=None,
+        gate_accepted=False,
+    ):
+        baseline = self.latest_accepted(key)
+        if not baseline:
+            return 1.0
+        if _values_equivalent(baseline["value"], value):
+            return 0.95
+        # A change the geometric gate admits is a bounded refinement, not a
+        # contradiction. This is what makes the two policies consistent: the
+        # gate defines the bound, and the supersession axis follows it.
+        if gate_accepted:
+            return 0.85
+        if explicit_supersede and (agent_id or "").lower() in SUPERSEDE_AUTHORITY:
+            return 0.95
+        return 0.35
 
-    def evaluate_write_candidate(self, agent_id, key, value, source_path, merkle_hash, timestamp_iso, target_capsule=None, explicit_supersede=False, is_historical_fact=False):
+    # -- write path ---------------------------------------------------------
+    def evaluate_write_candidate(
+        self,
+        agent_id,
+        key,
+        value,
+        source_path,
+        merkle_hash,
+        timestamp_iso,
+        target_capsule=None,
+        explicit_supersede=False,
+        is_historical_fact=False,
+    ):
+        agent_id = agent_id or ""
+        key = key if isinstance(key, str) else str(key)
+        agent_l = agent_id.lower()
+
         F = self.score_freshness(timestamp_iso, is_historical_fact)
         P = self.score_provenance(source_path, merkle_hash)
         A = self.score_authority(agent_id, target_capsule)
-        S = self.score_supersession(key, value, explicit_supersede)
-        
+        baseline = self.latest_accepted(key)
+
+        # The geometric gate runs first: it decides whether an in-place change
+        # is a bounded refinement or a contradiction, and it fails closed.
+        try:
+            gate_result = gate_mod.evaluate_transition(
+                baseline["value"] if baseline else None,
+                value,
+                has_baseline=baseline is not None,
+            )
+            gate_dict = gate_result.to_dict()
+            gate_accepted = gate_result.accepted
+        except Exception as exc:  # noqa: BLE001
+            gate_accepted = False
+            gate_dict = {
+                "decision": "VETO",
+                "mode": "error",
+                "reason": f"GATE_UNAVAILABLE: {type(exc).__name__}: {exc}",
+                "distance": None,
+                "max_distance": None,
+                "relative_distance": None,
+                "baseline_value_repr": None,
+                "candidate_value_repr": None,
+            }
+
+        S = self.score_supersession(
+            key,
+            value,
+            explicit_supersede,
+            agent_id,
+            gate_accepted=gate_accepted,
+        )
+
         governance_score = round(self.w_F * F + self.w_P * P + self.w_A * A + self.w_S * S, 4)
-        
-        # Hard Veto Enforcement
+
         veto_reasons = []
-        if F < self.hard_axis_floor: veto_reasons.append(f"STALE_PROPAGATION_RISK (F={F:.2f} < {self.hard_axis_floor})")
-        if P < self.hard_axis_floor: veto_reasons.append(f"PROVENANCE_COLLAPSE (P={P:.2f} < {self.hard_axis_floor})")
-        if A < self.hard_axis_floor: veto_reasons.append(f"UNAUTHORIZED_LEAKAGE (A={A:.2f} < {self.hard_axis_floor})")
-        if S < self.hard_axis_floor: veto_reasons.append(f"CONTRADICTION_PERSISTENCE (S={S:.2f} < {self.hard_axis_floor})")
-        
+        if F < self.hard_axis_floor:
+            veto_reasons.append(f"STALE_PROPAGATION_RISK (F={F:.2f} < {self.hard_axis_floor})")
+        if P < self.hard_axis_floor:
+            veto_reasons.append(f"PROVENANCE_COLLAPSE (P={P:.2f} < {self.hard_axis_floor})")
+        if A < self.hard_axis_floor:
+            veto_reasons.append(f"UNAUTHORIZED_LEAKAGE (A={A:.2f} < {self.hard_axis_floor})")
+        if S < self.hard_axis_floor:
+            veto_reasons.append(f"CONTRADICTION_PERSISTENCE (S={S:.2f} < {self.hard_axis_floor})")
+
+        # Input bounds.
+        if len(key) > MAX_KEY_CHARS:
+            veto_reasons.append(f"KEY_TOO_LARGE ({len(key)} > {MAX_KEY_CHARS})")
+        if isinstance(value, str) and len(value) > MAX_VALUE_CHARS:
+            veto_reasons.append(f"VALUE_TOO_LARGE ({len(value)} > {MAX_VALUE_CHARS})")
+
+        # Supersession must be authorised and anchored. It is never a bypass.
+        if explicit_supersede:
+            if baseline is None:
+                veto_reasons.append("FORGED_SUPERSEDE_NO_ANCHOR")
+            elif agent_l not in SUPERSEDE_AUTHORITY:
+                veto_reasons.append(
+                    f"UNAUTHORIZED_SUPERSEDE (seat {agent_id!r} not in {sorted(SUPERSEDE_AUTHORITY)})"
+                )
+
+        if not gate_accepted:
+            veto_reasons.append(f"SEMANTIC_DRIFT_GATE ({gate_dict['reason']})")
+
         accepted = (governance_score >= self.threshold) and not veto_reasons
         status = "ACCEPTED" if accepted else "HARD_VETOED_BY_GOVERNOR"
-        
-        details = f"F={F:.2f}, P={P:.2f}, A={A:.2f}, S={S:.2f} | Vetoes: {veto_reasons if veto_reasons else 'None'}"
-        
+        veto_class = (
+            "NONE"
+            if accepted
+            else ("SEMANTIC_DRIFT" if any("SEMANTIC_DRIFT_GATE" in r for r in veto_reasons) else "GOVERNANCE_AXIS")
+        )
+
+        details = (
+            f"F={F:.2f}, P={P:.2f}, A={A:.2f}, S={S:.2f} | "
+            f"gate={gate_dict['decision']} ({gate_dict['reason']}) | "
+            f"Vetoes: {veto_reasons if veto_reasons else 'None'}"
+        )
         self.log_receipt("MEMORY_WRITE_EVALUATION", agent_id, key, status, governance_score, details)
-        
+
         if accepted:
-            conn = sqlite3.connect(GOVERNANCE_DB)
-            cursor = conn.cursor()
-            rec_id = hashlib.sha256(f"{agent_id}:{key}:{timestamp_iso}".encode()).hexdigest()[:16]
-            cursor.execute("""
-                INSERT OR REPLACE INTO memory_records 
-                (id, agent_id, key, value, freshness_score, provenance_score, authority_score, supersession_score, governance_score, status, merkle_hash, created_at)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """, (rec_id, agent_id, key, value, F, P, A, S, governance_score, status, merkle_hash, timestamp_iso))
-            conn.commit()
-            conn.close()
-            
+            self._commit_accepted(
+                agent_id=agent_id,
+                key=key,
+                value=value,
+                F=F,
+                P=P,
+                A=A,
+                S=S,
+                governance_score=governance_score,
+                merkle_hash=merkle_hash,
+                timestamp_iso=timestamp_iso,
+                baseline=baseline,
+                gate_dict=gate_dict,
+            )
+
         return {
             "accepted": accepted,
             "governance_score": governance_score,
             "status": status,
             "axes": {"Freshness": F, "Provenance": P, "Authority": A, "Supersession": S},
-            "veto_reasons": veto_reasons
+            "veto_reasons": veto_reasons,
+            "veto_class": veto_class,
+            "poincare": gate_dict,
         }
+
+    def _commit_accepted(
+        self,
+        *,
+        agent_id,
+        key,
+        value,
+        F,
+        P,
+        A,
+        S,
+        governance_score,
+        merkle_hash,
+        timestamp_iso,
+        baseline,
+        gate_dict,
+    ) -> None:
+        # Row identity includes a UUID nonce: a same-timestamp write can never
+        # collide with, and therefore never overwrite, an existing row.
+        rec_id = hashlib.sha256(
+            f"{agent_id}|{key}|{timestamp_iso}|{value!r}|{uuid.uuid4().hex}".encode("utf-8")
+        ).hexdigest()[:32]
+
+        supersedes_id = None
+        conn = _connect()
+        try:
+            conn.execute("BEGIN IMMEDIATE")
+            if baseline is not None and not _values_equivalent(baseline["value"], value):
+                supersedes_id = baseline["id"]
+                conn.execute(
+                    "UPDATE memory_records SET status = 'SUPERSEDED' "
+                    "WHERE key = ? AND status = 'ACCEPTED'",
+                    (key,),
+                )
+            conn.execute(
+                """
+                INSERT INTO memory_records
+                (id, agent_id, key, value, freshness_score, provenance_score,
+                 authority_score, supersession_score, governance_score, status,
+                 merkle_hash, created_at, poincare_distance, gate_mode,
+                 gate_status, supersedes_id)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'ACCEPTED', ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    rec_id,
+                    agent_id,
+                    key,
+                    value,
+                    F,
+                    P,
+                    A,
+                    S,
+                    governance_score,
+                    merkle_hash,
+                    timestamp_iso,
+                    gate_dict.get("distance"),
+                    gate_dict.get("mode"),
+                    gate_dict.get("decision"),
+                    supersedes_id,
+                ),
+            )
+            conn.commit()
+        except Exception:
+            conn.rollback()
+            raise
+        finally:
+            conn.close()
 
 def run_memory_governance_gauntlet():
     governor = GovernedMemoryGovernor()

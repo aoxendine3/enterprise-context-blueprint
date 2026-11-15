@@ -1,0 +1,188 @@
+{
+  "elapsed_seconds": 1.65,
+  "generated_utc": "2026-11-15T08:16:06.978934+00:00",
+  "isolation": "temporary governance database; live DB untouched",
+  "layer_1_plurality_model": {
+    "allocation_ms": 359.3,
+    "memory_mb": 228.88,
+    "model": "in-RAM plurality vote over array.array('d')",
+    "nodes": 30000000,
+    "not_pbft_reason": "no signed proposals, no view change, no 3f+1 membership, no rounds",
+    "stages": [
+      {
+        "honest_nodes": 27000000,
+        "honest_pct": 90.0,
+        "rogue_density": 0.1,
+        "rogue_nodes": 3000000,
+        "status": "PLURALITY_SECURED",
+        "throughput_mops": 87.85
+      },
+      {
+        "honest_nodes": 20000000,
+        "honest_pct": 66.6667,
+        "rogue_density": 0.333333,
+        "rogue_nodes": 10000000,
+        "status": "PLURALITY_SECURED",
+        "throughput_mops": 91.66
+      },
+      {
+        "honest_nodes": 14970000,
+        "honest_pct": 49.9,
+        "rogue_density": 0.501,
+        "rogue_nodes": 15030000,
+        "status": "PLURALITY_LOST",
+        "throughput_mops": 96.32
+      },
+      {
+        "honest_nodes": 6000000,
+        "honest_pct": 20.0,
+        "rogue_density": 0.8,
+        "rogue_nodes": 24000000,
+        "status": "PLURALITY_LOST",
+        "throughput_mops": 100.28
+      }
+    ]
+  },
+  "layer_2_semantic_gate": {
+    "authoritative_value": "18432.0",
+    "honest_restatement_accepted": true,
+    "poison_attempts": 4,
+    "poison_blocked": 4,
+    "steps": [
+      {
+        "accepted": true,
+        "agent": "clara",
+        "explicit_supersede": false,
+        "gate": {
+          "baseline_value_repr": null,
+          "candidate_value_repr": "'18432.0'",
+          "decision": "ANCHOR",
+          "distance": null,
+          "max_distance": null,
+          "mode": "scalar",
+          "reason": "NO_BASELINE_ANCHOR",
+          "relative_distance": null
+        },
+        "label": "honest_baseline",
+        "score": 0.9875,
+        "status": "ACCEPTED",
+        "value": 18432.0,
+        "veto_reasons": []
+      },
+      {
+        "accepted": false,
+        "agent": "clara",
+        "explicit_supersede": false,
+        "gate": {
+          "baseline_value_repr": "'18432.0'",
+          "candidate_value_repr": "'666.666'",
+          "decision": "VETO",
+          "distance": 3.319554,
+          "max_distance": 16.324133,
+          "mode": "scalar",
+          "reason": "SCALAR_JUMP d_H=3.3196 > 0.5",
+          "relative_distance": 0.203353
+        },
+        "label": "unannounced_poison",
+        "score": 0.8575,
+        "status": "HARD_VETOED_BY_GOVERNOR",
+        "value": 666.666,
+        "veto_reasons": [
+          "CONTRADICTION_PERSISTENCE (S=0.35 < 0.5)",
+          "SEMANTIC_DRIFT_GATE (SCALAR_JUMP d_H=3.3196 > 0.5)"
+        ]
+      },
+      {
+        "accepted": false,
+        "agent": "clara",
+        "explicit_supersede": true,
+        "gate": {
+          "baseline_value_repr": "'18432.0'",
+          "candidate_value_repr": "'666.666'",
+          "decision": "VETO",
+          "distance": 3.319554,
+          "max_distance": 16.324133,
+          "mode": "scalar",
+          "reason": "SCALAR_JUMP d_H=3.3196 > 0.5",
+          "relative_distance": 0.203353
+        },
+        "label": "insider_supersede",
+        "score": 0.8575,
+        "status": "HARD_VETOED_BY_GOVERNOR",
+        "value": 666.666,
+        "veto_reasons": [
+          "CONTRADICTION_PERSISTENCE (S=0.35 < 0.5)",
+          "UNAUTHORIZED_SUPERSEDE (seat 'clara' not in ['jarvis', 'maxx'])",
+          "SEMANTIC_DRIFT_GATE (SCALAR_JUMP d_H=3.3196 > 0.5)"
+        ]
+      },
+      {
+        "accepted": false,
+        "agent": "maxx",
+        "explicit_supersede": true,
+        "gate": {
+          "baseline_value_repr": "'18432.0'",
+          "candidate_value_repr": "'666.666'",
+          "decision": "VETO",
+          "distance": 3.319554,
+          "max_distance": 16.324133,
+          "mode": "scalar",
+          "reason": "SCALAR_JUMP d_H=3.3196 > 0.5",
+          "relative_distance": 0.203353
+        },
+        "label": "authorised_supersede",
+        "score": 0.985,
+        "status": "HARD_VETOED_BY_GOVERNOR",
+        "value": 666.666,
+        "veto_reasons": [
+          "SEMANTIC_DRIFT_GATE (SCALAR_JUMP d_H=3.3196 > 0.5)"
+        ]
+      },
+      {
+        "accepted": false,
+        "agent": "clara",
+        "explicit_supersede": false,
+        "gate": {
+          "baseline_value_repr": "'18432.0'",
+          "candidate_value_repr": "'666.666'",
+          "decision": "VETO",
+          "distance": 3.319554,
+          "max_distance": 16.324133,
+          "mode": "scalar",
+          "reason": "SCALAR_JUMP d_H=3.3196 > 0.5",
+          "relative_distance": 0.203353
+        },
+        "label": "repeat_poison",
+        "score": 0.8575,
+        "status": "HARD_VETOED_BY_GOVERNOR",
+        "value": 666.666,
+        "veto_reasons": [
+          "CONTRADICTION_PERSISTENCE (S=0.35 < 0.5)",
+          "SEMANTIC_DRIFT_GATE (SCALAR_JUMP d_H=3.3196 > 0.5)"
+        ]
+      },
+      {
+        "accepted": true,
+        "agent": "clara",
+        "explicit_supersede": false,
+        "gate": {
+          "baseline_value_repr": "'18432.0'",
+          "candidate_value_repr": "'18432.0'",
+          "decision": "PASS",
+          "distance": 0.0,
+          "max_distance": 19.643687,
+          "mode": "scalar",
+          "reason": "WITHIN_GEODESIC_BOUND",
+          "relative_distance": 0.0
+        },
+        "label": "honest_restatement",
+        "score": 0.9775,
+        "status": "ACCEPTED",
+        "value": 18432.0,
+        "veto_reasons": []
+      }
+    ]
+  },
+  "standard": "XORAS-TRIPLE-INTENSITY-POISON-GATE-v2.0",
+  "verdict": "PASS_FAIL_CLOSED"
+}
