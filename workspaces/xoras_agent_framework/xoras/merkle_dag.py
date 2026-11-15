@@ -37,9 +37,11 @@ as one layer of defense in depth (alongside provenance tagging, signed
 writers, and trust-aware retrieval), not as a guarantee.
 """
 
+import functools
 import hashlib
 import json
 import re
+import threading
 import time
 import unicodedata
 from typing import Any, Dict, List, Optional, Set, Tuple
@@ -167,6 +169,24 @@ def classify_source(payload: Dict) -> Tuple[str, bool]:
     return label, any(t in UNTRUSTED_SOURCES for t in tokens) or not tokens
 
 
+def _synchronized(method):
+    """Serialize access to the engine's mutable ledger.
+
+    The replay set and the promoted-node map are read-modify-write: without a
+    lock two threads can both pass the "have I seen this hash?" check and both
+    commit the same payload (a TOCTOU replay). The lock also keeps
+    ``get_dynamic_merkle_root`` from iterating ``nodes`` while another thread
+    inserts into it. Re-entrant so ``commit`` can call ``_quarantine_replay``.
+    """
+
+    @functools.wraps(method)
+    def wrapper(self, *args, **kwargs):
+        with self._lock:
+            return method(self, *args, **kwargs)
+
+    return wrapper
+
+
 def _json_safe(value: Any) -> Any:
     return json.loads(json.dumps(value, default=str))
 
@@ -205,6 +225,7 @@ class MerkleDAGNode:
 
 class ContextLineageDAGEngine:
     def __init__(self):
+        self._lock = threading.RLock()
         self.nodes: Dict[str, MerkleDAGNode] = {}
         self.seen_payload_hashes: Set[str] = set()
         self.seen_normalized_hashes: Set[str] = set()
@@ -224,6 +245,7 @@ class ContextLineageDAGEngine:
         })
         return False, None, "UNLINKED_REPLAY_QUARANTINED"
 
+    @_synchronized
     def commit(self, node_id: str, parent_ids: List[str], payload: Dict,
                writer: Optional[str] = None) -> Tuple[bool, Optional[str], Optional[str]]:
         payload_hash = hashlib.sha256(canonical_json(payload)).hexdigest()
@@ -285,6 +307,7 @@ class ContextLineageDAGEngine:
         self.seen_normalized_hashes.add(norm_hash)
         return True, node.state_hash, None
 
+    @_synchronized
     def promote(self, node_id: str, approver: str, evidence: Any = None) -> Tuple[bool, Optional[str], Optional[str]]:
         """Promote a staged node into the DAG after explicit approval.
 
@@ -330,6 +353,7 @@ class ContextLineageDAGEngine:
         record["promoted_timestamp"] = time.time()
         return True, node.state_hash, None
 
+    @_synchronized
     def get_dynamic_merkle_root(self) -> str:
         if not self.nodes:
             return "0" * 64

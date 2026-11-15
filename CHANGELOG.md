@@ -135,3 +135,25 @@
 
 ### Changed
 - Voice contract enriched earlier today: explicit "we/our" tempered wording in dispatch turns; outside-entity shapes remain refused.
+
+## [2.0.13] — 2026-11-15 — Council pipeline scaled past 128: measured, and the false "lock-free" claim retired
+
+**Who:** build seat (DAXX standard), reviewed against the live framework code.
+**Why:** an external reviewer asked how MTPO + council deliberation + the AST gate scale past 128 workers. The honest answer required a measurement, not a restatement of the 64-worker numbers.
+**Receipt:** `memory/catch_log/mtpo_ast_gate_scaling_receipt.json` (signed, `tests/test_mtpo_ast_gate_scaling.py`, 15/15 pass).
+
+### Measured
+- AST gate cost on a 27-line payload: **196 µs/scan, 166 AST nodes** (Python, GIL-bound).
+- `gate_in_path` (AST scan inside the per-transaction critical path, as `CouncilOrchestrator.execute_governed_task` does): **4,174 tx/s @ 64 → 4,042 tx/s @ 512 workers**. Flat. The GIL, not the lock or the rank order, is the ceiling.
+- `gate_deferred` (state commit first, scan after, compensate on reject): **3,867–4,110 tx/s**. Same plateau — reordering does not buy throughput while the scanner runs in-process.
+- AST gate in a process pool: **7,060 tx/s @ 4 processes**, **6,288 tx/s @ 8** — coordination, not scan cost, saturates next. Tail latency rises to 112–144 ms p99 because futures queue.
+- Zero lost updates, zero aborts, Church–Rosser confluence verified at every worker count; a rejected payload compensates its slot and leaves byte-identical state.
+- Break-even (commit path = 4,123 tx/s): the gate stops being the bottleneck at ~4,100 workers with 1 s turns, ~20,600 with 5 s turns, ~123,700 with 30 s turns.
+
+### Corrected (honesty)
+- `xoras/mtpo.py` described itself as "lock-free" and "guarantees sub-2µs p99 under total contention". It used a single global lock and the number came from a one-increment critical section. Docstring now states it is lock-sharded (six per-slot locks), not lock-free, and points at the receipt for any number. Slot mutation is now an atomic `apply_delta` so concurrent read-modify-write cannot lose updates.
+- `xoras/merkle_dag.py` had no synchronization: two threads could both pass the replay check and commit the same payload (TOCTOU), and `get_dynamic_merkle_root` could iterate while `nodes` mutated. `commit`, `promote`, and the root getter are now serialized by an `RLock`; framework suite 141/141 passes.
+
+### Limits stated in the receipt
+- Deliberation in the benchmark is a 100–300 µs sleep modelling I/O wait, not a model call. Real council turns are 1–30 s, and at 128+ workers the binding constraint is model-server concurrency, not MTPO or the AST gate.
+- Single host. Any cross-node scaling claim still needs a second signed witness.

@@ -1,0 +1,304 @@
+{
+  "payload": {
+    "ast_scan_cost": {
+      "ast_nodes": 166,
+      "mean_us": 196.2,
+      "min_us": 192.8,
+      "p50_us": 193.7,
+      "payload_lines": 27
+    },
+    "commit_path_ceiling_tx_sec": 4123.2,
+    "generated_utc": "2026-11-15T06:46:06Z",
+    "host": {
+      "cpu_count": 10,
+      "platform": "darwin",
+      "python": "3.14.7"
+    },
+    "known_limits": [
+      "Deliberation is a 100-300us sleep, not a real model call; it models I/O wait only. Real council turns are 1-30s and dominate wall-clock.",
+      "Throughput is GIL-bound in gate_in_path: adding workers past the scan cost buys queueing latency, not throughput.",
+      "Measured on one host; cross-host claims need a second signed witness."
+    ],
+    "reading": {
+      "gate_deferred": "state commits first, AST gate runs after; compensate on reject",
+      "gate_in_path": "AST scan runs inside the per-transaction critical path",
+      "process_pool": "AST gate moved to N processes with 25% unsafe payloads"
+    },
+    "runs": {
+      "gate_deferred_128": {
+        "aborts": 0,
+        "ast_rejections": 0,
+        "confluence": true,
+        "elapsed_sec": 0.9966,
+        "final_state": [
+          86854,
+          83433,
+          87282,
+          91197,
+          89558,
+          94028
+        ],
+        "max_latency_ms": 26.5733,
+        "mode": "gate_deferred",
+        "p50_latency_ms": 5.3682,
+        "p99_latency_ms": 15.967,
+        "throughput_tx_sec": 4109.82,
+        "total_transactions": 4096,
+        "txs_per_worker": 32,
+        "workers": 128
+      },
+      "gate_deferred_256": {
+        "aborts": 0,
+        "ast_rejections": 0,
+        "confluence": true,
+        "elapsed_sec": 2.0183,
+        "final_state": [
+          352380,
+          345274,
+          342601,
+          346604,
+          365068,
+          361353
+        ],
+        "max_latency_ms": 37.0695,
+        "mode": "gate_deferred",
+        "p50_latency_ms": 5.2155,
+        "p99_latency_ms": 15.8281,
+        "throughput_tx_sec": 4058.93,
+        "total_transactions": 8192,
+        "txs_per_worker": 32,
+        "workers": 256
+      },
+      "gate_deferred_512": {
+        "aborts": 0,
+        "ast_rejections": 0,
+        "confluence": true,
+        "elapsed_sec": 4.0149,
+        "final_state": [
+          1415345,
+          1397307,
+          1338774,
+          1428074,
+          1437237,
+          1404127
+        ],
+        "max_latency_ms": 27.6932,
+        "mode": "gate_deferred",
+        "p50_latency_ms": 5.2999,
+        "p99_latency_ms": 15.7052,
+        "throughput_tx_sec": 4080.76,
+        "total_transactions": 16384,
+        "txs_per_worker": 32,
+        "workers": 512
+      },
+      "gate_deferred_64": {
+        "aborts": 0,
+        "ast_rejections": 0,
+        "confluence": true,
+        "elapsed_sec": 0.5296,
+        "final_state": [
+          22287,
+          20419,
+          22884,
+          23562,
+          22640,
+          23312
+        ],
+        "max_latency_ms": 63.6413,
+        "mode": "gate_deferred",
+        "p50_latency_ms": 5.3795,
+        "p99_latency_ms": 32.3513,
+        "throughput_tx_sec": 3867.17,
+        "total_transactions": 2048,
+        "txs_per_worker": 32,
+        "workers": 64
+      },
+      "gate_deferred_pool4_128": {
+        "aborts": 997,
+        "ast_rejections": 997,
+        "confluence": true,
+        "elapsed_sec": 0.7263,
+        "final_state": [
+          69861,
+          70720,
+          66858,
+          64105,
+          63504,
+          66171
+        ],
+        "max_latency_ms": 294.9882,
+        "mode": "gate_deferred",
+        "p50_latency_ms": 13.6128,
+        "p99_latency_ms": 288.628,
+        "throughput_tx_sec": 5639.27,
+        "total_transactions": 4096,
+        "txs_per_worker": 32,
+        "workers": 128
+      },
+      "gate_deferred_pool4_all_safe_128": {
+        "aborts": 0,
+        "ast_rejections": 0,
+        "confluence": true,
+        "elapsed_sec": 0.5802,
+        "final_state": [
+          86854,
+          83433,
+          87282,
+          91197,
+          89558,
+          94028
+        ],
+        "max_latency_ms": 116.0995,
+        "mode": "gate_deferred",
+        "p50_latency_ms": 14.5265,
+        "p99_latency_ms": 112.021,
+        "throughput_tx_sec": 7059.87,
+        "total_transactions": 4096,
+        "txs_per_worker": 32,
+        "workers": 128
+      },
+      "gate_deferred_pool8_128": {
+        "aborts": 997,
+        "ast_rejections": 997,
+        "confluence": true,
+        "elapsed_sec": 0.6365,
+        "final_state": [
+          69861,
+          70720,
+          66858,
+          64105,
+          63504,
+          66171
+        ],
+        "max_latency_ms": 211.6195,
+        "mode": "gate_deferred",
+        "p50_latency_ms": 14.2107,
+        "p99_latency_ms": 154.0418,
+        "throughput_tx_sec": 6435.25,
+        "total_transactions": 4096,
+        "txs_per_worker": 32,
+        "workers": 128
+      },
+      "gate_deferred_pool8_all_safe_128": {
+        "aborts": 0,
+        "ast_rejections": 0,
+        "confluence": true,
+        "elapsed_sec": 0.6514,
+        "final_state": [
+          86854,
+          83433,
+          87282,
+          91197,
+          89558,
+          94028
+        ],
+        "max_latency_ms": 204.6997,
+        "mode": "gate_deferred",
+        "p50_latency_ms": 15.2074,
+        "p99_latency_ms": 143.9385,
+        "throughput_tx_sec": 6287.75,
+        "total_transactions": 4096,
+        "txs_per_worker": 32,
+        "workers": 128
+      },
+      "gate_in_path_128": {
+        "aborts": 0,
+        "ast_rejections": 0,
+        "confluence": true,
+        "elapsed_sec": 0.9816,
+        "final_state": [
+          86854,
+          83433,
+          87282,
+          91197,
+          89558,
+          94028
+        ],
+        "max_latency_ms": 42.7275,
+        "mode": "gate_in_path",
+        "p50_latency_ms": 5.4693,
+        "p99_latency_ms": 16.4675,
+        "throughput_tx_sec": 4172.65,
+        "total_transactions": 4096,
+        "txs_per_worker": 32,
+        "workers": 128
+      },
+      "gate_in_path_256": {
+        "aborts": 0,
+        "ast_rejections": 0,
+        "confluence": true,
+        "elapsed_sec": 1.9959,
+        "final_state": [
+          352380,
+          345274,
+          342601,
+          346604,
+          365068,
+          361353
+        ],
+        "max_latency_ms": 38.0931,
+        "mode": "gate_in_path",
+        "p50_latency_ms": 5.4363,
+        "p99_latency_ms": 16.4965,
+        "throughput_tx_sec": 4104.42,
+        "total_transactions": 8192,
+        "txs_per_worker": 32,
+        "workers": 256
+      },
+      "gate_in_path_512": {
+        "aborts": 0,
+        "ast_rejections": 0,
+        "confluence": true,
+        "elapsed_sec": 4.0535,
+        "final_state": [
+          1415345,
+          1397307,
+          1338774,
+          1428074,
+          1437237,
+          1404127
+        ],
+        "max_latency_ms": 48.5955,
+        "mode": "gate_in_path",
+        "p50_latency_ms": 5.2673,
+        "p99_latency_ms": 15.48,
+        "throughput_tx_sec": 4041.91,
+        "total_transactions": 16384,
+        "txs_per_worker": 32,
+        "workers": 512
+      },
+      "gate_in_path_64": {
+        "aborts": 0,
+        "ast_rejections": 0,
+        "confluence": true,
+        "elapsed_sec": 0.4907,
+        "final_state": [
+          22287,
+          20419,
+          22884,
+          23562,
+          22640,
+          23312
+        ],
+        "max_latency_ms": 25.6117,
+        "mode": "gate_in_path",
+        "p50_latency_ms": 5.1473,
+        "p99_latency_ms": 10.8066,
+        "throughput_tx_sec": 4174.0,
+        "total_transactions": 2048,
+        "txs_per_worker": 32,
+        "workers": 64
+      }
+    },
+    "standard": "XORAS-MTPO-ASTGATE-SCALING-v1.0",
+    "workers_supported_before_gate_is_the_bottleneck": {
+      "turn_15s": 61848,
+      "turn_1s": 4123,
+      "turn_30s": 123696,
+      "turn_5s": 20616
+    }
+  },
+  "public_key": "b8aa80593eeede21fbed262c0658be6dd9efcb5ed4900ff2f69677dba615c642",
+  "signature": "d4015f6b1d50cd4e89775dccef03daccc93b8397abc430aaf7207a949c153e471e9bacc1c3949dde2edc824736a0e2a3bd22305ba784380f58f3052914da7801",
+  "signed": true
+}
