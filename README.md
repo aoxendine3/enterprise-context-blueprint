@@ -2,13 +2,13 @@
 
 **Proving what your agents actually did — cryptographically.**
 
-Agent Notary is the sovereign, dual-implementation verifier for autonomous multi-agent systems. Every claim your agents make is recomputed independently before it is accepted. No claim advances on trust. No artifact advances without a verifiable, attributable proof — Ed25519-signed, Merkle-anchored, and discharged by a second, independent codebase.
+Agent Notary is a sovereign, dual-implementation verifier for autonomous multi-agent systems. Every claim an agent makes is recomputed independently before it is accepted. No claim advances on trust; no artifact advances without a verifiable, attributable receipt. In short: **your agents say it worked; Agent Notary proves it — or refuses to advance.** Receipts live in `memory/catch_log/`; the Merkle lineage is `memory/tri_brain/world_file.db`; both are shipped in this repo.
 
 | What Agent Notary verifies | How |
 | --- | --- |
 | Every agent action | Notarized via independent recomputation (Zig + Python dual-witness) |
 | Every artifact | Merkle-attested, attribution pinned, unforgeable receipt |
-| Every state transition | DAG lineage verified across 3,262+ nodes, zero drift |
+| Every state transition | DAG lineage verified against 3,000+ lineage nodes on every reality-gate run (current: 3,269+) |
 | Every release | 6/6 production gates discharged — E2E, telemetry, Z3, Zig verifier, TypeScript gauntlet, 14-gate BBQ, Rust crates |
 | Every shipped artifact | WORM-attested and independently verifiable offline |
 
@@ -152,12 +152,12 @@ The entire mathematical formalization and empirical benchmark suite are packaged
 nix run github:aoxendine3/enterprise-context-blueprint#falsification-suite
 ```
 
-* **Lean 4 Proofs**: `dist/sovereign_falsification_suite/lean/MtpoMonotonicity/Basic.lean` (`step_monotone` & `reaches_monotone` proved with `0 sorryAx`).
+* **Lean 4 Proofs**: `dist/sovereign_falsification_suite/lean/MtpoMonotonicity/Basic.lean` — verified 2026-11-14 against `lake env lean`: `step_monotone`, `reaches_monotone`, `destructive_not_monotone`, `mutant_not_monotone` all print `axioms: [propext, Quot.sound]` — no `sorryAx`. (Verified on this host; re-run it yourself.)
 * **Z3 SMT2 Differential**: `dist/sovereign_falsification_suite/agm_mtpo_monotonicity.smt2` (`unsat` vs destructive contraction `sat`).
-* **Outside CI Matrix**: [GitHub Actions Run #38708977957](https://github.com/aoxendine3/enterprise-context-blueprint/actions/runs/38708977957) verified across independent Azure Linux (x86_64) and Apple Silicon macOS-14 (arm64) runners.
+* **Outside CI Matrix**: [GitHub Actions Run #38708977957](https://github.com/aoxendine3/enterprise-context-blueprint/actions/runs/38708977957) — historical CI signal (Linux x86_64 and macOS-14 arm64); freshness of those runs is unaudited. Re-run your own gates — nothing here is stamped as fresh without a receipt.
 * **Scientific Manuscript**: [`docs/papers/USENIX_SAIS_2027_SOVEREIGN_TRIAD_FULL_PAPER.md`](docs/papers/USENIX_SAIS_2027_SOVEREIGN_TRIAD_FULL_PAPER.md) (Targeted at USENIX SAIS '27).
 
 ---
 
 ⚡ **The REASONS Canvas locks intent; the MARS gates verify reality.**  
-⚡ **Every claim in this repo is on the road to being machine-verified, or it is labeled as planned.**
+⚡ **Every claim in this repo is either receipt-backed (verifiable on your host) or labeled as planned — there are no third kinds.**
