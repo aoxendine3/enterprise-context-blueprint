@@ -157,3 +157,27 @@
 ### Limits stated in the receipt
 - Deliberation in the benchmark is a 100–300 µs sleep modelling I/O wait, not a model call. Real council turns are 1–30 s, and at 128+ workers the binding constraint is model-server concurrency, not MTPO or the AST gate.
 - Single host. Any cross-node scaling claim still needs a second signed witness.
+
+## [2.0.14] — 2026-11-15 — Scanner provenance reviewed: Rust engine is real but unwired; Byzantine labels corrected
+
+**Who:** build seat, by execution on this host.
+**Why:** reviewer asked whether the AST scanner is Zig or Rust, and what the UPGP/dojo Byzantine history actually contains.
+**Report:** `docs/audits/SCANNER_AND_BYZANTINE_HISTORY_REVIEW_2026-11-15.md`
+**Receipt:** `memory/catch_log/arthur_native_parity_receipt.json`
+
+### Established
+- `core/ops/src/arthur_ast_rs` (Rust + tree-sitter-python, 455 LOC) builds natively, **26/26 parity** with the Python scanner on the adversarial corpus, **14.36 µs/scan** in-process (69,644 scans/s) vs Python 196 µs — 13.7× faster.
+- It is **not wired**: council uses the Python engine; the only harness shells out through Docker with a hardcoded `/workspace`; the committed binary was Linux x86_64 (`exec format error` on this Mac). Subprocess wiring measures **2.33 ms/scan** — 12× slower than Python.
+- No Zig AST scanner exists. `sovra_truth_engine_v4.zig` tokenizes text; the Zig "byzantine" files are plurality vote counters.
+
+### Corrected labels
+- `max_byzantine_swarm.zig` and `swarm_ramp.zig` are single-pass plurality counts, not PBFT. Header claim "MAXIMUM BYZANTINE FAULT TOLERANT (PBFT) SWARM ENGINE" is false; yesterday's Grok reply called these rows "Byzantine consensus" — corrected in the report.
+- `BYZANTINE_BREAKING_POINT_RAMP_AUDIT.md` ramps no liar density: the script feeds a bad hash and counts provenance rejections.
+- `XORAS_015_SWARM_CONSENSUS_LAYER4_VERIFICATION.md` claims Z3 `unsat` for Trinity 2-of-3; no trinity `.smt2` exists. Real artifact is `trinity_gate.py` (file-hash 2-of-3).
+- `EXTREME_BYZANTINE_MAXOUT_TELEMETRY.json` has no consensus pillar.
+- `core/ops/scripts/byzantine_corruption_sweep` binary is 0 bytes (phantom); quarantine with receipt.
+
+### Confirmed real
+- UPGP `tests/exploits/*.c` (ptrace, proc_mem, unshare, bpf, raw_socket) + `RedTeamExploitGauntlet.ts`.
+- `trinity_gate.py` 2-of-3 file-hash quorum; `local_quorum_deliberation.py` 3-seat local LLM deliberation; MTPO/cage/UPGP Z3 proofs discharged by `reality_gate.sh`.
+- Dojo is empty except `labs/scratch/dojo_test/run_upgp_crash_test.py`.
