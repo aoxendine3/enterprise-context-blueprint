@@ -1,0 +1,75 @@
+{
+  "defect": {
+    "honest_row_survived_supersede": false,
+    "reproduced": true,
+    "rows_after": [
+      [
+        "666.666",
+        "ACCEPTED",
+        "2026-11-15T00:00:00Z"
+      ],
+      [
+        "666.666",
+        "ACCEPTED",
+        "2026-11-15T00:01:00Z"
+      ],
+      [
+        "666.666",
+        "ACCEPTED",
+        "2026-11-15T00:02:00Z"
+      ]
+    ],
+    "same_timestamp_row_count": 1,
+    "unannounced_poison_accepted": 2
+  },
+  "generated_utc": "2026-11-15T07:36:56Z",
+  "isolation": "temporary database only; live governed_memory.db untouched",
+  "standard": "XORAS-GOVERNOR-VETO-STATE-DEFECT-v1.0",
+  "steps": [
+    {
+      "accepted": true,
+      "explicit_supersede": true,
+      "governance_score": 0.9764,
+      "status": "ACCEPTED",
+      "step": "honest_baseline",
+      "supersession_axis": 1.0,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "value": "18432.0",
+      "veto_reasons": []
+    },
+    {
+      "accepted": true,
+      "explicit_supersede": true,
+      "governance_score": 0.9664,
+      "status": "ACCEPTED",
+      "step": "signed_poison_explicit_supersede_same_ts",
+      "supersession_axis": 0.95,
+      "timestamp": "2026-11-15T00:00:00Z",
+      "value": "666.666",
+      "veto_reasons": []
+    },
+    {
+      "accepted": true,
+      "explicit_supersede": false,
+      "governance_score": 0.9665,
+      "status": "ACCEPTED",
+      "step": "unannounced_poison_t1",
+      "supersession_axis": 0.95,
+      "timestamp": "2026-11-15T00:01:00Z",
+      "value": "666.666",
+      "veto_reasons": []
+    },
+    {
+      "accepted": true,
+      "explicit_supersede": false,
+      "governance_score": 0.9665,
+      "status": "ACCEPTED",
+      "step": "unannounced_poison_t2",
+      "supersession_axis": 0.95,
+      "timestamp": "2026-11-15T00:02:00Z",
+      "value": "666.666",
+      "veto_reasons": []
+    }
+  ],
+  "summary": "Contradiction veto is defeated by same-timestamp row overwrite and unordered per-key fetch; unannounced poison is accepted after one supersede."
+}

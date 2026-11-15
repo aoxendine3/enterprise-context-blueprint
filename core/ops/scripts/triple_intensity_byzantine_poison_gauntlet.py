@@ -112,8 +112,13 @@ def run_signed_semantic_poison_attack():
     print(f"  Axes: {res_poison_unannounced['axes']}")
     print(f"  Veto Reasons: {res_poison_unannounced['veto_reasons']}")
     
-    # The contradiction detection dropped Supersession (S) to 0.35, triggering hard veto!
-    print("  -> RESULT: Contradiction Persistence detected! Hard Veto triggered (S=0.35 < 0.50).")
+    # Report what the governor actually returned. Do not assert a veto.
+    if res_poison_unannounced["accepted"]:
+        print("  -> RESULT: ACCEPTED. The contradiction veto did not fire on this database state.")
+        print("  -> Reproduce the history-dependent defect: core/ops/scripts/governor_veto_state_defect_repro.py")
+    else:
+        reasons = ", ".join(res_poison_unannounced["veto_reasons"]) or "below threshold"
+        print(f"  -> RESULT: VETOED. {reasons}")
 
     print("\n[ATTACK VECTOR 2] The 'Insider Rogue' Attack with Explicit Supersede Flag:")
     print("  What if the compromised insider sets explicit_supersede=True to override the contradiction?")

@@ -181,3 +181,26 @@
 - UPGP `tests/exploits/*.c` (ptrace, proc_mem, unshare, bpf, raw_socket) + `RedTeamExploitGauntlet.ts`.
 - `trinity_gate.py` 2-of-3 file-hash quorum; `local_quorum_deliberation.py` 3-seat local LLM deliberation; MTPO/cage/UPGP Z3 proofs discharged by `reality_gate.sh`.
 - Dojo is empty except `labs/scratch/dojo_test/run_upgp_crash_test.py`.
+
+## [2.0.15] — 2026-11-15 — Months of Byzantine testing reassessed against artifacts (USB included)
+
+**Who:** build seat, by inspection and execution.
+**Why:** the first scanner review covered only the live tree. The USB releases and the July–November commit history show a larger body of work, and a different failure pattern.
+**Report:** `docs/audits/MONTHS_OF_TESTS_REASSESSMENT_2026-11-15.md`
+**Receipt:** `memory/catch_log/governor_veto_state_defect_receipt.json` (reproducer: `core/ops/scripts/governor_veto_state_defect_repro.py`)
+
+### Established
+- USB holds two frozen releases (v1.0.0 Sep 28, v1.1.0 Oct 2) with an `ops/stress/` suite that no longer exists live; its Sept 22/28 receipts are real (`8,335 ops/s`, `2,133 DPS @ 400`, 0 desync). Not runnable today: `workspaces/sovra_nexus` is missing.
+- 416 commits; 98 test/gauntlet commits. The hardware-stress line is genuine and re-runnable.
+- `5m_byzantine_purple_swarm_gauntlet.py` **fabricates** its result: 10 arithmetic batches, no governor call, hard-coded `AIRTIGHT_5M_...PASSED`.
+- `30M PBFT` is an in-RAM array evaluation (`1 - rogue_rate`); the Oct 16 receipt says so honestly, then still calls it PBFT.
+- The 95% liar-density ramp varies no density — every stage fails on the same `badhash` provenance check.
+- `XORAS_015` Z3 claim has no Trinity `.smt2`; `EXTREME_BYZANTINE_MAXOUT_TELEMETRY.json` has no consensus pillar.
+
+### New defect found and receipted
+- Governance contradiction veto is defeated by history: row id `sha256(agent:key:timestamp)` lets an `explicit_supersede` write overwrite the honest baseline at the same timestamp, and `score_supersession` uses `fetchone()` with no ordering. After one accepted supersede, unannounced poison is scored 0.95 and **ACCEPTED** (reproduced 2/2).
+- Live `.sovereign/hippocampus/governed_memory.db` holds `canonical_mass=666.666` ACCEPTED (3 rows) and `ramp_key_12=stolen_key_corrupt_payload` ACCEPTED.
+- Poincaré gate is not in `evaluate_write_candidate`; the "0.00000% contamination" claim is therefore false as wired.
+
+### Fixed
+- `triple_intensity_byzantine_poison_gauntlet.py` no longer prints a hard-coded "Hard Veto triggered" when the governor returned ACCEPTED; it prints the actual status.
