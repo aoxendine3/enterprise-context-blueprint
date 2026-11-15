@@ -16,6 +16,31 @@ Agent Notary is the sovereign, dual-implementation verifier for autonomous multi
 
 ---
 
+## How to read this repo (for critics and engineers)
+
+There are **three surfaces** and they tell one story:
+
+| Surface | What it is | Status |
+| --- | --- | --- |
+| **Agent Notary (site)** — <https://aoxendine3.github.io/xoras.infotech/> | The front door. What you buy or evaluate. | Live. Landing page, product brief, security model, download. |
+| **This repository (enterprise-context-blueprint)** — the technical substrate | The engineering evidence: gates, receipts, witnesses, DART cage, MERKLE spine. | Active, verified evidence; engineering discipline 6/6 gates; still pre-1.0. |
+| **UPGP Proving Ground** — <https://github.com/aoxendine3/upgp-proving-ground> | The research proving ground with falsification and measured side-channel receipts. | Research-track; not a shipped product. |
+
+**The agent family:** every XORAS agent is one of three things: a **counselor** on the council (internal citizens on a sovereign loop), a **witness** (independent re-execution), or a **notary** (the product). All three speak the same evidence format: receipts in `memory/catch_log/`, Merkle spine in `memory/tri_brain/`.
+
+**What to check (in 10 minutes, honestly):**
+1. `bash ops/scripts/verify_all_production_gates.sh` — six gates, must print `6/6 PASSED` and exit 0 on a clean checkout.
+2. `python3 tests/test_dart_cage_lattice.py` — cage lattice acceptance, 7/7.
+3. `python3 scratch/golden_groundedness_harness.py` — groundedness evaluation vs the golden question set. No model on this host scores above the ship threshold yet — that is a fact, not a flourish.
+4. `cat memory/catch_log/REALITY_GATE_RECEIPT.json` — the most recent pre-flight receipt.
+5. Read `AGENTS.md`, `CHANGELOG.md`, `CONTRIBUTING.md`, `SECURITY.md`.
+
+**What we do not claim (yet):** that any benchmark is independently replicated at an organization's scale, that our gates are publicly audited, or that the product has served a paying customer. Everything we publish is either a receipt or a roadmap item labeled as such.
+
+---
+
+---
+
 > Hallucination/context-grounding material is tracked with provenance in `docs/papers/` — nothing there is presented as verified unless receipted in `memory/catch_log/`.
 
 # Enterprise Context Blueprint: The Sovereign Triad (MTPO, MARS & REASONS)
@@ -27,7 +52,7 @@ Agent Notary is the sovereign, dual-implementation verifier for autonomous multi
 [![Target Venue](https://img.shields.io/badge/Target_Venue-USENIX_SAIS_'27-f59e0b.svg)](docs/papers/USENIX_SAIS_2027_SOVEREIGN_TRIAD_FULL_PAPER.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-> **The Sovereign Triad** is the formal, evidence-governed operating runtime for autonomous multi-agent systems, integrating **UPGP v5.0 Ultra** kernel sandboxing, machine-checked MTPO concurrency, anti-hallucination context layers, and deterministic physical silicon execution.
+> **The Sovereign Triad** is the formal, evidence-governed operating runtime for autonomous multi-agent systems, integrating **UPGP v5.0 Ultra** containment research, MTPO concurrency checked by Z3, and an anti-context-failure discipline under active development. Results are reported as measured, not asserted.
 
 ---
 
@@ -134,5 +159,5 @@ nix run github:aoxendine3/enterprise-context-blueprint#falsification-suite
 
 ---
 
-⚡ **The REASONS Canvas locks the intent; the MARS Framework verifies the reality.**  
-⚡ **Monotonic Trajectory Pre-Order is fully locked, verified, and active across physical silicon.**
+⚡ **The REASONS Canvas locks intent; the MARS gates verify reality.**  
+⚡ **Every claim in this repo is on the road to being machine-verified, or it is labeled as planned.**
