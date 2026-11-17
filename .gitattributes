@@ -1,0 +1,24 @@
+# XORAS line-ending contract: byte stability for hash-pinned receipts and
+# deterministic builds on every platform (Windows runners otherwise apply
+# core.autocrlf on checkout, breaking sha256 pin verification).
+* text=auto eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+*.exe binary
+*.dll binary
+*.dylib binary
+*.wasm binary
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.gz binary
+*.mp4 binary
+*.mov binary
+*.m4a binary
+*.db binary
+*.sqlite binary
+*.gguf binary
