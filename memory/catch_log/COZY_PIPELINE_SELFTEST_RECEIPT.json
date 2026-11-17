@@ -1,0 +1,51 @@
+{
+  "checks": [
+    {
+      "detail": "",
+      "name": "make_seamless_loop runs",
+      "ok": true
+    },
+    {
+      "detail": "10.0s",
+      "name": "loop length = 12s - 2s tail",
+      "ok": true
+    },
+    {
+      "detail": "",
+      "name": "build_loop renders",
+      "ok": true
+    },
+    {
+      "detail": "60.0s",
+      "name": "master duration ~60s",
+      "ok": true
+    },
+    {
+      "detail": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/catch_log/COZY_BUILD_RECEIPT.json",
+      "name": "build receipt written",
+      "ok": true
+    },
+    {
+      "detail": "",
+      "name": "missing ledger refuses",
+      "ok": true
+    },
+    {
+      "detail": "",
+      "name": "hash drift refuses",
+      "ok": true
+    },
+    {
+      "detail": "",
+      "name": "disallowed license refuses",
+      "ok": true
+    },
+    {
+      "detail": "",
+      "name": "dry-run refuses render",
+      "ok": true
+    }
+  ],
+  "schema": "xoras.cozy-pipeline-selftest.v1",
+  "verdict": "SELFTEST_PASS"
+}

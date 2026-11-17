@@ -1,0 +1,12 @@
+# media artifacts are never committed
+music/
+*.mp4
+*.mov
+*.mkv
+*.webm
+*.wav
+*.mp3
+*.flac
+*.m4a
+selftest_out/
+__pycache__/

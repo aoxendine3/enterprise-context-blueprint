@@ -1,0 +1,102 @@
+{
+  "argv": [
+    "ffmpeg",
+    "-y",
+    "-hide_banner",
+    "-loglevel",
+    "error",
+    "-stream_loop",
+    "-1",
+    "-i",
+    "/private/var/folders/5f/z86t8vfs6b96sq0wmbnnb4hw0000gn/T/cozy_selftest_b3x1w8pi/visual_loop.mp4",
+    "-f",
+    "concat",
+    "-safe",
+    "0",
+    "-i",
+    "/var/folders/5f/z86t8vfs6b96sq0wmbnnb4hw0000gn/T/tmpjvwvtod1.txt",
+    "-stream_loop",
+    "-1",
+    "-i",
+    "/private/var/folders/5f/z86t8vfs6b96sq0wmbnnb4hw0000gn/T/cozy_selftest_b3x1w8pi/fireplace_ambient.wav",
+    "-filter_complex",
+    "[1:a]volume=0.85[music];[2:a]volume=0.35[ambient];[music][ambient]amix=inputs=2:duration=longest,aformat=sample_rates=48000:channel_layouts=stereo[aout]",
+    "-map",
+    "0:v",
+    "-map",
+    "[aout]",
+    "-c:v",
+    "libx264",
+    "-preset",
+    "ultrafast",
+    "-crf",
+    "30",
+    "-pix_fmt",
+    "yuv420p",
+    "-c:a",
+    "aac",
+    "-b:a",
+    "192k",
+    "-movflags",
+    "+faststart",
+    "-t",
+    "60",
+    "/private/var/folders/5f/z86t8vfs6b96sq0wmbnnb4hw0000gn/T/cozy_selftest_b3x1w8pi/master_60s.mp4"
+  ],
+  "built_utc": "2026-11-17T22:05:16.066423+00:00",
+  "duration_actual_sec": 60.01,
+  "duration_target_sec": 60,
+  "inputs": {
+    "ambient": {
+      "author": "selftest generator",
+      "license": "CC0",
+      "notes": "synthetic pipeline self-test asset",
+      "retrieved_utc": "2026-11-17T00:00:00+00:00",
+      "sha256": "d1dded6fc65c1dc15d4fc321faea1de55d7e0606194ae3d0a056756f6105ebdc",
+      "source_url": "synthetic://selftest"
+    },
+    "music": [
+      {
+        "author": "selftest generator",
+        "license": "CC0",
+        "notes": "synthetic pipeline self-test asset",
+        "retrieved_utc": "2026-11-17T00:00:00+00:00",
+        "sha256": "f0c32a83185318746eae0ea08619ac612ad8654b84144a1fea469c3bb10e9b5f",
+        "source_url": "synthetic://selftest"
+      },
+      {
+        "author": "selftest generator",
+        "license": "CC0",
+        "notes": "synthetic pipeline self-test asset",
+        "retrieved_utc": "2026-11-17T00:00:00+00:00",
+        "sha256": "2ffcfd4f64a6a3d2f1c324f2a5711df631306204eac1e7f44b371a396d2b6289",
+        "source_url": "synthetic://selftest"
+      },
+      {
+        "author": "selftest generator",
+        "license": "CC0",
+        "notes": "synthetic pipeline self-test asset",
+        "retrieved_utc": "2026-11-17T00:00:00+00:00",
+        "sha256": "69b727b713353bab6ea9971d6e1ee2f43210b0767d1e84ec28e559b73cdc95f5",
+        "source_url": "synthetic://selftest"
+      }
+    ],
+    "visual": {
+      "author": "selftest generator",
+      "license": "CC0",
+      "notes": "synthetic pipeline self-test asset",
+      "retrieved_utc": "2026-11-17T00:00:00+00:00",
+      "sha256": "0940ef0b741b9db04190b5c0575025c17bd062aa6b3a06663c4a80040860bd66",
+      "source_url": "synthetic://selftest"
+    }
+  },
+  "output": {
+    "bytes": 9472756,
+    "path": "/private/var/folders/5f/z86t8vfs6b96sq0wmbnnb4hw0000gn/T/cozy_selftest_b3x1w8pi/master_60s.mp4",
+    "sha256": "9ed6c1cfa97d3e27cd9377e7b53a52cb30e56927bb0e0d1af198e0f7d017947a"
+  },
+  "render_seconds": 0.7,
+  "schema": "xoras.cozy-build-receipt.v1",
+  "seed": 3303743680,
+  "verdict": "OK"
+}
