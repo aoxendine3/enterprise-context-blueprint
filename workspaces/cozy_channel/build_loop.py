@@ -41,6 +41,10 @@ REPO = HERE.parent.parent
 ALLOWED_LICENSES = {
     "CC0", "CC0-1.0", "CC0-1.0-US", "PUBLIC-DOMAIN", "PDM",
     "YOUTUBE-AUDIO-LIBRARY", "CC-BY", "CC-BY-4.0", "CC-BY-3.0",
+    # Owner-generated footage: the operator generated it (Runway/Sora/Pika),
+    # so full rights are held in-house. Not a third-party license — provenance
+    # still requires source_url recording the generator and prompt.
+    "OWNER-GENERATED",
 }
 AUDIO_EXT = {".mp3", ".wav", ".flac", ".m4a", ".aac", ".ogg"}
 VIDEO_EXT = {".mp4", ".mov", ".mkv", ".webm"}

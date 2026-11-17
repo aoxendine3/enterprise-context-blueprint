@@ -8,17 +8,17 @@
     "-stream_loop",
     "-1",
     "-i",
-    "/private/var/folders/5f/z86t8vfs6b96sq0wmbnnb4hw0000gn/T/cozy_selftest_b3x1w8pi/visual_loop.mp4",
+    "/private/var/folders/5f/z86t8vfs6b96sq0wmbnnb4hw0000gn/T/cozy_selftest_40uvkkzu/visual_loop.mp4",
     "-f",
     "concat",
     "-safe",
     "0",
     "-i",
-    "/var/folders/5f/z86t8vfs6b96sq0wmbnnb4hw0000gn/T/tmpjvwvtod1.txt",
+    "/var/folders/5f/z86t8vfs6b96sq0wmbnnb4hw0000gn/T/tmp18cvvf8l.txt",
     "-stream_loop",
     "-1",
     "-i",
-    "/private/var/folders/5f/z86t8vfs6b96sq0wmbnnb4hw0000gn/T/cozy_selftest_b3x1w8pi/fireplace_ambient.wav",
+    "/private/var/folders/5f/z86t8vfs6b96sq0wmbnnb4hw0000gn/T/cozy_selftest_40uvkkzu/fireplace_ambient.wav",
     "-filter_complex",
     "[1:a]volume=0.85[music];[2:a]volume=0.35[ambient];[music][ambient]amix=inputs=2:duration=longest,aformat=sample_rates=48000:channel_layouts=stereo[aout]",
     "-map",
@@ -41,9 +41,9 @@
     "+faststart",
     "-t",
     "60",
-    "/private/var/folders/5f/z86t8vfs6b96sq0wmbnnb4hw0000gn/T/cozy_selftest_b3x1w8pi/master_60s.mp4"
+    "/private/var/folders/5f/z86t8vfs6b96sq0wmbnnb4hw0000gn/T/cozy_selftest_40uvkkzu/master_60s.mp4"
   ],
-  "built_utc": "2026-11-17T22:05:16.066423+00:00",
+  "built_utc": "2026-11-17T22:21:35.118378+00:00",
   "duration_actual_sec": 60.01,
   "duration_target_sec": 60,
   "inputs": {
@@ -91,12 +91,12 @@
     }
   },
   "output": {
-    "bytes": 9472756,
-    "path": "/private/var/folders/5f/z86t8vfs6b96sq0wmbnnb4hw0000gn/T/cozy_selftest_b3x1w8pi/master_60s.mp4",
-    "sha256": "9ed6c1cfa97d3e27cd9377e7b53a52cb30e56927bb0e0d1af198e0f7d017947a"
+    "bytes": 9472741,
+    "path": "/private/var/folders/5f/z86t8vfs6b96sq0wmbnnb4hw0000gn/T/cozy_selftest_40uvkkzu/master_60s.mp4",
+    "sha256": "66264f72c94f7ec3f91417c704de9d09cb8f170b29cd4a6a07b7c22463d7ef69"
   },
   "render_seconds": 0.7,
   "schema": "xoras.cozy-build-receipt.v1",
-  "seed": 3303743680,
+  "seed": 1493074045,
   "verdict": "OK"
 }

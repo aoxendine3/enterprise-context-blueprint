@@ -34,15 +34,22 @@ structured PLACEHOLDER_* message) when:
 
 - the asset is missing or unregistered
 - the license is outside the allowed set (CC0 / public domain /
-  YouTube Audio Library / CC-BY)
+  YouTube Audio Library / CC-BY / OWNER-GENERATED)
 - the file's sha256 no longer matches the ledger (drift = tamper)
+
+`OWNER-GENERATED` covers footage you generate yourself (Runway / Sora /
+Pika) — full rights held in-house, zero third-party copyright. Provenance is
+still mandatory: `source_url` must record the generator and the prompt card
+id from `visual_prompts.md`.
 
 Allowed licenses and the full schema live in `asset_ledger.json`.
 
 ## Production workflow
 
-1. **Source visuals** — Pexels / Pixabay (CC0), Mixkit, Archive.org, or AI
-   video generation (you own the output). Prefer **static tripod shots**
+1. **Source visuals** — generate them yourself (`visual_prompts.md` prompt
+   cards → Runway Gen-3 / Sora / Pika → register as `OWNER-GENERATED`), or
+   pull CC0 footage from Pexels / Pixabay, Mixkit, Archive.org. Prefer
+   **static tripod shots**
    (fireplace, rain on glass, steaming mug by a snowy window): static
    frames crossfade invisibly; camera moves expose the seam.
 2. **Prepare the loop** — `python3 make_seamless_loop.py --input raw_clip.mp4`

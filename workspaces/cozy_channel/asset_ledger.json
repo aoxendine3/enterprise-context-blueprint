@@ -1,8 +1,8 @@
 {
   "schema": "xoras.cozy-asset-ledger.v1",
   "policy": {
-    "allowed_licenses": ["CC0", "CC0-1.0", "PUBLIC-DOMAIN", "PDM", "YOUTUBE-AUDIO-LIBRARY", "CC-BY", "CC-BY-4.0", "CC-BY-3.0"],
-    "rule": "Every input to build_loop.py must appear here with source_url, license, author, retrieved_utc, and sha256. Build refuses on missing entry, disallowed license, or hash drift.",
+    "allowed_licenses": ["CC0", "CC0-1.0", "PUBLIC-DOMAIN", "PDM", "YOUTUBE-AUDIO-LIBRARY", "CC-BY", "CC-BY-4.0", "CC-BY-3.0", "OWNER-GENERATED"],
+    "rule": "Every input to build_loop.py must appear here with source_url, license, author, retrieved_utc, and sha256. Build refuses on missing entry, disallowed license, or hash drift. OWNER-GENERATED = footage the operator generated (Runway/Sora/Pika); source_url must record the generator and prompt card id (e.g. visual_prompts.md#VPC-001).",
     "example_entry": {
       "assets": {
         "<absolute-path-to-asset>": {
