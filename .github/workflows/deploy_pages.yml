@@ -15,7 +15,26 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  verify:
+    name: Gate verification (WASM + doc-sync)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Pages must never deploy on a red verification result.
+      - name: Run WebAssembly + doc-sync gates
+        run: |
+          python3 core/ops/scripts/test_upgp_wasm_module.py
+          python3 core/ops/scripts/enforce_doc_sync_gate.py
+
   deploy:
+    needs: verify
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

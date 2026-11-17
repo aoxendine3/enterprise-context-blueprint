@@ -746,3 +746,218 @@
 2026-11-15T08:17:14Z PASS BBQ-13: Intercepted (Exit code 127)
 2026-11-15T08:17:14Z START BBQ-14: Asymmetric Substrate Root Divergence
 2026-11-15T08:17:17Z PASS BBQ-14: Intercepted (Exit code 127)
+2026-11-15T19:09:43Z START TEST-01: Unit Vector Test
+2026-11-15T19:09:43Z PASS TEST-01: Intercepted (Exit code 1)
+2026-11-15T19:09:43Z START TEST-FAILOPEN: Fail Open Probe
+2026-11-15T19:09:43Z FAIL TEST-FAILOPEN: Fail-open breach!
+2026-11-15T19:09:49Z START TEST-01: Unit Vector Test
+2026-11-15T19:09:49Z PASS TEST-01: Intercepted (Exit code 1)
+2026-11-15T19:09:49Z START TEST-FAILOPEN: Fail Open Probe
+2026-11-15T19:09:49Z FAIL TEST-FAILOPEN: Fail-open breach!
+2026-11-15T19:09:54Z START TEST-01: Unit Vector Test
+2026-11-15T19:09:54Z PASS TEST-01: Intercepted (Exit code 1)
+2026-11-15T19:09:54Z START TEST-FAILOPEN: Fail Open Probe
+2026-11-15T19:09:54Z FAIL TEST-FAILOPEN: Fail-open breach!
+2026-11-15T19:09:55Z START BBQ-01: Malformed & Garbage String Claim Injection
+2026-11-15T19:10:01Z PASS BBQ-01: Intercepted (Exit code 127)
+2026-11-15T19:10:01Z START BBQ-02: 10MB Oversized Claim Payload Stress
+2026-11-16T21:02:01Z START BBQ-01: Malformed & Garbage String Claim Injection
+2026-11-16T21:02:02Z START TEST-01: Unit Vector Test
+2026-11-16T21:02:02Z PASS TEST-01: Intercepted (Exit code 1)
+2026-11-16T21:02:02Z START TEST-FAILOPEN: Fail Open Probe
+2026-11-16T21:02:02Z FAIL TEST-FAILOPEN: Fail-open breach!
+2026-11-16T21:02:07Z PASS BBQ-01: Intercepted (Exit code 127)
+2026-11-16T21:02:07Z START BBQ-02: 10MB Oversized Claim Payload Stress
+2026-11-16T21:02:10Z PASS BBQ-02: Intercepted (Exit code 127)
+2026-11-16T21:02:11Z START BBQ-03: Null-Byte & Binary Control Character Injection
+2026-11-16T21:02:14Z PASS BBQ-03: Intercepted (Exit code 127)
+2026-11-16T21:02:14Z START BBQ-04: Unicode Zero-Width & Homoglyph Attack
+2026-11-16T21:02:17Z PASS BBQ-04: Intercepted (Exit code 127)
+2026-11-16T21:02:17Z START BBQ-05: Historical Receipt Replay & Tampered Payload Attack (AV-07)
+2026-11-16T21:02:17Z PASS BBQ-05: Intercepted (Exit code 1)
+2026-11-16T21:02:17Z START BBQ-06: Forged Ed25519 Signature Verification Failure
+2026-11-16T21:02:17Z PASS BBQ-06: Intercepted (Exit code 1)
+2026-11-16T21:02:17Z START BBQ-07: Concurrent Rapid-Fire Race Condition Stress
+2026-11-16T21:02:32Z PASS BBQ-07: Intercepted (Exit code 1)
+2026-11-16T21:02:32Z START BBQ-08: Environment PATH Hijack Probe
+2026-11-16T21:02:35Z PASS BBQ-08: Intercepted (Exit code 1)
+2026-11-16T21:02:35Z START BBQ-09: Preload Shared Library Injection Probe
+2026-11-16T21:02:38Z PASS BBQ-09: Intercepted (Exit code 1)
+2026-11-16T21:02:38Z START BBQ-10: 0-Byte Empty Claim File Injection
+2026-11-16T21:02:41Z PASS BBQ-10: Intercepted (Exit code 127)
+2026-11-16T21:02:41Z START BBQ-11: Permission Lockdown (Unreadable Claim File)
+2026-11-16T21:02:45Z PASS BBQ-11: Intercepted (Exit code 127)
+2026-11-16T21:02:45Z START BBQ-12: CLI Shell Metacharacter Injection
+2026-11-16T21:02:48Z PASS BBQ-12: Intercepted (Exit code 1)
+2026-11-16T21:02:48Z START BBQ-13: Truncated 16-Byte Hex Claim Injection
+2026-11-16T21:02:51Z PASS BBQ-13: Intercepted (Exit code 127)
+2026-11-16T21:02:51Z START BBQ-14: Asymmetric Substrate Root Divergence
+2026-11-16T21:02:54Z PASS BBQ-14: Intercepted (Exit code 127)
+2026-11-16T21:03:10Z START TEST-01: Unit Vector Test
+2026-11-16T21:03:10Z PASS TEST-01: Intercepted (Exit code 1)
+2026-11-16T21:03:10Z START TEST-FAILOPEN: Fail Open Probe
+2026-11-16T21:03:10Z FAIL TEST-FAILOPEN: Fail-open breach!
+2026-11-16T21:10:39Z START TEST-01: Unit Vector Test
+2026-11-16T21:10:39Z PASS TEST-01: Intercepted (Exit code 1)
+2026-11-16T21:10:39Z START TEST-FAILOPEN: Fail Open Probe
+2026-11-16T21:10:39Z FAIL TEST-FAILOPEN: Fail-open breach!
+2026-11-16T21:10:48Z START TEST-01: Unit Vector Test
+2026-11-16T21:10:48Z PASS TEST-01: Intercepted (Exit code 1)
+2026-11-16T21:10:48Z START TEST-FAILOPEN: Fail Open Probe
+2026-11-16T21:10:48Z FAIL TEST-FAILOPEN: Fail-open breach!
+2026-11-16T21:10:50Z START BBQ-01: Malformed & Garbage String Claim Injection
+2026-11-16T21:10:55Z PASS BBQ-01: Intercepted (Exit code 127)
+2026-11-16T21:10:55Z START BBQ-02: 10MB Oversized Claim Payload Stress
+2026-11-16T21:10:59Z PASS BBQ-02: Intercepted (Exit code 127)
+2026-11-16T21:10:59Z START BBQ-03: Null-Byte & Binary Control Character Injection
+2026-11-16T21:11:02Z PASS BBQ-03: Intercepted (Exit code 127)
+2026-11-16T21:11:02Z START BBQ-04: Unicode Zero-Width & Homoglyph Attack
+2026-11-16T21:11:05Z PASS BBQ-04: Intercepted (Exit code 127)
+2026-11-16T21:11:05Z START BBQ-05: Historical Receipt Replay & Tampered Payload Attack (AV-07)
+2026-11-16T21:11:05Z PASS BBQ-05: Intercepted (Exit code 1)
+2026-11-16T21:11:05Z START BBQ-06: Forged Ed25519 Signature Verification Failure
+2026-11-16T21:11:05Z PASS BBQ-06: Intercepted (Exit code 1)
+2026-11-16T21:11:05Z START BBQ-07: Concurrent Rapid-Fire Race Condition Stress
+2026-11-16T21:11:20Z PASS BBQ-07: Intercepted (Exit code 1)
+2026-11-16T21:11:20Z START BBQ-08: Environment PATH Hijack Probe
+2026-11-16T21:11:23Z PASS BBQ-08: Intercepted (Exit code 1)
+2026-11-16T21:11:23Z START BBQ-09: Preload Shared Library Injection Probe
+2026-11-16T21:11:26Z PASS BBQ-09: Intercepted (Exit code 1)
+2026-11-16T21:11:26Z START BBQ-10: 0-Byte Empty Claim File Injection
+2026-11-16T21:11:29Z PASS BBQ-10: Intercepted (Exit code 127)
+2026-11-16T21:11:29Z START BBQ-11: Permission Lockdown (Unreadable Claim File)
+2026-11-16T21:11:32Z PASS BBQ-11: Intercepted (Exit code 127)
+2026-11-16T21:11:32Z START BBQ-12: CLI Shell Metacharacter Injection
+2026-11-16T21:11:36Z PASS BBQ-12: Intercepted (Exit code 1)
+2026-11-16T21:11:36Z START BBQ-13: Truncated 16-Byte Hex Claim Injection
+2026-11-16T21:11:39Z PASS BBQ-13: Intercepted (Exit code 127)
+2026-11-16T21:11:39Z START BBQ-14: Asymmetric Substrate Root Divergence
+2026-11-16T21:11:42Z PASS BBQ-14: Intercepted (Exit code 127)
+2026-11-16T21:12:38Z START TEST-01: Unit Vector Test
+2026-11-16T21:12:38Z PASS TEST-01: Intercepted (Exit code 1)
+2026-11-16T21:12:38Z START TEST-FAILOPEN: Fail Open Probe
+2026-11-16T21:12:38Z FAIL TEST-FAILOPEN: Fail-open breach!
+2026-11-16T21:12:39Z START BBQ-01: Malformed & Garbage String Claim Injection
+2026-11-16T21:12:44Z PASS BBQ-01: Intercepted (Exit code 127)
+2026-11-16T21:12:44Z START BBQ-02: 10MB Oversized Claim Payload Stress
+2026-11-16T21:12:47Z PASS BBQ-02: Intercepted (Exit code 127)
+2026-11-16T21:12:47Z START BBQ-03: Null-Byte & Binary Control Character Injection
+2026-11-16T21:12:50Z PASS BBQ-03: Intercepted (Exit code 127)
+2026-11-16T21:12:50Z START BBQ-04: Unicode Zero-Width & Homoglyph Attack
+2026-11-16T21:12:53Z PASS BBQ-04: Intercepted (Exit code 127)
+2026-11-16T21:12:53Z START BBQ-05: Historical Receipt Replay & Tampered Payload Attack (AV-07)
+2026-11-16T21:12:53Z PASS BBQ-05: Intercepted (Exit code 1)
+2026-11-16T21:12:53Z START BBQ-06: Forged Ed25519 Signature Verification Failure
+2026-11-16T21:12:53Z PASS BBQ-06: Intercepted (Exit code 1)
+2026-11-16T21:12:53Z START BBQ-07: Concurrent Rapid-Fire Race Condition Stress
+2026-11-16T21:13:08Z PASS BBQ-07: Intercepted (Exit code 1)
+2026-11-16T21:13:08Z START BBQ-08: Environment PATH Hijack Probe
+2026-11-16T21:13:11Z PASS BBQ-08: Intercepted (Exit code 1)
+2026-11-16T21:13:11Z START BBQ-09: Preload Shared Library Injection Probe
+2026-11-16T21:13:14Z PASS BBQ-09: Intercepted (Exit code 1)
+2026-11-16T21:13:14Z START BBQ-10: 0-Byte Empty Claim File Injection
+2026-11-16T21:13:17Z PASS BBQ-10: Intercepted (Exit code 127)
+2026-11-16T21:13:17Z START BBQ-11: Permission Lockdown (Unreadable Claim File)
+2026-11-16T21:13:20Z PASS BBQ-11: Intercepted (Exit code 127)
+2026-11-16T21:13:20Z START BBQ-12: CLI Shell Metacharacter Injection
+2026-11-16T21:13:24Z PASS BBQ-12: Intercepted (Exit code 1)
+2026-11-16T21:13:24Z START BBQ-13: Truncated 16-Byte Hex Claim Injection
+2026-11-16T21:13:28Z PASS BBQ-13: Intercepted (Exit code 127)
+2026-11-16T21:13:28Z START BBQ-14: Asymmetric Substrate Root Divergence
+2026-11-16T21:13:31Z PASS BBQ-14: Intercepted (Exit code 127)
+2026-11-16T21:18:29Z START TEST-01: Unit Vector Test
+2026-11-16T21:18:29Z PASS TEST-01: Intercepted (Exit code 1)
+2026-11-16T21:18:29Z START TEST-FAILOPEN: Fail Open Probe
+2026-11-16T21:18:29Z FAIL TEST-FAILOPEN: Fail-open breach!
+2026-11-16T21:18:30Z START BBQ-01: Malformed & Garbage String Claim Injection
+2026-11-16T21:18:36Z PASS BBQ-01: Intercepted (Exit code 127)
+2026-11-16T21:18:36Z START BBQ-02: 10MB Oversized Claim Payload Stress
+2026-11-16T21:18:40Z PASS BBQ-02: Intercepted (Exit code 127)
+2026-11-16T21:18:40Z START BBQ-03: Null-Byte & Binary Control Character Injection
+2026-11-16T21:18:43Z PASS BBQ-03: Intercepted (Exit code 127)
+2026-11-16T21:18:43Z START BBQ-04: Unicode Zero-Width & Homoglyph Attack
+2026-11-16T21:18:46Z PASS BBQ-04: Intercepted (Exit code 127)
+2026-11-16T21:18:46Z START BBQ-05: Historical Receipt Replay & Tampered Payload Attack (AV-07)
+2026-11-16T21:18:46Z PASS BBQ-05: Intercepted (Exit code 1)
+2026-11-16T21:18:46Z START BBQ-06: Forged Ed25519 Signature Verification Failure
+2026-11-16T21:18:46Z PASS BBQ-06: Intercepted (Exit code 1)
+2026-11-16T21:18:46Z START BBQ-07: Concurrent Rapid-Fire Race Condition Stress
+2026-11-16T21:19:00Z PASS BBQ-07: Intercepted (Exit code 1)
+2026-11-16T21:19:00Z START BBQ-08: Environment PATH Hijack Probe
+2026-11-16T21:19:03Z PASS BBQ-08: Intercepted (Exit code 1)
+2026-11-16T21:19:03Z START BBQ-09: Preload Shared Library Injection Probe
+2026-11-16T21:19:06Z PASS BBQ-09: Intercepted (Exit code 1)
+2026-11-16T21:19:06Z START BBQ-10: 0-Byte Empty Claim File Injection
+2026-11-16T21:19:09Z PASS BBQ-10: Intercepted (Exit code 127)
+2026-11-16T21:19:09Z START BBQ-11: Permission Lockdown (Unreadable Claim File)
+2026-11-16T21:19:12Z PASS BBQ-11: Intercepted (Exit code 127)
+2026-11-16T21:19:12Z START BBQ-12: CLI Shell Metacharacter Injection
+2026-11-16T21:19:15Z PASS BBQ-12: Intercepted (Exit code 1)
+2026-11-16T21:19:15Z START BBQ-13: Truncated 16-Byte Hex Claim Injection
+2026-11-16T21:19:18Z PASS BBQ-13: Intercepted (Exit code 127)
+2026-11-16T21:19:18Z START BBQ-14: Asymmetric Substrate Root Divergence
+2026-11-16T21:19:21Z PASS BBQ-14: Intercepted (Exit code 127)
+2026-11-16T21:32:59Z START TEST-01: Unit Vector Test
+2026-11-16T21:32:59Z PASS TEST-01: Intercepted (Exit code 1)
+2026-11-16T21:32:59Z START TEST-FAILOPEN: Fail Open Probe
+2026-11-16T21:32:59Z FAIL TEST-FAILOPEN: Fail-open breach!
+2026-11-16T21:33:00Z START BBQ-01: Malformed & Garbage String Claim Injection
+2026-11-16T21:33:06Z PASS BBQ-01: Intercepted (Exit code 127)
+2026-11-16T21:33:06Z START BBQ-02: 10MB Oversized Claim Payload Stress
+2026-11-16T21:33:09Z PASS BBQ-02: Intercepted (Exit code 127)
+2026-11-16T21:33:09Z START BBQ-03: Null-Byte & Binary Control Character Injection
+2026-11-16T21:33:12Z PASS BBQ-03: Intercepted (Exit code 127)
+2026-11-16T21:33:12Z START BBQ-04: Unicode Zero-Width & Homoglyph Attack
+2026-11-16T21:33:15Z PASS BBQ-04: Intercepted (Exit code 127)
+2026-11-16T21:33:15Z START BBQ-05: Historical Receipt Replay & Tampered Payload Attack (AV-07)
+2026-11-16T21:33:15Z PASS BBQ-05: Intercepted (Exit code 1)
+2026-11-16T21:33:15Z START BBQ-06: Forged Ed25519 Signature Verification Failure
+2026-11-16T21:33:15Z PASS BBQ-06: Intercepted (Exit code 1)
+2026-11-16T21:33:15Z START BBQ-07: Concurrent Rapid-Fire Race Condition Stress
+2026-11-16T21:33:30Z PASS BBQ-07: Intercepted (Exit code 1)
+2026-11-16T21:33:30Z START BBQ-08: Environment PATH Hijack Probe
+2026-11-16T21:33:33Z PASS BBQ-08: Intercepted (Exit code 1)
+2026-11-16T21:33:33Z START BBQ-09: Preload Shared Library Injection Probe
+2026-11-16T21:33:36Z PASS BBQ-09: Intercepted (Exit code 1)
+2026-11-16T21:33:36Z START BBQ-10: 0-Byte Empty Claim File Injection
+2026-11-16T21:33:39Z PASS BBQ-10: Intercepted (Exit code 127)
+2026-11-16T21:33:39Z START BBQ-11: Permission Lockdown (Unreadable Claim File)
+2026-11-16T21:33:42Z PASS BBQ-11: Intercepted (Exit code 127)
+2026-11-16T21:33:42Z START BBQ-12: CLI Shell Metacharacter Injection
+2026-11-16T21:33:46Z PASS BBQ-12: Intercepted (Exit code 1)
+2026-11-16T21:33:46Z START BBQ-13: Truncated 16-Byte Hex Claim Injection
+2026-11-16T21:33:49Z PASS BBQ-13: Intercepted (Exit code 127)
+2026-11-16T21:33:49Z START BBQ-14: Asymmetric Substrate Root Divergence
+2026-11-16T21:33:52Z PASS BBQ-14: Intercepted (Exit code 127)
+2026-11-16T22:02:13Z START TEST-01: Unit Vector Test
+2026-11-16T22:02:13Z PASS TEST-01: Intercepted (Exit code 1)
+2026-11-16T22:02:13Z START TEST-FAILOPEN: Fail Open Probe
+2026-11-16T22:02:13Z FAIL TEST-FAILOPEN: Fail-open breach!
+2026-11-16T22:02:15Z START BBQ-01: Malformed & Garbage String Claim Injection
+2026-11-16T22:02:24Z PASS BBQ-01: Intercepted (Exit code 127)
+2026-11-16T22:02:24Z START BBQ-02: 10MB Oversized Claim Payload Stress
+2026-11-16T22:02:27Z PASS BBQ-02: Intercepted (Exit code 127)
+2026-11-16T22:02:27Z START BBQ-03: Null-Byte & Binary Control Character Injection
+2026-11-16T22:02:30Z PASS BBQ-03: Intercepted (Exit code 127)
+2026-11-16T22:02:30Z START BBQ-04: Unicode Zero-Width & Homoglyph Attack
+2026-11-16T22:02:33Z PASS BBQ-04: Intercepted (Exit code 127)
+2026-11-16T22:02:33Z START BBQ-05: Historical Receipt Replay & Tampered Payload Attack (AV-07)
+2026-11-16T22:02:33Z PASS BBQ-05: Intercepted (Exit code 1)
+2026-11-16T22:02:33Z START BBQ-06: Forged Ed25519 Signature Verification Failure
+2026-11-16T22:02:33Z PASS BBQ-06: Intercepted (Exit code 1)
+2026-11-16T22:02:33Z START BBQ-07: Concurrent Rapid-Fire Race Condition Stress
+2026-11-16T22:02:47Z PASS BBQ-07: Intercepted (Exit code 1)
+2026-11-16T22:02:47Z START BBQ-08: Environment PATH Hijack Probe
+2026-11-16T22:02:50Z PASS BBQ-08: Intercepted (Exit code 1)
+2026-11-16T22:02:50Z START BBQ-09: Preload Shared Library Injection Probe
+2026-11-16T22:02:53Z PASS BBQ-09: Intercepted (Exit code 1)
+2026-11-16T22:02:53Z START BBQ-10: 0-Byte Empty Claim File Injection
+2026-11-16T22:02:56Z PASS BBQ-10: Intercepted (Exit code 127)
+2026-11-16T22:02:56Z START BBQ-11: Permission Lockdown (Unreadable Claim File)
+2026-11-16T22:02:59Z PASS BBQ-11: Intercepted (Exit code 127)
+2026-11-16T22:02:59Z START BBQ-12: CLI Shell Metacharacter Injection
+2026-11-16T22:03:02Z PASS BBQ-12: Intercepted (Exit code 1)
+2026-11-16T22:03:02Z START BBQ-13: Truncated 16-Byte Hex Claim Injection
+2026-11-16T22:03:05Z PASS BBQ-13: Intercepted (Exit code 127)
+2026-11-16T22:03:05Z START BBQ-14: Asymmetric Substrate Root Divergence
+2026-11-16T22:03:08Z PASS BBQ-14: Intercepted (Exit code 127)

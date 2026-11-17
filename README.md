@@ -1,163 +1,226 @@
 # Agent Notary by XORAS
 
-**Proving what your agents actually did — cryptographically.**
+**Cryptographic proof of what autonomous agents actually did.**
 
-Agent Notary is a sovereign, dual-implementation verifier for autonomous multi-agent systems. Every claim an agent makes is recomputed independently before it is accepted. No claim advances on trust; no artifact advances without a verifiable, attributable receipt. In short: **your agents say it worked; Agent Notary proves it — or refuses to advance.** Receipts live in `memory/catch_log/`; the Merkle lineage is `memory/tri_brain/world_file.db`; both are shipped in this repo.
-
-| What Agent Notary verifies | How |
-| --- | --- |
-| Every agent action | Notarized via independent recomputation (Zig + Python dual-witness) |
-| Every artifact | Merkle-attested, attribution pinned, unforgeable receipt |
-| Every state transition | DAG lineage verified against 3,000+ lineage nodes on every reality-gate run (current: 3,269+) |
-| Every release | 6/6 production gates discharged — E2E, telemetry, Z3, Zig verifier, TypeScript gauntlet, 14-gate BBQ, Rust crates |
-| Every shipped artifact | WORM-attested and independently verifiable offline |
-
-**Website:** https://aoxendine3.github.io/xoras.infotech/  &nbsp;·&nbsp; **Product brief:** https://aoxendine3.github.io/xoras.infotech/product.html
+Agent Notary is a sovereign, dual-implementation verifier for autonomous multi-agent systems, built on the **Enterprise Context Blueprint / UPGP v5.0 Ultra** substrate. Every claim an agent makes is independently recomputed before it is accepted; no artifact advances without an attributable, receipt-backed result. Receipts live in `memory/catch_log/`, Merkle lineage in `memory/tri_brain/world_file.db`, and the validator surfaces in `workspaces/telemetry_cockpit/`. This document describes engineering evidence and a release candidate — not a generally available, customer-operated service.
 
 ---
 
-## How to read this repo (for critics and engineers)
+## Status at a glance
 
-There are **three surfaces** and they tell one story:
+Every value below is backed by a file in this repository. Where a count may drift, the receipt is authoritative.
 
-| Surface | What it is | Status |
+| Surface | Status (receipt-backed) | Source of truth |
 | --- | --- | --- |
-| **Agent Notary (site)** — <https://aoxendine3.github.io/xoras.infotech/> | The front door. What you buy or evaluate. | Live. Landing page, product brief, security model, download. |
-| **This repository (enterprise-context-blueprint)** — the technical substrate | The engineering evidence: gates, receipts, witnesses, DART cage, MERKLE spine. | Active, verified evidence; engineering discipline 6/6 gates; still pre-1.0. |
-| **UPGP Proving Ground** — <https://github.com/aoxendine3/upgp-proving-ground> | The research proving ground with falsification and measured side-channel receipts. | Research-track; not a shipped product. |
-
-**The agent family:** every XORAS agent is one of three things: a **counselor** on the council (internal citizens on a sovereign loop), a **witness** (independent re-execution), or a **notary** (the product). All three speak the same evidence format: receipts in `memory/catch_log/`, Merkle spine in `memory/tri_brain/`.
-
-**What to check (in 10 minutes, honestly):**
-1. `bash ops/scripts/verify_all_production_gates.sh` — six gates, must print `6/6 PASSED` and exit 0 on a clean checkout.
-2. `python3 tests/test_dart_cage_lattice.py` — cage lattice acceptance, 7/7.
-3. `python3 scratch/golden_groundedness_harness.py` — groundedness evaluation vs the golden question set. No model on this host scores above the ship threshold yet — that is a fact, not a flourish.
-4. `cat memory/catch_log/REALITY_GATE_RECEIPT.json` — the most recent pre-flight receipt.
-5. Read `AGENTS.md`, `CHANGELOG.md`, `CONTRIBUTING.md`, `SECURITY.md`.
-
-**What we do not claim (yet):** that any benchmark is independently replicated at an organization's scale, that our gates are publicly audited, or that the product has served a paying customer. Everything we publish is either a receipt or a roadmap item labeled as such.
+| Version | `5.0.0-rc.1` — release candidate, **not GA** | `version.json`, `VERSIONING.md`, `CITATION.cff`, `package.json` |
+| Product state | **HOLD — not production-ready.** The golden groundedness gate fails and blocks release. | `memory/catch_log/REALITY_GATE_RECEIPT.json` |
+| Reality gate | **FAIL — `8/9` gates passed.** First failure: `golden groundedness (floor metric)`. Production `6/6`, writer PASS, cockpit PASS, CI-surface PASS, golden FAIL. This is a RED build, not a shippable state. | `memory/catch_log/REALITY_GATE_RECEIPT.json` |
+| CI enforcement | Workflows present and the CI-surface gate passes; **required checks and branch protection are still not configured**. | `.github/workflows/` |
+| License | Agent Notary: MIT (`LICENSE`). Separate commercial-terms spec in `LICENSE_COMMERCIAL.md` (applicability to Agent Notary open; see Licensing). | `LICENSE`, `LICENSE_COMMERCIAL.md`, `NOTICE.md` |
+| Last verified evidence | Reality-gate receipt `REALITY_GATE_FAIL`, `2026-11-16T22:03:13Z`, `8/9`, `3651` lineage nodes; cockpit bundle signed, `build_seq 4`, digest `bf07ee2c…` | `REALITY_GATE_RECEIPT.json`, `workspaces/telemetry_cockpit/dist/trust_root.js` |
+| Behavioral groundedness | `GOLDEN_FAIL` — `pass_rate: 0.0` against an `80.0` floor; a **blocking gate**, not a shipping claim | `memory/catch_log/GOLDEN_GROUNDEDNESS_RECEIPT.json` |
 
 ---
 
----
+## What this is / what this is not
 
-> Hallucination/context-grounding material is tracked with provenance in `docs/papers/` — nothing there is presented as verified unless receipted in `memory/catch_log/`.
+**What this is**
 
-# Enterprise Context Blueprint: The Sovereign Triad (MTPO, MARS & REASONS)
+- A local-first verifier and evidence substrate: independent recomputation, Merkle-attested receipts, and a fail-closed pre-flight that aggregates every gate outcome and exits non-zero if any gate fails.
+- A body of engineering evidence — gate receipts, formal proofs, falsification harnesses, and an offline evidence cockpit — that can be re-run on a clean checkout.
+- A release candidate (`5.0.0-rc.1`) in **HOLD**: eight of nine reality gates pass and the golden groundedness gate currently blocks release. CI enforcement is in progress.
 
-[![Outside CI Gauntlet](https://img.shields.io/badge/Outside_CI-Run_%2338708977957_(Ubuntu_24.04_%2B_macOS--14)-10b981.svg)](https://github.com/aoxendine3/enterprise-context-blueprint/actions/runs/38708977957)
-[![UPGP v5.0 Ultra](https://img.shields.io/badge/UPGP-v5.0_Ultra-00f2fe.svg)](https://aoxendine3.github.io/upgp-proving-ground/)
-[![Lean 4 Verified](https://img.shields.io/badge/Lean_4-0_sorryAx_(v4.35.0)-8b5cf6.svg)](dist/sovereign_falsification_suite/lean/MtpoMonotonicity/Basic.lean)
-[![Z3 Differential](https://img.shields.io/badge/Z3_SMT2-Differential_UNSAT-38bdf8.svg)](dist/sovereign_falsification_suite/agm_mtpo_monotonicity.smt2)
-[![Target Venue](https://img.shields.io/badge/Target_Venue-USENIX_SAIS_'27-f59e0b.svg)](docs/papers/USENIX_SAIS_2027_SOVEREIGN_TRIAD_FULL_PAPER.md)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+**What this is not**
 
-> **The Sovereign Triad** is the formal, evidence-governed operating runtime for autonomous multi-agent systems, integrating **UPGP v5.0 Ultra** containment research, MTPO concurrency checked by Z3, and an anti-context-failure discipline under active development. Results are reported as measured, not asserted.
-
----
-
-### Monotonic Trajectory Pre-Order (MTPO): The Mathematical Concurrency Paradigm
-
-**Monotonic Trajectory Pre-Order (MTPO)** is the exact, non-negotiable term and mathematical bedrock of our concurrency architecture in **XORAS::OS**. 
-
-Classical database isolation models—specifically **Two-Phase Locking (2PL)** and **Optimistic Concurrency Control (OCC)**—break down catastrophically when applied to autonomous multi-agent workloads running long-horizon LLM inference loops:
-
-* **2PL Failure**: Locking files or database records across multi-second or multi-minute agent reasoning cycles causes immediate CPU thread starvation, lock contention, and system-wide **lock deadlocks**.
-* **OCC Failure**: OCC detects conflicts at commit time and aborts the entire transaction. In parallel agent swarms, aborting a transaction throws away minutes of high-cost GPU/NPU compute and burns token budgets without advancing system state.
-
-```text
-               MONOTONIC TRAJECTORY PRE-ORDER (MTPO) CONCURRENCY FLOW
-               
-  [ CONCURRENT AGENTS ] ──► Assigned Monotonic Serialization Ranks (σ_1 < σ_2 < σ_3)
-           │
-           ▼
-  [ ORDER-FILTERED READS ] ──► Reads contain ONLY committed writes of rank ≤ σ
-           │
-           ▼ (Out-of-Order Speculative Write Occurs)
-  [ THREE-PHASE SAGA INVERSE ] ──► Prepare ──► Execute ──► Reverse (Rolls back diff)
-           │
-           ▼
-  [ ADVISORY SIGNAL QUEUE ] ──► Pushes ν_i→j signal to Higher-Rank Reader
-           │
-           ▼
-  [ IN-SITU SELF-HEALING ] ──► Higher-Rank Agent updates plan without thread halt
-```
+- **Not GA, and no paying customer.** There has been no paying-customer production deployment, and no claim of operation at an organization's scale is made.
+- **Not independently benchmark-replicated.** No third party has reproduced the results; no independent challenger or witness has signed them.
+- **Not publicly audited.** No public or external audit of the gates or receipts has been performed.
+- **Not a "100% verified" product.** The golden groundedness gate is `GOLDEN_FAIL` (`pass_rate: 0.0` vs `80.0` floor) and currently blocks release; the cockpit correctly resolves to `HALTED` while unresolved slots remain.
+- **Not backed by a live CI signal in this document.** Historical runs are not quoted as fresh; required checks and branch protection are pending, not configured.
+- **Not the producer of the `xoras.infotech` site.** That is a separate site. This repository publishes its `docs/` tree via `.github/workflows/deploy_pages.yml` to the `enterprise-context-blueprint` GitHub Pages target.
+- **Not a legal opinion.** The dual-license notices describe terms, not advice (see `NOTICE.md`).
 
 ---
 
-### Core Mechanics of MTPO
+## Quickstart
 
-1. **Monotonic Serialization Ranks ($\sigma$)**: Every agent citizen on the roster is assigned a fixed, monotonic serialization rank ($\sigma_1 < \sigma_2 < \sigma_3$) at session launch. This rank establishes a definitive logical timeline that remains completely independent of physical arrival time.
-2. **Order-Filtered Snapshot Reads**: When agent $A_j$ reads an object, the middleware serves a virtual snapshot containing only writes committed by agents with an equal or lower rank ($\le \sigma(A_j)$), screening out speculative changes from higher-rank workers.
-3. **Three-Phase Saga Inverses**: Every write registers a deterministic three-phase undo operation (*Prepare, Execute, Reverse*). If an out-of-order write arrives from a lower-rank authority, the runtime automatically executes the *Reverse* action (such as applying a localized git diff rollback), applies the lower-rank write, and re-applies the sequence chronologically.
-4. **Non-Blocking Advisory Notifications ($\nu_{i \to j}$)**: When a lower-rank write invalidates a premise read by a higher-rank agent, the runtime pushes a non-blocking advisory signal ($\nu$) directly into the higher-rank agent's prompt context. The agent evaluates the notification and performs a surgical **in-situ self-healing repair** on its active plan without restarting the session or discarding compute.
-
----
-
----
-
-### 4. Deep Architecture: The MARS Framework & The REASONS Canvas
-
-In **Xoras Systems**, the **MARS Framework** (Multi-Agent Reasoning Structure) and the **REASONS Canvas** (from Structured-Prompt-Driven Development / SPDD) form the dual pillars of our deterministic execution plane. Together, they bridge the gap between high-level human intent and low-level physical silicon execution (`aarch64-apple-darwin`).
-
-```text
-       THE REASONS CANVAS ──► INTENT GRAPH ──► MARS VERIFICATION GATES
-
-  ┌───────────────────────────────┐        ┌───────────────────────────────┐
-  │      THE REASONS CANVAS       │        │   MARS FOUR-LAYER GATE        │
-  │ R - Requirements & DoD        │        │ Layer 1: AST Syntax Linter    │
-  │ E - Entities & Graph Schemas  │ ──►    │ Layer 2: Ed25519 SAST Security│
-  │ A - Approach & Pattern        │        │ Layer 3: ASAN/TSAN Sandbox    │
-  │ S - Structure & Dependencies  │        │ Layer 4: ≥ 80% Unit Test Pass │
-  │ O - Concrete Method Steps     │        └───────────────────────────────┘
-  │ N - Norms & Style Conventions │                       │
-  │ S - Safeguards & Invariants   │                       ▼
-  └───────────────────────────────┘             [ MERGE TO CORE REALITY ]
-```
-
-#### I. The REASONS Canvas: Compiling Intent to Graphs
-Prompting an autonomous swarm in raw, unstructured natural language is the modern equivalent of writing machine code in raw assembly. Under **Structured-Prompt-Driven Development (SPDD)**, we reject conversational prompting in favor of the **REASONS Canvas**, which compiles goals into version-controlled engineering specs:
-
-1. **Requirements (R)**: Explicit problem statement paired with a mathematically verifiable Definition of Done (DoD).
-2. **Entities (E)**: Mapped domain objects, schemas, and relational context graphs.
-3. **Approach (A)**: High-level architectural strategy, cleanly isolated from immediate tool calls.
-4. **Structure (S)**: System dependencies, structural module bindings, and directory exclusions (e.g., locking `/barn/`).
-5. **Operations (O)**: Decomposed, testable method signatures and linear step execution plans.
-6. **Norms (N)**: Memory-safety standards, defensive typing, and byte-aligned I/O rules.
-7. **Safeguards (S)**: Non-negotiable security boundaries, Ed25519 payload signatures, and single-use capability tokens.
-
-The **Conductor** reads the compiled REASONS Canvas and converts it into a **Directed Acyclic Graph (DAG) Intent Graph**. If cyclic dependencies or ambiguous execution paths occur, execution halts immediately with an `EpistemicAnomalyException` before a single GPU token is wasted.
-
----
-
-#### II. The MARS Framework: Observer-Critic & Four-Layer Verification
-To eliminate the **self-grading conflict of interest**—where the agent generating the code evaluates its own work—the **MARS Framework** decouples execution from validation using an independent **Observer-Critic Swarm** and a non-negotiable **Four-Layer Mechanical Gate**:
-
-* **Layer 1: AST Syntax & Linter Verification**: Automatic parsing, indentation, and structural syntax validation (`cargo fmt` / `clippy` / `pylint`).
-* **Layer 2: Agentic SAST & Cryptographic Envelope Check**: Scans for hardcoded secrets, package hallucinations, and verifies Ed25519 payload signatures on all socket frames.
-* **Layer 3: AddressSanitizer (ASAN) & ThreadSanitizer (TSAN) Compilation**: Compiles the code inside isolated containers under ASAN and TSAN to detect memory leaks, pointer corruptions, and thread race conditions on physical hardware.
-* **Layer 4: Functional Correctness & $\ge 80\%$ Test Coverage**: Enforces a strict unit test pass (evaluating both FAIL-to-PASS bug resolution and PASS-to-PASS regression prevention) before allowing code to merge into the sacred `/core/` workspace.
-
----
-
-### 5. Formal Verification & Outside Reproducibility
-
-The entire mathematical formalization and empirical benchmark suite are packaged for one-command replication:
+The `ops` path is a repository symlink to `core/ops`; the two forms are equivalent. We use the symlink form throughout.
 
 ```bash
-# Option A: One-command replication runner
-./dist/sovereign_falsification_suite/reproduce.sh
+# 1. Canonical fail-closed pre-flight (via the ops symlink) — writes the receipt.
+bash ops/scripts/reality_gate.sh
+cat memory/catch_log/REALITY_GATE_RECEIPT.json
 
-# Option B: Isolated bit-identical Nix Flake
-nix run github:aoxendine3/enterprise-context-blueprint#falsification-suite
+# 2. Individual gates (the components the pre-flight aggregates).
+bash ops/scripts/verify_all_production_gates.sh          # production 6/6
+node --expose-gc core/ops/scripts/test_side_channel_verification.cjs
+python3 tests/test_dart_cage_lattice.py                  # DART cage lattice (own 7/7 suite)
+z3 -smt2 -T:30 core/ops/security/cage_containment.smt2   # must print unsat
+bash ops/scripts/verify_sovereign_file_writer.sh
+bash ops/scripts/verify_cockpit.sh
+bash ops/scripts/verify_ci_surface.sh                    # WASM + doc-sync
+python3 core/ops/scripts/verify_golden_groundedness.py   # gate verifier (FAIL today)
+python3 scratch/golden_groundedness_harness.py           # fail-closed harness
+
+# 3. Documentation and WASM integrity.
+python3 core/ops/scripts/enforce_doc_sync_gate.py
+python3 core/ops/scripts/test_upgp_wasm_module.py
+
+# 4. Offline evidence cockpit — single canonical build entry point.
+cd workspaces/telemetry_cockpit && bash build.sh
 ```
 
-* **Lean 4 Proofs**: `dist/sovereign_falsification_suite/lean/MtpoMonotonicity/Basic.lean` — verified 2026-11-14 against `lake env lean`: `step_monotone`, `reaches_monotone`, `destructive_not_monotone`, `mutant_not_monotone` all print `axioms: [propext, Quot.sound]` — no `sorryAx`. (Verified on this host; re-run it yourself.)
-* **Z3 SMT2 Differential**: `dist/sovereign_falsification_suite/agm_mtpo_monotonicity.smt2` (`unsat` vs destructive contraction `sat`).
-* **Outside CI Matrix**: [GitHub Actions Run #38708977957](https://github.com/aoxendine3/enterprise-context-blueprint/actions/runs/38708977957) — historical CI signal (Linux x86_64 and macOS-14 arm64); freshness of those runs is unaudited. Re-run your own gates — nothing here is stamped as fresh without a receipt.
-* **Scientific Manuscript**: [`docs/papers/USENIX_SAIS_2027_SOVEREIGN_TRIAD_FULL_PAPER.md`](docs/papers/USENIX_SAIS_2027_SOVEREIGN_TRIAD_FULL_PAPER.md) (Targeted at USENIX SAIS '27).
+The cockpit build is fail-closed across ten steps (writer gate → evidence export → Ed25519 signing → structural verification → pinned trust root → single-file runtime → asset lock → asset verification → Python assertions → Node suite with an enforced 80% coverage floor). A green build means the bundle is structurally sound and signed; it does **not** mean the product state is `VERIFIED`. Open `dist/index.html` and load `dist/evidence-bundle.json` to inspect the actual verdict.
+
+**Expect a RED pre-flight today.** `bash ops/scripts/reality_gate.sh` currently exits **1** by design: its ninth top-level gate, golden groundedness, fails on the current receipt (`8/9`, first failure `golden groundedness (floor metric)`). This is a governance control, not a broken script. The harness is fail-closed and the verifier returns non-zero until the full **25-question** set is evaluated with **0** forbidden hits and `pass_rate >= 80.0`. An honest build is RED until then; suppressing the gate to turn CI green would defeat its purpose.
 
 ---
 
-⚡ **The REASONS Canvas locks intent; the MARS gates verify reality.**  
-⚡ **Every claim in this repo is either receipt-backed (verifiable on your host) or labeled as planned — there are no third kinds.**
+## Verification map
+
+| Concern | Entry point | Receipt / authority |
+| --- | --- | --- |
+| Reality gate (9 top-level gates; currently **FAIL `8/9`**) | `bash ops/scripts/reality_gate.sh` | `memory/catch_log/REALITY_GATE_RECEIPT.json` |
+| Production gates (`6/6`) | `bash ops/scripts/verify_all_production_gates.sh` | Production status in the reality-gate receipt (derived from the actual result, not hardcoded) |
+| Side-channel / DART cage / Z3 containment | `node --expose-gc core/ops/scripts/test_side_channel_verification.cjs`; `python3 tests/test_dart_cage_lattice.py`; `z3 -smt2 -T:30 core/ops/security/cage_containment.smt2` | Gate receipts in `memory/catch_log/` |
+| Sovereign writer gate | `bash ops/scripts/verify_sovereign_file_writer.sh` | Writer status in the reality-gate receipt |
+| Cockpit gate | `bash ops/scripts/verify_cockpit.sh` (no dist regeneration) | Cockpit status in the reality-gate receipt; `dist/trust_root.js` |
+| CI surface (WASM + doc-sync) | `bash ops/scripts/verify_ci_surface.sh`; `python3 core/ops/scripts/test_upgp_wasm_module.py`; `python3 core/ops/scripts/enforce_doc_sync_gate.py` | CI-surface status in the reality-gate receipt; gate logs in `memory/catch_log/` |
+| Golden groundedness (**blocking**) | `python3 core/ops/scripts/verify_golden_groundedness.py`; `python3 scratch/golden_groundedness_harness.py` | `memory/catch_log/GOLDEN_GROUNDEDNESS_RECEIPT.json` (`GOLDEN_FAIL`) |
+| Falsification suite | `./dist/sovereign_falsification_suite/reproduce.sh` (or the pinned Nix flake) | Suite outputs in `dist/sovereign_falsification_suite/` |
+| Formal proofs | `dist/sovereign_falsification_suite/lean/MtpoMonotonicity/Basic.lean` (Lean 4, no `sorryAx`); `dist/sovereign_falsification_suite/agm_mtpo_monotonicity.smt2` (Z3 `unsat` vs destructive `sat`) | Proof artifacts in-tree; re-run on this host |
+
+Counts in the receipt are a snapshot; re-run the gate before quoting any number. **Golden groundedness currently blocks release:** eight gates pass, but an honest build is RED until the full 25-question set is evaluated with 0 forbidden hits and `pass_rate >= 80.0`.
+
+### Realized gate graph (canonical)
+
+The executed behavior of `ops/scripts/reality_gate.sh` is the canonical gate graph. It runs every step, records each outcome, writes `memory/catch_log/REALITY_GATE_RECEIPT.json`, and exits non-zero if any step fails (fail-closed by aggregation, **not** by stopping at the first failure). The receipt's `production_gates` value is derived from the actual gate result, not hardcoded. The nine realized top-level steps are:
+
+1. Production gates (`bash ops/scripts/verify_all_production_gates.sh`, reported as `6/6`).
+2. Side-channel verification (`node --expose-gc core/ops/scripts/test_side_channel_verification.cjs`).
+3. DART cage lattice (`python3 tests/test_dart_cage_lattice.py`, its own 7/7 acceptance suite).
+4. Z3 cage containment (`cage_containment.smt2`, must be `unsat`).
+5. Sovereign writer verification (`bash ops/scripts/verify_sovereign_file_writer.sh`).
+6. Cockpit structural + asset lock + coverage (`bash ops/scripts/verify_cockpit.sh`).
+7. CI surface — WASM + doc-sync (`bash ops/scripts/verify_ci_surface.sh`).
+8. Golden groundedness — floor metric (`python3 core/ops/scripts/verify_golden_groundedness.py`).
+9. `world_file.db` lineage witness (`select count(*) from lineage_nodes`).
+
+The current receipt reports `8/9` passed with step 8 as the first failure. The receipt, not any prose count, is authoritative; re-run before quoting a number. WASM and doc-sync are folded into step 7 (CI surface), not separate top-level steps.
+
+**Open documentation discrepancy (not resolvable here):** `AGENTS.md §6.4` describes an older gate set and says the runner "stops at the first failure." That no longer matches the executed graph above, and historical `CHANGELOG.md` entries describe earlier semantics. `AGENTS.md` is outside this document's ownership; aligning it is an open item for its owner.
+
+---
+
+## Architecture
+
+The following are the established substrates and terminology of the Enterprise Context Blueprint. Descriptions are intentionally restrained; each mechanism is evidenced by the receipts named above or by the in-tree proof artifacts. No new capability is asserted here.
+
+### Monotonic Trajectory Pre-Order (MTPO)
+
+MTPO is the concurrency model for long-horizon autonomous workloads. Rather than locking records across multi-second inference (2PL) or aborting whole transactions at commit time (OCC), it assigns each agent a fixed monotonic serialization rank (σ). Reads are order-filtered snapshots containing only writes from ranks ≤ σ, so speculative higher-rank writes cannot contaminate a reader. The model is formalized in the Lean/Z3 artifacts in `dist/sovereign_falsification_suite/`.
+
+### MARS Framework and the REASONS Canvas
+
+The **REASONS Canvas** compiles intent into a version-controlled engineering spec (Requirements, Entities, Approach, Structure, Operations, Norms, Safeguards) that the Conductor turns into a DAG intent graph; cyclic or ambiguous plans halt before execution. The **MARS Framework** decouples execution from validation through an independent Observer-Critic and a four-layer mechanical gate: AST/lint verification; agentic SAST and Ed25519 envelope checks; ASAN/TSAN sandbox compilation; and functional correctness with an 80% test-coverage floor. These are the discipline behind the production gates, not a separate marketing claim.
+
+### DART cage (capability lattice)
+
+The DART durable substrate carries a capability lattice `PUBLIC < INTERNAL < RESTRICTED < SEALED` at record time. Recall is filtered by caller clearance: higher-tainted cells never surface to lower callers, legacy rows fail closed to `RESTRICTED`, and a Z3 proof (`core/ops/security/cage_containment.smt2`, `unsat`) establishes that no path carries `SEALED` data to an egress-capable cell without a verified downgrade. Acceptance is receipted in `memory/catch_log/DART_CAGE_LATTICE_RECEIPT.json`.
+
+### MTPO saga (three-phase inverse)
+
+Every write registers a deterministic three-phase undo — **Prepare → Execute → Reverse**. When an out-of-order lower-rank write invalidates a premise, the runtime executes `Reverse` on the diff, applies the lower-rank write, and re-applies the sequence. Non-blocking advisory signals (ν) notify higher-rank readers, which repair their plans in situ rather than restarting and discarding compute.
+
+### DAXX
+
+DAXX is the blue-team functional-QA and robust-repair standard under which modifications are admitted: errors-as-placeholders, type-centric oracle cures (pointer/mapping guards and `uint64` overflow checks on scaled arithmetic), and an automated test-coverage floor. It is an engineering discipline documented in `AGENTS.md §5`, not a product feature.
+
+### HexCell
+
+HexCell is the cell format used across the DART hot ring and the WASM simulator topology primitive (`init_hexcell_topology`), with the durable path adding the lattice columns described above. The format is unchanged by the lattice work, so the Zig/dual-witness path is unaffected.
+
+---
+
+## Products and repositories
+
+| Product | Role | Honest status | Location |
+| --- | --- | --- | --- |
+| **Agent Notary by XORAS** | Primary verifier product and entry point | Release candidate `5.0.0-rc.1`; strong local evidence, not a paying-customer production deployment | This repository |
+| **Enterprise Context Blueprint / UPGP v5.0 Ultra** | Technical substrate: gates, receipts, witnesses, DART cage, Merkle spine, formal proofs | Active engineering evidence; `8/9` reality gates pass locally, golden gate blocks release, CI enforcement in progress | This repository; `docs/` published via `.github/workflows/deploy_pages.yml` to the `enterprise-context-blueprint` Pages target |
+| **UPGP Proving Ground** | Research proving ground: falsification and measured side-channel receipts | Research track, not a shipped product | `https://github.com/aoxendine3/upgp-proving-ground` |
+
+The `xoras.infotech` site is separate and is not produced by this repository.
+
+---
+
+## CI/CD
+
+The repository carries eleven GitHub Actions workflows (e.g. `main.yml`, `mars_gatekeeper_maven.yml`, `boundary_gate.yml`, `outside_falsification_gauntlet.yml`, `reproducible_build_audit.yml`, `deploy_pages.yml`, `publish.yml`, and others under `.github/workflows/`). They cover verification, formal verification, boundary/integrity checks, the outside falsification matrix, reproducible-build auditing, desktop/Windows smoke builds, and Pages publishing.
+
+Honest caveats:
+
+- **No branch protection is configured**, and no required checks are enforced on merge. Workflows existing is not the same as checks being required.
+- The CI-surface gate now exists and passes locally (reality gate step 7), but required checks and branch protection remain pending; CI enforcement is partial.
+- Historical external CI runs are not stamped as fresh in this document. Re-run the gates locally (`bash ops/scripts/reality_gate.sh`) for a current verdict — expect exit `1` while the golden gate fails.
+
+---
+
+## Licensing
+
+The license position is specific, not a blanket "all MIT" claim:
+
+- **Agent Notary and this repository are governed by the root `LICENSE`, which is the MIT License.** MIT is the license that applies to the software and documentation here unless a separate written commercial agreement covers a specific use.
+- **`LICENSE_COMMERCIAL.md` is a separate commercial-terms specification.** As written, its commercial section names *Chronos Swarm Debugger* and *Xoras Horizon Sentinel* rather than Agent Notary; the applicability of those commercial terms to Agent Notary is not established by that document and is an open item for its owners. No new commercial term is invented here.
+
+A summary of the arrangement and the third-party attribution policy is in `NOTICE.md`. Nothing here constitutes legal advice or a legal opinion.
+
+---
+
+## Versioning
+
+The canonical version is **`5.0.0-rc.1`**. It is mirrored across:
+
+- `version.json` — the machine-readable manifest (unsigned; see its `signature` field).
+- `VERSIONING.md` — the semantic-version policy, RC/GA criteria, and bump procedure.
+- `CITATION.cff` — the academic citation metadata.
+- `package.json` — the Node package version.
+
+`CHANGELOG.md` records an unreleased `5.0.0-rc.1` section for work performed in this cycle. See `VERSIONING.md` for the rule that GA requires all gates green in CI plus branch protection.
+
+The root `version.json` is the machine-readable version SSOT. `data/version.json` is **unrelated legacy metadata for a different product** (`provider_devtools_extension`, `0.0.1`) and must not be used as this project's version source.
+
+---
+
+## Evidence and limitations
+
+**Receipt-backed claims**
+
+- Reality gate **FAIL** at `8/9` (`REALITY_GATE_RECEIPT.json`, `2026-11-16T22:03:13Z`): production `6/6`, writer PASS, cockpit PASS, CI-surface PASS, `3651` lineage nodes; first failure `golden groundedness (floor metric)`. Eight gates are receipted green; the ninth is receipted FAIL.
+- Cockpit bundle is structurally complete and signed (Ed25519), pinned by `dist/trust_root.js` at `build_seq 4`.
+- DART cage lattice acceptance and side-channel axes are receipted in `memory/catch_log/`.
+- Formal proofs and falsification harnesses are present in `dist/sovereign_falsification_suite/`.
+
+**Known open items**
+
+- **Golden groundedness — blocking gate, currently FAIL** (`GOLDEN_GROUNDEDNESS_RECEIPT.json`). The receipt was reclassified from `GOLDEN_HARNESS_COMPLETE` to `GOLDEN_FAIL` (at `2026-11-16T22:10:00Z`) with `pass_rate_floor: 80.0` and a `reclassification_reason`; measured values are unchanged: **2 questions** evaluated, **empty responses**, `features_examined: 0`, `pass_rate: 0.0`. The harness is fail-closed (`GOLDEN_PASS` only at 25/25 questions, 0 forbidden hits, `pass_rate >= 80.0`) and `core/ops/scripts/verify_golden_groundedness.py` exits 1 on the current receipt. This gate now **blocks release**; the honest build is RED until the full 25-question set passes at the floor. It is not validation of agent behavior in its current state.
+- **Product state HOLD** while the golden gate fails; no production-ready claim is made.
+- **External key custody (pending).** The cockpit signing key lives outside the repository; the bundle signature proves authorship by the key holder, not external trust or independent identity.
+- **Attestation binding (pending).** The trust-root pin is generated in the same build, so it proves consistency, not third-party attestation.
+- **CI required checks pending.** No branch protection or required status checks are configured.
+- **No independent benchmark replication or external challenger witness.**
+- **No public audit** of gates or receipts.
+- **Doc-sync script header drift.** `core/ops/scripts/enforce_doc_sync_gate.py` has a header that still names "UPGP v4.0 Ultra" while its body checks for "v5.0 Ultra". The script is owned by the CI worker and was not modified here; aligning its header is an open item. The gate still passes because `README.md` contains the required `v5.0` string.
+- **AGENTS.md §6.4 gate-graph mismatch** — see the realized gate graph above; aligning that document is an open item for its owner.
+- Product completion requires both the golden gate to pass and the cockpit to resolve to `VERIFIED` with zero unresolved slots; the cockpit currently resolves to `HALTED`, which is the correct fail-closed result.
+
+---
+
+## Badges
+
+These are **static labels, not live CI** — see the receipts above for current values.
+
+![Version 5.0.0-rc.1](https://img.shields.io/badge/version-5.0.0--rc.1-orange) ![Status release candidate](https://img.shields.io/badge/status-release_candidate-yellow) ![Reality gate see receipt](https://img.shields.io/badge/reality_gate-see_receipt-blue) ![Build RED golden gate](https://img.shields.io/badge/build-RED_%28golden_gate%29-red) ![UPGP v5.0 Ultra substrate](https://img.shields.io/badge/UPGP-v5.0_Ultra_substrate-00f2fe) ![License MIT + commercial spec](https://img.shields.io/badge/license-MIT_%2B_commercial_spec-blue)
+
+- Reality gate authority: [`memory/catch_log/REALITY_GATE_RECEIPT.json`](memory/catch_log/REALITY_GATE_RECEIPT.json)
+- Manifest: [`version.json`](version.json) · Policy: [`VERSIONING.md`](VERSIONING.md) · Licensing: [`NOTICE.md`](NOTICE.md)

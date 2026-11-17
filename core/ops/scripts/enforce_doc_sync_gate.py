@@ -10,7 +10,8 @@ import json
 import os
 import sys
 
-REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+# Script lives at <repo>/core/ops/scripts; three levels up is the repository root.
+REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 
 DOC_FILES_TO_CHECK = [
     os.path.join(REPO_ROOT, "README.md"),
@@ -64,6 +65,13 @@ def check_doc_sync():
     return True
 
 def main():
+    # Defensive check: refuse to run when the repository root cannot be resolved.
+    # This runs before check_doc_sync() imports the report validator.
+    if not os.path.isfile(os.path.join(REPO_ROOT, "README.md")):
+        print("❌ DOCUMENTATION GATE FAILED: REPO_ROOT has no README.md "
+              f"(resolved to {REPO_ROOT})", file=sys.stderr)
+        sys.exit(1)
+
     log_path = os.path.join(REPO_ROOT, "memory/catch_log/doc_sync_gate.log")
     os.makedirs(os.path.dirname(log_path), exist_ok=True)
 

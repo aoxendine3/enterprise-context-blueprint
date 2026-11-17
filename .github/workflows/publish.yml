@@ -1,47 +1,65 @@
 name: Publish to npm
 
+# ---------------------------------------------------------------------------
+# CI/CD remediation (2026-11-16): this workflow no longer publishes on release.
+# WHY: it previously attempted `npm publish` from packages/{core,cli,
+# integrations,ui}, none of which exist in this repository. There is no honest
+# package to publish, so release-triggered publishing was removed to avoid a
+# silently misbuilt/empty publish. It is now workflow_dispatch-only, gated by a
+# real verification job, and the publish job fails closed with a diagnostic.
+#
+# To enable trusted publishing later, once real package workspaces exist:
+#   - add `id-token: write` to the publish job permissions, and
+#   - use `npm publish --access public --provenance` from each real package dir.
+# Neither is enabled now because there is nothing valid to publish.
+# ---------------------------------------------------------------------------
 on:
-  release:
-    types: [created]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+timeout-minutes: 30
+
 jobs:
-  publish:
+  verify:
+    name: Gate verification (WASM + doc-sync)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
         with:
-          node-version: '22'
-          registry-url: 'https://registry.npmjs.org'
-      
-      - name: Install dependencies
-        run: npm install
+          python-version: '3.12'
 
-      - name: Publish Core
+      - name: Run WebAssembly + doc-sync gates
         run: |
-          cd packages/core
-          npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          python3 core/ops/scripts/test_upgp_wasm_module.py
+          python3 core/ops/scripts/enforce_doc_sync_gate.py
 
-      - name: Publish CLI
-        run: |
-          cd packages/cli
-          npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  publish:
+    name: Publish diagnostic (fail-closed)
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Publish Integrations
+      - name: Fail closed if real package workspaces are absent
         run: |
-          cd packages/integrations
-          npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Publish UI
-        run: |
-          cd packages/ui
-          npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          missing=0
+          for pkg in packages/core packages/cli packages/integrations packages/ui; do
+            if [ ! -f "$pkg/package.json" ]; then
+              echo "::error::Missing publishable package manifest: $pkg/package.json"
+              missing=1
+            fi
+          done
+          if [ "$missing" -ne 0 ]; then
+            echo "Publishing is disabled: the packages/* workspaces referenced by the old workflow do not exist."
+            echo "Create real package manifests and re-enable trusted publishing (id-token: write + --provenance) before use."
+            exit 1
+          fi
+          echo "Package manifests are present, but automated publishing is intentionally disabled in this workflow."
+          echo "Enable npm trusted publishing explicitly once the release process is re-reviewed."

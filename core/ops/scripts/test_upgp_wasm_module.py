@@ -4,12 +4,21 @@ import os
 import sys
 
 def test_wasm_binary():
-    wasm_path = os.path.join(os.path.dirname(__file__), "..", "..", "docs", "assets", "wasm", "upgp_simulator.wasm")
+    # Script lives at <repo>/core/ops/scripts; the tracked WASM is at <repo>/docs.
+    wasm_path = os.path.abspath(os.path.join(
+        os.path.dirname(__file__), "..", "..", "..", "docs", "assets", "wasm", "upgp_simulator.wasm"))
     if not os.path.exists(wasm_path):
         print(f"❌ WASM Binary not found at {wasm_path}")
         sys.exit(1)
-        
-    print(f"[STEP 1] Validating Compiled Stateful WASM File Exists ({os.path.getsize(wasm_path)} bytes)...")
+
+    # Defensive check: the tracked simulator is pinned at 3,011 bytes.
+    expected_bytes = 3011
+    actual_bytes = os.path.getsize(wasm_path)
+    if actual_bytes != expected_bytes:
+        print(f"❌ WASM Binary byte count mismatch at {wasm_path}: {actual_bytes} bytes (expected {expected_bytes})")
+        sys.exit(1)
+
+    print(f"[STEP 1] Validating Compiled Stateful WASM File Exists ({actual_bytes} bytes)...")
     
     node_test_script = f"""
     const fs = require('fs');

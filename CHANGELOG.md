@@ -1,5 +1,27 @@
 # Changelog
 
+## [5.0.0-rc.1] - Unreleased
+
+> **Unreleased — not shipped.** This section records work performed in the current engineering cycle. It is a release candidate, not a general-availability release.
+
+### Added / Changed (this cycle)
+
+- **Signed cockpit bundle** — the offline evidence cockpit now exports a manifest-hashed bundle with a detached Ed25519 signature pinned by `dist/trust_root.js`; the single canonical build path is fail-closed across structural, signing, asset-lock, and coverage steps.
+- **Fail-closed gates** — gate scripts were tightened so failures return non-zero rather than being printed and ignored; the reality gate aggregates all gates and writes `REALITY_GATE_RECEIPT.json` with a fail-closed verdict.
+- **CI path fixes** — workflow and operational script paths were corrected so CI and local invocations resolve the same entry points.
+- **Merkle claim restoration** — the poisoned `merkle_root.hash` condition was repaired; the BBQ gauntlet restores from `merkle_root.known_good` (0444) rather than from whatever is on disk.
+- **Writer hardening** — sovereign file-writer verification was hardened and remains a top-level gate before evidence export.
+- **Documentation / version alignment** — unified versioning at `5.0.0-rc.1` across `README.md`, `version.json`, `VERSIONING.md`, `CITATION.cff`, `package.json`, `NOTICE.md`, and the cockpit README.
+- **Stale-claim register (independent critic)** — README now documents the realized gate graph (and the `AGENTS.md §6.4` discrepancy), the doc-sync script header drift, the golden receipt's fail-closed status, the precise license position, and that `data/version.json` is unrelated legacy. Historical CHANGELOG numbers are labeled as historical.
+- **Ninth reality gate (golden groundedness)** — `reality_gate.sh` now runs 9 top-level gates, including CI surface (WASM + doc-sync) and golden groundedness; `production_gates` is derived from the actual gate result rather than hardcoded. Current receipt: `REALITY_GATE_FAIL`, `8/9`, first failure `golden groundedness (floor metric)`, production `6/6`, writer/cockpit/CI-surface PASS, `3651` lineage nodes (`2026-11-16T22:03:13Z`).
+- **Fail-closed golden harness** — `scratch/golden_groundedness_harness.py` now emits `GOLDEN_PASS` only at 25/25 questions evaluated, 0 forbidden hits, and `pass_rate >= 80.0`, exiting 1 otherwise; `core/ops/scripts/verify_golden_groundedness.py` is the gate verifier and exits 1 on the current receipt.
+- **Golden receipt reclassification** — `GOLDEN_GROUNDEDNESS_RECEIPT.json` verdict changed from `GOLDEN_HARNESS_COMPLETE` to `GOLDEN_FAIL` with `pass_rate_floor: 80.0` and a `reclassification_reason` (`2026-11-16T22:10:00Z`); measured values are unchanged (2 questions, `0.0` pass rate, empty responses). It is now a blocking gate, not a floor signal.
+
+### Not shipped
+
+- CI required checks and branch protection are pending; no GA claim is made.
+- Product state is **HOLD**: the golden groundedness gate currently FAILs and blocks release. An honest build is RED until the full 25-question set passes at the 80.0 floor.
+
 ## [2.0.0] — 2026-11
 
 ### Added
@@ -132,6 +154,13 @@
 ### Added
 - `ops/scripts/reality_gate.sh` — fail-closed pre-flight: production gates (bash ops/scripts/verify_all_production_gates.sh) → side-channel (node --expose-gc core/ops/scripts/test_side_channel_verification.cjs) → DART cage lattice (python3 tests/test_dart_cage_lattice.py) → Z3 cage_containment.smt2 (must print unsat) → world_file.db lineage witness (`select count(*) from lineage_nodes`, live count 3371). Writes `memory/catch_log/REALITY_GATE_RECEIPT.json`; exits non-zero on any failure; accepted by `scratch/reality_gate_acceptance/acceptance.sh` (T1/T2/T3/T4 all PASS, fail-closed proven under rigged z3).
 - Kokoro wired as the collective's voice (`am_michael`) in `ops/scripts/collective_speak.sh` via `ops/scripts/collective_kokoro.py`; Lee (Premium) remains emergency fallback only. Capabilities models (`capabilities/neural_models/kokoro-v1.0.onnx` + `voices.bin`) are ours and intact.
+
+### Historical clarification (numbers above are historical, not current)
+
+- The `3371` lineage-node count written in this 2026-11-14 entry was the **live count at that time**. It is historical; the current receipt reports `3651` (`memory/catch_log/REALITY_GATE_RECEIPT.json`).
+- The phrase "stops at the first failure" described the runner's behavior as shipped then. The current `reality_gate.sh` runs all gates, aggregates outcomes, and exits non-zero on any failure; the canonical realized graph is documented in `README.md`.
+- The gate set listed above was the graph on 2026-11-14. Sovereign writer verification and cockpit structural/coverage verification were added later as top-level gates; see `README.md` for the current graph.
+- This entry does not mention the sovereign-writer and cockpit gates because they did not exist at that time. `AGENTS.md §6.4` still describes the older graph and earlier semantics; aligning it is an open item for its owner.
 
 ### Changed
 - Voice contract enriched earlier today: explicit "we/our" tempered wording in dispatch turns; outside-entity shapes remain refused.

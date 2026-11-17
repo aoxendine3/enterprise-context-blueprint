@@ -1,13 +1,41 @@
 name: Sovereign Tauri Desktop Release Build
 
+# ---------------------------------------------------------------------------
+# CI/CD remediation (2026-11-16): the old job ran tauri-action with no
+# projectPath from the repository root, but there is no root src-tauri project.
+# It would silently misbuild (or fail late). A root-project guard now fails
+# closed with a clear diagnostic. Do not fake a src-tauri config to satisfy it.
+# Candidate apps live under workspaces/*/src-tauri and are currently untracked;
+# point tauri-action at a real, tracked project before re-enabling releases.
+# ---------------------------------------------------------------------------
 on:
   push:
     tags:
       - 'v*'
   workflow_dispatch:
 
+timeout-minutes: 90
+
 jobs:
+  verify:
+    name: Gate verification (WASM + doc-sync)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run WebAssembly + doc-sync gates
+        run: |
+          python3 core/ops/scripts/test_upgp_wasm_module.py
+          python3 core/ops/scripts/enforce_doc_sync_gate.py
+
   release:
+    needs: verify
     permissions:
       contents: write
     strategy:
@@ -18,6 +46,18 @@ jobs:
     runs-on: ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Fail closed if no root Tauri project exists
+        shell: bash
+        run: |
+          if [ ! -f "src-tauri/tauri.conf.json" ] || [ ! -f "src-tauri/Cargo.toml" ] || [ ! -f "package.json" ]; then
+            echo "::error::No root Tauri project found (expected src-tauri/tauri.conf.json, src-tauri/Cargo.toml and package.json at the repository root)."
+            echo "tauri-action was invoked without a projectPath and there is nothing valid at the root to build."
+            echo "Point tauri-action at a real, tracked project (see workspaces/*/src-tauri) before re-enabling releases."
+            exit 1
+          fi
+          echo "Root Tauri project detected; continuing with release build."
+
       - name: setup node
         uses: actions/setup-node@v4
         with:

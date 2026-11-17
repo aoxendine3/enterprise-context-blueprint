@@ -7,8 +7,8 @@ authors:
     affiliation: "XORAS Systems"
   - name: "The Sovereign Lead 9 Council"
     affiliation: "XORAS Autonomous Verification Group"
-version: 4.2.0
-date-released: 2026-10-15
+version: 5.0.0-rc.1
+date-released: 2026-11-16
 url: "https://github.com/aoxendine3/enterprise-context-blueprint"
 repository-code: "https://github.com/aoxendine3/enterprise-context-blueprint"
 license: MIT
@@ -20,4 +20,8 @@ keywords:
   - "z3"
   - "merkle-dag"
   - "saga-pattern"
+  - "agent-notary"
+  - "enterprise-context-blueprint"
+  - "upgp-v5.0-ultra"
+  - "receipt-backed-verification"
   - "usenix-atc"

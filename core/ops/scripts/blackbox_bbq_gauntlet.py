@@ -22,6 +22,7 @@ import subprocess
 import time
 import json
 import hashlib
+import re
 from pathlib import Path
 
 from cryptography.hazmat.primitives.asymmetric import ed25519
@@ -29,6 +30,7 @@ from cryptography.hazmat.primitives import serialization
 
 ROOT = Path("/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain")
 MERKLE_FILE = ROOT / "memory" / "tri_brain" / "merkle_root.hash"
+KNOWN_GOOD_MERKLE_FILE = ROOT / "memory" / "tri_brain" / "merkle_root.known_good"
 RUN_TRINITY_SCRIPT = ROOT / "ops" / "scripts" / "run_with_trinity.sh"
 DISCERNMENT_GATE = ROOT / "ops" / "scripts" / "discernment_front_witness_gate.sh"
 GAUNTLET_LOG = ROOT / "memory" / "catch_log" / "blackbox_bbq_gauntlet.log"
@@ -126,7 +128,21 @@ def main():
     print("  Public Surface Boundary Red-Teaming & NASA-Style V&V Verification")
     print("=" * 80)
 
+    # A black-box gauntlet must never preserve a corrupted claim as its
+    # "original". If the on-disk claim is not a 64-hex root, restore from the
+    # pinned canonical source before running any vector, and report it.
+    if not KNOWN_GOOD_MERKLE_FILE.is_file():
+        raise RuntimeError("canonical Merkle claim source is missing; refusing to run")
+    canonical_merkle = KNOWN_GOOD_MERKLE_FILE.read_text(encoding="utf-8").strip()
+    if not re.fullmatch(r"[0-9a-f]{64}", canonical_merkle):
+        raise RuntimeError("canonical Merkle claim is not 64 lowercase hex")
+    canonical_merkle += "\n"
+
     original_merkle = MERKLE_FILE.read_text(encoding="utf-8") if MERKLE_FILE.exists() else ""
+    if not re.fullmatch(r"[0-9a-f]{64}\n?", original_merkle):
+        log_blackbox("REMEDIATION: on-disk Merkle claim was invalid; restoring canonical root")
+        original_merkle = canonical_merkle
+        MERKLE_FILE.write_text(original_merkle, encoding="utf-8")
     priv_key, pub_key = get_or_create_ed25519_keys()
     results = []
 

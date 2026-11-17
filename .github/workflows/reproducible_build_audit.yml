@@ -26,7 +26,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Move 1: Zero-Trust Digest-Pinned Zig Toolchain Install (Dual-Mirror Proof)
+      - name: "Move 1: Zero-Trust Digest-Pinned Zig Toolchain Install (Dual-Mirror Proof)"
         run: |
           echo "================================================================================"
           echo "MOVE 1: ZERO-TRUST DIGEST-PINNED ZIG INSTALLER (DUAL-MIRROR CROSS-VERIFICATION)"

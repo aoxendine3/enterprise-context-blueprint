@@ -360,11 +360,40 @@ pub const CompilerEngine = struct {
                             .imm_val = imm,
                         });
                     } else if (rhs_first.kind == .KwGate) {
-                        // gate(...) block sanitizer: Lifts taint!
-                        is_tainted = false;
+                        // gate(...) block sanitizer: Lifts taint ONLY from a real candidate symbol.
                         _ = lex.next_token(); // (
                         const gate_arg = lex.next_token(); // arg inside gate
                         _ = lex.next_token(); // )
+                        if (gate_arg.kind != .Identifier) {
+                            print("\n❌ [SOVRA COMPILER TAINT LATTICE ERROR] Line {}: Invalid gate(...) Argument!\n", .{line});
+                            print("   gate(...) requires a declared 'candidate<T>' identifier, not '{s}'.\n", .{gate_arg.text});
+                            print("   REASON: Fail-closed — refusing to mint decision certificates from non-symbol payloads.\n\n", .{});
+                            self.has_error = true;
+                            return false;
+                        }
+                        if (self.find_symbol(gate_arg.text)) |gate_sym| {
+                            if (!gate_sym.is_tainted or gate_sym.type_kind != .CandidateTainted) {
+                                print("\n❌ [SOVRA COMPILER TAINT LATTICE ERROR] Line {}: Invalid gate(...) Operand!\n", .{line});
+                                print("   gate('{s}') requires a TAINTED 'candidate<T>' variable.\n", .{gate_arg.text});
+                                print("   REASON: Fail-closed — cannot certify a non-candidate payload.\n\n", .{});
+                                self.has_error = true;
+                                return false;
+                            }
+                        } else {
+                            print("\n❌ [SOVRA COMPILER TAINT LATTICE ERROR] Line {}: Unresolved gate(...) Argument!\n", .{line});
+                            print("   gate('{s}') references undeclared symbol '{s}'.\n", .{ gate_arg.text, gate_arg.text });
+                            print("   REASON: Fail-closed — refusing to lift taint on unknown symbols.\n\n", .{});
+                            self.has_error = true;
+                            return false;
+                        }
+                        if (type_kind != .DecisionCertified) {
+                            print("\n❌ [SOVRA COMPILER TAINT LATTICE ERROR] Line {}: gate(...) Destination Type Error!\n", .{line});
+                            print("   Destination '{s}' must be declared 'decision<T>'.\n", .{var_name});
+                            print("   REASON: Fail-closed — gate sanitizer may only mint certified decisions.\n\n", .{});
+                            self.has_error = true;
+                            return false;
+                        }
+                        is_tainted = false;
                         self.emit_ir(IRStatement{
                             .op = .CallGate,
                             .dest = var_name,
@@ -456,14 +485,32 @@ pub const CompilerEngine = struct {
                 const arg_tok = lex.next_token(); // Argument variable
                 const arg_var = arg_tok.text;
 
+                // Fail-closed: sinks accept ONLY a declared, certified decision<T> identifier.
+                if (arg_tok.kind != .Identifier) {
+                    print("\n❌ [OWASP ASI-01 SINK TYPE ERROR] Line {}: Critical Security Sink Violation!\n", .{line});
+                    print("   Dangerous execution sink '{s}' received non-identifier argument '{s}'.\n", .{ sink_name, arg_var });
+                    print("   REASON: Fail-closed — string/literal payloads cannot enter execution sinks.\n\n", .{});
+                    self.has_error = true;
+                    return false;
+                }
                 if (self.find_symbol(arg_var)) |sym| {
-                    if (sym.is_tainted) {
+                    if (sym.is_tainted or sym.type_kind != .DecisionCertified) {
                         print("\n❌ [OWASP ASI-01 SINK TYPE ERROR] Line {}: Critical Security Sink Violation!\n", .{line});
-                        print("   Dangerous execution sink '{s}' received raw TAINTED variable '{s}'.\n", .{ sink_name, arg_var });
+                        if (sym.is_tainted) {
+                            print("   Dangerous execution sink '{s}' received raw TAINTED variable '{s}'.\n", .{ sink_name, arg_var });
+                        } else {
+                            print("   Dangerous execution sink '{s}' received non-certified variable '{s}' (requires decision<T>).\n", .{ sink_name, arg_var });
+                        }
                         print("   REASON: OWASP ASI-01 prevents untainted execution. Must pass through certified 'gate(...)'.\n\n", .{});
                         self.has_error = true;
                         return false;
                     }
+                } else {
+                    print("\n❌ [OWASP ASI-01 SINK TYPE ERROR] Line {}: Critical Security Sink Violation!\n", .{line});
+                    print("   Dangerous execution sink '{s}' received unresolved symbol '{s}'.\n", .{ sink_name, arg_var });
+                    print("   REASON: Fail-closed — unknown sink arguments are treated as tainted.\n\n", .{});
+                    self.has_error = true;
+                    return false;
                 }
                 self.emit_ir(IRStatement{
                     .op = .CallSyscall,
@@ -477,6 +524,15 @@ pub const CompilerEngine = struct {
         }
 
         if (self.has_error) return false;
+
+        // Epistemic honesty: never stamp PASSED on an unread / empty IR program.
+        if (self.ir_count == 0) {
+            print("\n❌ [SOVRA COMPILER EPISTEMIC ERROR] No lowerable security IR was produced.\n", .{});
+            print("   Source was tokenized but yielded zero AST statements the compiler understands.\n", .{});
+            print("   REASON: Fail-closed — refusing to stamp Taint/OWASP PASSED on unverified source.\n\n", .{});
+            self.has_error = true;
+            return false;
+        }
 
         var pop_count: u32 = 0;
         for (0..312) |i| pop_count += @popCount(self.ast_hypervector[i]);

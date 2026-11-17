@@ -39,3 +39,19 @@
 {"agent": "collective", "chars": 703, "phase": "BREAKDOWN", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T19:09:34Z", "verdict": "COMPLIANT", "violations": []}
 {"agent": "collective", "chars": 698, "phase": "NEXT", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T19:12:37Z", "verdict": "COMPLIANT", "violations": []}
 {"agent": "collective", "chars": 793, "phase": "NEXT", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T19:28:10Z", "verdict": "COMPLIANT", "violations": []}
+{"agent": "collective", "chars": 441, "phase": "BREAKDOWN", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T19:34:50Z", "verdict": "COMPLIANT", "violations": []}
+{"agent": "collective", "chars": 358, "phase": "BREAKDOWN", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T19:40:30Z", "verdict": "REFUSED_VOICE_VIOLATION", "violations": ["first-person singular 'I': ...ear it in every turn from here on \u2014 and I will stop narrating failures and start...", "no completed-work statement \u2014 a breakdown must say what was actually done"]}
+{"agent": "collective", "chars": 353, "phase": "BREAKDOWN", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T19:40:36Z", "verdict": "COMPLIANT", "violations": []}
+{"agent": "collective", "chars": 360, "phase": "BREAKDOWN", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T19:41:20Z", "verdict": "REFUSED_VOICE_VIOLATION", "violations": ["no completed-work statement \u2014 a breakdown must say what was actually done"]}
+{"agent": "collective", "chars": 274, "phase": "BREAKDOWN", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T19:41:26Z", "verdict": "COMPLIANT", "violations": []}
+{"agent": "collective", "chars": 504, "phase": "BREAKDOWN", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T19:44:31Z", "verdict": "COMPLIANT", "violations": []}
+{"agent": "collective", "chars": 819, "phase": "BREAKDOWN", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T19:50:33Z", "verdict": "COMPLIANT", "violations": []}
+{"agent": "collective", "chars": 1221, "phase": "BREAKDOWN", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T19:52:16Z", "verdict": "COMPLIANT", "violations": []}
+{"agent": "collective", "chars": 1221, "phase": "BREAKDOWN", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T19:54:07Z", "verdict": "COMPLIANT", "violations": []}
+{"agent": "collective", "chars": 875, "phase": "BREAKDOWN", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-14T20:09:30Z", "verdict": "COMPLIANT", "violations": []}
+{"agent": "collective", "chars": 583, "phase": "SUMMARY", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-15T01:01:03Z", "verdict": "COMPLIANT", "violations": []}
+{"agent": "collective", "chars": 376, "phase": "NEXT", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-15T01:04:03Z", "verdict": "COMPLIANT", "violations": []}
+{"agent": "collective", "chars": 533, "phase": "SUMMARY", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-15T01:12:40Z", "verdict": "COMPLIANT", "violations": []}
+{"agent": "maxx", "chars": 806, "phase": "SUMMARY", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-15T08:39:36Z", "verdict": "COMPLIANT", "violations": []}
+{"agent": "maxx", "chars": 806, "phase": "SUMMARY", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-15T08:39:39Z", "verdict": "COMPLIANT", "violations": []}
+{"agent": "maxx", "chars": 806, "phase": "SUMMARY", "schema": "xoras.collective_voice.v1", "timestamp_utc": "2026-11-15T08:40:47Z", "verdict": "COMPLIANT", "violations": []}

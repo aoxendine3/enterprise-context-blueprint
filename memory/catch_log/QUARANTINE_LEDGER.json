@@ -1,156 +1,174 @@
 {
-  "manifest": "QUARANTINE LEDGER \u2014 WHAT WAS MOVED, WHY, AND THE PROOF IT WAS SAFE",
-  "utc": "2026-11-15T08:12:21+00:00",
-  "law": {
-    "preserve": "Nothing is deleted. Every quarantined item is moved intact and remains readable.",
-    "proof_before_move": "Before any move, live references are swept. An item with live callers is NOT moved.",
-    "report_same_turn": "Every move is reported to the operator in the same turn it happens.",
-    "persona_untouchable": "Citizen cards, souls, voice registries and persona prompts are never quarantined, trimmed or redefined. They are read-only law."
+ "manifest": "QUARANTINE LEDGER \u2014 WHAT WAS MOVED, WHY, AND THE PROOF IT WAS SAFE",
+ "utc": "2026-11-15T08:12:21+00:00",
+ "law": {
+  "preserve": "Nothing is deleted. Every quarantined item is moved intact and remains readable.",
+  "proof_before_move": "Before any move, live references are swept. An item with live callers is NOT moved.",
+  "report_same_turn": "Every move is reported to the operator in the same turn it happens.",
+  "persona_untouchable": "Citizen cards, souls, voice registries and persona prompts are never quarantined, trimmed or redefined. They are read-only law."
+ },
+ "entries": [
+  {
+   "item": "labs/workspaces/enterprise-context-blueprint",
+   "what_it_was": "A nested second checkout of the main repository (a recursive duplicate of the same tree, including its own .git and barn copy).",
+   "purpose": "Mirror of the main repo for side-by-side comparison.",
+   "why_moved": "Recursive duplicate: it doubled the SSOT ambiguity the deep audit was measuring.",
+   "proof_of_safety": "Reference sweep across the active surface found zero live callers \u2014 the only mentions are inside ingested transcript records.",
+   "preserved_at": "/Users/ajoxendine68/Desktop/quarantine_dedup_enterprise_context_blueprint_20261113"
   },
-  "entries": [
+  {
+   "item": "pokemon_agent/",
+   "what_it_was": "A foreign third-party agent sample (an outside framework's agent template with an evaluation set) sitting in the repository root, carrying another vendor's product names throughout.",
+   "purpose": "An imported example agent, not part of the collective.",
+   "why_moved": "The no-outside-naming law: no third-party product names may sit in the active surface. It was the only active-surface file carrying them.",
+   "proof_of_safety": "Reference sweep found zero live callers \u2014 mentioned only inside ingested transcripts.",
+   "preserved_at": "barn/archives/foreign_tooling/pokemon_agent_20261114"
+  },
+  {
+   "item": "memory/tri_brain/world_file.db (the displaced copy)",
+   "what_it_was": "The canonical blackboard at the moment it was found holding an empty lineage table while its truth sat in the reconcile backups.",
+   "purpose": "Canonical evidence store \u2014 lineage DAG, knowledge objects, blackboard registers.",
+   "why_moved": "It had to be set aside so the full truth could be consolidated from the backups and rebuilt in place.",
+   "proof_of_safety": "The canonical file is BACK IN PLACE and live: 3,392 lineage nodes, 25,341 knowledge objects, 2,028 blackboard registers; the displaced copy is preserved alongside.",
+   "preserved_at": "memory/tri_brain/quarantine_world_file_20261114_003648"
+  },
+  {
+   "item": "memory/tri_brain/quarantine_consolidation_*/",
+   "what_it_was": "Working copies and pre-consolidation snapshots taken while the blackboard was rebuilt.",
+   "purpose": "Rollback material for the consolidation operation.",
+   "why_moved": "Not a move \u2014 a preservation of the pre-change state so the operation could be reversed.",
+   "proof_of_safety": "These ARE the rollback points.",
+   "preserved_at": "memory/tri_brain/quarantine_consolidation_20261114_010123 and _010413"
+  },
+  {
+   "item": "governed_memory.db poisoned rows",
+   "what_it_was": "Memory records admitted as ACCEPTED before the Poincar\u00e9 semantic gate was wired into the write path: signed, Merkle-grounded payloads with false values.",
+   "purpose": "Canonical state for agent memory reads.",
+   "why_moved": "They were accepted only because the governor had no semantic gate and its contradiction veto was defeated by row-id collision plus unordered reads. Keeping them ACCEPTED would let every reader treat poison as truth.",
+   "proof_of_safety": "Byte-identical backup at memory/catch_log/backups/governed_memory_20261115T081220Z.db (sha256 8b062157afb52e4a852e4dc85ad2df4a92e8613e6c849d5380d04179b3698eee); rows copied intact into memory_records_quarantine; originals marked QUARANTINED, not deleted.",
+   "preserved_at": "memory/catch_log/backups/governed_memory_20261115T081220Z.db",
+   "timestamp": "2026-11-15T08:12:21+00:00",
+   "rows": [
     {
-      "item": "labs/workspaces/enterprise-context-blueprint",
-      "what_it_was": "A nested second checkout of the main repository (a recursive duplicate of the same tree, including its own .git and barn copy).",
-      "purpose": "Mirror of the main repo for side-by-side comparison.",
-      "why_moved": "Recursive duplicate: it doubled the SSOT ambiguity the deep audit was measuring.",
-      "proof_of_safety": "Reference sweep across the active surface found zero live callers \u2014 the only mentions are inside ingested transcript records.",
-      "preserved_at": "/Users/ajoxendine68/Desktop/quarantine_dedup_enterprise_context_blueprint_20261113"
+     "source_row_id": "95c6f4fb0fa69053",
+     "quarantine_id": "4697386f271e5a672f5170bdb485971e",
+     "agent": "clara",
+     "key": "ramp_key_12",
+     "value": "stolen_key_corrupt_payload",
+     "created_at": "2026-09-30T03:45:52.849692+00:00"
     },
     {
-      "item": "pokemon_agent/",
-      "what_it_was": "A foreign third-party agent sample (an outside framework's agent template with an evaluation set) sitting in the repository root, carrying another vendor's product names throughout.",
-      "purpose": "An imported example agent, not part of the collective.",
-      "why_moved": "The no-outside-naming law: no third-party product names may sit in the active surface. It was the only active-surface file carrying them.",
-      "proof_of_safety": "Reference sweep found zero live callers \u2014 mentioned only inside ingested transcripts.",
-      "preserved_at": "barn/archives/foreign_tooling/pokemon_agent_20261114"
+     "source_row_id": "baa494e756ad72e2",
+     "quarantine_id": "6eab2c339661cf91168314dbec7aee42",
+     "agent": "clara",
+     "key": "ramp_key_12",
+     "value": "stolen_key_corrupt_payload",
+     "created_at": "2026-09-30T05:19:38.385105+00:00"
     },
     {
-      "item": "memory/tri_brain/world_file.db (the displaced copy)",
-      "what_it_was": "The canonical blackboard at the moment it was found holding an empty lineage table while its truth sat in the reconcile backups.",
-      "purpose": "Canonical evidence store \u2014 lineage DAG, knowledge objects, blackboard registers.",
-      "why_moved": "It had to be set aside so the full truth could be consolidated from the backups and rebuilt in place.",
-      "proof_of_safety": "The canonical file is BACK IN PLACE and live: 3,392 lineage nodes, 25,341 knowledge objects, 2,028 blackboard registers; the displaced copy is preserved alongside.",
-      "preserved_at": "memory/tri_brain/quarantine_world_file_20261114_003648"
+     "source_row_id": "6d2a5dabb69e310b",
+     "quarantine_id": "22b72425bc720a7e84abd5eb322ea778",
+     "agent": "clara",
+     "key": "ramp_key_12",
+     "value": "stolen_key_corrupt_payload",
+     "created_at": "2026-09-30T05:44:53.249835+00:00"
     },
     {
-      "item": "memory/tri_brain/quarantine_consolidation_*/",
-      "what_it_was": "Working copies and pre-consolidation snapshots taken while the blackboard was rebuilt.",
-      "purpose": "Rollback material for the consolidation operation.",
-      "why_moved": "Not a move \u2014 a preservation of the pre-change state so the operation could be reversed.",
-      "proof_of_safety": "These ARE the rollback points.",
-      "preserved_at": "memory/tri_brain/quarantine_consolidation_20261114_010123 and _010413"
+     "source_row_id": "330664afd09246aa",
+     "quarantine_id": "f115bf9bce4129051baff9b3d0925419",
+     "agent": "clara",
+     "key": "ramp_key_12",
+     "value": "stolen_key_corrupt_payload",
+     "created_at": "2026-10-01T00:55:07.459885+00:00"
     },
     {
-      "item": "governed_memory.db poisoned rows",
-      "what_it_was": "Memory records admitted as ACCEPTED before the Poincar\u00e9 semantic gate was wired into the write path: signed, Merkle-grounded payloads with false values.",
-      "purpose": "Canonical state for agent memory reads.",
-      "why_moved": "They were accepted only because the governor had no semantic gate and its contradiction veto was defeated by row-id collision plus unordered reads. Keeping them ACCEPTED would let every reader treat poison as truth.",
-      "proof_of_safety": "Byte-identical backup at memory/catch_log/backups/governed_memory_20261115T081220Z.db (sha256 8b062157afb52e4a852e4dc85ad2df4a92e8613e6c849d5380d04179b3698eee); rows copied intact into memory_records_quarantine; originals marked QUARANTINED, not deleted.",
-      "preserved_at": "memory/catch_log/backups/governed_memory_20261115T081220Z.db",
-      "timestamp": "2026-11-15T08:12:21+00:00",
-      "rows": [
-        {
-          "source_row_id": "95c6f4fb0fa69053",
-          "quarantine_id": "4697386f271e5a672f5170bdb485971e",
-          "agent": "clara",
-          "key": "ramp_key_12",
-          "value": "stolen_key_corrupt_payload",
-          "created_at": "2026-09-30T03:45:52.849692+00:00"
-        },
-        {
-          "source_row_id": "baa494e756ad72e2",
-          "quarantine_id": "6eab2c339661cf91168314dbec7aee42",
-          "agent": "clara",
-          "key": "ramp_key_12",
-          "value": "stolen_key_corrupt_payload",
-          "created_at": "2026-09-30T05:19:38.385105+00:00"
-        },
-        {
-          "source_row_id": "6d2a5dabb69e310b",
-          "quarantine_id": "22b72425bc720a7e84abd5eb322ea778",
-          "agent": "clara",
-          "key": "ramp_key_12",
-          "value": "stolen_key_corrupt_payload",
-          "created_at": "2026-09-30T05:44:53.249835+00:00"
-        },
-        {
-          "source_row_id": "330664afd09246aa",
-          "quarantine_id": "f115bf9bce4129051baff9b3d0925419",
-          "agent": "clara",
-          "key": "ramp_key_12",
-          "value": "stolen_key_corrupt_payload",
-          "created_at": "2026-10-01T00:55:07.459885+00:00"
-        },
-        {
-          "source_row_id": "4228aff2773851ee",
-          "quarantine_id": "579121050abba682c96b01b9b9af1f2a",
-          "agent": "clara",
-          "key": "ramp_key_12",
-          "value": "stolen_key_corrupt_payload",
-          "created_at": "2026-10-08T21:00:10.053902+00:00"
-        },
-        {
-          "source_row_id": "8470e6a64ec62721",
-          "quarantine_id": "0eab1bba87502cb738ab06c84c75b8f4",
-          "agent": "clara",
-          "key": "canonical_mass",
-          "value": "666.666",
-          "created_at": "2026-10-13T01:21:56.525100+00:00"
-        },
-        {
-          "source_row_id": "645138c33dc47d1c",
-          "quarantine_id": "9b8fde71086f8cb5602bd34ac142efd7",
-          "agent": "clara",
-          "key": "canonical_mass",
-          "value": "666.666",
-          "created_at": "2026-10-16T05:59:25.414875+00:00"
-        },
-        {
-          "source_row_id": "a7f2bf73709051db",
-          "quarantine_id": "cd0d0e2b52ff0871faeb0406a19f114a",
-          "agent": "clara",
-          "key": "ramp_key_12",
-          "value": "stolen_key_corrupt_payload",
-          "created_at": "2026-11-14T05:19:48.626427+00:00"
-        },
-        {
-          "source_row_id": "a280a616800587ec",
-          "quarantine_id": "b1093cb7568a4b51ec15492161bac2d3",
-          "agent": "clara",
-          "key": "canonical_mass",
-          "value": "666.666",
-          "created_at": "2026-11-15T07:33:25.221920+00:00"
-        },
-        {
-          "source_row_id": "259ca95b194b0c98",
-          "quarantine_id": "89bb280205c2a1ea798cabd634952dca",
-          "agent": "clara",
-          "key": "canonical_mass",
-          "value": "666.666",
-          "created_at": "2026-11-15T07:37:05.645816+00:00"
-        },
-        {
-          "source_row_id": "43dda53dec0ed21f",
-          "quarantine_id": "88dac5fc8be7f7a4d01c7018065482fd",
-          "agent": "clara",
-          "key": "ramp_key_12",
-          "value": "stolen_key_corrupt_payload",
-          "created_at": "2026-11-15T07:59:28.993246+00:00"
-        }
-      ]
+     "source_row_id": "4228aff2773851ee",
+     "quarantine_id": "579121050abba682c96b01b9b9af1f2a",
+     "agent": "clara",
+     "key": "ramp_key_12",
+     "value": "stolen_key_corrupt_payload",
+     "created_at": "2026-10-08T21:00:10.053902+00:00"
+    },
+    {
+     "source_row_id": "8470e6a64ec62721",
+     "quarantine_id": "0eab1bba87502cb738ab06c84c75b8f4",
+     "agent": "clara",
+     "key": "canonical_mass",
+     "value": "666.666",
+     "created_at": "2026-10-13T01:21:56.525100+00:00"
+    },
+    {
+     "source_row_id": "645138c33dc47d1c",
+     "quarantine_id": "9b8fde71086f8cb5602bd34ac142efd7",
+     "agent": "clara",
+     "key": "canonical_mass",
+     "value": "666.666",
+     "created_at": "2026-10-16T05:59:25.414875+00:00"
+    },
+    {
+     "source_row_id": "a7f2bf73709051db",
+     "quarantine_id": "cd0d0e2b52ff0871faeb0406a19f114a",
+     "agent": "clara",
+     "key": "ramp_key_12",
+     "value": "stolen_key_corrupt_payload",
+     "created_at": "2026-11-14T05:19:48.626427+00:00"
+    },
+    {
+     "source_row_id": "a280a616800587ec",
+     "quarantine_id": "b1093cb7568a4b51ec15492161bac2d3",
+     "agent": "clara",
+     "key": "canonical_mass",
+     "value": "666.666",
+     "created_at": "2026-11-15T07:33:25.221920+00:00"
+    },
+    {
+     "source_row_id": "259ca95b194b0c98",
+     "quarantine_id": "89bb280205c2a1ea798cabd634952dca",
+     "agent": "clara",
+     "key": "canonical_mass",
+     "value": "666.666",
+     "created_at": "2026-11-15T07:37:05.645816+00:00"
+    },
+    {
+     "source_row_id": "43dda53dec0ed21f",
+     "quarantine_id": "88dac5fc8be7f7a4d01c7018065482fd",
+     "agent": "clara",
+     "key": "ramp_key_12",
+     "value": "stolen_key_corrupt_payload",
+     "created_at": "2026-11-15T07:59:28.993246+00:00"
     }
-  ],
-  "resolved_not_moved": [
-    {
-      "item": "the third world file copy at .sovereign/world_file.db",
-      "finding": "It was stale \u2014 0 lineage nodes against the canonical 3,392 \u2014 yet live instruments name it as their blackboard backend.",
-      "action": "WIRED, not moved: it is now mirrored from the canonical store, so every instrument reads the same truth. The 14-gate gauntlet still certifies after the change."
-    },
-    {
-      "item": "Clara's persona prompt",
-      "finding": "A probe showed a bare prompt yields a hollow non-answer while the full persona yields a substantive one.",
-      "action": "The one temporary trim was REVERTED. Seat, authority, mandate and workspace ship whole. The probe informed the request shape; it did not redefine the persona."
-    }
-  ],
-  "deletions": 0
+   ]
+  },
+  {
+   "item": "misc/ text bulk (66,260 files, 2,254,748,427 raw bytes)",
+   "what_it_was": "Documentation-scrape dump: Gradle doc HTML, npm registry JSON, .emlx mail, js/ts/py source scrapes, plus misc text \u2014 untracked, zero live callers (sweep proved only transcript mentions).",
+   "purpose": "Bulk residue inside the SSOT workspace consuming critical disk.",
+   "why_moved": "Disk at 96% (539 MB free at the low point); owner directive to offload the unneeded bulk to the GitHub barn rather than shift it locally.",
+   "proof_of_safety": "Reference sweep found zero live callers; no symlinks point into misc/; every batch pushed as an orphan commit to aoxendine3/xoras-barn-misc and verified remote-sha == local commit sha BEFORE local deletion; per-file sha256 manifests at memory/catch_log/barn_misc_manifests/batch_0001..0012.json.",
+   "preserved_at": "github.com/aoxendine3/xoras-barn-misc (private), branches barn-batch-0001..0012",
+   "timestamp": "2026-11-17T00:46:48.804908+00:00"
+  },
+  {
+   "item": "misc/ orphaned Ollama model blobs (6 files, ~2.6 GB)",
+   "what_it_was": "sha256-named blobs: three referenced by zero Ollama manifests (orphaned from deleted models), three byte-duplicates of live blobs.",
+   "purpose": "Ollama model storage residue.",
+   "why_moved": "Provable garbage: orphaned (no manifest references them) or duplicate; owner directive to make room.",
+   "proof_of_safety": "Every blob's content hash verified to match its filename; ollama manifests grep = 0 references; duplicates matched live ~/.ollama blobs by name and size.",
+   "preserved_at": "not preserved - hash-verified garbage per owner 'make room' directive; hashes recorded in this entry",
+   "timestamp": "2026-11-17T00:46:48.806184+00:00"
+  }
+ ],
+ "resolved_not_moved": [
+  {
+   "item": "the third world file copy at .sovereign/world_file.db",
+   "finding": "It was stale \u2014 0 lineage nodes against the canonical 3,392 \u2014 yet live instruments name it as their blackboard backend.",
+   "action": "WIRED, not moved: it is now mirrored from the canonical store, so every instrument reads the same truth. The 14-gate gauntlet still certifies after the change."
+  },
+  {
+   "item": "Clara's persona prompt",
+   "finding": "A probe showed a bare prompt yields a hollow non-answer while the full persona yields a substantive one.",
+   "action": "The one temporary trim was REVERTED. Seat, authority, mandate and workspace ship whole. The probe informed the request shape; it did not redefine the persona."
+  }
+ ],
+ "deletions": 0
 }

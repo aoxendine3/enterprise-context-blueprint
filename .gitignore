@@ -76,3 +76,37 @@ AI_Core/
 
 # Large local DB backups (receipted by sha256, not versioned)
 memory/catch_log/backups/*.db
+
+# ---------------------------------------------------------------------------
+# CI-REQUIRED ASSET EXCEPTIONS (CI/CD remediation, 2026-11-16)
+# These assets are consumed by reality_gate.sh and the CI workflows. They were
+# untracked in the working tree; make our intent to version them explicit. The
+# root-level `dist/*` rule is root-relative, so nested dist/ trees were already
+# not matched, but we restate the exceptions here so a future broad rule cannot
+# silently drop them. Sensitive/binary patterns are re-asserted afterwards so we
+# never version keys, DBs, secrets, caches, or large binaries by accident.
+# ---------------------------------------------------------------------------
+!workspaces/telemetry_cockpit/**
+!workspaces/telemetry_cockpit/dist/evidence-bundle.json
+!workspaces/telemetry_cockpit/dist/cockpit.js
+!workspaces/telemetry_cockpit/dist/cockpit.css
+!workspaces/telemetry_cockpit/dist/index.html
+!workspaces/telemetry_cockpit/dist/trust_root.js
+!workspaces/telemetry_cockpit/dist/assets.lock.json
+!workspaces/telemetry_cockpit/dist/known_good_sources.json
+!core/ops/tools/xoras_file_writer.py
+!core/ops/scripts/verify_sovereign_file_writer.sh
+!core/ops/scripts/verify_cockpit.sh
+!tests/test_xoras_file_writer.py
+!tests/test_e2e_sovereign_gate.py
+!.github/workflows/boundary_gate.yml
+
+# Re-assert secret/DB/cache/binary ignores inside the re-included cockpit tree.
+workspaces/telemetry_cockpit/**/__pycache__/
+workspaces/telemetry_cockpit/**/*.pyc
+workspaces/telemetry_cockpit/**/*.db
+workspaces/telemetry_cockpit/**/*.key
+workspaces/telemetry_cockpit/**/*.pem
+workspaces/telemetry_cockpit/**/.env*
+workspaces/telemetry_cockpit/**/*.bin
+workspaces/telemetry_cockpit/**/*.onnx
