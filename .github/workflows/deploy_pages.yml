@@ -1,4 +1,4 @@
-name: Deploy UPGP Proving Ground to GitHub Pages
+name: Deploy XORAS Telemetry Cockpit to GitHub Pages
 
 on:
   push:
@@ -49,7 +49,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'docs'
+          path: 'workspaces/telemetry_cockpit/dist'
 
       - name: Deploy to GitHub Pages
         id: deployment

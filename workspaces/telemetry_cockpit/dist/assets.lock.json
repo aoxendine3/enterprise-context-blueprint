@@ -1,0 +1,12 @@
+{
+  "algorithm": "sha256",
+  "assets": {
+    "cockpit.css": "55a52b12a9082b4df791a333e70bb5f97a569d227cc3c8b34a4caa989321d510",
+    "cockpit.js": "cf023486b7b3e19698743cdd9229e6723fe80abf8fb98d285f0efa1b3830b0d8",
+    "evidence-bundle.json": "b85d32cc6f31a06196bae2d5b8c55eafc8c15ea1139af6decaaaa00b5bf710b3",
+    "index.html": "fadde9462f7c70b426cac06c8257effd2b2defd2384832c14bbef4a0dadc6b84",
+    "known_good_sources.json": "92144fbaabdc43b8132b3e46447fd06672360aaa04085dce88c90e7da0f29356",
+    "trust_root.js": "7b0add1d516e55776c669050580da5a1e34d4f5bcab1c39fb34bffe887304484"
+  },
+  "schema_version": "xoras.cockpit.assets-lock.v1"
+}

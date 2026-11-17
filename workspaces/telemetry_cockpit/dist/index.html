@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>XORAS // TELEMETRY VALIDATION COCKPIT</title>
+  <link rel="stylesheet" href="./cockpit.css">
+  <script src="./cockpit.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <div class="titlebar">
+      <h1>XORAS <span>//</span> TELEMETRY VALIDATION COCKPIT</h1>
+      <div class="subtitle">single evidence path · fail-closed · no fabrication</div>
+    </div>
+
+    <div class="controls">
+      <label class="mono tiny" for="file-input">LOAD EVIDENCE BUNDLE:</label>
+      <input id="file-input" type="file" accept=".json,application/json">
+      <button id="btn-export" type="button" disabled>EXPORT VERIFIED SNAPSHOT</button>
+      <button id="btn-reset" type="button">RESET TO SIMULATION</button>
+    </div>
+
+    <div id="mode-banner" class="banner banner-sim"></div>
+    <div id="verification-panel" class="panel"></div>
+
+    <div class="panel">
+      <div class="section-label">RECEIPT-BACKED METRICS</div>
+      <div id="metrics-grid" class="grid"></div>
+    </div>
+
+    <div class="panel">
+      <div class="section-label">UNRESOLVED SLOTS (fail closed)</div>
+      <ul id="unknowns-list"></ul>
+    </div>
+
+    <div class="panel">
+      <div class="section-label">EVIDENCE RECORDS — <span id="record-count">0</span></div>
+      <div id="records-list"></div>
+    </div>
+
+    <div class="footer">NO NETWORK · NO FABRICATED HASHES · ABSENCE OF EVIDENCE = UNVERIFIED</div>
+  </div>
+</body>
+</html>
