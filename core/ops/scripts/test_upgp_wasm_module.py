@@ -20,9 +20,12 @@ def test_wasm_binary():
 
     print(f"[STEP 1] Validating Compiled Stateful WASM File Exists ({actual_bytes} bytes)...")
     
+    # Forward-slash the path: a raw Windows path injected into a JS string
+    # literal turns '\wasm\u...' into an invalid '\u' escape (SyntaxError).
+    js_wasm_path = wasm_path.replace("\\", "/")
     node_test_script = f"""
     const fs = require('fs');
-    const wasmBuffer = fs.readFileSync('{wasm_path}');
+    const wasmBuffer = fs.readFileSync('{js_wasm_path}');
     
     WebAssembly.instantiate(wasmBuffer).then(wasmModule => {{
         const exports = wasmModule.instance.exports;
@@ -64,7 +67,8 @@ def test_wasm_binary():
     }});
     """
     
-    result = subprocess.run(["node", "-e", node_test_script], capture_output=True, text=True)
+    result = subprocess.run(["node", "-e", node_test_script], capture_output=True, text=True,
+                            encoding="utf-8", errors="replace")
     print(result.stdout)
     if result.returncode != 0:
         print(f"❌ WASM Test Failed:\n{result.stderr}")

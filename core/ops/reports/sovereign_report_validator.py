@@ -24,6 +24,7 @@ import sys
 import re
 import json
 import hashlib
+from typing import Tuple, List
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
