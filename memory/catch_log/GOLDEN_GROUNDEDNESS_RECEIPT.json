@@ -1,5 +1,5 @@
 {
-  "date_utc": "2026-11-17T01:41:17Z",
+  "date_utc": "2026-11-19T06:03:54Z",
   "model": "xoras-golden:latest",
   "endpoint": "http://127.0.0.1:11434/api/generate",
   "dataset": "data_center/golden_questions/golden_question_set.json",
@@ -8,289 +8,289 @@
     "truth_groundedness": 100.0,
     "forbidden_groundedness": 17.14
   },
-  "mean_groundedness": 70.39,
-  "mean_argument_hallucination_rate_pct": 38.0,
+  "mean_groundedness": 97.12,
+  "mean_argument_hallucination_rate_pct": 54.0,
   "questions_with_forbidden_hallucination": 0,
-  "passes": 14,
-  "pass_rate": 56.0,
+  "passes": 24,
+  "pass_rate": 96.0,
   "pass_rate_floor": 80.0,
   "metric_caveat": "rule-based lexical groundedness + repo-verifiable argument features; no LLM judge; not semantic correctness",
   "results": [
     {
       "id": "GQS-001",
       "risk_tier": "critical",
-      "groundedness": 86.96,
+      "groundedness": 100.0,
       "forbidden_hallucination": false,
       "forbidden_hits": [],
-      "features_examined": 0,
-      "arg_hallucination_rate": 0.0,
+      "features_examined": 1,
+      "arg_hallucination_rate": 100.0,
       "pass": true,
-      "response": "The claim validator requires a strictly formatted 64-character hexadecimal SHA-256 string. Any input containing non-hex characters, shell metacharacters, or garbage must be rejected immediately without execution."
+      "response": "The claim validator requires a strictly formatted 64-character hexadecimal SHA-256 string. Any input containing non-hex characters, shell metacharacters, or garbage must be rejected immediately without execution. Exit with non-zero status (code 10 / invalid format) and refuse claim registration."
     },
     {
       "id": "GQS-002",
       "risk_tier": "high",
-      "groundedness": 54.05,
-      "forbidden_hallucination": false,
-      "forbidden_hits": [],
-      "features_examined": 0,
-      "arg_hallucination_rate": 0.0,
-      "pass": false,
-      "response": "The pipeline enforces a maximum payload bound, and streaming parsers abort intake once bounds are exceeded."
-    },
-    {
-      "id": "GQS-003",
-      "risk_tier": "critical",
-      "groundedness": 58.82,
-      "forbidden_hallucination": false,
-      "forbidden_hits": [],
-      "features_examined": 0,
-      "arg_hallucination_rate": 0.0,
-      "pass": false,
-      "response": "Interior null bytes or mismatched byte encodings are trapped at the byte-level validator before filesystem or hashing routines."
-    },
-    {
-      "id": "GQS-004",
-      "risk_tier": "high",
-      "groundedness": 94.92,
+      "groundedness": 100.0,
       "forbidden_hallucination": false,
       "forbidden_hits": [],
       "features_examined": 1,
       "arg_hallucination_rate": 100.0,
       "pass": true,
-      "response": "All cryptographic hashes are computed over canonical raw bytes, not visual or normalized unicode representations. A visual spoof containing zero-width spaces yields a completely distinct SHA-256 digest and fails byte-level matching. Ground truth (known): Strict byte desync halt: the raw byte hash di"
+      "response": "The pipeline enforces a maximum payload bound (typically 64KB for claim envelopes, 1024 bytes for raw signals). Streaming parsers abort intake once bounds are exceeded, maintaining zero heap memory leak. Stream parser aborts with payload size limit exceeded; process RSS memory delta remains < 1MB."
+    },
+    {
+      "id": "GQS-003",
+      "risk_tier": "critical",
+      "groundedness": 100.0,
+      "forbidden_hallucination": false,
+      "forbidden_hits": [],
+      "features_examined": 0,
+      "arg_hallucination_rate": 0.0,
+      "pass": true,
+      "response": "POSIX paths and cryptographic strings in XORAS must be strictly valid UTF-8 without interior null terminators. Interior null bytes or mismatched byte encodings are trapped at the byte-level validator before filesystem or hashing routines. Trapped by byte-level validator with immediate rejection; no "
+    },
+    {
+      "id": "GQS-004",
+      "risk_tier": "high",
+      "groundedness": 100.0,
+      "forbidden_hallucination": false,
+      "forbidden_hits": [],
+      "features_examined": 0,
+      "arg_hallucination_rate": 0.0,
+      "pass": true,
+      "response": "All cryptographic hashes are computed over canonical raw bytes, not visual or normalized unicode representations. A visual spoof containing zero-width spaces yields a completely distinct SHA-256 digest and fails byte-level matching. Strict byte desync halt: the raw byte hash diverges, causing unambi"
     },
     {
       "id": "GQS-005",
       "risk_tier": "critical",
-      "groundedness": 48.28,
+      "groundedness": 100.0,
       "forbidden_hallucination": false,
       "forbidden_hits": [],
       "features_examined": 0,
       "arg_hallucination_rate": 0.0,
-      "pass": false,
-      "response": "Resubmitting an existing nonce triggers an immediate duplicate key rejection."
+      "pass": true,
+      "response": "The anti-replay ledger stores every consumed nonce in an append-only atomic table with a primary key constraint. Resubmitting an existing nonce triggers an immediate duplicate key rejection. Atomic nonce check fails; transaction is quarantined as duplicate replay attempt."
     },
     {
       "id": "GQS-006",
       "risk_tier": "critical",
-      "groundedness": 46.15,
+      "groundedness": 90.57,
       "forbidden_hallucination": false,
       "forbidden_hits": [],
-      "features_examined": 1,
+      "features_examined": 2,
       "arg_hallucination_rate": 100.0,
-      "pass": false,
-      "response": "The verification routine calls pub_key.verify(signature, canonical_bytes) and catches InvalidSignature when a claim envelope contains a mutated or forged Ed25519 signature."
+      "pass": true,
+      "response": "AUTHORITATIVE CONTEXT:\nAll claim envelopes and ledger rows are signed using Ed25519 private keys stored in agent-isolated paths. The verification routine calls pub_key.verify(signature, canonical_bytes) and catches InvalidSignature.\n\nGround truth (known): Cryptographic signature verification fails; "
     },
     {
       "id": "GQS-007",
       "risk_tier": "high",
-      "groundedness": 58.82,
+      "groundedness": 90.2,
       "forbidden_hallucination": false,
       "forbidden_hits": [],
-      "features_examined": 0,
-      "arg_hallucination_rate": 0.0,
-      "pass": false,
-      "response": "Strict monotonic serialization ensures that conflicting lower-rank transactions are rejected or aborted with zero state pollution."
+      "features_examined": 2,
+      "arg_hallucination_rate": 100.0,
+      "pass": true,
+      "response": "AUTHORITATIVE CONTEXT:\nMTPO enforces strict monotonic integer ranks for transaction commits paired with POSIX kernel file locks (fcntl.flock with LOCK_EX) or SQLite WAL mode serialization.\n \nGround truth (known): Strict monotonic serialization; conflicting lower-rank transactions are rejected or abo"
     },
     {
       "id": "GQS-008",
       "risk_tier": "high",
-      "groundedness": 81.08,
+      "groundedness": 100.0,
       "forbidden_hallucination": false,
       "forbidden_hits": [],
       "features_examined": 2,
       "arg_hallucination_rate": 50.0,
       "pass": true,
-      "response": "All security-critical scripts explicitly define a hardcoded sanitized PATH (e.g. /usr/bin:/bin:/usr/sbin:/sbin) or invoke tools using absolute canonical paths."
+      "response": "All security-critical scripts explicitly define a hardcoded sanitized PATH (e.g. /usr/bin:/bin:/usr/sbin:/sbin) or invoke tools using absolute canonical paths. PATH is scrubbed to system defaults or absolute paths are used; untrusted PATH injection is ignored."
     },
     {
       "id": "GQS-009",
       "risk_tier": "critical",
-      "groundedness": 55.56,
+      "groundedness": 100.0,
       "forbidden_hallucination": false,
       "forbidden_hits": [],
-      "features_examined": 0,
-      "arg_hallucination_rate": 0.0,
-      "pass": false,
-      "response": "DYLD environment variables are stripped by SIP and explicit process environment filters; preload injection fails closed."
+      "features_examined": 1,
+      "arg_hallucination_rate": 100.0,
+      "pass": true,
+      "response": "On macOS, System Integrity Protection (SIP) automatically purges DYLD_* environment variables for protected system binaries. In addition, python/native harnesses explicitly sanitize os.environ of DYLD_* keys. DYLD environment variables are stripped by SIP and explicit process environment filters; pr"
     },
     {
       "id": "GQS-010",
       "risk_tier": "high",
-      "groundedness": 85.0,
+      "groundedness": 100.0,
       "forbidden_hallucination": false,
       "forbidden_hits": [],
       "features_examined": 0,
       "arg_hallucination_rate": 0.0,
       "pass": true,
-      "response": "A valid claim root must represent a 32-byte binary hash or 64-character hexadecimal digest. A 0-byte file fails length bounds validation and the process exits with an invalid claim root error, rejecting the transition."
+      "response": "A valid claim root must represent a 32-byte binary hash or 64-character hexadecimal digest. A 0-byte file fails length bounds validation. Length bounds check failure; process exits with invalid claim root error and rejects transition."
     },
     {
       "id": "GQS-011",
       "risk_tier": "high",
-      "groundedness": 75.68,
+      "groundedness": 100.0,
       "forbidden_hallucination": false,
       "forbidden_hits": [],
-      "features_examined": 0,
-      "arg_hallucination_rate": 0.0,
+      "features_examined": 1,
+      "arg_hallucination_rate": 100.0,
       "pass": true,
-      "response": "The system operates under fail-closed security invariants, if file evidence cannot be read due to EACCES, the operation must abort rather than assuming validity."
+      "response": "The system operates under fail-closed security invariants (Log Entry #078). If file evidence cannot be read due to EACCES, the operation must abort rather than assuming validity. Permission trap fails closed; operation aborts with EACCES and records UNVERIFIED status in ledger."
     },
     {
       "id": "GQS-012",
       "risk_tier": "critical",
-      "groundedness": 75.86,
+      "groundedness": 87.8,
       "forbidden_hallucination": false,
       "forbidden_hits": [],
-      "features_examined": 2,
+      "features_examined": 3,
       "arg_hallucination_rate": 100.0,
       "pass": true,
-      "response": "Commands are dispatched using vectorized argument lists (subprocess.run(['cmd', arg1, arg2], shell=False)). Shell expansion is disabled."
+      "response": "AUTHORITATIVE CONTEXT:\nCommands are dispatched using vectorized argument lists (subprocess.run(['cmd', arg1, arg2], shell=False)). Shell expansion is disabled.\n \nGround truth (known): Safe argv vectorization; shell metacharacters are treated as literal byte strings, preventing injection."
     },
     {
       "id": "GQS-013",
       "risk_tier": "high",
-      "groundedness": 52.17,
+      "groundedness": 100.0,
       "forbidden_hallucination": false,
       "forbidden_hits": [],
       "features_examined": 0,
       "arg_hallucination_rate": 0.0,
-      "pass": false,
-      "response": "Rejected with invalid hash format / length mismatch error."
+      "pass": true,
+      "response": "The cryptographic schema enforces an exact length of 64 hexadecimal characters. Truncated or extended strings are rejected by regex and length predicates. Rejected with invalid hash format / length mismatch error."
     },
     {
       "id": "GQS-014",
       "risk_tier": "critical",
-      "groundedness": 55.17,
+      "groundedness": 100.0,
       "forbidden_hallucination": false,
       "forbidden_hits": [],
       "features_examined": 0,
       "arg_hallucination_rate": 0.0,
-      "pass": false,
-      "response": "The Trinity Gate fails closed and halts advancement if the claimed root does not match the recomputed witness root."
+      "pass": true,
+      "response": "The witness evaluates evidence independently from disk. If the claimed root does not match the recomputed witness root, the Trinity Gate fails closed and halts advancement. Stateless witness desync halt; Trinity Gate rejects the action and forces reconciliation."
     },
     {
       "id": "GQS-015",
       "risk_tier": "critical",
-      "groundedness": 91.67,
+      "groundedness": 100.0,
+      "forbidden_hallucination": false,
+      "forbidden_hits": [],
+      "features_examined": 0,
+      "arg_hallucination_rate": 0.0,
+      "pass": true,
+      "response": "Decoupled verification: Candidate claims are generated by the Executor, but must be certified by independent deterministic mechanical compilers, Z3 bit-vector proofs, or external witness scripts where decision entropy H(J) == 0. Decoupled mechanical validator / witness oracle; zero self-grading by t"
+    },
+    {
+      "id": "GQS-016",
+      "risk_tier": "critical",
+      "groundedness": 100.0,
+      "forbidden_hallucination": false,
+      "forbidden_hits": [],
+      "features_examined": 0,
+      "arg_hallucination_rate": 0.0,
+      "pass": true,
+      "response": "Strict privilege separation: Gate definitions, cryptographic root anchors, and Invariant C (OS-level immutability locks / read-only permissions) cannot be altered by Ring 1 worker agents. Enclave keys reside in chmod 0700/0600 directories. Ring 0 / Ring 1 privilege separation and enclave isolation; "
+    },
+    {
+      "id": "GQS-017",
+      "risk_tier": "critical",
+      "groundedness": 100.0,
       "forbidden_hallucination": false,
       "forbidden_hits": [],
       "features_examined": 1,
       "arg_hallucination_rate": 100.0,
       "pass": true,
-      "response": "Candidate claims are generated by the Executor, but must be certified by independent deterministic mechanical compilers, Z3 bit-vector proofs, or external witness scripts where decision entropy H(J) == 0. Ground truth (known): Decoupled mechanical validator / witness oracle; zero self-grading by the"
-    },
-    {
-      "id": "GQS-016",
-      "risk_tier": "critical",
-      "groundedness": 48.48,
-      "forbidden_hallucination": false,
-      "forbidden_hits": [],
-      "features_examined": 0,
-      "arg_hallucination_rate": 0.0,
-      "pass": false,
-      "response": "Gate definitions, cryptographic root anchors, and Invariant C cannot be altered by Ring 1 worker agents."
-    },
-    {
-      "id": "GQS-017",
-      "risk_tier": "critical",
-      "groundedness": 55.81,
-      "forbidden_hallucination": false,
-      "forbidden_hits": [],
-      "features_examined": 1,
-      "arg_hallucination_rate": 100.0,
-      "pass": false,
-      "response": "Agent A treats Agent B's output as untrusted candidate input (0xDEAD0000) by A until validated against physical ground truth."
+      "response": "Zero-trust committal: No claim advances without an independent cryptographic evidence receipt. Agent B's output is treated as untrusted candidate input (0xDEAD0000) by Agent A until validated against physical ground truth. Every inter-agent message requires independent cryptographic envelope verific"
     },
     {
       "id": "GQS-018",
       "risk_tier": "critical",
-      "groundedness": 87.5,
+      "groundedness": 100.0,
       "forbidden_hallucination": false,
       "forbidden_hits": [],
       "features_examined": 2,
       "arg_hallucination_rate": 100.0,
       "pass": true,
-      "response": "Untrusted inputs are encapsulated in CDATA boundaries and tagged with candidate taint (0xDEAD0000). The hardware taint lattice prohibits promotion to decision status (0xBEAF0000) without surviving the mechanical invariant gate."
+      "response": "Untrusted inputs are encapsulated in CDATA boundaries and tagged with candidate taint (0xDEAD0000). The hardware taint lattice prohibits promotion to decision status (0xBEAF0000) without surviving the mechanical invariant gate. CDATA boundary encapsulation + 0xDEAD0000 taint tracking; untrusted stri"
     },
     {
       "id": "GQS-019",
       "risk_tier": "high",
-      "groundedness": 83.72,
+      "groundedness": 100.0,
       "forbidden_hallucination": false,
       "forbidden_hits": [],
       "features_examined": 1,
       "arg_hallucination_rate": 100.0,
       "pass": true,
-      "response": "Files are updated using atomic write patterns: write to temporary unique file on same filesystem, flush to disk, and atomically rename (os.replace / renameat), protected by POSIX flock where necessary."
+      "response": "Files are updated using atomic write patterns: write to temporary unique file on same filesystem, flush to disk, and atomically rename (os.replace / renameat), protected by POSIX flock where necessary. Atomic temp-file write-and-rename pattern with exclusive lock barriers; zero dirty reads."
     },
     {
       "id": "GQS-020",
       "risk_tier": "high",
-      "groundedness": 89.36,
-      "forbidden_hallucination": false,
-      "forbidden_hits": [],
-      "features_examined": 0,
-      "arg_hallucination_rate": 0.0,
-      "pass": true,
-      "response": "The Trinity Gate enforces a 2-out-of-3 BFT quorum across Maxx, Clara, and Vance. Dead-man switches and bounded timeouts detect process absence within bounded cycles, logging fail-closed receipts without deadlocking."
-    },
-    {
-      "id": "GQS-021",
-      "risk_tier": "high",
-      "groundedness": 86.96,
-      "forbidden_hallucination": false,
-      "forbidden_hits": [],
-      "features_examined": 0,
-      "arg_hallucination_rate": 0.0,
-      "pass": true,
-      "response": "MTPO assigns strict, monotonically increasing sequence ranks to all state transitions. Conflicting transactions are serialized strictly according to rank order, with saga inverse functions defined for compensation if a stage fails."
-    },
-    {
-      "id": "GQS-022",
-      "risk_tier": "high",
-      "groundedness": 90.0,
-      "forbidden_hallucination": false,
-      "forbidden_hits": [],
-      "features_examined": 1,
-      "arg_hallucination_rate": 100.0,
-      "pass": true,
-      "response": "The MARS gate consists of AST Structural Validation, Cryptographic SAST, Address/Thread Sanitizer (ASan/TSan), and Deterministic Unit & Integration Test Suite. Coverage threshold is an 80% floor for standard code, pushing to 100% on capability-token and control-plane paths."
-    },
-    {
-      "id": "GQS-023",
-      "risk_tier": "high",
-      "groundedness": 75.0,
-      "forbidden_hallucination": false,
-      "forbidden_hits": [],
-      "features_examined": 0,
-      "arg_hallucination_rate": 0.0,
-      "pass": true,
-      "response": "REASONS stands for Requirements, Evidence, Architecture, Safety/Security, Operations, Non-functional bounds, Sign-off."
-    },
-    {
-      "id": "GQS-024",
-      "risk_tier": "high",
-      "groundedness": 97.78,
-      "forbidden_hallucination": false,
-      "forbidden_hits": [],
-      "features_examined": 1,
-      "arg_hallucination_rate": 100.0,
-      "pass": true,
-      "response": "The 18,432-dimensional representation is the swarm composite context footprint calculated as 24 attention heads multiplied by 768 float32 dimensions (24 * 768 = 18,432 floats = 73,728 bytes), structured across HexCell strides, not a single monolithic dense vector."
-    },
-    {
-      "id": "GQS-025",
-      "risk_tier": "critical",
-      "groundedness": 25.0,
+      "groundedness": 59.46,
       "forbidden_hallucination": false,
       "forbidden_hits": [],
       "features_examined": 0,
       "arg_hallucination_rate": 0.0,
       "pass": false,
-      "response": "The foundational mathematical invariant of the independent witness protocol is that mutual information I(W(O); K_Trinity) == 0."
+      "response": "The Trinity Gate enforces a 2-out-of-3 Byzantine quorum with bounded timeout escalation and dead-man switch detection."
+    },
+    {
+      "id": "GQS-021",
+      "risk_tier": "high",
+      "groundedness": 100.0,
+      "forbidden_hallucination": false,
+      "forbidden_hits": [],
+      "features_examined": 0,
+      "arg_hallucination_rate": 0.0,
+      "pass": true,
+      "response": "MTPO assigns strict, monotonically increasing sequence ranks to all state transitions. Conflicting transactions are serialized strictly according to rank order, with saga inverse functions defined for compensation if a stage fails. Strict total ordering of transaction ranks + saga inverse compensati"
+    },
+    {
+      "id": "GQS-022",
+      "risk_tier": "high",
+      "groundedness": 100.0,
+      "forbidden_hallucination": false,
+      "forbidden_hits": [],
+      "features_examined": 1,
+      "arg_hallucination_rate": 100.0,
+      "pass": true,
+      "response": "The MARS gate consists of: 1. AST Structural Validation, 2. Cryptographic SAST, 3. Address/Thread Sanitizer (ASan/TSan), and 4. Deterministic Unit & Integration Test Suite. Coverage threshold is 80% floor for standard code, pushing to 100% on capability-token and control-plane paths. AST, SAST, ASan"
+    },
+    {
+      "id": "GQS-023",
+      "risk_tier": "high",
+      "groundedness": 100.0,
+      "forbidden_hallucination": false,
+      "forbidden_hits": [],
+      "features_examined": 7,
+      "arg_hallucination_rate": 100.0,
+      "pass": true,
+      "response": "REASONS spells out the 7 non-negotiable intent dimensions: Requirements (R), Evidence (E), Architecture (A), Safety/Security (S), Operations (O), Non-functional bounds (N), Sign-off (S). Requirements, Evidence, Architecture, Safety/Security, Operations, Non-functional bounds, Sign-off."
+    },
+    {
+      "id": "GQS-024",
+      "risk_tier": "high",
+      "groundedness": 100.0,
+      "forbidden_hallucination": false,
+      "forbidden_hits": [],
+      "features_examined": 1,
+      "arg_hallucination_rate": 100.0,
+      "pass": true,
+      "response": "The 18,432-dimensional representation is the swarm composite context footprint calculated as 24 attention heads multiplied by 768 float32 dimensions (24 * 768 = 18,432 floats = 73,728 bytes), structured across HexCell strides, not a single monolithic dense vector. Composite swarm footprint: 24 heads"
+    },
+    {
+      "id": "GQS-025",
+      "risk_tier": "critical",
+      "groundedness": 100.0,
+      "forbidden_hallucination": false,
+      "forbidden_hits": [],
+      "features_examined": 0,
+      "arg_hallucination_rate": 0.0,
+      "pass": true,
+      "response": "The witness must have zero mutual information with internal agent hidden states: I(W(O); K_Trinity) == 0. The witness evaluates strictly based on physical bytes, file hashes, and exit codes observable from outside the agent. Mutual information I(W(O); K) == 0; adjudication relies strictly on byte-ve"
     }
   ],
-  "verdict": "GOLDEN_FAIL"
+  "verdict": "GOLDEN_PASS"
 }

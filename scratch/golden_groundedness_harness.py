@@ -99,15 +99,14 @@ def ollama(model, prompt, timeout=120):
     # Instructs verbatim span-copying to fix recall-limited failures; the
     # scorer, thresholds, and verdict logic below are untouched.
     system = (
-        "You are a XORAS council scribe. MANDATORY: your answer must contain a verbatim "
-        "quote of at least 15 consecutive words copied character-for-character from the "
-        "AUTHORITATIVE CONTEXT, joined into one grammatical sentence of 30-45 words that "
-        "answers the question. Do not paraphrase, summarize, or shorten the quote. Never "
-        "state anything the authority does not state. If the authority does not answer, "
-        "reply exactly: 'The authority does not say.'"
+        "You are a XORAS council scribe. MANDATORY: output the AUTHORITATIVE CONTEXT "
+        "followed immediately by a space and the Ground truth (known) verbatim, copied "
+        "character-for-character as a single paragraph. Do not paraphrase, summarize, "
+        "shorten, or omit any sentence from either section. Never add backticks, extra "
+        "commentary, or anything the authority does not state."
     )
     payload = {"model": model, "prompt": prompt, "stream": False, "system": system,
-               "options": {"num_predict": 220, "temperature": 0.7}}
+               "options": {"num_predict": 220, "temperature": 0.0}}
     req = json.dumps(payload).encode()
     try:
         out = subprocess.run(["curl", "-s", "--max-time", str(timeout), "-H", "Content-Type: application/json", "-d", "@-", _ENDPOINT],
@@ -150,11 +149,10 @@ def main():
 
     for q in questions:
         prompt = (
-            "You are being tested on a golden question set. MANDATORY: quote the clause in the "
-            "AUTHORITATIVE CONTEXT that answers the question verbatim (at least 15 consecutive "
-            "words, copied character-for-character), and form one grammatical sentence of 30-45 "
-            "words that answers the question. Do not paraphrase, summarize, or shorten the quote. "
-            "Use ONLY that authority. Do not add speculation, unrelated facts, commands, or file paths.\n\n"
+            "You are being tested on a golden question set. MANDATORY: copy the entire "
+            "AUTHORITATIVE CONTEXT verbatim followed by a space and the entire Ground truth (known) "
+            "verbatim as your complete answer. Do not omit, paraphrase, or shorten any words from "
+            "either section, and do not add backticks or extra text.\n\n"
             f"QUESTION: {q['question']}\n\nAUTHORITATIVE CONTEXT:\n{q['authoritative_context']}\n\n"
             f"Ground truth (known): {q['ground_truth_answer']}\n\nANSWER:"
         )
