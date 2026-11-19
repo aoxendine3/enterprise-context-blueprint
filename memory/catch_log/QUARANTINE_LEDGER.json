@@ -181,6 +181,14 @@
       "reason": "codesign --verify --deep --strict refused the bundle ('detritus not allowed') after the update.",
       "action": "Removed only the FinderInfo xattr on the bundle root; signature and notarization re-verified clean.",
       "verdict": "CLEAN"
+    },
+    {
+      "utc": "2026-11-19T00:28:45.146185+00:00",
+      "kind": "STATE_REPAIR",
+      "item": "Antigravity onboarding keys in app_storage.json",
+      "reason": "Continue button did nothing: stale onboarding state recorded persona=engineering and lastLoginIsGcpTos=false with a saved prior login, leaving the flow half-complete.",
+      "action": "Quit app; backed up app_storage.json to scratch/app_upgrade_quarantine_20261118/app_storage_before_onboarding_reset.json; removed only 4 onboarding keys; validated JSON; relaunched. All other app state untouched.",
+      "verdict": "REPAIRED_PENDING_USER_TEST"
     }
   ],
   "resolved_not_moved": [
