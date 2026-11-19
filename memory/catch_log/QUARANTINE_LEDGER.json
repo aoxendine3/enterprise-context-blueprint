@@ -189,6 +189,15 @@
       "reason": "Continue button did nothing: stale onboarding state recorded persona=engineering and lastLoginIsGcpTos=false with a saved prior login, leaving the flow half-complete.",
       "action": "Quit app; backed up app_storage.json to scratch/app_upgrade_quarantine_20261118/app_storage_before_onboarding_reset.json; removed only 4 onboarding keys; validated JSON; relaunched. All other app state untouched.",
       "verdict": "REPAIRED_PENDING_USER_TEST"
+    },
+    {
+      "utc": "2026-11-19T00:43:21.510031+00:00",
+      "kind": "ROOT_CAUSE_REPAIR",
+      "item": "~/.gemini/antigravity state directory permissions",
+      "reason": "Onboarding Continue and Skip were no-ops: CDP captured ConnectError: open ~/.gemini/antigravity/antigravity_state.pbtxt.<uuid>.tmp: permission denied. The directory carried read-only mode 0555 plus uchg from earlier hardening; the app's language server could not write its state, so every onboarding action threw an uncaught promise and was abandoned.",
+      "action": "Removed uchg and granted owner-write on ~/.gemini and ~/.gemini/antigravity (scoped to the app's own state, not the SSOT project); verified an exact-path write probe; restarted the app so the language server re-read permissions. Onboarding was bypassed automatically; main UI reached, welcome/consent dialog dismissed, chat surface and SSOT project present. Old app state preserved intact in scratch/quarantine_antigravity_fullstate_20261118.",
+      "verdict": "RESOLVED_APP_LOADS",
+      "note": "Immutable flags intentionally NOT restored on the app state dir \u2014 restoring them re-creates the failure."
     }
   ],
   "resolved_not_moved": [
