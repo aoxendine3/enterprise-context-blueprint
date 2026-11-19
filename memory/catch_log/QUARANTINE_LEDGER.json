@@ -231,6 +231,14 @@
       "item": "Ollama download partial sha256-2049f567...-partial",
       "reason": "14B pull was cancelled after golden gate reached 9/9 via instruction change; partial download is dead weight. macOS update APFS snapshot left untouched (system-owned, non-purgeable).",
       "verdict": "DEAD_PARTIAL_REMOVED"
+    },
+    {
+      "utc": "2026-11-19T15:38:39.358177+00:00",
+      "kind": "PERMISSION_REVOKE",
+      "item": "~/.gemini/config/config.json global allow-list",
+      "reason": "11 standing grants let the external app invoke our speech script and reality gate without asking \u2014 accumulated from other sessions, not ours.",
+      "action": "Backed up intact, cleared allow-list to 0, relaunched app, verified grants stay 0 and MCP bridge intact.",
+      "verdict": "REVOKED_VERIFIED"
     }
   ],
   "resolved_not_moved": [

@@ -1,0 +1,22 @@
+{
+  "schema": "xoras.permission.revoke.v1",
+  "utc": "2026-11-19T15:38:39.358177+00:00",
+  "target": "~/.gemini/config/config.json",
+  "action": "cleared userSettings.globalPermissionGrants.allow from 11 grants (10 agent_speak.sh, 1 reality_gate.sh) to 0",
+  "backup": "scratch/quarantine_antigravity_fullstate_20261118/config_before_grant_revoke.json",
+  "backup_sha256": "04f2fca3991472511e4aa1154649a080b3454e42f81405af453efbc34c144db6",
+  "preserved": [
+    "plugins",
+    "sidecars",
+    "all other config keys",
+    "~/.gemini/config/mcp_config.json (xoras-local-chat)"
+  ],
+  "verified_after_relaunch": {
+    "grants": 0,
+    "mcp_servers": [
+      "xoras-local-chat"
+    ],
+    "app_running": true
+  },
+  "verdict": "REVOKED_VERIFIED"
+}
