@@ -44,3 +44,20 @@ pick it up.
 6. Version/build the library at deploy time, or fail loudly when absent.
 
 **Signed:** independent audit agent (Level 2), 2026-11-19. Worker ≠ reviewer.
+
+---
+
+## Final Re-Audit (same independent reviewer): **GO**
+
+After remediation, the same reviewer verified each blocker closed by execution:
+`eval_expression_d` depth-bound (20k/50k/200k/500k-term `+` chains → VETO,
+host exit 0; >1 MiB → `-1`; 400k nested parens and 100k `.strip()` chains →
+no crash); syntax errors → `-3`; native path runs Python checks first and
+merges (superset), fails loudly when the library is absent; duplicate secret
+pass removed; `tests/test_arthur_ast_ffi.py` staged with 7/7 tests passing.
+
+Non-blocking: native mode remains opt-in and the `.dylib` is gitignored —
+other hosts must build/distribute it; absent library now raises instead of
+silently degrading.
+
+Verdict: **GO — no remaining security blockers.** Promotion approved.

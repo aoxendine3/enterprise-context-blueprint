@@ -3,6 +3,10 @@ name = "arthur_ast_rs"
 version = "0.1.0"
 edition = "2021"
 
+[lib]
+name = "arthur_ast_rs"
+crate-type = ["rlib", "cdylib"]
+
 [dependencies]
 hex = "0.4.3"
 serde = { version = "1.0.229", features = ["derive"] }

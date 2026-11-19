@@ -1,5 +1,19 @@
+use std::cell::RefCell;
 use std::collections::{HashMap, HashSet};
 use tree_sitter::{Node, Parser};
+
+const MAX_SOURCE_BYTES: usize = 1 << 20;   // 1 MiB fail-closed input cap
+const MAX_AST_DEPTH: usize = 256;          // recursion bound (no host crash)
+
+thread_local! {
+    static PY_PARSER: RefCell<Parser> = RefCell::new({
+        let mut p = Parser::new();
+        p.set_language(&tree_sitter_python::LANGUAGE.into())
+            .expect("Failed to initialize thread-local tree-sitter Python parser");
+        p
+    });
+    static FFI_ENGINE: ArthurAstEngine = ArthurAstEngine::new();
+}
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum TaintStatus {
@@ -12,6 +26,7 @@ pub enum TaintStatus {
 pub struct ArthurAstEngine {
     banned_targets: HashSet<&'static str>,
     banned_modules: HashSet<&'static str>,
+    dangerous_attrs: HashSet<&'static str>,
     taint_sources: HashSet<&'static str>,
     antidote_casters: HashSet<&'static str>,
 }
@@ -33,8 +48,22 @@ impl ArthurAstEngine {
         }
 
         let mut banned_modules = HashSet::new();
-        for m in &["ctypes", "pty"] {
+        for m in &[
+            "ctypes", "pty", "pickle", "_pickle", "cPickle",
+            "marshal", "shelve", "socket", "runpy",
+        ] {
             banned_modules.insert(*m);
+        }
+
+        let mut dangerous_attrs = HashSet::new();
+        for a in &[
+            "__bases__", "__base__", "__mro__", "__subclasses__",
+            "__globals__", "__builtins__", "__code__", "__closure__",
+            "__getattribute__", "__reduce__", "__reduce_ex__", "__loader__",
+            "f_globals", "f_builtins", "f_back", "gi_frame", "gi_code",
+            "cr_frame", "ag_frame", "tb_frame", "_getframe",
+        ] {
+            dangerous_attrs.insert(*a);
         }
 
         let mut taint_sources = HashSet::new();
@@ -53,29 +82,31 @@ impl ArthurAstEngine {
         Self {
             banned_targets,
             banned_modules,
+            dangerous_attrs,
             taint_sources,
             antidote_casters,
         }
     }
 
     pub fn scan_source(&self, source_code: &str) -> Result<Vec<String>, String> {
-        let mut parser = Parser::new();
-        let language = tree_sitter_python::LANGUAGE;
-        parser
-            .set_language(&language.into())
-            .map_err(|e| format!("Failed to set Python language: {}", e))?;
-
-        let tree = parser
-            .parse(source_code, None)
+        let tree = PY_PARSER
+            .with(|cell| {
+                let mut parser = cell.borrow_mut();
+                parser.parse(source_code, None)
+            })
             .ok_or_else(|| "Failed to parse Python source".to_string())?;
 
         let root_node = tree.root_node();
+        // Fail closed: tree-sitter recovers from syntax errors into a tree.
+        if root_node.has_error() {
+            return Err("Python syntax error: fail closed".to_string());
+        }
         let mut violations = Vec::new();
         let mut env: HashMap<String, TaintStatus> = HashMap::new();
         let mut sanitized_vars: HashSet<String> = HashSet::new();
 
         // Pass 0: Discover Antidote Whitelist Guards (`if x in ALLOWED:`)
-        self.collect_whitelist_guards(root_node, source_code.as_bytes(), &mut sanitized_vars);
+        self.collect_whitelist_guards(root_node, source_code.as_bytes(), &mut sanitized_vars, 0);
 
         // Pass 1: Semantic AST Traversal with Taint & Antidote Evaluation
         self.walk_and_verify(
@@ -84,6 +115,7 @@ impl ArthurAstEngine {
             &mut env,
             &sanitized_vars,
             &mut violations,
+            0,
         );
 
         Ok(violations)
@@ -94,7 +126,11 @@ impl ArthurAstEngine {
         node: Node,
         source: &[u8],
         sanitized_vars: &mut HashSet<String>,
+        depth: usize,
     ) {
+        if depth > MAX_AST_DEPTH {
+            return;
+        }
         if node.kind() == "if_statement" {
             if let Some(condition) = node.child_by_field_name("condition") {
                 if condition.kind() == "comparison_operator" {
@@ -120,17 +156,21 @@ impl ArthurAstEngine {
 
         let mut cursor = node.walk();
         for child in node.children(&mut cursor) {
-            self.collect_whitelist_guards(child, source, sanitized_vars);
+            self.collect_whitelist_guards(child, source, sanitized_vars, depth + 1);
         }
     }
 
-    fn eval_expression(
+    fn eval_expression_d(
         &self,
         node: Node,
         source: &[u8],
         env: &HashMap<String, TaintStatus>,
         sanitized_vars: &HashSet<String>,
+        depth: usize,
     ) -> TaintStatus {
+        if depth > MAX_AST_DEPTH {
+            return TaintStatus::ExternalPoison; // fail closed: unbounded expression
+        }
         match node.kind() {
             "identifier" => {
                 let name = node.utf8_text(source).unwrap_or("");
@@ -155,7 +195,7 @@ impl ArthurAstEngine {
                     for child in children {
                         if child.kind() == "interpolation" {
                             if let Some(expr) = child.named_child(0) {
-                                let status = self.eval_expression(expr, source, env, sanitized_vars);
+                                let status = self.eval_expression_d(expr, source, env, sanitized_vars, depth + 1);
                                 if status == TaintStatus::ExternalPoison {
                                     has_poison = true;
                                 } else if let TaintStatus::Literal(lit) = status {
@@ -199,7 +239,37 @@ impl ArthurAstEngine {
                     }
                     if attr_name == "decode" || attr_name == "strip" {
                         if let Some(obj) = func_node.child_by_field_name("object") {
-                            return self.eval_expression(obj, source, env, sanitized_vars);
+                            return self.eval_expression_d(obj, source, env, sanitized_vars, depth + 1);
+                        }
+                    }
+                    if attr_name == "join" {
+                        if let Some(obj) = func_node.child_by_field_name("object") {
+                            let sep_status = self.eval_expression_d(obj, source, env, sanitized_vars, depth + 1);
+                            if let TaintStatus::Literal(sep) = sep_status {
+                                if let Some(args) = node.child_by_field_name("arguments") {
+                                    if let Some(seq) = args.named_child(0) {
+                                        if seq.kind() == "list" || seq.kind() == "tuple" {
+                                            let mut parts = Vec::new();
+                                            let mut has_poison = false;
+                                            let mut all_literal = true;
+                                            let mut sc = seq.walk();
+                                            for elem in seq.named_children(&mut sc) {
+                                                match self.eval_expression_d(elem, source, env, sanitized_vars, depth + 1) {
+                                                    TaintStatus::ExternalPoison => has_poison = true,
+                                                    TaintStatus::Literal(s) => parts.push(s),
+                                                    _ => all_literal = false,
+                                                }
+                                            }
+                                            if has_poison {
+                                                return TaintStatus::ExternalPoison;
+                                            }
+                                            if all_literal && !parts.is_empty() {
+                                                return TaintStatus::Literal(parts.join(&sep));
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                     if attr_name == "fromhex" {
@@ -233,10 +303,10 @@ impl ArthurAstEngine {
             "binary_operator" => {
                 let left = node
                     .child_by_field_name("left")
-                    .map(|n| self.eval_expression(n, source, env, sanitized_vars));
+                    .map(|n| self.eval_expression_d(n, source, env, sanitized_vars, depth + 1));
                 let right = node
                     .child_by_field_name("right")
-                    .map(|n| self.eval_expression(n, source, env, sanitized_vars));
+                    .map(|n| self.eval_expression_d(n, source, env, sanitized_vars, depth + 1));
 
                 if left == Some(TaintStatus::ExternalPoison) || right == Some(TaintStatus::ExternalPoison) {
                     return TaintStatus::ExternalPoison;
@@ -248,7 +318,7 @@ impl ArthurAstEngine {
             }
             "conditional_expression" => {
                 if let Some(consequence) = node.child_by_field_name("consequence") {
-                    let status = self.eval_expression(consequence, source, env, sanitized_vars);
+                    let status = self.eval_expression_d(consequence, source, env, sanitized_vars, depth + 1);
                     if status == TaintStatus::SanitizedAntidote {
                         return TaintStatus::SanitizedAntidote;
                     }
@@ -259,6 +329,17 @@ impl ArthurAstEngine {
         }
     }
 
+
+    fn eval_expression(
+        &self,
+        node: Node,
+        source: &[u8],
+        env: &HashMap<String, TaintStatus>,
+        sanitized_vars: &HashSet<String>,
+    ) -> TaintStatus {
+        self.eval_expression_d(node, source, env, sanitized_vars, 0)
+    }
+
     fn walk_and_verify(
         &self,
         node: Node,
@@ -266,7 +347,12 @@ impl ArthurAstEngine {
         env: &mut HashMap<String, TaintStatus>,
         sanitized_vars: &HashSet<String>,
         violations: &mut Vec<String>,
+        depth: usize,
     ) {
+        if depth > MAX_AST_DEPTH {
+            violations.push(format!("AST_DEPTH_LIMIT_EXCEEDED: depth {} > {}", depth, MAX_AST_DEPTH));
+            return;
+        }
         let line = node.start_position().row + 1;
 
         match node.kind() {
@@ -318,6 +404,15 @@ impl ArthurAstEngine {
                     // Rule 3: Reflection Sink: getattr(obj, target)
                     if func_name == "getattr" || func_name == "hasattr" {
                         if let Some(args) = node.child_by_field_name("arguments") {
+                            if let Some(first_arg) = args.named_child(0) {
+                                let obj_name = first_arg.utf8_text(source).unwrap_or("");
+                                if obj_name == "__builtins__" || obj_name == "builtins" {
+                                    violations.push(format!(
+                                        "RESTRICTED_BUILTINS_REFLECTION: {}({}, ...) at line {}",
+                                        func_name, obj_name, line
+                                    ));
+                                }
+                            }
                             if let Some(second_arg) = args.named_child(1) {
                                 let status = self.eval_expression(second_arg, source, env, sanitized_vars);
                                 match status {
@@ -328,7 +423,9 @@ impl ArthurAstEngine {
                                         ));
                                     }
                                     TaintStatus::Literal(lit) => {
-                                        if self.banned_targets.contains(lit.as_str()) {
+                                        if self.banned_targets.contains(lit.as_str())
+                                            || self.dangerous_attrs.contains(lit.as_str())
+                                        {
                                             violations.push(format!(
                                                 "MULTI_STAGE_GETATTR_INDIRECTION: getattr(..., '{}') at line {}",
                                                 lit, line
@@ -433,6 +530,26 @@ impl ArthurAstEngine {
                     }
                 }
             }
+            "attribute" => {
+                if let Some(attr) = node.child_by_field_name("attribute") {
+                    let attr_name = attr.utf8_text(source).unwrap_or("");
+                    if self.dangerous_attrs.contains(attr_name) {
+                        violations.push(format!(
+                            "DUNDER_SANDBOX_ESCAPE: restricted attribute '.{}' at line {}",
+                            attr_name, line
+                        ));
+                    }
+                }
+            }
+            "identifier" => {
+                let id = node.utf8_text(source).unwrap_or("");
+                if id == "__builtins__" {
+                    violations.push(format!(
+                        "RESTRICTED_BUILTINS_ACCESS: '__builtins__' at line {}",
+                        line
+                    ));
+                }
+            }
             "import_statement" | "import_from_statement" => {
                 let text = node.utf8_text(source).unwrap_or("");
                 for m in &self.banned_modules {
@@ -449,7 +566,31 @@ impl ArthurAstEngine {
 
         let mut cursor = node.walk();
         for child in node.children(&mut cursor) {
-            self.walk_and_verify(child, source, env, sanitized_vars, violations);
+            self.walk_and_verify(child, source, env, sanitized_vars, violations, depth + 1);
         }
+    }
+}
+
+/// Zero-copy C-ABI FFI entry point (releases Python GIL under ctypes.CDLL).
+/// Returns: 0 = SAFE, >0 = violation count (VETO), <0 = fail-closed parse/input error.
+#[no_mangle]
+pub unsafe extern "C" fn arthur_ast_scan_ffi(src_ptr: *const u8, src_len: usize) -> i32 {
+    if src_ptr.is_null() || src_len == 0 || src_len > MAX_SOURCE_BYTES {
+        return -1; // null / empty / oversized -> fail closed
+    }
+    let slice = std::slice::from_raw_parts(src_ptr, src_len);
+    let src = match std::str::from_utf8(slice) {
+        Ok(s) => s,
+        Err(_) => return -2,
+    };
+    // Panic isolation: never unwind across the C ABI boundary.
+    let result = std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
+        FFI_ENGINE.with(|eng| eng.scan_source(src))
+    }));
+    match result {
+        Ok(Ok(v)) if v.len() > i32::MAX as usize => -6,
+        Ok(Ok(v)) => v.len() as i32,
+        Ok(Err(_)) => -3, // parse/syntax error -> fail closed
+        Err(_) => -5,     // panic contained -> fail closed
     }
 }

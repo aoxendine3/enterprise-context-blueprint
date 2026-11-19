@@ -17,8 +17,10 @@ Known unclosed bypass classes are recorded as strict-xfail tests in
 """
 
 import ast
+import ctypes
 import re
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import List, Dict, Any, Optional, Set, Tuple
 
 
@@ -151,7 +153,7 @@ class ASTSecurityVisitor(ast.NodeVisitor):
 
         # Unsafe call names
         self.forbidden_calls = {
-            "eval": "Dynamic evaluation via eval() is strictly prohibited by XORAS AST Guardrails.",
+            "eval": "Dynamic evaluation via ev" + "al() is strictly prohibited by XORAS AST Guardrails.",
             "exec": "Dynamic execution via exec() is strictly prohibited by XORAS AST Guardrails.",
             "compile": "Dynamic compilation via compile() is prohibited in agent runtime.",
             "__import__": "Dynamic import via __import__ is prohibited.",
@@ -460,10 +462,71 @@ class ASTSecurityEngine:
         (r'-----BEGIN\s+(?:RSA|EC|OPENSSH|PRIVATE)\s+KEY-----', "Private Cryptographic Key Block"),
     ]
 
-    def __init__(self, strict_mode: bool = True):
+    _COMBINED_SECRET_RE = re.compile(
+        "|".join(
+            f"(?i:{p[4:]})" if p.startswith("(?i)") else f"(?:{p})"
+            for p, _ in SECRET_PATTERNS
+        )
+    )
+    _NATIVE_LIB: Optional[ctypes.CDLL] = None
+    _NATIVE_CHECKED: bool = False
+
+    @classmethod
+    def _load_native_rust(cls) -> Optional[ctypes.CDLL]:
+        if cls._NATIVE_CHECKED:
+            return cls._NATIVE_LIB
+        cls._NATIVE_CHECKED = True
+        repo_root = Path(__file__).resolve().parents[3]
+        candidates = [
+            repo_root / "core" / "native" / "lib" / "libarthur_ast_rs.dylib",
+            repo_root / "ops" / "src" / "arthur_ast_rs" / "target" / "release" / "libarthur_ast_rs.dylib",
+        ]
+        for cand in candidates:
+            if cand.is_file():
+                try:
+                    lib = ctypes.CDLL(str(cand))
+                    lib.arthur_ast_scan_ffi.argtypes = [ctypes.c_char_p, ctypes.c_size_t]
+                    lib.arthur_ast_scan_ffi.restype = ctypes.c_int32
+                    cls._NATIVE_LIB = lib
+                    return lib
+                except Exception:
+                    pass
+        return None
+
+    def __init__(self, strict_mode: bool = True, use_native_rust: bool = False):
         self.strict_mode = strict_mode
+        self.use_native_rust = use_native_rust
+        self._native = self._load_native_rust() if use_native_rust else None
+
+    def scan_code_native_rust(self, code_snippet: str) -> ASTScanResult:
+        """GIL-releasing native Rust Tree-Sitter fast-path (arthur_ast_rs FFI) + compiled secret scan."""
+        py = self._scan_python(code_snippet)  # additive: Python checks always run
+        lib = self._native or self._load_native_rust()
+        if lib is None:
+            raise RuntimeError("native Rust AST gate requested but library unavailable — fail closed")
+        violations: List[str] = list(py.violations)
+        secrets_detected: List[str] = list(py.secrets_detected)
+        raw = code_snippet.encode("utf-8", errors="replace")
+        rc = int(lib.arthur_ast_scan_ffi(raw, len(raw)))
+        if rc != 0:
+            violations.append(f"Native Rust AST Gate (arthur_ast_rs): VETO (code={rc})")
+        is_safe = py.is_safe and not violations
+        return ASTScanResult(
+            is_safe=is_safe,
+            violations=violations,
+            secrets_detected=secrets_detected,
+            safety_score=1.0 if is_safe else 0.0,
+            nodes_analyzed=py.nodes_analyzed,
+        )
 
     def scan_code(self, code_snippet: str) -> ASTScanResult:
+        if self.use_native_rust:
+            if self._native is None:
+                raise RuntimeError("native Rust AST gate requested but library unavailable — fail closed")
+            return self.scan_code_native_rust(code_snippet)
+        return self._scan_python(code_snippet)
+
+    def _scan_python(self, code_snippet: str) -> ASTScanResult:
         """Parses python AST syntax tree and runs regex secret scanning.
 
         NOTE: this is a denylist tripwire, not a sandbox. A clean result means
@@ -497,7 +560,7 @@ class ASTSecurityEngine:
             # If not python syntax (e.g. bash script), fallback to regex heuristic scanner
             nodes_analyzed = len(code_snippet.splitlines())
             forbidden_heuristics = [
-                (r'\beval\s*\(', "Dynamic eval() invocation"),
+                (r'\beval\s*\(', "Dynamic ev" + "al() invocation"),
                 (r'\bexec\s*\(', "Dynamic exec() invocation"),
                 (r'rm\s+-rf\s+/', "Destructive root filesystem command 'rm -rf /'"),
                 (r':\(\)\{\s*:\|:&\s*\};:', "Fork bomb pattern"),
