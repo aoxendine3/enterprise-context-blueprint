@@ -30,6 +30,9 @@ import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
+# Reuse the existing evidence gate instead of reimplementing hash checks.
+from evidence_gate import verify_evidence
+
 ROOT = Path("/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain")
 SEARCH_ROOTS = [ROOT, Path("/Users/ajoxendine68/Desktop/test")]
 RECEIPT = ROOT / "memory/catch_log/CLAIM_VERIFICATION_RECEIPT.json"
@@ -83,7 +86,12 @@ def verify(text: str, source: str) -> dict:
             bound = [resolved[p] for p in paths if resolved[p] is not None]
             if not bound:
                 continue  # unbound hash: not evidence for a file on this line
-            ok = any(sha256(f).startswith(h) for f in bound)
+            ok = False
+            for f in bound:
+                passed, artifact_hash, _ = verify_evidence("file_hash", str(f), "")
+                if passed and artifact_hash.startswith(h):
+                    ok = True
+                    break
             findings.append({
                 "line": line_no, "kind": "HASH", "value": h[:16],
                 "verdict": "PASS" if ok else "MISMATCH",

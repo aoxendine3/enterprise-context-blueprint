@@ -1271,5 +1271,29 @@
     "artifact_hash": "136243baa9fac5129c3f6ddfa0aa23cdae83c01706c9eb2375493f88f7ff2538",
     "vector_dim": 18432,
     "poincare_norm": 0.048219
+  },
+  {
+    "index": 114,
+    "timestamp": "2026-11-19T15:43:42.252644+00:00",
+    "node_hash": "739bb3db90183a5ff93d78459267c561b0dab4ae16d48d66d714d38fbb8cb936",
+    "parent_hash": "4edd5ba4fa3d621be144103cd4f2e9489e29dd1bd3de24d220b2a7e7c323e6f0",
+    "agent_id": "maxx",
+    "beat_type": "GOVERNANCE.CLAIMS-GATE",
+    "payload": "verify_claims.py registered via existing evidence gate",
+    "evidence_type": "file_hash",
+    "artifact_hash": "39c7723486ac8725e3d83b6ad6efbecebea476ed2ca2f9b78724b76d4f30d478",
+    "evidence_target": "core/ops/scripts/verify_claims.py"
+  },
+  {
+    "index": 115,
+    "timestamp": "2026-11-19T15:44:42.802921+00:00",
+    "node_hash": "5447b52b23270b99d9870343dea89e503c05a9bbf2a01cf07d0204fe74766dc0",
+    "parent_hash": "739bb3db90183a5ff93d78459267c561b0dab4ae16d48d66d714d38fbb8cb936",
+    "agent_id": "maxx",
+    "beat_type": "GOVERNANCE.CLAIMS-GATE",
+    "payload": "verify_claims.py final adapter registered",
+    "evidence_type": "file_hash",
+    "artifact_hash": "600f90313e75f9de2394ad6b2790d0a7e526bd324f384af8d6ee9d32c51e8ce6",
+    "evidence_target": "core/ops/scripts/verify_claims.py"
   }
 ]
