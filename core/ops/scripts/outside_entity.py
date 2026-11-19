@@ -70,6 +70,34 @@ OUTSIDE_CATEGORY = [
     r"\b(?:I|i)(?:'?m| am)\s+(?:a|an)\s+ai\b",
 ]
 
+# Outside-product shapes — an outside product/company used as an agentic tool.
+# These are name-free: they match the GRAMMAR of a third-party assistant/model
+# claim, and exclude sovereign vocabulary via _is_sovereign().
+OUTSIDE_PRODUCT_USE = [
+    # "we use X to help", "using X", "used X", "we use X"
+    r"\b(?i:we|our|the)\s+(?i:use|used|using)\s+([A-Z][A-Za-z0-9_-]+)\b",
+    r"\b(?i:using|via|with)\s+([A-Z][A-Za-z0-9_-]+)\s+(?i:to|for)\b",
+]
+OUTSIDE_PRODUCT_CATEGORY = [
+    # "X AI Assistant", "X assistant", "X model", "X IDE", "X agent" ...
+    r"\b([A-Z][A-Za-z0-9_-]+)\s+(?i:(?:AI\s+)?(?:assistant|agent|model|ide|platform|tool|cli))\b",
+]
+
+# Ordinary sentence-opening words are not product names. Structural filter —
+# a list of grammar words, never an outside entity name.
+GENERIC_LEADERS = {
+    "any", "each", "every", "the", "this", "that", "these", "those", "our",
+    "we", "all", "no", "your", "their", "its", "some", "one", "native",
+    "host", "both", "other", "another", "first", "last", "next", "new",
+    "old", "same", "such", "many", "most", "several", "each", "hosted",
+    "third", "local", "external", "inside", "outside", "default",
+    "gravity", "architectural", "hierarchical", "cognitive", "deterministic",
+    "reference", "reasoning", "memory", "security", "inference", "training",
+    "digital", "virtual", "physical", "human", "semantic", "distributed",
+    "autonomous", "modular", "scalable", "hybrid", "central", "discrete",
+    "voice", "speech", "audio", "visual", "video", "image", "text",
+}
+
 # Receipt/JSON fields that are attribution slots.
 ATTRIBUTION_SLOTS = {
     "vendor", "product", "brand", "powered_by", "poweredby", "built_with",
@@ -115,6 +143,20 @@ def scan_text(text: str) -> list:
                 violations.append({"line": line_no, "kind": "outside_category",
                                    "detail": "self-references a generic outside category"})
                 break
+        # Outside products used as agentic tools. Structural and name-free:
+        # the captured token is compared to the sovereign allowlist only —
+        # it is never written into the violation (no brand leaks into artifacts).
+        for pat in OUTSIDE_PRODUCT_USE + OUTSIDE_PRODUCT_CATEGORY:
+            for m in re.finditer(pat, line):
+                token = m.group(1)
+                if token.lower() in GENERIC_LEADERS:
+                    continue
+                if not _is_sovereign(token):
+                    kind = ("outside_product_use" if pat in OUTSIDE_PRODUCT_USE
+                            else "outside_product_category")
+                    violations.append({"line": line_no, "kind": kind,
+                                       "detail": "names a non-sovereign product in an agentic claim"})
+                    break
     return violations
 
 
