@@ -37,6 +37,9 @@ ROOT = Path("/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain")
 SEARCH_ROOTS = [ROOT, Path("/Users/ajoxendine68/Desktop/test")]
 RECEIPT = ROOT / "memory/catch_log/CLAIM_VERIFICATION_RECEIPT.json"
 HEX = re.compile(r"(?<![0-9a-f])([0-9a-f]{8,64})(?![0-9a-f])")
+# SHA-256 hex is 64 chars; allow shorter prefixes, but reject pure-digit tokens
+# (date-like strings such as 20261118 appearing inside filenames are NOT hashes).
+HEX = re.compile(r"(?<![0-9a-f])([0-9a-f]*[a-f][0-9a-f]{7,63})(?![0-9a-f])")
 PATH = re.compile(r"`([^`\n]+\.(?:json|log|py|md|sh|png|mp4|txt|yaml|c|rs))`")
 EXTS = {".json", ".log", ".py", ".md", ".sh", ".png", ".mp4", ".txt", ".yaml", ".c", ".rs"}
 
