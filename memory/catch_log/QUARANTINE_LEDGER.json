@@ -217,6 +217,20 @@
       "evidence": "memory/catch_log/RECLAIM_MOVE_MANIFEST_20261119.json \u2014 54 moves, 0 failures, sha256 per file",
       "law": "\u00a710.5 preserve-before-move, proof before move, same-turn report, ledger record; owner-hold items excluded",
       "verdict": "MOVED_VERIFIED"
+    },
+    {
+      "utc": "2026-11-19T03:17:50.561007+00:00",
+      "kind": "ARTIFACT_REMOVAL",
+      "item": "ollama tag qwen2.5:7b-instruct",
+      "reason": "Disk pressure for 14B golden-groundedness retry; harness model passed explicitly via --model; tag re-pullable.",
+      "verdict": "REMOVABLE_ARTIFACT"
+    },
+    {
+      "utc": "2026-11-19T06:20:55.196133+00:00",
+      "kind": "ARTIFACT_REMOVAL",
+      "item": "Ollama download partial sha256-2049f567...-partial",
+      "reason": "14B pull was cancelled after golden gate reached 9/9 via instruction change; partial download is dead weight. macOS update APFS snapshot left untouched (system-owned, non-purgeable).",
+      "verdict": "DEAD_PARTIAL_REMOVED"
     }
   ],
   "resolved_not_moved": [
