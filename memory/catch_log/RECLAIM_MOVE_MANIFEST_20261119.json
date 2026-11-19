@@ -1,0 +1,387 @@
+{
+  "schema": "xoras.reclaim-move.v1",
+  "utc": "2026-11-19T01:24:57Z",
+  "source_root": "misc/",
+  "destination": "/Volumes/Untitled/xoras_reclaim_20261119",
+  "moves": [
+    {
+      "name": "update.zip",
+      "bytes": 181628928,
+      "sha256": "079ba05eb9768f13461fb39411dc7b6ebb2ac16abc905820273394ce86f61340",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/update.zip",
+      "seconds": 76.1
+    },
+    {
+      "name": "Antigravity.zip",
+      "bytes": 181628928,
+      "sha256": "079ba05eb9768f13461fb39411dc7b6ebb2ac16abc905820273394ce86f61340",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/Antigravity.zip",
+      "seconds": 104.6
+    },
+    {
+      "name": "e2420b0a1de6ace6d539ff205ca65a2582d446f96971b9b8bc344dc6c131db71",
+      "bytes": 757297152,
+      "sha256": "e2420b0a1de6ace6d539ff205ca65a2582d446f96971b9b8bc344dc6c131db71",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/e2420b0a1de6ace6d539ff205ca65a2582d446f96971b9b8bc344dc6c131db71",
+      "seconds": 180.6
+    },
+    {
+      "name": "QtWebEngineCore",
+      "bytes": 467730432,
+      "sha256": "224f02d2b239db4c6d58b258ef66d343b9a7bfed0845959abc9d357d16671145",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/QtWebEngineCore",
+      "seconds": 71.3
+    },
+    {
+      "name": "github",
+      "bytes": 422699008,
+      "sha256": "cec9d96273daf3d0963d60c3eff0b53a32d12828cbe8ee08e39a9232ba1add8e",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/github",
+      "seconds": 190.5
+    },
+    {
+      "name": "72db1f2b-a5b1-4ec0-956e-02c545d218cc.pb",
+      "bytes": 384823296,
+      "sha256": "df2155f3639cd7b763b68341f81ef4d53cefb3d5efbc502e6d94fb118d3c7ac6",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/72db1f2b-a5b1-4ec0-956e-02c545d218cc.pb",
+      "seconds": 252.5
+    },
+    {
+      "name": "429fcd1f183390be9964682c4f151dc5977489f1e427d2540fff7d60681965df--llvm@21--21.1.8.arm64_tahoe.bottle.tar.gz",
+      "bytes": 366379008,
+      "sha256": "e3a3579a56ca64c479040de7eb4d0748efe369338216e81af2e59e3aed608c58",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/429fcd1f183390be9964682c4f151dc5977489f1e427d2540fff7d60681965df--llvm@21--21.1.8.arm64_tahoe.bottle.tar.gz",
+      "seconds": 684.5
+    },
+    {
+      "name": "model.gguf",
+      "bytes": 274292736,
+      "sha256": "f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/model.gguf",
+      "seconds": 72.0
+    },
+    {
+      "name": "Google Chrome for Testing Framework",
+      "bytes": 246075392,
+      "sha256": "ba5a96e0dd60c1567f0930fbb410b316b6d9aad7546e1a363cfcddd18549053a",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/Google Chrome for Testing Framework",
+      "seconds": 55.6
+    },
+    {
+      "name": "Telegram",
+      "bytes": 234655744,
+      "sha256": "de84661a6a5b99aba08eee324b57ec47cc370a5837e8238ad2d6842c98dda9c0",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/Telegram",
+      "seconds": 216.3
+    },
+    {
+      "name": "gradle-8.14-all.zip",
+      "bytes": 224116736,
+      "sha256": "efe9a3d147d948d7528a9887fa35abcf24ca1a43ad06439996490f77569b02d1",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/gradle-8.14-all.zip",
+      "seconds": 231.8
+    },
+    {
+      "name": "com.docker.backend",
+      "bytes": 220930048,
+      "sha256": "2c8b6d9dd1d6d3fad6c6be92d4a219d32e81e57511ae3cb7eaeaa572f74fedfa",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/com.docker.backend",
+      "seconds": 725.6
+    },
+    {
+      "name": "semgrep-core",
+      "bytes": 209842176,
+      "sha256": "9d2a7263860fc63512c15a0395a95d3d09674b55c02798e87b651697422a6ed4",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/semgrep-core",
+      "seconds": 125.0
+    },
+    {
+      "name": "2.1.248",
+      "bytes": 206467072,
+      "sha256": "a3f276daa51919f378bcd797d44f8e3d09653c2858123157d272de38952efeef",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/2.1.248",
+      "seconds": 238.5
+    },
+    {
+      "name": "agy",
+      "bytes": 176562176,
+      "sha256": "0e895226cb31f3ca07c780fb1eb13356f74b2470d721d266363467289bb462fb",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/agy",
+      "seconds": 108.9
+    },
+    {
+      "name": "p2a_dual_prompt_encoder_7e661f6b-b803-4b63-8510-6bde7f12c852.bin",
+      "bytes": 159383552,
+      "sha256": "14ff872127445751e95fc9dd83e18bc37f3d41e6b4c82a9b8309d2229e4c9a07",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/p2a_dual_prompt_encoder_7e661f6b-b803-4b63-8510-6bde7f12c852.bin",
+      "seconds": 213.9
+    },
+    {
+      "name": "p2a_single_prompt_decoder_prompt_extraction_5c9111ea-de6a-4c14-ae0d-8b5bf6ef2048.bin",
+      "bytes": 150749184,
+      "sha256": "38fde68e834c36c72925108f391e4eb4e1bd6801c1a202e1625771d5d0d2b3de",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/p2a_single_prompt_decoder_prompt_extraction_5c9111ea-de6a-4c14-ae0d-8b5bf6ef2048.bin",
+      "seconds": 223.1
+    },
+    {
+      "name": "Telegram.app.zip",
+      "bytes": 150380544,
+      "sha256": "71c228fbb3b89358d06e53142776159cd3df642de864050ea250e4f5d9b18803",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/Telegram.app.zip",
+      "seconds": 4.5
+    },
+    {
+      "name": "rnnt_encode_chunks_quantized_dynamic.onnx",
+      "bytes": 150282240,
+      "sha256": "76b1c3ec732a068b8ba3ecfa2a3bc09e11222c862efbf5e9f6edc908b86a7e0e",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/rnnt_encode_chunks_quantized_dynamic.onnx",
+      "seconds": 11.8
+    },
+    {
+      "name": "node",
+      "bytes": 145821696,
+      "sha256": "3fbe98203f8f4a86ce5b0b573a1a30aa4253064c4c2a0299c436d259b68e54b0",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/node",
+      "seconds": 79.7
+    },
+    {
+      "name": "opencode",
+      "bytes": 135077888,
+      "sha256": "7bdefaeaef5cc4f661988eaba00de047f5f65547fd22a3bed5ba7c4d86a275d3",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/opencode",
+      "seconds": 91.3
+    },
+    {
+      "name": "66a93d64-59e1-45e5-b7a4-d7ed8d8409a2.pb",
+      "bytes": 130715648,
+      "sha256": "1bfb5f639e467dec580e0804f62253e0ec3a964b9930b2dd0d31371d94ec8cc8",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/66a93d64-59e1-45e5-b7a4-d7ed8d8409a2.pb",
+      "seconds": 4.0
+    },
+    {
+      "name": "Notion-arm64-7.37.1.zip",
+      "bytes": 125022208,
+      "sha256": "4e7d1056cf0c880dc8a9b82ccecaea3b865bf94850aa508147a136645427724e",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/Notion-arm64-7.37.1.zip",
+      "seconds": 96.3
+    },
+    {
+      "name": "5ab971e21445d931203ebb75444e9917d67a2375fd726b5492c0cb7b22efab2fae57445900a3e4b5c102ef50a47055e6ad16f91b6db921adb9f53d60881e7f",
+      "bytes": 121774080,
+      "sha256": "a13e3b239ffc34f6c0576bdd8aab985bad31fb1f94a97bc8e6084ad8a32c7589",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/5ab971e21445d931203ebb75444e9917d67a2375fd726b5492c0cb7b22efab2fae57445900a3e4b5c102ef50a47055e6ad16f91b6db921adb9f53d60881e7f",
+      "seconds": 7.6
+    },
+    {
+      "name": "2a222b221162f81eb412d8b4a0281edae48ede6093323b2b5ce5ca06abd3b0b706dfb61ebe0752dadbed7eb1a644f07d1f0f9a9d196d4ae814d18a09f7a6a9",
+      "bytes": 121528320,
+      "sha256": "413773913ad8c1bf87e28380bf3c5f0045b61ba3b1585edf8df7e344e95ddf31",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/2a222b221162f81eb412d8b4a0281edae48ede6093323b2b5ce5ca06abd3b0b706dfb61ebe0752dadbed7eb1a644f07d1f0f9a9d196d4ae814d18a09f7a6a9",
+      "seconds": 3.9
+    },
+    {
+      "name": "Notion-arm64-7.31.0.zip",
+      "bytes": 121044992,
+      "sha256": "94181c18c4ba6435a5ee98c6947d3b95f18ed75e6f31b89dca5315f8bcff88a9",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/Notion-arm64-7.31.0.zip",
+      "seconds": 11.8
+    },
+    {
+      "name": "p2a_single_prompt_encoder_d732ed7b-09f5-4b88-b9a6-ebb1291249e5.bin",
+      "bytes": 118964224,
+      "sha256": "4ae4f9840622f6f0e44057981fa1507d302f295962e9ef88d01850265cc30426",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/p2a_single_prompt_encoder_d732ed7b-09f5-4b88-b9a6-ebb1291249e5.bin",
+      "seconds": 3.6
+    },
+    {
+      "name": "p2a_single_prompt_encoder_6efd37c4-8488-4b39-8b4a-c54a1bfe69bc.bin",
+      "bytes": 118964224,
+      "sha256": "9830461cc3c47e9f18c04c655621a398cbfc257a4f6d349e702309de76e61def",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/p2a_single_prompt_encoder_6efd37c4-8488-4b39-8b4a-c54a1bfe69bc.bin",
+      "seconds": 12.4
+    },
+    {
+      "name": "p2a_single_prompt_encoder_2e4dceaf-107f-42a0-9b9f-a2095d36c5c8.bin",
+      "bytes": 118751232,
+      "sha256": "5e70525bc113e8c71ca74ed02a994cd4f8a0640507af6c8e1d687628f412de56",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/p2a_single_prompt_encoder_2e4dceaf-107f-42a0-9b9f-a2095d36c5c8.bin",
+      "seconds": 135.6
+    },
+    {
+      "name": "Microsoft.AI.Foundry.Local.Core.dylib",
+      "bytes": 104775680,
+      "sha256": "5844597174b9c6232d0498b352ca07736255543cbf02600b01abf1da99cd8e0c",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/Microsoft.AI.Foundry.Local.Core.dylib",
+      "seconds": 74.9
+    },
+    {
+      "name": "d63aae08f6f16c129c03f4ff5f35cccb8e7d9642fb2081d3385e1cc8070272027473cb88c7242a718a6a76414dcb0214d14bc637d9e5448e350581d871b4",
+      "bytes": 93028352,
+      "sha256": "8ed17c5664b0621496dd16227bedfc441958eeb762bd2cb05f6505790c5ce81b",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/d63aae08f6f16c129c03f4ff5f35cccb8e7d9642fb2081d3385e1cc8070272027473cb88c7242a718a6a76414dcb0214d14bc637d9e5448e350581d871b4",
+      "seconds": 253.6
+    },
+    {
+      "name": "789fdf16a3e59f4fbfb6002967ecee539a198dadb5be74ca549aa7dc9b1b55fb",
+      "bytes": 90869760,
+      "sha256": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/789fdf16a3e59f4fbfb6002967ecee539a198dadb5be74ca549aa7dc9b1b55fb",
+      "seconds": 168.5
+    },
+    {
+      "name": "libllvmlite.dylib",
+      "bytes": 90456064,
+      "sha256": "f1ed5be9551e2ad737ccfc5ded98964544588fb1b046beba6a1ba432938594a4",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/libllvmlite.dylib",
+      "seconds": 74.1
+    },
+    {
+      "name": "TelegramShare",
+      "bytes": 88039424,
+      "sha256": "55b320425d8e7952e9c79117072689e66efa6b83184cdb12c61cc1a0646fa9b4",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/TelegramShare",
+      "seconds": 236.6
+    },
+    {
+      "name": "file_service.darwin-universal.node",
+      "bytes": 78663680,
+      "sha256": "ef31a9a37ef134e0fb191e838dffc2da4dfc2faa340fe72abf46f8c259102282",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/file_service.darwin-universal.node",
+      "seconds": 195.7
+    },
+    {
+      "name": "pack-8e28219300d57c2bef2b1934cf72b00b0c96fb6f.pack",
+      "bytes": 72904704,
+      "sha256": "08ca22fb5ede6fe26e5dd9fa55fece0d7f76d6899b40bfa7b5a96129e4091546",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/pack-8e28219300d57c2bef2b1934cf72b00b0c96fb6f.pack",
+      "seconds": 48.8
+    },
+    {
+      "name": "forge",
+      "bytes": 67174400,
+      "sha256": "e729589084ca2f1479354353d1ec3d4789451b577f4cdee4e7dc57cae64a38fa",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/forge",
+      "seconds": 67.7
+    },
+    {
+      "name": "p2a_single_prompt_decoder_fc2fec59-6357-4ba9-9ddc-1d28e36edbe6.bin",
+      "bytes": 63946752,
+      "sha256": "f9c66f9cdfe96150132fd1f0ea4e2a34735d4eda2607ab703064c76b113bc0a4",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/p2a_single_prompt_decoder_fc2fec59-6357-4ba9-9ddc-1d28e36edbe6.bin",
+      "seconds": 63.1
+    },
+    {
+      "name": "p2a_single_prompt_decoder_a558c8b0-3893-4d84-90fb-fe672026766a.bin",
+      "bytes": 63946752,
+      "sha256": "7200c9435b7aabaad75fb953ed8e8d9155ecef0c67b83d879c4e9d483cb710fa",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/p2a_single_prompt_decoder_a558c8b0-3893-4d84-90fb-fe672026766a.bin",
+      "seconds": 73.7
+    },
+    {
+      "name": "p2a_dual_prompt_decoder_c2bb0f32-edbe-464b-84ac-c66ac5a95624.bin",
+      "bytes": 63913984,
+      "sha256": "e1ae18875e50e5803c7fa6b84b08ad82e15ca103fd1307e823f0dd28c0b0469e",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/p2a_dual_prompt_decoder_c2bb0f32-edbe-464b-84ac-c66ac5a95624.bin",
+      "seconds": 53.9
+    },
+    {
+      "name": "p2a_dual_prompt_decoder_a228fb64-f3dc-4750-891e-bce18f223584.bin",
+      "bytes": 63913984,
+      "sha256": "21fd6c9b0a925dd862e4530bc4036cf84931e9c6f310a28d544ede09be91fd2b",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/p2a_dual_prompt_decoder_a228fb64-f3dc-4750-891e-bce18f223584.bin",
+      "seconds": 51.2
+    },
+    {
+      "name": "docker-buildx",
+      "bytes": 63397888,
+      "sha256": "5ebbdef4f5d7136becebcb5767d9c13b4be769c23df5e2153ae0e377065f179f",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/docker-buildx",
+      "seconds": 57.7
+    },
+    {
+      "name": "libxgrammar.a",
+      "bytes": 63164416,
+      "sha256": "70ca16e3876f73c5d60ac1ba863369e5b6ab4fd210031883770f4ee8e4e54c87",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/libxgrammar.a",
+      "seconds": 41.2
+    },
+    {
+      "name": "906c2761507749121d204692ef5a82c30a1609cdca65d6810abba030c77d0667--x86_64-elf-gcc--16.2.0.arm64_tahoe.bottle.tar.gz",
+      "bytes": 63086592,
+      "sha256": "e9f305dc9038fd22323895665a941954e358bc638ef8a6433bfc11d335733919",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/906c2761507749121d204692ef5a82c30a1609cdca65d6810abba030c77d0667--x86_64-elf-gcc--16.2.0.arm64_tahoe.bottle.tar.gz",
+      "seconds": 2.0
+    },
+    {
+      "name": "codex-code-mode-host",
+      "bytes": 62787584,
+      "sha256": "35ce5aa1789c994e1cd2dbe134e7156fe4aebdd4d463bc5330e165c2cf925095",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/codex-code-mode-host",
+      "seconds": 2.0
+    },
+    {
+      "name": "es-MX_g2p_seq2seq.bin",
+      "bytes": 61612032,
+      "sha256": "d3400a008b85d013c12e602e2db4c07e890b5868417f6eb05cdf71be2c5be1e9",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/es-MX_g2p_seq2seq.bin",
+      "seconds": 5.8
+    },
+    {
+      "name": "kotlin-compiler-embeddable-2.0.21.jar",
+      "bytes": 58273792,
+      "sha256": "9fa8cdd1de0dccffe154c997d423ec6b5f53cd6d9177e3a77a9b0de03fb1bc81",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/kotlin-compiler-embeddable-2.0.21.jar",
+      "seconds": 1.8
+    },
+    {
+      "name": "kubectl",
+      "bytes": 57278464,
+      "sha256": "9ea693e3421827c01ec41f6b9c7d669984b2ae071a6ff82b1169f8384ec1aaef",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/kubectl",
+      "seconds": 1.8
+    },
+    {
+      "name": "libchromescreenai.so",
+      "bytes": 56246272,
+      "sha256": "e52df2fcc429cfa05758554f1969eecb1876848b4f32678b99afd2c695df0fd4",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/libchromescreenai.so",
+      "seconds": 5.1
+    },
+    {
+      "name": "a5f3cf26ff817a1304109acc59ddb0a620d4eba6fcd151dfd17c3595413ad3db",
+      "bytes": 52539392,
+      "sha256": "a5f3cf26ff817a1304109acc59ddb0a620d4eba6fcd151dfd17c3595413ad3db",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/a5f3cf26ff817a1304109acc59ddb0a620d4eba6fcd151dfd17c3595413ad3db",
+      "seconds": 1.6
+    },
+    {
+      "name": "telegram-cloud-document-2-5217433620146332327_partial",
+      "bytes": 138858496,
+      "sha256": "609cf5bbed3106f919ed6145f5122f125ded88086ee6e3aeac705d03d705248d",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/telegram-cloud-document-2-5217433620146332327_partial",
+      "seconds": 128.0
+    },
+    {
+      "name": "PFSceneGeographyData.index",
+      "bytes": 88502272,
+      "sha256": "32324dbc8e15e88a033418f231e47c8b8f3e9bd5fc3252ff26618cfcd6951607",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/PFSceneGeographyData.index",
+      "seconds": 75.6
+    },
+    {
+      "name": "CFNetworkDownload_HEb3nb.tmp",
+      "bytes": 68726784,
+      "sha256": "091e48bf5dc4a08ff2ecd726a467b61979df4f6ae36a0827ba9f442845d33868",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/CFNetworkDownload_HEb3nb.tmp",
+      "seconds": 70.0
+    },
+    {
+      "name": "uninstall",
+      "bytes": 61542400,
+      "sha256": "0d410f7913f057449219398b4f048f5c93b185c7e48fb29f59dbbf5726e39b65",
+      "to": "/Volumes/Untitled/xoras_reclaim_20261119/uninstall",
+      "seconds": 71.9
+    }
+  ],
+  "failures": []
+}

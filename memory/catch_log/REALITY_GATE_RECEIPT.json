@@ -1,7 +1,7 @@
 {
   "gate": "reality_gate.sh",
   "verdict": "REALITY_GATE_FAIL",
-  "timestamp_utc": "2026-11-16T22:03:13Z",
+  "timestamp_utc": "2026-11-19T00:59:30Z",
   "gates_passed": 8,
   "gates_failed": 1,
   "gates_total": 9,
@@ -11,5 +11,5 @@
   "cockpit_verification": "PASS",
   "ci_surface_verification": "PASS",
   "golden_groundedness": "FAIL",
-  "world_file_lineage_nodes": "3651"
+  "world_file_lineage_nodes": "3691"
 }

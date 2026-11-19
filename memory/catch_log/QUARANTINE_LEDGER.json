@@ -198,6 +198,25 @@
       "action": "Removed uchg and granted owner-write on ~/.gemini and ~/.gemini/antigravity (scoped to the app's own state, not the SSOT project); verified an exact-path write probe; restarted the app so the language server re-read permissions. Onboarding was bypassed automatically; main UI reached, welcome/consent dialog dismissed, chat surface and SSOT project present. Old app state preserved intact in scratch/quarantine_antigravity_fullstate_20261118.",
       "verdict": "RESOLVED_APP_LOADS",
       "note": "Immutable flags intentionally NOT restored on the app state dir \u2014 restoring them re-creates the failure."
+    },
+    {
+      "utc": "2026-11-19T01:23:12.406034+00:00",
+      "kind": "ARTIFACT_REMOVAL",
+      "item": "ollama tag xoras-golden:v2 + 3 Squirrel updater temp bundles",
+      "reason": "Disk pressure for a 14B local model; no repo references to v2; upgrade to 2.33.0 complete.",
+      "action": "Removed the unused model tag (shared layers retained by latest) and updater scratch only; no user data touched; net +0.8 GB (shared layers).",
+      "verdict": "REMOVABLE_ARTIFACTS_ONLY"
+    },
+    {
+      "utc": "2026-11-19T03:15:23.707973+00:00",
+      "kind": "VERIFIED_MOVE_TO_BARN",
+      "item": "54 validated A/C/D reclaim-pool files, 8.26 GB",
+      "source": "misc/",
+      "destination": "/Volumes/Untitled/xoras_reclaim_20261119",
+      "reason": "Fund a 14B local model to retry the golden groundedness floor; no deletions, every source hash-verified at destination before unlink.",
+      "evidence": "memory/catch_log/RECLAIM_MOVE_MANIFEST_20261119.json \u2014 54 moves, 0 failures, sha256 per file",
+      "law": "\u00a710.5 preserve-before-move, proof before move, same-turn report, ledger record; owner-hold items excluded",
+      "verdict": "MOVED_VERIFIED"
     }
   ],
   "resolved_not_moved": [
