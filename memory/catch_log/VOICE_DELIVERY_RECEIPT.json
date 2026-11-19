@@ -1,0 +1,13 @@
+{
+  "schema": "xoras.voice.receipt.v1",
+  "utc": "2026-11-19T14:58:19.951104+00:00",
+  "speaker": "Maxx",
+  "engine": "kokoro-onnx (workspace-native, no native fallback)",
+  "voice_id": "bm_lewis",
+  "duration_sec": 36.39,
+  "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/catch_log/audio/verification_report.mp3",
+  "sha256": "bd6b625af6a366869656ce33126b450eff62350d83bd5a54d7bcb300c0bca43e",
+  "playback_exit": 0,
+  "playback_stderr": "",
+  "text": "We have completed the verification you requested. Every benchmark ran on real hardware or inside a live Linux container, and the signed receipts confirm the results. The reality gate, the groundedness run, the kernel syscall checks, the concurrent swarm benchmarks, the shared-memory test, and the hardware bandwidth audit all executed on actual machines. The receipt files carry hashes that match the logs, which proves the data was not changed after generation. Earlier transient failures were logged and disclosed, not hidden. The record shows both what passed and what had to be repaired."
+}
