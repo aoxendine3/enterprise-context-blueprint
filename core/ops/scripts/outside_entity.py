@@ -81,6 +81,8 @@ OUTSIDE_PRODUCT_USE = [
 OUTSIDE_PRODUCT_CATEGORY = [
     # "X AI Assistant", "X assistant", "X model", "X IDE", "X agent" ...
     r"\b([A-Z][A-Za-z0-9_-]+)\s+(?i:(?:AI\s+)?(?:assistant|agent|model|ide|platform|tool|cli))\b",
+    # generic outside-product reference: "an outside assistant", "a third-party model"
+    r"\b(?i:an?|the)\s+(?i:outside|third[- ]party|another|other)\s+(?i:assistant|agent|model|product|platform|tool)\b",
 ]
 
 # Ordinary sentence-opening words are not product names. Structural filter —
@@ -148,15 +150,17 @@ def scan_text(text: str) -> list:
         # it is never written into the violation (no brand leaks into artifacts).
         for pat in OUTSIDE_PRODUCT_USE + OUTSIDE_PRODUCT_CATEGORY:
             for m in re.finditer(pat, line):
-                token = m.group(1)
-                if token.lower() in GENERIC_LEADERS:
-                    continue
-                if not _is_sovereign(token):
-                    kind = ("outside_product_use" if pat in OUTSIDE_PRODUCT_USE
-                            else "outside_product_category")
-                    violations.append({"line": line_no, "kind": kind,
-                                       "detail": "names a non-sovereign product in an agentic claim"})
-                    break
+                token = m.group(1) if m.groups() else None
+                if token is not None:
+                    if token.lower() in GENERIC_LEADERS:
+                        continue
+                    if _is_sovereign(token):
+                        continue
+                kind = ("outside_product_use" if pat in OUTSIDE_PRODUCT_USE
+                        else "outside_product_category")
+                violations.append({"line": line_no, "kind": kind,
+                                   "detail": "names a non-sovereign product in an agentic claim"})
+                break
     return violations
 
 
