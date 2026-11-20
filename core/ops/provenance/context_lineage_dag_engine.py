@@ -313,7 +313,13 @@ class ContextLineageEngine:
         # (DB_PATH) while the root claim is computed from the canonical store
         # (memory/tri_brain/world_file.db) and the native Zig verifier reads
         # the mirror — without this copy the witnesses diverge on every commit.
-        if os.path.abspath(self.db_path) != os.path.abspath(CANONICAL_DB_PATH) and os.path.exists(CANONICAL_DB_PATH):
+        # Hardened 2026-11-20: only the production mirror engine (db_path ==
+        # DB_PATH) dual-writes into the canonical evidence store. Ephemeral
+        # engines (pytest tmp dirs, scratch sandboxes, replicas) whose db_path
+        # merely differs from canonical must NOT write here — that was the
+        # vector that injected 700 synthetic test nodes into world_file.db and
+        # desynced the Merkle root claim.
+        if os.path.abspath(self.db_path) == os.path.abspath(DB_PATH) and os.path.exists(CANONICAL_DB_PATH):
             try:
                 canon = sqlite3.connect(CANONICAL_DB_PATH, timeout=30.0)
                 try:
