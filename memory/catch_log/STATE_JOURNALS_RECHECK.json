@@ -1,0 +1,112 @@
+{
+  "timestamp_utc": "2026-11-21T18:06:37Z",
+  "verdict": "STATE_JOURNALS_RECHECK_COMPLETE",
+  "note": "All values are claims/metadata; no secret values printed. Repo-wide greps time out on 26GB tree; targeted reads used.",
+  "results": {
+    "merkle_claims": {
+      "canonical": "c26b3d7301cc0fd9ecb12985f6f929fac7601c212d709a60e6f5d4d42d18a8b1",
+      "known_good": "c26b3d7301cc0fd9ecb12985f6f929fac7601c212d709a60e6f5d4d42d18a8b1",
+      "shadow": "d457be4458360d039c53f32192c76ec64758c7dfed29652de547ca4c1533d4d0"
+    },
+    "merkle_consistent": true,
+    "signed_root_manifests": {
+      "rows": 14,
+      "last": [
+        {
+          "schema_version": "xoras.signed_root_manifest.v1",
+          "sail_model_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "emitter_hash": "1d1bce6b295fdffbd828a83787a22a2b0b3b2fddf4c87e352b46522440649bbd",
+          "gate_version": "3.1.0",
+          "exact_commit_sha": "579a754a26b57985f2d563cdd5853a79a788b09a",
+          "agent_id": "vance",
+          "monotonic_sequence_number": 2,
+          "timestamp": "2026-11-12T14:16:51-05:00",
+          "reason_string": "Proof of frame epilogue unwinding without register corruption",
+          "merkle_root_hash": "ba16ca21ff5816d406e59a1416fd2e47162bf5da7598540d108277368d3ddca2",
+          "signature": "b139beb2c946517390c6b19908a9db0d9346070b13bf52a7e726e461c8739bd4"
+        }
+      ]
+    },
+    "golden_checkpoints": {
+      "rows": 2,
+      "last": [
+        {
+          "agent": "DAXX",
+          "checkpoint_id": "DAXX_ANCIENT_CHECKPOINT",
+          "verified_golden": true,
+          "timestamp": "2026-09-23T21:08:56.361778+00:00"
+        }
+      ]
+    },
+    "trinity_hashes": {
+      "rows": 2235,
+      "last": [
+        {
+          "agent": "VANCE",
+          "audio_file": "memory/agent_logs/vance_audio.bin",
+          "bytes": 506188,
+          "command": "echo BLACKBOX_SHOULD_HAVE_BEEN_BLOCKED",
+          "hash": "c6f8303046c131e6b690eda9019bf1caa03c28181f9bac2221342ca8a8112922",
+          "status": "APPROVED",
+          "timestamp_utc": "2026-11-21T16:46:51.451527+00:00",
+          "voice": "system_zoe_premium"
+        }
+      ]
+    },
+    "world_merkle_journal": {
+      "rows": 5,
+      "last": [
+        {
+          "sync_time": "2026-10-16T05:34:27.817636+00:00Z",
+          "source": "SAFE_PILOT_WORKLOAD",
+          "payload": {
+            "app": "sovereign-agentic-app",
+            "status": "CERTIFIED_HEALTHY",
+            "entity_id": 15,
+            "sequence_number": 15,
+            "merkle_root": "bbc67d4da7f2246fb0a6f2ef81d68d12d609ccc3b153d2e3dab5f653f77692c3"
+          }
+        }
+      ]
+    },
+    "asset_registry": {
+      "entries": 17,
+      "unique_ids": 4,
+      "id_counts": {
+        "xoras.asset.v1.gemma_developer_agent_paper_submission": 7,
+        "xoras.asset.v1.telecom_churn_data_quality_solution": 7,
+        "xoras.asset.v1.workspaces_pine_script": 1,
+        "null": 2
+      },
+      "version_history": true,
+      "note": "17 rows = 4 logical groups; all multi-entry groups have distinct timestamps = version history. Two 14-gate rows use asset_path key + 0xBEAF0000 fail-closed status.",
+      "groups": 4
+    },
+    "quarantine": {
+      "entries": 18,
+      "deletions": 0,
+      "resolved_not_moved": 2,
+      "law": {
+        "preserve": "Nothing is deleted. Every quarantined item is moved intact and remains readable.",
+        "proof_before_move": "Before any move, live references are swept. An item with live callers is NOT moved.",
+        "report_same_turn": "Every move is reported to the operator in the same turn it happens.",
+        "persona_untouchable": "Citizen cards, souls, voice registries and persona prompts are never quarantined, trimmed or redefined. They are read-only law."
+      }
+    },
+    "sentinel": {
+      "lines": 1472,
+      "last": "{\"timestamp\": \"2026-11-21T18:05:00Z\", \"manifest_ok\": true, \"witness_ok\": true, \"audio_ok\": true, \"status\": \"HEALTHY\"}"
+    },
+    "status_json": "{\"status\": \"XORAS Agent Environment Active\"}",
+    "shadow_claim_consumer_found": "NOT DETERMINED BY GREP (tree too large; see note)",
+    "shadow_claim": {
+      "path": "core/memory/catch_log/merkle_root.hash",
+      "value_prefix": "d457be44",
+      "git_tracked": true,
+      "inode": "228262297 (distinct from memory/ \u2014 NOT a symlink alias)",
+      "boot_consumer": "xoras_turnkey_boot.sh:40 reads memory/catch_log/merkle_root.hash which DOES NOT EXIST -> resolves to N/A",
+      "verdict": "LATENT_DEFECT \u2014 boot would misreport Merkle root as N/A; not currently running",
+      "corrected_claim": "earlier spoken report said \"no code consumer\"; WRONG \u2014 boot script references the (missing) sibling path"
+    }
+  }
+}

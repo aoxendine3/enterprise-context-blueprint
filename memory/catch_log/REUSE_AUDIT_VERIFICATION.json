@@ -1,0 +1,94 @@
+{
+  "timestamp_utc": "2026-11-21T16:39:45Z",
+  "purpose": "verify explore-agent reuse audit with tooling, not summaries",
+  "verdict": "REUSE_AUDIT_VERIFIED",
+  "results": {
+    "path_alias": {
+      "ok": true,
+      "evidence": {
+        "ops_scripts_ino": 227790140,
+        "core_ops_scripts_ino": 227790140,
+        "same": true
+      }
+    },
+    "governance_guards": {
+      "ok": true,
+      "evidence": {
+        "scoped_runtime_credential_gate.py": {
+          "lines": 73,
+          "sandbox_exec": false,
+          "bwrap": false,
+          "fail_closed": false,
+          "main_guard": false
+        },
+        "independent_validator.py": {
+          "lines": 115,
+          "sandbox_exec": true,
+          "bwrap": true,
+          "fail_closed": true,
+          "main_guard": false
+        },
+        "two_agent_state_isolation.py": {
+          "lines": 188,
+          "sandbox_exec": false,
+          "bwrap": false,
+          "fail_closed": true,
+          "main_guard": false
+        },
+        "schema_handoff_gate.py": {
+          "lines": 121,
+          "sandbox_exec": false,
+          "bwrap": false,
+          "fail_closed": false,
+          "main_guard": false
+        }
+      }
+    },
+    "precommit_hook": {
+      "ok": true,
+      "evidence": {
+        "hook_sha256": "5b8285d34f7d2af52ea485984ae59920855240fbd29c527a28afcd86d0a434b1",
+        "test_invocations": [],
+        "boundary_gate": true,
+        "entropy_gate": true
+      }
+    },
+    "validator_callers": {
+      "ok": true,
+      "evidence": [
+        "tests/run_six_pillar_purple_suite.py",
+        "tests/test_blind_acceptance_validator.py",
+        "tests/test_xoras_info_adversarial_gauntlet.py",
+        "ops/scripts/verify_reuse_audit.py",
+        "core/ops/scripts/verify_reuse_audit.py"
+      ]
+    },
+    "boundary_rulepack_duplicate": {
+      "ok": true,
+      "evidence": {
+        "shared_rule_ids": [
+          "RULE_DISALLOWED_DYNAMIC_EVAL",
+          "RULE_DYNAMIC_TEMPLATE_EVASION",
+          "RULE_NEXTJS_CLIENT_BOUNDARY_LEAK",
+          "RULE_SINGLE_WRITER_OWNER_MUTATION",
+          "RULE_UNSEQUENCED_SHM_WRITE"
+        ],
+        "shared_rulepack_id": true
+      }
+    },
+    "token_engines": {
+      "ok": true,
+      "evidence": {
+        "ops/scripts/secure_broker.py": {
+          "single_use": true
+        },
+        "ops/scripts/dojo_remediation_engine.py": {
+          "single_use": true
+        },
+        "ops/scripts/sovra_deep_lock.py": {
+          "single_use": true
+        }
+      }
+    }
+  }
+}

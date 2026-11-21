@@ -1,0 +1,4778 @@
+{
+  "timestamp_utc": "2026-11-21T18:35:31Z",
+  "verdict": "FULL_HOME_CENSUS_COMPLETE",
+  "domains_inventoried": 26,
+  "note": "Metadata only; no secret values read. Coverage is per-domain counts, not a lie of 100% comprehension.",
+  "domains": {
+    "home_dotfiles": {
+      "path": "/Users/ajoxendine68",
+      "census": {
+        "present": true,
+        "entries": 675,
+        "sample": [
+          {
+            "name": ".CFUserTextEncoding",
+            "type": "file",
+            "size": 7
+          },
+          {
+            "name": ".DS_Store",
+            "type": "file",
+            "size": 40964
+          },
+          {
+            "name": ".Trash",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": ".accio",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "accounts",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "logs",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "network",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": ".agents",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "skills",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": ".android",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "cache",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": ".antigravity-ide",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "antigravity-ide",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "extensions",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": ".armlm",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "usage",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": ".bash_history",
+            "type": "file",
+            "size": 104
+          },
+          {
+            "name": ".cache",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "huggingface",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "opencode",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "uv",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "zig",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": ".cagent",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "memory",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "models_dev.json",
+            "type": "file",
+            "size": 7010993
+          },
+          {
+            "name": "session.db",
+            "type": "file",
+            "size": 98304
+          },
+          {
+            "name": "session.db-shm",
+            "type": "file",
+            "size": 32768
+          },
+          {
+            "name": "session.db-wal",
+            "type": "file",
+            "size": 0
+          },
+          {
+            "name": "url_cache",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": ".cargo",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "bin",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "git",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "registry",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": ".ccp",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": ".chrome-debug",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "ActorSafetyLists",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "AmountExtractionHeuristicRegexes",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "CaptchaProviders",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "CertificateRevocation",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "Crowd Deny",
+            "type": "dir",
+            "size": null
+          }
+        ]
+      }
+    },
+    "ssot_root": {
+      "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain",
+      "census": {
+        "present": true,
+        "entries": 228375,
+        "sample": [
+          {
+            "name": ".DS_Store",
+            "type": "file",
+            "size": 22532
+          },
+          {
+            "name": ".agents",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "ORIGINAL_REQUEST.md",
+            "type": "file",
+            "size": 635
+          },
+          {
+            "name": "citizens",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "journals",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "orchestrator_1",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "orchestrator_gen2",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "orchestrator_gen3",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "rules",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "sentinel_1",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "skills",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "teamwork",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "teamwork_preview_auditor_m1_1",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "teamwork_preview_auditor_m1_1_gen2",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "teamwork_preview_challenger_m1_1",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "teamwork_preview_challenger_m1_1_gen2",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "teamwork_preview_challenger_m1_1_gen2_r2",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "teamwork_preview_challenger_m1_2",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "teamwork_preview_challenger_m1_2_gen2",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "teamwork_preview_explorer_m1_iter2_1",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "teamwork_preview_explorer_m1_iter2_2",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "teamwork_preview_explorer_m1_iter2_3",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "teamwork_preview_explorer_survey_1",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "teamwork_preview_explorer_survey_2",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "teamwork_preview_explorer_survey_3",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "teamwork_preview_reviewer_m1_1",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "teamwork_preview_reviewer_m1_1_gen2",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "teamwork_preview_reviewer_m1_2",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "teamwork_preview_reviewer_m1_2_gen2",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "teamwork_preview_worker_m1_1",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": ".cargo",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "config.toml",
+            "type": "file",
+            "size": 48
+          },
+          {
+            "name": ".git",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "COMMIT_EDITMSG",
+            "type": "file",
+            "size": 626
+          },
+          {
+            "name": "FETCH_HEAD",
+            "type": "file",
+            "size": 118
+          },
+          {
+            "name": "HEAD",
+            "type": "file",
+            "size": 21
+          },
+          {
+            "name": "ORIG_HEAD",
+            "type": "file",
+            "size": 41
+          },
+          {
+            "name": "config",
+            "type": "file",
+            "size": 459
+          },
+          {
+            "name": "cursor",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "description",
+            "type": "file",
+            "size": 73
+          }
+        ]
+      }
+    },
+    "ssot_core": {
+      "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core",
+      "census": {
+        "present": true,
+        "entries": 1646,
+        "sample": [
+          {
+            "name": ".agents",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "dojo_audit_ledger.log",
+            "type": "file",
+            "size": 600
+          },
+          {
+            "name": "dojo_ledger_checkpoints.json",
+            "type": "file",
+            "size": 274
+          },
+          {
+            "name": "dojo_remediation.db",
+            "type": "file",
+            "size": 28672
+          },
+          {
+            "name": "keys",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": ".pytest_cache",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "CACHEDIR.TAG",
+            "type": "file",
+            "size": 191
+          },
+          {
+            "name": "README.md",
+            "type": "file",
+            "size": 302
+          },
+          {
+            "name": "v",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "cache",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "__init__.py",
+            "type": "file",
+            "size": 0
+          },
+          {
+            "name": "__pycache__",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "__init__.cpython-314.pyc",
+            "type": "file",
+            "size": 162
+          },
+          {
+            "name": "cli",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "sovereign_terminal.py",
+            "type": "file",
+            "size": 10942
+          },
+          {
+            "name": "core",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "memory",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "tri_brain",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "data_center",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "golden_list",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "GOLDEN_LIST.json",
+            "type": "file",
+            "size": 4927
+          },
+          {
+            "name": "GOLDEN_LIST.md",
+            "type": "file",
+            "size": 4166
+          },
+          {
+            "name": "synthetic_training",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "docs",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "audits",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "EXTREME_MARKET_ADVERSARIAL_TEST_RECEIPT.json",
+            "type": "file",
+            "size": 547
+          },
+          {
+            "name": "POINCARE_SEMANTIC_POISON_FALSIFICATION_RECEIPT.json",
+            "type": "file",
+            "size": 2103
+          },
+          {
+            "name": "QUAD_3D_BRAIN_HYPERBOLIC_RECEIPT.json",
+            "type": "file",
+            "size": 643
+          },
+          {
+            "name": "SWARM_VISITING_SWARM_RECONCILIATION_REPORT.md",
+            "type": "file",
+            "size": 2212
+          },
+          {
+            "name": "plans",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "DAXX_REASONS_CANVAS_AND_INTENT_DAG.md",
+            "type": "file",
+            "size": 3224
+          },
+          {
+            "name": "gemina",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "governance",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "clara_sovereign_model_mesh.json",
+            "type": "file",
+            "size": 3734
+          },
+          {
+            "name": "daxxco_master_definition.py",
+            "type": "file",
+            "size": 2727
+          },
+          {
+            "name": "governed_task_orchestrator.py",
+            "type": "file",
+            "size": 8156
+          },
+          {
+            "name": "independent_validator.py",
+            "type": "file",
+            "size": 4864
+          },
+          {
+            "name": "sandbox_security_engine.py",
+            "type": "file",
+            "size": 5702
+          },
+          {
+            "name": "schema_handoff_gate.py",
+            "type": "file",
+            "size": 4638
+          },
+          {
+            "name": "scoped_runtime_credential_gate.py",
+            "type": "file",
+            "size": 3281
+          }
+        ]
+      }
+    },
+    "ssot_ops": {
+      "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops",
+      "census": {
+        "present": true,
+        "entries": 1153,
+        "sample": [
+          {
+            "name": ".DS_Store",
+            "type": "file",
+            "size": 16388
+          },
+          {
+            "name": "__init__.py",
+            "type": "file",
+            "size": 30
+          },
+          {
+            "name": "__pycache__",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "__init__.cpython-311.pyc",
+            "type": "file",
+            "size": 140
+          },
+          {
+            "name": "__init__.cpython-314.pyc",
+            "type": "file",
+            "size": 161
+          },
+          {
+            "name": "audio",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "wave_flow_engine.py",
+            "type": "file",
+            "size": 14740
+          },
+          {
+            "name": "benchmarks",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "README.md",
+            "type": "file",
+            "size": 2260
+          },
+          {
+            "name": "__init__.py",
+            "type": "file",
+            "size": 0
+          },
+          {
+            "name": "benchmark_handoff_and_synthesis.py",
+            "type": "file",
+            "size": 10955
+          },
+          {
+            "name": "dev_prefill_guaranteed.py",
+            "type": "file",
+            "size": 2142
+          },
+          {
+            "name": "failure_injection_harness.py",
+            "type": "file",
+            "size": 7587
+          },
+          {
+            "name": "kaggle_agentic_context_benchmark.py",
+            "type": "file",
+            "size": 2783
+          },
+          {
+            "name": "million_year_simulation.js",
+            "type": "file",
+            "size": 7703
+          },
+          {
+            "name": "reproduce_upgp_z3_containment.py",
+            "type": "file",
+            "size": 5028
+          },
+          {
+            "name": "run_tcsh_150_ultra_endurance.py",
+            "type": "file",
+            "size": 13407
+          },
+          {
+            "name": "run_tcsh_cadence.py",
+            "type": "file",
+            "size": 19951
+          },
+          {
+            "name": "run_tcsh_full_pressure_endurance.py",
+            "type": "file",
+            "size": 9879
+          },
+          {
+            "name": "tcsh_evaluator.py",
+            "type": "file",
+            "size": 22507
+          },
+          {
+            "name": "test_dev_prefill_clean.py",
+            "type": "file",
+            "size": 2579
+          },
+          {
+            "name": "test_dev_prefill_ultra_clean.py",
+            "type": "file",
+            "size": 2372
+          },
+          {
+            "name": "bin",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "agentapi",
+            "type": "file",
+            "size": 1147
+          },
+          {
+            "name": "independent_merkle_verifier",
+            "type": "file",
+            "size": 475272
+          },
+          {
+            "name": "max_swarm_push",
+            "type": "file",
+            "size": 377536
+          },
+          {
+            "name": "real_work_swarm",
+            "type": "file",
+            "size": 0
+          },
+          {
+            "name": "sovereign_zero_defect_core",
+            "type": "file",
+            "size": 33656
+          },
+          {
+            "name": "sovrac",
+            "type": "file",
+            "size": 436040
+          },
+          {
+            "name": "sovrac_linux_arm64",
+            "type": "file",
+            "size": 4691480
+          },
+          {
+            "name": "sovrac_linux_x86_64",
+            "type": "file",
+            "size": 4491096
+          },
+          {
+            "name": "sovrac_windows_x86_64.exe",
+            "type": "file",
+            "size": 814080
+          },
+          {
+            "name": "sovrac_windows_x86_64.pdb",
+            "type": "file",
+            "size": 2846720
+          },
+          {
+            "name": "speech_normalizer",
+            "type": "file",
+            "size": 34144
+          },
+          {
+            "name": "stateless_airblocked_witness",
+            "type": "file",
+            "size": 417456
+          },
+          {
+            "name": "witness_build.sha256",
+            "type": "file",
+            "size": 65
+          },
+          {
+            "name": "xoras",
+            "type": "file",
+            "size": 10803
+          },
+          {
+            "name": "xoras-push",
+            "type": "file",
+            "size": 497
+          },
+          {
+            "name": "xoras_speak",
+            "type": "file",
+            "size": 396664
+          },
+          {
+            "name": "xoras_speak.zig",
+            "type": "file",
+            "size": 3215
+          }
+        ]
+      }
+    },
+    "ssot_memory": {
+      "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory",
+      "census": {
+        "present": true,
+        "entries": 2683,
+        "sample": [
+          {
+            "name": ".DS_Store",
+            "type": "file",
+            "size": 10244
+          },
+          {
+            "name": "BYZANTINE_GAUNTLET_RESULTS.md",
+            "type": "file",
+            "size": 988
+          },
+          {
+            "name": "CLAIM_TO_EVIDENCE_REGISTER.md",
+            "type": "file",
+            "size": 4565
+          },
+          {
+            "name": "CURRENT_SYSTEM_STATE.md",
+            "type": "file",
+            "size": 8679
+          },
+          {
+            "name": "SOVEREIGN_EPITOME.json",
+            "type": "file",
+            "size": 5555
+          },
+          {
+            "name": "agent_logs",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "LEAD_NINE_ROUNDTABLE_SESSION.jsonl",
+            "type": "file",
+            "size": 16932
+          },
+          {
+            "name": "XORAS_OS_Cinematic_Launch_Video.mp4",
+            "type": "file",
+            "size": 25165872
+          },
+          {
+            "name": "agent_inbox.jsonl",
+            "type": "file",
+            "size": 7109
+          },
+          {
+            "name": "cinematic_visuals_only.mp4",
+            "type": "file",
+            "size": 60293168
+          },
+          {
+            "name": "clara_audio.bin",
+            "type": "file",
+            "size": 541096
+          },
+          {
+            "name": "collective_chunks",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "concat_list.txt",
+            "type": "file",
+            "size": 538
+          },
+          {
+            "name": "collective_voice_receipts.jsonl",
+            "type": "file",
+            "size": 26211
+          },
+          {
+            "name": "governed_state_ledger.jsonl",
+            "type": "file",
+            "size": 5769
+          },
+          {
+            "name": "governed_task_ledger.jsonl",
+            "type": "file",
+            "size": 9444
+          },
+          {
+            "name": "identity_wake_receipts.jsonl",
+            "type": "file",
+            "size": 24294
+          },
+          {
+            "name": "jarvis_escalation_ledger.jsonl",
+            "type": "file",
+            "size": 1430
+          },
+          {
+            "name": "maxx_audio.bin",
+            "type": "file",
+            "size": 511316
+          },
+          {
+            "name": "neuraltrust_sovereignty_audit_receipt.json",
+            "type": "file",
+            "size": 1830
+          },
+          {
+            "name": "publication_feed.txt",
+            "type": "file",
+            "size": 164
+          },
+          {
+            "name": "reproduction_command_audit.jsonl",
+            "type": "file",
+            "size": 1058
+          },
+          {
+            "name": "sandbox_command_audit.jsonl",
+            "type": "file",
+            "size": 5095
+          },
+          {
+            "name": "sentinel_cron.log",
+            "type": "file",
+            "size": 574358
+          },
+          {
+            "name": "sentinel_heartbeat.jsonl",
+            "type": "file",
+            "size": 482
+          },
+          {
+            "name": "session_telemetry.json",
+            "type": "file",
+            "size": 844
+          },
+          {
+            "name": "sqlite_witness_write_ledger.jsonl",
+            "type": "file",
+            "size": 536886
+          },
+          {
+            "name": "stt_route_events.jsonl",
+            "type": "file",
+            "size": 6815
+          },
+          {
+            "name": "swarm_visiting_swarm_receipts.jsonl",
+            "type": "file",
+            "size": 965
+          },
+          {
+            "name": "system_health_status.json",
+            "type": "file",
+            "size": 1449
+          },
+          {
+            "name": "test_concurrency_ledger.jsonl",
+            "type": "file",
+            "size": 11847
+          },
+          {
+            "name": "test_concurrent_cas_temp.jsonl",
+            "type": "file",
+            "size": 5610
+          },
+          {
+            "name": "test_governed_task_ledger.jsonl",
+            "type": "file",
+            "size": 2919
+          },
+          {
+            "name": "test_publication_feed.txt",
+            "type": "file",
+            "size": 320
+          },
+          {
+            "name": "test_schema_gate_temp.jsonl",
+            "type": "file",
+            "size": 1163
+          },
+          {
+            "name": "test_single_writer_ledger.jsonl",
+            "type": "file",
+            "size": 7308
+          },
+          {
+            "name": "tri_plane_sync_comparison.json",
+            "type": "file",
+            "size": 1540
+          },
+          {
+            "name": "turn_ledger.jsonl",
+            "type": "file",
+            "size": 35293
+          },
+          {
+            "name": "two_agent_concurrency_ledger.jsonl",
+            "type": "file",
+            "size": 7800
+          },
+          {
+            "name": "vance_audio.bin",
+            "type": "file",
+            "size": 506188
+          }
+        ]
+      }
+    },
+    "ssot_docs": {
+      "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/docs",
+      "census": {
+        "present": true,
+        "entries": 10738,
+        "sample": [
+          {
+            "name": ".DS_Store",
+            "type": "file",
+            "size": 10244
+          },
+          {
+            "name": "0-prerequisites.md",
+            "type": "file",
+            "size": 5271
+          },
+          {
+            "name": "00-prerequisites.md",
+            "type": "file",
+            "size": 6789
+          },
+          {
+            "name": "00-quick-start.md",
+            "type": "file",
+            "size": 10035
+          },
+          {
+            "name": "00976b0190656e20f62744acec0659f8.txt",
+            "type": "file",
+            "size": 77080
+          },
+          {
+            "name": "00readme.txt",
+            "type": "file",
+            "size": 318
+          },
+          {
+            "name": "01-getting-started.md",
+            "type": "file",
+            "size": 7601
+          },
+          {
+            "name": "01-request-review.md",
+            "type": "file",
+            "size": 1412
+          },
+          {
+            "name": "01-setup-and-first-steps.md",
+            "type": "file",
+            "size": 26986
+          },
+          {
+            "name": "01-working-with-copilot-cli.md",
+            "type": "file",
+            "size": 22553
+          },
+          {
+            "name": "016b84f4e047d1346bdf9331ec941bb4.txt",
+            "type": "file",
+            "size": 0
+          },
+          {
+            "name": "01910c24c5f2edcaf999bd1eaaeaeee8_code_verifier.txt",
+            "type": "file",
+            "size": 43
+          },
+          {
+            "name": "01_quick.md",
+            "type": "file",
+            "size": 711
+          },
+          {
+            "name": "02-authentication.md",
+            "type": "file",
+            "size": 8943
+          },
+          {
+            "name": "02-building-ai-infrastructure.md",
+            "type": "file",
+            "size": 21764
+          },
+          {
+            "name": "02-context-and-conversations.md",
+            "type": "file",
+            "size": 29186
+          },
+          {
+            "name": "02-wait.md",
+            "type": "file",
+            "size": 1745
+          },
+          {
+            "name": "029x.md",
+            "type": "file",
+            "size": 2350
+          },
+          {
+            "name": "02_app_settings.md",
+            "type": "file",
+            "size": 319
+          },
+          {
+            "name": "02_apps.md",
+            "type": "file",
+            "size": 254
+          },
+          {
+            "name": "02_crate.md",
+            "type": "file",
+            "size": 312
+          },
+          {
+            "name": "02_evaluate-hub-model.md",
+            "type": "file",
+            "size": 5135
+          },
+          {
+            "name": "02zf.md",
+            "type": "file",
+            "size": 973
+          },
+          {
+            "name": "03-development-workflows.md",
+            "type": "file",
+            "size": 36167
+          },
+          {
+            "name": "03-keyboard-shortcuts.md",
+            "type": "file",
+            "size": 10780
+          },
+          {
+            "name": "03-list-threads.md",
+            "type": "file",
+            "size": 1764
+          },
+          {
+            "name": "03-test-suite-remote-delegation.md",
+            "type": "file",
+            "size": 20632
+          },
+          {
+            "name": "03_01_flag_bool.md",
+            "type": "file",
+            "size": 505
+          },
+          {
+            "name": "03_01_flag_count.md",
+            "type": "file",
+            "size": 376
+          },
+          {
+            "name": "03_02_option.md",
+            "type": "file",
+            "size": 487
+          },
+          {
+            "name": "03_02_option_mult.md",
+            "type": "file",
+            "size": 525
+          },
+          {
+            "name": "03_03_positional.md",
+            "type": "file",
+            "size": 319
+          },
+          {
+            "name": "03_03_positional_mult.md",
+            "type": "file",
+            "size": 398
+          },
+          {
+            "name": "03_04_subcommands.md",
+            "type": "file",
+            "size": 1372
+          },
+          {
+            "name": "03_05_default_values.md",
+            "type": "file",
+            "size": 340
+          },
+          {
+            "name": "03_06_optional.md",
+            "type": "file",
+            "size": 339
+          },
+          {
+            "name": "03_06_required.md",
+            "type": "file",
+            "size": 438
+          },
+          {
+            "name": "03_publish-hub-dataset.md",
+            "type": "file",
+            "size": 2483
+          },
+          {
+            "name": "04-agents-and-custom-instructions.md",
+            "type": "file",
+            "size": 29502
+          },
+          {
+            "name": "04-lifecycle-hooks.md",
+            "type": "file",
+            "size": 19112
+          }
+        ]
+      }
+    },
+    "ssot_workspaces": {
+      "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/workspaces",
+      "census": {
+        "present": true,
+        "entries": 905,
+        "sample": [
+          {
+            "name": ".DS_Store",
+            "type": "file",
+            "size": 12292
+          },
+          {
+            "name": "3d_anime_stage",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "full_agent_roster.json",
+            "type": "file",
+            "size": 13701
+          },
+          {
+            "name": "index.html",
+            "type": "file",
+            "size": 22053
+          },
+          {
+            "name": "DaxxCo_Sandbox",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "infrastructure",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "main.tf",
+            "type": "file",
+            "size": 365
+          },
+          {
+            "name": "knowledge",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "HUMAN_PROTECTION_AND_PURPOSE_LEDGER.md",
+            "type": "link",
+            "size": 72,
+            "target": "../../../../DaxxCo_Tech/knowledge/HUMAN_PROTECTION_AND_PURPOSE_LEDGER.md"
+          },
+          {
+            "name": "NUMERICAL_AND_MONETARY_VERBALIZATION_TRAINING_CURRICULUM.md",
+            "type": "link",
+            "size": 93,
+            "target": "../../../../DaxxCo_Tech/knowledge/NUMERICAL_AND_MONETARY_VERBALIZATION_TRAINING_CURRICULUM.md"
+          },
+          {
+            "name": "RAW_IP_DISCLOSURE_NOTES.md",
+            "type": "link",
+            "size": 60,
+            "target": "../../../../DaxxCo_Tech/knowledge/RAW_IP_DISCLOSURE_NOTES.md"
+          },
+          {
+            "name": "SOVEREIGN_ARCHITECTURAL_VISION.md",
+            "type": "link",
+            "size": 67,
+            "target": "../../../../DaxxCo_Tech/knowledge/SOVEREIGN_ARCHITECTURAL_VISION.md"
+          },
+          {
+            "name": "SOVEREIGN_OMEGA_PROTOCOL.md",
+            "type": "link",
+            "size": 61,
+            "target": "../../../../DaxxCo_Tech/knowledge/SOVEREIGN_OMEGA_PROTOCOL.md"
+          },
+          {
+            "name": "SOVRA_AUTONOMOUS_WORKFORCE_STANDARD.md",
+            "type": "link",
+            "size": 72,
+            "target": "../../../../DaxxCo_Tech/knowledge/SOVRA_AUTONOMOUS_WORKFORCE_STANDARD.md"
+          },
+          {
+            "name": "SOVRA_DSL_COMPREHENSIVE_GUIDE.md",
+            "type": "link",
+            "size": 66,
+            "target": "../../../../DaxxCo_Tech/knowledge/SOVRA_DSL_COMPREHENSIVE_GUIDE.md"
+          },
+          {
+            "name": "THE_SOVEREIGN_ENTERPRISE_MACHINE.md",
+            "type": "link",
+            "size": 69,
+            "target": "../../../../DaxxCo_Tech/knowledge/THE_SOVEREIGN_ENTERPRISE_MACHINE.md"
+          },
+          {
+            "name": "golden_question_set.json",
+            "type": "link",
+            "size": 58,
+            "target": "../../../../DaxxCo_Tech/knowledge/golden_question_set.json"
+          },
+          {
+            "name": "provisional_measurement_protocol.md",
+            "type": "link",
+            "size": 69,
+            "target": "../../../../DaxxCo_Tech/knowledge/provisional_measurement_protocol.md"
+          },
+          {
+            "name": "quantum",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "poincare_metric_engine.py",
+            "type": "file",
+            "size": 579
+          },
+          {
+            "name": "receipts",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "SWARM_MISSION_ALPHA_RECEIPT.json",
+            "type": "file",
+            "size": 607
+          },
+          {
+            "name": "specs",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "MISSION_SPEC.json",
+            "type": "file",
+            "size": 432
+          },
+          {
+            "name": "src",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "daxx9_media_engine.py",
+            "type": "file",
+            "size": 735
+          },
+          {
+            "name": "hex_buffer.py",
+            "type": "file",
+            "size": 730
+          },
+          {
+            "name": "schemas.py",
+            "type": "file",
+            "size": 428
+          },
+          {
+            "name": "tests",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "test_daxx9_media_gauntlet.py",
+            "type": "file",
+            "size": 8895
+          },
+          {
+            "name": "test_daxxco_sandbox.py",
+            "type": "file",
+            "size": 787
+          },
+          {
+            "name": "OS_Build",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "freedoom.iso",
+            "type": "file",
+            "size": 4667392
+          },
+          {
+            "name": "iso_root",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "EFI",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "boot",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "limine-bios-cd.bin",
+            "type": "file",
+            "size": 26624
+          },
+          {
+            "name": "limine-bios.sys",
+            "type": "file",
+            "size": 333800
+          },
+          {
+            "name": "limine-uefi-cd.bin",
+            "type": "file",
+            "size": 3145728
+          },
+          {
+            "name": "limine.conf",
+            "type": "file",
+            "size": 90
+          }
+        ]
+      }
+    },
+    "ssot_labs": {
+      "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/labs",
+      "census": {
+        "present": true,
+        "entries": 349,
+        "sample": [
+          {
+            "name": ".DS_Store",
+            "type": "file",
+            "size": 6148
+          },
+          {
+            "name": "scratch",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "1-intro.tex",
+            "type": "file",
+            "size": 5128
+          },
+          {
+            "name": "1803.02324",
+            "type": "file",
+            "size": 261212
+          },
+          {
+            "name": "2-artifacts.tex",
+            "type": "file",
+            "size": 2201
+          },
+          {
+            "name": "3-characteristics.tex",
+            "type": "file",
+            "size": 7620
+          },
+          {
+            "name": "4-hardeasysota.tex",
+            "type": "file",
+            "size": 4758
+          },
+          {
+            "name": "7-relatedwork.tex",
+            "type": "file",
+            "size": 3245
+          },
+          {
+            "name": "Modelfile.sovereign-r1",
+            "type": "file",
+            "size": 71
+          },
+          {
+            "name": "acl_natbib.bst",
+            "type": "file",
+            "size": 31054
+          },
+          {
+            "name": "daxx_oracle_cure.rs",
+            "type": "file",
+            "size": 2512
+          },
+          {
+            "name": "daxx_oracle_cure_c",
+            "type": "file",
+            "size": 34336
+          },
+          {
+            "name": "daxx_oracle_cure_harness.c",
+            "type": "file",
+            "size": 8812
+          },
+          {
+            "name": "daxx_oracle_cure_rust",
+            "type": "file",
+            "size": 433736
+          },
+          {
+            "name": "dojo_test",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "run_upgp_crash_test.py",
+            "type": "file",
+            "size": 1773
+          },
+          {
+            "name": "fig",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "snli_length.png",
+            "type": "file",
+            "size": 142398
+          },
+          {
+            "name": "hardware_bins",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "hexcell_128_test.bin",
+            "type": "file",
+            "size": 128000000
+          },
+          {
+            "name": "hexcell_256_test.bin",
+            "type": "file",
+            "size": 256000000
+          },
+          {
+            "name": "hexcell_racetrack.bin",
+            "type": "file",
+            "size": 128000000
+          },
+          {
+            "name": "movie_10min",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "build_10min_film.py",
+            "type": "file",
+            "size": 2011
+          },
+          {
+            "name": "concat_list.txt",
+            "type": "file",
+            "size": 870
+          },
+          {
+            "name": "narrated_list.txt",
+            "type": "file",
+            "size": 960
+          },
+          {
+            "name": "render_full_10min_film.py",
+            "type": "file",
+            "size": 2027
+          },
+          {
+            "name": "render_narrated_film.py",
+            "type": "file",
+            "size": 4504
+          },
+          {
+            "name": "scene_01.mp4",
+            "type": "file",
+            "size": 3157445
+          },
+          {
+            "name": "scene_02.mp4",
+            "type": "file",
+            "size": 3794902
+          },
+          {
+            "name": "scene_03.mp4",
+            "type": "file",
+            "size": 3157445
+          },
+          {
+            "name": "scene_04.mp4",
+            "type": "file",
+            "size": 3794902
+          },
+          {
+            "name": "scene_05.mp4",
+            "type": "file",
+            "size": 3157445
+          },
+          {
+            "name": "scene_06.mp4",
+            "type": "file",
+            "size": 3794902
+          },
+          {
+            "name": "scene_07.mp4",
+            "type": "file",
+            "size": 3157445
+          },
+          {
+            "name": "scene_08.mp4",
+            "type": "file",
+            "size": 3794902
+          },
+          {
+            "name": "scene_09.mp4",
+            "type": "file",
+            "size": 3157445
+          },
+          {
+            "name": "scene_10.mp4",
+            "type": "file",
+            "size": 3794902
+          },
+          {
+            "name": "scene_narrated_01.mp4",
+            "type": "file",
+            "size": 3347085
+          },
+          {
+            "name": "scene_narrated_02.mp4",
+            "type": "file",
+            "size": 3969734
+          }
+        ]
+      }
+    },
+    "ssot_barn": {
+      "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/barn",
+      "census": {
+        "present": true,
+        "entries": 728,
+        "sample": [
+          {
+            "name": ".DS_Store",
+            "type": "file",
+            "size": 10244
+          },
+          {
+            "name": "archives",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "core_inventory_migration_20261010",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "inventory_data.json",
+            "type": "file",
+            "size": 38243081
+          },
+          {
+            "name": "foreign_tooling",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "daxx_core_test_20261114",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "pokemon_agent_20261114",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "foreign_tooling_2026-11-14",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "antigravity_project_symlink_53c8434c.json",
+            "type": "link",
+            "size": null,
+            "target": "/Users/ajoxendine68/.gemini/config/projects/53c8434c-cf02-4bfd-913d-8de1644ffdd4.json"
+          },
+          {
+            "name": "gemini_adk_hybrid_agent",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "geminiignore",
+            "type": "file",
+            "size": 145
+          },
+          {
+            "name": "xoras_studio_v2_antigravity_edition_1791504152706.jpg",
+            "type": "file",
+            "size": 544845
+          },
+          {
+            "name": "foreign_tooling_raw_2026-11-14",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "FORENSIC_PURGE_AUDIT_HISTORICAL.md",
+            "type": "file",
+            "size": 9794
+          },
+          {
+            "name": "FORENSIC_THIRD_PARTY_ENDPOINT_RAW.json",
+            "type": "file",
+            "size": 59225
+          },
+          {
+            "name": "imported_history",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "memory_timeline_2026-11_20261114_085859_af46d527.md",
+            "type": "file",
+            "size": 44087
+          },
+          {
+            "name": "memory_se.ses",
+            "type": "file",
+            "size": 51
+          },
+          {
+            "name": "speech_infrastructure_cleanup",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "ops_scripts_agent_speech_contract.py",
+            "type": "file",
+            "size": 2439
+          },
+          {
+            "name": "ops_scripts_agent_voice_bridge.py",
+            "type": "file",
+            "size": 3560
+          },
+          {
+            "name": "ops_scripts_dispatch_council_unventured_vectors_speech.py",
+            "type": "file",
+            "size": 2833
+          },
+          {
+            "name": "ops_scripts_dispatch_upgp_future_roadmap_speech.py",
+            "type": "file",
+            "size": 2977
+          },
+          {
+            "name": "ops_scripts_elevenlabs_multi_agent_session.py",
+            "type": "file",
+            "size": 6601
+          },
+          {
+            "name": "ops_scripts_generate_elevenlabs_narration.py",
+            "type": "file",
+            "size": 1765
+          },
+          {
+            "name": "ops_scripts_multi_agent_voice_dispatch.py",
+            "type": "file",
+            "size": 2240
+          },
+          {
+            "name": "ops_scripts_run_canonical_elevenlabs_council.py",
+            "type": "file",
+            "size": 3012
+          },
+          {
+            "name": "ops_scripts_run_multi_agent_narrated_brief.py",
+            "type": "file",
+            "size": 1974
+          },
+          {
+            "name": "ops_scripts_verify_ceo_natural_speech_protocol.py",
+            "type": "file",
+            "size": 1628
+          },
+          {
+            "name": "ops_scripts_verify_speech_dag_chain.py",
+            "type": "file",
+            "size": 3236
+          },
+          {
+            "name": "ops_scripts_voice_daemon.py",
+            "type": "file",
+            "size": 4048
+          },
+          {
+            "name": "ops_scripts_voice_deadman_switch.sh",
+            "type": "file",
+            "size": 1816
+          },
+          {
+            "name": "ops_scripts_voice_tribunal_deep_dive.py",
+            "type": "file",
+            "size": 10059
+          },
+          {
+            "name": "the_barn",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "ELITE_BOW_Legacy",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "REAL_EMAIL_SORTING_RECEIPT.json",
+            "type": "file",
+            "size": 1343
+          },
+          {
+            "name": "audio_conflicts",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "desktop_inflow",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "hardware_bins",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "legacy_sqlite_world_journal",
+            "type": "dir",
+            "size": null
+          }
+        ]
+      }
+    },
+    "ssot_scratch": {
+      "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/scratch",
+      "census": {
+        "present": true,
+        "entries": 1769,
+        "sample": [
+          {
+            "name": "__pycache__",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "cogngen_engine.cpython-314.pyc",
+            "type": "file",
+            "size": 42669
+          },
+          {
+            "name": "golden_groundedness_harness.cpython-314.pyc",
+            "type": "file",
+            "size": 15703
+          },
+          {
+            "name": "test_handoff.cpython-314-pytest-9.0.3.pyc",
+            "type": "file",
+            "size": 3588
+          },
+          {
+            "name": "_cogngen_break_it_results.json",
+            "type": "file",
+            "size": 2331
+          },
+          {
+            "name": "add_dock_auth.py",
+            "type": "file",
+            "size": 2045
+          },
+          {
+            "name": "add_oauth_modal.py",
+            "type": "file",
+            "size": 3537
+          },
+          {
+            "name": "adversarial_stress_gauntlet.py",
+            "type": "file",
+            "size": 5425
+          },
+          {
+            "name": "app_upgrade_quarantine_20261118",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "app_storage_before_onboarding_reset.json",
+            "type": "file",
+            "size": 417966
+          },
+          {
+            "name": "archived_cdp_scripts",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "__MACOSX",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "xoras-app",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "cdp_fill.py",
+            "type": "file",
+            "size": 5747
+          },
+          {
+            "name": "cdp_inspect.py",
+            "type": "file",
+            "size": 2456
+          },
+          {
+            "name": "speech.txt",
+            "type": "file",
+            "size": 2135
+          },
+          {
+            "name": "arthur_10core_ceiling",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "Cargo.lock",
+            "type": "file",
+            "size": 6413
+          },
+          {
+            "name": "Cargo.toml",
+            "type": "file",
+            "size": 283
+          },
+          {
+            "name": "src",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "main.rs",
+            "type": "file",
+            "size": 8850
+          },
+          {
+            "name": "barn_misc_push.log",
+            "type": "file",
+            "size": 2340
+          },
+          {
+            "name": "barn_usb_move.log",
+            "type": "file",
+            "size": 22328
+          },
+          {
+            "name": "bench_compare_rigtorp",
+            "type": "file",
+            "size": 33864
+          },
+          {
+            "name": "bench_compare_rigtorp.c",
+            "type": "file",
+            "size": 3252
+          },
+          {
+            "name": "bench_heterogeneous_sovra",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "apex_contract.sovra",
+            "type": "file",
+            "size": 949
+          },
+          {
+            "name": "arthur_contract.sovra",
+            "type": "file",
+            "size": 477
+          },
+          {
+            "name": "aurelius_contract.sovra",
+            "type": "file",
+            "size": 933
+          },
+          {
+            "name": "axlon_contract.sovra",
+            "type": "file",
+            "size": 708
+          },
+          {
+            "name": "chiron_contract.sovra",
+            "type": "file",
+            "size": 812
+          },
+          {
+            "name": "clara_contract.sovra",
+            "type": "file",
+            "size": 504
+          },
+          {
+            "name": "daxx_contract.sovra",
+            "type": "file",
+            "size": 1202
+          },
+          {
+            "name": "dr_eden_contract.sovra",
+            "type": "file",
+            "size": 1900
+          },
+          {
+            "name": "dr_jeremy_contract.sovra",
+            "type": "file",
+            "size": 487
+          },
+          {
+            "name": "hermes_contract.sovra",
+            "type": "file",
+            "size": 461
+          },
+          {
+            "name": "john_contract.sovra",
+            "type": "file",
+            "size": 469
+          },
+          {
+            "name": "lycurgus_contract.sovra",
+            "type": "file",
+            "size": 805
+          },
+          {
+            "name": "maxx_contract.sovra",
+            "type": "file",
+            "size": 770
+          },
+          {
+            "name": "minerva_contract.sovra",
+            "type": "file",
+            "size": 2253
+          }
+        ]
+      }
+    },
+    "ssot_archives": {
+      "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/archives",
+      "census": {
+        "present": false,
+        "entries": 0,
+        "sample": []
+      }
+    },
+    "ssot_artifacts": {
+      "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/artifacts",
+      "census": {
+        "present": true,
+        "entries": 7829,
+        "sample": [
+          {
+            "name": ".DS_Store",
+            "type": "file",
+            "size": 6148
+          },
+          {
+            "name": "0-0.jpg",
+            "type": "file",
+            "size": 139672
+          },
+          {
+            "name": "0-entrypoint-treeview.png",
+            "type": "file",
+            "size": 176932
+          },
+          {
+            "name": "0-launching-ext.png",
+            "type": "file",
+            "size": 255285
+          },
+          {
+            "name": "0.png",
+            "type": "file",
+            "size": 1523
+          },
+          {
+            "name": "001C94AE-2BA4-4E77-A202-F7DE60E8B1C8.png",
+            "type": "file",
+            "size": 43536
+          },
+          {
+            "name": "009BA758-7060-4479-8EE8-FB9B40C8FB97.png",
+            "type": "file",
+            "size": 41546
+          },
+          {
+            "name": "00BA71CD-2C54-415A-A68A-8358E677D750.png",
+            "type": "file",
+            "size": 39370
+          },
+          {
+            "name": "01-board-overview.png",
+            "type": "file",
+            "size": 766059
+          },
+          {
+            "name": "012F92B4AD766FB3CE06E0E0397AE4E4.png",
+            "type": "file",
+            "size": 2529
+          },
+          {
+            "name": "017bc6ba3fc25503e5eb5e53826d48a8.png",
+            "type": "file",
+            "size": 9456
+          },
+          {
+            "name": "019cfa14-478b-4a2e-9f7b-66e735572009.png",
+            "type": "file",
+            "size": 517
+          },
+          {
+            "name": "02-board-flat.png",
+            "type": "file",
+            "size": 782295
+          },
+          {
+            "name": "024891DE-B7F6-4187-BFE0-E6D237702EF0.png",
+            "type": "file",
+            "size": 60641
+          },
+          {
+            "name": "03-copilot-work-surfaces.png",
+            "type": "file",
+            "size": 1550872
+          },
+          {
+            "name": "03-delegation-handoff-flow.png",
+            "type": "file",
+            "size": 957729
+          },
+          {
+            "name": "03-drawer-schema-task.png",
+            "type": "file",
+            "size": 487002
+          },
+          {
+            "name": "03-remote-control-flow.png",
+            "type": "file",
+            "size": 1180583
+          },
+          {
+            "name": "03-test-backed-workflow.png",
+            "type": "file",
+            "size": 1077139
+          },
+          {
+            "name": "03-test-evidence-loop.png",
+            "type": "file",
+            "size": 1403910
+          },
+          {
+            "name": "03EC0F5E-CCA8-4E0A-9FEC-5BD1CE151182.png",
+            "type": "file",
+            "size": 36642
+          },
+          {
+            "name": "0408ee0fb197772ac5bd5cacd0ce0b9b.png",
+            "type": "file",
+            "size": 201503
+          },
+          {
+            "name": "044AD56C-A107-41B2-90CC-E60CCACFBCF5.png",
+            "type": "file",
+            "size": 30083
+          },
+          {
+            "name": "04a5dfbfe65a015b6fce5a777130850a.png",
+            "type": "file",
+            "size": 145198
+          },
+          {
+            "name": "04b-drawer-retry-history-scrolled.png",
+            "type": "file",
+            "size": 512488
+          },
+          {
+            "name": "06-architecture-diagram.png",
+            "type": "file",
+            "size": 334642
+          },
+          {
+            "name": "06-drawer-crash-recovery.png",
+            "type": "file",
+            "size": 508160
+          },
+          {
+            "name": "067c6de2adec31f57b18.gif",
+            "type": "file",
+            "size": 80
+          },
+          {
+            "name": "07-azure-portal-resources.png",
+            "type": "file",
+            "size": 175557
+          },
+          {
+            "name": "07-fleet-transcribes.png",
+            "type": "file",
+            "size": 830148
+          },
+          {
+            "name": "0747a1317bbe9c6fc340b889ef8ab3ae.png",
+            "type": "file",
+            "size": 141
+          },
+          {
+            "name": "08-deployment-succeeded.png",
+            "type": "file",
+            "size": 42019
+          },
+          {
+            "name": "08-pipeline-auth.png",
+            "type": "file",
+            "size": 823572
+          },
+          {
+            "name": "083ebc20-9abf-4ccc-9e01-b687e9609f5e.jpg",
+            "type": "file",
+            "size": 244918
+          },
+          {
+            "name": "08b9c5943f4079c22c18d6bbf4c48629.png",
+            "type": "file",
+            "size": 578781
+          },
+          {
+            "name": "09-drawer-pipeline-review.png",
+            "type": "file",
+            "size": 473844
+          },
+          {
+            "name": "097CA871-A1C2-40F7-97F0-EFAABF555BBC.png",
+            "type": "file",
+            "size": 41112
+          },
+          {
+            "name": "0A137B375CC3881A70E186CE2172C8D1.png",
+            "type": "file",
+            "size": 1580
+          },
+          {
+            "name": "0BED2F9FC19A1AFAAA9BC143C97CF1C0.png",
+            "type": "file",
+            "size": 363
+          },
+          {
+            "name": "0C747C29-4BF8-43F6-A5CC-2E012E555341.png",
+            "type": "file",
+            "size": 45903
+          }
+        ]
+      }
+    },
+    "ssot_code": {
+      "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/code",
+      "census": {
+        "present": true,
+        "entries": 52055,
+        "sample": [
+          {
+            "name": "00jk.py",
+            "type": "file",
+            "size": 19773
+          },
+          {
+            "name": "01_quick.rs",
+            "type": "file",
+            "size": 2053
+          },
+          {
+            "name": "01s6.sh",
+            "type": "file",
+            "size": 5957
+          },
+          {
+            "name": "02Q9.py",
+            "type": "file",
+            "size": 6727
+          },
+          {
+            "name": "02_app_settings.rs",
+            "type": "file",
+            "size": 512
+          },
+          {
+            "name": "02_apps.rs",
+            "type": "file",
+            "size": 470
+          },
+          {
+            "name": "02_crate.rs",
+            "type": "file",
+            "size": 495
+          },
+          {
+            "name": "03_01_flag_bool.rs",
+            "type": "file",
+            "size": 356
+          },
+          {
+            "name": "03_01_flag_count.rs",
+            "type": "file",
+            "size": 355
+          },
+          {
+            "name": "03_02_option.rs",
+            "type": "file",
+            "size": 241
+          },
+          {
+            "name": "03_02_option_mult.rs",
+            "type": "file",
+            "size": 470
+          },
+          {
+            "name": "03_03_positional.rs",
+            "type": "file",
+            "size": 217
+          },
+          {
+            "name": "03_03_positional_mult.rs",
+            "type": "file",
+            "size": 372
+          },
+          {
+            "name": "03_04_subcommands.rs",
+            "type": "file",
+            "size": 682
+          },
+          {
+            "name": "03_04_subcommands_alt.rs",
+            "type": "file",
+            "size": 673
+          },
+          {
+            "name": "03_05_default_values.rs",
+            "type": "file",
+            "size": 434
+          },
+          {
+            "name": "03_06_optional.rs",
+            "type": "file",
+            "size": 206
+          },
+          {
+            "name": "03_06_required.rs",
+            "type": "file",
+            "size": 326
+          },
+          {
+            "name": "04_01_enum.rs",
+            "type": "file",
+            "size": 1771
+          },
+          {
+            "name": "04_01_possible.rs",
+            "type": "file",
+            "size": 657
+          },
+          {
+            "name": "04_02_parse.rs",
+            "type": "file",
+            "size": 529
+          },
+          {
+            "name": "04_02_validate.rs",
+            "type": "file",
+            "size": 951
+          },
+          {
+            "name": "04_03_relations.rs",
+            "type": "file",
+            "size": 2803
+          },
+          {
+            "name": "04_04_custom.rs",
+            "type": "file",
+            "size": 3140
+          },
+          {
+            "name": "05_01_assert.rs",
+            "type": "file",
+            "size": 611
+          },
+          {
+            "name": "07Lp.sh",
+            "type": "file",
+            "size": 5957
+          },
+          {
+            "name": "0BxQ.py",
+            "type": "file",
+            "size": 4298
+          },
+          {
+            "name": "0EKU.rs",
+            "type": "file",
+            "size": 8528
+          },
+          {
+            "name": "0ETW.sh",
+            "type": "file",
+            "size": 2123
+          },
+          {
+            "name": "0F1D2A-960D-4D04-9D2F-E3AD2136279A.c",
+            "type": "file",
+            "size": 1789
+          },
+          {
+            "name": "0HSU.py",
+            "type": "file",
+            "size": 787
+          },
+          {
+            "name": "0L6z.py",
+            "type": "file",
+            "size": 7633
+          },
+          {
+            "name": "0Lnx.py",
+            "type": "file",
+            "size": 2806
+          },
+          {
+            "name": "0SF1.py",
+            "type": "file",
+            "size": 12709
+          },
+          {
+            "name": "0TCR.sh",
+            "type": "file",
+            "size": 754
+          },
+          {
+            "name": "0UUo.sh",
+            "type": "file",
+            "size": 2561
+          },
+          {
+            "name": "0V5b.py",
+            "type": "file",
+            "size": 12335
+          },
+          {
+            "name": "0VJI.sh",
+            "type": "file",
+            "size": 734
+          },
+          {
+            "name": "0XUN.py",
+            "type": "file",
+            "size": 86
+          },
+          {
+            "name": "0XY5.py",
+            "type": "file",
+            "size": 8350
+          }
+        ]
+      }
+    },
+    "ssot_identity": {
+      "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/identity",
+      "census": {
+        "present": true,
+        "entries": 4,
+        "sample": [
+          {
+            "name": "agent_card_manifest.json",
+            "type": "file",
+            "size": 2259
+          },
+          {
+            "name": "charter.yaml",
+            "type": "file",
+            "size": 98
+          },
+          {
+            "name": "principles.sha256",
+            "type": "file",
+            "size": 65
+          },
+          {
+            "name": "sovereign_citizens_manifest.json",
+            "type": "file",
+            "size": 10062
+          }
+        ]
+      }
+    },
+    "ssot_cards": {
+      "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/Xoras_agent_cards",
+      "census": {
+        "present": true,
+        "entries": 47,
+        "sample": [
+          {
+            "name": "arthur.json",
+            "type": "file",
+            "size": 231
+          },
+          {
+            "name": "arthur.md",
+            "type": "file",
+            "size": 437
+          },
+          {
+            "name": "aurelius.json",
+            "type": "file",
+            "size": 531
+          },
+          {
+            "name": "aurelius.md",
+            "type": "file",
+            "size": 746
+          },
+          {
+            "name": "axlon.json",
+            "type": "file",
+            "size": 226
+          },
+          {
+            "name": "axlon.md",
+            "type": "file",
+            "size": 433
+          },
+          {
+            "name": "clara.json",
+            "type": "file",
+            "size": 500
+          },
+          {
+            "name": "clara.md",
+            "type": "file",
+            "size": 701
+          },
+          {
+            "name": "counselor.json",
+            "type": "file",
+            "size": 236
+          },
+          {
+            "name": "counselor.md",
+            "type": "file",
+            "size": 446
+          },
+          {
+            "name": "daxx.json",
+            "type": "file",
+            "size": 747
+          },
+          {
+            "name": "daxx.md",
+            "type": "file",
+            "size": 1633
+          },
+          {
+            "name": "daxxco.json",
+            "type": "file",
+            "size": 1772
+          },
+          {
+            "name": "eden.json",
+            "type": "file",
+            "size": 516
+          },
+          {
+            "name": "eden.md",
+            "type": "file",
+            "size": 731
+          },
+          {
+            "name": "elana.json",
+            "type": "file",
+            "size": 226
+          },
+          {
+            "name": "elana.md",
+            "type": "file",
+            "size": 431
+          },
+          {
+            "name": "evan.json",
+            "type": "file",
+            "size": 500
+          },
+          {
+            "name": "evan.md",
+            "type": "file",
+            "size": 700
+          },
+          {
+            "name": "gemina",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "overview.gemnia",
+            "type": "file",
+            "size": 207
+          },
+          {
+            "name": "jarvis.json",
+            "type": "file",
+            "size": 494
+          },
+          {
+            "name": "jarvis.md",
+            "type": "file",
+            "size": 701
+          },
+          {
+            "name": "jeremy.json",
+            "type": "file",
+            "size": 526
+          },
+          {
+            "name": "jeremy.md",
+            "type": "file",
+            "size": 743
+          },
+          {
+            "name": "john.json",
+            "type": "file",
+            "size": 490
+          },
+          {
+            "name": "john.md",
+            "type": "file",
+            "size": 694
+          },
+          {
+            "name": "lex.json",
+            "type": "file",
+            "size": 221
+          },
+          {
+            "name": "lex.md",
+            "type": "file",
+            "size": 426
+          },
+          {
+            "name": "maxx.json",
+            "type": "file",
+            "size": 509
+          },
+          {
+            "name": "maxx.md",
+            "type": "file",
+            "size": 714
+          },
+          {
+            "name": "noboo.json",
+            "type": "file",
+            "size": 223
+          },
+          {
+            "name": "noboo.md",
+            "type": "file",
+            "size": 432
+          },
+          {
+            "name": "orion.json",
+            "type": "file",
+            "size": 497
+          },
+          {
+            "name": "orion.md",
+            "type": "file",
+            "size": 704
+          },
+          {
+            "name": "selene.json",
+            "type": "file",
+            "size": 500
+          },
+          {
+            "name": "selene.md",
+            "type": "file",
+            "size": 707
+          },
+          {
+            "name": "sia_core.json",
+            "type": "file",
+            "size": 232
+          },
+          {
+            "name": "sia_core.md",
+            "type": "file",
+            "size": 439
+          },
+          {
+            "name": "sophia.json",
+            "type": "file",
+            "size": 539
+          }
+        ]
+      }
+    },
+    "ssot_governance": {
+      "path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/governance",
+      "census": {
+        "present": true,
+        "entries": 17,
+        "sample": [
+          {
+            "name": "__pycache__",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "governed_task_orchestrator.cpython-314.pyc",
+            "type": "file",
+            "size": 13437
+          },
+          {
+            "name": "independent_validator.cpython-314.pyc",
+            "type": "file",
+            "size": 7116
+          },
+          {
+            "name": "sandbox_security_engine.cpython-314.pyc",
+            "type": "file",
+            "size": 8625
+          },
+          {
+            "name": "schema_handoff_gate.cpython-314.pyc",
+            "type": "file",
+            "size": 5879
+          },
+          {
+            "name": "scoped_runtime_credential_gate.cpython-314.pyc",
+            "type": "file",
+            "size": 5619
+          },
+          {
+            "name": "two_agent_state_isolation.cpython-314.pyc",
+            "type": "file",
+            "size": 10556
+          },
+          {
+            "name": "untrusted_content_gate.cpython-314.pyc",
+            "type": "file",
+            "size": 4045
+          },
+          {
+            "name": "clara_sovereign_model_mesh.json",
+            "type": "file",
+            "size": 3734
+          },
+          {
+            "name": "daxxco_master_definition.py",
+            "type": "file",
+            "size": 2727
+          },
+          {
+            "name": "governed_task_orchestrator.py",
+            "type": "file",
+            "size": 8156
+          },
+          {
+            "name": "independent_validator.py",
+            "type": "file",
+            "size": 4864
+          },
+          {
+            "name": "sandbox_security_engine.py",
+            "type": "file",
+            "size": 5702
+          },
+          {
+            "name": "schema_handoff_gate.py",
+            "type": "file",
+            "size": 4638
+          },
+          {
+            "name": "scoped_runtime_credential_gate.py",
+            "type": "file",
+            "size": 3281
+          },
+          {
+            "name": "two_agent_state_isolation.py",
+            "type": "file",
+            "size": 7816
+          },
+          {
+            "name": "untrusted_content_gate.py",
+            "type": "file",
+            "size": 3100
+          }
+        ]
+      }
+    },
+    "home_config": {
+      "path": "/Users/ajoxendine68/.config",
+      "census": {
+        "present": true,
+        "entries": 412,
+        "sample": [
+          {
+            "name": ".DS_Store",
+            "type": "file",
+            "size": 10244
+          },
+          {
+            "name": "browser-harness",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "runtime",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "tmp",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "browseruse",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "config.json",
+            "type": "file",
+            "size": 916
+          },
+          {
+            "name": "extensions",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "profiles",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "cagent",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "user-uuid",
+            "type": "file",
+            "size": 36
+          },
+          {
+            "name": "cdp",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "configstore",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "filezilla",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "fish",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "completions",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "flutter",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "tool_state",
+            "type": "file",
+            "size": 22
+          },
+          {
+            "name": "gcloud",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "access_tokens.db",
+            "type": "file",
+            "size": 12288
+          },
+          {
+            "name": "active_config",
+            "type": "file",
+            "size": 7
+          },
+          {
+            "name": "application_default_credentials.json",
+            "type": "file",
+            "size": 389
+          },
+          {
+            "name": "config_sentinel",
+            "type": "file",
+            "size": 0
+          },
+          {
+            "name": "configurations",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "config_default",
+            "type": "file",
+            "size": 31
+          },
+          {
+            "name": "credentials.db",
+            "type": "file",
+            "size": 12288
+          },
+          {
+            "name": "default_configs.db",
+            "type": "file",
+            "size": 12288
+          },
+          {
+            "name": "gce",
+            "type": "file",
+            "size": 5
+          },
+          {
+            "name": "legacy_credentials",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "co.trendzone@gmail.com",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "superanjox@gmail.com",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "logs",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "2026.10.17",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "11.13.40.069580.log",
+            "type": "file",
+            "size": 1949
+          },
+          {
+            "name": "11.13.48.016559.log",
+            "type": "file",
+            "size": 856
+          },
+          {
+            "name": "20.41.01.237048.log",
+            "type": "file",
+            "size": 958
+          },
+          {
+            "name": "2026.10.18",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "13.53.36.240590.log",
+            "type": "file",
+            "size": 1713
+          },
+          {
+            "name": "13.53.39.089255.log",
+            "type": "file",
+            "size": 3741
+          },
+          {
+            "name": "2026.10.19",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "01.20.39.039836.log",
+            "type": "file",
+            "size": 1265
+          }
+        ]
+      }
+    },
+    "home_sovereign": {
+      "path": "/Users/ajoxendine68/.sovereign",
+      "census": {
+        "present": true,
+        "entries": 15,
+        "sample": [
+          {
+            "name": ".DS_Store",
+            "type": "file",
+            "size": 6148
+          },
+          {
+            "name": "cloud_credentials.env",
+            "type": "file",
+            "size": 472
+          },
+          {
+            "name": "hippocampus",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "dream.db",
+            "type": "file",
+            "size": 45056
+          },
+          {
+            "name": "hydration_audit.jsonl",
+            "type": "file",
+            "size": 3871
+          },
+          {
+            "name": "locks",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "models",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "kokoro",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "voices",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "runtime.json",
+            "type": "file",
+            "size": 665
+          },
+          {
+            "name": "scripts",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "sovereign_sentinel.py",
+            "type": "file",
+            "size": 2126
+          },
+          {
+            "name": "state",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "sentinel_heartbeat.jsonl",
+            "type": "file",
+            "size": 174404
+          },
+          {
+            "name": "voice_cache",
+            "type": "dir",
+            "size": null
+          }
+        ]
+      }
+    },
+    "home_sovereign_witness": {
+      "path": "/Users/ajoxendine68/.sovereign_witness",
+      "census": {
+        "present": true,
+        "entries": 1,
+        "sample": [
+          {
+            "name": "out_of_band_merkle_witness.jsonl",
+            "type": "file",
+            "size": 155
+          }
+        ]
+      }
+    },
+    "home_gemini_brains": {
+      "path": "/Users/ajoxendine68/.gemini/antigravity/brain",
+      "census": {
+        "present": true,
+        "entries": 73,
+        "sample": [
+          {
+            "name": "0530d16e-415a-4568-a962-83801e30d81f",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "3cb91238-18be-4724-891e-3ba2855acd41",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "core",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "docs",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "scratch",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "5388d88d-a429-465b-879e-6724d6087220",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "scratch",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "6a348671-d6e2-4fec-8959-5a5cc979a1b0",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "audit_summary.md",
+            "type": "file",
+            "size": 3858
+          },
+          {
+            "name": "audit_summary.md.metadata.json",
+            "type": "file",
+            "size": 160
+          },
+          {
+            "name": "scratch",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "self_grading_entry_points.md",
+            "type": "file",
+            "size": 1108
+          },
+          {
+            "name": "self_grading_entry_points.md.metadata.json",
+            "type": "file",
+            "size": 147
+          },
+          {
+            "name": "xoras_app_audit.md",
+            "type": "file",
+            "size": 6349
+          },
+          {
+            "name": "xoras_app_audit.md.metadata.json",
+            "type": "file",
+            "size": 161
+          },
+          {
+            "name": "6a9196b3-8900-48e6-afce-028d3e9bd16d",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "scratch",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "75111e3c-de59-4df0-984d-311311d85495",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "scratch",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "85a2fad6-54e6-4d93-a8b0-2105ca19fe85",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "audit_plan.md",
+            "type": "file",
+            "size": 2498
+          },
+          {
+            "name": "audit_plan.md.metadata.json",
+            "type": "file",
+            "size": 125
+          },
+          {
+            "name": "config.py",
+            "type": "file",
+            "size": 3834
+          },
+          {
+            "name": "config.py.metadata.json",
+            "type": "file",
+            "size": 123
+          },
+          {
+            "name": "config_audit.md",
+            "type": "file",
+            "size": 1467
+          },
+          {
+            "name": "config_audit.md.metadata.json",
+            "type": "file",
+            "size": 138
+          },
+          {
+            "name": "core",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "docs",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "ops",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "provenance",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "portability_repair_plan.md",
+            "type": "file",
+            "size": 3030
+          },
+          {
+            "name": "portability_repair_plan.md.metadata.json",
+            "type": "file",
+            "size": 173
+          },
+          {
+            "name": "scratch",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "ssot_brain_review.md",
+            "type": "file",
+            "size": 3286
+          },
+          {
+            "name": "ssot_brain_review.md.metadata.json",
+            "type": "file",
+            "size": 147
+          },
+          {
+            "name": "xoras_review_step1.md",
+            "type": "file",
+            "size": 2768
+          },
+          {
+            "name": "xoras_review_step1.md.metadata.json",
+            "type": "file",
+            "size": 155
+          },
+          {
+            "name": "a6c69170-ccbf-44f5-a9a0-de0dfdddb33c",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "b360b0bd-c3ab-4128-9d10-be43a0e9200f",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "browser_sandbox",
+            "type": "dir",
+            "size": null
+          }
+        ]
+      }
+    },
+    "home_agents": {
+      "path": "/Users/ajoxendine68/.agents",
+      "census": {
+        "present": true,
+        "entries": 59,
+        "sample": [
+          {
+            "name": ".acli_skills_check",
+            "type": "file",
+            "size": 18
+          },
+          {
+            "name": ".acli_update_check",
+            "type": "file",
+            "size": 18
+          },
+          {
+            "name": ".skill-lock.json",
+            "type": "file",
+            "size": 2865
+          },
+          {
+            "name": "skills",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "google-agents-cli-adk-code",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "SKILL.md",
+            "type": "file",
+            "size": 4407
+          },
+          {
+            "name": "references",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "adk-go-workflows.md",
+            "type": "file",
+            "size": 17980
+          },
+          {
+            "name": "adk-go.md",
+            "type": "file",
+            "size": 23231
+          },
+          {
+            "name": "adk-python-live.md",
+            "type": "file",
+            "size": 34967
+          },
+          {
+            "name": "adk-python-workflows.md",
+            "type": "file",
+            "size": 17334
+          },
+          {
+            "name": "adk-python.md",
+            "type": "file",
+            "size": 38047
+          },
+          {
+            "name": "recipes.md",
+            "type": "file",
+            "size": 9370
+          },
+          {
+            "name": "google-agents-cli-deploy",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "SKILL.md",
+            "type": "file",
+            "size": 32585
+          },
+          {
+            "name": "references",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "agent-runtime.md",
+            "type": "file",
+            "size": 10201
+          },
+          {
+            "name": "batch-inference.md",
+            "type": "file",
+            "size": 4840
+          },
+          {
+            "name": "cicd-pipeline.md",
+            "type": "file",
+            "size": 5342
+          },
+          {
+            "name": "cloud-run.md",
+            "type": "file",
+            "size": 3646
+          },
+          {
+            "name": "cmek.md",
+            "type": "file",
+            "size": 4069
+          },
+          {
+            "name": "gke.md",
+            "type": "file",
+            "size": 5695
+          },
+          {
+            "name": "terraform-patterns.md",
+            "type": "file",
+            "size": 6337
+          },
+          {
+            "name": "testing-deployed-agents.md",
+            "type": "file",
+            "size": 5012
+          },
+          {
+            "name": "google-agents-cli-eval",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "SKILL.md",
+            "type": "file",
+            "size": 26410
+          },
+          {
+            "name": "references",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "advanced-commands.md",
+            "type": "file",
+            "size": 2395
+          },
+          {
+            "name": "builtin-tools-eval.md",
+            "type": "file",
+            "size": 6194
+          },
+          {
+            "name": "dataset_schema.md",
+            "type": "file",
+            "size": 8540
+          },
+          {
+            "name": "live-eval.md",
+            "type": "file",
+            "size": 2710
+          },
+          {
+            "name": "metrics-guide.md",
+            "type": "file",
+            "size": 10612
+          },
+          {
+            "name": "multimodal-eval.md",
+            "type": "file",
+            "size": 5432
+          },
+          {
+            "name": "user-simulation.md",
+            "type": "file",
+            "size": 6415
+          },
+          {
+            "name": "google-agents-cli-observability",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "SKILL.md",
+            "type": "file",
+            "size": 12091
+          },
+          {
+            "name": "references",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "adk-docs.md",
+            "type": "file",
+            "size": 445
+          },
+          {
+            "name": "bigquery-agent-analytics.md",
+            "type": "file",
+            "size": 1604
+          },
+          {
+            "name": "cloud-trace-and-logging.md",
+            "type": "file",
+            "size": 8438
+          }
+        ]
+      }
+    },
+    "home_claude": {
+      "path": "/Users/ajoxendine68/.claude",
+      "census": {
+        "present": true,
+        "entries": 86,
+        "sample": [
+          {
+            "name": ".DS_Store",
+            "type": "file",
+            "size": 6148
+          },
+          {
+            "name": "backups",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "cache",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "downloads",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "projects",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "-Users-ajoxendine68-Documents-GitHub-xoras-core",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "memory",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "-private-var-folders-5f-z86t8vfs6b96sq0wmbnnb4hw0000gn-T-openclaw-crestodian-planner-3tlLow",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "memory",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "-private-var-folders-5f-z86t8vfs6b96sq0wmbnnb4hw0000gn-T-openclaw-crestodian-planner-48jiK2",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "memory",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "-private-var-folders-5f-z86t8vfs6b96sq0wmbnnb4hw0000gn-T-openclaw-crestodian-planner-GFG2qc",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "memory",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "-private-var-folders-5f-z86t8vfs6b96sq0wmbnnb4hw0000gn-T-openclaw-crestodian-planner-M20SoQ",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "memory",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "-private-var-folders-5f-z86t8vfs6b96sq0wmbnnb4hw0000gn-T-openclaw-crestodian-planner-N247s7",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "memory",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "-private-var-folders-5f-z86t8vfs6b96sq0wmbnnb4hw0000gn-T-openclaw-crestodian-planner-ZX5pQ5",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "memory",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "-private-var-folders-5f-z86t8vfs6b96sq0wmbnnb4hw0000gn-T-openclaw-crestodian-planner-dEwq8E",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "memory",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "-private-var-folders-5f-z86t8vfs6b96sq0wmbnnb4hw0000gn-T-openclaw-crestodian-planner-dt6Kgo",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "memory",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "-private-var-folders-5f-z86t8vfs6b96sq0wmbnnb4hw0000gn-T-openclaw-crestodian-planner-lYmFPW",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "memory",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "-private-var-folders-5f-z86t8vfs6b96sq0wmbnnb4hw0000gn-T-openclaw-crestodian-planner-m1aUel",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "memory",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "-private-var-folders-5f-z86t8vfs6b96sq0wmbnnb4hw0000gn-T-openclaw-crestodian-planner-t1rK1D",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "memory",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "sessions",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "skills",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "google-agents-cli-adk-code",
+            "type": "link",
+            "size": null,
+            "target": "../../.agents/skills/google-agents-cli-adk-code"
+          },
+          {
+            "name": "SKILL.md",
+            "type": "file",
+            "size": 4407
+          },
+          {
+            "name": "references",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "adk-go-workflows.md",
+            "type": "file",
+            "size": 17980
+          },
+          {
+            "name": "adk-go.md",
+            "type": "file",
+            "size": 23231
+          },
+          {
+            "name": "adk-python-live.md",
+            "type": "file",
+            "size": 34967
+          },
+          {
+            "name": "adk-python-workflows.md",
+            "type": "file",
+            "size": 17334
+          },
+          {
+            "name": "adk-python.md",
+            "type": "file",
+            "size": 38047
+          },
+          {
+            "name": "recipes.md",
+            "type": "file",
+            "size": 9370
+          }
+        ]
+      }
+    },
+    "home_codex": {
+      "path": "/Users/ajoxendine68/.codex",
+      "census": {
+        "present": true,
+        "entries": 162,
+        "sample": [
+          {
+            "name": ".DS_Store",
+            "type": "file",
+            "size": 10244
+          },
+          {
+            "name": ".codex-global-state.json",
+            "type": "file",
+            "size": 187508
+          },
+          {
+            "name": ".codex-global-state.json.bak",
+            "type": "file",
+            "size": 187508
+          },
+          {
+            "name": ".personality_migration",
+            "type": "file",
+            "size": 3
+          },
+          {
+            "name": ".sandbox_migration",
+            "type": "file",
+            "size": 3
+          },
+          {
+            "name": ".tmp",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "bundled-marketplaces",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "openai-bundled",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "plugins",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "git-21gfSe",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "objects",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "refs",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "marketplaces",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "plugins",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "plugins",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "airtable",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "atlassian-rovo",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "boltz-api-cli",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "build-ios-apps",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "build-macos-apps",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "build-web-apps",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "build-web-data-visualization",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "canva",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "circleci",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "cloudflare",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "coderabbit",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "codex-security",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "datadog",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "dropbox",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "expo",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "figma",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "game-studio",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "github",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "gmail",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "google-calendar",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "google-drive",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "granola",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "hyperframes",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "life-science-research",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "linear",
+            "type": "dir",
+            "size": null
+          }
+        ]
+      }
+    },
+    "home_ollama": {
+      "path": "/Users/ajoxendine68/.ollama",
+      "census": {
+        "present": true,
+        "entries": 43,
+        "sample": [
+          {
+            "name": ".DS_Store",
+            "type": "file",
+            "size": 10244
+          },
+          {
+            "name": "backup",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "codex-app",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "openclaw",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "cache",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "model-recommendations.json",
+            "type": "file",
+            "size": 1212
+          },
+          {
+            "name": "chatgpt-ollama",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "electron-data",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "config.json",
+            "type": "file",
+            "size": 51
+          },
+          {
+            "name": "id_ed25519",
+            "type": "file",
+            "size": 387
+          },
+          {
+            "name": "id_ed25519.pub",
+            "type": "file",
+            "size": 81
+          },
+          {
+            "name": "launch",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "logs",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "app-1.log",
+            "type": "file",
+            "size": 6156
+          },
+          {
+            "name": "app-2.log",
+            "type": "file",
+            "size": 836
+          },
+          {
+            "name": "app-3.log",
+            "type": "file",
+            "size": 1954
+          },
+          {
+            "name": "app-4.log",
+            "type": "file",
+            "size": 2613
+          },
+          {
+            "name": "app-5.log",
+            "type": "file",
+            "size": 1367
+          },
+          {
+            "name": "app.log",
+            "type": "file",
+            "size": 5125
+          },
+          {
+            "name": "server-1.log",
+            "type": "file",
+            "size": 5858
+          },
+          {
+            "name": "server-2.log",
+            "type": "file",
+            "size": 7414
+          },
+          {
+            "name": "server-3.log",
+            "type": "file",
+            "size": 2285
+          },
+          {
+            "name": "server-4.log",
+            "type": "file",
+            "size": 2814
+          },
+          {
+            "name": "server-5.log",
+            "type": "file",
+            "size": 3362
+          },
+          {
+            "name": "server.log",
+            "type": "file",
+            "size": 4728
+          },
+          {
+            "name": "models",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "blobs",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "sha256-2bada8a7450677000f678be90653b85d364de7db25eb5ea54136ada5f3933730",
+            "type": "file",
+            "size": 4683073952
+          },
+          {
+            "name": "sha256-4f659a1e86d7f5a33c389f7991e7224b7ee6ad0358b53437d54c02d2e1b1118d",
+            "type": "file",
+            "size": 485
+          },
+          {
+            "name": "sha256-74701a8c35f6c8d9a4b91f3f3497643001d63e0c7a84e085bed452548fa88d45",
+            "type": "file",
+            "size": 1321082688
+          },
+          {
+            "name": "sha256-832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e",
+            "type": "file",
+            "size": 11343
+          },
+          {
+            "name": "sha256-966de95ca8a62200913e3f8bfbf84c8494536f1b94b49166851e76644e966396",
+            "type": "file",
+            "size": 1429
+          },
+          {
+            "name": "sha256-a70ff7e570d97baaf4e62ac6e6ad9975e04caa6d900d3742d37698494479e0cd",
+            "type": "file",
+            "size": 6016
+          },
+          {
+            "name": "sha256-c6a4ceb8324340a5eb76d3f009a6484ece4ca27cd8b4fe61f75364cc066cde99",
+            "type": "file",
+            "size": 487
+          },
+          {
+            "name": "sha256-ce2cbabaae1f5868dfc5ce18575506149bc6c5665f597f985b50a97c9ff874a3",
+            "type": "file",
+            "size": 485
+          },
+          {
+            "name": "sha256-eb4402837c7829a690fa845de4d7f3fd842c2adee476d5341da8a46ea9255175",
+            "type": "file",
+            "size": 1482
+          },
+          {
+            "name": "sha256-fcc5a6bec9daf9b561a68827b67ab6088e1dba9d1fa2a50d7bbcc8384e0a265d",
+            "type": "file",
+            "size": 7711
+          },
+          {
+            "name": "manifests",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "registry.ollama.ai",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "library",
+            "type": "dir",
+            "size": null
+          }
+        ]
+      }
+    },
+    "home_ssh": {
+      "path": "/Users/ajoxendine68/.ssh",
+      "census": {
+        "present": true,
+        "entries": 6,
+        "sample": [
+          {
+            "name": ".DS_Store",
+            "type": "file",
+            "size": 6148
+          },
+          {
+            "name": "agent",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "s.yj57kzd6sb.agent.n0c6pz1y11",
+            "type": "file",
+            "size": null
+          },
+          {
+            "name": "id_ed25519",
+            "type": "file",
+            "size": 411
+          },
+          {
+            "name": "id_ed25519.pub",
+            "type": "file",
+            "size": 102
+          },
+          {
+            "name": "known_hosts",
+            "type": "file",
+            "size": 92
+          }
+        ]
+      }
+    },
+    "home_fly_kube": {
+      "path": "/Users/ajoxendine68/.kube",
+      "census": {
+        "present": true,
+        "entries": 70,
+        "sample": [
+          {
+            "name": ".DS_Store",
+            "type": "file",
+            "size": 6148
+          },
+          {
+            "name": "cache",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "discovery",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "127.0.0.1_52246",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "admissionregistration.k8s.io",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "apiextensions.k8s.io",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "apiregistration.k8s.io",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "apps",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "authentication.k8s.io",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "authorization.k8s.io",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "autoscaling",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "batch",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "certificates.k8s.io",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "coordination.k8s.io",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "discovery.k8s.io",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "events.k8s.io",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "flowcontrol.apiserver.k8s.io",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "networking.k8s.io",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "node.k8s.io",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "policy",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "rbac.authorization.k8s.io",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "resource.k8s.io",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "scheduling.k8s.io",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "storage.k8s.io",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "v1",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "127.0.0.1_6443",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "admissionregistration.k8s.io",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "apiextensions.k8s.io",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "apiregistration.k8s.io",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "apps",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "authentication.k8s.io",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "authorization.k8s.io",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "autoscaling",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "batch",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "certificates.k8s.io",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "coordination.k8s.io",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "discovery.k8s.io",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "events.k8s.io",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "flowcontrol.apiserver.k8s.io",
+            "type": "dir",
+            "size": null
+          },
+          {
+            "name": "networking.k8s.io",
+            "type": "dir",
+            "size": null
+          }
+        ]
+      }
+    },
+    "journals_and_ledgers": [
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/tri_brain/apex_synthesis/MASTER_CATCH.jsonl",
+        "bytes": 77258899,
+        "lines": 155422
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/memory/catch_log/trinity_gate.log",
+        "bytes": 44981857,
+        "lines": 1007
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/tri_brain/container_3/CATCH_03.jsonl",
+        "bytes": 19257049,
+        "lines": 61103
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/tri_brain/container_2/CATCH_02.jsonl",
+        "bytes": 19140505,
+        "lines": 61110
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/tri_brain/container_1/CATCH_01.jsonl",
+        "bytes": 18675714,
+        "lines": 61103
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/catch_log/dojo_upgp_gauntlet.jsonl",
+        "bytes": 14019335,
+        "lines": 52486
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/catch_log/purple_team_results.log",
+        "bytes": 10179905,
+        "lines": 52486
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/transcript_full.jsonl",
+        "bytes": 6069123,
+        "lines": 3813
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/intelligence/proactive_discoveries.jsonl",
+        "bytes": 5096754,
+        "lines": 3133
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/transcript.jsonl",
+        "bytes": 4483518,
+        "lines": 3813
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/memory/intelligence/quarantine_ledger.jsonl",
+        "bytes": 4446140,
+        "lines": 4625
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/autonomy_report.jsonl",
+        "bytes": 2552996,
+        "lines": 6142
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/memory/catch_log/barn_archive/merkle_journal/lineage.jsonl",
+        "bytes": 1563119,
+        "lines": 7216
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/memory/intelligence/native_kernel_intake_receipts.jsonl",
+        "bytes": 1274687,
+        "lines": 5021
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/memory/intelligence/proactive_discoveries.jsonl",
+        "bytes": 986642,
+        "lines": 511
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/memory/tri_brain/trinity_hashes.jsonl",
+        "bytes": 702550,
+        "lines": 2235
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/offgrid_worker.log",
+        "bytes": 689753,
+        "lines": 6454
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/memory/catch_log/dojo_quantum_10min_gauntlet_log.jsonl",
+        "bytes": 589660,
+        "lines": 588
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/memory/agent_logs/sentinel_cron.log",
+        "bytes": 574358,
+        "lines": 4546
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/memory/agent_logs/sqlite_witness_write_ledger.jsonl",
+        "bytes": 536886,
+        "lines": 1174
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/memory/catch_log/backups/quarantined_pollution_rows_20261120_115058.jsonl",
+        "bytes": 518000,
+        "lines": 700
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/memory/context_scopes/deep_lock_receipts.jsonl",
+        "bytes": 487878,
+        "lines": 3131
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/intelligence/quarantine_ledger.jsonl",
+        "bytes": 460593,
+        "lines": 565
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/memory/catch_log/writer_log.jsonl",
+        "bytes": 441603,
+        "lines": 1284
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/offgrid_receipts.jsonl",
+        "bytes": 407190,
+        "lines": 1197
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/continuous_training_log.jsonl",
+        "bytes": 386510,
+        "lines": 1352
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/memory/catch_log/MCP_EXECUTION_RECEIPTS.jsonl",
+        "bytes": 242293,
+        "lines": 757
+      },
+      {
+        "path": ".sovereign/state/sentinel_heartbeat.jsonl",
+        "bytes": 174404,
+        "lines": 1478
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/self_upgrade_manifest.jsonl",
+        "bytes": 160621,
+        "lines": 1199
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/intelligence/native_kernel_intake_receipts.jsonl",
+        "bytes": 156225,
+        "lines": 623
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/memory/catch_log/dojo_upgp_gauntlet.jsonl",
+        "bytes": 152093,
+        "lines": 581
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/memory/catch_log/blackbox_bbq_gauntlet.log",
+        "bytes": 123336,
+        "lines": 1851
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/memory/catch_log/governed_memory_receipts.jsonl",
+        "bytes": 111925,
+        "lines": 359
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/memory/catch_log/purple_team_results.log",
+        "bytes": 109596,
+        "lines": 581
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/chunks/transcript/00000033.jsonl",
+        "bytes": 102400,
+        "lines": 89
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/chunks/transcript/00000017.jsonl",
+        "bytes": 102400,
+        "lines": 71
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/chunks/transcript/00000028.jsonl",
+        "bytes": 102400,
+        "lines": 78
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/chunks/transcript/00000015.jsonl",
+        "bytes": 102400,
+        "lines": 95
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/chunks/transcript/00000031.jsonl",
+        "bytes": 102400,
+        "lines": 89
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/chunks/transcript/00000035.jsonl",
+        "bytes": 102400,
+        "lines": 110
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/chunks/transcript/00000008.jsonl",
+        "bytes": 102400,
+        "lines": 74
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/chunks/transcript/00000011.jsonl",
+        "bytes": 102400,
+        "lines": 73
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/chunks/transcript/00000013.jsonl",
+        "bytes": 102400,
+        "lines": 145
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/chunks/transcript/00000037.jsonl",
+        "bytes": 102400,
+        "lines": 96
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/chunks/transcript/00000014.jsonl",
+        "bytes": 102400,
+        "lines": 101
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/chunks/transcript/00000029.jsonl",
+        "bytes": 102400,
+        "lines": 113
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/chunks/transcript/00000030.jsonl",
+        "bytes": 102400,
+        "lines": 95
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/chunks/transcript/00000032.jsonl",
+        "bytes": 102400,
+        "lines": 99
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/chunks/transcript/00000016.jsonl",
+        "bytes": 102400,
+        "lines": 79
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/chunks/transcript/00000012.jsonl",
+        "bytes": 102400,
+        "lines": 120
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/chunks/transcript/00000036.jsonl",
+        "bytes": 102400,
+        "lines": 101
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/chunks/transcript/00000009.jsonl",
+        "bytes": 102400,
+        "lines": 89
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/chunks/transcript/00000034.jsonl",
+        "bytes": 102400,
+        "lines": 69
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/chunks/transcript/00000010.jsonl",
+        "bytes": 102400,
+        "lines": 68
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/chunks/transcript/00000021.jsonl",
+        "bytes": 102400,
+        "lines": 89
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/chunks/transcript/00000038.jsonl",
+        "bytes": 102400,
+        "lines": 80
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/chunks/transcript/00000040.jsonl",
+        "bytes": 102400,
+        "lines": 128
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/chunks/transcript/00000005.jsonl",
+        "bytes": 102400,
+        "lines": 79
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/chunks/transcript/00000042.jsonl",
+        "bytes": 102400,
+        "lines": 97
+      },
+      {
+        "path": "Desktop/SSOT_Agentic_Brain/core/memory/agent_logs/chunks/transcript/00000007.jsonl",
+        "bytes": 102400,
+        "lines": 84
+      }
+    ],
+    "runtime": {
+      "date": "2026-11-21T18:35:31Z",
+      "processes_sonic": "_windowserver      415  43.1  0.5 436567392  75696   ??  Ss   Fri12AM 311:14.09 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer -daemon\najoxendine68     70179  27.8  0.7 435352144 109872   ??  S     1:35PM   0:05.83 /opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python ops/scripts/full_home_census.py\najoxendine68     57373   0.0  0.1 435363296  21296   ??  S     7:17AM   0:00.35 /System/iOSSupport/System/Library/PrivateFrameworks/HomeEnergyDaemon.framework/Support/homeenergyd\najoxendine68     55064   0.0  0.1 435358352   8848   ??  S     3:45AM   0:00.23 /System/Library/PrivateFrameworks/EmailDaemon.framework/Versions/A/maild\nroot             54517   0.0  0.0 435301056   2736   ??  Ss    2:30AM   0:00.05 /usr/libexec/seputil --daemonize-reseed\nroot             54431   0.0  0.0 435322224   3280   ??  Ss    2:22AM   0:00.05 /System/Library/Frameworks/AudioToolbox.framework/AudioComponentRegistrar -daemon\nroot             54257   0.0  0.1 435375040  15808   ??  Ss    2:19AM   0:00.45 /System/Library/PrivateFrameworks/AppSSO.framework/Support/AppSSODaemon\nroot             54220   0.0  0.1 435359344   8992   ??  Ss    2:13AM   0:01.32 /System/Library/PrivateFrameworks/MobileAssetDaemon.framework/Versions/A/XPCServices/com.apple.MobileAsset.DownloadService.Builtin.xpc/Contents/MacOS/com.apple.MobileAsset.DownloadService.Builtin\nroot             54215   0.0  0.0 435356128   8144   ??  Ss    2:13AM   0:00.04 /System/Library/PrivateFrameworks/AppleCredentialManager.framework/AppleCredentialManagerDaemon\najoxendine68     54181   0.0  0.1 435376112  17664   ??  S     2:10AM   0:02.10 /System/Library/PrivateFrameworks/CalendarDaemon.framework/Support/calaccessd\nroot             54022   0.0  0.1 435367328  10272   ??  Ss    1:50AM   0:00.15 /System/Library/PrivateFrameworks/BackgroundTaskManagement.framework/Resources/backgroundtaskmanagementd -daemon\najoxendine68     49614   0.0  0.1 435410384  24784   ??  S    11:03PM   0:04.10 /System/Library/PrivateFrameworks/AppStoreDaemon.framework/Support/appstoreagent\nroot             49623   0.0  0.1 435368576  17968   ??  Ss   11:03PM   0:05.26 /System/Library/PrivateFrameworks/CloudKitDaemon.framework/Support/cloudd --system\najoxendine68     49611   0.0  0.2 435385024  32656   ??  S    11:03PM   0:03.43 /System/Library/PrivateFrameworks/HomeKitDaemon.framework/Support/homed\najoxendine68     37554   0.0  0.2 435382256  31648   ??  S     6:36PM   3:08.76 /System/Library/PrivateFrameworks/CloudKitDaemon.framework/Support/cloudd\nroot             30353   0.0  0.0 435395824   2176   ??  Ss    2:11PM   0:04.05 /System/Library/CoreServices/ReportCrash daemon\najoxendine68      3309   0.0  0.1 435375280  12016   ??  Ss   Fri01AM   0:03.89 /Users/ajoxendine68/.cache/opencode/bin/opencode-pty/0.6.0-9a39dc481a87f890/opencode-pty daemon --runtime-dir /Users/ajoxendine68/.local/state/opencode/pty --name ba1b3403-b54e-4999-85ad-c40db4ae7b45\najoxendine68      1011   0.0  0.1 436847904  20032   ??  S    Fri12AM   0:16.65 /opt/homebrew/opt/ollama/bin/ollama serve\nroot               488   0.0  0.0 435321344   2336   ??  Ss   Fri12AM   0:00.76 /usr/sbin/cron\n_distnote          397   0.0  0.0 435321840   3120   ??  Ss   Fri12AM   0:24.07 /usr/sbin/distnoted daemon\nroot               417   0.0  0.0 435321472   4912   ??  Ss   Fri12AM   0:54.20 /usr/sbin/cfprefsd daemon\nroot               357   0.0  0.0 435321856   1344   ??  Ss   Fri12AM   0:00.02 /usr/libexec/IOMFB_bics_daemon\nroot               350   0.0  0.1 435368800  11536   ??  Ss   Fri12AM   0:08.09 /usr/sbin/systemstats --daemon\najoxendine68     70178   0.0  0.0 435308016   2480   ??  S     1:35PM   0:00.01 /bin/zsh +o nomatch -c cd /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain && python3 ops/scripts/full_home_census.py 2>&1 | head -12; echo \"CENSUS_EXIT=$?\"",
+      "crontab": "# QUARANTINED 2026-11-13: source gone with Xoras_Workspace (25 commits of cron mail); re-point to SSOT_Agentic_Brain/core/ops when a watchdog exists\n# */5 * * * * /Users/ajoxendine68/Desktop/Xoras_Workspace/ops/scripts/cycle_watchdog.sh\n*/5 * * * * /usr/bin/python3 /Users/ajoxendine68/.sovereign/scripts/sovereign_sentinel.py >> /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/agent_logs/sentinel_cron.log 2>&1",
+      "launch_agents": "actions.runner.aoxendine3-sovra-core-lighthouse.xoras-m4-runner.plist\ncom.google.GoogleUpdater.wake.plist\ncom.google.keystone.agent.plist\ncom.google.keystone.xpcservice.plist\nsh.brew.ollama.plist\ntestcontainers.desktop.plist",
+      "git_head": "52b7296c4",
+      "git_dirty": "63968"
+    }
+  }
+}
