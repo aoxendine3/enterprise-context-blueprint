@@ -17,8 +17,27 @@ from typing import Dict, Any, Generator, Optional
 
 logger = logging.getLogger("xmars_cloudflare")
 
-CLOUDFLARE_ACCOUNT_ID = os.getenv("CLOUDFLARE_ACCOUNT_ID", "eb363bcfe2d366cd79f95aa3efd25f8c")
-CLOUDFLARE_API_TOKEN = os.getenv("CLOUDFLARE_API_TOKEN", "cfut_lc6Oky8uBl9ULX4x80X90fI4iLvfnvb9KoBPhhxk61758b8e")
+# SECURITY FIX (full-home census, 2026-11-21): the prior version hardcoded a
+# live Cloudflare token as a getenv default — a real secret committed in source.
+# Credentials now come ONLY from the environment or the sovereign credential
+# file (~/.sovereign/cloud_credentials.env), never from a source literal.
+def _load_cf_credentials() -> tuple:
+    account = os.getenv("CLOUDFLARE_ACCOUNT_ID", "")
+    token = os.getenv("CLOUDFLARE_API_TOKEN", "")
+    if not (account and token):
+        cred_file = os.path.expanduser("~/.sovereign/cloud_credentials.env")
+        if os.path.isfile(cred_file):
+            try:
+                from dotenv import dotenv_values
+                vals = dotenv_values(cred_file)
+                account = account or vals.get("CLOUDFLARE_ACCOUNT_ID", "")
+                token = token or vals.get("CLOUDFLARE_API_TOKEN", "")
+            except Exception:
+                pass
+    return account, token
+
+
+CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_API_TOKEN = _load_cf_credentials()
 
 CF_MODELS = {
     "cf-deepseek-r1-32b": "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
@@ -27,7 +46,15 @@ CF_MODELS = {
 }
 
 class CloudflareBridge:
-    def __init__(self, account_id: str = CLOUDFLARE_ACCOUNT_ID, api_token: str = CLOUDFLARE_API_TOKEN):
+    def __init__(self, account_id: str = None, api_token: str = None):
+        # Fail closed: never construct a bridge with an empty credential.
+        account_id = account_id or CLOUDFLARE_ACCOUNT_ID
+        api_token = api_token or CLOUDFLARE_API_TOKEN
+        if not account_id or not api_token:
+            raise RuntimeError(
+                "[CF-Bridge] FAIL CLOSED: Cloudflare credentials absent. "
+                "Set CLOUDFLARE_ACCOUNT_ID / CLOUDFLARE_API_TOKEN or provide "
+                "~/.sovereign/cloud_credentials.env. No hardcoded fallback exists.")
         self.account_id = account_id
         self.api_token = api_token
         self.base_url = f"https://api.cloudflare.com/client/v4/accounts/{self.account_id}"
