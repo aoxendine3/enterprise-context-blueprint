@@ -140,6 +140,29 @@ def main():
                           "tracked_detected": tracked, "untracked_allowed": untracked}, indent=2))
         return 0 if passed else 1
 
+    if "--self-test-sandbox" in args:
+        # Task 4 proof: candidate code that writes OUTSIDE its scope must be
+        # refused by the OS-enforced jail in independent_validator.py.
+        sys.path.insert(0, str(ROOT / "core/governance"))
+        from independent_validator import IndependentBlackboxValidator as V
+        import os as _os
+        canary = ROOT / "SANDBOX_ESCAPE_CANARY"
+        if canary.exists():
+            canary.unlink()
+        escape = ('open(%r, "w").write("x")\n' % str(canary))
+        escape_ok, reason, _ = V.validate_python_code(escape, [])  # False == blocked
+        good_ok, _, _ = V.validate_python_code("def f(): return 1\n", ["f"])
+        # The escape is contained when the validator REFUSES it (escape_ok False)
+        # AND no canary file was actually created on disk.
+        contained = (not escape_ok) and (not canary.exists())
+        result = {"sandbox_escape_blocked": contained,
+                  "canary_created": canary.exists(),
+                  "harmless_code_passes": good_ok,
+                  "reason": reason[:120],
+                  "verdict": "SANDBOX_PASS" if (contained and good_ok) else "SANDBOX_FAIL"}
+        print(json.dumps(result, indent=2))
+        return 0 if result["verdict"] == "SANDBOX_PASS" else 1
+
     if "--self-test-negative" in args:
         # Adversarial control: a child that FAILS must be refused.
         ok, payload = run_gate(
