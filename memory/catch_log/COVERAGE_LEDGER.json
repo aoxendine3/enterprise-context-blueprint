@@ -1,0 +1,209 @@
+{
+  "timestamp_utc": "2026-11-21T18:37:15Z",
+  "verdict": "COVERAGE_LEDGER_COMPLETE",
+  "claim": "STRUCTURAL_COVERAGE_100_PERCENT / CONTENT_COMPREHENSION_PARTIAL",
+  "domains_inventoried": 26,
+  "domains": [
+    {
+      "domain": "home_dotfiles",
+      "present": true,
+      "entries": 675,
+      "depth_sampled": 40
+    },
+    {
+      "domain": "ssot_root",
+      "present": true,
+      "entries": 228375,
+      "depth_sampled": 40
+    },
+    {
+      "domain": "ssot_core",
+      "present": true,
+      "entries": 1646,
+      "depth_sampled": 40
+    },
+    {
+      "domain": "ssot_ops",
+      "present": true,
+      "entries": 1153,
+      "depth_sampled": 40
+    },
+    {
+      "domain": "ssot_memory",
+      "present": true,
+      "entries": 2683,
+      "depth_sampled": 40
+    },
+    {
+      "domain": "ssot_docs",
+      "present": true,
+      "entries": 10738,
+      "depth_sampled": 40
+    },
+    {
+      "domain": "ssot_workspaces",
+      "present": true,
+      "entries": 905,
+      "depth_sampled": 40
+    },
+    {
+      "domain": "ssot_labs",
+      "present": true,
+      "entries": 349,
+      "depth_sampled": 40
+    },
+    {
+      "domain": "ssot_barn",
+      "present": true,
+      "entries": 728,
+      "depth_sampled": 40
+    },
+    {
+      "domain": "ssot_scratch",
+      "present": true,
+      "entries": 1769,
+      "depth_sampled": 40
+    },
+    {
+      "domain": "ssot_archives",
+      "present": false,
+      "entries": 0,
+      "depth_sampled": 0
+    },
+    {
+      "domain": "ssot_artifacts",
+      "present": true,
+      "entries": 7829,
+      "depth_sampled": 40
+    },
+    {
+      "domain": "ssot_code",
+      "present": true,
+      "entries": 52055,
+      "depth_sampled": 40
+    },
+    {
+      "domain": "ssot_identity",
+      "present": true,
+      "entries": 4,
+      "depth_sampled": 4
+    },
+    {
+      "domain": "ssot_cards",
+      "present": true,
+      "entries": 47,
+      "depth_sampled": 40
+    },
+    {
+      "domain": "ssot_governance",
+      "present": true,
+      "entries": 17,
+      "depth_sampled": 17
+    },
+    {
+      "domain": "home_config",
+      "present": true,
+      "entries": 412,
+      "depth_sampled": 40
+    },
+    {
+      "domain": "home_sovereign",
+      "present": true,
+      "entries": 15,
+      "depth_sampled": 15
+    },
+    {
+      "domain": "home_sovereign_witness",
+      "present": true,
+      "entries": 1,
+      "depth_sampled": 1
+    },
+    {
+      "domain": "home_gemini_brains",
+      "present": true,
+      "entries": 73,
+      "depth_sampled": 40
+    },
+    {
+      "domain": "home_agents",
+      "present": true,
+      "entries": 59,
+      "depth_sampled": 40
+    },
+    {
+      "domain": "home_claude",
+      "present": true,
+      "entries": 86,
+      "depth_sampled": 40
+    },
+    {
+      "domain": "home_codex",
+      "present": true,
+      "entries": 162,
+      "depth_sampled": 40
+    },
+    {
+      "domain": "home_ollama",
+      "present": true,
+      "entries": 43,
+      "depth_sampled": 40
+    },
+    {
+      "domain": "home_ssh",
+      "present": true,
+      "entries": 6,
+      "depth_sampled": 6
+    },
+    {
+      "domain": "home_fly_kube",
+      "present": true,
+      "entries": 70,
+      "depth_sampled": 40
+    }
+  ],
+  "read_in_depth": [
+    "identity/sovereign_citizens_manifest.json (22 citizens)",
+    "memory/tri_brain/merkle_root.hash + .known_good (canonical claim)",
+    "core/memory/catch_log/merkle_root.hash (shadow claim)",
+    "memory/catch_log/QUARANTINE_LEDGER.json (18 entries, 0 deletions)",
+    "memory/tri_brain/{signed_root_manifests,golden_checkpoints,trinity_hashes,world_merkle_journal,merkle_asset_registry}.jsonl",
+    "memory/agent_logs/system_health_status.json, sentinel_cron.log",
+    "~/.sovereign/state/sentinel_heartbeat.jsonl (live)",
+    "core/governance/{scoped_runtime_credential_gate,independent_validator,two_agent_state_isolation,schema_handoff_gate}.py",
+    ".git/hooks/pre-commit + .github/workflows/reality_gate.yml + boundary_gate.yml",
+    "core/ops/cloud/cloudflare_r2_client.py + core/products/xmars_os/cloudflare_bridge.py",
+    "home credential file metadata (12 files, values never read/printed)",
+    "xoras_turnkey_boot.sh (shadow claim read path defect)"
+  ],
+  "remaining_gaps": [
+    {
+      "item": "44,501 untracked files in code/",
+      "status": "CATALOGUED_NOT_READ",
+      "note": "flat corpus (27k py/9k java/5.7k rs); file-level content comprehension not performed"
+    },
+    {
+      "item": "10,327 untracked docs + 7,821 artifacts",
+      "status": "CATALOGUED_NOT_READ"
+    },
+    {
+      "item": "26GB misc/ nested git repo",
+      "status": "BOUNDARY_ONLY",
+      "note": "nested repo xoras-barn-misc; counted, not traversed (causes grep timeouts)"
+    },
+    {
+      "item": "155k-line MASTER_CATCH.jsonl + 3x61k container CATCH logs",
+      "status": "SAMPLED_NOT_FULLY_READ"
+    },
+    {
+      "item": "15 Antigravity brain dirs (up to 295 files)",
+      "status": "CLASSIFIED_ARCHIVE",
+      "note": "session artifacts; not live repos"
+    },
+    {
+      "item": "37 modified tracked files",
+      "status": "LISTED_NOT_DIFFED",
+      "note": "mostly receipts/logs; 3 code files predate this thread"
+    }
+  ],
+  "honest_note": "100% structural inventory achieved: every top-level domain under the home is enumerated with counts. 100% file-by-file CONTENT comprehension is NOT claimed \u2014 63,932 untracked files and a 26GB nested repo make that neither achievable nor necessary to remediate the live defects found. Claiming otherwise would be the theater we refuse."
+}

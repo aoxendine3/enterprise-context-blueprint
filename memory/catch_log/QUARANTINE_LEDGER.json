@@ -239,6 +239,15 @@
       "reason": "11 standing grants let the external app invoke our speech script and reality gate without asking \u2014 accumulated from other sessions, not ours.",
       "action": "Backed up intact, cleared allow-list to 0, relaunched app, verified grants stay 0 and MCP bridge intact.",
       "verdict": "REVOKED_VERIFIED"
+    },
+    {
+      "utc": "2026-11-20T11:52:00.000000+00:00",
+      "kind": "ROW_QUARANTINE",
+      "item": "700 test-pollution lineage nodes in memory/tri_brain/world_file.db",
+      "reason": "commit_step dual-write guard allowed ephemeral engines (db_path != canonical) to write synthetic test nodes into the canonical evidence store, desyncing the Merkle root claim (native Zig root c26b3d73 vs on-disk claim b955cfe2).",
+      "action": "Hardened the dual-write guard so only the production mirror engine (db_path == DB_PATH) writes to canonical. Backed up canonical DB to memory/catch_log/backups/world_file.db.pre_quarantine_20261120_115058.db. Exported the 700 pollution rows to memory/catch_log/backups/quarantined_pollution_rows_20261120_115058.jsonl (sha256 0369b3521e7fa3e1a8400e9bf8014033f7b2e7dfc27c670d3310a8a2555f3228). Removed exactly those 700 rows from canonical.",
+      "evidence": "memory/catch_log/backups/world_file.db.pre_quarantine_20261120_115058.db; memory/catch_log/backups/quarantined_pollution_rows_20261120_115058.jsonl",
+      "verdict": "QUARANTINED_VERIFIED"
     }
   ],
   "resolved_not_moved": [

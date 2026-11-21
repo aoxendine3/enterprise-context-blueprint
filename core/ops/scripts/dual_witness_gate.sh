@@ -79,15 +79,16 @@ log "=== DUAL-WITNESS GATE STARTING (fail-closed on disagreement) ==="
 
 # --- Journal-mode remediation: the Zig witness opens the DB read-only ---
 # A WAL-mode DB without its -shm file cannot be opened read-only, so the
-# witness fails closed with "unable to open database file". The canonical
-# store is therefore kept PERMANENTLY in DELETE journal mode (no restore
-# trap: restoring WAL broke every subsequent read-only consumer).
+# witness switches the canonical store to DELETE journal mode for its read,
+# then restores WAL mode before exiting so other consumers (production gates)
+# are not affected.
+trap 'sqlite3 "$DB_PATH" "PRAGMA journal_mode=WAL;" 2>/dev/null || true' EXIT
 JMODE=$(sqlite3 "$DB_PATH" "PRAGMA journal_mode;" 2>/dev/null || echo "unknown")
 if [ "$JMODE" != "delete" ]; then
   rm -f "$DB_PATH-wal" "$DB_PATH-shm"
   sqlite3 "$DB_PATH" "PRAGMA journal_mode=DELETE;" >/dev/null 2>&1 \
     || fail_closed "Cannot switch journal mode for witness read" "$DB_PATH"
-  log "[PRE-FLIGHT] Journal mode set to DELETE (permanent policy) for read-only witness access."
+  log "[PRE-FLIGHT] Journal mode set to DELETE for read-only witness access (restored on exit)."
 fi
 
 # --- Pre-flight: refresh the Merkle claim from the canonical store ---

@@ -14,16 +14,22 @@ note() { printf '%s\n' "$*"; }
 run_gate() {
   local label="$1"; shift
   note "[gate] ${label} ..."
-  if "$@" >/tmp/reality_gate_step.log 2>&1; then
+  # Per-gate log: each gate's output is preserved so a failing gate's detail
+  # is not clobbered by subsequent gates. A shared /tmp file made the
+  # "see /tmp/reality_gate_step.log" pointer a lie after the first gate.
+  local step_log="/tmp/reality_gate_step_${GATE_INDEX}.log"
+  GATE_INDEX=$((GATE_INDEX + 1))
+  if "$@" >"$step_log" 2>&1; then
     note "  [PASS] ${label}"
     PASSED=$((PASSED + 1))
     return 0
   fi
-  note "  [FAIL] ${label} — see /tmp/reality_gate_step.log"
+  note "  [FAIL] ${label} — see ${step_log}"
   FAILED=$((FAILED + 1))
   [ -z "$FAIL_AT" ] && FAIL_AT="$label"
   return 1
 }
+GATE_INDEX=0
 
 PRODUCTION_STATUS="FAIL"
 if run_gate "production gates (6/6)" bash ops/scripts/verify_all_production_gates.sh; then

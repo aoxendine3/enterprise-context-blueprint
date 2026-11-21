@@ -37,7 +37,16 @@ echo "[STEP 2/5] Executing Pre-Deliberation Health Gate V2..."
 echo ""
 echo "[STEP 3/5] Verifying Merkle Catch DAG Tree Integrity..."
 "$PYTHON_BIN" "${SCRIPT_DIR}/merkle_catch_dag.py" --verify
-MERKLE_ROOT="$(cat "${ROOT}/memory/catch_log/merkle_root.hash" 2>/dev/null || echo "N/A")"
+# FIX (full-home census, 2026-11-21): the legacy path memory/catch_log/merkle_root.hash
+# does not exist (memory/ and core/memory/ are distinct directories, different
+# inodes), so boot displayed N/A. The canonical claim lives in tri_brain and is
+# cross-checked against .known_good by the witness gates. Fail closed if missing.
+if [ -f "${ROOT}/memory/tri_brain/merkle_root.hash" ]; then
+    MERKLE_ROOT="$(cat "${ROOT}/memory/tri_brain/merkle_root.hash")"
+else
+    echo "❌ Canonical merkle claim missing — refusing to boot with N/A." >&2
+    exit 1
+fi
 echo "🟢 [MERKLE DAG ROOT HASH] ${MERKLE_ROOT}"
 
 # Step 4: 3-Agent Live Local Ollama Quorum Deliberation (MOVE 1 & MOVE 2)

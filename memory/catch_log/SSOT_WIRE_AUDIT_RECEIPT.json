@@ -1,0 +1,74 @@
+{
+  "timestamp_utc": "2026-11-21T23:13:05Z",
+  "verdict": "SSOT_WIRE_AUDIT_PASS",
+  "counts": {
+    "PASS": 7
+  },
+  "critical_fail": false,
+  "checks": [
+    {
+      "check": "citizen_cards",
+      "status": "PASS",
+      "severity": "CRITICAL",
+      "detail": "22 citizens sealed; 0 missing cards",
+      "evidence": {
+        "missing": []
+      }
+    },
+    {
+      "check": "witness_wires",
+      "status": "PASS",
+      "severity": "CRITICAL",
+      "detail": "4/4 witness wires present",
+      "evidence": {
+        "dead": []
+      }
+    },
+    {
+      "check": "claim_vs_dag",
+      "status": "PASS",
+      "severity": "CRITICAL",
+      "detail": "claim=c26b3d7301cc dag_root=c26b3d7301cc",
+      "evidence": {
+        "claim": "c26b3d7301cc0fd9ecb12985f6f929fac7601c212d709a60e6f5d4d42d18a8b1",
+        "dag_root": "c26b3d7301cc0fd9ecb12985f6f929fac7601c212d709a60e6f5d4d42d18a8b1"
+      }
+    },
+    {
+      "check": "dead_path_refs",
+      "status": "PASS",
+      "severity": "HIGH",
+      "detail": "0 hardcoded paths point at non-existent roots across 904 scripts",
+      "evidence": {
+        "refs": []
+      }
+    },
+    {
+      "check": "audit_honesty",
+      "status": "PASS",
+      "severity": "CRITICAL",
+      "detail": "0 audit scripts hardcode PASS without a fail-closed gate",
+      "evidence": {
+        "theater": []
+      }
+    },
+    {
+      "check": "daxx_engines",
+      "status": "PASS",
+      "severity": "HIGH",
+      "detail": "0 Daxx scripts lacked an import guard (destructive-at-import: 0)",
+      "evidence": {
+        "unguarded": []
+      }
+    },
+    {
+      "check": "gate_runners",
+      "status": "PASS",
+      "severity": "CRITICAL",
+      "detail": "reality_gate executable=True verdict=REALITY_GATE_PASS",
+      "evidence": {
+        "verdict": "REALITY_GATE_PASS"
+      }
+    }
+  ]
+}

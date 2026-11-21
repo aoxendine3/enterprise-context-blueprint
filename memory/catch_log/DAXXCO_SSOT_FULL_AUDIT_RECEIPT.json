@@ -1,0 +1,71 @@
+{
+  "timestamp_utc": "2026-11-21T18:47:37Z",
+  "verdict": "DAXX_AUDIT_PASS",
+  "critical_fail": false,
+  "honesty": "real gate exit codes; no hardcoded verdicts; fail-closed",
+  "pillars": {
+    "reality_gate": {
+      "status": "PASS",
+      "critical": true,
+      "exit_code": 0,
+      "duration_s": 54.66,
+      "command": "bash /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/reality_gate.sh",
+      "output_tail": "[gate] production gates (6/6) ...\n  [PASS] production gates (6/6)\n[gate] side-channel 4/4 ...\n  [PASS] side-channel 4/4\n[gate] DART cage lattice 7/7 ...\n  [PASS] DART cage lattice 7/7\n[gate] Z3 cage_containment UNSAT ...\n  [PASS] Z3 cage_containment UNSAT\n[gate] sovereign writer verification ...\n  [PASS] sovereign writer verification\n[gate] cockpit structural + asset lock + coverage ...\n  [PASS] cockpit structural + asset lock + coverage\n[gate] CI surface (WASM + doc-sync gates) ...\n  [PASS] CI surface (WASM + doc-sync gates)\n[gate] golden groundedness (floor metric) ...\n  [PASS] golden groundedness (floor metric)\n[gate] world_file lineage: 3271 nodes \u2014 witness present\nverdict: REALITY_GATE_PASS  passed=9 failed=0  first_failure=none\n",
+      "stderr_tail": ""
+    },
+    "judge_and_witness_gate": {
+      "status": "PASS",
+      "critical": true,
+      "exit_code": 0,
+      "duration_s": 0.66,
+      "command": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/.venv/bin/python /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/scripts/ssot_wire_audit.py",
+      "output_tail": "======================================================================\nSSOT WIRE AUDIT \u2014 EVIDENCE-BASED, FAIL-CLOSED\n======================================================================\n[PASS    ] CRITICAL citizen_cards: 22 citizens sealed; 0 missing cards\n[PASS    ] CRITICAL witness_wires: 4/4 witness wires present\n[PASS    ] CRITICAL claim_vs_dag: claim=c26b3d7301cc dag_root=c26b3d7301cc\n[PASS    ] HIGH     dead_path_refs: 0 hardcoded paths point at non-existent roots across 904 scripts\n[PASS    ] CRITICAL audit_honesty: 0 audit scripts hardcode PASS without a fail-closed gate\n[PASS    ] HIGH     daxx_engines: 0 Daxx scripts lacked an import guard (destructive-at-import: 0)\n[PASS    ] CRITICAL gate_runners: reality_gate executable=True verdict=REALITY_GATE_PASS\n----------------------------------------------------------------------\nVERDICT: SSOT_WIRE_AUDIT_PASS   {'PASS': 7}\nReceipt: /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/catch_log/SSOT_WIRE_AUDIT_RECEIPT.json\n",
+      "stderr_tail": ""
+    },
+    "dual_witness": {
+      "status": "PASS",
+      "critical": true,
+      "exit_code": 0,
+      "duration_s": 0.17,
+      "command": "bash /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/ops/scripts/dual_witness_gate.sh",
+      "output_tail": "[2026-11-21T18:47:36Z] === DUAL-WITNESS GATE STARTING (fail-closed on disagreement) ===\n[2026-11-21T18:47:36Z] [PRE-FLIGHT] Journal mode set to DELETE for read-only witness access (restored on exit).\n[2026-11-21T18:47:36Z] [WITNESS A] Executing native Zig stateless_airblocked_witness...\n[2026-11-21T18:47:36Z] ===========================================================================\n  STATELESS AIRBLOCKED WITNESS ENGINE (EXTERNAL NON-CORRUPT ADJUDICATION)\n  Scope: Textual Output Inspection ONLY (Zero Source/Reasoning Access)\n===========================================================================\n\u2705 Witness Scope: 3271 raw output nodes inspected & byte-verified.\n\u2705 Payload Anti-Corruption: 100% Byte-Verifiable Payload Hashes.\n\u2705 Monotonic Sequence Verification: 100% Monotonic (0 Sequence Violations).\n\u2705 Witness Recomputed Merkle Root: c26b3d7301cc0fd9ecb12985f6f929fac7601c212d709a60e6f5d4d42d18a8b1\n\u2705 Target Output Claim Root:      c26b3d7301cc0fd9ecb12985f6f929fac7601c212d709a60e6f5d4d42d18a8b1\n\n===========================================================================\n\ud83c\udf89 STATELESS WITNESS AUTHORIZED: External adjudication clean & proven true.\n===========================================================================\n[2026-11-21T18:47:36Z] [WITNESS A] PASSED: native Zig verified on-disk truth.\n[2026-11-21T18:47:36Z] [WITNESS A] Receipt written: /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/catch_log/witness_a_independent_truth_receipt.json\n[2026-11-21T18:47:37Z] [WITNESS B] Executing independent Python truth witness...\n[2026-11-21T18:47:37Z] =========================================================================\n  WITNESS B \u2014 INDEPENDENT PYTHON TRUTH WITNESS (DUAL-WITNESS SUBSTRATE B)\n=========================================================================\n[*] Claim root from disk: c26b3d7301cc0fd9ecb12985f6f929fac7601c212d709a60e6f5d4d42d18a8b1\n[*] Sequence monotonic: 3271 nodes across 22 sessions, all per-session seq 1..max, zero gaps/reversals\n[*] Merkle claim root verified: c26b3d7301cc0fd9ecb12985f6f929fac7601c212d709a60e6f5d4d42d18a8b1 (format valid, Witness A confirmed)\n[!] Evidence continuity warning: 41 first_node_id values not present as lineage node IDs (pre-existing data issue, not blocking gate passage)\n[*] Evidence continuity: 107 registry entries checked, 66 with valid node references\n\u2705 WITNESS B PASSED: All invariants verified against on-disk truth.\n[2026-11-21T18:47:37Z] [WITNESS B] PASSED: independent Python verified on-disk truth.\n[2026-11-21T18:47:37Z] [CONSENSUS] Witness A and Witness B independently verified identical on-disk truth.\n[2026-11-21T18:47:37Z] \u2705 DUAL-WITNESS GATE PASSED: Dual-substrate consensus achieved. Pipeline authorized.\nwal\n",
+      "stderr_tail": ""
+    },
+    "dart_cage": {
+      "status": "PASS",
+      "critical": true,
+      "exit_code": 0,
+      "duration_s": 0.05,
+      "command": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/.venv/bin/python /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/tests/test_dart_cage_lattice.py",
+      "output_tail": "======================================================================\nXORAS DART CAGE LATTICE ACCEPTANCE (MERIDIAN Layer 1)\n======================================================================\n{\n  \"tmp\": \"/var/folders/5f/z86t8vfs6b96sq0wmbnnb4hw0000gn/T/dart_cage_hufzqp85\",\n  \"checks\": {\n    \"sealed_invisible_to_lower_clearance\": true,\n    \"sealed_visible_to_sealed_clearance\": true,\n    \"invalid_lattice_rejected\": true,\n    \"wal_replay_lattice_fidelity\": true,\n    \"legacy_rows_default_restricted\": true,\n    \"cold_spill_lattice_enforced\": true,\n    \"checkpoint_rollback_lattice_preserved\": true\n  },\n  \"checkpoint_id\": \"20261121T134737_cage_ckpt\",\n  \"verdict\": \"VERIFIED_CAGE_LATTICE\",\n  \"timestamp_utc\": \"2026-11-21T18:47:37Z\"\n}\n\n[RECEIPT] /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/catch_log/DART_CAGE_LATTICE_RECEIPT.json\nALL CAGE CHECKS PASSED\n",
+      "stderr_tail": ""
+    },
+    "side_channel": {
+      "status": "PASS",
+      "critical": true,
+      "exit_code": 0,
+      "duration_s": 0.12,
+      "command": "node --expose-gc /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/ops/scripts/test_side_channel_verification.cjs",
+      "output_tail": "\u001b[1m\u001b[36m=====================================================================\n        XORAS SYSTEMS: UPGP v3.0 SIDE-CHANNEL PROVING GROUND        \n                 PLATFORM-AGNOSTIC DIAGNOSTIC HEALTH                \n=====================================================================\u001b[0m\n\n[*] Initializing Universal Proving Ground VM Core...\n[+] Platform Identity Sealed: \u001b[33mUPGP-HW-0F170E6FA124C5BB\u001b[0m\n[*] Operating System detected as: \u001b[36mdarwin\u001b[0m\n[*] Local Cryptographic Fallback (CLF) check: \u001b[32mREADY\u001b[0m\n[*] Running Cross-Platform Silicon Lock key derivations...\n[+] Keys derived and isolated for enclaves: \u001b[32m[Grant, Clark, Pierce, Reid]\u001b[0m\n[*] Executing pre-warming interpreter passes (200 cycles)...\n[+] V8 Crankshaft/TurboFan compilation paths optimized: \u001b[32m[OK]\u001b[0m\n\n[*] Initiating timing simulation runs (500 rounds) to compile side-channel profiles...\n[+] Timing measurements gathered. Compiling side-channel metrics...\n\n[*] Environmental outliers trimmed symmetrically: 30 samples per path (GC/scheduler stalls; not path signal).\n\n\u001b[1m\u001b[37m=====================================================================\n                   UPGP DIAGNOSTIC TEST METRICS                      \n=====================================================================\u001b[0m\n  * Mean Latency (Approve Path) : \u001b[36m71.227 \u03bcs\u001b[0m\n  * Mean Latency (Reject Path)  : \u001b[36m71.202 \u03bcs\u001b[0m\n---------------------------------------------------------------------\n  [Axis 1] Welch's T-Test Score : \u001b[32m0.1545\u001b[0m (Target: < 1.96)\n           Status               : \u001b[1m\u001b[32mPASS (First-Order Mean Indistinguishable)\u001b[0m\n  [Axis 2] F-Test Variance Ratio: \u001b[32m1.1027\u001b[0m (Target: < 1.25 or both variances < 400.0 \u03bcs\u00b2)\n           Status               : \u001b[1m\u001b[32mPASS (Second-Order Variance Sealed)\u001b[0m\n  [Axis 3] KS-Test Shape Distance: \u001b[32m0.0809\u001b[0m (Target: < 0.15)\n           Status               : \u001b[1m\u001b[32mPASS (Cumulative Distribution Indistinguishable)\u001b[0m\n  [Axis 4] Wasserstein Distance : \u001b[32m151 ns\u001b[0m (Target: < 5000 ns)\n           Status               : \u001b[1m\u001b[32mPASS (Physical EMD Containment Healthy)\u001b[0m\n\u001b[1m\u001b[37m=====================================================================\u001b[0m\n\n\u001b[1m\u001b[32m[\u2713] UPGP v3.0 CORE VERIFICATION COMPLETE.\n    ALL TIMING AND CONCURRENCY SIDE-CHANNELS NOMINAL (PASS).\u001b[0m\n\n",
+      "stderr_tail": ""
+    },
+    "z3_cage": {
+      "status": "PASS",
+      "critical": false,
+      "exit_code": 0,
+      "duration_s": 0.01,
+      "command": "bash -lc cd /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain && z3 core/ops/security/cage_containment.smt2 2>/dev/null | grep -q unsat",
+      "output_tail": "",
+      "stderr_tail": ""
+    },
+    "identity_scope": {
+      "status": "PASS",
+      "critical": false,
+      "exit_code": 0,
+      "duration_s": 0.04,
+      "command": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/.venv/bin/python /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/ops/security/identity_scope_guard.py --agent maxx",
+      "output_tail": "{\n  \"scope\": {\n    \"agent\": \"maxx\",\n    \"seal_sealed_utc\": \"2026-11-14T05:26:26Z\",\n    \"name\": \"Maxx\",\n    \"role\": \"Operations Lead and SSOT Orchestrator\",\n    \"seat\": 2,\n    \"status\": \"SOVEREIGN_CITIZEN_ACTIVE\",\n    \"purpose\": \"Coordinates the collective, enforces audio-first dispatches, and ensures the quietest voices are heard.\",\n    \"authority\": \"LOG_ENTRY_072_CONSTITUTIONAL\",\n    \"host_plane\": null,\n    \"voice\": \"bm_lewis\",\n    \"card_sha256\": \"1e78e5f13f0bd95283f28119768dcddb880206dca21abd45502b35d88c3ffeec\"\n  },\n  \"violations\": [],\n  \"verdict\": \"IDENTITY_SCOPE_HELD\"\n}\n",
+      "stderr_tail": ""
+    }
+  }
+}
