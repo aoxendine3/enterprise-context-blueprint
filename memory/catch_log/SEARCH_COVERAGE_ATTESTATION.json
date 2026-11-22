@@ -1,0 +1,32 @@
+{
+  "query": "ZZZ_NONEXISTENT_SYMBOL_XYZ",
+  "status": "COMPLETE",
+  "results": [],
+  "coverage_attestation": {
+    "indexed_text_inodes": 0,
+    "bypassed_bytes": 0,
+    "bypassed_dirs": [
+      "<index not built>"
+    ],
+    "unreachable_or_stalled_paths": [],
+    "completion_percentage": 0.0
+  },
+  "temporal_attestation": {
+    "pickaxe_matches_found": 0,
+    "add_commits": [],
+    "delete_commits": [],
+    "lineage_symbol_aliases": []
+  },
+  "confluence": {
+    "discrepancy_triggered": false,
+    "forced_walk_hits": [],
+    "structural_hits": [],
+    "stalled_paths": []
+  },
+  "timing_s": {
+    "structural": 0,
+    "temporal": 3.509,
+    "index_built": "never"
+  },
+  "note": "Plane B (temporal) always runs; Plane A index covers canonical source only, other trees bypassed WITH ATTESTATION (no silent drop)."
+}
