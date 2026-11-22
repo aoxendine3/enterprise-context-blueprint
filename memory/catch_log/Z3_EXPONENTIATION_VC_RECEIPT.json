@@ -1,0 +1,28 @@
+{
+  "timestamp_utc": "2026-11-22T00:38:28Z",
+  "verdict": "Z3_VC_PROOF_PASS",
+  "z3_version": "4.16.0",
+  "encoding": "pow axiomatized by pow(x,0)=1 and i>0\u2192pow(x,i)=x\u00b7pow(x,i-1); universal Int quantifiers",
+  "vcs": {
+    "VC1_init": {
+      "valid": true,
+      "seconds": 0.0075,
+      "detail": "UNSAT (formula valid under pow axioms)"
+    },
+    "VC2_preservation": {
+      "valid": true,
+      "seconds": 0.0379,
+      "detail": "UNSAT (formula valid under pow axioms)"
+    },
+    "VC3_post": {
+      "valid": true,
+      "seconds": 0.0008,
+      "detail": "UNSAT (formula valid under pow axioms)"
+    }
+  },
+  "negative_control": {
+    "tampered_invariant_refuted": true,
+    "seconds": 61.8127,
+    "detail": "UNKNOWN: smt tactic failed to show goal to be sat/unsat (incomplete quantifiers)"
+  }
+}
