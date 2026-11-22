@@ -36,8 +36,17 @@ def compute_mock_18432d_vector(text: str) -> list[float]:
     rng = random.Random(seed)
     return [round(rng.uniform(-0.05, 0.05), 6) for _ in range(18432)]
 
-def calculate_node_hash(index: int, timestamp: str, parent_hash: str, agent_id: str, beat_type: str, payload: str) -> str:
-    raw_block = f"{index}|{timestamp}|{parent_hash}|{agent_id}|{beat_type}|{payload}"
+def calculate_node_hash(index: int, timestamp: str, parent_hash: str, agent_id: str, beat_type: str, payload: str, artifact_hash: str = "") -> str:
+    # FIX: evidence nodes committed by evidence_gate.py append |artifact_hash to
+    # the raw block (see commit_dag_node). The verifier must use the SAME scheme
+    # or every evidence node reads as CORRUPTED. When artifact_hash is empty the
+    # legacy six-field scheme is used, so pre-existing nodes still verify.
+    # Mirror commit_dag_node exactly: agent lowercased, beat uppercased, and
+    # artifact_hash always appended for evidence nodes. Without this the
+    # verifier recomputes a different hash than the committer stored.
+    raw_block = f"{index}|{timestamp}|{parent_hash}|{str(agent_id).lower()}|{str(beat_type).upper()}|{payload}"
+    if artifact_hash:
+        raw_block += f"|{artifact_hash}"
     return sha256_text(raw_block)
 
 def load_or_init_dag() -> list[dict]:
@@ -145,7 +154,8 @@ def verify_dag_chain() -> dict:
             
         recalculated_hash = calculate_node_hash(
             node["index"], node["timestamp"], node["parent_hash"],
-            node["agent_id"], node["beat_type"], node["payload"]
+            node["agent_id"], node["beat_type"], node["payload"],
+            node.get("artifact_hash", "")
         )
         if node["node_hash"] != recalculated_hash:
             valid = False
