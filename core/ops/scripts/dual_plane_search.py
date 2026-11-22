@@ -157,12 +157,21 @@ def temporal(query: str) -> dict:
 
 
 def targeted_walk(query: str, hist_paths: list) -> list:
-    """Discrepancy trigger: forced deep read on exact historical paths."""
+    """Discrepancy trigger: forced deep read on exact historical paths.
+
+    Match on PATH OR CONTENT — a file named evidence_gate.py is a hit even if
+    the literal query string never appears in its body (module self-reference).
+    Checking content only caused evidence_gate.py to be missed -> false negative.
+    """
     forced = []
+    q = query.lower()
     for rel in hist_paths:
         p = ROOT / rel
-        if p.is_file() and query in p.read_text(errors="ignore"):
-            forced.append(rel)
+        if q in rel.lower():                      # path match
+            forced.append(rel); continue
+        if p.is_file():
+            if query in p.read_text(errors="ignore"):   # content match
+                forced.append(rel)
         elif p.is_dir():
             for f in p.rglob("*"):
                 if f.is_file() and query in f.read_text(errors="ignore"):
@@ -190,8 +199,12 @@ def main():
     pb = temporal(a.query)              # Plane B always runs
     meta = load_meta()
     pa = structural(a.query) if meta else {"hits": [], "seconds": 0}
-    discrepancy = bool(pb["add_commits"] and not pb["delete_commits"] and not pa["hits"])
-    forced = targeted_walk(a.query, pb["historical_paths"]) if discrepancy else []
+    # Discrepancy = temporal sees real history but structural has no live hit.
+    # Do NOT gate on the raw delete-filter list: a commit touching the string
+    # while deleting something unrelated (e.g. a CI workflow) is not proof the
+    # symbol itself was deleted. The forced walk re-checks actual on-disk truth.
+    discrepancy = bool(pb["add_commits"] and not pa["hits"])
+    forced = targeted_walk(a.query, pb["historical_paths"]) if (discrepancy or not pa["hits"]) else []
     resolved = sorted(set(pa["hits"] + forced))
     cov = meta or {"indexed_text_inodes": 0, "bypassed_bytes": 0,
                    "bypassed_dirs": ["<index not built>"],
