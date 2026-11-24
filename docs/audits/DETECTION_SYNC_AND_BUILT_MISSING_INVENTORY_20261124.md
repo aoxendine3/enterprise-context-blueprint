@@ -40,7 +40,7 @@
 
 ## 4. BLOCKED — reported, not claimed
 
-- **Container re-run (Docker daemon):** Docker client 29.7.2 works; daemon answers every request with HTTP 503; no Docker VM process exists; `docker desktop restart` timed out; alternate `colima start` is still initializing. The 11/11 proof of record is signed and stands, but a fresh container wall run on this host is **not yet complete**. Exact command queued: `docker run --rm -v "$PWD:/workspace" -w /workspace alpine:latest sh scratch/full_ceiling_20261118/run_linux_container_proof.sh`.
+- **Container re-run (Docker daemon):** Docker client 29.7.2 works; daemon answers every request with HTTP 503; no Docker VM process exists; `docker desktop restart` timed out at 180s. Alternate Colima path also blocked: my first `colima start --log-file …` used an invalid flag (corrected), the default profile cannot start because its disk `~/.colima/_lima/_disks/colima` already exists (deleting it is owner-gated, so it was not touched), and a fresh `colima start --profile xoras` timed out after 420s with no `docker.sock`. A Virtualization framework process appeared but never produced a socket, even after a further bounded 45s wait. The 11/11 proof of record is signed and stands, but a fresh container wall run on this host is **not yet complete**. Exact command queued: `docker run --rm -v "$PWD:/workspace" -w /workspace alpine:latest sh scratch/full_ceiling_20261118/run_linux_container_proof.sh`.
 - **Delegated coverage-inventory agent:** died on a provider usage limit. The inventory in §1 was redone directly against bounded disk paths; its results are not attributed to that agent.
 
 ## 5. OWNER-GATED — held, not touched
