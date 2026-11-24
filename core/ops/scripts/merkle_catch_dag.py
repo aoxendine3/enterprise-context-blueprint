@@ -36,8 +36,22 @@ def compute_mock_18432d_vector(text: str) -> list[float]:
     rng = random.Random(seed)
     return [round(rng.uniform(-0.05, 0.05), 6) for _ in range(18432)]
 
-def calculate_node_hash(index: int, timestamp: str, parent_hash: str, agent_id: str, beat_type: str, payload: str) -> str:
-    raw_block = f"{index}|{timestamp}|{parent_hash}|{agent_id}|{beat_type}|{payload}"
+def calculate_node_hash(index: int, timestamp: str, parent_hash: str, agent_id: str, beat_type: str, payload: str, artifact_hash: str = "", **kwargs) -> str:
+    # FIX: evidence nodes committed by evidence_gate.py append |artifact_hash to
+    # the raw block (see commit_dag_node). The verifier must use the SAME scheme
+    # or every evidence node reads as CORRUPTED. When artifact_hash is empty the
+    # legacy six-field scheme is used, so pre-existing nodes still verify.
+    # Two committers write this DAG with two hash schemes:
+    #   1) commit_dag_node  (this file): 6 fields + optional |artifact_hash
+    #   2) evidence_gate.py commit_evidenced_payload: 6 fields + |evidence_type + |artifact_hash
+    # The verifier must reproduce whichever scheme stored the node. Pass the
+    # evidence_type (empty for legacy/generic nodes) so evidenced nodes verify.
+    raw_block = f"{index}|{timestamp}|{parent_hash}|{str(agent_id).lower()}|{str(beat_type).upper()}|{payload}"
+    evidence_type = kwargs.get("evidence_type", "") if kwargs else ""
+    if evidence_type:
+        raw_block += f"|{evidence_type}"
+    if artifact_hash:
+        raw_block += f"|{artifact_hash}"
     return sha256_text(raw_block)
 
 def load_or_init_dag() -> list[dict]:
@@ -145,7 +159,9 @@ def verify_dag_chain() -> dict:
             
         recalculated_hash = calculate_node_hash(
             node["index"], node["timestamp"], node["parent_hash"],
-            node["agent_id"], node["beat_type"], node["payload"]
+            node["agent_id"], node["beat_type"], node["payload"],
+            node.get("artifact_hash", ""),
+            evidence_type=node.get("evidence_type", "")
         )
         if node["node_hash"] != recalculated_hash:
             valid = False

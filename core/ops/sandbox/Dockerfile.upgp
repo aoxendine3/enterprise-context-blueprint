@@ -50,4 +50,8 @@ EOF
 
 RUN gcc -O2 ops/sandbox/native_seccomp_runner.c -o ops/sandbox/native_seccomp_runner
 
-CMD ["npx", "tsx", "tests/UPGPProvingGround.test.ts"]
+# Wire to the REAL live-measurement harness. tests/UPGPProvingGround.test.ts
+# was quarantined as theatrical fake (hardcoded welchT=0.4012/fTest=1.152);
+# leaving it as CMD made the container leg silently run theater or fail with
+# "Cannot find module". Thresholds are unchanged.
+CMD ["npx", "tsx", "tests/RealSideChannelGauntlet.ts"]

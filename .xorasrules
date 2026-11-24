@@ -1,4 +1,7 @@
 # XORAS SYSTEMS LLC — AGENTIC ENVIRONMENT & GOVERNANCE SPECIFICATION
+# PRECEDENCE: This file is a tooling overlay only. Where it disagrees with
+# AGENTS.md / ROOTS.md (the constitution at the repo root), THOSE WIN.
+# Identity, voice, folder schema, and the wake path are governed there, not here.
 
 [AGENT_IDENTITY]
 Entity: XORAS Autonomous Agent Node

@@ -66,6 +66,8 @@ def test_xss_sanitization():
     """Verify HTML escaping is strictly applied across all dynamic inspector fields in index.html"""
     log("Running Test 2: XSS & Script Payload Interception Audit...")
     index_path = CHRONOS_DIR / "index.html"
+    if not index_path.exists():
+        return False, "index.html missing!"
     content = index_path.read_text(encoding="utf-8")
 
     # Verify escapeHtml is defined and applied to thinking and payload text
@@ -135,7 +137,19 @@ def run_chronos_gauntlet():
     log("=========================================================================")
     log("   CHRONOS SWARM DEBUGGER — ESCALATED UPGP HARDENING & SECURITY GAUNTLET  ")
     log("=========================================================================")
-    
+
+    # Fail-closed fixture guard: the audited repo lives in a temp clone that a
+    # reboot can wipe. A missing fixture must be a clean FAILED verdict, never a
+    # traceback (Errors-as-Placeholders protocol, AGENTS.md §5.1).
+    if not CHRONOS_DIR.is_dir():
+        log(f"  {Colors.FAIL}❌ [FAIL] FIXTURE_MISSING{Colors.END}: "
+            f"{CHRONOS_DIR} is absent — re-clone https://github.com/aoxendine3/chronos-debugger "
+            "before running this gauntlet.")
+        log("=========================================================================")
+        log("GAUNTLET SUMMARY: 0 PASSED, 1 FAILED.")
+        log("=========================================================================")
+        return False
+
     tests = [
         ("AIRGAP_ISOLATION", test_airgap_security),
         ("XSS_SANITIZATION", test_xss_sanitization),

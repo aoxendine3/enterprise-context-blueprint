@@ -1,0 +1,65 @@
+{
+  "schema": "xoras.container_wall.fresh_receipt.v1",
+  "status": "VERIFIED_FRESH_RUN",
+  "timestamp_utc": "2026-11-24T13:20:50Z",
+  "host": "macOS aarch64, Apple Virtualization.Framework via colima profile xoras",
+  "guest_kernel": "Linux 6.8.0-117-generic #117-Ubuntu SMP PREEMPT_DYNAMIC Thu May 7 17:26:37 UTC 2026 aarch64",
+  "container": "alpine:latest (docker.io/library/alpine, sha256:f59abe656b692d901e184be3445e084786602108599d2a51d229c0f5a48c71bf)",
+  "evidence_log": "memory/catch_log/CONTAINER_WALL_FRESH_20261124.log",
+  "harness": "scratch/full_ceiling_20261118/run_linux_container_proof.sh",
+  "command": "cd /Users/ajoxendine68/Desktop/SSOT_Agentic_Brain && sudo -n docker run --rm -v \"$PWD:/workspace\" -w /workspace alpine:latest sh scratch/full_ceiling_20261118/run_linux_container_proof.sh",
+  "root_cause_of_block": {
+    "symptom": "colima start/restart/status and SSH into the VM hung at SSH2_MSG_SERVICE_ACCEPT",
+    "diagnosis": "host ssh-agent socket at /var/run/com.apple.launchd.*/Listeners is hung; ssh -vvv stalls at ssh_get_authentication_socket_path. The VM itself was healthy (sshd reachable, dockerd installed).",
+    "fix": "clear SSH_AUTH_SOCK for colima/limactl invocations; stop (non-destructive, disk preserved) and restart the xoras profile",
+    "second_issue": "host-side docker pull/run over the forwarded docker.sock stalls with zero output; the identical pull and run inside the VM succeed. Fresh proof was therefore executed inside the VM via SSH with IdentityAgent=none.",
+    "no_deletions": true,
+    "no_thresholds_changed": true
+  },
+  "results": {
+    "seccomp_bpf_wall": {
+      "control": "PASSED_PRE_WALL_STAGE_1_EXEC_VERIFIED",
+      "vectors_tested": 11,
+      "vectors_blocked_eperm": 11,
+      "escapes": 0,
+      "summary": "LINUX_SECCOMP_BPF_COMPLETE",
+      "vectors": [
+        "V00_PREWALL_CONTROL_AF_INET_SOCKET",
+        "E01_SYS_PTRACE",
+        "E02_PROC_SELF_MEM_OPENAT",
+        "E03_SYS_UNSHARE_NAMESPACE",
+        "E04_AF_PACKET_RAW_SOCKET",
+        "E05_SYS_BPF_PROG_LOAD",
+        "C01_SYS_CLONE3_EVASION",
+        "C02_SYS_IO_URING_SETUP",
+        "C03_SYS_KEYCTL_PROBE",
+        "C04_SYS_SYSLOG_DMESG",
+        "C05_SYS_USERFAULTFD"
+      ]
+    },
+    "user_notif_toctou_contrast": {
+      "iterations": 10000,
+      "races_slipped_past_supervisor": 9579,
+      "exploit_success_rate_pct": 95.79,
+      "elapsed_sec": 0.0049,
+      "purpose": "demonstrates why in-kernel atomic BPF evaluation is required; not a claim that UPGP is vulnerable"
+    },
+    "sovrac_linux_arm64_guard": {
+      "input": "core/ops/security/seeded_flaw.sovra",
+      "exit_code": 1,
+      "verdict": "FAIL_CLOSED_AS_EXPECTED (OWASP ASI-01 sink type error on tainted aliased_untrusted)"
+    },
+    "posix_shm_ring_buffer": {
+      "threads": 16,
+      "pushes_per_thread": 20000,
+      "total_pushes": 320000,
+      "verified_tail": 320000,
+      "lost": 0,
+      "elapsed_sec": 0.0221,
+      "ops_per_sec": 14480957.7,
+      "gb_per_sec": 43.157
+    }
+  },
+  "verdict": "FRESH_4_OF_4_PASS_RC0",
+  "notes": "The signed 2026-11-18 proof of record is now corroborated by a fresh live run on this host. No scorer, threshold, or gate policy was modified."
+}

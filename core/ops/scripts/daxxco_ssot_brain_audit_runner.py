@@ -16,7 +16,8 @@ import time
 import subprocess
 from pathlib import Path
 
-ROOT = Path("/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain")
+# Resolve from this file so the SSOT audit runner survives a checkout anywhere.
+ROOT = Path(__file__).resolve().parents[3]
 RECEIPT = ROOT / "memory/catch_log/DAXXCO_SSOT_FULL_AUDIT_RECEIPT.json"
 PY = ROOT / ".venv/bin/python"
 if not PY.exists():

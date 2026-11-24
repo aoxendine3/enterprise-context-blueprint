@@ -24,7 +24,8 @@ import re
 import time
 from pathlib import Path
 
-ROOT = Path("/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain")
+# Resolve from this file so the wake path survives a checkout anywhere.
+ROOT = Path(__file__).resolve().parents[3]
 LEDGER = ROOT / "memory" / "agent_logs" / "turn_ledger.jsonl"
 
 DID_RE = re.compile(r"\b(did|done|completed|landed|fixed|repaired|closed|passed|found|restored|verified|written|built|ran|walked|opened|measured|audited|counted|catalogued|rebuilt|rewired|spoke|read|captured|traced|mapped|cleaned|quarantined)\b", re.IGNORECASE)

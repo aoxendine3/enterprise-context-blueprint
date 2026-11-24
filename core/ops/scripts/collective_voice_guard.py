@@ -29,7 +29,8 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path("/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain")
+# Resolve from this file so the wake path survives a checkout anywhere.
+ROOT = Path(__file__).resolve().parents[3]
 RECEIPT_LOG = ROOT / "memory" / "agent_logs" / "collective_voice_receipts.jsonl"
 
 # First-person singular self-reference — the outside-voice markers.

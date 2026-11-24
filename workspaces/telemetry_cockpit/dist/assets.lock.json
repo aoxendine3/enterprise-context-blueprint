@@ -2,11 +2,11 @@
   "algorithm": "sha256",
   "assets": {
     "cockpit.css": "55a52b12a9082b4df791a333e70bb5f97a569d227cc3c8b34a4caa989321d510",
-    "cockpit.js": "5e091ebf8c35c5d1ff6471dd7ff42a4f39cce93019d951386a50685462ab82fa",
-    "evidence-bundle.json": "1d4a01056be6fa0d3e2d2ea18187ae50673babaf8c0ea839f853fb154eef940e",
+    "cockpit.js": "95be99d78e9d3bb1f0453ed0b01cf4a6cb8d3783a3472647c5c77b9b0f7800c6",
+    "evidence-bundle.json": "154c0a55c736773992cd83b070aa3d3ebec01d0a657954d9455346d5a450f572",
     "index.html": "1f4ad994e9a023cdd57ff4494b3c63d3fcb2379de652a753d56a018164b21441",
-    "known_good_sources.json": "f54718e66e5bb49cd20b302d9efcb1f85f8e0d5cd2df536ffd5bab6746955169",
-    "trust_root.js": "454d08700613ebf44fc3533056829fda9aa6dc56124cc304e1252a89d237e8a9"
+    "known_good_sources.json": "d834b8933b2a2115b151f70f36a6226c85f018c1ebfbd238140ffa46fed9299d",
+    "trust_root.js": "26ac717727e679628e6381f48797b21085008cd0c2a18fd591d5b8dbdf341ba0"
   },
   "schema_version": "xoras.cockpit.assets-lock.v1"
 }

@@ -22,6 +22,7 @@ import json
 import hashlib
 import hmac
 import urllib.request
+import subprocess
 import concurrent.futures
 import threading
 from datetime import datetime, timezone
@@ -369,9 +370,51 @@ class ExtremeByzantineGauntlet:
     # =========================================================================
     # PILLAR 7: HTTP STAGE CONCURRENCY BREAKING POINT ("TILL SHUTTLE GIVES")
     # =========================================================================
+    def _ensure_stage_up(self, probe_url="http://127.0.0.1:8080/customer_app.html"):
+        """Probe the sovereign stage; auto-spawn fullscreen_server.py if dark.
+
+        Mirrors ops/scripts/xoras_turnkey_boot.sh Step 1 and the roundtable's
+        auto-spawn so PILLAR 7 stresses a LIVE stage instead of measuring
+        connection-refused errors as throughput.
+        Returns True when the endpoint answers 200.
+        """
+        def probe():
+            try:
+                with urllib.request.urlopen(probe_url, timeout=2) as resp:
+                    return resp.status == 200
+            except Exception:
+                return False
+
+        if probe():
+            return True
+        server_script = ROOT / "ops" / "scripts" / "fullscreen_server.py"
+        if server_script.exists():
+            print("  [!] Stage port 8080 dark — auto-spawning fullscreen_server.py (turnkey boot pattern)...")
+            subprocess.Popen([sys.executable, str(server_script)],
+                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            for _ in range(10):
+                time.sleep(0.5)
+                if probe():
+                    return True
+        return False
+
     def stress_http_stage_breaking_point(self, concurrency_levels=[10, 25, 50, 100, 200], reqs_per_level=200):
         print("\n[PILLAR 7] Stressing HTTP Stage Port 8080 Concurrency Ramp to Failure Point...")
         url = "http://127.0.0.1:8080/customer_app.html"
+
+        # Fail closed: an unreachable stage is NOT a saturation point. Previously
+        # a dark port produced 0/200 OK at every level yet reported multi-thousand
+        # "req/s" (failures counted as throughput) and the gauntlet still passed.
+        if not self._ensure_stage_up(url):
+            print("  -> [FAIL] ENDPOINT_UNREACHABLE: stage did not answer on 8080 after spawn attempt — ramp not measured.")
+            res = {
+                "status": "ENDPOINT_UNREACHABLE",
+                "ramp_levels": [],
+                "breaking_concurrency_threshold": "UNMEASURED"
+            }
+            self.telemetry["pillars"]["http_stage_saturation"] = res
+            return res
+
         ramp_results = []
         saturation_point = None
 
@@ -401,7 +444,7 @@ class ExtremeByzantineGauntlet:
                 concurrent.futures.wait(futures)
             elapsed = time.perf_counter() - t0
 
-            throughput = reqs_per_level / elapsed if elapsed > 0 else 0
+            throughput = successes / elapsed if elapsed > 0 else 0
             avg_lat = sum(latencies) / len(latencies) if latencies else 0.0
             latencies.sort()
             p99_lat = latencies[int(len(latencies) * 0.99)] if latencies else 0.0
@@ -502,14 +545,18 @@ class ExtremeByzantineGauntlet:
         self.stress_streaming_entropy(total_tokens=2000000)
         self.stress_mast_taxonomy(total_evals=500000)
         self.stress_atomic_lock_contention(num_workers=50, iterations_per_worker=20000)
-        self.stress_http_stage_breaking_point()
+        http_res = self.stress_http_stage_breaking_point()
         self.stress_pyramidal_distillation(total_cycles=10000)
+        http_ok = http_res.get("status", "OK") == "OK"
 
         total_gauntlet_time = time.perf_counter() - t_start_all
         self.telemetry["total_gauntlet_time_sec"] = round(total_gauntlet_time, 2)
 
         print("\n" + "=" * 80)
-        print(f"  [SUCCESS] GAUNTLET COMPLETED IN {total_gauntlet_time:.2f} SECONDS")
+        if http_ok:
+            print(f"  [SUCCESS] GAUNTLET COMPLETED IN {total_gauntlet_time:.2f} SECONDS")
+        else:
+            print(f"  [FAILED] GAUNTLET COMPLETED IN {total_gauntlet_time:.2f} SECONDS — PILLAR 7 ENDPOINT_UNREACHABLE")
         print("=" * 80)
 
         # Write JSON Report
@@ -531,11 +578,15 @@ class ExtremeByzantineGauntlet:
             f.write(f"- **HexCell 3,200B Memory I/O**: `{self.telemetry['pillars']['hexcell_memory']['roundtrips_sec']:,.0f} roundtrips/sec` (`{self.telemetry['pillars']['hexcell_memory']['bandwidth_mb_sec']:,.1f} MB/s`).\n")
             f.write(f"- **Entropy Engine Formulation**: Precomputed LUT achieves `{self.telemetry['pillars']['streaming_entropy']['lut_engine_ops_sec']:,.0f} tok/s` (`{self.telemetry['pillars']['streaming_entropy']['algorithmic_formulation_speedup']}x` faster than standard math.log2).\n")
             f.write(f"- **Atomic Lock Saturation**: `{self.telemetry['pillars']['atomic_mutex']['acquisitions_sec']:,.0f} lock/s` with `{self.telemetry['pillars']['atomic_mutex']['race_conditions']}` race condition violations.\n")
-            f.write(f"- **HTTP Stage Breaking Point**: Physical socket degradation occurs at concurrency `{self.telemetry['pillars']['http_stage_saturation']['breaking_concurrency_threshold']}`.\n")
+            if http_ok:
+                f.write(f"- **HTTP Stage Breaking Point**: Physical socket degradation occurs at concurrency `{http_res['breaking_concurrency_threshold']}`.\n")
+            else:
+                f.write("- **HTTP Stage Breaking Point**: **NOT MEASURED** — stage endpoint unreachable after spawn attempt (fail-closed).\n")
             f.write(f"- **Pyramidal Distillation**: `{self.telemetry['pillars']['pyramidal_distillation']['cycles_sec']:,.0f} cycles/sec` ({self.telemetry['pillars']['pyramidal_distillation']['raw_sources_distilled']:,} raw signals distilled).\n")
 
         print(f"\n[+] Telemetry written to:\n    JSON: {REPORT_JSON}\n    MD:   {LEGACY_LOG}")
+        return http_ok
 
 if __name__ == "__main__":
     gauntlet = ExtremeByzantineGauntlet()
-    gauntlet.execute_all()
+    sys.exit(0 if gauntlet.execute_all() else 1)

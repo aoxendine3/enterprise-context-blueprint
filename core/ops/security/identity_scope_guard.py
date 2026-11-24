@@ -36,7 +36,8 @@ import sys
 import time
 from pathlib import Path
 
-ROOT = Path("/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain")
+# Resolve from this file so the wake identity seal survives a checkout anywhere.
+ROOT = Path(__file__).resolve().parents[3]
 CARDS_DIR = ROOT / "Xoras_agent_cards"
 IDENTITY_DIR = ROOT / "identity"
 MANIFEST_PATH = IDENTITY_DIR / "agent_card_manifest.json"

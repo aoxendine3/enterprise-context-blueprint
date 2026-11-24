@@ -1,0 +1,201 @@
+{
+  "schema": "xoras.universal_misc_audit.v1",
+  "timestamp_utc": "2026-11-24T13:50:16Z",
+  "read_only": true,
+  "sample_cap": 2000,
+  "inventory": {
+    "files": 137096,
+    "extensions_top": [
+      {
+        "ext": "(none)",
+        "count": 106536,
+        "apparent_bytes": 26954762646
+      },
+      {
+        "ext": ".pyc",
+        "count": 7110,
+        "apparent_bytes": 151512149
+      },
+      {
+        "ext": ".map",
+        "count": 5588,
+        "apparent_bytes": 68747571
+      },
+      {
+        "ext": ".o",
+        "count": 2426,
+        "apparent_bytes": 151373103
+      },
+      {
+        "ext": ".slangp",
+        "count": 641,
+        "apparent_bytes": 1375263
+      },
+      {
+        "ext": ".slang",
+        "count": 604,
+        "apparent_bytes": 3724094
+      },
+      {
+        "ext": ".dat",
+        "count": 588,
+        "apparent_bytes": 17896764
+      },
+      {
+        "ext": ".journal",
+        "count": 557,
+        "apparent_bytes": 129575843
+      },
+      {
+        "ext": ".so",
+        "count": 548,
+        "apparent_bytes": 477537334
+      },
+      {
+        "ext": ".toc",
+        "count": 547,
+        "apparent_bytes": 964576
+      },
+      {
+        "ext": ".meta",
+        "count": 535,
+        "apparent_bytes": 19068
+      },
+      {
+        "ext": ".plist",
+        "count": 522,
+        "apparent_bytes": 6593434
+      },
+      {
+        "ext": ".gemspec",
+        "count": 479,
+        "apparent_bytes": 652832
+      },
+      {
+        "ext": ".mts",
+        "count": 459,
+        "apparent_bytes": 1888318
+      },
+      {
+        "ext": ".com",
+        "count": 401,
+        "apparent_bytes": 8169
+      }
+    ],
+    "code_ish_files": 16,
+    "python_files": 0
+  },
+  "magic_sample": {
+    "count": 2000,
+    "classes": {
+      "opaque-binary": 1268,
+      "utf8-text": 678,
+      "DOS executable": 7,
+      "ZIP archive": 7,
+      "gzip stream": 24,
+      "WASM": 1,
+      "SQLite database": 5,
+      "PNG image": 5,
+      "PDF document": 1,
+      "script/shebang": 2,
+      "RIFF media": 1,
+      "Ogg media": 1
+    }
+  },
+  "ast_symbol_scan": {
+    "modules_parsed": 0,
+    "python_targets_found": 0
+  },
+  "taint_scan": {
+    "python_modules": 0,
+    "ast_nodes": 0,
+    "taint_sinks": 0
+  },
+  "credential_scan": {
+    "files_examined": 2016,
+    "findings": [
+      {
+        "file": "misc/c662a4094d33a4aa_0",
+        "line": 1,
+        "kind": "google_api_key"
+      },
+      {
+        "file": "misc/0ae129c33e7a30bd_0",
+        "line": 9,
+        "kind": "private_key_block"
+      },
+      {
+        "file": "misc/29213d2ab33b53bc_0",
+        "line": 10,
+        "kind": "google_api_key"
+      },
+      {
+        "file": "misc/29213d2ab33b53bc_0",
+        "line": 151,
+        "kind": "google_api_key"
+      },
+      {
+        "file": "misc/1930a0ba3a194783_0",
+        "line": 1,
+        "kind": "google_api_key"
+      },
+      {
+        "file": "misc/55351860c95e6f10_0",
+        "line": 1,
+        "kind": "hf_token"
+      }
+    ],
+    "total_findings": 6
+  },
+  "preflight_classifier": {
+    "sample": 200,
+    "verdicts": {
+      "ERROR": 139,
+      "REJECTED": 61
+    }
+  },
+  "nested_git": {
+    "objects": [
+      "count: 0",
+      "size: 0",
+      "in-pack: 65481",
+      "packs: 1",
+      "size-pack: 474695",
+      "prune-packable: 0"
+    ],
+    "branch": "barn-batch-0012",
+    "head": "(no commit)",
+    "index_entries": 3076
+  },
+  "repo_references": {
+    "count": 52,
+    "files": [
+      "memory/catch_log/COVERAGE_LEDGER.json",
+      "memory/catch_log/VALIDATOR_TRUTH_REMEDIATION_RECEIPT.json",
+      "memory/catch_log/QUARANTINE_LEDGER.json",
+      "memory/catch_log/barn_misc_oversize_report.txt",
+      "memory/catch_log/ESTATE_DEEP_DIGEST_20261114.md",
+      "memory/catch_log/RECLAIM_MOVE_MANIFEST_20261119.json",
+      "memory/catch_log/ENTERPRISE_PAYMENT_FORENSICS_20261118.md",
+      "memory/catch_log/evidence_ledger.jsonl",
+      "memory/catch_log/ESTATE_REPORT_20261114.md",
+      "memory/catch_log/MISC_AUDIT_20261117.md",
+      "memory/catch_log/barn_misc_manifests/batch_0005.json",
+      "memory/catch_log/barn_misc_manifests/batch_0009.json",
+      "memory/catch_log/barn_misc_manifests/batch_0008.json",
+      "memory/catch_log/barn_misc_manifests/batch_0004.json",
+      "memory/catch_log/barn_misc_manifests/batch_0012.json",
+      "memory/catch_log/barn_misc_manifests/batch_0003.json",
+      "memory/catch_log/barn_misc_manifests/batch_0002.json",
+      "memory/catch_log/barn_misc_manifests/batch_0001.json",
+      "memory/catch_log/barn_misc_manifests/batch_0007.json",
+      "memory/catch_log/barn_misc_manifests/batch_0011.json",
+      "memory/catch_log/barn_misc_manifests/batch_0010.json",
+      "memory/catch_log/barn_misc_manifests/batch_0006.json",
+      "memory/catch_log/barn_archive/merkle_journal/lineage.jsonl",
+      "docs/audits/DETECTION_SYNC_AND_BUILT_MISSING_INVENTORY_20261124.md",
+      "docs/audits/MISC_READ_ONLY_TRIAGE_20261124.md"
+    ]
+  },
+  "elapsed_sec": 37.05
+}

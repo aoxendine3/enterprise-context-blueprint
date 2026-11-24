@@ -26,7 +26,8 @@ Usage:
 import sys, json, time, subprocess, hashlib, os
 from pathlib import Path
 
-ROOT = Path("/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain")
+# Resolve from this file so the premerge gate survives a checkout anywhere.
+ROOT = Path(__file__).resolve().parents[3]
 CATCH = ROOT / "memory/catch_log"
 RECEIPT = CATCH / "PREMERGE_TEST_GATE_RECEIPT.json"
 LOG_DIR = CATCH / "premerge_gate_logs"
@@ -115,11 +116,13 @@ def run_gate(child_cmd, label):
         },
         "label": label,
     }
-    # Immutable per-run receipt (never overwrite a prior result) AND the
-    # canonical latest pointer. Negative tests no longer clobber real runs.
+    # Immutable per-run receipt ALWAYS. The canonical latest pointer is updated
+    # ONLY by real merge-gate runs (label REAL_MERGE_GATE) — negative/self tests
+    # must never overwrite it, or the wake manifest reads a deliberate failure.
     CATCH.mkdir(parents=True, exist_ok=True)
     (CATCH / f"PREMERGE_TEST_GATE_{stamp}_{label}.json").write_text(json.dumps(payload, indent=2))
-    RECEIPT.write_text(json.dumps(payload, indent=2))
+    if label == "REAL_MERGE_GATE":
+        RECEIPT.write_text(json.dumps(payload, indent=2))
     return ok, payload
 
 
