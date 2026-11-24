@@ -43,6 +43,10 @@ IDENTITY_DIR = ROOT / "identity"
 MANIFEST_PATH = IDENTITY_DIR / "agent_card_manifest.json"
 CHARTER_PATH = IDENTITY_DIR / "charter.yaml"
 ROOTS_PATH = ROOT / "ROOTS.md"
+AGENTS_PATH = ROOT / "AGENTS.md"
+# The two halves of the constitution: pinned by hash and write-protected so no
+# agent can mutate its own root contract. Only Anthony authorizes a reseal.
+CONSTITUTION_PATHS = (ROOTS_PATH, AGENTS_PATH)
 RECEIPT_LOG = ROOT / "memory" / "agent_logs" / "identity_wake_receipts.jsonl"
 
 # Outside-entity detection is STRUCTURAL and name-free (core/ops/scripts/
@@ -80,17 +84,23 @@ def seal() -> int:
         "cards": cards,
         "charter_sha256": sha256_file(CHARTER_PATH) if CHARTER_PATH.exists() else None,
         "roots_sha256": sha256_file(ROOTS_PATH) if ROOTS_PATH.exists() else None,
+        "agents_sha256": sha256_file(AGENTS_PATH) if AGENTS_PATH.exists() else None,
     }
+    # A previous seal is 0444; a governance reseal must be able to replace it.
+    if MANIFEST_PATH.exists():
+        os.chmod(MANIFEST_PATH, 0o644)
     MANIFEST_PATH.write_text(json.dumps(payload, indent=2), encoding="utf-8")
-    # Write-protect the seal and the cards: an agent cannot rewrite its own truth.
+    # Write-protect the seal, the cards and the constitution: an agent cannot
+    # rewrite its own truth.
     os.chmod(MANIFEST_PATH, 0o444)
-    for p in card_paths():
+    for p in list(card_paths()) + list(CONSTITUTION_PATHS):
         try:
             os.chmod(p, 0o444)
         except OSError:
             pass
     print(f"SEALED: {len(cards)} citizen cards pinned in {MANIFEST_PATH}")
-    print("READ-ONLY: cards and manifest are now write-protected (0444)")
+    print("SEALED: ROOTS.md and AGENTS.md hashes pinned")
+    print("READ-ONLY: cards, constitution and manifest are now write-protected (0444)")
     return 0
 
 
@@ -105,6 +115,24 @@ def check_foreign_branding(text: str, where: str) -> list:
     if _outside_scan is None:
         return [f"{where}: outside-entity detector unavailable (fail closed)"]
     return [f"{where}: {v['kind']} — {v['detail']}" for v in _outside_scan(text)]
+
+
+def constitution_violations(manifest: dict, paths=None, pins=None) -> list:
+    """Fail closed if ROOTS.md / AGENTS.md drift from the sealed hashes."""
+    paths = paths or {"roots_sha256": ROOTS_PATH, "agents_sha256": AGENTS_PATH}
+    pins = pins if pins is not None else manifest
+    out = []
+    for key, path in paths.items():
+        pinned = pins.get(key)
+        if not path.exists():
+            out.append(f"CONSTITUTION_MISSING: '{path.name}' not found")
+        elif pinned is None:
+            out.append(f"CONSTITUTION_UNSEALED: '{path.name}' is not pinned in the manifest")
+        elif sha256_file(path) != pinned:
+            out.append(
+                f"CONSTITUTION_TAMPERED: '{path.name}' hash {sha256_file(path)[:16]} != sealed {pinned[:16]}"
+            )
+    return out
 
 
 def verify(agent_id: str) -> tuple[bool, dict]:
@@ -155,8 +183,11 @@ def verify(agent_id: str) -> tuple[bool, dict]:
             branding += check_foreign_branding(charter.read_text(encoding="utf-8"), charter.name)
     violations += [f"FOREIGN_BRANDING: {b}" for b in branding]
 
+    # 3b. CONSTITUTION SEAL — ROOTS.md / AGENTS.md must match their pinned hash
+    violations += constitution_violations(manifest)
+
     # 4. READ-ONLY — the agent cannot change its own state
-    for guarded in (card_path, MANIFEST_PATH):
+    for guarded in (card_path, MANIFEST_PATH) + CONSTITUTION_PATHS:
         if guarded.exists():
             mode = guarded.stat().st_mode
             if mode & (stat.S_IWUSR | stat.S_IWGRP | stat.S_IWOTH):
@@ -241,6 +272,25 @@ def self_test() -> int:
     print(f"  [5] Agent card is write-protected .............. {'PASS' if readonly else 'FAIL'}")
     if not readonly:
         failures.append("agent card is writable")
+
+    # [6] Constitution drift: a changed copy of AGENTS.md must be caught.
+    with tempfile.TemporaryDirectory() as td:
+        fake = Path(td) / "AGENTS.md"
+        fake.write_text(AGENTS_PATH.read_text(encoding="utf-8") + "\nTAMPERED", encoding="utf-8")
+        hits = constitution_violations(
+            {}, paths={"agents_sha256": fake}, pins={"agents_sha256": sha256_file(AGENTS_PATH)}
+        )
+        caught = any(h.startswith("CONSTITUTION_TAMPERED") for h in hits)
+        print(f"  [6] Constitution tamper detected ............... {'PASS' if caught else 'FAIL'}")
+        if not caught:
+            failures.append("tampered constitution passed the seal check")
+
+    # [7] Constitution files must be write-protected.
+    unprotected = [p.name for p in CONSTITUTION_PATHS
+                   if p.exists() and p.stat().st_mode & (stat.S_IWUSR | stat.S_IWGRP | stat.S_IWOTH)]
+    print(f"  [7] Constitution is write-protected ............ {'PASS' if not unprotected else 'FAIL'}")
+    if unprotected:
+        failures.append(f"constitution writable: {unprotected}")
 
     print("=" * 74)
     if failures:

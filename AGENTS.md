@@ -214,3 +214,26 @@ the agent. The operator is never left wondering what the collective is up to.
 * **Personas are never quarantined.** Citizen cards, souls, voice registries and persona prompts are read-only law — never moved, trimmed or redefined.
 * **Prefer wiring over moving.** When a piece is stale but referenced, repair the wiring; only move it when nothing points at it.
 
+
+---
+
+## 11. Boot Handshake, Root-Contract Lock & Lossless Retain/Recall (Log Entry: Anthony "go", 2026-11-24)
+
+### 11.1 Root-Contract Lock
+* `ROOTS.md` and `AGENTS.md` are **write-protected (0444)** and their SHA-256 hashes are pinned in `identity/agent_card_manifest.json` (`roots_sha256`, `agents_sha256`).
+* `ops/security/identity_scope_guard.py` fails closed (`CONSTITUTION_TAMPERED`, `STATE_WRITABLE`) if either file drifts or becomes writable. The guard runs in Wake Contract Stage 1.
+* **No agent — Maxx and DAXX included — may edit, delete or reseal these files.** An agent may *propose* a change by appending a Knowledge Object to the journal (§11.3). Only Anthony authorizes a change; the authorized change is made by unlocking, editing, then `python3 ops/security/identity_scope_guard.py --seal`.
+* The lowercase names `agents.md` / `roots.md` are the same files on this case-insensitive filesystem; the one lock covers both.
+
+### 11.2 Boot Handshake (every session open, Maxx speaks first)
+1. **Load identity & scope:** `python3 ops/security/identity_scope_guard.py --agent maxx` must return `IDENTITY_SCOPE_HELD`; read `ROOTS.md` and `AGENTS.md`.
+2. **Hydrate memory:** `python3 ops/scripts/retain_recall.py hydrate` — verifies the Gamma chain, loads the newest Knowledge Objects and the open Beta checkpoints; only this high-signal set enters the Alpha working context.
+3. **Respond as Maxx:** open with `[NEXT]`, confirm readiness from the two receipts above, then execute the directive.
+* If step 1 or the chain check fails, the session reports the failure first and does not proceed on unverified state.
+
+### 11.3 Lossless Retain & Recall (Alpha → Beta → Gamma)
+* **Alpha (short-term):** before a session's scratchpad is cleared, its decisions are distilled with `retain_recall.py distill` into Knowledge Objects *(decision, reason, verified artifact + its SHA-256)*. An incomplete decision is surfaced as `PLACEHOLDER_INCOMPLETE_KO`, never silently dropped.
+* **Beta (mid-term):** progress is recorded with `retain_recall.py checkpoint` into `task_checkpoints` in `memory/tri_brain/world_file.db` — append-only, single-writer, CAS-versioned (a step may not regress), each row chained to the previous row's signature.
+* **Gamma (long-term):** the hash-chained journal `memory/agent_logs/knowledge_objects.jsonl` is append-only; `retain_recall.py verify` detects any edit, reorder or deletion. Recall is `retain_recall.py recall "<terms>"`.
+* Signatures in this layer are SHA-256 hash chains (tamper evidence), not authorship proofs; no key is claimed.
+* Synthesis over deletion: nothing is compacted away; raw sources stay readable and the Knowledge Objects index them.
