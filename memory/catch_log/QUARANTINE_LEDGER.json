@@ -248,6 +248,18 @@
       "action": "Hardened the dual-write guard so only the production mirror engine (db_path == DB_PATH) writes to canonical. Backed up canonical DB to memory/catch_log/backups/world_file.db.pre_quarantine_20261120_115058.db. Exported the 700 pollution rows to memory/catch_log/backups/quarantined_pollution_rows_20261120_115058.jsonl (sha256 0369b3521e7fa3e1a8400e9bf8014033f7b2e7dfc27c670d3310a8a2555f3228). Removed exactly those 700 rows from canonical.",
       "evidence": "memory/catch_log/backups/world_file.db.pre_quarantine_20261120_115058.db; memory/catch_log/backups/quarantined_pollution_rows_20261120_115058.jsonl",
       "verdict": "QUARANTINED_VERIFIED"
+    },
+    {
+      "utc": "2026-11-24T03:42:40.372787+00:00",
+      "kind": "CROSS_PLATFORM_PATH_ARTIFACT_QUARANTINE",
+      "item": "literal C:\\Users\\admin\\Desktop\\SSOT_Agentic_Brain/ tree under repo root",
+      "reason": "windows_bare_metal_byzantine_gauntlet.py hardcoded a Windows-only SSOT path; on macOS it created a junk tree. Fixed with os.name-based fallback before this move (proof: junk mtime unchanged after gauntlet re-run, results now written to canonical memory/).",
+      "source": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/C:\\Users\\admin\\Desktop\\SSOT_Agentic_Brain",
+      "destination": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/scratch/quarantine/20261124_C_windows_path_artifact/C:\\Users\\admin\\Desktop\\SSOT_Agentic_Brain",
+      "artifact": "memory/BYZANTINE_GAUNTLET_RESULTS.md",
+      "sha256": "5655e9aeb56c7b805086205eaa6e41c841c21a9e71fe81171d857f8618083457",
+      "bytes": 1244,
+      "law": "moved intact, still readable; no deletions"
     }
   ],
   "resolved_not_moved": [

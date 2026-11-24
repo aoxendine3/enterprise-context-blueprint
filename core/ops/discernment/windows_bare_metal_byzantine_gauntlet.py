@@ -8,6 +8,7 @@ import urllib.request
 import concurrent.futures
 import threading
 from datetime import datetime
+from pathlib import Path
 
 try:
     import numpy as np
@@ -15,8 +16,16 @@ try:
 except ImportError:
     HAS_NUMPY = False
 
-SSOT_ROOT = r"C:\Users\admin\Desktop\SSOT_Agentic_Brain"
+# On Windows keep the canonical bare-metal path exactly as shipped. On other
+# hosts resolve the repo from this file (or XORAS_SSOT_ROOT) so the gauntlet
+# never creates a literal "C:\Users\..." directory inside the checkout.
+if os.name == "nt":
+    SSOT_ROOT = r"C:\Users\admin\Desktop\SSOT_Agentic_Brain"
+else:
+    SSOT_ROOT = os.environ.get(
+        "XORAS_SSOT_ROOT", str(Path(__file__).resolve().parents[3]))
 LOG_OUT = os.path.join(SSOT_ROOT, "memory", "BYZANTINE_GAUNTLET_RESULTS.md")
+print(f"[gauntlet] SSOT root: {SSOT_ROOT}")
 
 os.makedirs(os.path.dirname(LOG_OUT), exist_ok=True)
 

@@ -2,8 +2,15 @@ import os
 import sys
 import json
 from datetime import datetime
+from pathlib import Path
 
-SSOT_ROOT = r"C:\Users\admin\Desktop\SSOT_Agentic_Brain"
+# Resolve the repo on the host actually running the audit. Keep the shipped
+# Windows path for Windows; otherwise use this file's repo (or env override).
+if os.name == "nt":
+    SSOT_ROOT = r"C:\Users\admin\Desktop\SSOT_Agentic_Brain"
+else:
+    SSOT_ROOT = os.environ.get(
+        "XORAS_SSOT_ROOT", str(Path(__file__).resolve().parents[3]))
 CONTAINER_DIR = os.path.join(SSOT_ROOT, "ops", "container")
 LOG_OUT = os.path.join(SSOT_ROOT, "memory", "LINUX_CONTAINER_VENV_BUILD_REPORT.md")
 
