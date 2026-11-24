@@ -7,14 +7,17 @@ Demonstrates un-mocked telemetry verification by intentionally mutating 1 bit in
 import json
 import os
 import urllib.request
+import urllib.error
 import hmac
 import hashlib
 import time
 import sys
 import ssl
+from pathlib import Path
 
-MANIFEST_PATH = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/tri_brain/state_manifest.json"
-SEEN_NONCES_PATH = "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/tri_brain/seen_nonces.json"
+REPO = Path(__file__).resolve().parents[3]
+MANIFEST_PATH = str(REPO / "memory" / "tri_brain" / "state_manifest.json")
+SEEN_NONCES_PATH = str(REPO / "memory" / "tri_brain" / "seen_nonces.json")
 API_URL = "https://localhost:8443/api/telemetry"
 SECRET_KEY = b"XORAS_SOVEREIGN_TRINITY_GATE_SECRET_KEY_2026"
 
@@ -43,8 +46,18 @@ def write_fresh_manifest():
 def get_telemetry():
     ctx = ssl._create_unverified_context()
     req = urllib.request.Request(API_URL)
-    with urllib.request.urlopen(req, context=ctx) as resp:
-        return json.loads(resp.read().decode('utf-8'))
+    try:
+        with urllib.request.urlopen(req, context=ctx) as resp:
+            return json.loads(resp.read().decode('utf-8'))
+    except urllib.error.HTTPError as exc:
+        # A reject IS the expected result for a bit-flipped signature. The
+        # server returns the full CORRUPTED telemetry JSON with HTTP 403;
+        # parse that body so the assertions below actually execute instead of
+        # dying on an uncaught HTTPError. Nothing is weakened: the strict
+        # signatureValid/state assertions still run on the returned body.
+        if exc.code != 403:
+            raise
+        return json.loads(exc.read().decode('utf-8'))
 
 def test_falsification():
     print("==========================================================================")

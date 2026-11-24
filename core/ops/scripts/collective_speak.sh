@@ -24,7 +24,8 @@ if [[ -z "${TEXT//[[:space:]]/}" ]]; then
   exit 0
 fi
 
-ROOT="/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain"
+SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
+ROOT="$(cd "$SCRIPTS_DIR/../../.." && pwd)"
 GUARD="$ROOT/core/ops/scripts/collective_voice_guard.py"
 PY="$ROOT/.venv/bin/python"
 [[ -x "$PY" ]] || PY="python3"
@@ -43,7 +44,7 @@ if [[ -f "$GUARD" ]]; then
 fi
 
 # Record the turn so the operator can always ask what any agent is doing.
-TURN_LEDGER="/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/core/ops/scripts/turn_ledger.py"
+TURN_LEDGER="$ROOT/core/ops/scripts/turn_ledger.py"
 if [[ -f "$TURN_LEDGER" ]]; then
   "$PY" "$TURN_LEDGER" --agent "${COLLECTIVE_SPEAKER:-collective}" --phase "$PHASE" --text "$TEXT" >/dev/null 2>&1 || true
 fi

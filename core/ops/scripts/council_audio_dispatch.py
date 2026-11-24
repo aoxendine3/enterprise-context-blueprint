@@ -25,7 +25,8 @@ from pathlib import Path
 import soundfile as sf
 import numpy as np
 
-ROOT = Path("/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain")
+# Resolve from this file so the wake path survives a checkout anywhere.
+ROOT = Path(__file__).resolve().parents[3]
 MODELS_DIR = ROOT / "capabilities/neural_models"
 STAGE_DIR = ROOT / "ops/scripts/fullscreen_ui"
 STATE_FILE = STAGE_DIR / "current_image.txt"
