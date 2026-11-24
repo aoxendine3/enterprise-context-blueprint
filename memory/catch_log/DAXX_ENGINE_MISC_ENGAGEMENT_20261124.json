@@ -1,0 +1,123 @@
+{
+  "schema": "xoras.daxx_engine_misc_engagement.v1",
+  "utc": "2026-11-24T14:02:47Z",
+  "target": "misc",
+  "read_only": true,
+  "sample_cap": 2000,
+  "sovereign_engine": {
+    "status": "BOOTED",
+    "ledgers_loaded": 10,
+    "ledger_bytes": 63481,
+    "load_latency_ms": 3.873
+  },
+  "grounding_gate": {
+    "decision": "PASS",
+    "response": "[daxx] Task analyzed against local knowledge ledgers. [GROUNDING: 10 Ledgers Inlined | 63481 bytes in memory] Execution state: APPROVED.",
+    "latency_ms": 0.004,
+    "note": "deterministic sovereign rule gate, not an LLM judgment"
+  },
+  "ast_taint": {
+    "python_files_found": 0,
+    "modules_parsed": 0,
+    "ast_nodes": 0,
+    "taint_sinks": 0,
+    "verdict": "REAL_ZERO_NO_TARGETS"
+  },
+  "physical_walk": {
+    "files": 137096,
+    "apparent_bytes": 287384712583,
+    "allocated_bytes": 27167109120,
+    "top_extensions": {
+      "no_ext": 106536,
+      ".pyc": 7110,
+      ".map": 5588,
+      ".o": 2426,
+      ".slangp": 641,
+      ".slang": 604,
+      ".dat": 588,
+      ".journal": 557,
+      ".so": 548,
+      ".toc": 547
+    },
+    "large_sparse_objects": [
+      {
+        "path": "misc/Docker.raw",
+        "apparent_bytes": 245106737152,
+        "allocated_bytes": 4941824000
+      },
+      {
+        "path": "misc/xoras.db",
+        "apparent_bytes": 4169670656,
+        "allocated_bytes": 4169670656
+      },
+      {
+        "path": "misc/disk",
+        "apparent_bytes": 21474836480,
+        "allocated_bytes": 1150181376
+      }
+    ]
+  },
+  "literal_secret_scan": {
+    "files_examined": 2009,
+    "markers": [
+      "AIzaSy",
+      "sk-proj-",
+      "ghp_",
+      "xoxb-"
+    ],
+    "hits": [
+      {
+        "file": "misc/a1b015ed23cb36ef_0",
+        "marker": "AIzaSy"
+      },
+      {
+        "file": "misc/332d9fe4c035c05f_0",
+        "marker": "AIzaSy"
+      },
+      {
+        "file": "misc/8648b06cd8914e80_0",
+        "marker": "AIzaSy"
+      },
+      {
+        "file": "misc/0ba05e5cf66fc298_0",
+        "marker": "AIzaSy"
+      }
+    ],
+    "total_hits": 4,
+    "note": "literal marker presence only; not proof of a live credential"
+  },
+  "headroom": "/dev/disk3s5   228Gi   190Gi    11Gi    95%    2.7M  118M    2%   /System/Volumes/Data",
+  "engine_inventory": [
+    {
+      "script": "ops/scripts/daxxco_sovereign_runtime.py",
+      "class": "REAL",
+      "action": "booted; 10 ledgers"
+    },
+    {
+      "script": "ops/scripts/daxx_ast_taint_live_scanner.py",
+      "class": "REAL",
+      "action": "invoked on misc; 0 python targets"
+    },
+    {
+      "script": "ops/scripts/daxxco_rigorous_falsification_audit.py",
+      "class": "REAL_WHOLE_TREE",
+      "action": "phases replicated with misc target; whole-tree receipt not regenerated"
+    },
+    {
+      "script": "ops/scripts/daxx_master_orchestrator.py",
+      "class": "THEATRICAL",
+      "action": "NOT RUN - hardcoded 26,000-node claim, sleeps, shutil.move of core scripts"
+    },
+    {
+      "script": "ops/scripts/daxx_ast_parser_daemon.py",
+      "class": "THEATRICAL",
+      "action": "NOT RUN - simulated compilation and synthetic Rust output"
+    },
+    {
+      "script": "ops/scripts/daxxco_live_swarm_auditor.py",
+      "class": "THEATRICAL",
+      "action": "NOT RUN - hardcoded 21-agent/63-node and 100% claims"
+    }
+  ],
+  "elapsed_sec": 8.65
+}
