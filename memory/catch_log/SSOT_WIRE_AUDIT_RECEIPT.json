@@ -1,5 +1,5 @@
 {
-  "timestamp_utc": "2026-11-21T23:13:05Z",
+  "timestamp_utc": "2026-11-22T00:41:22Z",
   "verdict": "SSOT_WIRE_AUDIT_PASS",
   "counts": {
     "PASS": 7
@@ -38,7 +38,7 @@
       "check": "dead_path_refs",
       "status": "PASS",
       "severity": "HIGH",
-      "detail": "0 hardcoded paths point at non-existent roots across 904 scripts",
+      "detail": "0 hardcoded paths point at non-existent roots across 908 scripts",
       "evidence": {
         "refs": []
       }

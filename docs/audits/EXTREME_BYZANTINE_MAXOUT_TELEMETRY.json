@@ -1,63 +1,63 @@
 {
-  "timestamp": "2026-11-14T05:34:51.628721+00:00",
+  "timestamp": "2026-11-24T02:32:53.858640+00:00",
   "host": "Windows Bare Metal (x86_64)",
   "cpu_logical_cores": 10,
   "has_numpy_avx2": true,
   "pillars": {
     "vector_engine": {
       "pure_python": {
-        "ops_sec": 14453.2,
-        "ns_per_op": 69188.9
+        "ops_sec": 10618.9,
+        "ns_per_op": 94171.9
       },
       "single_thread_avx2": {
-        "ops_sec": 1881464.1,
-        "ns_per_op": 531.5
+        "ops_sec": 2060202.9,
+        "ns_per_op": 485.4
       },
       "multi_thread_avx2": {
         "threads": 4,
-        "ops_sec": 424059.7,
-        "ns_per_op": 2358.2,
-        "simd_vs_pure_python_speedup": 130.2
+        "ops_sec": 422845.5,
+        "ns_per_op": 2364.9,
+        "simd_vs_pure_python_speedup": 194.0
       }
     },
     "poincare_manifold": {
       "total_ops": 1000000,
-      "total_time_sec": 2.648,
-      "ops_sec": 377595.3,
-      "p50_us": 2.5,
-      "p90_us": 2.96,
-      "p99_us": 6.46
+      "total_time_sec": 2.51,
+      "ops_sec": 398430.8,
+      "p50_us": 2.46,
+      "p90_us": 2.54,
+      "p99_us": 6.75
     },
     "hexcell_memory": {
       "total_strides": 1000000,
       "total_bytes_gb": 5.96,
-      "total_time_sec": 16.193,
-      "roundtrips_sec": 61755.7,
-      "bandwidth_mb_sec": 376.9,
-      "p50_us": 15.25,
+      "total_time_sec": 17.036,
+      "roundtrips_sec": 58700.7,
+      "bandwidth_mb_sec": 358.3,
+      "p50_us": 15.29,
       "p90_us": 17.0,
-      "p99_us": 37.67
+      "p99_us": 55.92
     },
     "streaming_entropy": {
       "total_tokens": 2000000,
-      "raw_uncached_ops_sec": 522728.5,
-      "lut_engine_ops_sec": 422478.2,
-      "ns_per_token": 2367.0,
+      "raw_uncached_ops_sec": 532508.1,
+      "lut_engine_ops_sec": 429955.8,
+      "ns_per_token": 2325.8,
       "algorithmic_formulation_speedup": 0.81
     },
     "mast_taxonomy": {
       "total_evals": 500000,
-      "total_time_sec": 1.278,
-      "evals_sec": 391228.8,
-      "ns_per_eval": 2556.0,
+      "total_time_sec": 1.305,
+      "evals_sec": 383189.6,
+      "ns_per_eval": 2609.7,
       "healing_pulses_triggered": 125000
     },
     "atomic_mutex": {
       "workers": 50,
       "total_acquisitions": 1000000,
       "total_time_sec": 0.066,
-      "acquisitions_sec": 15122149.3,
-      "ns_per_lock": 66.1,
+      "acquisitions_sec": 15084577.3,
+      "ns_per_lock": 66.3,
       "race_conditions": 0
     },
     "http_stage_saturation": {
@@ -65,55 +65,55 @@
         {
           "concurrency": 10,
           "requests": 200,
-          "pass_rate_pct": 0.0,
-          "throughput_req_sec": 4446.0,
-          "avg_latency_ms": 0.0,
-          "p99_latency_ms": 0.0
+          "pass_rate_pct": 100.0,
+          "throughput_req_sec": 2403.6,
+          "avg_latency_ms": 3.07,
+          "p99_latency_ms": 31.72
         },
         {
           "concurrency": 25,
           "requests": 200,
-          "pass_rate_pct": 0.0,
-          "throughput_req_sec": 18367.6,
-          "avg_latency_ms": 0.0,
-          "p99_latency_ms": 0.0
+          "pass_rate_pct": 100.0,
+          "throughput_req_sec": 2754.2,
+          "avg_latency_ms": 4.46,
+          "p99_latency_ms": 61.85
         },
         {
           "concurrency": 50,
           "requests": 200,
-          "pass_rate_pct": 0.0,
-          "throughput_req_sec": 16927.2,
-          "avg_latency_ms": 0.0,
-          "p99_latency_ms": 0.0
+          "pass_rate_pct": 100.0,
+          "throughput_req_sec": 3812.9,
+          "avg_latency_ms": 8.17,
+          "p99_latency_ms": 31.85
         },
         {
           "concurrency": 100,
           "requests": 200,
-          "pass_rate_pct": 0.0,
-          "throughput_req_sec": 16548.9,
-          "avg_latency_ms": 0.0,
-          "p99_latency_ms": 0.0
+          "pass_rate_pct": 100.0,
+          "throughput_req_sec": 2521.2,
+          "avg_latency_ms": 11.55,
+          "p99_latency_ms": 63.05
         },
         {
           "concurrency": 200,
           "requests": 200,
-          "pass_rate_pct": 0.0,
-          "throughput_req_sec": 12524.7,
-          "avg_latency_ms": 0.0,
-          "p99_latency_ms": 0.0
+          "pass_rate_pct": 100.0,
+          "throughput_req_sec": 2238.5,
+          "avg_latency_ms": 10.38,
+          "p99_latency_ms": 61.36
         }
       ],
-      "breaking_concurrency_threshold": 10
+      "breaking_concurrency_threshold": "> 200"
     },
     "pyramidal_distillation": {
       "total_cycles": 10000,
       "raw_sources_distilled": 240000,
-      "total_time_sec": 1.439,
-      "cycles_sec": 6948.7,
-      "p50_ms": 0.141,
-      "p90_ms": 0.149,
-      "p99_ms": 0.18
+      "total_time_sec": 1.966,
+      "cycles_sec": 5087.4,
+      "p50_ms": 0.149,
+      "p90_ms": 0.321,
+      "p99_ms": 0.536
     }
   },
-  "total_gauntlet_time_sec": 32.62
+  "total_gauntlet_time_sec": 34.9
 }

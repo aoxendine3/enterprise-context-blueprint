@@ -1,17 +1,17 @@
 {
-  "timestamp_utc": "2026-11-22T00:38:28Z",
+  "timestamp_utc": "2026-11-23T21:35:17Z",
   "verdict": "Z3_VC_PROOF_PASS",
   "z3_version": "4.16.0",
   "encoding": "pow axiomatized by pow(x,0)=1 and i>0\u2192pow(x,i)=x\u00b7pow(x,i-1); universal Int quantifiers",
   "vcs": {
     "VC1_init": {
       "valid": true,
-      "seconds": 0.0075,
+      "seconds": 0.0032,
       "detail": "UNSAT (formula valid under pow axioms)"
     },
     "VC2_preservation": {
       "valid": true,
-      "seconds": 0.0379,
+      "seconds": 0.0411,
       "detail": "UNSAT (formula valid under pow axioms)"
     },
     "VC3_post": {
@@ -21,8 +21,9 @@
     }
   },
   "negative_control": {
-    "tampered_invariant_refuted": true,
-    "seconds": 61.8127,
-    "detail": "UNKNOWN: smt tactic failed to show goal to be sat/unsat (incomplete quantifiers)"
+    "counterexample_found": true,
+    "status": "COUNTEREXAMPLE_FOUND",
+    "seconds": 0.0044,
+    "detail": "SAT \u2014 counterexample: [pow = [else -> 0]]"
   }
 }

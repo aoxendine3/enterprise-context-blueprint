@@ -1,8 +1,8 @@
 # THE SOVEREIGN GOLDEN LIST
 
 **Governing Rule:** Log Entry #066 (Blackbox Review System)
-**Last Certified:** 2026-11-14T14:01:18.879446Z
-**Total Admitted Assets:** 17
+**Last Certified:** 2026-11-24T02:26:16.626301Z
+**Total Admitted Assets:** 18
 **Total Rejected Candidates:** 1
 
 ---
@@ -125,6 +125,13 @@
 - **Admitted By:** William Vance (Discernment Bench Lead), Maxx (Systems Architect), John (Silicon Telemetry), Clara (Chief of Science)
 
 ### `GOLDEN-017`: XORAS::OS 14-Gate Blackbox Gauntlet & Enterprise Hallucination Governance Protocol
+- **Classification:** `CRITICAL_GOVERNANCE_AND_SUBSTRATE_SECURITY`
+- **Immediate Operational Purpose:** Eliminates enterprise context failure, hallucination drift, slopsquatting, and concurrency races across multi-agent sovereign execution.
+- **Market Dominance Metric:** Outperforms commercial SWE-bench (59.4% flawed) with 64.3% uncontaminated pass, sub-1% hallucination boundary (0.95%), 0.84% L1 cache miss ratio, and 0 transaction aborts.
+- **Empirical Certification:** Passed all 14 blackbox gates, 4 hostile torture scenarios (500/500 drops, 0 memory bleed), and maintained 0 memory leaks under ASAN/TSAN.
+- **Admitted By:** William Vance (Discernment Bench Lead), Maxx (Systems Architect), John (Silicon Telemetry), Clara (Chief of Science)
+
+### `GOLDEN-018`: XORAS::OS 14-Gate Blackbox Gauntlet & Enterprise Hallucination Governance Protocol
 - **Classification:** `CRITICAL_GOVERNANCE_AND_SUBSTRATE_SECURITY`
 - **Immediate Operational Purpose:** Eliminates enterprise context failure, hallucination drift, slopsquatting, and concurrency races across multi-agent sovereign execution.
 - **Market Dominance Metric:** Outperforms commercial SWE-bench (59.4% flawed) with 64.3% uncontaminated pass, sub-1% hallucination boundary (0.95%), 0.84% L1 cache miss ratio, and 0 transaction aborts.

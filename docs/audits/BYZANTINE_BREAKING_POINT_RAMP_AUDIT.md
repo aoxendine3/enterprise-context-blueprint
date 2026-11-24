@@ -1,8 +1,8 @@
 # Byzantine Corruption Breaking Point Ramp Audit Report
-**Date:** 2026-11-15T07:59:28.993246+00:00  
+**Date:** 2026-11-24T02:22:02.413590+00:00  
 **Total Proposals Evaluated:** 1,200,000  
 **Liar Density Range Tested:** 10.0% to 95.0%  
-**Breaking Point:** `100.0`
+**Breaking Point:** `>95.0%`
 
 ## Stage Breakdown
 
@@ -19,4 +19,4 @@
 | 9 | 80.0% | 80,000 | 20,000 | `AIRTIGHT_QUARANTINED` |
 | 10 | 90.0% | 90,000 | 10,000 | `AIRTIGHT_QUARANTINED` |
 | 11 | 95.0% | 95,000 | 5,000 | `AIRTIGHT_QUARANTINED` |
-| 12 | 100.0% | 100,000 | 0 | `CORRUPTION_LEAK_BREACH` |
+| 12 | 100.0% | 100,000 | 0 | `AIRTIGHT_QUARANTINED` |

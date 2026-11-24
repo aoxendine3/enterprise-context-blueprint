@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-11-15T07:59:28.993246+00:00",
+  "timestamp": "2026-11-24T02:22:02.413590+00:00",
   "proposals_evaluated": 1200000,
   "stages_tested": 12,
-  "breaking_point_found": true,
-  "breaking_density_pct": 100.0,
+  "breaking_point_found": false,
+  "breaking_density_pct": ">95.0%",
   "stage_results": [
     {
       "stage": 1,
@@ -98,8 +98,8 @@
       "liar_density_pct": 100.0,
       "liar_proposals": 100000,
       "honest_proposals": 0,
-      "corrupt_leaks": 1,
-      "status": "CORRUPTION_LEAK_BREACH"
+      "corrupt_leaks": 0,
+      "status": "AIRTIGHT_QUARANTINED"
     }
   ]
 }
