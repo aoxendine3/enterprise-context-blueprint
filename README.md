@@ -14,10 +14,10 @@ Every value below is backed by a file in this repository. Where a count may drif
 | --- | --- | --- |
 | Version | `5.0.0-rc.1` — release candidate, **not GA** | `version.json`, `VERSIONING.md`, `CITATION.cff`, `package.json` |
 | Product state | **HOLD — not production-ready** (rc.1: no CI branch protection, no external audit, no paying customer). Gates are green: reality gate `9/9` PASS as of `2026-11-24T02:57:42Z`. | `memory/catch_log/REALITY_GATE_RECEIPT.json` |
-| Reality gate | **PASS — `9/9` gates passed** (`2026-11-24T02:57:42Z`), `first_failure: none`. Production `6/6`, writer PASS, cockpit PASS, CI-surface PASS, golden PASS. Counts are a snapshot — re-run before quoting. | `memory/catch_log/REALITY_GATE_RECEIPT.json` |
+| Reality gate | **PASS — `9/9` gates passed** (`2026-11-24T03:39:26Z`, two consecutive clean runs after bundle rebuild), `first_failure: none`. Production `6/6`, writer PASS, cockpit PASS, CI-surface PASS, golden PASS. Counts are a snapshot — re-run before quoting. | `memory/catch_log/REALITY_GATE_RECEIPT.json` |
 | CI enforcement | Workflows present and the CI-surface gate passes; **required checks and branch protection are still not configured**. | `.github/workflows/` |
 | License | Agent Notary: MIT (`LICENSE`). Separate commercial-terms spec in `LICENSE_COMMERCIAL.md` (applicability to Agent Notary open; see Licensing). | `LICENSE`, `LICENSE_COMMERCIAL.md`, `NOTICE.md` |
-| Last verified evidence | Reality-gate receipt `REALITY_GATE_PASS`, `2026-11-24T02:57:42Z`, `9/9`; earlier RED receipt `2026-11-16T22:03:13Z` retained in git history; cockpit bundle signed, `build_seq 4`, digest `bf07ee2c…` | `REALITY_GATE_RECEIPT.json`, `workspaces/telemetry_cockpit/dist/trust_root.js` |
+| Last verified evidence | Reality-gate receipt `REALITY_GATE_PASS`, `2026-11-24T03:39:26Z`, `9/9`; earlier RED receipt `2026-11-16T22:03:13Z` retained in git history; cockpit bundle rebuilt from the live PASS receipt, signed, `build_seq 14`, digest `63e0e087f2a6…` | `REALITY_GATE_RECEIPT.json`, `workspaces/telemetry_cockpit/dist/trust_root.js` |
 | Behavioral groundedness | `GOLDEN_PASS` — `pass_rate: 96.0` against an `80.0` floor (receipt `2026-11-19`); still a **blocking gate** on every re-run, not a shipping claim | `memory/catch_log/GOLDEN_GROUNDEDNESS_RECEIPT.json` |
 
 ---
@@ -197,7 +197,7 @@ The root `version.json` is the machine-readable version SSOT. `data/version.json
 **Receipt-backed claims**
 
 - Reality gate **FAIL** at `8/9` (`REALITY_GATE_RECEIPT.json`, `2026-11-16T22:03:13Z`): production `6/6`, writer PASS, cockpit PASS, CI-surface PASS, `3651` lineage nodes; first failure `golden groundedness (floor metric)`. Eight gates are receipted green; the ninth is receipted FAIL.
-- Cockpit bundle is structurally complete and signed (Ed25519), pinned by `dist/trust_root.js` at `build_seq 4`.
+- Cockpit bundle is structurally complete and signed (Ed25519), pinned by `dist/trust_root.js` at `build_seq 14` (rebuilt 2026-11-24 from the live PASS receipt to break the stale-bundle verification oscillation).
 - DART cage lattice acceptance and side-channel axes are receipted in `memory/catch_log/`.
 - Formal proofs and falsification harnesses are present in `dist/sovereign_falsification_suite/`.
 
