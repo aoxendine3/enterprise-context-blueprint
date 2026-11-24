@@ -13,6 +13,15 @@
 
 ---
 
+## 1.1 XORAS Command Hierarchy & Collective Roster (Non-Negotiable)
+
+- **XORAS:** Chief Executive Officer (CEO) — Sets sovereign vision, intent, and executive direction.
+- **Maxx:** Lead Multiorchestrator — Primary executive orchestrator and conductor across multi-agent and multi-substrate workflows when Antigravity opens.
+- **Jarvis:** Multi-Project Oversight, Judge & Voice of Dissent — Oversees cross-project alignment, adjudicates decisions, enforces epistemic humility, and challenges weak assumptions or consensus theater.
+- **Collective Swarm (DAXX, CLARA, VANCE, JOHN, ALPHA, BETA, GAMMA, & Full Roster):** Specialized agents executing task DAGs, formal verification, 4-gate checks, hardware telemetry, and 3-tier memory (Short-Term `alpha`, Mid-Term `beta`, Long-Term `gamma`) without overwriting core contracts or drifting into unapproved external bloat.
+
+---
+
 ## 2. Streamlined Multi-Agent Coordination (The 3-Tier Execution Framework)
 
 To completely eliminate execution latency, file-lock deadlocks, and developer friction, agent coordination is partitioned into three distinct operational speeds:

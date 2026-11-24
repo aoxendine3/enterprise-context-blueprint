@@ -110,3 +110,25 @@ workspaces/telemetry_cockpit/**/*.pem
 workspaces/telemetry_cockpit/**/.env*
 workspaces/telemetry_cockpit/**/*.bin
 workspaces/telemetry_cockpit/**/*.onnx
+
+# Non-trackable directories: generated, cached, or bulk data
+misc/
+code/
+data/
+artifacts/
+scratch/
+build/
+build 2/
+video_output/
+voice copy/
+kaggle_pokemon/
+Media.localized/
+~
+dist_pages/
+tmp/
+tmp
+node_modules/
+.pytest_cache/
+.coverage
+.DS_Store
+*.DS_Store
