@@ -1,0 +1,31 @@
+{
+  "timestamp_utc": "2026-11-24T01:57:20Z",
+  "verdict": "Z3_SEPARATION_VC_PASS",
+  "z3_version": "4.16.0",
+  "encoding": "heap = Array(Int,Int); p\u21a6v = Select(H,p)==v; * = pairwise disequality (concrete disjointness); swap = two Stores over circular program order",
+  "vcs": {
+    "VC1_swap_post": {
+      "valid": true,
+      "seconds": 0.0476,
+      "detail": "UNSAT (valid)"
+    },
+    "VC2_frame_rule": {
+      "valid": true,
+      "seconds": 0.0008,
+      "detail": "UNSAT (valid)"
+    }
+  },
+  "negative_controls": {
+    "CTRL1_aliased_frame": {
+      "refuted": true,
+      "seconds": 0.0012,
+      "detail": "SAT \u2014 counterexample: [H = Store(Store(K(Int, 3), 2, 5), 6, 4),\n f = 6,\n b = 6,\n a = 2,\n y = 4,\n z = 4,\n x = 5]"
+    },
+    "CTRL2_tampered_post": {
+      "refuted": true,
+      "seconds": 0.0006,
+      "detail": "SAT \u2014 counterexample: [H = Store(Store(K(Int, 4), 2, 5), 3, 6),\n b = 3,\n a = 2,\n y = 6,\n x = 5]"
+    }
+  },
+  "scope": "frame-rule instance for a concrete two-cell swap over SMT array theory; not a full separation-logic metalanguage"
+}

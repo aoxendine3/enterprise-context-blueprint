@@ -13,12 +13,12 @@ Every value below is backed by a file in this repository. Where a count may drif
 | Surface | Status (receipt-backed) | Source of truth |
 | --- | --- | --- |
 | Version | `5.0.0-rc.1` — release candidate, **not GA** | `version.json`, `VERSIONING.md`, `CITATION.cff`, `package.json` |
-| Product state | **HOLD — not production-ready.** The golden groundedness gate fails and blocks release. | `memory/catch_log/REALITY_GATE_RECEIPT.json` |
-| Reality gate | **FAIL — `8/9` gates passed.** First failure: `golden groundedness (floor metric)`. Production `6/6`, writer PASS, cockpit PASS, CI-surface PASS, golden FAIL. This is a RED build, not a shippable state. | `memory/catch_log/REALITY_GATE_RECEIPT.json` |
+| Product state | **HOLD — not production-ready** (rc.1: no CI branch protection, no external audit, no paying customer). Gates are green: reality gate `9/9` PASS as of `2026-11-24T02:57:42Z`. | `memory/catch_log/REALITY_GATE_RECEIPT.json` |
+| Reality gate | **PASS — `9/9` gates passed** (`2026-11-24T02:57:42Z`), `first_failure: none`. Production `6/6`, writer PASS, cockpit PASS, CI-surface PASS, golden PASS. Counts are a snapshot — re-run before quoting. | `memory/catch_log/REALITY_GATE_RECEIPT.json` |
 | CI enforcement | Workflows present and the CI-surface gate passes; **required checks and branch protection are still not configured**. | `.github/workflows/` |
 | License | Agent Notary: MIT (`LICENSE`). Separate commercial-terms spec in `LICENSE_COMMERCIAL.md` (applicability to Agent Notary open; see Licensing). | `LICENSE`, `LICENSE_COMMERCIAL.md`, `NOTICE.md` |
-| Last verified evidence | Reality-gate receipt `REALITY_GATE_FAIL`, `2026-11-16T22:03:13Z`, `8/9`, `3651` lineage nodes; cockpit bundle signed, `build_seq 4`, digest `bf07ee2c…` | `REALITY_GATE_RECEIPT.json`, `workspaces/telemetry_cockpit/dist/trust_root.js` |
-| Behavioral groundedness | `GOLDEN_FAIL` — `pass_rate: 0.0` against an `80.0` floor; a **blocking gate**, not a shipping claim | `memory/catch_log/GOLDEN_GROUNDEDNESS_RECEIPT.json` |
+| Last verified evidence | Reality-gate receipt `REALITY_GATE_PASS`, `2026-11-24T02:57:42Z`, `9/9`; earlier RED receipt `2026-11-16T22:03:13Z` retained in git history; cockpit bundle signed, `build_seq 4`, digest `bf07ee2c…` | `REALITY_GATE_RECEIPT.json`, `workspaces/telemetry_cockpit/dist/trust_root.js` |
+| Behavioral groundedness | `GOLDEN_PASS` — `pass_rate: 96.0` against an `80.0` floor (receipt `2026-11-19`); still a **blocking gate** on every re-run, not a shipping claim | `memory/catch_log/GOLDEN_GROUNDEDNESS_RECEIPT.json` |
 
 ---
 
@@ -28,14 +28,14 @@ Every value below is backed by a file in this repository. Where a count may drif
 
 - A local-first verifier and evidence substrate: independent recomputation, Merkle-attested receipts, and a fail-closed pre-flight that aggregates every gate outcome and exits non-zero if any gate fails.
 - A body of engineering evidence — gate receipts, formal proofs, falsification harnesses, and an offline evidence cockpit — that can be re-run on a clean checkout.
-- A release candidate (`5.0.0-rc.1`) in **HOLD**: eight of nine reality gates pass and the golden groundedness gate currently blocks release. CI enforcement is in progress.
+- A release candidate (`5.0.0-rc.1`) in **HOLD** for governance reasons (no CI branch protection, no external audit), with the full reality gate currently passing `9/9`. CI enforcement is in progress.
 
 **What this is not**
 
 - **Not GA, and no paying customer.** There has been no paying-customer production deployment, and no claim of operation at an organization's scale is made.
 - **Not independently benchmark-replicated.** No third party has reproduced the results; no independent challenger or witness has signed them.
 - **Not publicly audited.** No public or external audit of the gates or receipts has been performed.
-- **Not a "100% verified" product.** The golden groundedness gate is `GOLDEN_FAIL` (`pass_rate: 0.0` vs `80.0` floor) and currently blocks release; the cockpit correctly resolves to `HALTED` while unresolved slots remain.
+- **Not a "100% verified" product.** The golden groundedness gate currently passes (`GOLDEN_PASS`, `pass_rate: 96.0` vs the `80.0` floor) but remains blocking on every re-run; the cockpit resolves to `HALTED` while unresolved slots remain.
 - **Not backed by a live CI signal in this document.** Historical runs are not quoted as fresh; required checks and branch protection are pending, not configured.
 - **Not the producer of the `xoras.infotech` site.** That is a separate site. This repository publishes its `docs/` tree via `.github/workflows/deploy_pages.yml` to the `enterprise-context-blueprint` GitHub Pages target.
 - **Not a legal opinion.** The dual-license notices describe terms, not advice (see `NOTICE.md`).
@@ -72,7 +72,7 @@ cd workspaces/telemetry_cockpit && bash build.sh
 
 The cockpit build is fail-closed across ten steps (writer gate → evidence export → Ed25519 signing → structural verification → pinned trust root → single-file runtime → asset lock → asset verification → Python assertions → Node suite with an enforced 80% coverage floor). A green build means the bundle is structurally sound and signed; it does **not** mean the product state is `VERIFIED`. Open `dist/index.html` and load `dist/evidence-bundle.json` to inspect the actual verdict.
 
-**Expect a RED pre-flight today.** `bash ops/scripts/reality_gate.sh` currently exits **1** by design: its ninth top-level gate, golden groundedness, fails on the current receipt (`8/9`, first failure `golden groundedness (floor metric)`). This is a governance control, not a broken script. The harness is fail-closed and the verifier returns non-zero until the full **25-question** set is evaluated with **0** forbidden hits and `pass_rate >= 80.0`. An honest build is RED until then; suppressing the gate to turn CI green would defeat its purpose.
+**Current pre-flight status:** `bash ops/scripts/reality_gate.sh` passed `9/9` on `2026-11-24T02:57:42Z` (receipt `REALITY_GATE_PASS`). It is still fail-closed by aggregation: it runs every gate, records each outcome, and exits non-zero if any gate fails. The golden groundedness gate stays blocking — it returns non-zero until the full **25-question** set is evaluated with **0** forbidden hits and `pass_rate >= 80.0`. A RED result is a governance control, not a broken script; suppressing the gate to turn CI green would defeat its purpose. Re-run before quoting any number above.
 
 ---
 
@@ -80,17 +80,17 @@ The cockpit build is fail-closed across ten steps (writer gate → evidence expo
 
 | Concern | Entry point | Receipt / authority |
 | --- | --- | --- |
-| Reality gate (9 top-level gates; currently **FAIL `8/9`**) | `bash ops/scripts/reality_gate.sh` | `memory/catch_log/REALITY_GATE_RECEIPT.json` |
+| Reality gate (9 top-level gates; currently **PASS `9/9`** — snapshot `2026-11-24T02:57:42Z`) | `bash ops/scripts/reality_gate.sh` | `memory/catch_log/REALITY_GATE_RECEIPT.json` |
 | Production gates (`6/6`) | `bash ops/scripts/verify_all_production_gates.sh` | Production status in the reality-gate receipt (derived from the actual result, not hardcoded) |
 | Side-channel / DART cage / Z3 containment | `node --expose-gc core/ops/scripts/test_side_channel_verification.cjs`; `python3 tests/test_dart_cage_lattice.py`; `z3 -smt2 -T:30 core/ops/security/cage_containment.smt2` | Gate receipts in `memory/catch_log/` |
 | Sovereign writer gate | `bash ops/scripts/verify_sovereign_file_writer.sh` | Writer status in the reality-gate receipt |
 | Cockpit gate | `bash ops/scripts/verify_cockpit.sh` (no dist regeneration) | Cockpit status in the reality-gate receipt; `dist/trust_root.js` |
 | CI surface (WASM + doc-sync) | `bash ops/scripts/verify_ci_surface.sh`; `python3 core/ops/scripts/test_upgp_wasm_module.py`; `python3 core/ops/scripts/enforce_doc_sync_gate.py` | CI-surface status in the reality-gate receipt; gate logs in `memory/catch_log/` |
-| Golden groundedness (**blocking**) | `python3 core/ops/scripts/verify_golden_groundedness.py`; `python3 scratch/golden_groundedness_harness.py` | `memory/catch_log/GOLDEN_GROUNDEDNESS_RECEIPT.json` (`GOLDEN_FAIL`) |
+| Golden groundedness (**blocking**) | `python3 core/ops/scripts/verify_golden_groundedness.py`; `python3 scratch/golden_groundedness_harness.py` | `memory/catch_log/GOLDEN_GROUNDEDNESS_RECEIPT.json` (`GOLDEN_PASS`, `96.0`) |
 | Falsification suite | `./dist/sovereign_falsification_suite/reproduce.sh` (or the pinned Nix flake) | Suite outputs in `dist/sovereign_falsification_suite/` |
 | Formal proofs | `dist/sovereign_falsification_suite/lean/MtpoMonotonicity/Basic.lean` (Lean 4, no `sorryAx`); `dist/sovereign_falsification_suite/agm_mtpo_monotonicity.smt2` (Z3 `unsat` vs destructive `sat`) | Proof artifacts in-tree; re-run on this host |
 
-Counts in the receipt are a snapshot; re-run the gate before quoting any number. **Golden groundedness currently blocks release:** eight gates pass, but an honest build is RED until the full 25-question set is evaluated with 0 forbidden hits and `pass_rate >= 80.0`.
+Counts in the receipt are a snapshot; re-run the gate before quoting any number. **Golden groundedness remains blocking:** it currently passes (96.0 ≥ 80.0, 0 forbidden hits) but returns non-zero on any regression below the floor.
 
 ### Realized gate graph (canonical)
 
