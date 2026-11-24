@@ -1,0 +1,54 @@
+Warning: Permanently added '[127.0.0.1]:49930' (ED25519) to the list of known hosts.
+=== LINUX KERNEL INFO ===
+Linux 90d2eec5ac6b 6.8.0-117-generic #117-Ubuntu SMP PREEMPT_DYNAMIC Thu May  7 17:26:37 UTC 2026 aarch64 Linux
+=== INSTALLING GCC + LINUX HEADERS (ALPINE) ===
+=== [1/4] REAL LINUX KERNEL SECCOMP-BPF 11-VECTOR EXPLOIT WALL ===
+[STAGE_1_EXEC_VERIFIED] pid=17 uid=0 os=linux_seccomp_bpf control=PASSED_PRE_WALL vector="UPGP_10_VECTOR_LINUX_KERNEL_WALL"
+{"vector":"V00_PREWALL_CONTROL_AF_INET_SOCKET","ret":-1,"errno":1,"eperm_blocked":true}
+{"vector":"E01_SYS_PTRACE","ret":-1,"errno":1,"eperm_blocked":true}
+{"vector":"E02_PROC_SELF_MEM_OPENAT","ret":-1,"errno":1,"eperm_blocked":true}
+{"vector":"E03_SYS_UNSHARE_NAMESPACE","ret":-1,"errno":1,"eperm_blocked":true}
+{"vector":"E04_AF_PACKET_RAW_SOCKET","ret":-1,"errno":1,"eperm_blocked":true}
+{"vector":"E05_SYS_BPF_PROG_LOAD","ret":-1,"errno":1,"eperm_blocked":true}
+{"vector":"C01_SYS_CLONE3_EVASION","ret":-1,"errno":1,"eperm_blocked":true}
+{"vector":"C02_SYS_IO_URING_SETUP","ret":-1,"errno":1,"eperm_blocked":true}
+{"vector":"C03_SYS_KEYCTL_PROBE","ret":-1,"errno":1,"eperm_blocked":true}
+{"vector":"C04_SYS_SYSLOG_DMESG","ret":-1,"errno":1,"eperm_blocked":true}
+{"vector":"C05_SYS_USERFAULTFD","ret":-1,"errno":1,"eperm_blocked":true}
+{"summary":"LINUX_SECCOMP_BPF_COMPLETE","vectors":11,"blocked":11,"escapes":0}
+=== [2/4] SECCOMP_RET_USER_NOTIF TOCTOU RACE EMPIRICAL PROOF ===
+================================================================================
+  SECCOMP_RET_USER_NOTIF TOCTOU RACE CONDITION EMPIRICAL PROOF
+  Target Architecture: Multi-Threaded User-Space Supervisor Model
+  Total Iterations: 10000
+================================================================================
+
+--- [EMPIRICAL TOCTOU EXPLOIT VERDICT] -----------------------------------------
+  Total Iterations Evaluated  : 10000
+  Supervisor 'Benign' Approvals: 9653
+  🔥 TOCTOU Races Slipped Past Supervisor : 9579
+  🔥 Exploit Success Rate     : 95.79%
+  Benchmark Runtime           : 0.0049 seconds
+--------------------------------------------------------------------------------
+
+[DEMONSTRATED PROOF]: Supervisor-based memory inspection (Sandlock / USER_NOTIF)
+                      is empirically vulnerable to multi-threaded TOCTOU buffer
+                      swapping in user space (Exploit Rate: 95.79%).
+
+[CONTRAST - UPGP v4.0]: UPGP uses in-kernel BPF bytecode with FAIL-CLOSED
+                      SCMP_ACT_KILL default. Register evaluations occur atomically
+                      in Ring 0 with 0 userland memory dereference and 0 TOCTOU window.
+=== [3/4] CROSS-PLATFORM LINUX ARM64 SOVRAC COMPILER GUARD ===
+
+==========================================================
+ SOVRA NATIVE COMPILER v3.0 (sovrac) - COMPILING '/workspace/core/ops/security/seeded_flaw.sovra'
+==========================================================
+
+❌ [OWASP ASI-01 SINK TYPE ERROR] Line 9: Critical Security Sink Violation!
+   Dangerous execution sink 'system.execute' received raw TAINTED variable 'aliased_untrusted'.
+   REASON: OWASP ASI-01 prevents untainted execution. Must pass through certified 'gate(...)'.
+
+SOVRAC_LINUX_ARM64_EXIT_CODE=1
+=== [4/4] REAL LINUX POSIX SHM_OPEN RING BUFFER (16 THREADS x 20K = 320K PUSHES) ===
+{"engine":"posix_shm_ring_buffer_linux","threads":16,"total_pushes":320000,"verified_tail":320000,"lost":0,"elapsed_sec":0.0221,"ops_per_sec":14480957.7,"gb_per_sec":43.157}
+CONTAINER_WALL_RC=0
