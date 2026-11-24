@@ -260,6 +260,19 @@
       "sha256": "5655e9aeb56c7b805086205eaa6e41c841c21a9e71fe81171d857f8618083457",
       "bytes": 1244,
       "law": "moved intact, still readable; no deletions"
+    },
+    {
+      "utc": "2026-11-24T14:18:17Z",
+      "kind": "MISC_BARN_REORGANIZATION",
+      "item": "81575 cache/reproducible/duplicate files from misc/ root",
+      "reason": "Operator directive 2026-11-24: nonessential cache spill, reproducible artifacts, and unreferenced duplicate images belong in cold archive, not the active project tree. No deletion.",
+      "source": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/misc",
+      "destination": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/barn/archives/the_barn/misc_reorganize_20261124",
+      "artifact": "memory/catch_log/MISC_BARN_MOVE_SUMMARY_20261124.json",
+      "sha256": "91d3934e9e879ff85c059200da431540d63c31055535174385ab437ed0410d15",
+      "bytes": 274043847216,
+      "law": "moved intact; live-reference sweep passed; inode+size+mtime verified on every move; sha256 verified on small files; no deletions",
+      "verification": "81575/81575 moves verified, 0 failures"
     }
   ],
   "resolved_not_moved": [
@@ -272,6 +285,16 @@
       "item": "Clara's persona prompt",
       "finding": "A probe showed a bare prompt yields a hollow non-answer while the full persona yields a substantive one.",
       "action": "The one temporary trim was REVERTED. Seat, authority, mandate and workspace ship whole. The probe informed the request shape; it did not redefine the persona."
+    },
+    {
+      "utc": "2026-11-24T14:18:17Z",
+      "kind": "LIVE_REFERENCED_PROVENANCE_OBJECTS_RESTORED",
+      "item": "68 hhv_lattice provenance objects",
+      "reason": "Active source in core/ops/provenance still cites misc/hhv_lattice*.rcgu.o as evidence; quarantine protocol forbids moving an item with live callers.",
+      "source": "barn/archives/the_barn/misc_reorganize_20261124/object_files",
+      "destination": "misc",
+      "verification": "68 restored, 0 failures",
+      "sha256": "4d0cb1446abd8835774b4de6dd579805f64ebfcffcb5c41917e7da32d105a595"
     }
   ],
   "deletions": 0

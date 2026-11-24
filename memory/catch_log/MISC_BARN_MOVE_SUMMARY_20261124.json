@@ -1,0 +1,112 @@
+{
+  "schema": "xoras.misc_barn_move_summary.v1",
+  "utc": "2026-11-24T14:18:17Z",
+  "source": "misc",
+  "destination": "barn/archives/the_barn/misc_reorganize_20261124",
+  "manifest": "barn/archives/the_barn/misc_reorganize_20261124/MANIFEST.json",
+  "manifest_sha256": "4d0cb1446abd8835774b4de6dd579805f64ebfcffcb5c41917e7da32d105a595",
+  "moved_files": 81507,
+  "moved_bytes_apparent": 274043430824,
+  "by_category": {
+    "chrome_cache_data": 62259,
+    "journals": 557,
+    "source_maps": 5588,
+    "compiled_python": 7110,
+    "object_files": 2358,
+    "build_metadata": 2542,
+    "cache_index_names": 1090,
+    "historical_app_database": 1,
+    "stale_duplicate_images": 2
+  },
+  "bytes_by_category": {
+    "chrome_cache_data": 2476384246,
+    "journals": 129575843,
+    "source_maps": 68747571,
+    "compiled_python": 151512149,
+    "object_files": 150956711,
+    "build_metadata": 10118228,
+    "cache_index_names": 304891788,
+    "historical_app_database": 4169670656,
+    "stale_duplicate_images": 266581573632
+  },
+  "sha256_verified_files": 81489,
+  "inode_identity_verified_files": 81575,
+  "failed_moves": [],
+  "failed_count": 0,
+  "excluded_live_referenced": [
+    "current"
+  ],
+  "excluded_live_referenced_count": 1,
+  "live_reference_sweep": {
+    "source_files_scanned": 59294,
+    "misc_reference_lines": 850,
+    "live_source_reference_lines": 850,
+    "live_source_examples": [
+      {
+        "file": "core/memory/catch_log/CATCH_LOG.md",
+        "line": "- All non-SSOT assets\u2014legacy `Xoras_Workspace`, legacy `Projects` folder, 9 desktop screenshots, and stale IDE dot-directories (`.agents`, `.cursor`, `.zed`)\u2014safely archived into `the-barn` repo (`/Users/ajoxendine68/Pro"
+      },
+      {
+        "file": "core/ops/discernment/xoras_report_schema.py",
+        "line": "# verification never runs away into misc/ residue (200k+ files, special"
+      },
+      {
+        "file": "core/ops/verification/ensure_ssot_placement.py",
+        "line": "* otherwise \u2192 ``misc/``"
+      },
+      {
+        "file": "core/ops/provenance/seed_ledger.py",
+        "line": "\"'hhv' matches only compiled Rust codegen objects (misc/hhv_lattice*.rcgu.o): build output, not source. \""
+      },
+      {
+        "file": "core/ops/provenance/seed_ledger.py",
+        "line": "{\"probe\": \"find . -iname '*hhv*' -> misc/hhv_lattice*.rcgu.o only (>=30 objects), no .rs source located yet\"}])"
+      },
+      {
+        "file": "core/ops/provenance/physical_artifact_audit.py",
+        "line": "# misc/ is a massive directory (>100k files); prior targeted inventory indexed hhv_lattice objects"
+      },
+      {
+        "file": "core/ops/provenance/physical_artifact_audit.py",
+        "line": "obs = \"Compiled objects misc/hhv_lattice*.rcgu.o recorded; no source .rs file exists in active project tree.\""
+      },
+      {
+        "file": "core/ops/provenance/physical_artifact_audit.py",
+        "line": "\"claimed_path\": \"misc/hhv_lattice*.rcgu.o\","
+      },
+      {
+        "file": "core/ops/provenance/physical_artifact_audit.py",
+        "line": "\"stdout_excerpt\": \"misc/hhv_lattice*.rcgu.o (compiled LLVM/Rust codegen objects, source absent)\","
+      },
+      {
+        "file": "core/ops/provenance/physical_artifact_audit.py",
+        "line": "2. **`hhv_lattice`:** Present only as compiled LLVM/Rust object files in `misc/`; source code is absent from the active project tree."
+      }
+    ]
+  },
+  "elapsed_sec": 161.89,
+  "restored_live_referenced_count": 68,
+  "restored_live_referenced": [
+    "misc/hhv_lattice-6b5eb61f1b78b9be.03t5ilb8v5p7yxric2vd58q32.0vtuqr5.rcgu.o",
+    "misc/hhv_lattice-6b5eb61f1b78b9be.03t5ilb8v5p7yxric2vd58q32.16d58ad.rcgu.o",
+    "misc/hhv_lattice-6b5eb61f1b78b9be.0nvw5g82k6wg8kdcykp4tzbkl.16d58ad.rcgu.o",
+    "misc/hhv_lattice-6b5eb61f1b78b9be.0qr0ihb9x31dmufhy2tlkm0qw.0vtuqr5.rcgu.o",
+    "misc/hhv_lattice-6b5eb61f1b78b9be.0qr0ihb9x31dmufhy2tlkm0qw.16d58ad.rcgu.o",
+    "misc/hhv_lattice-6b5eb61f1b78b9be.2dbni0extqbbf29dnhguyanht.1xxgn03.rcgu.o",
+    "misc/hhv_lattice-6b5eb61f1b78b9be.2i3nk0f1n8ceyug6ayiqh9r8w.1xxgn03.rcgu.o",
+    "misc/hhv_lattice-6b5eb61f1b78b9be.3a4u87nwpo7v7e2unaal72ad3.0vtuqr5.rcgu.o",
+    "misc/hhv_lattice-6b5eb61f1b78b9be.3a4u87nwpo7v7e2unaal72ad3.16d58ad.rcgu.o",
+    "misc/hhv_lattice-6b5eb61f1b78b9be.3sgka665zkv89ynz7gjfwr18j.0vtuqr5.rcgu.o",
+    "misc/hhv_lattice-6b5eb61f1b78b9be.3sqhczhofnam7esf7z8yuun9l.0vtuqr5.rcgu.o",
+    "misc/hhv_lattice-6b5eb61f1b78b9be.3sqhczhofnam7esf7z8yuun9l.16d58ad.rcgu.o",
+    "misc/hhv_lattice-6b5eb61f1b78b9be.3t0k5ky3z7e9mdkdcknl1h2a4.0vtuqr5.rcgu.o",
+    "misc/hhv_lattice-6b5eb61f1b78b9be.3t0k5ky3z7e9mdkdcknl1h2a4.16d58ad.rcgu.o",
+    "misc/hhv_lattice-6b5eb61f1b78b9be.4m27loy4wsx6hset7045v6lhm.1xxgn03.rcgu.o",
+    "misc/hhv_lattice-6b5eb61f1b78b9be.4qt553fmbn4nrbecnevts0fa5.16d58ad.rcgu.o",
+    "misc/hhv_lattice-6b5eb61f1b78b9be.4v117y720vzvkzhlmpf0hd79r.0vtuqr5.rcgu.o",
+    "misc/hhv_lattice-6b5eb61f1b78b9be.4v117y720vzvkzhlmpf0hd79r.16d58ad.rcgu.o",
+    "misc/hhv_lattice-6b5eb61f1b78b9be.5frmcriuyr0s7nab849bm8bf4.1xxgn03.rcgu.o",
+    "misc/hhv_lattice-6b5eb61f1b78b9be.6pbdl3gx8tkio7zci47dfyl59.1xxgn03.rcgu.o"
+  ],
+  "restore_failures": []
+}
