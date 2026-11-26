@@ -253,8 +253,10 @@ def hydrate(limit: int = 10, journal: Path = None, db: Path = None) -> dict:
 # ------------------------------------------------------------ Self test ----
 def self_test() -> int:
     import tempfile
+    tmp_dir = ROOT / "tmp"
+    tmp_dir.mkdir(parents=True, exist_ok=True)
     fails = []
-    with tempfile.TemporaryDirectory() as td:
+    with tempfile.TemporaryDirectory(dir=str(tmp_dir)) as td:
         j, db = Path(td) / "ko.jsonl", Path(td) / "w.db"
         c = sqlite3.connect(db)
         c.execute("CREATE TABLE task_checkpoints (task_id TEXT, step_completed TEXT, total_steps TEXT, "

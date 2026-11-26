@@ -46,7 +46,9 @@ def main():
         k = Kokoro(str(ROOT / "capabilities" / "neural_models" / "kokoro-v1.0.onnx"),
                    str(ROOT / "capabilities" / "neural_models" / "voices.bin"))
         audio, sr = k.create(text, voice=report_voice(), speed=1.0, lang="en-us")
-        with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as fh:
+        tmp_dir = ROOT / "tmp"
+        tmp_dir.mkdir(parents=True, exist_ok=True)
+        with tempfile.NamedTemporaryFile(suffix=".wav", dir=str(tmp_dir), delete=False) as fh:
             sf.write(fh.name, audio, sr)
             wav_path = fh.name
         try:

@@ -241,7 +241,9 @@ def self_test() -> int:
     # Tamper probe: copy a card, alter it, seal-check it in an isolated copy.
     import shutil
     import tempfile
-    with tempfile.TemporaryDirectory() as td:
+    tmp_dir = ROOT / "tmp"
+    tmp_dir.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(dir=str(tmp_dir)) as td:
         tmp_cards = Path(td) / "cards"
         shutil.copytree(CARDS_DIR, tmp_cards)
         target = tmp_cards / "maxx.json"
@@ -259,7 +261,7 @@ def self_test() -> int:
         if not detected:
             failures.append("tampered card passed the seal check")
 
-    with tempfile.TemporaryDirectory() as td:
+    with tempfile.TemporaryDirectory(dir=str(tmp_dir)) as td:
         probe = Path(td) / "probe.json"
         probe.write_text('{"agent_id": "maxx", "purpose": "Antigravity AI Assistant persona"}', encoding="utf-8")
         hits = check_foreign_branding(probe.read_text(encoding="utf-8"), "probe")
@@ -274,7 +276,7 @@ def self_test() -> int:
         failures.append("agent card is writable")
 
     # [6] Constitution drift: a changed copy of AGENTS.md must be caught.
-    with tempfile.TemporaryDirectory() as td:
+    with tempfile.TemporaryDirectory(dir=str(tmp_dir)) as td:
         fake = Path(td) / "AGENTS.md"
         fake.write_text(AGENTS_PATH.read_text(encoding="utf-8") + "\nTAMPERED", encoding="utf-8")
         hits = constitution_violations(
