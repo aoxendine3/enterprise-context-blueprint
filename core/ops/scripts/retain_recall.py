@@ -73,10 +73,14 @@ def read_journal(journal: Path = None) -> list:
 
 
 def verify_chain(journal: Path = None) -> tuple:
-    """Return (ok, detail). Detects edits, reordering and deletions."""
+    """Return (ok, detail). Detects edits, reordering, deletions, and corrupt JSON."""
     journal = journal or JOURNAL
+    try:
+        records = read_journal(journal)
+    except json.JSONDecodeError as exc:
+        return False, f"corrupt JSONL: {exc}"
     prev = GENESIS
-    for n, rec in enumerate(read_journal(journal), 1):
+    for n, rec in enumerate(records, 1):
         body = {k: v for k, v in rec.items() if k != "hash"}
         if rec.get("prev_hash") != prev:
             return False, f"record {n}: prev_hash broken (deletion or reorder)"
