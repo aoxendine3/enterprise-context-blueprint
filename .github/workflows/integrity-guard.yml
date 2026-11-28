@@ -17,7 +17,14 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Run WebAssembly Integrity & Doc Sync Gate
+      - name: Run WebAssembly Integrity, Doc Sync & Governed Head-to-Head Suites
         run: |
           python3 core/ops/scripts/test_upgp_wasm_module.py
           python3 core/ops/scripts/enforce_doc_sync_gate.py
+          python3 -m unittest \
+            tests.test_blackboard_mcp_head_to_head \
+            tests.test_retain_recall \
+            tests.test_retain_recall_fuzz \
+            tests.test_windows_sovereign_client \
+            tests.test_collective_report_voice \
+            tests.test_collective_voice_guard
