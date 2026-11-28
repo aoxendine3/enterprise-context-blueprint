@@ -29,7 +29,7 @@ import urllib.parse
 from pathlib import Path
 from typing import Dict, Any, List, Optional
 
-ROOT_DIR = Path("/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain")
+ROOT_DIR = Path(__file__).resolve().parents[3]
 CATALOG_PATH = ROOT_DIR / "core" / "products" / "mcp" / "superanjox_ai_coding_catalog.json"
 RECEIPTS_PATH = ROOT_DIR / "memory" / "catch_log" / "MCP_EXECUTION_RECEIPTS.jsonl"
 RECEIPTS_PATH.parent.mkdir(parents=True, exist_ok=True)
