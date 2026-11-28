@@ -13,11 +13,11 @@ Every value below is backed by a file in this repository. Where a count may drif
 | Surface | Status (receipt-backed) | Source of truth |
 | --- | --- | --- |
 | Version | `5.0.0-rc.1` — release candidate, **not GA** | `version.json`, `VERSIONING.md`, `CITATION.cff`, `package.json` |
-| Product state | **HOLD — not production-ready** (rc.1: no CI branch protection, no external audit, no paying customer). Gates are green: reality gate `9/9` PASS as of `2026-11-24T02:57:42Z`. | `memory/catch_log/REALITY_GATE_RECEIPT.json` |
-| Reality gate | **PASS — `9/9` gates passed** (`2026-11-24T03:39:26Z`, two consecutive clean runs after bundle rebuild), `first_failure: none`. Production `6/6`, writer PASS, cockpit PASS, CI-surface PASS, golden PASS. Counts are a snapshot — re-run before quoting. | `memory/catch_log/REALITY_GATE_RECEIPT.json` |
-| CI enforcement | Workflows present and the CI-surface gate passes; **required checks and branch protection are still not configured**. | `.github/workflows/` |
+| Product state | **HOLD — not GA** (rc.1: awaiting external replication and external audit). Gates and branch protection are green: reality gate `9/9` PASS and PR #3 merged under 4 required CI checks. | `memory/catch_log/REALITY_GATE_RECEIPT.json` |
+| Reality gate | **PASS — `9/9` gates passed** (`REALITY_GATE_PASS`, `first_failure: none`). Production `6/6`, writer PASS, cockpit PASS, CI-surface PASS, golden PASS. Counts are a snapshot — re-run `bash ops/scripts/reproduce_all.sh` before quoting. | `memory/catch_log/REALITY_GATE_RECEIPT.json` |
+| CI enforcement | **Active on `main`:** GitHub branch protection enforces **4 required status checks** on pull requests (verified in PR #3 `30327766e`; direct pushes to `main` are declined with `GH006`). | `.github/workflows/`, PR #3 |
 | License | Agent Notary: MIT (`LICENSE`). Separate commercial-terms spec in `LICENSE_COMMERCIAL.md` (applicability to Agent Notary open; see Licensing). | `LICENSE`, `LICENSE_COMMERCIAL.md`, `NOTICE.md` |
-| Last verified evidence | Reality-gate receipt `REALITY_GATE_PASS`, `2026-11-24T03:39:26Z`, `9/9`; earlier RED receipt `2026-11-16T22:03:13Z` retained in git history; cockpit bundle rebuilt from the live PASS receipt, signed, `build_seq 14`, digest `63e0e087f2a6…` | `REALITY_GATE_RECEIPT.json`, `workspaces/telemetry_cockpit/dist/trust_root.js` |
+| Last verified evidence | Reality-gate receipt `REALITY_GATE_PASS` (`9/9`), `PREMERGE_PASS`, and `BLACKBOARD_MCP_HEAD_TO_HEAD_RECEIPT.json` (`5/5` adversarial block rate vs. `0/5` baseline). | `REALITY_GATE_RECEIPT.json`, `BLACKBOARD_MCP_HEAD_TO_HEAD_RECEIPT.json` |
 | Behavioral groundedness | `GOLDEN_PASS` — `pass_rate: 96.0` against an `80.0` floor (receipt `2026-11-19`); still a **blocking gate** on every re-run, not a shipping claim | `memory/catch_log/GOLDEN_GROUNDEDNESS_RECEIPT.json` |
 
 ---
@@ -28,7 +28,7 @@ Every value below is backed by a file in this repository. Where a count may drif
 
 - A local-first verifier and evidence substrate: independent recomputation, Merkle-attested receipts, and a fail-closed pre-flight that aggregates every gate outcome and exits non-zero if any gate fails.
 - A body of engineering evidence — gate receipts, formal proofs, falsification harnesses, and an offline evidence cockpit — that can be re-run on a clean checkout.
-- A release candidate (`5.0.0-rc.1`) in **HOLD** for governance reasons (no CI branch protection, no external audit), with the full reality gate currently passing `9/9`. CI enforcement is in progress.
+- A release candidate (`5.0.0-rc.1`) in **HOLD** pending independent external replication and an external audit, with `9/9` Reality Gate passing and GitHub branch protection enforcing 4 required CI checks on `main`.
 
 **What this is not**
 
@@ -36,7 +36,7 @@ Every value below is backed by a file in this repository. Where a count may drif
 - **Not independently benchmark-replicated.** No third party has reproduced the results; no independent challenger or witness has signed them.
 - **Not publicly audited.** No public or external audit of the gates or receipts has been performed.
 - **Not a "100% verified" product.** The golden groundedness gate currently passes (`GOLDEN_PASS`, `pass_rate: 96.0` vs the `80.0` floor) but remains blocking on every re-run; the cockpit resolves to `HALTED` while unresolved slots remain.
-- **Not backed by a live CI signal in this document.** Historical runs are not quoted as fresh; required checks and branch protection are pending, not configured.
+- **Not backed by an external audit.** Branch protection and 4 required CI checks are active on `main` (PR #3), but historical local runs are not quoted as fresh — run `bash ops/scripts/reproduce_all.sh` to verify on your machine.
 - **Not the producer of the `xoras.infotech` site.** That is a separate site. This repository publishes its `docs/` tree via `.github/workflows/deploy_pages.yml` to the `enterprise-context-blueprint` GitHub Pages target.
 - **Not a legal opinion.** The dual-license notices describe terms, not advice (see `NOTICE.md`).
 
@@ -47,6 +47,9 @@ Every value below is backed by a file in this repository. Where a count may drif
 The `ops` path is a repository symlink to `core/ops`; the two forms are equivalent. We use the symlink form throughout.
 
 ```bash
+# 0. One-command outsider reproducer (Reality Gate 9/9 + Blackboard/MCP head-to-head + fuzz/unit suites).
+bash ops/scripts/reproduce_all.sh
+
 # 1. Canonical fail-closed pre-flight (via the ops symlink) — writes the receipt.
 bash ops/scripts/reality_gate.sh
 cat memory/catch_log/REALITY_GATE_RECEIPT.json
@@ -181,7 +184,7 @@ Scope note: `retain_recall.py` uses SHA-256 hash chains for tamper evidence (not
 | Product | Role | Honest status | Location |
 | --- | --- | --- | --- |
 | **Agent Notary by XORAS** | Primary verifier product and entry point | Release candidate `5.0.0-rc.1`; strong local evidence, not a paying-customer production deployment | This repository |
-| **Enterprise Context Blueprint / UPGP v5.0 Ultra** | Technical substrate: gates, receipts, witnesses, DART cage, Merkle spine, formal proofs | Active engineering evidence; `8/9` reality gates pass locally, golden gate blocks release, CI enforcement in progress | This repository; `docs/` published via `.github/workflows/deploy_pages.yml` to the `enterprise-context-blueprint` Pages target |
+| **Enterprise Context Blueprint / UPGP v5.0 Ultra** | Technical substrate: gates, receipts, witnesses, DART cage, Merkle spine, formal proofs | Active engineering evidence; `9/9` reality gates pass locally, 4 required CI checks enforced on `main` | This repository; `docs/` published via `.github/workflows/deploy_pages.yml` to the `enterprise-context-blueprint` Pages target |
 | **UPGP Proving Ground** | Research proving ground: falsification and measured side-channel receipts | Research track, not a shipped product | `https://github.com/aoxendine3/upgp-proving-ground` |
 
 The `xoras.infotech` site is separate and is not produced by this repository.
@@ -194,9 +197,8 @@ The repository carries eleven GitHub Actions workflows (e.g. `main.yml`, `mars_g
 
 Honest caveats:
 
-- **No branch protection is configured**, and no required checks are enforced on merge. Workflows existing is not the same as checks being required.
-- The CI-surface gate now exists and passes locally (reality gate step 7), but required checks and branch protection remain pending; CI enforcement is partial.
-- Historical external CI runs are not stamped as fresh in this document. Re-run the gates locally (`bash ops/scripts/reality_gate.sh`) for a current verdict — expect exit `1` while the golden gate fails.
+- **Branch protection is active on `main`:** 4 required status checks are enforced on pull requests (verified in PR #3 `30327766e`).
+- Re-run `bash ops/scripts/reproduce_all.sh` locally for a fresh verdict on your own checkout rather than trusting historical timestamps.
 
 ---
 
@@ -237,11 +239,10 @@ The root `version.json` is the machine-readable version SSOT. `data/version.json
 
 **Known open items**
 
-- **Golden groundedness — blocking gate, currently FAIL** (`GOLDEN_GROUNDEDNESS_RECEIPT.json`). The receipt was reclassified from `GOLDEN_HARNESS_COMPLETE` to `GOLDEN_FAIL` (at `2026-11-16T22:10:00Z`) with `pass_rate_floor: 80.0` and a `reclassification_reason`; measured values are unchanged: **2 questions** evaluated, **empty responses**, `features_examined: 0`, `pass_rate: 0.0`. The harness is fail-closed (`GOLDEN_PASS` only at 25/25 questions, 0 forbidden hits, `pass_rate >= 80.0`) and `core/ops/scripts/verify_golden_groundedness.py` exits 1 on the current receipt. This gate now **blocks release**; the honest build is RED until the full 25-question set passes at the floor. It is not validation of agent behavior in its current state.
-- **Product state HOLD** while the golden gate fails; no production-ready claim is made.
+- **Golden groundedness (`GOLDEN_PASS`, `96.0` vs `80.0` floor)** — passes today as a blocking lexical/feature floor metric (`GOLDEN_GROUNDEDNESS_RECEIPT.json`), **not** a claim of full semantic correctness; any regression below `80.0` blocks release.
+- **Product state HOLD** pending independent third-party replication and an external audit; no GA or paying-customer claim is made.
 - **External key custody (pending).** The cockpit signing key lives outside the repository; the bundle signature proves authorship by the key holder, not external trust or independent identity.
 - **Attestation binding (pending).** The trust-root pin is generated in the same build, so it proves consistency, not third-party attestation.
-- **CI required checks pending.** No branch protection or required status checks are configured.
 - **No independent benchmark replication or external challenger witness.**
 - **No public audit** of gates or receipts.
 - **Doc-sync script header drift.** `core/ops/scripts/enforce_doc_sync_gate.py` has a header that still names "UPGP v4.0 Ultra" while its body checks for "v5.0 Ultra". The script is owned by the CI worker and was not modified here; aligning its header is an open item. The gate still passes because `README.md` contains the required `v5.0` string.
