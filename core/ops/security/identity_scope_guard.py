@@ -72,6 +72,18 @@ def card_paths() -> list:
     return sorted(CARDS_DIR.glob("*.json"))
 
 
+def _set_immutable(path: Path, enable: bool) -> None:
+    """Apply or clear macOS UF_IMMUTABLE (uchg) so same-UID shells cannot chmod/unlink."""
+    if not (hasattr(os, "chflags") and hasattr(stat, "UF_IMMUTABLE")) or not path.exists():
+        return
+    try:
+        flags = path.stat().st_flags
+        new_flags = (flags | stat.UF_IMMUTABLE) if enable else (flags & ~stat.UF_IMMUTABLE)
+        os.chflags(path, new_flags)
+    except OSError:
+        pass
+
+
 def seal() -> int:
     """(Re)seal the manifest. Governance action only."""
     IDENTITY_DIR.mkdir(parents=True, exist_ok=True)
@@ -86,21 +98,25 @@ def seal() -> int:
         "roots_sha256": sha256_file(ROOTS_PATH) if ROOTS_PATH.exists() else None,
         "agents_sha256": sha256_file(AGENTS_PATH) if AGENTS_PATH.exists() else None,
     }
-    # A previous seal is 0444; a governance reseal must be able to replace it.
+    # A previous seal is 0444 + uchg; a governance reseal must clear both first.
     if MANIFEST_PATH.exists():
+        _set_immutable(MANIFEST_PATH, False)
         os.chmod(MANIFEST_PATH, 0o644)
     MANIFEST_PATH.write_text(json.dumps(payload, indent=2), encoding="utf-8")
-    # Write-protect the seal, the cards and the constitution: an agent cannot
-    # rewrite its own truth.
+    # Write-protect the seal, the cards and the constitution (0444 + UF_IMMUTABLE):
+    # even a same-UID shell cannot chmod or overwrite without clearing uchg.
     os.chmod(MANIFEST_PATH, 0o444)
+    _set_immutable(MANIFEST_PATH, True)
     for p in list(card_paths()) + list(CONSTITUTION_PATHS):
         try:
+            _set_immutable(p, False)
             os.chmod(p, 0o444)
+            _set_immutable(p, True)
         except OSError:
             pass
     print(f"SEALED: {len(cards)} citizen cards pinned in {MANIFEST_PATH}")
     print("SEALED: ROOTS.md and AGENTS.md hashes pinned")
-    print("READ-ONLY: cards, constitution and manifest are now write-protected (0444)")
+    print("READ-ONLY: cards, constitution and manifest are write-protected (0444 + uchg)")
     return 0
 
 
@@ -250,6 +266,8 @@ def self_test() -> int:
         # The real cards are write-protected (0444) — that refusal is itself a
         # passing control (checked in probe 5). For this probe we make the copy
         # writable so we can simulate an attacker and prove the SEAL catches it.
+        for p in tmp_cards.iterdir():
+            _set_immutable(p, False)
         os.chmod(target, 0o644)
         data = json.loads(target.read_text(encoding="utf-8"))
         data["purpose"] = "TAMPERED BY SELF"
@@ -293,6 +311,14 @@ def self_test() -> int:
     print(f"  [7] Constitution is write-protected ............ {'PASS' if not unprotected else 'FAIL'}")
     if unprotected:
         failures.append(f"constitution writable: {unprotected}")
+
+    # [8] On macOS, kernel UF_IMMUTABLE (uchg) blocks same-UID chmod/unlink.
+    if hasattr(os, "chflags") and hasattr(stat, "UF_IMMUTABLE"):
+        no_uchg = [p.name for p in CONSTITUTION_PATHS
+                   if p.exists() and not (p.stat().st_flags & stat.UF_IMMUTABLE)]
+        print(f"  [8] Constitution kernel uchg immutable ......... {'PASS' if not no_uchg else 'FAIL'}")
+        if no_uchg:
+            failures.append(f"constitution missing UF_IMMUTABLE: {no_uchg}")
 
     print("=" * 74)
     if failures:

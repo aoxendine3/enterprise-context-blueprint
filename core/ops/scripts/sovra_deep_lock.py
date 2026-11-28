@@ -19,7 +19,7 @@ import hashlib
 import base64
 from pathlib import Path
 
-ROOT = Path("/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain")
+ROOT = Path(__file__).resolve().parents[3]
 LOCK_SECRET_FILE = ROOT / "memory" / "vault" / "sovra_deep_lock.key"
 LOCK_RECEIPTS_FILE = ROOT / "memory" / "context_scopes" / "deep_lock_receipts.jsonl"
 
