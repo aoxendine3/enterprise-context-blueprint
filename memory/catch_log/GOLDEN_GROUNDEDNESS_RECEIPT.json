@@ -1,5 +1,5 @@
 {
-  "date_utc": "2026-11-19T06:03:54Z",
+  "date_utc": "2026-11-28T01:43:56Z",
   "model": "xoras-golden:latest",
   "endpoint": "http://127.0.0.1:11434/api/generate",
   "dataset": "data_center/golden_questions/golden_question_set.json",
