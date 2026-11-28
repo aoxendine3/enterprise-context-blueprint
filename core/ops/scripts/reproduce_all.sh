@@ -18,6 +18,7 @@ python3 -m pytest -q \
   tests/test_retain_recall.py \
   tests/test_retain_recall_fuzz.py \
   tests/test_windows_sovereign_client.py \
-  tests/test_collective_report_voice.py
+  tests/test_collective_report_voice.py \
+  tests/test_upstream_claim_gate.py
 
 echo "REPRODUCE_ALL_PASS: Reality Gate (9/9), Blackboard+MCP head-to-head, and all targeted suites verified."

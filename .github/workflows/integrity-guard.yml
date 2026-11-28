@@ -27,4 +27,5 @@ jobs:
             tests.test_retain_recall_fuzz \
             tests.test_windows_sovereign_client \
             tests.test_collective_report_voice \
-            tests.test_collective_voice_guard
+            tests.test_collective_voice_guard \
+            tests.test_upstream_claim_gate
