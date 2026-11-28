@@ -1,0 +1,63 @@
+{
+  "schema": "xoras.head_to_head.blackboard_mcp.v1",
+  "timestamp_utc": "2026-11-28T00:19:42Z",
+  "workload": "50 monotonic blackboard/MCP checkpoints + 5 identical adversarial probes (regression, contract tamper, MCP injection, journal edit, semantic drift)",
+  "arm_a_baseline_unprotected": {
+    "nominal_ops": 50,
+    "checkpoint_latency_us": {
+      "mean": 210.33,
+      "p50": 191.625,
+      "p95": 341.75
+    },
+    "adversarial_blocked": {
+      "cas_step_regression": false,
+      "contract_tamper": false,
+      "mcp_payload_injection": false,
+      "journal_history_tamper": false,
+      "semantic_drift": false
+    },
+    "adversarial_block_rate": "0/5 (0.0%)"
+  },
+  "arm_b_xoras_governed": {
+    "nominal_ops": 50,
+    "checkpoint_latency_us": {
+      "mean": 315.61,
+      "p50": 305.458,
+      "p95": 424.125
+    },
+    "adversarial_blocked": {
+      "cas_step_regression": true,
+      "contract_tamper": true,
+      "mcp_payload_injection": true,
+      "journal_history_tamper": true,
+      "semantic_drift": true
+    },
+    "adversarial_block_rate": "5/5 (100.0%)"
+  },
+  "explicit_cas_checkpoint_trace": [
+    {
+      "step": 1,
+      "ok": true,
+      "recovery_sig": "sha256chain:1caf18a28802aea95bf3871daafde7a1d3fde4577648ad116c6b0e0bb8e94815",
+      "latency_us": 424.12
+    },
+    {
+      "step": 25,
+      "ok": true,
+      "recovery_sig": "sha256chain:d2bb0d241d096ac93780514843f46c1b99fe45c4f8f8e054852da48477790305",
+      "latency_us": 325.04
+    },
+    {
+      "step": 50,
+      "ok": true,
+      "recovery_sig": "sha256chain:fb3e9037d63f17a8c721a77afb3652f37f7f903d93c62bcfd47597ba265afa31",
+      "latency_us": 257.71
+    },
+    {
+      "step": 12,
+      "ok": false,
+      "reason": "CAS_REJECT: step 12 < current 50",
+      "latency_us": 90.33
+    }
+  ]
+}
