@@ -2,13 +2,13 @@
   "payload": {
     "ast_scan_cost": {
       "ast_nodes": 166,
-      "mean_us": 196.2,
-      "min_us": 192.8,
-      "p50_us": 193.7,
+      "mean_us": 192.9,
+      "min_us": 189.4,
+      "p50_us": 192.3,
       "payload_lines": 27
     },
-    "commit_path_ceiling_tx_sec": 4123.2,
-    "generated_utc": "2026-11-15T06:46:06Z",
+    "commit_path_ceiling_tx_sec": 4104.2,
+    "generated_utc": "2026-11-19T01:52:16Z",
     "host": {
       "cpu_count": 10,
       "platform": "darwin",
@@ -29,7 +29,7 @@
         "aborts": 0,
         "ast_rejections": 0,
         "confluence": true,
-        "elapsed_sec": 0.9966,
+        "elapsed_sec": 1.0207,
         "final_state": [
           86854,
           83433,
@@ -38,11 +38,11 @@
           89558,
           94028
         ],
-        "max_latency_ms": 26.5733,
+        "max_latency_ms": 40.5731,
         "mode": "gate_deferred",
-        "p50_latency_ms": 5.3682,
-        "p99_latency_ms": 15.967,
-        "throughput_tx_sec": 4109.82,
+        "p50_latency_ms": 4.639,
+        "p99_latency_ms": 11.305,
+        "throughput_tx_sec": 4012.82,
         "total_transactions": 4096,
         "txs_per_worker": 32,
         "workers": 128
@@ -51,7 +51,7 @@
         "aborts": 0,
         "ast_rejections": 0,
         "confluence": true,
-        "elapsed_sec": 2.0183,
+        "elapsed_sec": 2.0031,
         "final_state": [
           352380,
           345274,
@@ -60,11 +60,11 @@
           365068,
           361353
         ],
-        "max_latency_ms": 37.0695,
+        "max_latency_ms": 36.5359,
         "mode": "gate_deferred",
-        "p50_latency_ms": 5.2155,
-        "p99_latency_ms": 15.8281,
-        "throughput_tx_sec": 4058.93,
+        "p50_latency_ms": 4.9378,
+        "p99_latency_ms": 10.8677,
+        "throughput_tx_sec": 4089.67,
         "total_transactions": 8192,
         "txs_per_worker": 32,
         "workers": 256
@@ -73,7 +73,7 @@
         "aborts": 0,
         "ast_rejections": 0,
         "confluence": true,
-        "elapsed_sec": 4.0149,
+        "elapsed_sec": 3.9175,
         "final_state": [
           1415345,
           1397307,
@@ -82,11 +82,11 @@
           1437237,
           1404127
         ],
-        "max_latency_ms": 27.6932,
+        "max_latency_ms": 23.4324,
         "mode": "gate_deferred",
-        "p50_latency_ms": 5.2999,
-        "p99_latency_ms": 15.7052,
-        "throughput_tx_sec": 4080.76,
+        "p50_latency_ms": 5.3092,
+        "p99_latency_ms": 11.2507,
+        "throughput_tx_sec": 4182.25,
         "total_transactions": 16384,
         "txs_per_worker": 32,
         "workers": 512
@@ -95,7 +95,7 @@
         "aborts": 0,
         "ast_rejections": 0,
         "confluence": true,
-        "elapsed_sec": 0.5296,
+        "elapsed_sec": 0.495,
         "final_state": [
           22287,
           20419,
@@ -104,11 +104,11 @@
           22640,
           23312
         ],
-        "max_latency_ms": 63.6413,
+        "max_latency_ms": 15.9833,
         "mode": "gate_deferred",
-        "p50_latency_ms": 5.3795,
-        "p99_latency_ms": 32.3513,
-        "throughput_tx_sec": 3867.17,
+        "p50_latency_ms": 4.5288,
+        "p99_latency_ms": 8.665,
+        "throughput_tx_sec": 4137.11,
         "total_transactions": 2048,
         "txs_per_worker": 32,
         "workers": 64
@@ -117,7 +117,7 @@
         "aborts": 997,
         "ast_rejections": 997,
         "confluence": true,
-        "elapsed_sec": 0.7263,
+        "elapsed_sec": 0.6584,
         "final_state": [
           69861,
           70720,
@@ -126,11 +126,11 @@
           63504,
           66171
         ],
-        "max_latency_ms": 294.9882,
+        "max_latency_ms": 242.4992,
         "mode": "gate_deferred",
-        "p50_latency_ms": 13.6128,
-        "p99_latency_ms": 288.628,
-        "throughput_tx_sec": 5639.27,
+        "p50_latency_ms": 13.2775,
+        "p99_latency_ms": 238.4734,
+        "throughput_tx_sec": 6220.85,
         "total_transactions": 4096,
         "txs_per_worker": 32,
         "workers": 128
@@ -139,7 +139,7 @@
         "aborts": 0,
         "ast_rejections": 0,
         "confluence": true,
-        "elapsed_sec": 0.5802,
+        "elapsed_sec": 0.6467,
         "final_state": [
           86854,
           83433,
@@ -148,11 +148,11 @@
           89558,
           94028
         ],
-        "max_latency_ms": 116.0995,
+        "max_latency_ms": 127.0504,
         "mode": "gate_deferred",
-        "p50_latency_ms": 14.5265,
-        "p99_latency_ms": 112.021,
-        "throughput_tx_sec": 7059.87,
+        "p50_latency_ms": 16.3515,
+        "p99_latency_ms": 119.127,
+        "throughput_tx_sec": 6333.8,
         "total_transactions": 4096,
         "txs_per_worker": 32,
         "workers": 128
@@ -161,7 +161,7 @@
         "aborts": 997,
         "ast_rejections": 997,
         "confluence": true,
-        "elapsed_sec": 0.6365,
+        "elapsed_sec": 0.6383,
         "final_state": [
           69861,
           70720,
@@ -170,11 +170,11 @@
           63504,
           66171
         ],
-        "max_latency_ms": 211.6195,
+        "max_latency_ms": 218.7768,
         "mode": "gate_deferred",
-        "p50_latency_ms": 14.2107,
-        "p99_latency_ms": 154.0418,
-        "throughput_tx_sec": 6435.25,
+        "p50_latency_ms": 13.8456,
+        "p99_latency_ms": 164.1921,
+        "throughput_tx_sec": 6416.77,
         "total_transactions": 4096,
         "txs_per_worker": 32,
         "workers": 128
@@ -183,7 +183,7 @@
         "aborts": 0,
         "ast_rejections": 0,
         "confluence": true,
-        "elapsed_sec": 0.6514,
+        "elapsed_sec": 0.7106,
         "final_state": [
           86854,
           83433,
@@ -192,11 +192,11 @@
           89558,
           94028
         ],
-        "max_latency_ms": 204.6997,
+        "max_latency_ms": 256.2159,
         "mode": "gate_deferred",
-        "p50_latency_ms": 15.2074,
-        "p99_latency_ms": 143.9385,
-        "throughput_tx_sec": 6287.75,
+        "p50_latency_ms": 15.1123,
+        "p99_latency_ms": 186.6734,
+        "throughput_tx_sec": 5764.37,
         "total_transactions": 4096,
         "txs_per_worker": 32,
         "workers": 128
@@ -205,7 +205,7 @@
         "aborts": 0,
         "ast_rejections": 0,
         "confluence": true,
-        "elapsed_sec": 0.9816,
+        "elapsed_sec": 1.0036,
         "final_state": [
           86854,
           83433,
@@ -214,11 +214,11 @@
           89558,
           94028
         ],
-        "max_latency_ms": 42.7275,
+        "max_latency_ms": 21.3641,
         "mode": "gate_in_path",
-        "p50_latency_ms": 5.4693,
-        "p99_latency_ms": 16.4675,
-        "throughput_tx_sec": 4172.65,
+        "p50_latency_ms": 5.0207,
+        "p99_latency_ms": 10.7373,
+        "throughput_tx_sec": 4081.29,
         "total_transactions": 4096,
         "txs_per_worker": 32,
         "workers": 128
@@ -227,7 +227,7 @@
         "aborts": 0,
         "ast_rejections": 0,
         "confluence": true,
-        "elapsed_sec": 1.9959,
+        "elapsed_sec": 2.0446,
         "final_state": [
           352380,
           345274,
@@ -236,11 +236,11 @@
           365068,
           361353
         ],
-        "max_latency_ms": 38.0931,
+        "max_latency_ms": 95.2199,
         "mode": "gate_in_path",
-        "p50_latency_ms": 5.4363,
-        "p99_latency_ms": 16.4965,
-        "throughput_tx_sec": 4104.42,
+        "p50_latency_ms": 5.2107,
+        "p99_latency_ms": 17.0475,
+        "throughput_tx_sec": 4006.64,
         "total_transactions": 8192,
         "txs_per_worker": 32,
         "workers": 256
@@ -249,7 +249,7 @@
         "aborts": 0,
         "ast_rejections": 0,
         "confluence": true,
-        "elapsed_sec": 4.0535,
+        "elapsed_sec": 3.9531,
         "final_state": [
           1415345,
           1397307,
@@ -258,11 +258,11 @@
           1437237,
           1404127
         ],
-        "max_latency_ms": 48.5955,
+        "max_latency_ms": 32.2724,
         "mode": "gate_in_path",
-        "p50_latency_ms": 5.2673,
-        "p99_latency_ms": 15.48,
-        "throughput_tx_sec": 4041.91,
+        "p50_latency_ms": 5.073,
+        "p99_latency_ms": 10.7932,
+        "throughput_tx_sec": 4144.6,
         "total_transactions": 16384,
         "txs_per_worker": 32,
         "workers": 512
@@ -271,7 +271,7 @@
         "aborts": 0,
         "ast_rejections": 0,
         "confluence": true,
-        "elapsed_sec": 0.4907,
+        "elapsed_sec": 0.4895,
         "final_state": [
           22287,
           20419,
@@ -280,11 +280,11 @@
           22640,
           23312
         ],
-        "max_latency_ms": 25.6117,
+        "max_latency_ms": 23.2783,
         "mode": "gate_in_path",
-        "p50_latency_ms": 5.1473,
-        "p99_latency_ms": 10.8066,
-        "throughput_tx_sec": 4174.0,
+        "p50_latency_ms": 4.7115,
+        "p99_latency_ms": 10.955,
+        "throughput_tx_sec": 4184.22,
         "total_transactions": 2048,
         "txs_per_worker": 32,
         "workers": 64
@@ -292,13 +292,13 @@
     },
     "standard": "XORAS-MTPO-ASTGATE-SCALING-v1.0",
     "workers_supported_before_gate_is_the_bottleneck": {
-      "turn_15s": 61848,
-      "turn_1s": 4123,
-      "turn_30s": 123696,
-      "turn_5s": 20616
+      "turn_15s": 61563,
+      "turn_1s": 4104,
+      "turn_30s": 123126,
+      "turn_5s": 20521
     }
   },
-  "public_key": "b8aa80593eeede21fbed262c0658be6dd9efcb5ed4900ff2f69677dba615c642",
-  "signature": "d4015f6b1d50cd4e89775dccef03daccc93b8397abc430aaf7207a949c153e471e9bacc1c3949dde2edc824736a0e2a3bd22305ba784380f58f3052914da7801",
+  "public_key": "cd20c64e5a4954cfb509c919771df81b949e0af6e9f289684ff610c75ad24bb5",
+  "signature": "d8d385053747e9238bc9a8ddf46cd642217c4e8784cae41b20f2d082fc557c6f78e845b9cb8dcb6c9779b7142a59cbd193cc694ab7dec48eb7d74bfddc434f04",
   "signed": true
 }

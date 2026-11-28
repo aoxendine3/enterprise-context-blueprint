@@ -1,7 +1,11 @@
 {
-  "query": "ZZZ_NONEXISTENT_SYMBOL_XYZ",
+  "query": "xoras.db",
   "status": "COMPLETE",
-  "results": [],
+  "results": [
+    "docs/audits/MISC_READ_ONLY_TRIAGE_20261124.md",
+    "memory/catch_log/MISC_AUDIT_20261117.md",
+    "memory/catch_log/barn_misc_oversize_report.txt"
+  ],
   "coverage_attestation": {
     "indexed_text_inodes": 0,
     "bypassed_bytes": 0,
@@ -12,20 +16,32 @@
     "completion_percentage": 0.0
   },
   "temporal_attestation": {
-    "pickaxe_matches_found": 0,
-    "add_commits": [],
+    "pickaxe_matches_found": 3,
+    "add_commits": [
+      "c76222a2d do",
+      "dc8835405 do",
+      "479a5cdea fi"
+    ],
     "delete_commits": [],
-    "lineage_symbol_aliases": []
+    "lineage_symbol_aliases": [
+      "docs/audits/MISC_READ_ONLY_TRIAGE_20261124.md",
+      "memory/catch_log/MISC_AUDIT_20261117.md",
+      "memory/catch_log/barn_misc_oversize_report.txt"
+    ]
   },
   "confluence": {
-    "discrepancy_triggered": false,
-    "forced_walk_hits": [],
+    "discrepancy_triggered": true,
+    "forced_walk_hits": [
+      "docs/audits/MISC_READ_ONLY_TRIAGE_20261124.md",
+      "memory/catch_log/MISC_AUDIT_20261117.md",
+      "memory/catch_log/barn_misc_oversize_report.txt"
+    ],
     "structural_hits": [],
     "stalled_paths": []
   },
   "timing_s": {
     "structural": 0,
-    "temporal": 3.509,
+    "temporal": 4.577,
     "index_built": "never"
   },
   "note": "Plane B (temporal) always runs; Plane A index covers canonical source only, other trees bypassed WITH ATTESTATION (no silent drop)."

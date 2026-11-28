@@ -1,17 +1,21 @@
 {
-  "timestamp_utc": "2026-11-21T18:47:38Z",
-  "verdict": "PREMERGE_FAIL",
-  "child_process": "/opt/homebrew/opt/python@3.14/bin/python3.14 -c import sys; print('NEGATIVE CONTROL: intentional failure'); sys.exit(1)",
-  "child_exit_code": 1,
-  "duration_s": 0.02,
-  "command_log": "memory/catch_log/premerge_gate_logs/premerge_20261121T184738Z.log",
-  "command_log_sha256": "7facaa6513279953ffa9fc33f023bb16b73fc6212239d4d740724b9201d31e12",
+  "timestamp_utc": "2026-11-24T16:39:50Z",
+  "verdict": "PREMERGE_PASS",
+  "child_process": "bash ops/scripts/reality_gate.sh",
+  "child_exit_code": 0,
+  "duration_s": 64.76,
+  "command_log": "memory/catch_log/premerge_gate_logs/premerge_20261124T163843Z.log",
+  "command_log_sha256": "9e20553962132848795c6e624a6ca68b1be111a0f6b2bb82d90f4b27d175ac06",
   "filesystem_diff": {
-    "head_before": "ab6005ecbfdc690e9364383dc74be01c7ad216d6",
-    "head_after": "ab6005ecbfdc690e9364383dc74be01c7ad216d6",
+    "head_before": "b2d3a3a222c02f1c29a7dc8b421fbde890c48578",
+    "head_after": "b2d3a3a222c02f1c29a7dc8b421fbde890c48578",
     "tracked_changes": [],
-    "new_evidence_artifacts": [],
+    "new_evidence_artifacts": [
+      "barn/receipts/SPDD-BBQ-BLACKBOX-14GATE_20261124-163944_UTC.json",
+      "docs/audits/SPDD-BBQ-BLACKBOX-14GATE_20261124-163944_UTC.json",
+      "docs/audits/SPDD-BBQ-BLACKBOX-14GATE_20261124-163944_UTC.sig"
+    ],
     "unexpected_tracked_mutations": []
   },
-  "label": "SELF_TEST_NEGATIVE"
+  "label": "REAL_MERGE_GATE"
 }

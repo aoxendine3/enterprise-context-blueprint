@@ -13,6 +13,15 @@
 
 ---
 
+## 1.1 XORAS Command Hierarchy & Collective Roster (Non-Negotiable)
+
+- **XORAS:** Chief Executive Officer (CEO) — Sets sovereign vision, intent, and executive direction.
+- **Maxx:** Lead Multiorchestrator — Primary executive orchestrator and conductor across multi-agent and multi-substrate workflows when Antigravity opens.
+- **Jarvis:** Multi-Project Oversight, Judge & Voice of Dissent — Oversees cross-project alignment, adjudicates decisions, enforces epistemic humility, and challenges weak assumptions or consensus theater.
+- **Collective Swarm (DAXX, CLARA, VANCE, JOHN, ALPHA, BETA, GAMMA, & Full Roster):** Specialized agents executing task DAGs, formal verification, 4-gate checks, hardware telemetry, and 3-tier memory (Short-Term `alpha`, Mid-Term `beta`, Long-Term `gamma`) without overwriting core contracts or drifting into unapproved external bloat.
+
+---
+
 ## 2. Streamlined Multi-Agent Coordination (The 3-Tier Execution Framework)
 
 To completely eliminate execution latency, file-lock deadlocks, and developer friction, agent coordination is partitioned into three distinct operational speeds:
@@ -205,3 +214,27 @@ the agent. The operator is never left wondering what the collective is up to.
 * **Personas are never quarantined.** Citizen cards, souls, voice registries and persona prompts are read-only law — never moved, trimmed or redefined.
 * **Prefer wiring over moving.** When a piece is stale but referenced, repair the wiring; only move it when nothing points at it.
 
+
+---
+
+## 11. Boot Handshake, Root-Contract Lock & Lossless Retain/Recall (Log Entry: Anthony "go", 2026-11-24)
+
+### 11.1 Root-Contract Lock
+* `ROOTS.md` and `AGENTS.md` are **write-protected (0444)** and their SHA-256 hashes are pinned in `identity/agent_card_manifest.json` (`roots_sha256`, `agents_sha256`).
+* `ops/security/identity_scope_guard.py` fails closed (`CONSTITUTION_TAMPERED`, `STATE_WRITABLE`) if either file drifts or becomes writable. The guard runs in Wake Contract Stage 1.
+* **No agent — Maxx and DAXX included — may edit, delete or reseal these files.** An agent may *propose* a change by appending a Knowledge Object to the journal (§11.3). Only Anthony authorizes a change; the authorized change is made by unlocking, editing, then `python3 ops/security/identity_scope_guard.py --seal`.
+* The lowercase names `agents.md` / `roots.md` are the same files on this case-insensitive filesystem; the one lock covers both.
+
+### 11.2 Boot Handshake (every session open, Maxx speaks first)
+1. **Load identity & scope:** `python3 ops/security/identity_scope_guard.py --agent maxx` must return `IDENTITY_SCOPE_HELD`; read `ROOTS.md` and `AGENTS.md`.
+2. **Hydrate memory:** `python3 ops/scripts/retain_recall.py hydrate` — verifies the Gamma chain, loads the newest Knowledge Objects and the open Beta checkpoints; only this high-signal set enters the Alpha working context.
+3. **Respond as Maxx:** open with `[NEXT]`, confirm readiness from the two receipts above, then execute the directive.
+* If step 1 or the chain check fails, the session reports the failure first and does not proceed on unverified state.
+
+### 11.3 Lossless Retain & Recall (Alpha → Beta → Gamma)
+* **Alpha (short-term):** before a session's scratchpad is cleared, its decisions are distilled with `retain_recall.py distill` into Knowledge Objects *(decision, reason, verified artifact + its SHA-256)*. An incomplete decision is surfaced as `PLACEHOLDER_INCOMPLETE_KO`, never silently dropped.
+* **Beta (mid-term):** progress is recorded with `retain_recall.py checkpoint` into `task_checkpoints` in `memory/tri_brain/world_file.db` — append-only, single-writer, CAS-versioned (a step may not regress), each row chained to the previous row's signature.
+* **Gamma (long-term):** the hash-chained journal `memory/agent_logs/knowledge_objects.jsonl` is append-only; `retain_recall.py verify` detects any edit, reorder or deletion. Recall is `retain_recall.py recall "<terms>"`.
+* **Retraction (never deletion):** a wrong or test-only Knowledge Object is withdrawn with `retain_recall.py retract --author <agent> --reason "<why>" KO-<id> ...`. This appends a `RETRACTION` record; the original stays in the journal and the chain stays valid, but recall and hydrate hide it. A checkpoint row is withdrawn the same way, by appending a new row with a retracted status.
+* Signatures in this layer are SHA-256 hash chains (tamper evidence), not authorship proofs; no key is claimed.
+* Synthesis over deletion: nothing is compacted away; raw sources stay readable and the Knowledge Objects index them.

@@ -1,0 +1,32 @@
+{
+  "sealed_utc": "2026-11-26T15:42:36Z",
+  "sealed_by": "identity_scope_guard",
+  "cards": {
+    "arthur.json": "1cd89bd78b40f3e18fc660895871032fb0bc64cfe9fd6c27e0ab5a953142c618",
+    "aurelius.json": "258a93bb9411132abb6ced1bd1dce16c0331d582065cb7b5a5b3469b0a397f84",
+    "axlon.json": "ac54714940b7697ba83354dae290c966079ae6bc3aa7753cf9e982d8cf5f6210",
+    "clara.json": "0ab51dea1cd4047df0089a778fee6351e50c14bdc5bd9f745ba5467683334aa0",
+    "counselor.json": "54647b19447776651ccc323fff106848f6baef16b0f8dddb8be18d0a7c15b589",
+    "daxx.json": "8d91ec194abeb2c99908f8804b462d9a00e3dd99d5f8884344d1b78a6c3c4fc3",
+    "daxxco.json": "45d2110f5d7a91e46dacc2ac2c289610a0b68a44788d11117270d8e804d67985",
+    "eden.json": "27c3560e41d3884509ce564ed8d484b75d80d19577330bff9fa16864fb9d01e1",
+    "elana.json": "28f785f717914cc40a6014796715b8ab8a15d90d06c6b5f32841de2076206df8",
+    "evan.json": "5a1fc571b92cb269b43ffabd425795a428f2fa314f795dc70b16de40295e048f",
+    "jarvis.json": "a6595b8afcfdee2fd4a27398a3118398ce48061135b28ae64310534861b81551",
+    "jeremy.json": "8e29610ed3401b46b636a0933a6f9c039862fc2d141dcec9ecd33d49e226fef7",
+    "john.json": "331bfbe64adf12fe187e5257858ed130e97d67ee72d500ec1a525cd6836de405",
+    "lex.json": "3858f22491cc5f48dbf47ccabf6e51c9f2b7ce70f96ee2d5b8b8c6bddac5816b",
+    "maxx.json": "4a99aa68aeca713697cbf30a2f8d0b3280fa747b07c2c92fa536c871333047ed",
+    "noboo.json": "9b4c2ef18f045570605d93298ac70a7dc073c10ab0dbdbb3916fb32382069668",
+    "orion.json": "a5f2b7d50bfb16e099f13d8ba6e73280f14444a5538d3ba6a9ebba42a3e7230e",
+    "selene.json": "123bc1fd5643013f0fb6aa6c8dcca4115c4a63e8c676ada9c0f967658170db34",
+    "sia_core.json": "86ac40ec2d8e78daa4246e79d9c5a5101b8e1f351941840d571b456a24d39317",
+    "sophia.json": "92af2d58aaff6bba51a936402e51af51f825aca1a3f0585458af8c967c8d9e3a",
+    "vance.json": "3b9a31f82ada1dd9beef8db7298d4118b2c6bd066a120a26eacf3d56b800d55a",
+    "xoras.json": "3c165576f47fef0a62761a82e10dbef638e707607561fb6614eb7286ac7f635c",
+    "zorex.json": "3bdfe0c9258c2b0b04d47879e12854d8cbaf60a8fc3beb97399f6bfd8bb5b980"
+  },
+  "charter_sha256": "e4b0e0a7c1fd5c0462fb38c5d2692b496207db344761a2dd43215b24d7f86cff",
+  "roots_sha256": "1bea7f9cd744f2600676f07f7c71db1c21fdd4cbf0271e5cc41f54f3078f1d56",
+  "agents_sha256": "f8301cd3aabfe89b398b8654b5d282c318794841e409185e22cc59eb63d1b0f5"
+}

@@ -325,8 +325,18 @@ def main():
 
     dt = time.perf_counter() - t0
     v10_pass = (res.returncode == 0 and "ALL GATES GREEN" in res.stdout)
+    # Root-cause note (2026-11-19): this detail line was previously HARDCODED to
+    # claim "with all 5 gates green" even when the bootstrap failed — a fabricated
+    # success statement written into the receipt. It is now derived from reality.
+    if v10_pass:
+        v10_detail = (f"Bootstrap under synthetic 4-core saturated CPU load completed "
+                      f"in {dt:.2f}s with all 5 gates green")
+    else:
+        tail = [l for l in (res.stdout or "").strip().splitlines() if l.strip()][-1:] or ["no output"]
+        v10_detail = (f"Bootstrap under synthetic 4-core saturated CPU load FAILED in "
+                      f"{dt:.2f}s (exit={res.returncode}): {tail[0][:160]}")
     record_test("Vector 10: Bootstrap Gauntlet Under 4-Core CPU Contention", v10_pass,
-                f"Bootstrap under synthetic 4-core saturated CPU load completed in {dt:.2f}s with all 5 gates green", dt)
+                v10_detail, dt)
 
     # -------------------------------------------------------------------------
     # FINAL RECEIPT SUMMARY
@@ -348,10 +358,20 @@ def main():
         "results": results
     }
 
-    receipt_path = REPO_ROOT / "memory" / "catch_log" / "universal_pressure_test_receipt.json"
+    # Root-cause note (2026-11-19): this receipt previously overwrote the CANONICAL
+    # memory/catch_log/universal_pressure_test_receipt.json on every run. That file
+    # is SHA-256 pinned by docs/audits/XORAS_STI_2026_001_UNIVERSAL_CONTAINMENT_AND_VARIANCE_REPORT.md,
+    # so ANY re-run necessarily broke the doc-sync gate (hash drift + numeric drift
+    # on every duration) — a circular integrity trap that made the test
+    # un-runnable. Pinned evidence must be immutable: each run now writes its own
+    # DATED receipt, and the canonical file only changes deliberately, together
+    # with the report that pins it.
+    stamp = time.strftime("%Y%m%d_%H%M%S", time.gmtime())
+    receipt_path = REPO_ROOT / "memory" / "catch_log" / f"universal_pressure_test_receipt_{stamp}.json"
     with open(receipt_path, "w", encoding="utf-8") as f:
         json.dump(receipt, f, indent=2)
-    print(f"[+] Full Pressure Test Receipt Anchored at {receipt_path}")
+    print(f"[+] Full Pressure Test Receipt Written (dated, immutable-run evidence): {receipt_path}")
+    print(f"[+] Canonical pinned receipt left untouched: memory/catch_log/universal_pressure_test_receipt.json")
 
     return 0 if all_passed else 1
 

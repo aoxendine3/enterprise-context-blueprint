@@ -273,6 +273,31 @@
       "bytes": 274043847216,
       "law": "moved intact; live-reference sweep passed; inode+size+mtime verified on every move; sha256 verified on small files; no deletions",
       "verification": "81575/81575 moves verified, 0 failures"
+    },
+    {
+      "id": "barn-local-release-20261124",
+      "utc": "2026-11-24T15:52:00Z",
+      "action": "local_payload_released_after_verified_external_archive",
+      "source": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/barn/archives/the_barn/misc_reorganize_20261124",
+      "external_archive": "/Volumes/Untitled/xoras_reclaim_20261119/barn_misc_reorganize_20261124.tar",
+      "github_record": "https://github.com/aoxendine3/the-barn/tree/main/misc/ssot_reorganize_20261124",
+      "verification": {
+        "schema": "xoras.barn_local_release.v1",
+        "utc": "2026-11-24T15:52:00Z",
+        "verdict": "PASS",
+        "archive": "/Volumes/Untitled/xoras_reclaim_20261119/barn_misc_reorganize_20261124.tar",
+        "archive_bytes": 13758973952,
+        "tar_entries": 81518,
+        "local_files": 81508,
+        "archive_files": 81508,
+        "manifest_sha256": "4d0cb1446abd8835774b4de6dd579805f64ebfcffcb5c41917e7da32d105a595",
+        "sample_verified": 60,
+        "sample_mismatches": 0,
+        "released_path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/barn/archives/the_barn/misc_reorganize_20261124",
+        "disk_before_1k_blocks": "199522752",
+        "disk_after_1k_blocks": "199481512",
+        "disk_freed_bytes": -42229760
+      }
     }
   ],
   "resolved_not_moved": [

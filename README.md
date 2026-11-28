@@ -142,6 +142,40 @@ HexCell is the cell format used across the DART hot ring and the WASM simulator 
 
 ---
 
+## Identical-Workload Blackboard + MCP Head-to-Head & CAS Checkpoint Trace
+
+Reproducible local benchmark comparing an unprotected Blackboard + MCP baseline against the governed XORAS stack (`REASONS -> MTPO -> MARS`, backed by `DART`, `identity_scope_guard.py`, `retain_recall.py`, `SovereignMCPDispatcher`, and `poincare_semantic_gate.py`) on the exact same **50 monotonic checkpoints + 5 adversarial probes**:
+
+```bash
+python3 core/ops/benchmarks/blackboard_mcp_head_to_head.py
+pytest -q tests/test_blackboard_mcp_head_to_head.py
+```
+
+Receipt: `memory/catch_log/BLACKBOARD_MCP_HEAD_TO_HEAD_RECEIPT.json` (`2026-11-28T00:19:42Z`).
+
+| Metric / Adversarial Probe | Baseline Unprotected Blackboard + MCP | XORAS Governed Blackboard + MCP |
+| --- | --- | --- |
+| Checkpoint latency (`mean` / `p50` / `p95`) | `200.62 μs` / `180.33 μs` / `323.08 μs` | `239.50 μs` / `230.46 μs` / `293.63 μs` |
+| CAS step regression (`50 → 12`) | Allowed (silent overwrite) | **Blocked** (`CAS_REJECT: step 12 < current 50` in `71.79 μs`) |
+| Constitution / contract tamper (`AGENTS.md`) | Allowed (unsealed) | **Blocked** (`CONSTITUTION_TAMPERED`) |
+| MCP payload injection (`; rm -rf /`) | Allowed | **Blocked** (`SovereignMCPDispatcher._vance_pre_sanitize`) |
+| Journal history edit / deletion | Undetected | **Detected** (`retain_recall.verify_chain`) |
+| Semantic drift (`Lock` → `Unlock`) | Allowed | **Vetoed** (`poincare_semantic_gate.evaluate_transition`) |
+| **Total adversarial block rate** | **`0/5 (0.0%)`** | **`5/5 (100.0%)`** |
+
+### Explicit CAS Checkpoint Trace (From Receipt)
+
+| Step | Accepted | Recovery Signature / Rejection Reason | Latency |
+| --- | --- | --- | --- |
+| `1` | `true` | `sha256chain:1caf18a28802aea95bf3871daafde7a1d3fde4577648ad116c6b0e0bb8e94815` | `464.0 μs` |
+| `25` | `true` | `sha256chain:d2bb0d241d096ac93780514843f46c1b99fe45c4f8f8e054852da48477790305` | `203.58 μs` |
+| `50` | `true` | `sha256chain:fb3e9037d63f17a8c721a77afb3652f37f7f903d93c62bcfd47597ba265afa31` | `229.54 μs` |
+| `12` (zombie write) | `false` | `CAS_REJECT: step 12 < current 50` | `71.79 μs` |
+
+Scope note: `retain_recall.py` uses SHA-256 hash chains for tamper evidence (not asymmetric authorship proofs); Ed25519 signs evidence bundles and lineage envelopes separately, and `poincare_semantic_gate.py` uses deterministic scalar/lexical hashing (non-neural).
+
+---
+
 ## Products and repositories
 
 | Product | Role | Honest status | Location |

@@ -1,8 +1,8 @@
 {
-  "timestamp": 1792051975.5465012,
+  "timestamp": 1795053211.798381,
   "officer": "Vance (Lead 9 Council)",
   "framework": "Z3 v(4, 16, 0, 0)",
-  "elapsed_ms": 90.76229200036323,
+  "elapsed_ms": 56.44412500259932,
   "theorems": {
     "unconstrained_agm_contraction": {
       "status": "sat",

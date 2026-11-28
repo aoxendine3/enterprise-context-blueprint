@@ -1,11 +1,11 @@
 {
-  "generated_utc": "2026-11-15T07:06:18Z",
+  "generated_utc": "2026-11-19T04:49:53Z",
   "matches": 26,
   "mismatches": [],
   "note": "Rust is invoked as a subprocess here, which is how the repo wires it (CLI binary). Per-scan parse cost is 14.4us in-process; the subprocess median above is what the process boundary adds.",
   "payloads": 26,
   "rust_binary": "core/ops/src/arthur_ast_rs/target/release/arthur_ast_rs",
-  "rust_subprocess_median_ms": 2.333,
+  "rust_subprocess_median_ms": 2.366,
   "standard": "XORAS-ARTHUR-PARITY-NATIVE-v1.0",
   "verdict": "PARITY_PASS"
 }

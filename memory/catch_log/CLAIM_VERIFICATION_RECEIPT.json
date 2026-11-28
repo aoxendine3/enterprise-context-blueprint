@@ -1,8 +1,8 @@
 {
-  "checks": 1,
+  "checks": 0,
   "failures": [],
   "schema": "xoras.claim-verification.v1",
-  "source": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/catch_log/CLAIM_VALIDATION_20261119.md",
-  "utc": "2026-11-19T16:20:01.854744+00:00",
+  "source": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/docs/audits/MISC_BARN_REORGANIZATION_20261124.md",
+  "utc": "2026-11-24T14:21:32.206414+00:00",
   "verdict": "CLAIMS_PASS"
 }

@@ -1,8 +1,8 @@
 {
   "witness": "stateless_airblocked_witness (native Zig)",
   "passed": true,
-  "merkle_root": "34e442fdb31539c8736c57fc52e8078f27f17a09e4c8cec4812eba8f80bcfeb4",
+  "merkle_root": "c26b3d7301cc0fd9ecb12985f6f929fac7601c212d709a60e6f5d4d42d18a8b1",
   "db_path": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/tri_brain/world_file.db",
   "merkle_file": "/Users/ajoxendine68/Desktop/SSOT_Agentic_Brain/memory/tri_brain/merkle_root.hash",
-  "iso_timestamp": "2026-11-12T20:18:20ZZ"
+  "iso_timestamp": "2026-11-21T18:47:36ZZ"
 }
