@@ -1,21 +1,22 @@
 # 🛡️ Purple Concept Specification
-**Project Name:** Xoras Sovereign AI Stack  
+**Project Name:** XORAS Sovereign AI Stack  
+**Status:** `ARCHIVED CONCEPT SPEC — ALIGNED TO 5.0.0-rc.1 (HOLD)` (see root `README.md` for live receipt-backed status)  
 **Classification:** `[PROPRIETARY // STRATEGIC ASSET]`  
-**Author:** Xoras Systems  
+**Author:** XORAS Systems  
 
 ---
 
 ## 1. Executive Summary
-The Xoras Sovereign AI Stack is a local-first memory management and semantic security engine designed to facilitate secure, high-frequency, decentralized coordination of autonomous AI agent swarms (up to 10,000 parallel nodes) on private physical hardware. 
+The XORAS Sovereign AI Stack is a local-first memory management, verification, and semantic security substrate designed to coordinate autonomous multi-agent workflows on private physical hardware (Apple Silicon M4 and local LAN compute).
 
-By eliminating all external cloud dependencies, API transport layers, and centralized synchronization locks, the system ensures absolute data privacy, defense-grade air-gapped security, and sub-microsecond operational execution.
+By operating local-first without external cloud inference dependencies, the system enforces strict dual-plane separation (`REASONS -> MTPO -> MARS`, backed by `DART`), deterministic pre-execution checks, and receipt-backed state transitions (`memory/catch_log/REALITY_GATE_RECEIPT.json`).
 
 ---
 
 ## 2. Core Problem Space
-1.  **Semantic Attacks & Multi-Turn Drift:** Autonomous agents are highly vulnerable to adversarial prompts that bypass standard single-turn filters by distributing extraction instructions across multiple innocent conversational turns.
-2.  **Concurrency Bottlenecks:** Standard memory allocators (e.g., standard malloc/free) rely on OS-level mutexes and spin-locks. Under heavy concurrent loads, threads waste CPU cycles waiting for memory access, causing thread starvation.
-3.  **Data Exfiltration & Surveillance:** Cloud-dependent security layers leak context, telemetry, and private keys to third-party endpoints, breaching on-premise defense mandates.
+1. **Semantic Attacks & Multi-Turn Drift:** Autonomous agents are vulnerable to adversarial prompts that bypass naive single-turn filters or shift intent across turns.
+2. **Concurrency & Non-Monotonic State Corruption:** Standard multi-agent frameworks overwrite history or suffer lock contention when mutating shared state concurrently.
+3. **Unverified Claims & Exfiltration:** Cloud-dependent or post-hoc-only pipelines can leak context or emit ungrounded arguments before verification runs.
 
 ---
 
@@ -23,18 +24,18 @@ By eliminating all external cloud dependencies, API transport layers, and centra
 
 ```mermaid
 graph TD
-    UserQuery[User Query / Input] --> Sentinel[1. Stateful Sentinel Node]
-    Sentinel --> |Multi-Turn Intent OK| Allocator[2. Wait-Free Allocator]
-    Sentinel --> |Violation Detected| Block[Execution Blocked]
-    Allocator --> |84ns Local RAM| Exec[Agent Core Execution]
-    Exec --> |Non-Blocking Flash Sync| WAL[3. Durable Write-Ahead Log]
+    UserQuery[User Query / Input] --> Sentinel[1. Upstream Sentinel & Semantic Gate]
+    Sentinel --> |Grounded & Drift OK| Allocator[2. DART Hot Ring & MTPO/CAS]
+    Sentinel --> |Violation / Abstain| Block[Blocked or ABSTAIN_INSUFFICIENT_EVIDENCE]
+    Allocator --> |0xBEAF0000 Verified| Exec[MARS Deterministic Execution]
+    Exec --> |Single-Writer WAL + Hash Chain| WAL[3. Durable SQLite WAL & Gamma Journal]
 ```
 
-### I. Stateful Multi-Turn Sentinel
-Instead of standard keyword searches, the Sentinel converts the semantic intent of every incoming query into a high-dimensional mathematical pattern. These patterns are superimposed into a decaying historical trajectory vector that preserves trace memories across dozens of turns. If the overlap between the current input and the historical path exceeds the safety budget, execution is terminated before inference begins.
+### I. Upstream Sentinel & Semantic Drift Gate
+Instead of relying solely on post-hoc keyword filters, incoming transitions pass through deterministic semantic drift gating (`core/ops/memory/poincare_semantic_gate.py`, using 1-D log-radial scalar mapping and character-trigram lexical hashing on the Poincaré disk—not neural embeddings) paired with `UpstreamClaimGate` (`core/ops/discernment/upstream_claim_gate.py`), which enforces retrieval-span citations and forces `ABSTAIN_INSUFFICIENT_EVIDENCE` when evidence is missing.
 
-### II. Lock-Free Hierarchical Allocator
-Bypasses OS memory locks entirely. Each CPU core cluster operates its own local thread-local arena. Remote memory deallocations are routed via lock-free Compare-And-Swap (CAS) queues directly to thread-local mailboxes, enabling concurrent allocations without thread blocking.
+### II. DART Hot Ring & MTPO / CAS Concurrency
+Hot-path transitions are buffered in the `DART` (`Data Accounts Reverse/Recall Tracking`) `4,096 × 512`-byte HexCell ring (`core/memory/dart_ring_buffer.py`) with capability-lattice enforcement (`PUBLIC < INTERNAL < RESTRICTED < SEALED`), while **MTPO (Monotonic Trajectory Pre-Order)** and **MARS (Model-Agnostic Reversible State)** enforce monotonic state ordering (`0xDEAD0000` speculative taint to `0xBEAF0000` verified execution) and append-only inverse deltas ($\Delta^{-1}$).
 
-### III. Durable Write-Ahead Logging (WAL)
-Every memory operation, state transition, and sentinel trajectory shift is committed directly to a memory-mapped flash circular log using hardware compiler fences. Recovery is instant (under 2 milliseconds), replaying only the differential transaction log since the last hardware epoch.
+### III. Durable Write-Ahead Logging (WAL) & Hash-Chained State
+Durable state commits to single-writer SQLite WAL (`memory/tri_brain/world_file.db`, `BEGIN IMMEDIATE` with `CAS_REJECT` on step regressions) and `DartDb`, alongside the append-only SHA-256 hash-chained `knowledge_objects.jsonl` journal (`core/ops/scripts/retain_recall.py`, with non-destructive `RETRACTION`). Governed checkpoint and adversarial head-to-head receipts live in `memory/catch_log/BLACKBOARD_MCP_HEAD_TO_HEAD_RECEIPT.json` (`5/5` adversarial blocks vs. `0/5` unprotected baseline; `~239.5 μs` mean checkpoint latency locally).
