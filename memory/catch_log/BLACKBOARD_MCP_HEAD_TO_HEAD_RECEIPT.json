@@ -1,13 +1,13 @@
 {
   "schema": "xoras.head_to_head.blackboard_mcp.v1",
-  "timestamp_utc": "2026-11-28T00:19:42Z",
+  "timestamp_utc": "2026-11-28T01:16:12Z",
   "workload": "50 monotonic blackboard/MCP checkpoints + 5 identical adversarial probes (regression, contract tamper, MCP injection, journal edit, semantic drift)",
   "arm_a_baseline_unprotected": {
     "nominal_ops": 50,
     "checkpoint_latency_us": {
-      "mean": 210.33,
-      "p50": 191.625,
-      "p95": 341.75
+      "mean": 424.48,
+      "p50": 187.25,
+      "p95": 1478.5
     },
     "adversarial_blocked": {
       "cas_step_regression": false,
@@ -21,9 +21,9 @@
   "arm_b_xoras_governed": {
     "nominal_ops": 50,
     "checkpoint_latency_us": {
-      "mean": 315.61,
-      "p50": 305.458,
-      "p95": 424.125
+      "mean": 283.92,
+      "p50": 243.792,
+      "p95": 342.917
     },
     "adversarial_blocked": {
       "cas_step_regression": true,
@@ -39,25 +39,25 @@
       "step": 1,
       "ok": true,
       "recovery_sig": "sha256chain:1caf18a28802aea95bf3871daafde7a1d3fde4577648ad116c6b0e0bb8e94815",
-      "latency_us": 424.12
+      "latency_us": 1054.67
     },
     {
       "step": 25,
       "ok": true,
       "recovery_sig": "sha256chain:d2bb0d241d096ac93780514843f46c1b99fe45c4f8f8e054852da48477790305",
-      "latency_us": 325.04
+      "latency_us": 304.0
     },
     {
       "step": 50,
       "ok": true,
       "recovery_sig": "sha256chain:fb3e9037d63f17a8c721a77afb3652f37f7f903d93c62bcfd47597ba265afa31",
-      "latency_us": 257.71
+      "latency_us": 277.25
     },
     {
       "step": 12,
       "ok": false,
       "reason": "CAS_REJECT: step 12 < current 50",
-      "latency_us": 90.33
+      "latency_us": 93.96
     }
   ]
 }
